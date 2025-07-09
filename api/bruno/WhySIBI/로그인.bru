@@ -1,0 +1,18 @@
+meta {
+  name: 로그인
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{url}}/users/login
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "email": "febc13-final01-emjf",
+    "password": "febc13-final01-emjf__"
+  }
+}

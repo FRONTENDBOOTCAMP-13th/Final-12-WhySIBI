@@ -1,0 +1,20 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "dbinit": "cross-env NODE_ENV=production node ./init.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dayjs": "^1.11.13",
+    "dotenv": "^16.4.5",
+    "mongodb": "^6.5.0"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
+  }
+}
