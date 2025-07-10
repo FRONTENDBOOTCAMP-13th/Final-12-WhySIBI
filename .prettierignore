@@ -1,0 +1,26 @@
+# 빌드 결과물
+.next/
+out/
+dist/
+build/
+
+# 패키지 관련
+node_modules/
+*.tsbuildinfo
+
+# 로그 파일
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 환경 설정
+.env*
+
+# 자동 생성 파일
+*.min.js
+*.min.css
+
+# README나 문서 (선택사항)
+README.md
+CHANGELOG.md
