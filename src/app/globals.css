@@ -1,1 +1,132 @@
 @import 'tailwindcss';
+@import '/public/font/font.css';
+
+@layer base {
+  :root {
+    /* ==============================
+       🖋 Fonts
+       ============================== */
+    --font-logo: 'Ownglyph_ParkDaHyun', cursive;
+    --font-basic: 'Pretendard-Regular', sans-serif;
+
+    /* ==============================
+       🎨 liveAlone 대표 컬러 (Base)
+       ============================== */
+    --livealone-vanilla: #ffeebc;
+    --livealone-columbia-blue: #d2e8ff;
+    --livealone-cal-poly-green: #26422a;
+    --livealone-bistre: #5d372a;
+    --livealone-flame: #ea672d;
+
+    /* ==============================
+       🎨 liveAlone Palette (단계별)
+       ============================== */
+
+    /* Vanilla */
+    --vanilla-100: #fff8e4;
+    --vanilla-200: #fff1cc;
+    --vanilla-300: #ffeebc;
+    --vanilla-400: #e6d7a8;
+    --vanilla-500: #ccbd92;
+
+    /* Columbia Blue */
+    --columbia-blue-100: #eff7ff;
+    --columbia-blue-200: #cae4ff;
+    --columbia-blue-300: #d2e8ff;
+    --columbia-blue-400: #a2c9e6;
+    --columbia-blue-500: #7aaacd;
+
+    /* Cal Poly Green */
+    --cal-poly-green-100: #4c6751;
+    --cal-poly-green-200: #3f5844;
+    --cal-poly-green-300: #26422a;
+    --cal-poly-green-400: #1c3120;
+    --cal-poly-green-500: #142518;
+
+    /* Bistre */
+    --bistre-100: #8b6b5f;
+    --bistre-200: #75584d;
+    --bistre-300: #5d372a;
+    --bistre-400: #4b2a1f;
+    --bistre-500: #3c1e15;
+
+    /* Flame */
+    --flame-100: #ffb899;
+    --flame-200: #ff9466;
+    --flame-300: #ea672d;
+    --flame-400: #c6531f;
+    --flame-500: #a04014;
+
+    /* ==============================
+       🎨 투명도 단계
+       ============================== */
+    --columbia-blue-opaque-90: rgba(210, 232, 255, 0.9);
+    --columbia-blue-opaque-75: rgba(210, 232, 255, 0.75);
+    --columbia-blue-opaque-50: rgba(210, 232, 255, 0.5);
+
+    --vanilla-opaque-90: rgba(255, 238, 188, 0.9);
+    --vanilla-opaque-75: rgba(255, 238, 188, 0.75);
+    --vanilla-opaque-50: rgba(255, 238, 188, 0.5);
+
+    /* ==============================
+       🎨 Shadow
+       ============================== */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.15);
+
+    /* ==============================
+       🎨 Radius
+       ============================== */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 16px;
+    --radius-full: 9999px;
+
+    /* ==============================
+       🎨 Transition
+       ============================== */
+    --transition-fast: 150ms ease-out;
+    --transition-medium: 300ms ease-out;
+    --transition-slow: 500ms ease-out;
+
+    /* ==============================
+       🎨 Z-index
+       ============================== */
+    --z-index-base: 1;
+    --z-index-dropdown: 10;
+    --z-index-modal: 100;
+    --z-index-toast: 1000;
+
+    /* ==============================
+       ✍️ Typography
+       ============================== */
+    --font-weight-bold: bold;
+    --font-weight-regular: normal;
+
+    --font-size-xs: 12px;
+    --font-size-sm: 14px;
+    --font-size-md: 16px;
+    --font-size-lg: 20px;
+    --font-size-xl: 24px;
+    --font-size-2xl: 28px;
+    --font-size-3xl: 32px;
+    --font-size-4xl: 36px;
+    --font-size-5xl: 40px;
+
+    --line-height-xxs: 18px;
+    --line-height-xs: 20px;
+    --line-height-sm: 22px;
+    --line-height-md: 24px;
+    --line-height-lg: 28px;
+    --line-height-xl: 34px;
+    --line-height-2xl: 38px;
+    --line-height-3xl: 42px;
+    --line-height-4xl: 46px;
+    --line-height-5xl: 52px;
+
+    --letter-spacing-default: -0.6px;
+
+    --paragraph-spacing-default: 0px;
+  }
+}
