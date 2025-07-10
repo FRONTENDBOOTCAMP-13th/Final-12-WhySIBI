@@ -1,10 +1,10 @@
 import { MongoClient } from 'mongodb';
 
-async function getDB(clientId) {  
+async function getDB(clientId) {
   const url = process.env.DB_URL;
 
   console.log(`DB 접속 시도`, url);
-
+  console.log('DB클라이언트 아이디', clientId);
   try {
     const client = new MongoClient(url);
 
@@ -29,7 +29,7 @@ async function getDB(clientId) {
         await db.seq.insertOne({ _id, no: 2 });
       }
       return result.no;
-    }
+    };
 
     return { db, client, nextSeq };
   } catch (err) {
