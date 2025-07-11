@@ -2303,23 +2303,23 @@ export const initData = async (clientId, nextSeq) => {
       {
         _id: await nextSeq('product'),
         seller_id: 2,
-        price: 17010,
+        price: 59900,
         shippingFees: 0,
         show: true,
         active: true,
-        name: '무너짐없는 파이프 행거',
+        name: '매직 가림막 파티션',
         quantity: 320,
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/pipehangger.png`,
-            name: 'pipehangger.png',
-            originalname: '파이프행거.png',
+            path: `/files/${clientId}/magicpartition.png`,
+            name: 'magicpartition.png',
+            originalname: '매직파티션.png',
           },
         ],
         content: `
           <div class="product-detail">
-            <p>무너짐없는 파이프 행거 상세 설명</p>
+            <p>매직 가림막 파티션 상세 설명</p>
           </div>`,
         createdAt: getTime(-41, -60 * 60 * 2),
         updatedAt: getTime(-40, -60 * 15),
@@ -2333,23 +2333,23 @@ export const initData = async (clientId, nextSeq) => {
       {
         _id: await nextSeq('product'),
         seller_id: 2,
-        price: 17010,
+        price: 99000,
         shippingFees: 0,
         show: true,
         active: true,
-        name: '무너짐없는 파이프 행거',
+        name: '블릭 미니 빔프로젝터',
         quantity: 320,
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/pipehangger.png`,
-            name: 'pipehangger.png',
-            originalname: '파이프행거.png',
+            path: `/files/${clientId}/blikbimproject.png`,
+            name: 'blikbimproject.png',
+            originalname: '블릭빔프로젝터.png',
           },
         ],
         content: `
           <div class="product-detail">
-            <p>무너짐없는 파이프 행거 상세 설명</p>
+            <p>블릭 미니 빔프로젝터 상세 설명</p>
           </div>`,
         createdAt: getTime(-41, -60 * 60 * 2),
         updatedAt: getTime(-40, -60 * 15),
@@ -2363,23 +2363,23 @@ export const initData = async (clientId, nextSeq) => {
       {
         _id: await nextSeq('product'),
         seller_id: 2,
-        price: 17010,
+        price: 2700,
         shippingFees: 0,
         show: true,
         active: true,
-        name: '무너짐없는 파이프 행거',
+        name: '칸칸이 뚜껑 속옷정리함',
         quantity: 320,
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/pipehangger.png`,
-            name: 'pipehangger.png',
-            originalname: '파이프행거.png',
+            path: `/files/${clientId}/kankan.png`,
+            name: 'kankan.png',
+            originalname: '칸칸이정리함.png',
           },
         ],
         content: `
           <div class="product-detail">
-            <p>무너짐없는 파이프 행거 상세 설명</p>
+            <p>칸칸이 뚜껑 속옷정리함 상세 설명</p>
           </div>`,
         createdAt: getTime(-41, -60 * 60 * 2),
         updatedAt: getTime(-40, -60 * 15),
@@ -2393,23 +2393,23 @@ export const initData = async (clientId, nextSeq) => {
       {
         _id: await nextSeq('product'),
         seller_id: 2,
-        price: 17010,
+        price: 8900,
         shippingFees: 0,
         show: true,
         active: true,
-        name: '무너짐없는 파이프 행거',
+        name: '썸머캔디 여름 침구 모음',
         quantity: 320,
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/pipehangger.png`,
-            name: 'pipehangger.png',
-            originalname: '파이프행거.png',
+            path: `/files/${clientId}/summercandy.png`,
+            name: 'summercandy.png',
+            originalname: '여름침구모음.png',
           },
         ],
         content: `
           <div class="product-detail">
-            <p>무너짐없는 파이프 행거 상세 설명</p>
+            <p>썸머캔디 여름 침구 모음 상세 설명</p>
           </div>`,
         createdAt: getTime(-41, -60 * 60 * 2),
         updatedAt: getTime(-40, -60 * 15),
@@ -2423,23 +2423,23 @@ export const initData = async (clientId, nextSeq) => {
       {
         _id: await nextSeq('product'),
         seller_id: 2,
-        price: 17010,
+        price: 7500,
         shippingFees: 0,
         show: true,
         active: true,
-        name: '무너짐없는 파이프 행거',
+        name: '행운의 클로버 키우기',
         quantity: 320,
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/pipehangger.png`,
-            name: 'pipehangger.png',
-            originalname: '파이프행거.png',
+            path: `/files/${clientId}/clover.png`,
+            name: 'clover.png',
+            originalname: '클로버키우기.png',
           },
         ],
         content: `
           <div class="product-detail">
-            <p>무너짐없는 파이프 행거 상세 설명</p>
+            <p>행운의 클로버 키우기 상세 설명</p>
           </div>`,
         createdAt: getTime(-41, -60 * 60 * 2),
         updatedAt: getTime(-40, -60 * 15),
@@ -2453,23 +2453,23 @@ export const initData = async (clientId, nextSeq) => {
       {
         _id: await nextSeq('product'),
         seller_id: 2,
-        price: 17010,
+        price: 8900,
         shippingFees: 0,
         show: true,
         active: true,
-        name: '무너짐없는 파이프 행거',
+        name: '3단 집게 양말건조대',
         quantity: 320,
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/pipehangger.png`,
-            name: 'pipehangger.png',
+            path: `/files/${clientId}/socksdry.png`,
+            name: 'socksdry.png',
             originalname: '파이프행거.png',
           },
         ],
         content: `
           <div class="product-detail">
-            <p>무너짐없는 파이프 행거 상세 설명</p>
+            <p>3단 집게 양말건조대 상세 설명</p>
           </div>`,
         createdAt: getTime(-41, -60 * 60 * 2),
         updatedAt: getTime(-40, -60 * 15),
@@ -2483,23 +2483,23 @@ export const initData = async (clientId, nextSeq) => {
       {
         _id: await nextSeq('product'),
         seller_id: 2,
-        price: 17010,
+        price: 8500,
         shippingFees: 0,
         show: true,
         active: true,
-        name: '무너짐없는 파이프 행거',
+        name: '벌레퇴치 시나몬스틱 세트',
         quantity: 320,
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/pipehangger.png`,
-            name: 'pipehangger.png',
-            originalname: '파이프행거.png',
+            path: `/files/${clientId}/sinamonstick.png`,
+            name: 'sinamonstick.png',
+            originalname: '시나몬스틱.png',
           },
         ],
         content: `
           <div class="product-detail">
-            <p>무너짐없는 파이프 행거 상세 설명</p>
+            <p>벌레퇴치 시나몬스틱 세트 상세 설명</p>
           </div>`,
         createdAt: getTime(-41, -60 * 60 * 2),
         updatedAt: getTime(-40, -60 * 15),
@@ -2513,23 +2513,623 @@ export const initData = async (clientId, nextSeq) => {
       {
         _id: await nextSeq('product'),
         seller_id: 2,
-        price: 17010,
+        price: 17800,
         shippingFees: 0,
         show: true,
         active: true,
-        name: '무너짐없는 파이프 행거',
+        name: '농담곰 라면그릇 세트',
         quantity: 320,
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/pipehangger.png`,
-            name: 'pipehangger.png',
-            originalname: '파이프행거.png',
+            path: `/files/${clientId}/ramenset.png`,
+            name: 'ramenset.png',
+            originalname: '라면그릇세트.png',
           },
         ],
         content: `
           <div class="product-detail">
-            <p>무너짐없는 파이프 행거 상세 설명</p>
+            <p>농담곰 라면그릇 세트 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 35900,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '2in1 강력 스팀 다리미',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/steamiron.png`,
+            name: 'steamiron.png',
+            originalname: '스팀다리미.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>2in1 강력 스팀 다리미 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 19900,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '쿨터치 여름 파자마',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/cooltouch.png`,
+            name: 'cooltouch.png',
+            originalname: '여름파자마.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>쿨터치 여름 파자마 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 39400,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '셀프 에어컨청소 풀세트',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/airconCleankit.png`,
+            name: 'airconCleankit.png',
+            originalname: '에어컨청소키트.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>셀프 에어컨청소 풀세트 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 21900,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '스마트 알람 도어센서',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/alarmdoor.png`,
+            name: 'alarmdoor.png',
+            originalname: '알람도어센서.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>스마트 알람 도어센서 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 6900,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '초간편 셀프시공 장판',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/selftile.png`,
+            name: 'selftile.png',
+            originalname: '셀프시공장판.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>초간편 셀프시공 장판 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 29000,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '무타공 자동 도어스토퍼',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/doorstopper.png`,
+            name: 'doorstopper.png',
+            originalname: '도어스토퍼.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>무타공 자동 도어스토퍼 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 84000,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '원룸 화이트 식탁 모음',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/oneroomwhite.png`,
+            name: 'oneroomwhite.png',
+            originalname: '라면그릇세트.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>원룸 화이트 식탁 모음 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 3900,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '미니 촛농 오브제캔들',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/minicandle.png`,
+            name: 'minicandle.png',
+            originalname: '오브제캔들.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>미니 촛농 오브제캔들 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 12900,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '셀프 등밀이 브러쉬',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/selfback.png`,
+            name: 'selfback.png',
+            originalname: '셀프등밀이.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>셀프 등밀이 브러쉬 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 15900,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '뽀글이 조각 매트 10장',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/bbogglemat.png`,
+            name: 'bbogglemat.png',
+            originalname: '뽀글이조각매트.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>뽀글이 조각 매트 10장 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 45900,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '히퍼 1인용 컴퓨터 책상',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/hipperdesk.png`,
+            name: 'hipperdesk.png',
+            originalname: '히퍼컴퓨터책상.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>히퍼 1인용 컴퓨터 책상 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 17800,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '1초 쿨링 바디스프레이',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/coolingbody.png`,
+            name: 'coolingbody.png',
+            originalname: '쿨링바디스프레이.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>1초 쿨링 바디스프레이 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 12000,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '기름튐방지 투명 가림막',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/kitchenpartition.png`,
+            name: 'kitchenpartition.png',
+            originalname: '투명가림막.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>기름튐방지 투명 가림막 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 7900,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '집게형 태블릿 거치대',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/tabletstand.png`,
+            name: 'tabletstand.png',
+            originalname: '태블릿거치대.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>집게형 태블릿 거치대 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 45900,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '철제 우드 H형 책상 ',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/steelwood.png`,
+            name: 'steelwood.png',
+            originalname: '우드책상.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>철제 우드 H형 책상 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 6500,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '헤어 악세사리 행거',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/hairhangger.png`,
+            name: 'hairhangger.png',
+            originalname: '악세사리행거.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>헤어 악세사리 행거 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 28900,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '원룸용 미니 청소기 모음',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/minivacuum.png`,
+            name: 'minivacuum.png',
+            originalname: '미니청소기모음.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>원룸용 미니 청소기 모음 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 7200,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '한번에 방음 아트 보드',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/artboard.png`,
+            name: 'artboard.png',
+            originalname: '방음아트보드.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>한번에 방음 아트 보드 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 19900,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '소프트 터치 여름 파자마',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/softtouch.png`,
+            name: 'softtouch.png',
+            originalname: '여름파자마.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>소프트 터치 여름 파자마 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 26000,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '무타공 모던 거울',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/modernmirror.png`,
+            name: 'modernmirror.png',
+            originalname: '모던거울.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>무타공 모던 거울 상세 설명</p>
           </div>`,
         createdAt: getTime(-41, -60 * 60 * 2),
         updatedAt: getTime(-40, -60 * 15),
