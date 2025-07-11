@@ -147,9 +147,9 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/cooling.jpg`,
-            name: 'cooling.jpg',
-            originalname: '쿨링패드.jpg',
+            path: `/files/${clientId}/cooling.png`,
+            name: 'cooling.png',
+            originalname: '쿨링패드.png',
           },
         ],
         content: `
@@ -163,6 +163,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           category: ['PC03', 'PC0302'],
           sort: 5,
+          // detailimg: [
+          //   {
+          //     path: `/files/${clientId}/cooling.png`,
+          //   },
+          // ],
         },
       },
       {
@@ -177,9 +182,9 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/tv.jpg`,
-            name: 'tv.jpg',
-            originalname: '티비세트.jpg',
+            path: `/files/${clientId}/tv.png`,
+            name: 'tv.png',
+            originalname: '티비세트.png',
           },
         ],
         content: `
@@ -207,9 +212,9 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/pushbot.jpg`,
-            name: 'pushbot.jpg',
-            originalname: '푸시봇.jpg',
+            path: `/files/${clientId}/pushbot.png`,
+            name: 'pushbot.png',
+            originalname: '푸시봇.png',
           },
         ],
         content: `
@@ -237,9 +242,9 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/curtain.jpg`,
-            name: 'cooling.jpg',
-            originalname: '암막커튼.jpg',
+            path: `/files/${clientId}/curtain.png`,
+            name: 'cooling.png',
+            originalname: '암막커튼.png',
           },
         ],
         content: `
@@ -267,9 +272,9 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/summercooling.jpg`,
-            name: 'summercooling.jpg',
-            originalname: '쿨링 이불.jpg',
+            path: `/files/${clientId}/summercooling.png`,
+            name: 'summercooling.png',
+            originalname: '쿨링 이불.png',
           },
         ],
         content: `
@@ -297,9 +302,9 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/javara.jpg`,
-            name: 'javara.jpg',
-            originalname: '자바라거치대.jpg',
+            path: `/files/${clientId}/javara.png`,
+            name: 'javara.png',
+            originalname: '자바라거치대.png',
           },
         ],
         content: `
@@ -327,9 +332,9 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/topper.jpg`,
-            name: 'topper.jpg',
-            originalname: '토퍼.jpg',
+            path: `/files/${clientId}/topper.png`,
+            name: 'topper.png',
+            originalname: '토퍼.png',
           },
         ],
         content: `
@@ -357,9 +362,9 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/bodyfillow.jpg`,
-            name: 'bodyfillow.jpg',
-            originalname: '바디필로우.jpg',
+            path: `/files/${clientId}/bodyfillow.png`,
+            name: 'bodyfillow.png',
+            originalname: '바디필로우.png',
           },
         ],
         content: `
@@ -387,9 +392,9 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/minix.jpg`,
-            name: 'minix.jpg',
-            originalname: '미닉스.jpg',
+            path: `/files/${clientId}/minix.png`,
+            name: 'minix.png',
+            originalname: '미닉스.png',
           },
         ],
         content: `
@@ -417,9 +422,9 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/bath.jpg`,
-            name: 'bath.jpg',
-            originalname: '욕조.jpg',
+            path: `/files/${clientId}/bath.png`,
+            name: 'bath.png',
+            originalname: '욕조.png',
           },
         ],
         content: `
@@ -447,9 +452,9 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/cleankit.jpg`,
-            name: 'cleankit.jpg',
-            originalname: '청소키트.jpg',
+            path: `/files/${clientId}/cleankit.png`,
+            name: 'cleankit.png',
+            originalname: '청소키트.png',
           },
         ],
         content: `
@@ -477,9 +482,9 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/cosmetic.jpg`,
-            name: 'cosmetic.jpg',
-            originalname: '화장품정리함.jpg',
+            path: `/files/${clientId}/cosmetic.png`,
+            name: 'cosmetic.png',
+            originalname: '화장품정리함.png',
           },
         ],
         content: `
@@ -507,9 +512,9 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/hangger.jpg`,
-            name: 'hangger.jpg',
-            originalname: '행거.jpg',
+            path: `/files/${clientId}/hangger.png`,
+            name: 'hangger.png',
+            originalname: '행거.png',
           },
         ],
         content: `
@@ -537,9 +542,9 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/coolpan.jpg`,
-            name: 'coolpan.jpg',
-            originalname: '선풍기.jpg',
+            path: `/files/${clientId}/coolpan.png`,
+            name: 'coolpan.png',
+            originalname: '선풍기.png',
           },
         ],
         content: `
@@ -567,9 +572,9 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/theslim.jpg`,
-            name: 'theslim.jpg',
-            originalname: '음식물처리기.jpg',
+            path: `/files/${clientId}/theslim.png`,
+            name: 'theslim.png',
+            originalname: '음식물처리기.png',
           },
         ],
         content: `
@@ -597,9 +602,9 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/airflier.jpg`,
-            name: 'airflier.jpg',
-            originalname: '에어프라이어.jpg',
+            path: `/files/${clientId}/airflier.png`,
+            name: 'airflier.png',
+            originalname: '에어프라이어.png',
           },
         ],
         content: `
@@ -627,9 +632,9 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/trap.jpg`,
-            name: 'trap.jpg',
-            originalname: '하수구트랩.jpg',
+            path: `/files/${clientId}/trap.png`,
+            name: 'trap.png',
+            originalname: '하수구트랩.png',
           },
         ],
         content: `
@@ -657,9 +662,9 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/bug.jpg`,
-            name: 'bug.jpg',
-            originalname: '해충퇴치.jpg',
+            path: `/files/${clientId}/bug.png`,
+            name: 'bug.png',
+            originalname: '해충퇴치.png',
           },
         ],
         content: `
@@ -687,9 +692,9 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/multiport.jpg`,
-            name: 'multiport.jpg',
-            originalname: '냄비.jpg',
+            path: `/files/${clientId}/multiport.png`,
+            name: 'multiport.png',
+            originalname: '냄비.png',
           },
         ],
         content: `
@@ -717,9 +722,9 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/jellyfish.jpg`,
-            name: 'jellyfish.jpg',
-            originalname: '해파리무드등.jpg',
+            path: `/files/${clientId}/jellyfish.png`,
+            name: 'jellyfish.png',
+            originalname: '해파리무드등.png',
           },
         ],
         content: `
@@ -747,9 +752,9 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/copybara.jpg`,
-            name: 'copybara.jpg',
-            originalname: '감기걸린카피바라.jpg',
+            path: `/files/${clientId}/copybara.png`,
+            name: 'copybara.png',
+            originalname: '감기걸린카피바라.png',
           },
         ],
         content: `
@@ -777,9 +782,9 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/copybara2.jpg`,
-            name: 'copybara2.jpg',
-            originalname: '츤데레카피바라.jpg',
+            path: `/files/${clientId}/copybara2.png`,
+            name: 'copybara2.png',
+            originalname: '츤데레카피바라.png',
           },
         ],
         content: `
@@ -807,9 +812,9 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/dockmood.jpg`,
-            name: 'dockmood.jpg',
-            originalname: '오리무드등.jpg',
+            path: `/files/${clientId}/dockmood.png`,
+            name: 'dockmood.png',
+            originalname: '오리무드등.png',
           },
         ],
         content: `
@@ -837,9 +842,9 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/sanroconcent.jpg`,
-            name: 'sanroconcent.jpg',
-            originalname: '산로콘센트 커버.jpg',
+            path: `/files/${clientId}/sanroconcent.png`,
+            name: 'sanroconcent.png',
+            originalname: '산로콘센트 커버.png',
           },
         ],
         content: `
@@ -867,9 +872,9 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/pabricCover.jpg`,
-            name: 'pabricCover.jpg',
-            originalname: '패브릭커버.jpg',
+            path: `/files/${clientId}/pabricCover.png`,
+            name: 'pabricCover.png',
+            originalname: '패브릭커버.png',
           },
         ],
         content: `
@@ -897,9 +902,9 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/smartplug.jpg`,
-            name: 'smartplug.jpg',
-            originalname: '스마트플러그.jpg',
+            path: `/files/${clientId}/smartplug.png`,
+            name: 'smartplug.png',
+            originalname: '스마트플러그.png',
           },
         ],
         content: `
@@ -927,9 +932,9 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/deskmultitab.jpg`,
-            name: 'deskmultitab.jpg',
-            originalname: '책상고정멀티탭.jpg',
+            path: `/files/${clientId}/deskmultitab.png`,
+            name: 'deskmultitab.png',
+            originalname: '책상고정멀티탭.png',
           },
         ],
         content: `
@@ -957,9 +962,9 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/dockmood.jpg`,
-            name: 'dockmood.jpg',
-            originalname: '오리무드등.jpg',
+            path: `/files/${clientId}/dockmood.png`,
+            name: 'dockmood.png',
+            originalname: '오리무드등.png',
           },
         ],
         content: `
@@ -978,23 +983,23 @@ export const initData = async (clientId, nextSeq) => {
       {
         _id: await nextSeq('product'),
         seller_id: 2,
-        price: 17800,
+        price: 125900,
         shippingFees: 0,
         show: true,
         active: true,
-        name: '철푸덕 오리 무드등',
+        name: '각도조절 집순이 소파베드',
         quantity: 320,
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/dockmood.jpg`,
-            name: 'dockmood.jpg',
-            originalname: '오리무드등.jpg',
+            path: `/files/${clientId}/sofabed.png`,
+            name: 'sofabed.png',
+            originalname: '소파베드.png',
           },
         ],
         content: `
           <div class="product-detail">
-            <p>철푸덕 오리 무드등 상세 설명</p>
+            <p>각도조절 집순이 소파베드 상세 설명</p>
           </div>`,
         createdAt: getTime(-41, -60 * 60 * 2),
         updatedAt: getTime(-40, -60 * 15),
@@ -1008,23 +1013,1523 @@ export const initData = async (clientId, nextSeq) => {
       {
         _id: await nextSeq('product'),
         seller_id: 2,
-        price: 17800,
+        price: 14900,
         shippingFees: 0,
         show: true,
         active: true,
-        name: '철푸덕 오리 무드등',
+        name: '핸즈프리 맥세이프 선풍기',
         quantity: 320,
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/dockmood.jpg`,
-            name: 'dockmood.jpg',
-            originalname: '오리무드등.jpg',
+            path: `/files/${clientId}/magsafepan.png`,
+            name: 'magsafepan.png',
+            originalname: '맥세이프선풍기.png',
           },
         ],
         content: `
           <div class="product-detail">
-            <p>철푸덕 오리 무드등 상세 설명</p>
+            <p>핸즈프리 맥세이프 선풍기 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 39800,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '스탠드형 에어써큘레이터',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/airsurqu.png`,
+            name: 'airsurqu.png',
+            originalname: '에어써큘레이터.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>스탠드형 에어써큘레이터 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 21000,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: 'DIY 도든 데코타일',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/decotile.png`,
+            name: 'decotile.png',
+            originalname: '데코타일.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>DIY 도든 데코타일 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 6900,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '다용도 앞접시 미니국자',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/minispoon.png`,
+            name: 'minispoon.png',
+            originalname: '미니국자.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>다용도 앞접시 미니국자 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 7900,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '벌레퇴치 시나몬 모빌',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/sinamonmobil.png`,
+            name: 'sinamonmobil.png',
+            originalname: '시나몬 모빌.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>벌레퇴치 시나몬 모빌 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 53900,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '원룸 미니 빈백 소파',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/minisofa.png`,
+            name: 'minisofa.png',
+            originalname: '미니소파.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>원룸 미니 빈백 소파 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 25900,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '메종드꼼마 유니온 데스크',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/maisondesk.png`,
+            name: 'maisondesk.png',
+            originalname: '유니온데스크.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>메종드꼼마 유니온 데스크 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 428000,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '신일 냉난방 이동식 에어컨',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/moveaircon.png`,
+            name: 'moveaircon.png',
+            originalname: '이동식에어컨.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>신일 냉난방 이동식 에어컨 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 29900,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '우드 상판 조립식 서랍장',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/wooddrawer.png`,
+            name: 'wooddrawer.png',
+            originalname: '우드서랍장.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>우드 상판 조립식 서랍장 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 7900,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '공중부양 실리콘 알뜰주걱',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/sliconspoon.png`,
+            name: 'sliconspoon.png',
+            originalname: '실리콘알뜰주걱.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>공중부양 실리콘 알뜰주걱 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 29900,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '러블리 사이드 테이블',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/lovelytable.png`,
+            name: 'lovelytable.png',
+            originalname: '사이드테이블.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>러블리 사이드 테이블 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 4900,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '그린라벨 빅 타일카페트',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/greentile.png`,
+            name: 'greentile.png',
+            originalname: '그린라벨 카페트.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>그린라벨 빅 타일카페트 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 79900,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '펠티어 저소음 미니제습기',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/felltier.png`,
+            name: 'felltier.png',
+            originalname: '미니제습기.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>펠티어 저소음 미니제습기 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 48000,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '창틀 빨래 건조대 선반',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/windowdry.png`,
+            name: 'windowdry.png',
+            originalname: '창틀건조대.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>창틀 빨래 건조대 선반 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 39900,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '튼튼한 문걸이 빨래건조대',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/doordry.png`,
+            name: 'doordry.png',
+            originalname: '문걸이빨래건조대.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>튼튼한 문걸이 빨래건조대 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 23900,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '슬립베이커리 토핑필로우',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/sleepbakery.png`,
+            name: 'sleepbakery.png',
+            originalname: '토핑필로우.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>슬립베이커리 토핑필로우 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 32800,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '슈즈쏙 신발 살균건조기',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/shoesdry.png`,
+            name: 'shoesdry.png',
+            originalname: '신발살균건조기.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>슈즈쏙 신발 살균건조기 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 42900,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '미니 화장품 냉장고',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/minifridge.png`,
+            name: 'minifridge.png',
+            originalname: '미니화장품냉장고.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>미니 화장품 냉장고 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 9700,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '대형 풍경 패브릭 포스터',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/scapeposter.png`,
+            name: 'scapeposter.png',
+            originalname: '풍경패브릭포스터.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>대형 풍경 패브릭 포스터 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 29900,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '바람찬 침낭형 침구세트',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/beddingset.png`,
+            name: 'beddingset.png',
+            originalname: '침낭형침구세트.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>바람찬 침낭형 침구세트 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 77900,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: 'DIY 커스텀 수납화장대',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/vanity.png`,
+            name: 'vanity.png',
+            originalname: '커스텀수납화장대.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>DIY 커스텀 수납화장대 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 9900,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '허니팝 시어서커 여름이불',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/honeypop.png`,
+            name: 'honeypop.png',
+            originalname: '허니팝여름이불.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>허니팝 시어서커 여름이불 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 3510,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '서랍식 옷정리 트레이',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/drawtray.png`,
+            name: 'drawtray.png',
+            originalname: '서랍식옷정리트레이.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>서랍식 옷정리 트레이 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 59900,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '오브룸 미니 빔프로젝터',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/minibimproject.png`,
+            name: 'minibimproject.png',
+            originalname: '미니빔프로젝터.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>오브룸 미니 빔프로젝터 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 4900,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '화이트 라면 정리함',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/ramenorganizer.png`,
+            name: 'ramenorganizer.png',
+            originalname: '라면정리함.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>화이트 라면 정리함 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 5500,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: 'DIY 스티커 주방타일 28종',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/diykitchen.png`,
+            name: 'diykitchen.png',
+            originalname: '주방타일29종.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>DIY 스티커 주방타일 28종 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 1900,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '문쾅방지 실리콘 문손잡이',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/sliconhandler.png`,
+            name: 'sliconhandler.png',
+            originalname: '실리콘문손잡이.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>문쾅방지 실리콘 문손잡이 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 11900,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '오싹아이스 냉감 여름이불',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/icebedding.png`,
+            name: 'icebedding.png',
+            originalname: '냉감여름이불.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>오싹아이스 냉감 여름이불 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 69800,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '튼튼한 2단 파티션 행거',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/partitionhangger.png`,
+            name: 'partitionhangger.png',
+            originalname: '2단파티션행거.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>튼튼한 2단 파티션 행거 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 8800,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '투명한 칸막이 속옷정리함',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/partitionorganize.png`,
+            name: 'partitionorganize.png',
+            originalname: '칸막이속옷정리함.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>투명한 칸막이 속옷정리함 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 44900,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '무타공 암막 커튼 세트',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/darkcutton.png`,
+            name: 'darkcutton.png',
+            originalname: '무타공암막커튼세트.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>무타공 암막 커튼 세트 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 17010,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '무너짐없는 파이프 행거',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/pipehangger.png`,
+            name: 'pipehangger.png',
+            originalname: '파이프행거.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>무너짐없는 파이프 행거 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 21900,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '아차거 날벌레 퇴치기',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/insect.png`,
+            name: 'insect.png',
+            originalname: '날벌레퇴치기.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>아차거 날벌레 퇴치기 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 34900,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '원룸형 가벼운 무선청소기',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/oneroomvacuum.png`,
+            name: 'oneroomvacuum.png',
+            originalname: '원룸용무선청소기.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>원룸형 가벼운 무선청소기 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 19900,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '냉감 오리 바디필로우',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/dockbody.png`,
+            name: 'dockbody.png',
+            originalname: '냉감오리바디필로우.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>냉감 오리 바디필로우 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 19900,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '프랑코 자석 우산꽂이',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/francoumbrella.png`,
+            name: 'francoumbrella.png',
+            originalname: '자석우산꽂이.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>프랑코 자석 우산꽂이 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 1400,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '3단계 높이조절 슈즈렉',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/shoesrack.png`,
+            name: 'shoesrack.png',
+            originalname: '높이조절슈즈렉.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>3단계 높이조절 슈즈렉 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 34900,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '타공수납 전자레인지 선반',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/microwavedesk.png`,
+            name: 'microwavedesk.png',
+            originalname: '전자레인지선반.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>타공수납 전자레인지 선반 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 47900,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '지그재그 트리 북타워',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/zigzagtree.png`,
+            name: 'zigzagtree.png',
+            originalname: '트리북타워.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>지그재그 트리 북타워 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 11900,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '셀프교체 자석 방충망',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/insectscreen.png`,
+            name: 'insectscreen.png',
+            originalname: '자석방충망.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>셀프교체 자석 방충망 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 15900,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '현관문 자석 모기장',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/doorinsect.png`,
+            name: 'doorinsect.png',
+            originalname: '현관문모기장.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>현관문 자석 모기장 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 43900,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '스트라이프 가벽 파티션',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/stripepartition.png`,
+            name: 'stripepartition.png',
+            originalname: '가벽파티션.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>스트라이프 가벽 파티션 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 4500,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '자동 불끄기 스위치 커버',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/autoswitch.png`,
+            name: 'autoswitch.png',
+            originalname: '자동불끄기.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>자동 불끄기 스위치 커버 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 17010,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '무너짐없는 파이프 행거',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/pipehangger.png`,
+            name: 'pipehangger.png',
+            originalname: '파이프행거.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>무너짐없는 파이프 행거 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 17010,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '무너짐없는 파이프 행거',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/pipehangger.png`,
+            name: 'pipehangger.png',
+            originalname: '파이프행거.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>무너짐없는 파이프 행거 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 17010,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '무너짐없는 파이프 행거',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/pipehangger.png`,
+            name: 'pipehangger.png',
+            originalname: '파이프행거.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>무너짐없는 파이프 행거 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 17010,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '무너짐없는 파이프 행거',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/pipehangger.png`,
+            name: 'pipehangger.png',
+            originalname: '파이프행거.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>무너짐없는 파이프 행거 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 17010,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '무너짐없는 파이프 행거',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/pipehangger.png`,
+            name: 'pipehangger.png',
+            originalname: '파이프행거.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>무너짐없는 파이프 행거 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 17010,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '무너짐없는 파이프 행거',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/pipehangger.png`,
+            name: 'pipehangger.png',
+            originalname: '파이프행거.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>무너짐없는 파이프 행거 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 17010,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '무너짐없는 파이프 행거',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/pipehangger.png`,
+            name: 'pipehangger.png',
+            originalname: '파이프행거.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>무너짐없는 파이프 행거 상세 설명</p>
+          </div>`,
+        createdAt: getTime(-41, -60 * 60 * 2),
+        updatedAt: getTime(-40, -60 * 15),
+        extra: {
+          isNew: true,
+          isBest: true,
+          category: ['PC03', 'PC0301'],
+          sort: 5,
+        },
+      },
+      {
+        _id: await nextSeq('product'),
+        seller_id: 2,
+        price: 17010,
+        shippingFees: 0,
+        show: true,
+        active: true,
+        name: '무너짐없는 파이프 행거',
+        quantity: 320,
+        buyQuantity: 310,
+        mainImages: [
+          {
+            path: `/files/${clientId}/pipehangger.png`,
+            name: 'pipehangger.png',
+            originalname: '파이프행거.png',
+          },
+        ],
+        content: `
+          <div class="product-detail">
+            <p>무너짐없는 파이프 행거 상세 설명</p>
           </div>`,
         createdAt: getTime(-41, -60 * 60 * 2),
         updatedAt: getTime(-40, -60 * 15),
@@ -1050,9 +2555,9 @@ export const initData = async (clientId, nextSeq) => {
             state: 'OS020',
             name: '냉감 찹쌀떡 바디필로우',
             image: {
-              path: `/files/${clientId}/bodyfillow.jpg`,
-              name: 'bodyfillow.jpg',
-              originalname: '바디필로우.jpg',
+              path: `/files/${clientId}/bodyfillow.png`,
+              name: 'bodyfillow.png',
+              originalname: '바디필로우.png',
             },
             quantity: 1,
             price: 29900,
@@ -1086,9 +2591,9 @@ export const initData = async (clientId, nextSeq) => {
             state: 'OS020',
             name: '벽걸이 에어컨 청소 키트',
             image: {
-              path: `/files/${clientId}/cleankit.jpg`,
-              name: 'cleankit.jpg',
-              originalname: '청소키트.jpg',
+              path: `/files/${clientId}/cleankit.png`,
+              name: 'cleankit.png',
+              originalname: '청소키트.png',
             },
             quantity: 1,
             price: 14400,
@@ -1123,9 +2628,9 @@ export const initData = async (clientId, nextSeq) => {
             state: 'OS020',
             name: '무볼트 드레스룸 행거',
             image: {
-              path: `/files/${clientId}/hangger.jpg`,
-              name: 'hangger.jpg',
-              originalname: '행거.jpg',
+              path: `/files/${clientId}/hangger.png`,
+              name: 'hangger.png',
+              originalname: '행거.png',
             },
             quantity: 1,
             price: 26900,
@@ -1350,35 +2855,49 @@ export const initData = async (clientId, nextSeq) => {
           {
             sort: 1,
             code: 'PC0301',
-            value: '커튼/블라인드/부자재',
+            value: '여름상품',
             parent: 'PC03',
             depth: 2,
           },
           {
             sort: 2,
             code: 'PC0302',
-            value: '바디필로우/쿠션/담요',
+            value: '가구(패브릭)',
             parent: 'PC03',
             depth: 2,
           },
           {
             sort: 3,
             code: 'PC0303',
-            value: '잠옷/실내화/가운',
+            value: '주방용품',
             parent: 'PC03',
             depth: 2,
           },
           {
             sort: 4,
             code: 'PC0304',
-            value: '선풍기',
+            value: '가전/디지털',
             parent: 'PC03',
             depth: 2,
           },
           {
             sort: 5,
             code: 'PC0305',
-            value: '무드등',
+            value: '소품/데코',
+            parent: 'PC03',
+            depth: 2,
+          },
+          {
+            sort: 5,
+            code: 'PC0306',
+            value: '수납/정리',
+            parent: 'PC03',
+            depth: 2,
+          },
+          {
+            sort: 5,
+            code: 'PC0307',
+            value: '공구/DIY',
             parent: 'PC03',
             depth: 2,
           },
