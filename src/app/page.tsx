@@ -1,10 +1,13 @@
-import ButtonBasic from '@/components/Button_basic';
+import Footer from '@/components/common/Footer';
+import Header from '@/components/common/Header';
 
 export default function Home() {
   return (
     <>
-      <h1 className="bg-red-500">final-project-sample v02안녕안녕 메롱</h1>
-      <ButtonBasic></ButtonBasic>
+      <Header />
+      <br />
+      <br />
+      <Footer />
     </>
   );
 }
