@@ -129,3 +129,13 @@
 
   --spacing-paragraph-default: 0px;
 }
+
+.btn-gradient-animate{
+  background: linear-gradient(45deg, #d2e8ff 0%, #d2e8ff 20%, #ffeebc 40%,  #d2e8ff 60%, #ffeebc 80%);
+  background-size: 400%;
+  transition: 1.5s;
+}
+
+.btn-gradient-animate:hover{
+  background-position: right center;
+}

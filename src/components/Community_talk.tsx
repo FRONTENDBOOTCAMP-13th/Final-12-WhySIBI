@@ -34,7 +34,7 @@ function Talk(){
   return(
     <>
     <div className="community-wrapper w-3xl">
-      <div className="bg-linear-to-b from-livealone-vanilla to-columbia-blue-100 rounded-t-4xl 4xl px-10 pt-10 pb-7" >
+      <div className="community bg-linear-to-b from-livealone-vanilla to-columbia-blue-100 rounded-t-4xl 4xl px-10 pt-10 pb-7" >
         <Title title={"자취상담소🏠"} subTitle={"우리집 구해줘 홈즈"}></Title>
           <div className="list-wrapper font-variable">
             <ul className="space-y-4 divide-y divide-gray-300">
@@ -50,13 +50,15 @@ function Talk(){
                       ))}
                     </div>
                   </div>
-                  <img src={post.imageUrl} alt="썸네일" className="w-40 h-30 object-cover rounded-md bg-livealone-columbia-blue" />
+                  <img src={post.imageUrl} alt="썸네일" className="w-35 h-35 object-cover rounded-md bg-livealone-columbia-blue" />
                 </li>
               ))}
             </ul>
           </div>
       </div>
-          <button className="w-full text-center font-variable font-semibold hover:font-bold py-3 text-livealone-cal-poly-green bg-columbia-blue-300 rounded-b-4xl cursor-pointer">글 작성하러 가기</button>
+      <button className="btn-gradient-animate w-full text-center font-variable font-semibold py-3 text-livealone-cal-poly-green bg-livealone-columbia-blue rounded-b-4xl cursor-pointer">
+        글 작성하러 가기
+      </button>
     </div>
     </>
   );
