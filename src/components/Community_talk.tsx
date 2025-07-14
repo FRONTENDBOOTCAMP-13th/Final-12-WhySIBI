@@ -33,16 +33,16 @@ const dummyPosts: Post[] = [
 function Talk(){
   return(
     <>
-    <div className="community-wrapper mx-30">
-      <div className="bg-linear-to-b from-livealone-vanilla to-columbia-blue-100 rounded-t-4xl 4xl px-7 pt-7 pb-5" >
+    <div className="community-wrapper w-3xl">
+      <div className="bg-linear-to-b from-livealone-vanilla to-columbia-blue-100 rounded-t-4xl 4xl px-10 pt-10 pb-7" >
         <Title title={"자취상담소🏠"} subTitle={"우리집 구해줘 홈즈"}></Title>
-          <div className="list-wrapper font-basic">
+          <div className="list-wrapper font-variable">
             <ul className="space-y-4 divide-y divide-gray-300">
               {dummyPosts.map((post) => (
                 <li key={post.id} className="flex justify-between items-center pb-4 cursor-pointer">
                   <div className="w-3/4">
                     <p className="text-sm text-li font-semibold text-livealone-cal-poly-green">{post.category}</p>
-                    <h2 className="font-bold text-lg mt-1">Q {post.title}</h2>
+                    <h2 className="font-extrabold text-lg mt-1">Q {post.title}</h2>
                     <p className="text-sm text-gray-700 mt-2 line-clamp-2">{post.content}</p>
                     <div className="flex flex-wrap gap-1 mt-3 text-sm text-livealone-cal-poly-green font-semibold">
                       {post.tags.map((tag, i) => (
@@ -56,7 +56,7 @@ function Talk(){
             </ul>
           </div>
       </div>
-          <button className="w-full text-center font-basic font-light py-3 text-livealone-cal-poly-green bg-columbia-blue-300 rounded-b-4xl cursor-pointer">글 작성하러 가기</button>
+          <button className="w-full text-center font-variable font-semibold hover:font-bold py-3 text-livealone-cal-poly-green bg-columbia-blue-300 rounded-b-4xl cursor-pointer">글 작성하러 가기</button>
     </div>
     </>
   );

@@ -7,8 +7,8 @@ function Title({title, subTitle}:TitleProps){
   return(
     <>
       <header className="mb-6">
-        <h1 className="font-logo text-size-4xl font-bold text-livealone-cal-poly-green">{title}</h1>
-        <h2 className="font-basic text-size-md text-gray-500">{subTitle}</h2>
+        <h1 className="font-logo text-size-4xl font-bold text-livealone-cal-poly-green leading-10">{title}</h1>
+        <h2 className="font-variable text-size-md text-gray-500">{subTitle}</h2>
       </header>
     </>
   )
