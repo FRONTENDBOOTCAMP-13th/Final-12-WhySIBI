@@ -90,8 +90,9 @@
   --transition-slow: 500ms ease-out;
 
   /* ==============================
-       🎨 Z-index
-       ============================== */
+          🎨 Z-index
+          ============================== */
+  --z-index-under: 1;
   --z-index-base: 1;
   --z-index-dropdown: 10;
   --z-index-modal: 100;
@@ -170,4 +171,3 @@
   .swiper-pagination-bullet-active {
     background-color: #ffeebc;
   }
-}
