@@ -39,7 +39,7 @@ function Talk(){
           <div className="list-wrapper font-variable">
             <ul className="space-y-4 divide-y divide-gray-300">
               {dummyPosts.map((post) => (
-                <li key={post.id} className="flex justify-between items-center pb-4 cursor-pointer">
+                <li key={post.id} className="flex justify-between items-center pb-4 cursor-pointer group">
                   <div className="w-3/4">
                     <p className="text-sm text-li font-semibold text-livealone-cal-poly-green">{post.category}</p>
                     <h2 className="font-extrabold text-lg mt-1">Q {post.title}</h2>
@@ -50,7 +50,7 @@ function Talk(){
                       ))}
                     </div>
                   </div>
-                  <img src={post.imageUrl} alt="썸네일" className="w-35 h-35 object-cover rounded-md bg-livealone-columbia-blue" />
+                  <img src={post.imageUrl} alt="썸네일" className="w-35 h-35 object-cover rounded-md bg-livealone-columbia-blue group-hover:scale-105 group-hover:duration-150 group-hover:opacity-50" />
                 </li>
               ))}
             </ul>

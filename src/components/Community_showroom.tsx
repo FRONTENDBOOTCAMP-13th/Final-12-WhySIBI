@@ -25,7 +25,7 @@ function ShowRoom(){
               {dummyHousePosts.map((post) => (
               <div
                 key={post.id}
-                className="bg-white rounded-lg shadow-md p-3 flex flex-col items-center cursor-pointer"
+                className="bg-white rounded-lg shadow-md p-3 flex flex-col items-center cursor-pointer hover:scale-105 hover:duration-150"
               >
                 <img
                   src={post.imgUrl}
