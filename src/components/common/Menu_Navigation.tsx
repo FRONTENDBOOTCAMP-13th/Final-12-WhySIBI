@@ -1,23 +1,8 @@
+'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useState } from 'react';
-interface activeMenuProps {
-  커뮤니티: string[];
-  쇼핑: string[];
-}
-const subMenuData: activeMenuProps = {
-  커뮤니티: ['집들이', '자취 상담소'],
-  쇼핑: ['추천상품', '베스트 상품', '카테고리'],
-};
-function MenuNavigation() {
-  const [activeMenu, setactiveMenu] = useState(''); // 현재 활성화된 메뉴
-  const [subMenuName, setsubMenuName] = useState(false); // 서브메뉴 표시 여부
-  const handleMenu = (menuName: string) => {
-    console.log(`${menuName}이 클릭되었습니다.`);
-    setactiveMenu(menuName);
-    setsubMenuName(true);
-  };
 
+function MenuNavigation() {
   return (
     <>
       <nav className="header_bottom bg-[#D4E8F8] flex flex-wrap justify-between items-center text-center">
@@ -26,7 +11,7 @@ function MenuNavigation() {
             <Link
               href={''}
               className="block text-button-color  active:text-menu-text w-full h-full"
-              onClick={() => handleMenu('커뮤니티')}
+              onClick={() => handleMenuClick('community')}
             >
               커뮤니티
             </Link>
@@ -35,7 +20,7 @@ function MenuNavigation() {
             <Link
               href={''}
               className="block text-button-color active:text-menu-text w-full h-full"
-              onClick={() => handleMenu('쇼핑')}
+              onClick={() => handleMenuClick('shopping')}
             >
               쇼핑
             </Link>
@@ -44,7 +29,7 @@ function MenuNavigation() {
             <Link
               href={''}
               className="block text-button-color active:text-menu-text w-full h-full"
-              onClick={() => handleMenu('고객센터')}
+              onClick={() => handleMenuClick('csCenter')}
             >
               고객센터
             </Link>
@@ -53,7 +38,7 @@ function MenuNavigation() {
             <Link
               href={''}
               className="block text-button-color active:text-menu-text  w-full h-full"
-              onClick={() => handleMenu('마이페이지')}
+              onClick={() => handleMenuClick('myPage')}
             >
               마이페이지
             </Link>
@@ -83,20 +68,22 @@ function MenuNavigation() {
       </nav>
 
       <section className="sub_menu_nav">
-        <ul className="font-basic bg-white text-size-lg flex flex-wrap items-center pl-16 gap-4 text-center overflow-hidden">
-          {subMenuData[activeMenu]?.map((item, index) => (
-            <li key={index} className="w-[9.375rem] ">
-              <Link
-                href=""
-                className="block text-button-color active:text-menu-text w-full h-full"
-              >
-                {item}
-              </Link>
-            </li>
-          ))}
+        <ul className="font-basic  bg-white text-size-lg flex flex-wrap items-center pl-16 gap-4 text-center overflow-hidden">
+          {/* {(
+            (item, index) => (
+              <li key={index} className="w-[9.375rem] ">
+                <Link
+                  href=""
+                  className="block text-button-color active:text-menu-text w-full h-full"
+                >
+                  {item}
+                </Link>
+              </li>
+            ),
+          )} */}
         </ul>
       </section>
     </>
   );
 }
-export default React.memo(MenuNavigation);
+export default MenuNavigation;

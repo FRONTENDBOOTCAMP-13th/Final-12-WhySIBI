@@ -37,7 +37,7 @@ export default function Footer() {
       <section className="footer_right text-right">
         <Link
           href={''}
-          className="font-logo bg-button-color pl-3.5 pr-3.5 pt-3 pb-3 text-vanilla-300 rounded-full text-right"
+          className="font-logo text-size-lg bg-button-color pl-3.5 pr-3.5 pt-3 pb-3 text-vanilla-300 rounded-full text-right"
         >
           {' '}
           고객센터 &gt;{' '}

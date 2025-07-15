@@ -1,4 +1,3 @@
-'use client';
 import MenuNavigation from '@/components/common/Menu_Navigation';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -31,7 +30,7 @@ export default function Header() {
         </div>
       </section>
 
-      <MenuNavigation/>
+      <MenuNavigation />
     </header>
   );
 }
