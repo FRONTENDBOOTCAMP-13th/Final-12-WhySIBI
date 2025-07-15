@@ -73,7 +73,7 @@ function MainProductSlider() {
 
   return (
     <>
-      <div className="swiper-container">
+      <div className="swiper-container product-swiper">
         <Swiper
           loop={false} // 슬라이드 루프
           spaceBetween={50} // 슬라이스 사이 간격
@@ -81,6 +81,7 @@ function MainProductSlider() {
           navigation={true} // prev, next button
           breakpoints={{
             //반응형
+            0: { slidesPerView: 2 },
             640: { slidesPerView: 2 },
             1024: { slidesPerView: 3 },
             1280: { slidesPerView: 4 },
