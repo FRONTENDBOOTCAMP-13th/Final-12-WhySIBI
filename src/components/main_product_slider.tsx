@@ -1,3 +1,5 @@
+//메인 제품 세션 슬라이드
+
 'use client';
 import SwiperCore from 'swiper';
 import 'swiper/css';
