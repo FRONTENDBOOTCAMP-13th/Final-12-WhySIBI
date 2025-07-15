@@ -161,12 +161,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 89900, //원가
           detailimg: [
             //세부 이미지
             {
@@ -206,6 +208,8 @@ export const initData = async (clientId, nextSeq) => {
           category: ['PC03', 'PC0305', 'PC030506'],
           tag: 'TAG10', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 688000, //원가
           detailimg: [
             //세부 이미지
             {
@@ -245,6 +249,8 @@ export const initData = async (clientId, nextSeq) => {
           category: ['PC03', 'PC0305', 'PC030503'],
           tag: 'TAG10', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 349000, //원가
           detailimg: [
             //세부 이미지
             {
@@ -286,6 +292,8 @@ export const initData = async (clientId, nextSeq) => {
           category: ['PC03', 'PC0304', 'PC030402'],
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 40000, //원가
           detailimg: [
             //세부 이미지
             {
@@ -321,16 +329,18 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
-          size: ['s', 'm'],
+          color: ['핑크베리', '그린샤벳', '블루레몬', '그레이스톤'],
+          size: ['ss', 'q'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 39900, //원가
           detailimg: [
             //세부 이미지
             {
-              path: `/files/${clientId}/detail/cooling.png`,
+              path: `/files/${clientId}/detail/summercooling.png`,
             },
           ],
           star: 5, //별점
@@ -362,19 +372,21 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
-          size: ['s', 'm'],
-          keyword: 'bedding', //키워드
-          category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
-          tag: 'TAG6', //취향태그
+          color: ['블랙', '화이트'],
+          size: [],
+          keyword: 'stand', //키워드
+          category: ['PC03', 'PC0305', 'PC030503'], // 카테고리 - 대분류, 소분류
+          tag: 'TAG10', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 54900, //원가
           detailimg: [
             //세부 이미지
             {
-              path: `/files/${clientId}/detail/cooling.png`,
+              path: `/files/${clientId}/detail/javara.png`,
             },
           ],
-          star: 5, //별점
+          star: 4, //별점
         },
       },
       {
@@ -403,16 +415,26 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
-          size: ['s', 'm'],
+          color: [
+            '아이보리',
+            '그레이',
+            '차콜',
+            '시어서커_쿨민트',
+            '시어서커_차콜',
+            '시어서커_버터옐로우',
+            '시어서커_스카이블루',
+          ],
+          size: ['ms', 's', 'q'],
           keyword: 'bedding', //키워드
-          category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
+          category: ['PC03', 'PC0302', 'PC030202'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 147000, //원가
           detailimg: [
             //세부 이미지
             {
-              path: `/files/${clientId}/detail/cooling.png`,
+              path: `/files/${clientId}/detail/topper.png`,
             },
           ],
           star: 5, //별점
@@ -444,19 +466,21 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
-          size: ['s', 'm'],
+          color: ['네이비'],
+          size: [],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 99000, //원가
           detailimg: [
             //세부 이미지
             {
-              path: `/files/${clientId}/detail/cooling.png`,
+              path: `/files/${clientId}/detail/bodyfillow.png`,
             },
           ],
-          star: 5, //별점
+          star: 3, //별점
         },
       },
       {
@@ -485,16 +509,18 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
-          size: ['s', 'm'],
-          keyword: 'bedding', //키워드
-          category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
-          tag: 'TAG6', //취향태그
+          color: ['그레이지', '네이처그린'],
+          size: [],
+          keyword: 'dryer', //키워드
+          category: ['PC03', 'PC0305', 'PC030501'], // 카테고리 - 대분류, 소분류
+          tag: 'TAG12', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 499000, //원가
           detailimg: [
             //세부 이미지
             {
-              path: `/files/${clientId}/detail/cooling.png`,
+              path: `/files/${clientId}/detail/minix.png`,
             },
           ],
           star: 5, //별점
@@ -526,19 +552,21 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
-          size: ['s', 'm'],
-          keyword: 'bedding', //키워드
-          category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
-          tag: 'TAG6', //취향태그
+          color: [],
+          size: [],
+          keyword: 'bath', //키워드
+          category: ['PC03', 'PC0303', 'PC030303'], // 카테고리 - 대분류, 소분류
+          tag: 'TAG1', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 60000, //원가
           detailimg: [
             //세부 이미지
             {
-              path: `/files/${clientId}/detail/cooling.png`,
+              path: `/files/${clientId}/detail/bath.png`,
             },
           ],
-          star: 5, //별점
+          star: 4, //별점
         },
       },
       {
@@ -567,19 +595,21 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
-          size: ['s', 'm'],
-          keyword: 'bedding', //키워드
-          category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
-          tag: 'TAG6', //취향태그
+          color: [],
+          size: [],
+          keyword: 'cleaning', //키워드
+          category: ['PC03', 'PC0303', 'PC030304'], // 카테고리 - 대분류, 소분류
+          tag: 'TAG12', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 20000, //원가
           detailimg: [
             //세부 이미지
             {
-              path: `/files/${clientId}/detail/cooling.png`,
+              path: `/files/${clientId}/detail/cleankit.png`,
             },
           ],
-          star: 5, //별점
+          star: 4, //별점
         },
       },
       {
@@ -608,16 +638,18 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
-          size: ['s', 'm'],
-          keyword: 'bedding', //키워드
-          category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
+          color: ['투명/화이트'],
+          size: [],
+          keyword: 'organizer', //키워드
+          category: ['PC03', 'PC0307', 'PC030701'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 40000, //원가
           detailimg: [
             //세부 이미지
             {
-              path: `/files/${clientId}/detail/cooling.png`,
+              path: `/files/${clientId}/detail/cosmetic.png`,
             },
           ],
           star: 5, //별점
@@ -649,16 +681,18 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
-          size: ['s', 'm'],
+          color: [],
+          size: ['싱글', '더블', '멀티', '트리플'],
           keyword: 'bedding', //키워드
-          category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
-          tag: 'TAG6', //취향태그
+          category: ['PC03', 'PC0307', 'PC030704'], // 카테고리 - 대분류, 소분류
+          tag: 'TAG11', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 43900, //원가
           detailimg: [
             //세부 이미지
             {
-              path: `/files/${clientId}/detail/cooling.png`,
+              path: `/files/${clientId}/detail/hangger.png`,
             },
           ],
           star: 5, //별점
@@ -690,19 +724,21 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
-          size: ['s', 'm'],
-          keyword: 'bedding', //키워드
+          color: ['네이비'],
+          size: [],
+          keyword: 'pan', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
-          tag: 'TAG6', //취향태그
+          tag: 'TAG10', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 13900, //원가
           detailimg: [
             //세부 이미지
             {
-              path: `/files/${clientId}/detail/cooling.png`,
+              path: `/files/${clientId}/detail/coolpan.png`,
             },
           ],
-          star: 5, //별점
+          star: 4, //별점
         },
       },
       {
@@ -731,16 +767,18 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
-          size: ['s', 'm'],
-          keyword: 'bedding', //키워드
-          category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
-          tag: 'TAG6', //취향태그
+          color: [],
+          size: [],
+          keyword: 'food_waste', //키워드
+          category: ['PC03', 'PC0305', 'PC030505'], // 카테고리 - 대분류, 소분류
+          tag: 'TAG10', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 438900, //원가
           detailimg: [
             //세부 이미지
             {
-              path: `/files/${clientId}/detail/cooling.png`,
+              path: `/files/${clientId}/detail/theslim.png`,
             },
           ],
           star: 5, //별점
@@ -772,16 +810,18 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
-          size: ['s', 'm'],
-          keyword: 'bedding', //키워드
-          category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
-          tag: 'TAG6', //취향태그
+          color: [],
+          size: [],
+          keyword: 'airflier', //키워드
+          category: ['PC03', 'PC0305', 'PC030505'], // 카테고리 - 대분류, 소분류
+          tag: 'TAG2', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 198000, //원가
           detailimg: [
             //세부 이미지
             {
-              path: `/files/${clientId}/detail/cooling.png`,
+              path: `/files/${clientId}/detail/airflier.png`,
             },
           ],
           star: 5, //별점
@@ -813,16 +853,18 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
-          size: ['s', 'm'],
-          keyword: 'bedding', //키워드
-          category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
-          tag: 'TAG6', //취향태그
+          color: [],
+          size: [],
+          keyword: 'cleaning', //키워드
+          category: ['PC03', 'PC0303', 'PC030304'], // 카테고리 - 대분류, 소분류
+          tag: 'TAG12', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 24900, //원가
           detailimg: [
             //세부 이미지
             {
-              path: `/files/${clientId}/detail/cooling.png`,
+              path: `/files/${clientId}/detail/trap.png`,
             },
           ],
           star: 5, //별점
@@ -854,16 +896,18 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
-          size: ['s', 'm'],
-          keyword: 'bedding', //키워드
-          category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
-          tag: 'TAG6', //취향태그
+          color: [],
+          size: [],
+          keyword: 'bug', //키워드
+          category: ['PC03', 'PC0303', 'PC030304'], // 카테고리 - 대분류, 소분류
+          tag: 'TAG12', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 9900, //원가
           detailimg: [
             //세부 이미지
             {
-              path: `/files/${clientId}/detail/cooling.png`,
+              path: `/files/${clientId}/detail/bug.png`,
             },
           ],
           star: 5, //별점
@@ -872,7 +916,7 @@ export const initData = async (clientId, nextSeq) => {
       {
         _id: await nextSeq('product'),
         seller_id: 2,
-        price: 54900,
+        price: 49900,
         shippingFees: 0,
         show: true,
         active: true,
@@ -895,16 +939,18 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
-          size: ['s', 'm'],
-          keyword: 'bedding', //키워드
-          category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
+          color: [],
+          size: [],
+          keyword: 'pot', //키워드
+          category: ['PC03', 'PC0303', 'PC030302'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 69800, //원가
           detailimg: [
             //세부 이미지
             {
-              path: `/files/${clientId}/detail/cooling.png`,
+              path: `/files/${clientId}/detail/multiport.png`,
             },
           ],
           star: 5, //별점
@@ -936,16 +982,18 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
-          size: ['s', 'm'],
-          keyword: 'bedding', //키워드
-          category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
-          tag: 'TAG6', //취향태그
+          color: ['블루', '퍼플', '핑크', '그린'],
+          size: [],
+          keyword: 'mood_light', //키워드
+          category: ['PC03', 'PC0304', 'PC030402'], // 카테고리 - 대분류, 소분류
+          tag: 'TAG9', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 12900, //원가
           detailimg: [
             //세부 이미지
             {
-              path: `/files/${clientId}/detail/cooling.png`,
+              path: `/files/${clientId}/detail/jellyfish.png`,
             },
           ],
           star: 5, //별점
@@ -977,19 +1025,21 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
-          size: ['s', 'm'],
-          keyword: 'bedding', //키워드
-          category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
-          tag: 'TAG6', //취향태그
+          color: [],
+          size: [],
+          keyword: 'mood_light', //키워드
+          category: ['PC03', 'PC0304', 'PC030402'], // 카테고리 - 대분류, 소분류
+          tag: 'TAG9', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 19900, //원가
           detailimg: [
             //세부 이미지
             {
-              path: `/files/${clientId}/detail/cooling.png`,
+              path: `/files/${clientId}/detail/copybara.png`,
             },
           ],
-          star: 5, //별점
+          star: 4, //별점
         },
       },
       {
@@ -1018,19 +1068,21 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
-          size: ['s', 'm'],
-          keyword: 'bedding', //키워드
-          category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
-          tag: 'TAG6', //취향태그
+          color: [],
+          size: [],
+          keyword: 'mood_light', //키워드
+          category: ['PC03', 'PC0304', 'PC030402'], // 카테고리 - 대분류, 소분류
+          tag: 'TAG9', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 33900, //원가
           detailimg: [
             //세부 이미지
             {
-              path: `/files/${clientId}/detail/cooling.png`,
+              path: `/files/${clientId}/detail/copybara2.png`,
             },
           ],
-          star: 5, //별점
+          star: 4, //별점
         },
       },
       {
@@ -1059,16 +1111,18 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
-          size: ['s', 'm'],
-          keyword: 'bedding', //키워드
-          category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
-          tag: 'TAG6', //취향태그
+          color: [],
+          size: [],
+          keyword: 'mood_light', //키워드
+          category: ['PC03', 'PC0304', 'PC030402'], // 카테고리 - 대분류, 소분류
+          tag: 'TAG9', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 19000, //원가
           detailimg: [
             //세부 이미지
             {
-              path: `/files/${clientId}/detail/cooling.png`,
+              path: `/files/${clientId}/detail/dockmood.png`,
             },
           ],
           star: 5, //별점
@@ -1100,19 +1154,21 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
-          size: ['s', 'm'],
-          keyword: 'bedding', //키워드
-          category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
-          tag: 'TAG6', //취향태그
+          color: [],
+          size: ['1구', '2구', '3구'],
+          keyword: 'concent', //키워드
+          category: ['PC03', 'PC0304', 'PC030402'], // 카테고리 - 대분류, 소분류
+          tag: 'TAG11', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 22100, //원가
           detailimg: [
             //세부 이미지
             {
-              path: `/files/${clientId}/detail/cooling.png`,
+              path: `/files/${clientId}/detail/sanroconcent.png`,
             },
           ],
-          star: 5, //별점
+          star: 4, //별점
         },
       },
       {
@@ -1141,16 +1197,18 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
-          size: ['s', 'm'],
-          keyword: 'bedding', //키워드
-          category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
-          tag: 'TAG6', //취향태그
+          color: [],
+          size: [],
+          keyword: 'concent', //키워드
+          category: ['PC03', 'PC0304', 'PC030402'], // 카테고리 - 대분류, 소분류
+          tag: 'TAG11', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 15000, //원가
           detailimg: [
             //세부 이미지
             {
-              path: `/files/${clientId}/detail/cooling.png`,
+              path: `/files/${clientId}/detail/pabricCover.png`,
             },
           ],
           star: 5, //별점
@@ -1182,19 +1240,21 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
-          size: ['s', 'm'],
-          keyword: 'bedding', //키워드
-          category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
-          tag: 'TAG6', //취향태그
+          color: [],
+          size: [],
+          keyword: 'plug', //키워드
+          category: ['PC03', 'PC0303', 'PC030304'], // 카테고리 - 대분류, 소분류
+          tag: 'TAG10', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 19900, //원가
           detailimg: [
             //세부 이미지
             {
-              path: `/files/${clientId}/detail/cooling.png`,
+              path: `/files/${clientId}/detail/smartplug.png`,
             },
           ],
-          star: 5, //별점
+          star: 4, //별점
         },
       },
       {
@@ -1223,60 +1283,21 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
-          size: ['s', 'm'],
-          keyword: 'bedding', //키워드
-          category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
-          tag: 'TAG6', //취향태그
+          color: ['옐로우', '블루', '그린', '오렌지'],
+          size: ['3구', '5구'],
+          keyword: 'multitab', //키워드
+          category: ['PC03', 'PC0304', 'PC030404'], // 카테고리 - 대분류, 소분류
+          tag: 'TAG9', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 35900, //원가
           detailimg: [
             //세부 이미지
             {
-              path: `/files/${clientId}/detail/cooling.png`,
+              path: `/files/${clientId}/detail/deskmultitab.png`,
             },
           ],
-          star: 5, //별점
-        },
-      },
-      {
-        _id: await nextSeq('product'),
-        seller_id: 2,
-        price: 17800,
-        shippingFees: 0,
-        show: true,
-        active: true,
-        name: '철푸덕 오리 무드등',
-        quantity: 320,
-        buyQuantity: 310,
-        mainImages: [
-          {
-            path: `/files/${clientId}/dockmood.png`,
-            name: 'dockmood.png',
-            originalname: '오리무드등.png',
-          },
-        ],
-        content: `
-          <div class="product-detail">
-            <p>철푸덕 오리 무드등 상세 설명</p>
-          </div>`,
-        createdAt: getTime(-41, -60 * 60 * 2),
-        updatedAt: getTime(-40, -60 * 15),
-        extra: {
-          isNew: true,
-          isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
-          size: ['s', 'm'],
-          keyword: 'bedding', //키워드
-          category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
-          tag: 'TAG6', //취향태그
-          sort: 5,
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/cooling.png`,
-            },
-          ],
-          star: 5, //별점
+          star: 4, //별점
         },
       },
       {
@@ -1305,16 +1326,18 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
-          size: ['s', 'm'],
-          keyword: 'bedding', //키워드
-          category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
-          tag: 'TAG6', //취향태그
+          color: ['아이보리'],
+          size: [],
+          keyword: 'bed', //키워드
+          category: ['PC03', 'PC0302', 'PC030201'], // 카테고리 - 대분류, 소분류
+          tag: 'TAG5', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 150000, //원가
           detailimg: [
             //세부 이미지
             {
-              path: `/files/${clientId}/detail/cooling.png`,
+              path: `/files/${clientId}/detail/sofabed.png`,
             },
           ],
           star: 5, //별점
@@ -1346,16 +1369,18 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
-          size: ['s', 'm'],
-          keyword: 'bedding', //키워드
+          color: ['크림화이트', '다크그레이'],
+          size: [],
+          keyword: 'fan', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
-          tag: 'TAG6', //취향태그
+          tag: 'TAG10', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 22000, //원가
           detailimg: [
             //세부 이미지
             {
-              path: `/files/${clientId}/detail/cooling.png`,
+              path: `/files/${clientId}/detail/magsafepan.png`,
             },
           ],
           star: 5, //별점
@@ -1387,16 +1412,18 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
-          size: ['s', 'm'],
-          keyword: 'bedding', //키워드
+          color: [],
+          size: [],
+          keyword: 'fan', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
-          tag: 'TAG6', //취향태그
+          tag: 'TAG10', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 78900, //원가
           detailimg: [
             //세부 이미지
             {
-              path: `/files/${clientId}/detail/cooling.png`,
+              path: `/files/${clientId}/detail/airsurqu.png`,
             },
           ],
           star: 5, //별점
@@ -1428,16 +1455,23 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
-          size: ['s', 'm'],
-          keyword: 'bedding', //키워드
-          category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
-          tag: 'TAG6', //취향태그
+          color: [
+            '스톤 라이트 그레이',
+            '스톤 차콜 그레이',
+            '오트밀 크림',
+            '브레드 버터',
+          ],
+          size: ['47cm', '60cm'],
+          keyword: 'tile', //키워드
+          category: ['PC03', 'PC0306', 'PC030601'], // 카테고리 - 대분류, 소분류
+          tag: 'TAG3', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 39900, //원가
           detailimg: [
             //세부 이미지
             {
-              path: `/files/${clientId}/detail/cooling.png`,
+              path: `/files/${clientId}/detail/decotile.png`,
             },
           ],
           star: 5, //별점
@@ -1469,16 +1503,18 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
-          size: ['s', 'm'],
-          keyword: 'bedding', //키워드
-          category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
-          tag: 'TAG6', //취향태그
+          color: ['아이보리', '그레이', '딥그레이', '블랙', '퍼플'],
+          size: [],
+          keyword: 'spoon', //키워드
+          category: ['PC03', 'PC0303', 'PC030302'], // 카테고리 - 대분류, 소분류
+          tag: 'TAG2', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 15900, //원가
           detailimg: [
             //세부 이미지
             {
-              path: `/files/${clientId}/detail/cooling.png`,
+              path: `/files/${clientId}/detail/minispoon.png`,
             },
           ],
           star: 5, //별점
@@ -1510,19 +1546,26 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
-          size: ['s', 'm'],
-          keyword: 'bedding', //키워드
-          category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
-          tag: 'TAG6', //취향태그
+          color: [],
+          size: [
+            '자몽 앤 허브',
+            '자몽 앤 티트리',
+            '토끼 유칼립투스',
+            '고슴도치 파블로',
+          ],
+          keyword: 'bug', //키워드
+          category: ['PC03', 'PC0304', 'PC030402'], // 카테고리 - 대분류, 소분류
+          tag: 'TAG8', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 8900, //원가
           detailimg: [
             //세부 이미지
             {
-              path: `/files/${clientId}/detail/cooling.png`,
+              path: `/files/${clientId}/detail/sinamonmobil.png`,
             },
           ],
-          star: 5, //별점
+          star: 4, //별점
         },
       },
       {
@@ -1551,16 +1594,18 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
-          size: ['s', 'm'],
-          keyword: 'bedding', //키워드
-          category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
-          tag: 'TAG6', //취향태그
+          color: ['오트밀', '그레이'],
+          size: ['1인용', '2인용'],
+          keyword: 'bed', //키워드
+          category: ['PC03', 'PC0302', 'PC030201'], // 카테고리 - 대분류, 소분류
+          tag: 'TAG2', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 182000, //원가
           detailimg: [
             //세부 이미지
             {
-              path: `/files/${clientId}/detail/cooling.png`,
+              path: `/files/${clientId}/detail/minisofa.png`,
             },
           ],
           star: 5, //별점
@@ -1592,16 +1637,18 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
-          size: ['s', 'm'],
-          keyword: 'bedding', //키워드
-          category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
-          tag: 'TAG6', //취향태그
+          color: ['화이트', '우드'],
+          size: ['800', '1000', '1200', '1400', '1600'],
+          keyword: 'desk', //키워드
+          category: ['PC03', 'PC0302', 'PC030203'], // 카테고리 - 대분류, 소분류
+          tag: 'TAG9', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 379000, //원가
           detailimg: [
             //세부 이미지
             {
-              path: `/files/${clientId}/detail/cooling.png`,
+              path: `/files/${clientId}/detail/maisondesk.png`,
             },
           ],
           star: 5, //별점
@@ -1633,12 +1680,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -1674,12 +1723,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -1715,12 +1766,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -1756,12 +1809,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -1797,12 +1852,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -1838,12 +1895,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -1879,12 +1938,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -1920,12 +1981,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -1961,12 +2024,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -2002,12 +2067,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -2043,12 +2110,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -2084,12 +2153,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -2125,12 +2196,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -2166,12 +2239,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -2207,12 +2282,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -2248,12 +2325,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -2289,12 +2368,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -2330,12 +2411,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -2371,12 +2454,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -2412,12 +2497,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -2453,12 +2540,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -2494,12 +2583,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -2535,12 +2626,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -2576,12 +2669,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -2617,12 +2712,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -2658,12 +2755,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -2699,12 +2798,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -2740,12 +2841,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -2781,12 +2884,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -2822,12 +2927,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -2863,12 +2970,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -2904,12 +3013,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -2945,12 +3056,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -2986,12 +3099,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -3027,12 +3142,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -3068,12 +3185,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -3109,12 +3228,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -3150,12 +3271,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -3191,12 +3314,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -3232,12 +3357,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -3273,12 +3400,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -3314,12 +3443,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -3355,12 +3486,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -3396,12 +3529,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -3437,12 +3572,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -3478,12 +3615,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -3519,12 +3658,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -3560,12 +3701,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -3601,12 +3744,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -3642,12 +3787,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -3683,12 +3830,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -3724,12 +3873,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -3765,12 +3916,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -3806,12 +3959,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -3847,12 +4002,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -3888,12 +4045,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -3929,12 +4088,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -3970,12 +4131,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -4011,12 +4174,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -4052,12 +4217,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -4093,12 +4260,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -4134,12 +4303,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -4175,12 +4346,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
@@ -4216,12 +4389,14 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          color: ['아이보리', '핑크', '스카이블루', '네이버', '그레이'],
+          color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
           keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
+          isLike: false, //찜하기
+          originalPrice: 0, //원가
           detailimg: [
             //세부 이미지
             {
