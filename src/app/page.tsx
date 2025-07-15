@@ -1,10 +1,15 @@
-import ButtonBasic from '@/components/Button_basic';
-
+import MainProductSlider from '@/components/main_product_slider';
+import Footer from '@/components/common/Footer';
+import Header from '@/components/common/Header';
 export default function Home() {
   return (
-    <>
-      <h1 className="bg-red-500">final-project-sample v02안녕안녕 메롱</h1>
-      <ButtonBasic></ButtonBasic>
-    </>
+   <>
+    <Header />
+    <main>
+      <h1>나혼산 BEST 상품</h1>
+      <MainProductSlider />
+    </main>
+    <Footer />
+   </>   
   );
 }
