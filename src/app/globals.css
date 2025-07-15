@@ -30,6 +30,7 @@
   /* Columbia Blue */
   --color-columbia-blue-100: #eff7ff;
   --color-columbia-blue-200: #cae4ff;
+  --color-columbia-blue-250: #d4e8f8;
   --color-columbia-blue-300: #d2e8ff;
   --color-columbia-blue-400: #a2c9e6;
   --color-columbia-blue-500: #7aaacd;
@@ -40,6 +41,7 @@
   --color-cal-poly-green-300: #26422a;
   --color-cal-poly-green-400: #1c3120;
   --color-cal-poly-green-500: #142518;
+  --color-cal-poly-green-600: #25442c;
 
   /* Bistre */
   --color-bistre-100: #8b6b5f;
@@ -51,6 +53,7 @@
   /* Flame */
   --color-flame-100: #ffb899;
   --color-flame-200: #ff9466;
+  --color-flame-250: #eb692f;
   --color-flame-300: #ea672d;
   --color-flame-400: #c6531f;
   --color-flame-500: #a04014;
@@ -127,4 +130,7 @@
   --spacing-letter-default: -0.6px;
 
   --spacing-paragraph-default: 0px;
+}
+
+@layer components {
 }
