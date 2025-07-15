@@ -1,8 +1,14 @@
 'use client';
+import useMenuStore from '@/zustand/menuStore';
 import Image from 'next/image';
 import Link from 'next/link';
 
 function MenuNavigation() {
+  // Zustand store에서 필요한 상태와 함수들 가져오기
+  const { activeMenu, subMenuData, handleMenuClick } = useMenuStore();
+
+  const currentSubMenuItems = subMenuData[activeMenu] || [];
+
   return (
     <>
       <nav className="header_bottom bg-[#D4E8F8] flex flex-wrap justify-between items-center text-center">
@@ -69,18 +75,16 @@ function MenuNavigation() {
 
       <section className="sub_menu_nav">
         <ul className="font-basic  bg-white text-size-lg flex flex-wrap items-center pl-16 gap-4 text-center overflow-hidden">
-          {/* {(
-            (item, index) => (
-              <li key={index} className="w-[9.375rem] ">
-                <Link
-                  href=""
-                  className="block text-button-color active:text-menu-text w-full h-full"
-                >
-                  {item}
-                </Link>
-              </li>
-            ),
-          )} */}
+          {currentSubMenuItems?.map((item: string, index: number) => (
+            <li key={index} className="w-[9.375rem] ">
+              <Link
+                href=""
+                className="block text-button-color active:text-menu-text w-full h-full"
+              >
+                {item}
+              </Link>
+            </li>
+          ))}
         </ul>
       </section>
     </>
