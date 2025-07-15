@@ -56,6 +56,27 @@
   --flame-400: #c6531f;
   --flame-500: #a04014;
 
+  /*button*/
+  --color-button-color: #25442c;
+  --color-menu-text: #eb692f;
+
+  /* ==============================
+          🎨 배경 색
+          ============================== */
+
+  --bg-vertical-stripes: linear-gradient(
+    to right,
+    #e5f2fc 0%,
+    #e5f2fc 40px,
+    white 40px,
+    white 44px,
+    #e5f2fc 44px,
+    #e5f2fc 84px,
+    white 84px,
+    white 88px
+  );
+  --bg-size-stripes: 88px 100%;
+
   /* ==============================
        🎨 투명도 단계
        ============================== */
@@ -130,6 +151,10 @@
   --paragraph-spacing-default: 0px;
 }
 
+@utility vertical-stripes {
+  background: theme(--bg-vertical-stripes);
+  background-size: theme(--bg-size-stripes);
+}
 /* custom style */
 @layer components {
   /* swiper style */
