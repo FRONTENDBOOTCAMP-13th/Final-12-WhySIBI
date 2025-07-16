@@ -14,11 +14,11 @@ function InputId({ text, placeholder, idValue, inputType }: inputProps) {
           {text}
         </label>
         <input
-          type={`${inputType}`}
+          type={inputType}
           className="font-basic block w-full pl-4 border-2 outline-0  border-button-color-opaque-25 rounded-full h-16 py-4  focus:border-button-color transition-all duration-200 ease-in"
-          id={`${idValue}`}
-          name={`${idValue}`}
-          placeholder={`${placeholder}`}
+          id={idValue}
+          name={idValue}
+          placeholder={placeholder}
           required
         />
       </div>
