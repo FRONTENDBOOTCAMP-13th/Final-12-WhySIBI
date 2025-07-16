@@ -19,6 +19,7 @@ function InputId({ text, placeholder, idValue, inputType }: inputProps) {
           id={idValue}
           name={idValue}
           placeholder={placeholder}
+          autoComplete={idValue}
           required
         />
       </div>

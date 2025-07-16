@@ -1,8 +1,24 @@
+'use client';
 import InputId from '@/components/Input/Input_id';
+import { login } from '@/data/actions/user';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useActionState, useEffect } from 'react';
 
 export default function Login() {
+  const [userState, formAction] = useActionState(login, null);
+  const navigation = useRouter();
+  useEffect(() => {
+    if (userState?.ok) {
+      alert('로그인이 완료되었습니다.');
+      navigation.replace('/');
+    } else {
+      if (!userState?.errors && userState?.message) {
+        alert(userState.message); // 로그인 실패 메세지
+      }
+    }
+  }, [userState]);
   return (
     <main className="bg-white pb-40">
       <h3 className="font-logo text-5xl text-button-color pt-24 text-center">
@@ -17,19 +33,19 @@ export default function Login() {
           className="my-0 mx-auto"
         />
         <form
-          action=""
+          action={formAction}
           className="w-3/4 my-0 mx-auto border-b-2 border-button-color-opaque-25"
         >
           <InputId
             text={''}
             placeholder={'아이디를 입력해주세요'}
-            idValue={'user_id'}
+            idValue={'email'}
             inputType={'text'}
           />
           <InputId
             text={''}
             placeholder={'비밀번호를 입력해주세요'}
-            idValue={'user_pw'}
+            idValue={'password'}
             inputType={'password'}
           />
           <button
