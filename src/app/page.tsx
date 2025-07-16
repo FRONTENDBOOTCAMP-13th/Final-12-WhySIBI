@@ -16,7 +16,12 @@ export default function Home() {
     <Footer /> */}
       <Header></Header>
       {/* <div className=" bg-white  my-0 mx-auto"> */}
-      <ShoppingDetail></ShoppingDetail>
+      <ShoppingDetail
+        title={'플로우 저상형 침대깔판'}
+        originalPrice={1240000}
+        price={124000}
+        imageSrc={'/image/airconCleanKit.png'}
+      ></ShoppingDetail>
       {/* </div> */}
       <Footer></Footer>
     </>
