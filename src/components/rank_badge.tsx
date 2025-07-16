@@ -7,8 +7,8 @@ function RankBadge({ rank }: { rank: number }) {
         className="
        absolute top-2 left-2
        px-4 py-1 
-     bg-[var(--livealone-vanilla)]
-       rounded-[var(--radius-md)]
+     bg-[var(--color-livealone-vanilla)]
+       rounded-[var(--radius-radius-md)]
        font-basic
        text-(length:--font-size-sm)
       "

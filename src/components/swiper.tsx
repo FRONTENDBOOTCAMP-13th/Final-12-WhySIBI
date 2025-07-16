@@ -2,7 +2,7 @@
 
 'use client';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Scrollbar } from 'swiper/modules';
+import { Navigation, Pagination, Scrollbar } from 'swiper/modules';
 import SwiperCore from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -32,7 +32,7 @@ const slideData = [
 ];
 
 export default function SwiperSlider() {
-  SwiperCore.use([Navigation, Scrollbar]);
+  SwiperCore.use([Navigation, Scrollbar, Pagination]);
   return (
     <div className="swiper-container">
       <Swiper
@@ -45,6 +45,10 @@ export default function SwiperSlider() {
           640: { slidesPerView: 2 },
           1024: { slidesPerView: 3 },
           1280: { slidesPerView: 4 },
+        }}
+        pagination={{
+          // 페이지네이션 활성화
+          clickable: true, // 페이지네이션 버튼 클릭 가능하게 할지 말지
         }}
       >
         {slideData.map(slide => (

@@ -10,24 +10,23 @@
   --font-variable: 'Pretendard Variable', sans-serif;
 
   /* ==============================
-       🎨 liveAlone 대표 컬러 (Base)
-       ============================== */
-  --livealone-vanilla: #ffeebc;
-  --livealone-columbia-blue: #d2e8ff;
-  --livealone-cal-poly-green: #26422a;
-  --livealone-bistre: #5d372a;
-  --livealone-flame: #ea672d;
+          🎨 liveAlone 대표 컬러 (Base)
+          ============================== */
+  --color-livealone-vanilla: #ffeebc;
+  --color-livealone-columbia-blue: #d2e8ff;
+  --color-livealone-cal-poly-green: #26422a;
+  --color-livealone-bistre: #5d372a;
+  --color-livealone-flame: #ea672d;
 
   /* ==============================
-       🎨 liveAlone Palette (단계별)
-       ============================== */
-
+          🎨 liveAlone Palette (단계별)
+          ============================== */
   /* Vanilla */
-  --vanilla-100: #fff8e4;
-  --vanilla-200: #fff1cc;
-  --vanilla-300: #ffeebc;
-  --vanilla-400: #e6d7a8;
-  --vanilla-500: #ccbd92;
+  --color-vanilla-100: #fff8e4;
+  --color-vanilla-200: #fff1cc;
+  --color-vanilla-300: #ffeebc;
+  --color-vanilla-400: #e6d7a8;
+  --color-vanilla-500: #ccbd92;
 
   /* Columbia Blue */
 
@@ -51,21 +50,19 @@
   --columbia-blue-500: #7aaacd;
 
   /* Cal Poly Green */
-  --cal-poly-green-100: #4c6751;
-  --cal-poly-green-200: #3f5844;
-  --cal-poly-green-300: #26422a;
-  --cal-poly-green-400: #1c3120;
-  --cal-poly-green-500: #142518;
+  --color-cal-poly-green-100: #4c6751;
+  --color-cal-poly-green-200: #3f5844;
+  --color-cal-poly-green-300: #26422a;
+  --color-cal-poly-green-400: #1c3120;
+  --color-cal-poly-green-500: #142518;
 
 
   /* Bistre */
-  --bistre-100: #8b6b5f;
-  --bistre-200: #75584d;
-  --bistre-300: #5d372a;
-  --bistre-400: #4b2a1f;
-  --bistre-500: #3c1e15;
-
-  /* Flame */
+  --color-bistre-100: #8b6b5f;
+  --color-bistre-200: #75584d;
+  --color-bistre-300: #5d372a;
+  --color-bistre-400: #4b2a1f;
+  --color-bistre-500: #3c1e15;
 
   --color-flame-100: #ffb899;
   --color-flame-200: #ff9466;
@@ -73,6 +70,10 @@
   --color-flame-400: #c6531f;
   --color-flame-500: #a04014;
 
+  /*button*/
+  --color-button-color: #25442c;
+  --color-menu-text: #eb692f;
+  
   --flame-100: #ffb899;
   --flame-200: #ff9466;
   --flame-300: #ea672d;
@@ -123,37 +124,54 @@
   --bg-size-stripes: 88px 100%;
 
   /* ==============================
-       🎨 투명도 단계
-       ============================== */
-  --columbia-blue-opaque-90: rgba(210, 232, 255, 0.9);
-  --columbia-blue-opaque-75: rgba(210, 232, 255, 0.75);
-  --columbia-blue-opaque-50: rgba(210, 232, 255, 0.5);
+          🎨 배경 색
+          ============================== */
 
-  --vanilla-opaque-90: rgba(255, 238, 188, 0.9);
-  --vanilla-opaque-75: rgba(255, 238, 188, 0.75);
-  --vanilla-opaque-50: rgba(255, 238, 188, 0.5);
-
-  /* ==============================
-       🎨 Shadow
-       ============================== */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.15);
-
-  /* ==============================
-       🎨 Radius
-       ============================== */
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 16px;
-  --radius-full: 9999px;
+  --bg-vertical-stripes: linear-gradient(
+    to right,
+    #e5f2fc 0%,
+    #e5f2fc 40px,
+    white 40px,
+    white 44px,
+    #e5f2fc 44px,
+    #e5f2fc 84px,
+    white 84px,
+    white 88px
+  );
+  --bg-size-stripes: 88px 100%;
 
   /* ==============================
-       🎨 Transition
-       ============================== */
-  --transition-fast: 150ms ease-out;
-  --transition-medium: 300ms ease-out;
-  --transition-slow: 500ms ease-out;
+          🎨 투명도 단계
+          ============================== */
+  --color-columbia-blue-opaque-90: rgba(210, 232, 255, 0.9);
+  --color-columbia-blue-opaque-75: rgba(210, 232, 255, 0.75);
+  --color-columbia-blue-opaque-50: rgba(210, 232, 255, 0.5);
+
+  --color-vanilla-opaque-90: rgba(255, 238, 188, 0.9);
+  --color-vanilla-opaque-75: rgba(255, 238, 188, 0.75);
+  --color-vanilla-opaque-50: rgba(255, 238, 188, 0.5);
+
+  /* ==============================
+          🎨 Shadow
+          ============================== */
+  --shadow-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.15);
+
+  /* ==============================
+          🎨 Radius
+          ============================== */
+  --radius-radius-sm: 4px;
+  --radius-radius-md: 8px;
+  --radius-radius-lg: 16px;
+  --radius-radius-full: 9999px;
+
+  /* ==============================
+          🎨 Transition
+          ============================== */
+  --animate-transition-fast: 150ms ease-out;
+  --animate-transition-medium: 300ms ease-out;
+  --animate-transition-slow: 500ms ease-out;
 
   /* ==============================
           🎨 Z-index
@@ -165,35 +183,40 @@
   --z-index-toast: 1000;
 
   /* ==============================
-       ✍️ Typography
-       ============================== */
+          ✍️ Typography
+          ============================== */
   --font-weight-bold: bold;
   --font-weight-regular: normal;
 
-  --font-size-xs: 12px;
-  --font-size-sm: 14px;
-  --font-size-md: 16px;
-  --font-size-lg: 20px;
-  --font-size-xl: 24px;
-  --font-size-2xl: 28px;
-  --font-size-3xl: 32px;
-  --font-size-4xl: 36px;
-  --font-size-5xl: 40px;
+  --text-size-xs: 12px;
+  --text-size-sm: 14px;
+  --text-size-md: 16px;
+  --text-size-lg: 20px;
+  --text-size-xl: 24px;
+  --text-size-2xl: 28px;
+  --text-size-3xl: 32px;
+  --text-size-4xl: 36px;
+  --text-size-5xl: 40px;
 
-  --line-height-xxs: 18px;
-  --line-height-xs: 20px;
-  --line-height-sm: 22px;
-  --line-height-md: 24px;
-  --line-height-lg: 28px;
-  --line-height-xl: 34px;
-  --line-height-2xl: 38px;
-  --line-height-3xl: 42px;
-  --line-height-4xl: 46px;
-  --line-height-5xl: 52px;
+  --leading-xxs: 18px;
+  --leading-xs: 20px;
+  --leading-sm: 22px;
+  --leading-md: 24px;
+  --leading-lg: 28px;
+  --leading-xl: 34px;
+  --leading-2xl: 38px;
+  --leading-3xl: 42px;
+  --leading-4xl: 46px;
+  --leading-5xl: 52px;
 
-  --letter-spacing-default: -0.6px;
+  --spacing-letter-default: -0.6px;
 
-  --paragraph-spacing-default: 0px;
+  --spacing-paragraph-default: 0px;
+}
+
+@utility vertical-stripes {
+  background: theme(--bg-vertical-stripes);
+  background-size: theme(--bg-size-stripes);
 }
 
 @utility vertical-stripes {
@@ -270,12 +293,12 @@
     align-items: center;
   }
 
-  .swiper-button-next,
-  .swiper-button-prev {
+  .product-swiper .swiper-button-next,
+  .product-swiper .swiper-button-prev {
     background-color: white;
     box-shadow: rgba(63, 71, 77, 0.15) 0px 2px 5px;
-    width: 48px;
-    height: 48px;
+    width: 48px !important;
+    height: 48px !important;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -283,17 +306,83 @@
     cursor: pointer;
   }
 
-  .swiper-button-next::after,
-  .swiper-button-prev::after {
+  .product-swiper .swiper-button-next::after,
+  .product-swiper .swiper-button-prev::after {
     color: #26422a;
     font-size: 20px !important;
   }
 
-  .swiper-pagination-bullet {
-    background-color: #ffeebc;
+  .banner-swiper .swiper-button-next,
+  .banner-swiper .swiper-button-prev {
+    background-color: transparent;
+    box-shadow: none;
+    width: 60px !important;
+    height: 60px !important;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .banner-swiper:hover .swiper-button-next,
+  .banner-swiper:hover .swiper-button-prev {
+    opacity: 1;
+  }
+
+  .banner-swiper .swiper-button-next:hover,
+  .banner-swiper .swiper-button-prev:hover {
+    transform: scale(1.1);
+  }
+
+  .banner-swiper .swiper-button-prev {
+    background: url('/image/left_cat_button.svg') no-repeat center
+      center/contain;
+  }
+
+  .banner-swiper .swiper-button-next {
+    background: url('/image/right_cat_button.svg') no-repeat center
+      center/contain;
+  }
+
+  .banner-swiper .swiper-button-next::after,
+  .banner-swiper .swiper-button-prev::after {
+    display: none;
+  }
+
+  .banner-swiper .swiper-button-disabled {
+    opacity: 0 !important;
+  }
+  .banner-swiper:hover .swiper-button-disabled {
+    opacity: 50% !important;
+  }
+
+  .banner-swiper .swiper-pagination {
+    position: absolute;
+    left: auto !important;
+    right: 30 !important;
+    bottom: 20 !important;
+    display: flex;
+    text-align: right;
+    justify-content: right;
+    align-items: right;
+    z-index: 10;
+  }
+
+  .banner-swiper .swiper-pagination-bullet {
+    width: 10px !important;
+    height: 10px !important;
+    border-radius: 50%;
+    margin: 0 6px !important;
+    background-color: #ffeebc !important;
     opacity: 50%;
   }
 
-  .swiper-pagination-bullet-active {
-    background-color: #ffeebc;
+  .banner-swiper .swiper-pagination-bullet-active {
+    width: 20px;
+    background-color: #ffeebc !important;
+    opacity: 1;
   }
+}
