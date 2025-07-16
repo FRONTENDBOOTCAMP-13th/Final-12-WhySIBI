@@ -42,7 +42,7 @@ function MenuNavigation() {
           </li>
           <li className="w-[9.375rem] h-[4.375rem] p-3.5 pb-0 mt-3 overflow-hidden  active:bg-white rounded-t-4xl">
             <Link
-              href={''}
+              href={'/my_page'}
               className="block text-button-color active:text-menu-text  w-full h-full"
               onClick={() => handleMenuClick('myPage')}
             >

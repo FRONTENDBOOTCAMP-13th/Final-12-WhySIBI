@@ -29,7 +29,6 @@
   --color-vanilla-500: #ccbd92;
 
   /* Columbia Blue */
-
   --color-columbia-blue-100: #eff7ff;
   --color-columbia-blue-200: #cae4ff;
   --color-columbia-blue-300: #d2e8ff;
@@ -41,13 +40,7 @@
   --color-cal-poly-green-200: #3f5844;
   --color-cal-poly-green-300: #26422a;
   --color-cal-poly-green-400: #1c3120;
-  --color-cal-poly-green-500: #142518;
-
-  --columbia-blue-100: #eff7ff;
-  --columbia-blue-200: #cae4ff;
-  --columbia-blue-300: #d2e8ff;
-  --columbia-blue-400: #a2c9e6;
-  --columbia-blue-500: #7aaacd;
+  --color-cal-poly-green-500: #142518;p
 
   /* Cal Poly Green */
   --color-cal-poly-green-100: #4c6751;
@@ -56,7 +49,6 @@
   --color-cal-poly-green-400: #1c3120;
   --color-cal-poly-green-500: #142518;
 
-
   /* Bistre */
   --color-bistre-100: #8b6b5f;
   --color-bistre-200: #75584d;
@@ -64,21 +56,18 @@
   --color-bistre-400: #4b2a1f;
   --color-bistre-500: #3c1e15;
 
+  /* Flame */
   --color-flame-100: #ffb899;
   --color-flame-200: #ff9466;
   --color-flame-300: #ea672d;
   --color-flame-400: #c6531f;
   --color-flame-500: #a04014;
 
+
   /*button*/
   --color-button-color: #25442c;
   --color-menu-text: #eb692f;
-  
-  --flame-100: #ffb899;
-  --flame-200: #ff9466;
-  --flame-300: #ea672d;
-  --flame-400: #c6531f;
-  --flame-500: #a04014;
+ 
 
   /*button*/
   --color-button-color: #25442c;
@@ -106,7 +95,8 @@
   );
   --bg-size-stripes: 88px 100%;
 
-  /* ==============================
+
+    /* ==============================
           🎨 배경 색
           ============================== */
 
@@ -123,22 +113,6 @@
   );
   --bg-size-stripes: 88px 100%;
 
-  /* ==============================
-          🎨 배경 색
-          ============================== */
-
-  --bg-vertical-stripes: linear-gradient(
-    to right,
-    #e5f2fc 0%,
-    #e5f2fc 40px,
-    white 40px,
-    white 44px,
-    #e5f2fc 44px,
-    #e5f2fc 84px,
-    white 84px,
-    white 88px
-  );
-  --bg-size-stripes: 88px 100%;
 
   /* ==============================
           🎨 투명도 단계
@@ -151,6 +125,7 @@
   --color-vanilla-opaque-75: rgba(255, 238, 188, 0.75);
   --color-vanilla-opaque-50: rgba(255, 238, 188, 0.5);
 
+  --color-button-color-opaque-25: rgba(37, 68, 44, 0.25);
   /* ==============================
           🎨 Shadow
           ============================== */
@@ -209,15 +184,18 @@
   --leading-4xl: 46px;
   --leading-5xl: 52px;
 
-  --spacing-letter-default: -0.6px;
 
-  --spacing-paragraph-default: 0px;
+  --tracking-letter-default: -0.6px;
+
+  --tracking-paragraph-default: 0px;
+
 }
 
 @utility vertical-stripes {
   background: theme(--bg-vertical-stripes);
   background-size: theme(--bg-size-stripes);
 }
+
 
 @utility vertical-stripes {
   background: theme(--bg-vertical-stripes);
@@ -268,6 +246,89 @@
   }
 }
 
+/* 3d 버튼 디자인 */
+/* 나혼산 프로젝트 전용 3D 버튼 */
+@layer components {
+  .nahonsan-btn-3d {
+    background-color: var(--color-button-color);
+    color: white;
+    box-shadow:
+      0 0 0 1px var(--color-button-color) inset,
+      0 0 0 2px rgba(255, 238, 188, 0.15) inset,
+      0 6px 0 0 rgba(37, 68, 44, 0.7),
+      0 6px 0 1px rgba(0, 0, 0, 0.4),
+      0 6px 8px 1px rgba(0, 0, 0, 0.5);
+    @apply transition-all duration-100 ease-in-out cursor-pointer border-0 outline-none font-semibold;
+  }
+
+  .nahonsan-btn-3d:active {
+    box-shadow:
+      0 0 0 1px var(--color-button-color) inset,
+      0 0 0 2px rgba(255, 268, 198, 0.116) inset,
+      0 0 0 1px rgba(0, 0, 0, 0.4);
+    transform: translateY(6px);
+  }
+
+  .nahonsan-btn-3d-white {
+    background-color: #ffffff;
+    color: var(--color-button-color);
+    box-shadow:
+      0 0 0 1px #ffffff inset,
+      0 0 0 2px rgba(255, 255, 255, 0.8) inset,
+      0 6px 0 0 rgba(238, 238, 238, 0.7),
+      0 6px 0 1px rgba(0, 0, 0, 0.1),
+      0 6px 8px 1px rgba(0, 0, 0, 0.1);
+    @apply transition-all duration-100 ease-in-out cursor-pointer border-0 outline-none font-semibold;
+  }
+
+  .nahonsan-btn-3d-white:active {
+    box-shadow:
+      0 0 0 1px #ffffff inset,
+      0 0 0 2px rgba(255, 255, 255, 0.8) inset,
+      0 0 0 1px rgba(0, 0, 0, 0.4);
+    transform: translateY(6px);
+  }
+  .nahonsan-btn-3d-vanilla {
+    background-color: var(--color-vanilla-300);
+    color: var(--color-button-color);
+    box-shadow:
+      0 0 0 1px var(--color-vanilla-300) inset,
+      0 0 0 2px rgba(255, 255, 255, 0.3) inset,
+      0 6px 0 0 rgba(255, 238, 188, 0.7),
+      0 6px 0 1px rgba(0, 0, 0, 0.2),
+      0 6px 8px 1px rgba(0, 0, 0, 0.5);
+    @apply transition-all duration-100 ease-in-out cursor-pointer border-0 outline-none font-semibold;
+  }
+
+  .nahonsan-btn-3d-vanilla:active {
+    box-shadow:
+      0 0 0 1px var(--color-vanilla-300) inset,
+      0 0 0 2px rgba(255, 255, 255, 0.3) inset,
+      0 0 0 1px rgba(0, 0, 0, 0.4);
+    transform: translateY(6px);
+  }
+
+  .nahonsan-btn-3d-sky {
+    background-color: #d4e8f8;
+    color: var(--color-button-color);
+    border: 1px solid rgba(38, 66, 42, );
+    box-shadow:
+      0 0 0 1px #d4e8f8 inset,
+      0 0 0 2px rgba(255, 255, 255, 0.3) inset,
+      0 6px 0 0 rgba(212, 232, 248, 0.7),
+      0 6px 0 1px rgba(0, 0, 0, 0.2),
+      0 6px 8px 1px rgba(0, 0, 0, 0.5);
+    @apply transition-all duration-100 ease-in-out cursor-pointer border-0 outline-none font-semibold;
+  }
+
+  .nahonsan-btn-3d-sky:active {
+    box-shadow:
+      0 0 0 1px #d4e8f8 inset,
+      0 6px 0 0 rgba(212, 232, 248, 0.7) inset,
+      0 0 0 1px rgba(0, 0, 0, 0.4);
+    transform: translateY(6px);
+
+  }
 /* main-Talk-button */
 .btn-gradient-animate{
   background: linear-gradient(45deg, #d2e8ff 0%, #d2e8ff 20%, #ffeebc 40%,  #d2e8ff 60%, #ffeebc 80%);
@@ -384,5 +445,6 @@
     width: 20px;
     background-color: #ffeebc !important;
     opacity: 1;
+
   }
 }
