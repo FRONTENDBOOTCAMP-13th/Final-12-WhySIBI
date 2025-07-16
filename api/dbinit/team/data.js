@@ -14,8 +14,7 @@ export const initData = async (clientId, nextSeq) => {
       {
         _id: await nextSeq('user'),
         email: 'admin@market.com',
-        password:
-          '$2b$10$S.8GNMDyvUF0xzujPtHBu.j5gtS19.OhRmYbpJBnCHg2S83WLx1T2',
+        password: '3333',
         name: '김연호',
         phone: '01011112222',
         address: '부산시 연제구',
@@ -44,8 +43,7 @@ export const initData = async (clientId, nextSeq) => {
       {
         _id: await nextSeq('user'),
         email: 's1@market.com',
-        password:
-          '$2b$10$S.8GNMDyvUF0xzujPtHBu.j5gtS19.OhRmYbpJBnCHg2S83WLx1T2',
+        password: '1234',
         name: '정유진',
         phone: '01022223333',
         address: '부산시 연제구',
@@ -74,8 +72,7 @@ export const initData = async (clientId, nextSeq) => {
       {
         _id: await nextSeq('user'),
         email: 's1@market.com',
-        password:
-          '$2b$10$S.8GNMDyvUF0xzujPtHBu.j5gtS19.OhRmYbpJBnCHg2S83WLx1T2',
+        password: '5678',
         name: '김하영',
         phone: '01022223333',
         address: '전라남도 목포',
@@ -104,8 +101,7 @@ export const initData = async (clientId, nextSeq) => {
       {
         _id: await nextSeq('user'),
         email: 's1@market.com',
-        password:
-          '$2b$10$S.8GNMDyvUF0xzujPtHBu.j5gtS19.OhRmYbpJBnCHg2S83WLx1T2',
+        password: '4444',
         name: '조현수',
         phone: '01022223333',
         address: '서울시 강남구 삼성동 456',

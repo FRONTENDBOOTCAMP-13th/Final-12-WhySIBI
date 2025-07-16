@@ -1,4 +1,4 @@
-function DropdownSize() {
+function DropdownSize({ content }: { content: string }) {
   return (
     <>
       <div className="bg-white  w-[250px] h-[31px] rounded-sm text-size-sm border-1 border-[#c7c7c7] focus-within:outline-1 relative flex items-center">
@@ -8,7 +8,7 @@ function DropdownSize() {
           defaultValue="default"
           className="w-full text-[#777777] font-semibold cursor-pointer outline-0 appearance-none text-center"
         >
-          <option value="default">사이즈를 선택해 주세요</option>
+          <option value="default">{content}</option>
           <option value="latest">s</option>
           <option value="oldest">m</option>
         </select>

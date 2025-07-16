@@ -6,7 +6,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
+    <html lang="ko" /* className="bg-white flex justify-center"*/>
       <body className="vertical-stripes">{children}</body>
     </html>
   );
