@@ -39,7 +39,7 @@ export const dummyHousePosts: HousePost[] = [
   { id: 24, title: '제주 게스트하우스 느낌으로 꾸민 룸', imgUrl: '/image/jejuShowroom.png', isLiked: 0, views: 10, comments: 100, bookMark: false },
 ];
 
-function PostCard(){
+export default function PostCard(){
   const [posts, setPosts] = useState(dummyHousePosts);
 
   const toggleBookmark = (id: number) => {
@@ -52,11 +52,11 @@ function PostCard(){
 
   return(
     <>
-      <div className='grid grid-flow-row auto-rows-auto grid-cols-[repeat(auto-fill,_minmax(250px,_auto))] gap-4 mx-20 font-variable'>
+      <div className='grid grid-flow-row grid-cols-[repeat(auto-fill,_minmax(250px,_auto))] gap-15 font-variable'>
         {posts.map((post) => (
         <div
           key={post.id}
-          className="p-3 flex flex-col relative items-center cursor-pointer hover:scale-101 hover:duration-200 group "
+          className="flex flex-col relative items-center cursor-pointer hover:scale-101 hover:duration-200 group "
         >
           <Image
             src={post.imgUrl}
@@ -70,7 +70,7 @@ function PostCard(){
           </svg>
           <p className="text-md font-bold">{post.title}</p>
           <div className="forIcon flex mt-2 text-xs font-regular text-gray-icon gap-2">
-            <img src="/image/community_icon/heartIcon.svg" alt="찜하기" width="15" />
+            <img src="/image/community_icon/heartIcon.svg" alt="공감" width="15" />
             <span>{post.isLiked}</span>
             <img src="/image/community_icon/eyeIcon.svg" alt="조회수" width="15" />
             <span>{post.views}</span>
@@ -83,5 +83,3 @@ function PostCard(){
     </>
   );
 }
-
-export default PostCard;

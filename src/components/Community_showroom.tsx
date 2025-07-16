@@ -1,5 +1,6 @@
+'use client';
 import Title from '@/components/Title';
-import { dummyHousePosts } from '@/components/post_card';
+import { dummyHousePosts } from '@/components/Post_card';
 
 
 export function ShowRoom(){
@@ -9,7 +10,9 @@ export function ShowRoom(){
         <div className="p-10" >
           <Title title={'집들이🏠'} subTitle={'우리집에 왜 왔니'}></Title>
             <div className='grid grid-cols-3 gap-5'>
-              {dummyHousePosts.map((post) => (
+              {dummyHousePosts
+              .filter(post => post.id <= 6)
+              .map((post) => (
               <div
                 key={post.id}
                 className="bg-white rounded-lg shadow-md p-3 flex flex-col items-center cursor-pointer hover:scale-105 hover:duration-150"
@@ -28,3 +31,5 @@ export function ShowRoom(){
         </>
   );                                                              
 }
+
+export default ShowRoom;
