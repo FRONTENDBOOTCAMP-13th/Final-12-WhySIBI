@@ -73,7 +73,7 @@ function MainProductSlider() {
 
   return (
     <>
-      <div className="swiper-container product-swiper">
+      <div className="product-swiper">
         <Swiper
           loop={false} // 슬라이드 루프
           spaceBetween={50} // 슬라이스 사이 간격
@@ -90,14 +90,14 @@ function MainProductSlider() {
           {slideData.map(slide => (
             <SwiperSlide key={slide.id}>
               <ProductCard
-                name="써머쿨링 냉감 여름이불"
-                imageUrl="/image/airconCleankit.png"
-                price="124,000원"
-                discount="10%"
-                rank={1}
-                rating={4.8}
-                reviewCount={123}
-                isLiked={false}
+                name={slide.name}
+                imageUrl={slide.imageUrl}
+                price={slide.price}
+                discount={slide.discount}
+                rank={slide.rank}
+                rating={slide.rating}
+                reviewCount={slide.reviewCount}
+                isLiked={slide.isLiked}
                 onClick={() => {}}
               />
             </SwiperSlide>
