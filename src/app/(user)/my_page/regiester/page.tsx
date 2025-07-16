@@ -1,7 +1,7 @@
 'use client';
 import InputId from '@/components/Input/Input_id';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+// import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 export default function Register() {
@@ -16,24 +16,27 @@ export default function Register() {
     }
   };
 
-  const navigation = useRouter();
+  // const navigation = useRouter();
 
-  const handleSubmitNavigation = async (e: any) => {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    formData.append('type', 'user');
-    const result = await fetch('https://fesp-api.koyeb.app/market/users/', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Client-Id': 'febc13-final12-emjf',
-      },
-      body: JSON.stringify(formData),
-    });
-    const nextPage = () => {
-      navigation.replace('/my_page/login');
-    };
-  };
+  // const handleSubmitNavigation = async (e: any) => {
+  //   e.preventDefault();
+  //   const formData = new FormData(e.currentTarget);
+  //   formData.append('type', 'user');
+  //   console.log(e.currentTarget);
+  //   console.log(formData);
+  //   const jsonData = Object.fromEntries(formData.entries());
+  //   const result = await fetch('https://fesp-api.koyeb.app/market/users/', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       'Client-Id': 'febc13-final12-emjf',
+  //     },
+  //     body: JSON.stringify(jsonData),
+  //   });
+  //   const nextPage = () => {
+  //     navigation.replace('/my_page/login');
+  //   };
+  // };
 
   return (
     <main className="bg-white pb-40">
@@ -41,7 +44,7 @@ export default function Register() {
         REGISTER
       </h3>
       <div className="border-2 mt-8 m-auto w-[46.25rem] rounded-4xl border-button-color-opaque-25 px-20 py-24">
-        <form action="" onSubmit={handleSubmitNavigation}>
+        <form action="">
           <div className="flex items-center gap-10">
             <Image
               src={imageSrc || '/image/profile.png'}
@@ -51,15 +54,15 @@ export default function Register() {
               className="rounded-[100%] border-2 border-black w-28 h-28 mask-radial-at-center object-cover bg-gray-200"
             />
             <label
-              htmlFor="user_profile"
+              htmlFor="profile"
               className="nahonsan-btn-3d-vanilla rounded-full font-basic font-bold bg-vanilla-300  p-2.5 cursor-pointer"
             >
               사진 추가하기
             </label>
             <input
               type="file"
-              name="user_profile"
-              id="user_profile"
+              name="profile"
+              id="profile"
               className="hidden"
               accept="image/*"
               onChange={handleFilePath}
