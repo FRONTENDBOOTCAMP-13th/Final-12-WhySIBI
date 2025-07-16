@@ -7,6 +7,7 @@
        ============================== */
   --font-logo: 'Ownglyph_ParkDaHyun', cursive;
   --font-basic: 'Pretendard-Regular', sans-serif;
+  --font-variable: 'Pretendard Variable', sans-serif;
 
   /* ==============================
           🎨 liveAlone 대표 컬러 (Base)
@@ -28,6 +29,7 @@
   --color-vanilla-500: #ccbd92;
 
   /* Columbia Blue */
+
   --color-columbia-blue-100: #eff7ff;
   --color-columbia-blue-200: #cae4ff;
   --color-columbia-blue-300: #d2e8ff;
@@ -41,6 +43,20 @@
   --color-cal-poly-green-400: #1c3120;
   --color-cal-poly-green-500: #142518;
 
+  --columbia-blue-100: #eff7ff;
+  --columbia-blue-200: #cae4ff;
+  --columbia-blue-300: #d2e8ff;
+  --columbia-blue-400: #a2c9e6;
+  --columbia-blue-500: #7aaacd;
+
+  /* Cal Poly Green */
+  --color-cal-poly-green-100: #4c6751;
+  --color-cal-poly-green-200: #3f5844;
+  --color-cal-poly-green-300: #26422a;
+  --color-cal-poly-green-400: #1c3120;
+  --color-cal-poly-green-500: #142518;
+
+
   /* Bistre */
   --color-bistre-100: #8b6b5f;
   --color-bistre-200: #75584d;
@@ -48,7 +64,6 @@
   --color-bistre-400: #4b2a1f;
   --color-bistre-500: #3c1e15;
 
-  /* Flame */
   --color-flame-100: #ffb899;
   --color-flame-200: #ff9466;
   --color-flame-300: #ea672d;
@@ -58,6 +73,55 @@
   /*button*/
   --color-button-color: #25442c;
   --color-menu-text: #eb692f;
+  
+  --flame-100: #ffb899;
+  --flame-200: #ff9466;
+  --flame-300: #ea672d;
+  --flame-400: #c6531f;
+  --flame-500: #a04014;
+
+  /*button*/
+  --color-button-color: #25442c;
+  --color-menu-text: #eb692f;
+
+
+  /*button*/
+  --color-button-color: #25442c;
+  --color-menu-text: #eb692f;
+
+  /* ==============================
+          🎨 배경 색
+          ============================== */
+
+  --bg-vertical-stripes: linear-gradient(
+    to right,
+    #e5f2fc 0%,
+    #e5f2fc 40px,
+    white 40px,
+    white 44px,
+    #e5f2fc 44px,
+    #e5f2fc 84px,
+    white 84px,
+    white 88px
+  );
+  --bg-size-stripes: 88px 100%;
+
+  /* ==============================
+          🎨 배경 색
+          ============================== */
+
+  --bg-vertical-stripes: linear-gradient(
+    to right,
+    #e5f2fc 0%,
+    #e5f2fc 40px,
+    white 40px,
+    white 44px,
+    #e5f2fc 44px,
+    #e5f2fc 84px,
+    white 84px,
+    white 88px
+  );
+  --bg-size-stripes: 88px 100%;
 
   /* ==============================
           🎨 배경 색
@@ -153,6 +217,66 @@
 @utility vertical-stripes {
   background: theme(--bg-vertical-stripes);
   background-size: theme(--bg-size-stripes);
+}
+
+@utility vertical-stripes {
+  background: theme(--bg-vertical-stripes);
+  background-size: theme(--bg-size-stripes);
+
+}
+
+/* custom style */
+@layer components {
+  /* swiper style */
+  .swiper {
+    overflow: hidden;
+  }
+
+  .swiper-slide {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    background-color: white;
+    box-shadow: rgba(63, 71, 77, 0.15) 0px 2px 5px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .swiper-button-next::after,
+  .swiper-button-prev::after {
+    color: #26422a;
+    font-size: 20px !important;
+  }
+
+  .swiper-pagination-bullet {
+    background-color: #ffeebc;
+    opacity: 50%;
+  }
+
+  .swiper-pagination-bullet-active {
+    background-color: #ffeebc;
+  }
+}
+
+/* main-Talk-button */
+.btn-gradient-animate{
+  background: linear-gradient(45deg, #d2e8ff 0%, #d2e8ff 20%, #ffeebc 40%,  #d2e8ff 60%, #ffeebc 80%);
+  background-size: 400%;
+  transition: 1.5s;
+}
+
+.btn-gradient-animate:hover{
+  background-position: right center;
 }
 
 /* custom style */
