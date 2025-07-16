@@ -1,21 +1,8 @@
 import Title from '@/components/Title';
+import { dummyHousePosts } from '@/components/post_card';
 
-interface HousePost{
-  id: number;
-  title: string;
-  imgUrl: string
-}
 
-const dummyHousePosts: HousePost[] = [
-  { id: 1, title: '유럽 에어비엔비처럼 꾸민 자취방', imgUrl: '/image/europeShowroom.png' },
-  { id: 2, title: '제주 게스트하우스 느낌으로 꾸민 룸', imgUrl: '/image/jejuShowroom.png' },
-  { id: 3, title: '18평 빌라에서 만든 초록색 신혼집', imgUrl: '/image/greenShowroom.png' },
-  { id: 4, title: '식물과 빈티지 소품으로 꾸민 8층 복층', imgUrl: '/image/whiteShowroom.png' },
-  { id: 5, title: '유럽 에어비엔비처럼 꾸민 자취방', imgUrl: '/image/europeShowroom.png' },
-  { id: 6, title: '제주 게스트하우스 느낌으로 꾸민 룸', imgUrl: '/image/jejuShowroom.png' },
-];
-
-function ShowRoom(){
+export function ShowRoom(){
   return(
     <>
     <div className="community-wrapper w-3xl outline-2">
@@ -41,5 +28,3 @@ function ShowRoom(){
         </>
   );                                                              
 }
-
-export default ShowRoom;
