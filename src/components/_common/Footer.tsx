@@ -1,13 +1,12 @@
+'use client';
 import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Footer() {
   return (
-    <footer>
-      <div className="font-logo">
-        <p className="text-4xl">livealone</p>
-      </div>
-      <div className="info_footer grid grid-cols-3 items-end max-w-10/12 mx-auto  pt-20 ">
+    <footer className="min-w-[1280px]">
+      <div className="w-full overflow-hidden h-16 bg-vanilla-300"></div>
+      <div className="info_footer grid grid-cols-3 items-end max-w-10/12 mx-auto py-14 ">
         <section className="footer_left">
           <Image
             src={'/image/logo/footer_logo.svg'}

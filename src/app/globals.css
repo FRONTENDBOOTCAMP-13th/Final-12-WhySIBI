@@ -175,8 +175,31 @@
   --tracking-letter-default: -0.6px;
 
   --tracking-paragraph-default: 0px;
-}
 
+  --animate-wobble-hor-bottom: wobble-hor-bottom 0.8s both;
+}
+@keyframes wobble-hor-bottom {
+  0%,
+  100% {
+    transform: translateX(0%) rotate(0deg);
+    transform-origin: 50% 50%;
+  }
+  15% {
+    transform: translateX(-15px) rotate(-4deg);
+  }
+  30% {
+    transform: translateX(7.5px) rotate(4deg);
+  }
+  45% {
+    transform: translateX(-7.5px) rotate(-1.6deg);
+  }
+  60% {
+    transform: translateX(4px) rotate(1.6deg);
+  }
+  75% {
+    transform: translateX(-2px) rotate(-0.2deg);
+  }
+}
 @utility vertical-stripes {
   background: theme(--bg-vertical-stripes);
   background-size: theme(--bg-size-stripes);
