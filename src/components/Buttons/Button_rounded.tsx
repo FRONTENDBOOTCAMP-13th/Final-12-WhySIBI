@@ -1,5 +1,5 @@
 import type { Buttontype } from './Button_basic';
-function ButtonRounded({ text, background }: Buttontype) {
+export default function ButtonRounded({ text, background }: Buttontype) {
   return (
     <>
       <button
@@ -11,5 +11,3 @@ function ButtonRounded({ text, background }: Buttontype) {
     </>
   );
 }
-
-export default ButtonRounded;

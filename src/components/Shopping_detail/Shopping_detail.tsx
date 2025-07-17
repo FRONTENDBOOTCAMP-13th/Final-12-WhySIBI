@@ -7,14 +7,14 @@ interface ShoppingDetailType {
   price: number;
   imageSrc: string;
 }
-function ShoppingDetail({
+export default function ShoppingDetail({
   title,
   originalPrice,
   price,
   imageSrc,
 }: ShoppingDetailType) {
   return (
-    <main className="bg-white flex gap-24 justify-center min-w-[1280]">
+    <section className="bg-white flex gap-24 justify-center">
       {/* 상품 사진 영역 */}
       <figure className="bg-white min-w-[600px] min-h-[600px] overflow-hidden  flex justify-center items-center rounded-sm shadow-md">
         <Image
@@ -27,8 +27,6 @@ function ShoppingDetail({
       </figure>
 
       <ShoppingCard title={title} originalPrice={originalPrice} price={price} />
-    </main>
+    </section>
   );
 }
-
-export default ShoppingDetail;

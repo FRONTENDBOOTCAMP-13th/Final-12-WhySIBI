@@ -4,7 +4,7 @@ export interface Buttontype {
   color?: string;
 }
 
-function ButtonBasic({ text, background, color }: Buttontype) {
+export default function ButtonBasic({ text, background, color }: Buttontype) {
   return (
     <>
       <button
@@ -15,5 +15,3 @@ function ButtonBasic({ text, background, color }: Buttontype) {
     </>
   );
 }
-
-export default ButtonBasic;

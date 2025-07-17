@@ -9,13 +9,17 @@ interface ShoppingCardType {
   price: number;
 }
 
-function ShoppingCard({ title, originalPrice, price }: ShoppingCardType) {
+export default function ShoppingCard({
+  title,
+  originalPrice,
+  price,
+}: ShoppingCardType) {
   const stars = [1, 2, 3, 4, 5];
   return (
     <section className="min-w-[500]">
-      <header className="flex items-center gap-28 justify-between">
+      <header className="flex items-center gap-28 relative">
         <h2 className="text-2xl font-semibold mt-4">{title}</h2>
-        <LikeButton isLiked={false} />
+        <LikeButton isLiked={false} position={'absolute right-20 top-3'} />
       </header>
 
       {/* 평점, 리뷰 */}
@@ -109,5 +113,3 @@ function ShoppingCard({ title, originalPrice, price }: ShoppingCardType) {
     </section>
   );
 }
-
-export default ShoppingCard;

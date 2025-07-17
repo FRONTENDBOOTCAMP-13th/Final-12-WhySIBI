@@ -1,4 +1,10 @@
-function DropdownSize({ id, content }: { id: string; content: string }) {
+export default function DropdownSize({
+  id,
+  content,
+}: {
+  id: string;
+  content: string;
+}) {
   return (
     <>
       <div className="bg-white  w-[250px] h-[31px] rounded-sm text-size-sm border-1 border-[#c7c7c7] focus-within:outline-1 relative flex items-center">
@@ -29,5 +35,3 @@ function DropdownSize({ id, content }: { id: string; content: string }) {
     </>
   );
 }
-
-export default DropdownSize;

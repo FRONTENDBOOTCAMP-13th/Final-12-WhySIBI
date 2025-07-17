@@ -1,4 +1,4 @@
-function InputId() {
+export default function InputId() {
   return (
     <>
       <div className="">
@@ -8,5 +8,3 @@ function InputId() {
     </>
   );
 }
-
-export default InputId;

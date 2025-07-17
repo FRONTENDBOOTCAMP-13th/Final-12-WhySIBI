@@ -1,4 +1,6 @@
+import Header from '@/components/common/Header';
 import './globals.css';
+import Footer from '@/components/common/Footer';
 
 export default function RootLayout({
   children,
@@ -7,7 +9,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" /* className="bg-white flex justify-center"*/>
-      <body className="vertical-stripes">{children}</body>
+      <body className="vertical-stripes">
+        <Header></Header>
+        {children}
+        <Footer></Footer>
+      </body>
     </html>
   );
 }

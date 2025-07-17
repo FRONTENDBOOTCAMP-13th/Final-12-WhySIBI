@@ -1,4 +1,4 @@
-function DropdownTime() {
+export default function DropdownTime() {
   return (
     <>
       <div className="bg-columbia-blue-250 flex h-[28px] w-[100px] rounded-sm text-size-sm focus-within:outline-1 cursor-pointer relative items-center">
@@ -16,5 +16,3 @@ function DropdownTime() {
     </>
   );
 }
-
-export default DropdownTime;
