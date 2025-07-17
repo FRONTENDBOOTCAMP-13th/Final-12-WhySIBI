@@ -33,10 +33,13 @@ export default function Register() {
   const currentYear = new Date().getFullYear();
   //Array.from({length:?})를 통해서 length의값만큼의 길이를 가진 빈배열로 만들고
   //(_,i)=> 함수를 통해 각 인덱스의 값을 채운다.
-  const years = Array.from({ length: currentYear - 1950 }, (_, i) => currentYear - i);
+  const years = Array.from(
+    { length: currentYear - 1950 },
+    (_, i) => currentYear - i,
+  );
   const month = Array.from({ length: 12 }, (_, i) => i + 1);
   const days = Array.from({ length: 31 }, (_, i) => i + 1);
-  
+
   return (
     <main className="bg-white pb-40">
       <h3 className="font-logo text-5xl text-button-color pt-24 text-center">

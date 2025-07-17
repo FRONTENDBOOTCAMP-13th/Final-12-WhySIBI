@@ -1,5 +1,6 @@
 import { upLoadFile } from '@/data/actions/file';
 import { ApiRes, ApiResPromise, User } from '@/types';
+import axios, { AxiosResponse } from 'axios';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 const CLIENT_ID = process.env.NEXT_PUBLIC_WHY_SIBI_CLIENT_ID || '';
@@ -17,7 +18,7 @@ export async function createUser(
   state: ApiRes<User> | null,
   formData: FormData,
 ): ApiResPromise<User> {
-  let res: Response;
+  let res: AxiosResponse;
   let data: ApiRes<User>;
   try {
     const attach = formData.get('attach') as File;
@@ -57,16 +58,14 @@ export async function createUser(
       ...(image ? { image } : {}),
     };
     // 회원가입 API 호출
-    res = await fetch(`${API_URL}/users`, {
-      method: 'POST',
+    res = await axios.post(`${API_URL}/users`, body, {
       headers: {
         'Content-Type': 'application/json',
         'Client-Id': CLIENT_ID,
       },
-      body: JSON.stringify(body),
     });
 
-    data = await res.json();
+    data = res.data;
   } catch (error) {
     // 네트워크 오류 처리
     console.error(error);
@@ -89,19 +88,17 @@ export async function login(
 ): ApiResPromise<User> {
   const body = Object.fromEntries(formData.entries());
   console.log(body);
-  let res: Response;
+  let res: AxiosResponse;
   let data: ApiRes<User>;
 
   try {
-    res = await fetch(`${API_URL}/users/login`, {
-      method: 'POST',
+    res = await axios.post(`${API_URL}/users/login`, body, {
       headers: {
         'Content-Type': 'application/json',
         'Client-Id': CLIENT_ID,
       },
-      body: JSON.stringify(body),
     });
-    data = await res.json();
+    data = res.data;
   } catch (error) {
     // 네트워크 오류 처리
     console.error(error);

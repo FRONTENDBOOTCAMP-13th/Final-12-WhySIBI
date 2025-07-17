@@ -1,11 +1,11 @@
-import MenuNavigation from '@/components/common/Menu_Navigation';
+import MenuNavigation from '@/components/_common/Menu_Navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Header() {
   return (
-    <header className="mt-16">
-      <section className="header_top max-w-[98%] grid grid-cols-3 items-center mx-auto my-0">
+    <header className="mt-16 min-w-[1280px]">
+      <section className="header_top max-w-[98%]  grid grid-cols-3 items-center mx-auto my-0">
         <h1 className="col-start-2 flex justify-center">
           <Link href={'/'}>
             <Image
