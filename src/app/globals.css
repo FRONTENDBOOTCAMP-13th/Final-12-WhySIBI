@@ -56,7 +56,6 @@
   --color-cal-poly-green-400: #1c3120;
   --color-cal-poly-green-500: #142518;
 
-
   /* Bistre */
   --color-bistre-100: #8b6b5f;
   --color-bistre-200: #75584d;
@@ -73,7 +72,7 @@
   /*button*/
   --color-button-color: #25442c;
   --color-menu-text: #eb692f;
-  
+
   --flame-100: #ffb899;
   --flame-200: #ff9466;
   --flame-300: #ea672d;
@@ -83,7 +82,6 @@
   /*button*/
   --color-button-color: #25442c;
   --color-menu-text: #eb692f;
-
 
   /*button*/
   --color-button-color: #25442c;
@@ -222,7 +220,6 @@
 @utility vertical-stripes {
   background: theme(--bg-vertical-stripes);
   background-size: theme(--bg-size-stripes);
-
 }
 
 /* custom style */
@@ -269,13 +266,20 @@
 }
 
 /* main-Talk-button */
-.btn-gradient-animate{
-  background: linear-gradient(45deg, #d2e8ff 0%, #d2e8ff 20%, #ffeebc 40%,  #d2e8ff 60%, #ffeebc 80%);
+.btn-gradient-animate {
+  background: linear-gradient(
+    45deg,
+    #d2e8ff 0%,
+    #d2e8ff 20%,
+    #ffeebc 40%,
+    #d2e8ff 60%,
+    #ffeebc 80%
+  );
   background-size: 400%;
   transition: 1.5s;
 }
 
-.btn-gradient-animate:hover{
+.btn-gradient-animate:hover {
   background-position: right center;
 }
 
@@ -384,5 +388,10 @@
     width: 20px;
     background-color: #ffeebc !important;
     opacity: 1;
+  }
+
+  .swiper-bottom .swiper-wrapper {
+    -webkit-transition-timing-function: linear !important;
+    transition-timing-function: linear !important;
   }
 }
