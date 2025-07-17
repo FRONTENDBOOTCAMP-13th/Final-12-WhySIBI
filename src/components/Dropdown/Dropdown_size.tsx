@@ -1,7 +1,7 @@
 function DropdownSize() {
   return (
     <>
-      <div className="bg-white  w-[250px] h-[31px] rounded-sm text-size-sm border-1 border-[#c7c7c7] focus-within:outline-1 relative flex items-center">
+      <div className="bg-white font-variable w-[250px] h-[31px] rounded-sm text-size-sm border-1 border-[#c7c7c7] focus-within:outline-1 relative flex items-center">
         <select
           name="sort"
           id="sort"
