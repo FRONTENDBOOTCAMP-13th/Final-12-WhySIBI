@@ -86,23 +86,6 @@
   --bg-size-stripes: 88px 100%;
 
   /* ==============================
-          🎨 배경 색
-          ============================== */
-
-  --bg-vertical-stripes: linear-gradient(
-    to right,
-    #e5f2fc 0%,
-    #e5f2fc 40px,
-    white 40px,
-    white 44px,
-    #e5f2fc 44px,
-    #e5f2fc 84px,
-    white 84px,
-    white 88px
-  );
-  --bg-size-stripes: 88px 100%;
-
-  /* ==============================
           🎨 투명도 단계
           ============================== */
   --color-columbia-blue-opaque-90: rgba(210, 232, 255, 0.9);
