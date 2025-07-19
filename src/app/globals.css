@@ -223,48 +223,6 @@
 }
 
 /* custom style */
-@layer components {
-  /* swiper style */
-  .swiper {
-    overflow: hidden;
-  }
-
-  .swiper-slide {
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .swiper-button-next,
-  .swiper-button-prev {
-    background-color: white;
-    box-shadow: rgba(63, 71, 77, 0.15) 0px 2px 5px;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-  }
-
-  .swiper-button-next::after,
-  .swiper-button-prev::after {
-    color: #26422a;
-    font-size: 20px !important;
-  }
-
-  .swiper-pagination-bullet {
-    background-color: #ffeebc;
-    opacity: 50%;
-  }
-
-  .swiper-pagination-bullet-active {
-    background-color: #ffeebc;
-  }
-}
-
 /* main-Talk-button */
 .btn-gradient-animate {
   background: linear-gradient(
@@ -393,5 +351,29 @@
   .swiper-bottom .swiper-wrapper {
     -webkit-transition-timing-function: linear !important;
     transition-timing-function: linear !important;
+  }
+
+  /* subcategory menu */
+  .subcategory-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .subcategory {
+    background-color: white;
+    color: black;
+    border: 1px solid #ddd;
+    text-align: center;
+    display: block;
+  }
+
+  .subcategory:hover {
+    background-color: #ea672d;
+    color: white;
+  }
+
+  .subcategory-active {
+    background-color: #ea672d;
+    color: white;
   }
 }
