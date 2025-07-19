@@ -7,26 +7,26 @@ import { useEffect, useState } from 'react';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 export default function ProductInfo() {
-  // //상품 리스트 불러오는 부분
-  // const [productList, setProductList] = useState<ProductList[] | null>(null);
-  // useEffect(() => {
-  //   const producListData = async () => {
-  //     try {
-  //       const res = await getProductList();
-  //       if (res) {
-  //         // console.log([res.item]?.[0]);
-  //         console.log([res.item]);
-  //         setProductList([res.item]);
-  //       }
-  //     } catch (error) {
-  //       console.error('상품 정보 로딩 실패:', error);
-  //     }
-  //   };
+  //상품 리스트 불러오는 부분
+  const [productList, setProductList] = useState<ProductList[] | null>(null);
+  useEffect(() => {
+    const producListData = async () => {
+      try {
+        const res = await getProductList();
+        if (res) {
+          // console.log([res.item]?.[0]);
+          console.log([res.item]);
+          setProductList([res.item]);
+        }
+      } catch (error) {
+        console.error('상품 정보 로딩 실패:', error);
+      }
+    };
 
-  //   producListData();
-  // }, []);
-  // // console.log(productList?.[0]);
-  // console.log(productList);
+    producListData();
+  }, []);
+  // console.log(productList?.[0]);
+  console.log(productList);
   // 상품 상세 정보 불러오는 부분
   const [productInfo, setProductInfo] = useState<Product | null>(null);
   useEffect(() => {

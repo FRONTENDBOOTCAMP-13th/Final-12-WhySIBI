@@ -41,15 +41,15 @@ export interface Product {
   name: string;
   mainImages: ProductImage[];
 }
-// export interface ProductList {
-//   // 상품 고유 ID
-//   _id: number;
-//   // 상품 가격
-//   price: number;
-//   // 상품 제목
-//   name: string;
-//   mainImages: ProductImage[];
-// }
+export interface ProductList {
+  // 상품 고유 ID
+  _id: number;
+  // 상품 가격
+  price: number;
+  // 상품 제목
+  name: string;
+  mainImages: ProductImage[];
+}
 /**
  * 게시글 작성/수정 폼에서 사용하는 타입
  * - Partial<Pick<Post, 'type' | 'title' | 'content' | '_id'>>: Post 타입에서 type, title, content, _id만 선택해 모두 옵셔널로 만듦
