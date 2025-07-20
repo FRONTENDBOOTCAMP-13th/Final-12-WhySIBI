@@ -1,7 +1,6 @@
 'use client';
 import Title from '@/components/Title';
-import { dummyHousePosts } from '@/components/Post_card';
-
+import { dummyHousePosts } from './dummyHousePosts';
 
 export function ShowRoom(){
   return(

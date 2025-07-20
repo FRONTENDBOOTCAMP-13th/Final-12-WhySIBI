@@ -24,13 +24,17 @@ export default function ImageUploader() {
     fileInputRef.current?.click();
   };
 
+  const deleteImage = (indexToDelete: number) => {
+    setImages((prev) => prev.filter((_, index) => index !== indexToDelete));
+  };
+
   return (
     <div className="w-[600px] mt-6">
       <p className="mb-4 ml-12 text-lg font-bold font-variable">방을 자랑할 사진을 넣어주세요.</p>
-      <div className="flex">
-        <div className="pr-3">
+      <div className="flex pb-10 border-b">
+        <div className="button-wrapper pr-3">
           <button
-              className="!w-[140px] !h-[140px] rounded-4xl bg-gradient-to-b from-vanilla-200 to-columbia-blue-200 cursor-pointer"
+              className="!w-[140px] !h-[140px] rounded-4xl bg-gradient-to-b from-vanilla-200 to-columbia-blue-200 cursor-pointer group"
               onClick={openFileDialog}>
               <div className="flex items-center justify-center w-full h-full">
                 <Image
@@ -38,7 +42,7 @@ export default function ImageUploader() {
                   alt="이미지 업로드"
                   width={50}
                   height={50}
-                  className="object-contain"
+                  className="object-contain priority hover-lift group-hover:drop-shadow-lg"
                 />
               </div>
               <input
@@ -55,7 +59,7 @@ export default function ImageUploader() {
           {images.map((src, i) => (
             <SwiperSlide
               key={i}
-              className="!w-[140px] !h-[140px] flex items-center justify-center rounded-4xl cursor-pointer border-2 border-gray-400 overflow-hidden"
+              className="!w-[140px] !h-[140px] relative flex items-center justify-center rounded-4xl cursor-pointer border-2 border-gray-400 overflow-hidden group"
             >
               <Image
                 src={src}
@@ -63,6 +67,16 @@ export default function ImageUploader() {
                 width={140}
                 height={140}
                 className="object-cover w-full h-full"
+              />
+              <Image
+                src="/image/community_icon/closeIcon.svg"
+                alt={`삭제 버튼`}
+                width={22}
+                height={22}
+                onClick={() => deleteImage(i)}
+                className="absolute top-3 right-3 z-10 cursor-pointer 
+             opacity-0 translate-y-1 transition-all duration-300 ease-out
+             group-hover:opacity-100 group-hover:translate-y-0 active:opacity-50"
               />
             </SwiperSlide>
           ))}

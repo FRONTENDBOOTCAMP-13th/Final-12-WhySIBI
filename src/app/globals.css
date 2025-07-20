@@ -224,6 +224,24 @@
     background-position: right center;
   }
 
+  /* btn-gradient-infinite */
+  @keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+.btn-gradient {
+  background: linear-gradient(45deg, #d2e8ff 0%, #d2e8ff 20%, #ffeebc 40%, #d2e8ff 60%, #ffeebc 80%);
+  background-size: 400% 400%;
+  animation: gradientMove 3s linear infinite;
+  transition: background 0.5s ease;
+}
+
+.btn-gradient:hover {
+  animation: none;
+  background: #ffeebc;
+}
+
   /* pencil-animation */
   @keyframes pencil-zigzag {
     0% {
@@ -246,5 +264,20 @@
   .animate-pencil-zigzag:hover {
     animation: pencil-zigzag 0.8s ease-in-out infinite;
   }
+
+  /* image-uploader-animate */
+  .hover-lift {
+    --hover-lift-duration: 0.44s;
+    --hover-lift-offset: -4px;
+
+    transition: transform var(--hover-lift-duration) ease, filter var(--hover-lift-duration) ease;
+    transform: translateY(0);
+  }
+
+  .group:hover .hover-lift {
+    transform: translateY(var(--hover-lift-offset));
+  }
+
+
 }
 

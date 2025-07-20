@@ -1,5 +1,5 @@
 import PostCard from '@/components/Post_card';
-import { dummyHousePosts } from '@/components/Post_card';
+import { dummyHousePosts } from '@/components/dummyHousePosts';
 import Title from '@/components/Title';
 import ButtonNew from '@/components/Button_new';
 import DropdownTime from '@/components/Dropdown/Dropdown_time';
