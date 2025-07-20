@@ -34,7 +34,10 @@ export default function ProductInfo({
   // console.log(productInfo?.mainImages?.[0].path);
   console.log(mainImages);
   return (
-    <li className="w-4/5 border-2 border-button-color-opaque-25 shadow-shadow-md p-5 rounded-radius-lg">
+    <li
+      className="w-4/5 border-2 border-button-color-opaque-25 shadow-shadow-md p-5 rounded-radius-lg"
+      key={key}
+    >
       <p className="font-logo text-2xl ml-5">배송중</p>
       <div className="flex justify-between mt-6 items-center">
         <Link href={`/products/${_id}`}>
