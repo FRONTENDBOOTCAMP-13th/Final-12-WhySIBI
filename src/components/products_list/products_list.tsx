@@ -30,11 +30,11 @@ export default function ProductList() {
       <ul className="flex flex-col flex-wrap gap-16">
         {productList?.map(product => (
           <ProductInfo
+            key={product._id}
             _id={product._id}
             price={product.price}
             name={product.name}
             mainImages={product.mainImages}
-            key={product._id}
           />
         ))}
       </ul>
