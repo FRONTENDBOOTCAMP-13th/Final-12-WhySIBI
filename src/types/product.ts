@@ -48,6 +48,7 @@ export interface ProductListProps {
   price: number;
   // 상품 제목
   name: string;
+  key: number;
   mainImages: ProductImage[];
 }
 export interface ProductList {
