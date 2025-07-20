@@ -11,27 +11,7 @@ export default function ProductInfo({
   name,
   mainImages,
 }: ProductListProps) {
-  // // 상품 상세 정보 불러오는 부분
-  // const [productInfo, setProductInfo] = useState<Product | null>(null);
-  // // const productPath = usePathname();
-  // useEffect(() => {
-  //   const productInfoData = async () => {
-  //     try {
-  //       const res = await getProductInfo(`4`);
-  //       if (res) {
-  //         console.log(res.item);
-  //         setProductInfo(res.item);
-  //       }
-  //     } catch (error) {
-  //       console.error('상품 정보 로딩 실패:', error);
-  //     }
-  //   };
 
-  //   productInfoData();
-  // }, []);
-
-  // console.log(productInfo?.mainImages?.[0].path);
-  console.log(mainImages);
   return (
     <li className="w-4/5 border-2 border-button-color-opaque-25 shadow-shadow-md p-5 rounded-radius-lg">
       <p className="font-logo text-2xl ml-5">배송중</p>
