@@ -41,7 +41,7 @@ export interface Product {
   name: string;
   mainImages: ProductImage[];
 }
-export interface ProductList {
+export interface ProductListProps {
   // 상품 고유 ID
   _id: number;
   // 상품 가격
@@ -49,6 +49,10 @@ export interface ProductList {
   // 상품 제목
   name: string;
   mainImages: ProductImage[];
+}
+export interface ProductList {
+  // 상품 고유 ID
+  list: ProductListProps[];
 }
 /**
  * 게시글 작성/수정 폼에서 사용하는 타입

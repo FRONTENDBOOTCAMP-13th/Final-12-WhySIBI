@@ -1,38 +1,21 @@
-import { getProductInfo, getProductList } from '@/data/actions/products';
-import { Product, ProductList } from '@/types';
+import { getProductInfo } from '@/data/actions/products';
+import { Product } from '@/types';
 
 import Image from 'next/image';
 import Link from 'next/link';
+// import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
-export default function ProductInfo() {
-  //상품 리스트 불러오는 부분
-  const [productList, setProductList] = useState<ProductList[] | null>(null);
-  useEffect(() => {
-    const producListData = async () => {
-      try {
-        const res = await getProductList();
-        if (res) {
-          // console.log([res.item]?.[0]);
-          console.log([res.item]);
-          setProductList([res.item]);
-        }
-      } catch (error) {
-        console.error('상품 정보 로딩 실패:', error);
-      }
-    };
 
-    producListData();
-  }, []);
-  // console.log(productList?.[0]);
-  console.log(productList);
+export default function ProductInfo() {
   // 상품 상세 정보 불러오는 부분
   const [productInfo, setProductInfo] = useState<Product | null>(null);
+  // const productPath = usePathname();
   useEffect(() => {
     const productInfoData = async () => {
       try {
-        const res = await getProductInfo();
+        const res = await getProductInfo(`4`);
         if (res) {
           console.log(res.item);
           setProductInfo(res.item);
@@ -48,7 +31,6 @@ export default function ProductInfo() {
   console.log(productInfo?.mainImages?.[0].path);
 
   return (
-    // {productList?.[0]map()}
     <li
       key={productInfo?._id}
       className="w-4/5 border-2 border-button-color-opaque-25 shadow-shadow-md p-5 rounded-radius-lg"
