@@ -13,8 +13,6 @@ export default function ProductList() {
       try {
         const res = await getProductList();
         if (res) {
-          // console.log([res.item]?.[0]);
-          console.log(res.item);
           setProductList(res.item);
         }
       } catch (error) {
@@ -24,7 +22,7 @@ export default function ProductList() {
 
     producListData();
   }, []);
-  console.log(productList);
+
   return (
     <nav className="mt-20">
       <ul className="flex flex-col flex-wrap gap-16">

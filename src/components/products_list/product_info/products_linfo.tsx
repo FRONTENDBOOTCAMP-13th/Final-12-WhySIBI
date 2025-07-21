@@ -17,7 +17,6 @@ export default function ProductInfo({
       <p className="font-logo text-2xl ml-5">배송중</p>
       <div className="flex justify-between mt-6 items-center">
         <Link href={`/products/${_id}`}>
-          {' '}
           {/* 상품 상세 페이지 링크 */}
           <figure className="flex gap-6">
             <Image
