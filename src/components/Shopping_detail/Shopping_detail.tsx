@@ -1,12 +1,16 @@
 import Image from 'next/image';
 import ShoppingForm from './Shopping_form';
 import { getProductInfo } from '@/data/actions/products';
+import { ShoppingDetailType } from '@/types/shopping_detail';
 
-interface ShoppingDetailType {
-  title: string;
-  originalPrice: number;
-  price: number;
-  imageSrc: string;
+//fetch로직
+async function Detail_img() {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products/1`);
+  if (!response.ok) {
+    <div>오류가 발생했습니다.</div>;
+  }
+  const detail = await response.json();
+  console.log(detail);
 }
 
 export default async function ShoppingDetail({
@@ -14,9 +18,11 @@ export default async function ShoppingDetail({
   originalPrice,
   price,
   imageSrc,
+  stars,
 }: ShoppingDetailType) {
-  const detailOption = await getProductInfo('1');
-  console.log('api 호출 확인', detailOption);
+  // const detailOption = await getProductInfo('1');
+  // console.log('api 호출 확인', detailOption);
+  Detail_img();
 
   return (
     <section className="bg-white flex gap-24 justify-center">
@@ -35,7 +41,8 @@ export default async function ShoppingDetail({
         title={title}
         originalPrice={originalPrice}
         price={price}
-        detailOption={detailOption}
+        stars={stars}
+        // detailOption={detailOption}
       />
     </section>
   );

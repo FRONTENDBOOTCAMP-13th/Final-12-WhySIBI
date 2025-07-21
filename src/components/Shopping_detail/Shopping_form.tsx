@@ -4,13 +4,14 @@ import Image from 'next/image';
 import LikeButton from './Like_button';
 import DropdownSize from '../Dropdown/Dropdown_size';
 import ButtonBasic from '../Buttons/Button_basic';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, ReactElement, useState } from 'react';
 
 interface ShoppingFormType {
   title: string;
   originalPrice: number;
   price: number;
-  detailOption: any;
+  stars: ReactElement[][];
+  detailOption?: any;
 }
 
 export default function ShoppingForm({
@@ -18,6 +19,7 @@ export default function ShoppingForm({
   originalPrice,
   price,
   detailOption,
+  stars,
 }: ShoppingFormType) {
   // 폼태그 상태관리
   const [option, setOption] = useState({
@@ -41,7 +43,6 @@ export default function ShoppingForm({
     setOption({ ...option, quantity: Number(e.target.value) });
   }
 
-  const stars = [1, 2, 3, 4, 5];
   console.log('데이터확인:::', detailOption);
   return (
     <section className="min-w-[500]">
@@ -53,19 +54,8 @@ export default function ShoppingForm({
       {/* 평점, 리뷰 */}
       <p className="flex gap-2 items-center">
         {/* 나중에 db받아오면 사용 */}
-        <span className="flex gap-[1px]">
-          {stars.map(star => (
-            <Image
-              className="inline"
-              key={star}
-              src="/image/starIcon.svg"
-              alt="평점"
-              width={16}
-              height={16}
-              aria-hidden={true}
-            />
-          ))}
-        </span>
+        {/* 평점을  0-4까지 배열안에 넣으면 된다. 나중에 api연동하면 extra에 star있음 */}
+        <span className="flex gap-[1px]">{stars[0]}</span>
         <span className="font-bold text-xl" aria-label="5점 만점에 4점">
           4.9
         </span>
@@ -130,6 +120,7 @@ export default function ShoppingForm({
       </form>
 
       {/* 구매 버튼 영역 */}
+      {/* 장바구니는 zustnad사용해야할듯 */}
       <div className="pt-4 flex gap-3">
         <ButtonBasic
           text={'장바구니'}

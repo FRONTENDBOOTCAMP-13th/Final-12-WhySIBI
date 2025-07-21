@@ -2,6 +2,7 @@ import ShoppingDetail from '@/components/Shopping_detail/Shopping_detail';
 import Link from 'next/link';
 import ProductInfo from '@/components/Shopping_detail/Product_Info';
 import ProductReview from '@/components/Shopping_detail/Product_review';
+import ProductInquiry from '@/components/Shopping_detail/Product_inquiry';
 
 export default async function ProductDetail({
   searchParams,
@@ -9,10 +10,6 @@ export default async function ProductDetail({
   searchParams: { tab: string };
 }) {
   const { tab } = await searchParams;
-
-  // const isInfoActive = currentTab === 'info' || !currentTab;
-  // const isReviewActive = currentTab === 'review';
-  // const isInquiryActive = currentTab === 'inquiry';
 
   //별찍기 1-5
   const stars = [];
@@ -66,6 +63,7 @@ export default async function ProductDetail({
           originalPrice={1240000}
           price={124000}
           imageSrc={'/image/airconCleanKit.png'}
+          stars={stars}
         ></ShoppingDetail>
 
         <nav className="bg-[#d9d9d9] text-xl font-bold flex gap-8 pl-24 ">
@@ -94,7 +92,7 @@ export default async function ProductDetail({
 
         {tab === 'info' ? <ProductInfo /> : ''}
         {tab === 'review' ? <ProductReview stars={stars} /> : ''}
-        {/* {tab === 'inquiry' ? <ProductReview stars={stars} /> : ''} */}
+        {tab === 'inquiry' ? <ProductInquiry /> : ''}
       </div>
     </>
   );
