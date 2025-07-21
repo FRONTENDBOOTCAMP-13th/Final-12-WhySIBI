@@ -1,28 +1,17 @@
-'use client';
-
-import { getProductInfo } from '@/data/actions/products';
-import { Product } from '@/types';
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent } from 'react';
 
 export default function DropdownSize({
   onChange,
   id,
   content,
+  option,
 }: {
   id: string;
   content: string;
   onChange: (e: ChangeEvent<HTMLSelectElement>) => void;
+  option: string[];
 }) {
-  const [data, setData] = useState<Product>();
-  useEffect(() => {
-    const getData = async () => {
-      const option = await getProductInfo('1');
-      // setData(option);
-      // console.log('dd', option);
-    };
-    getData();
-    console.log(data);
-  }, []);
+  console.log('나야 사이즈', option);
 
   return (
     <>
@@ -35,8 +24,14 @@ export default function DropdownSize({
           className="w-full text-[#777777] font-semibold cursor-pointer outline-0 appearance-none text-center"
         >
           <option value="default">{content}</option>
-          <option value="latest">s</option>
-          <option value="oldest">m</option>
+          {option &&
+            option.map((item, index) => {
+              return (
+                <option key={index} value={item}>
+                  {item}
+                </option>
+              );
+            })}
         </select>
         <svg
           className="absolute right-3 pointer-events-none"

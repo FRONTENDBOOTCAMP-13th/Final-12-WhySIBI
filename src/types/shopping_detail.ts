@@ -15,9 +15,9 @@ export interface ReviewListProps {
 }
 
 export interface ShoppingDetailType {
-  title: string;
-  originalPrice: number;
-  price: number;
-  imageSrc: string;
+  // title: string;
+  // originalPrice: number;
+  // price: number;
+  // imageSrc: string;
   stars: ReactElement[][];
 }

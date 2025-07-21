@@ -11,15 +11,19 @@ interface ShoppingFormType {
   originalPrice: number;
   price: number;
   stars: ReactElement[][];
-  detailOption?: any;
+  star: number;
+  color: string[];
+  size: string[];
 }
 
 export default function ShoppingForm({
   title,
   originalPrice,
   price,
-  detailOption,
   stars,
+  star,
+  color,
+  size,
 }: ShoppingFormType) {
   // 폼태그 상태관리
   const [option, setOption] = useState({
@@ -43,7 +47,7 @@ export default function ShoppingForm({
     setOption({ ...option, quantity: Number(e.target.value) });
   }
 
-  console.log('데이터확인:::', detailOption);
+  console.log('데이터확인:::');
   return (
     <section className="min-w-[500]">
       <header className="flex items-center gap-28 relative">
@@ -55,9 +59,9 @@ export default function ShoppingForm({
       <p className="flex gap-2 items-center">
         {/* 나중에 db받아오면 사용 */}
         {/* 평점을  0-4까지 배열안에 넣으면 된다. 나중에 api연동하면 extra에 star있음 */}
-        <span className="flex gap-[1px]">{stars[0]}</span>
+        <span className="flex gap-[1px]">{stars[5 - star]}</span>
         <span className="font-bold text-xl" aria-label="5점 만점에 4점">
-          4.9
+          {star}
         </span>
         <span className="text-[#777777] ">리뷰 855</span>
       </p>
@@ -94,6 +98,7 @@ export default function ShoppingForm({
                 사이즈
               </label>
               <DropdownSize
+                option={size}
                 onChange={handleSizeChange}
                 id={'size-select'}
                 content={'사이즈를 선택해 주세요'}
@@ -102,6 +107,7 @@ export default function ShoppingForm({
             <div className="w-[340px] flex justify-between pt-3">
               <label className="w-[64px] text-center">색상</label>
               <DropdownSize
+                option={color}
                 onChange={handleColorChange}
                 id={'color-select'}
                 content={'색상을 선택해주세요'}
