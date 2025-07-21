@@ -33,7 +33,7 @@ export default function Header() {
           <form onSubmit={handleLogout}>
             <p className="col-start-3 logout_button_area flex flex-wrap items-center justify-end gap-3 mr-13">
               <Image
-                className="w-8 h-8 object-cover rounded-full mr-2"
+                className="object-cover rounded-full mr-2"
                 src={user.image ? `${API_URL}/${user?.image}` : ''}
                 width="60"
                 height="60"
