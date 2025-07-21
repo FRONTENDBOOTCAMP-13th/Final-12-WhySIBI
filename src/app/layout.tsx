@@ -11,7 +11,7 @@ export default function RootLayout({
     <html lang="ko" /* className="bg-white flex justify-center"*/>
       <body className="vertical-stripes">
         <Header></Header>
-        {children}
+        <main>{children}</main>
         <Footer></Footer>
       </body>
     </html>

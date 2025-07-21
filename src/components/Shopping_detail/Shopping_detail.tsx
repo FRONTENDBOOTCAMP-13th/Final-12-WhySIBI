@@ -7,6 +7,7 @@ interface ShoppingDetailType {
   price: number;
   imageSrc: string;
 }
+
 export default function ShoppingDetail({
   title,
   originalPrice,

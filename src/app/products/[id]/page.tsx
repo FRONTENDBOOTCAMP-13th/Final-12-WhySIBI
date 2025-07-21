@@ -59,7 +59,7 @@ export default function ProductDetail() {
 
   return (
     <>
-      <main className="bg-white min-w-[1280px]">
+      <div className="bg-white min-w-[1280px]">
         <ShoppingDetail
           title={'플로우 저상형 침대깔판'}
           originalPrice={1240000}
@@ -67,11 +67,10 @@ export default function ProductDetail() {
           imageSrc={'/image/airconCleanKit.png'}
         ></ShoppingDetail>
 
-        <div className="bg-[#d9d9d9] text-xl font-bold flex gap-8 pl-24 ">
+        <nav className="bg-[#d9d9d9] text-xl font-bold flex gap-8 pl-24 ">
           <Link
             href={'?tab=info'}
-            // 이거 쓰면 링크 클릭할때마다 맨위로 안감 o0o
-            scroll={false}
+            scroll={false} // 이거 쓰면 링크 클릭할때마다 맨위로 안감
             className={`p-4 ${isInfoActive ? 'text-flame-250 border-b-3 border-flame-250' : ''}`}
           >
             상품정보
@@ -90,11 +89,11 @@ export default function ProductDetail() {
           >
             판매자문의
           </Link>
-        </div>
+        </nav>
 
         {isInfoActive ? <ProductInfo /> : ''}
         {isReviewActive ? <ProductReview stars={stars} /> : ''}
-      </main>
+      </div>
     </>
   );
 }
