@@ -65,7 +65,7 @@ function MainBannerSlider() {
           }}
         >
           {slideData.map(slide => (
-            <SwiperSlide key={slide.id}>
+            <SwiperSlide key={slide.id} className="relative">
               <BannerCard
                 title={slide.title}
                 imageUrl={slide.imageUrl}
