@@ -7,6 +7,7 @@ export interface User {
   type: 'user' | 'seller' | 'admin'; // 사용자 유형
   loginType?: 'email' | 'kakao' | 'google'; // 로그인 방식
   image?: string; // 프로필 이미지
+  preference: string;
   token?: {
     // 인증 토큰
     accessToken: string; // 액세스 토큰
