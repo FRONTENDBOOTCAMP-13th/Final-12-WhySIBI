@@ -1,4 +1,4 @@
-import { ApiResPromise, Product, ProductList } from '@/types';
+import { ApiResPromise, Product, ProductListProps } from '@/types';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 const CLIENT_ID = process.env.NEXT_PUBLIC_WHY_SIBI_CLIENT_ID || '';
@@ -7,7 +7,7 @@ const CLIENT_ID = process.env.NEXT_PUBLIC_WHY_SIBI_CLIENT_ID || '';
  * 등록된 상품 리스트를 가져옵니다.
  * @returns {Promise<ApiRes<ProductList[]>>} - 상품 목록 응답 객체
  */
-export async function getProductList(): ApiResPromise<ProductList> {
+export async function getProductList(): ApiResPromise<ProductListProps[]> {
   try {
     const res = await fetch(`${API_URL}/products/`, {
       method: 'GET',

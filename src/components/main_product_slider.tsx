@@ -9,67 +9,33 @@ import { Navigation, Scrollbar } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import ProductCard from '@/components/product_card';
+import { useEffect, useState } from 'react';
+import { getProductList } from '@/data/actions/products.fetch';
+import { ProductListProps } from '@/types';
 
-const slideData = [
-  {
-    id: 1,
-    name: '써머쿨링 냉감 여름이불',
-    imageUrl: '/image/airconCleankit.png',
-    price: '124,000원',
-    discount: '10%',
-    rank: 1,
-    rating: 4.8,
-    reviewCount: 123,
-    isLiked: false,
-  },
-  {
-    id: 2,
-    name: '써머쿨링 냉감 여름이불',
-    imageUrl: '/image/airconCleankit.png',
-    price: '124,000원',
-    discount: '10%',
-    rank: 1,
-    rating: 4.8,
-    reviewCount: 123,
-    isLiked: false,
-  },
-  {
-    id: 3,
-    name: '써머쿨링 냉감 여름이불',
-    imageUrl: '/image/airconCleankit.png',
-    price: '124,000원',
-    discount: '10%',
-    rank: 1,
-    rating: 4.8,
-    reviewCount: 123,
-    isLiked: false,
-  },
-  {
-    id: 4,
-    name: '써머쿨링 냉감 여름이불',
-    imageUrl: '/image/airconCleankit.png',
-    price: '124,000원',
-    discount: '10%',
-    rank: 1,
-    rating: 4.8,
-    reviewCount: 123,
-    isLiked: false,
-  },
-  {
-    id: 5,
-    name: '써머쿨링 냉감 여름이불',
-    imageUrl: '/image/airconCleankit.png',
-    price: '124,000원',
-    discount: '10%',
-    rank: 1,
-    rating: 4.8,
-    reviewCount: 123,
-    isLiked: false,
-  },
-];
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 function MainProductSlider() {
   SwiperCore.use([Navigation, Scrollbar]);
+
+  const [slideData, setSlideData] = useState<ProductListProps[]>([]);
+
+  useEffect(() => {
+    const sliceProducts = async () => {
+      try {
+        const res = await getProductList();
+        if (res.ok === 1) {
+          setSlideData(res.item.slice(0, 5)); //5개만 가져오기
+        } else {
+          console.error(res.message);
+        }
+      } catch (err) {
+        console.error('상품을 불러오지 못했습니다.', err);
+      }
+    };
+
+    sliceProducts();
+  }, []);
 
   return (
     <>
@@ -87,21 +53,27 @@ function MainProductSlider() {
             1280: { slidesPerView: 4 },
           }}
         >
-          {slideData.map(slide => (
-            <SwiperSlide key={slide.id}>
-              <ProductCard
-                name={slide.name}
-                imageUrl={slide.imageUrl}
-                price={slide.price}
-                discount={slide.discount}
-                rank={slide.rank}
-                rating={slide.rating}
-                reviewCount={slide.reviewCount}
-                isLiked={slide.isLiked}
-                onClick={() => {}}
-              />
-            </SwiperSlide>
-          ))}
+          {slideData.map((product, index) => {
+            const discount = product?.extra?.originalPrice
+              ? `${Math.round(100 - (product.price * 100) / product.extra.originalPrice)}%`
+              : ''; //할인율
+
+            return (
+              <SwiperSlide key={product._id}>
+                <ProductCard
+                  name={product.name}
+                  imageUrl={`${API_URL}${product.mainImages[0]?.path}`}
+                  price={`${product.price.toLocaleString()}원`}
+                  discount={discount}
+                  rank={index + 1}
+                  rating={product.extra?.star ? product.extra?.star : 0}
+                  reviewCount={100} //리뷰카운트 계산예정
+                  isLiked={product.extra?.isLike ? true : false}
+                  onClick={() => {}}
+                />
+              </SwiperSlide>
+            );
+          })}
         </Swiper>
       </div>
     </>
