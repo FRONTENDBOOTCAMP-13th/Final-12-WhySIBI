@@ -43,7 +43,7 @@ function MenuNavigation() {
           >
             <Link
               href={''}
-              className={`block text-button-color w-full h-full  active:text-menu-text ${isAnchorMenuActive('/my_page/login')}`}
+              className={`block text-button-color w-full h-full  active:text-menu-text ${isAnchorMenuActive('')}`}
               onClick={() => handleMenuClick('shopping')}
             >
               쇼핑
@@ -108,7 +108,7 @@ function MenuNavigation() {
           ))}
         </ul>
       </section>
-      {sub_pathName === '/my_page/login' && <Categroy />}
+      {sub_pathName === '/' && <Categroy />}
     </>
   );
 }

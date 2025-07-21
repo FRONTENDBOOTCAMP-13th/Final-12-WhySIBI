@@ -6,7 +6,7 @@ const CLIENT_ID = process.env.NEXT_PUBLIC_WHY_SIBI_CLIENT_ID || '';
 
 /**
  * 등록된 상품 리스트를 가져옵니다.
- * @returns {Promise<ApiRes<ProductList[]>>} - 상품 목록 응답 객체
+ * @returns {Promise<ApiRes<ProductList>>} - 상품 목록 응답 객체
  */
 export async function getProductList(): ApiResPromise<ProductList> {
   try {
@@ -26,7 +26,7 @@ export async function getProductList(): ApiResPromise<ProductList> {
 
 /**
  * 상품의 상세정보를 가져옵니다.
- * @returns {Promise<ApiRes<Product[]>>} - 상품 목록 응답 객체
+ * @returns {Promise<ApiRes<Product>>} - 상품 목록 응답 객체
  */
 export async function getProductInfo(path: string): ApiResPromise<Product> {
   try {

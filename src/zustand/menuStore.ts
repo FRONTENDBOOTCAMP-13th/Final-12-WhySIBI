@@ -25,7 +25,7 @@ const useMenuStore = create<MenuState>(set => ({
     shopping: [
       { label: '추천 상품', path: '/shopping/c' },
       { label: '베스트 상품', path: '/shopping/d' },
-      { label: '카테고리', path: '/my_page/login' },
+      { label: '카테고리', path: '/shopping/e' },
     ],
   },
   handleMenuClick: menuName => {
