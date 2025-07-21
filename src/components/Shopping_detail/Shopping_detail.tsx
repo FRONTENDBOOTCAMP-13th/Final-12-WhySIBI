@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import ShoppingCard from './Shopping_card';
+import ShoppingForm from './Shopping_form';
 
 interface ShoppingDetailType {
   title: string;
@@ -27,7 +27,7 @@ export default function ShoppingDetail({
         />
       </figure>
 
-      <ShoppingCard title={title} originalPrice={originalPrice} price={price} />
+      <ShoppingForm title={title} originalPrice={originalPrice} price={price} />
     </section>
   );
 }

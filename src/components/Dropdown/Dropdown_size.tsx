@@ -1,14 +1,32 @@
+import { getProductInfo } from '@/data/actions/products';
+import { Product } from '@/types';
+import { ChangeEvent, useEffect, useState } from 'react';
+
 export default function DropdownSize({
+  onChange,
   id,
   content,
 }: {
   id: string;
   content: string;
+  onChange: (e: ChangeEvent<HTMLSelectElement>) => void;
 }) {
+  const [data, setData] = useState<Product>();
+  useEffect(() => {
+    const getData = async () => {
+      const option = await getProductInfo('1');
+      // setData(option);
+      console.log('dd', option);
+    };
+    getData();
+    console.log(data);
+  }, []);
+
   return (
     <>
       <div className="bg-white  w-[250px] h-[31px] rounded-sm text-size-sm border-1 border-[#c7c7c7] focus-within:outline-1 relative flex items-center">
         <select
+          onChange={onChange}
           name="sort"
           id={id}
           defaultValue="default"

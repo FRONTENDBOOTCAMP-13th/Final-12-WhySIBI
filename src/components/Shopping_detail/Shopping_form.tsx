@@ -2,18 +2,41 @@ import Image from 'next/image';
 import LikeButton from './Like_button';
 import DropdownSize from '../Dropdown/Dropdown_size';
 import ButtonBasic from '../Buttons/Button_basic';
+import { ChangeEvent, useState } from 'react';
 
-interface ShoppingCardType {
+interface ShoppingFormType {
   title: string;
   originalPrice: number;
   price: number;
 }
 
-export default function ShoppingCard({
+export default function ShoppingForm({
   title,
   originalPrice,
   price,
-}: ShoppingCardType) {
+}: ShoppingFormType) {
+  // 폼태그 상태관리
+  const [option, setOption] = useState({
+    size: '',
+    color: '',
+    quantity: 1,
+  });
+
+  //사이즈
+  function handleSizeChange(e: ChangeEvent<HTMLSelectElement>) {
+    setOption({ ...option, size: e.target.value });
+  }
+
+  //색상
+  function handleColorChange(e: ChangeEvent<HTMLSelectElement>) {
+    setOption({ ...option, color: e.target.value });
+  }
+
+  //수량
+  function handleQuantityChange(e: ChangeEvent<HTMLSelectElement>) {
+    setOption({ ...option, quantity: Number(e.target.value) });
+  }
+
   const stars = [1, 2, 3, 4, 5];
   return (
     <section className="min-w-[500]">
@@ -67,35 +90,39 @@ export default function ShoppingCard({
 
       {/* 상품 옵션 선택 영역 */}
       {/* 나중에 셀렉박스 안에 들어올옵션 받아올 예정 */}
-      <fieldset className="w-[400px] border-y-1 border-[#eaeaea]">
-        <legend className="sr-only">상품 옵션 선택</legend>
-
-        <div className="w-[400px] border-b-1 border-[#eaeaea] pt-5 pb-2">
-          <div className="w-[340px] flex justify-between">
-            <label htmlFor="size-select" className="w-[64px] text-center">
-              사이즈
-            </label>
+      <form action="">
+        <fieldset className="w-[400px] border-y-1 border-[#eaeaea]">
+          <legend className="sr-only">상품 옵션 선택</legend>
+          <div className="w-[400px] border-b-1 border-[#eaeaea] pt-5 pb-2">
+            <div className="w-[340px] flex justify-between">
+              <label htmlFor="size-select" className="w-[64px] text-center">
+                사이즈
+              </label>
+              <DropdownSize
+                onChange={handleSizeChange}
+                id={'size-select'}
+                content={'사이즈를 선택해 주세요'}
+              ></DropdownSize>
+            </div>
+            <div className="w-[340px] flex justify-between pt-3">
+              <label className="w-[64px] text-center">색상</label>
+              <DropdownSize
+                onChange={handleColorChange}
+                id={'color-select'}
+                content={'색상을 선택해주세요'}
+              ></DropdownSize>
+            </div>
+          </div>
+          <div className="w-[340px] flex justify-between pt-3 pb-4">
+            <label className="w-[64px] text-center">구매수량</label>
             <DropdownSize
-              id={'size-select'}
-              content={'사이즈를 선택해 주세요'}
+              onChange={handleQuantityChange}
+              id={'quantity-select'}
+              content={'수량을 선택해주세요'}
             ></DropdownSize>
           </div>
-          <div className="w-[340px] flex justify-between pt-3">
-            <label className="w-[64px] text-center">색상</label>
-            <DropdownSize
-              id={'color-select'}
-              content={'색상을 선택해주세요'}
-            ></DropdownSize>
-          </div>
-        </div>
-        <div className="w-[340px] flex justify-between pt-3 pb-4">
-          <label className="w-[64px] text-center">구매수량</label>
-          <DropdownSize
-            id={'quantity-select'}
-            content={'수량을 선택해주세요'}
-          ></DropdownSize>
-        </div>
-      </fieldset>
+        </fieldset>
+      </form>
 
       {/* 구매 버튼 영역 */}
       <div className="pt-4 flex gap-3">

@@ -31,5 +31,3 @@ export default function InputId({
     </>
   );
 }
-
-export default InputId;
