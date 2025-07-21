@@ -103,8 +103,9 @@ export const initData = async (clientId, nextSeq) => {
       },
       {
         _id: await nextSeq('user'),
-        email: 'johyunsoo@market.com',
-        password: '4444',
+        email: 'johyunsoo123@market.com',
+        password:
+          '$2b$10$S.8GNMDyvUF0xzujPtHBu.j5gtS19.OhRmYbpJBnCHg2S83WLx1T2',
         name: '조현수',
         phone: '01022223333',
         address: '서울시 강남구 삼성동 456',

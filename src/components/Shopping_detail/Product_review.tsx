@@ -1,17 +1,55 @@
 'use client';
 
-import { ReactElement, useState } from 'react';
+import { useState } from 'react';
 import StarBar from './Star_bar';
-import Image from 'next/image';
+import ReviewList from './Review_list';
+import { ProductReviewProps } from '@/types/shopping_detail';
 
-interface ProductReviewProps {
-  stars: ReactElement[][];
-}
+const mockData = [
+  {
+    id: 1,
+    star: 1,
+    profile: '/image/profile.png',
+    author: '농담곰 운동 좀 그만해',
+    content:
+      ' 이거 사지마시고 다른거 사세요 소음이 진짜 기분 나쁘게 나요 진짜 짜증남.',
+    image: '/image/main_banner_image_5.png',
+    date: '2020.10.20',
+  },
+  {
+    id: 2,
+    star: 5,
+    profile: '/image/profile.png',
+    author: '허허',
+    content: '요즘 더워서 나보다 고양이가 먼저 더위를 호소하더라고요 😮😂',
+    image: '/image/main_banner_image_3.png',
+    date: '2020.02.01',
+  },
+  {
+    id: 3,
+    star: 1,
+    profile: '/image/profile.png',
+    author: '치악산복숭아당도최고',
+    content: '글쎄요 그냥 그럼',
+    image: '',
+    date: '2020.11.11',
+  },
+  {
+    id: 4,
+    star: 4,
+    profile: '/image/profile.png',
+    author: '최강롯데자이언츠',
+    content: '좋아요 야구 보면서 선풍기 바람쐬기 좋아요',
+    image: '',
+    date: '2000.10.20',
+  },
+];
 
 export default function ProductReview({ stars }: ProductReviewProps) {
   const selectedStar = [...stars, '별점순'];
   const [active, setActive] = useState(false);
   const [selected, setSelected] = useState(selectedStar[5]);
+
   return (
     <section className="max-w-[1028px] mx-auto mt-12 ">
       <div className="flex justify-between border-b-2 pb-3 border-[#a5a5a5]">
@@ -73,44 +111,30 @@ export default function ProductReview({ stars }: ProductReviewProps) {
         <span className="text-5xl font-extrabold">4.9</span>
         <div className="flex gap-10">
           {/* 순위를 1-5까지 넣으면 됩니당. */}
-          <StarBar rank={3} count={343} score={5}></StarBar>
-          <StarBar rank={4} count={44} score={4}></StarBar>
+          <StarBar rank={4} count={343} score={5}></StarBar>
+          <StarBar rank={2} count={44} score={4}></StarBar>
           <StarBar rank={3} count={55} score={3}></StarBar>
-          <StarBar rank={2} count={12} score={2}></StarBar>
-          <StarBar rank={1} count={999} score={1}></StarBar>
+          <StarBar rank={1} count={12} score={2}></StarBar>
+          <StarBar rank={5} count={999} score={1}></StarBar>
         </div>
       </div>
+
       {/* 댓글 영역 */}
-      <ul>
-        <li className="flex">
-          <div>
-            <Image
-              className="w-10 h-10 rounded-full border-1 "
-              src="/image/profile.png"
-              alt="프로필 이미지"
-              width={60}
-              height={60}
-            ></Image>
-            <div>
-              <h4>농담곰 운동 좀 그만해</h4>
-              <span className="flex">{stars[4]}</span>
-              <time dateTime="2020-01-01">2020.01.01</time>
-            </div>
-          </div>
-          <p>
-            이거 사지마시고 다른거 사세요 소음이 진짜 기분 나쁘게 나요 진짜
-            짜증남.
-            <Image
-              src="/image/main_banner_image_4.png"
-              alt="리뷰사진"
-              className="w-30 h-30 rounded-xl"
-              width={60}
-              height={60}
-            ></Image>
-            {/* ㅇㄹㅇㄹㅇ */}
-          </p>
-          <button></button>
-        </li>
+      <ul className="pb-12">
+        {mockData.map(item => {
+          return (
+            <ReviewList
+              key={item.id}
+              stars={stars} //별점 1-5 들어있는 배열
+              star={5 - item.star} //별점 배열의 인덱스
+              profile={item.profile}
+              author={item.author}
+              content={item.content}
+              image={item.image}
+              date={item.date}
+            ></ReviewList>
+          );
+        })}
       </ul>
     </section>
   );

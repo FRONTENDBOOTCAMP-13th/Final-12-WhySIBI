@@ -70,6 +70,10 @@
   --color-flame-400: #c6531f;
   --color-flame-500: #a04014;
 
+  /* border */
+  --color-gray-150: #eaeaea;
+  --color-gray-550: #777777;
+
   /*button*/
   --color-button-color: #25442c;
   --color-menu-text: #eb692f;
