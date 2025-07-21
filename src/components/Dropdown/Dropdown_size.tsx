@@ -1,3 +1,5 @@
+'use client';
+
 import { getProductInfo } from '@/data/actions/products';
 import { Product } from '@/types';
 import { ChangeEvent, useEffect, useState } from 'react';
@@ -16,7 +18,7 @@ export default function DropdownSize({
     const getData = async () => {
       const option = await getProductInfo('1');
       // setData(option);
-      console.log('dd', option);
+      // console.log('dd', option);
     };
     getData();
     console.log(data);

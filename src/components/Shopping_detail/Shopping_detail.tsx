@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import ShoppingForm from './Shopping_form';
+import { getProductInfo } from '@/data/actions/products';
 
 interface ShoppingDetailType {
   title: string;
@@ -8,12 +9,15 @@ interface ShoppingDetailType {
   imageSrc: string;
 }
 
-export default function ShoppingDetail({
+export default async function ShoppingDetail({
   title,
   originalPrice,
   price,
   imageSrc,
 }: ShoppingDetailType) {
+  const detailOption = await getProductInfo('1');
+  console.log('api 호출 확인', detailOption);
+
   return (
     <section className="bg-white flex gap-24 justify-center">
       {/* 상품 사진 영역 */}
@@ -27,7 +31,12 @@ export default function ShoppingDetail({
         />
       </figure>
 
-      <ShoppingForm title={title} originalPrice={originalPrice} price={price} />
+      <ShoppingForm
+        title={title}
+        originalPrice={originalPrice}
+        price={price}
+        detailOption={detailOption}
+      />
     </section>
   );
 }

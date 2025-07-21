@@ -1,3 +1,5 @@
+'use client';
+
 import Image from 'next/image';
 import LikeButton from './Like_button';
 import DropdownSize from '../Dropdown/Dropdown_size';
@@ -8,12 +10,14 @@ interface ShoppingFormType {
   title: string;
   originalPrice: number;
   price: number;
+  detailOption: any;
 }
 
 export default function ShoppingForm({
   title,
   originalPrice,
   price,
+  detailOption,
 }: ShoppingFormType) {
   // 폼태그 상태관리
   const [option, setOption] = useState({
@@ -38,6 +42,7 @@ export default function ShoppingForm({
   }
 
   const stars = [1, 2, 3, 4, 5];
+  console.log('데이터확인:::', detailOption);
   return (
     <section className="min-w-[500]">
       <header className="flex items-center gap-28 relative">

@@ -1,17 +1,18 @@
-'use client';
 import ShoppingDetail from '@/components/Shopping_detail/Shopping_detail';
 import Link from 'next/link';
 import ProductInfo from '@/components/Shopping_detail/Product_Info';
 import ProductReview from '@/components/Shopping_detail/Product_review';
-import { useSearchParams } from 'next/navigation';
 
-export default function ProductDetail() {
-  const searchParams = useSearchParams();
-  const currentTab = searchParams?.get('tab');
+export default async function ProductDetail({
+  searchParams,
+}: {
+  searchParams: { tab: string };
+}) {
+  const { tab } = await searchParams;
 
-  const isInfoActive = currentTab === 'info' || !currentTab;
-  const isReviewActive = currentTab === 'review';
-  const isInquiryActive = currentTab === 'inquiry';
+  // const isInfoActive = currentTab === 'info' || !currentTab;
+  // const isReviewActive = currentTab === 'review';
+  // const isInquiryActive = currentTab === 'inquiry';
 
   //별찍기 1-5
   const stars = [];
@@ -71,28 +72,29 @@ export default function ProductDetail() {
           <Link
             href={'?tab=info'}
             scroll={false} // 이거 쓰면 링크 클릭할때마다 맨위로 안감
-            className={`p-4 ${isInfoActive ? 'text-flame-250 border-b-3 border-flame-250' : ''}`}
+            className={`p-4 ${tab === 'info' ? 'text-flame-250 border-b-3 border-flame-250' : ''}`}
           >
             상품정보
           </Link>
           <Link
             href={'?tab=review'}
             scroll={false}
-            className={`p-4 ${isReviewActive ? 'text-flame-250 border-b-3 border-flame-250' : ''}`}
+            className={`p-4 ${tab === 'review' ? 'text-flame-250 border-b-3 border-flame-250' : ''}`}
           >
             리뷰
           </Link>
           <Link
             href={'?tab=inquiry'}
             scroll={false}
-            className={`p-4 ${isInquiryActive ? 'text-flame-250 border-b-3 border-flame-250' : ''}`}
+            className={`p-4 ${tab === 'inquiry' ? 'text-flame-250 border-b-3 border-flame-250' : ''}`}
           >
             판매자문의
           </Link>
         </nav>
 
-        {isInfoActive ? <ProductInfo /> : ''}
-        {isReviewActive ? <ProductReview stars={stars} /> : ''}
+        {tab === 'info' ? <ProductInfo /> : ''}
+        {tab === 'review' ? <ProductReview stars={stars} /> : ''}
+        {/* {tab === 'inquiry' ? <ProductReview stars={stars} /> : ''} */}
       </div>
     </>
   );

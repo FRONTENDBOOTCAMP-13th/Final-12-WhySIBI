@@ -24,6 +24,7 @@ export const initData = async (clientId, nextSeq) => {
         createdAt: getTime(-100, -60 * 60 * 3),
         updatedAt: getTime(-100, -60 * 60 * 3),
         extra: {
+          preference: '',
           birthday: '03-23',
           membershipClass: 'MC03',
           addressBook: [
@@ -53,6 +54,7 @@ export const initData = async (clientId, nextSeq) => {
         createdAt: getTime(-50),
         updatedAt: getTime(-30, -60 * 60 * 3),
         extra: {
+          preference: '',
           birthday: '11-23',
           membershipClass: 'MC01',
           addressBook: [
@@ -82,6 +84,7 @@ export const initData = async (clientId, nextSeq) => {
         createdAt: getTime(-50),
         updatedAt: getTime(-30, -60 * 60 * 3),
         extra: {
+          preference: '',
           birthday: '11-23',
           membershipClass: 'MC02',
           addressBook: [
@@ -111,6 +114,7 @@ export const initData = async (clientId, nextSeq) => {
         createdAt: getTime(-50),
         updatedAt: getTime(-30, -60 * 60 * 3),
         extra: {
+          preference: '',
           birthday: '11-23',
           membershipClass: 'MC02',
           addressBook: [
