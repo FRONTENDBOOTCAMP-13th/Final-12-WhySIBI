@@ -20,7 +20,7 @@ export default function Login() {
     }
   }, [userState]);
   return (
-    <main className="bg-white pb-40">
+    <p>
       <h3 className="font-logo text-5xl text-button-color pt-24 text-center">
         LOGIN
       </h3>
@@ -79,6 +79,6 @@ export default function Login() {
           </button>
         </aside>
       </div>
-    </main>
+    </p>
   );
 }
