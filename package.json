@@ -1,4 +1,5 @@
 {
+
     "name": "whysibi",
     "version": "0.1.0",
     "private": true,
@@ -15,7 +16,7 @@
         "next": "15.3.5",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
-        "zustand": "^5.0.6"
+        "zustand": "^5.0.6",
         "swiper": "^11.2.10"
     },
     "devDependencies": {
