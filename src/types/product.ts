@@ -64,7 +64,10 @@ export interface ProductListProps {
   // 상품 제목
   name: string;
   mainImages: ProductImage[];
+  //상품 엑스트라 정보
   extra?: ProductExtra;
+  //상품 등록일
+  createdAt: string;
 }
 export interface ProductList {
   // 상품 고유 ID
