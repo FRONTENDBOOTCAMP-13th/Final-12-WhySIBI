@@ -27,6 +27,21 @@
 /**
  * 상품 정보를 나타내는 인터페이스
  */
+export interface ProductExtra {
+  isNew?: boolean;
+  isBest?: boolean;
+  color?: string[];
+  size?: string[];
+  keyword?: string;
+  category?: string[];
+  tag?: string;
+  sort?: number;
+  isLike?: boolean;
+  originalPrice?: number;
+  detailimg?: { path: string }[];
+  star?: number;
+}
+
 export interface ProductImage {
   path: string;
   name: string;
@@ -49,6 +64,10 @@ export interface ProductListProps {
   // 상품 제목
   name: string;
   mainImages: ProductImage[];
+  //상품 엑스트라 정보
+  extra?: ProductExtra;
+  //상품 등록일
+  createdAt: string;
 }
 export interface ProductList {
   // 상품 고유 ID

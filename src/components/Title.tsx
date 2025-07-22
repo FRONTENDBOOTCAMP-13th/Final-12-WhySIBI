@@ -1,6 +1,8 @@
+import { ReactNode } from 'react';
+
 interface TitleProps {
   title: string;
-  subTitle: string;
+  subTitle: string | ReactNode;
 }
 
 function Title({ title, subTitle }: TitleProps) {
