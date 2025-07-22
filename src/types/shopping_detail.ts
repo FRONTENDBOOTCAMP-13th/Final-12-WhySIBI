@@ -48,4 +48,6 @@ export interface ShoppingDetailType {
   // price: number;
   // imageSrc: string;
   stars: ReactElement[][];
+  pageNum: string;
+  params?: { id: string };
 }

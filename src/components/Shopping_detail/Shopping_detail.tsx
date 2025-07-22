@@ -4,9 +4,9 @@ import ShoppingForm from './Shopping_form';
 import { ShoppingDetailType } from '@/types/shopping_detail';
 
 //fetch로직
-export async function Product_Detail() {
+export async function Product_Detail(pageNum: string) {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/products/1`,
+    `${process.env.NEXT_PUBLIC_API_URL}/products/${pageNum}`,
     {
       headers: {
         'Content-Type': 'application/json',
@@ -22,14 +22,17 @@ export async function Product_Detail() {
   return detail.item;
 }
 
-export default async function ShoppingDetail({ stars }: ShoppingDetailType) {
-  const item = await Product_Detail();
+export default async function ShoppingDetail({
+  stars,
+  pageNum,
+}: ShoppingDetailType) {
+  const item = await Product_Detail(pageNum);
   const reviewCount = item.replies.length;
 
   return (
-    <section className="bg-white flex gap-24 justify-center">
+    <section className="bg-white flex gap-24 justify-center py-4">
       {/* 상품 사진 영역 */}
-      <figure className="bg-white min-w-[600px] min-h-[600px] overflow-hidden  flex justify-center items-center rounded-sm shadow-md">
+      <figure className="bg-white min-w-[600px] min-h-[600px] overflow-hidden flex justify-center items-center rounded-sm shadow-md">
         <Image
           src={`${process.env.NEXT_PUBLIC_API_URL}${item.mainImages[0].path}`}
           width={590}

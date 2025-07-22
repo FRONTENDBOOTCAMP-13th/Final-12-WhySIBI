@@ -8,8 +8,10 @@ import ProductInquiry from '@/components/Shopping_detail/Product_inquiry';
 
 export default async function ProductDetail({
   searchParams,
+  params,
 }: {
   searchParams: { tab: string };
+  params: { id: string };
 }) {
   const { tab } = await searchParams;
 
@@ -57,13 +59,13 @@ export default async function ProductDetail({
     stars.push(lineStars);
   }
 
-  const item = await Product_Detail();
+  const item = await Product_Detail(params.id);
   return (
     <>
       <div className="bg-white min-w-[1280px]">
-        <ShoppingDetail stars={stars}></ShoppingDetail>
+        <ShoppingDetail stars={stars} pageNum={params.id}></ShoppingDetail>
 
-        <nav className="bg-[#d9d9d9] text-xl font-bold flex gap-8 pl-24 mt-5">
+        <nav className="bg-[#d9d9d9] text-xl font-bold flex gap-8 pl-24">
           <Link
             href={'?tab=info'}
             scroll={false} // 이거 쓰면 링크 클릭할때마다 맨위로 안감
