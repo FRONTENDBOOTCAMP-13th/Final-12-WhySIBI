@@ -1,5 +1,5 @@
 'use client';
-import MyTheme from '@/app/(user)/my_page/(account)/my_theme/page';
+import MyTheme from '@/app/(user)/(account)/my_theme/page';
 import InputId from '@/components/Input/Input_id';
 import { createUser } from '@/data/actions/user';
 import Image from 'next/image';
@@ -27,7 +27,7 @@ export default function Register() {
   useEffect(() => {
     if (state?.ok) {
       alert('회원 가입이 완료되었습니다. 로그인 페이지로 이동합니다.');
-      navigation.replace('/my_page/login');
+      navigation.replace('/login');
     } else if (state?.ok === 0 && !state?.errors) {
       // 입력값 검증에러가 아닌 경우
       alert(state?.message);
@@ -51,6 +51,7 @@ export default function Register() {
       </h3>
       <div className="border-2 mt-8 m-auto w-[46.25rem] rounded-4xl border-button-color-opaque-25 px-20 py-24">
         <form action={formAction}>
+          <input type="hidden" name="type" value="user" />
           <div className={isClick ? 'hidden' : 'block'}>
             <div className="flex items-center gap-10">
               <Image
@@ -81,30 +82,45 @@ export default function Register() {
               idValue={'email'}
               inputType={'text'}
             />
+            <p className="ml-2 mt-1 text-sm text-red-500 dark:text-red-400">
+              {state?.ok === 0 && state.errors?.email?.msg}
+            </p>
             <InputId
               text={'닉네임'}
               placeholder={'사용하실 닉네임을 입력해주세요'}
               idValue={'nickname'}
               inputType={'text'}
             />
+            <p className="ml-2 mt-1 text-sm text-red-500 dark:text-red-400">
+              {state?.ok === 0 && state.errors?.nickname?.msg}
+            </p>
             <InputId
               text={'이름'}
               placeholder={'성함을 입력해주세요'}
               idValue={'name'}
               inputType={'text'}
             />
+            <p className="ml-2 mt-1 text-sm text-red-500 dark:text-red-400">
+              {state?.ok === 0 && state.errors?.name?.msg}
+            </p>
             <InputId
               text={'비밀번호'}
               placeholder={'비밀번호를 입력해주세요'}
               idValue={'password'}
               inputType={'password'}
             />
+            <p className="ml-2 mt-1 text-sm text-red-500 dark:text-red-400">
+              {state?.ok === 0 && state.errors?.password?.msg}
+            </p>
             <InputId
               text={'휴대전화 번호'}
               placeholder={'핸드폰 번호를 -를 제외하고 입력해주세요'}
               idValue={'phone_number'}
               inputType={'text'}
             />
+            <p className="ml-2 mt-1 text-sm text-red-500 dark:text-red-400">
+              {state?.ok === 0 && state.errors?.phone?.msg}
+            </p>
             <div className="w-full font-basic mt-9">
               <p className=" font-bold pl-4 ">생년월일</p>
               <div className=" flex gap-4 h-10">
@@ -112,6 +128,7 @@ export default function Register() {
                   name="birth_year"
                   id="birth_year"
                   className="font-basic block w-28 pl-4 border-2 outline-0  border-button-color-opaque-25 rounded-3xl  py-1  focus:border-button-color transition-all duration-200 ease-in"
+                  required
                 >
                   <option value="">연도 선택</option>
                   {years.map(year => (
@@ -124,6 +141,7 @@ export default function Register() {
                   name="birth_month"
                   id="birth_month"
                   className="font-basic block w-28 pl-4 border-2 outline-0  border-button-color-opaque-25 rounded-3xl  py-1  focus:border-button-color transition-all duration-200 ease-in"
+                  required
                 >
                   <option value="">월 선택</option>
                   {month.map(month => (
@@ -139,6 +157,7 @@ export default function Register() {
                   name="birth_day"
                   id="birth_day"
                   className="font-basic block w-28 pl-4 border-2 outline-0  border-button-color-opaque-25 rounded-3xl  py-1  focus:border-button-color transition-all duration-200 ease-in"
+                  required
                 >
                   <option value="">일 선택</option>
                   {days.map(day => (
@@ -154,6 +173,7 @@ export default function Register() {
               id="address_name"
               className="mt-9 mb-[-30px] font-basic block w-28 pl-4 border-2 outline-0  border-button-color-opaque-25 rounded-3xl  py-1  focus:border-button-color transition-all duration-200 ease-in"
               defaultValue="집"
+              required
             >
               <option value="home">집</option>
               <option value="workSpace">직장</option>
