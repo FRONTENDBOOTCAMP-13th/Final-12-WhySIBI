@@ -1,7 +1,20 @@
-function Pagenation() {
+type PagenationProps = {
+  page: number; //현재페이지
+  totalPage: number; //전체 페이지수
+  onPageTurner: (page: number) => void; //현재페이지 넘기기
+};
+
+function Pagenation({ page, totalPage, onPageTurner }: PagenationProps) {
   return (
     <div className="flex items-center justify-center gap-3">
-      <button className="w-7 h-7">
+      {/* 맨 처음 << 버튼 */}
+      <button
+        className="w-7 h-7"
+        onClick={() => {
+          onPageTurner(1); //1페이지로
+        }}
+        disabled={page === 1} //1보다 작을 수 없음(비활성화)
+      >
         <svg
           className="w-full h-full cursor-pointer"
           viewBox="0 0 70 70"
@@ -36,7 +49,14 @@ function Pagenation() {
           </defs>
         </svg>
       </button>
-      <button className="w-7 h-7">
+      {/* 이전 < 버튼 */}
+      <button
+        className="w-7 h-7"
+        onClick={() => {
+          onPageTurner(page - 1); //현재 페이지에서 1 감소
+        }}
+        disabled={page === 1} //1보다 작을 수 없음(비활성화)
+      >
         <svg
           className="w-full h-full cursor-pointer"
           viewBox="0 0 70 70"
@@ -71,10 +91,18 @@ function Pagenation() {
           </defs>
         </svg>
       </button>
+      {/* 페이지 번호 */}
       <span className="flex justify-center items-center w-10 h-10 bg-gradient-to-r from-vanilla-300 to-columbia-blue-250 rounded-xl font-semibold ">
-        1
+        {page}/{totalPage}
       </span>
-      <button className="w-7 h-7 ">
+      {/* 다음 > 버튼 */}
+      <button
+        className="w-7 h-7 "
+        onClick={() => {
+          onPageTurner(page + 1); //현재 페이지에서 1 증가
+        }}
+        disabled={page === totalPage} //총 페이지 수 보다 클 수 없음(비활성화)
+      >
         <svg
           className="w-full h-full scale-x-[-1] cursor-pointer"
           viewBox="0 0 70 70"
@@ -109,7 +137,14 @@ function Pagenation() {
           </defs>
         </svg>
       </button>
-      <button className="w-7 h-7">
+      {/* 맨 끝 >> 버튼 */}
+      <button
+        className="w-7 h-7"
+        onClick={() => {
+          onPageTurner(totalPage); //맨 끝 페이지로
+        }}
+        disabled={page === totalPage} //총 페이지 수 보다 클 수 없음(비활성화)
+      >
         <svg
           className="w-full h-full scale-x-[-1] cursor-pointer"
           viewBox="0 0 70 70"

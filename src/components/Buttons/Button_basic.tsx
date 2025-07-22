@@ -7,7 +7,7 @@ export interface Buttontype {
   event?: () => void;
 }
 
-function ButtonBasic({ text, background, color }: Buttontype) {
+export default function ButtonBasic({ text, background, color }: Buttontype) {
   return (
     <>
       <button
@@ -18,5 +18,3 @@ function ButtonBasic({ text, background, color }: Buttontype) {
     </>
   );
 }
-
-export default ButtonBasic;

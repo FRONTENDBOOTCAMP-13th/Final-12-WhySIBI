@@ -1,4 +1,4 @@
-function ButtonQuestion() {
+export default function ButtonQuestion() {
   return (
     <>
       <button
@@ -9,5 +9,3 @@ function ButtonQuestion() {
     </>
   );
 }
-
-export default ButtonQuestion;
