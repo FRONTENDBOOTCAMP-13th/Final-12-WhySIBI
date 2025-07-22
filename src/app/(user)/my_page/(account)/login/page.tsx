@@ -1,6 +1,7 @@
 'use client';
 import InputId from '@/components/Input/Input_id';
 import { login } from '@/data/actions/user';
+import useUserStore from '@/zustand/useUserStore';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -8,9 +9,21 @@ import { useActionState, useEffect } from 'react';
 
 export default function Login() {
   const [userState, formAction] = useActionState(login, null);
+  const { setUser } = useUserStore(state => state);
   const navigation = useRouter();
   useEffect(() => {
     if (userState?.ok) {
+      setUser({
+        _id: userState.item._id,
+        email: userState.item.email,
+        name: userState.item.name,
+        type: userState.item.type,
+        image: userState.item.image,
+        token: {
+          accessToken: userState.item.token?.accessToken || '',
+          refreshToken: userState.item.token?.refreshToken || '',
+        },
+      });
       alert('로그인이 완료되었습니다.');
       navigation.replace('/');
     } else {
@@ -20,7 +33,7 @@ export default function Login() {
     }
   }, [userState]);
   return (
-    <p>
+    <>
       <h3 className="font-logo text-5xl text-button-color pt-24 text-center">
         LOGIN
       </h3>
@@ -79,6 +92,6 @@ export default function Login() {
           </button>
         </aside>
       </div>
-    </p>
+    </>
   );
 }

@@ -4,5 +4,9 @@ export default function MyPage({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <main className="bg-white pb-40">{children}</main>;
+  return (
+    <div className="min-w-[1280px]">
+      <main className="bg-white pb-40 ">{children}</main>
+    </div>
+  );
 }
