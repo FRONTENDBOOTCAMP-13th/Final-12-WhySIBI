@@ -509,34 +509,34 @@
       background-color: #ffeebc !important;
       opacity: 1;
     }
+    
+    .swiper-bottom .swiper-wrapper {
+      -webkit-transition-timing-function: linear !important;
+      transition-timing-function: linear !important;
+    }
+  
+    /* subcategory menu */
+    .subcategory-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+  
+    .subcategory {
+      background-color: white;
+      color: black;
+      border: 1px solid #ddd;
+      text-align: center;
+      display: block;
+    }
+  
+    .subcategory:hover {
+      background-color: #ea672d;
+      color: white;
+    }
+  
+    .subcategory-active {
+      background-color: #ea672d;
+      color: white;
+    }
   }
 
-  .swiper-bottom .swiper-wrapper {
-    -webkit-transition-timing-function: linear !important;
-    transition-timing-function: linear !important;
-  }
-
-  /* subcategory menu */
-  .subcategory-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .subcategory {
-    background-color: white;
-    color: black;
-    border: 1px solid #ddd;
-    text-align: center;
-    display: block;
-  }
-
-  .subcategory:hover {
-    background-color: #ea672d;
-    color: white;
-  }
-
-  .subcategory-active {
-    background-color: #ea672d;
-    color: white;
-  }
-}
