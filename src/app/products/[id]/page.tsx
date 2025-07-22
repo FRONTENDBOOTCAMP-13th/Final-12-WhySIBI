@@ -87,7 +87,7 @@ export default async function ProductDetail({
           </Link>
         </nav>
 
-        {tab === 'info' ? <ProductInfo /> : ''}
+        {tab === 'info' || tab === undefined ? <ProductInfo /> : ''}
         {tab === 'review' ? (
           <ProductReview stars={stars} replies={item.replies} />
         ) : (
