@@ -1,4 +1,4 @@
-function InputRefly() {
+export default function InputRefly() {
   return (
     <>
       <div className="border-1 rounded-full h-14 p-4 flex items-center justify-between focus-within:outline-1">
@@ -14,5 +14,3 @@ function InputRefly() {
     </>
   );
 }
-
-export default InputRefly;

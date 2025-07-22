@@ -10,9 +10,9 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className="vertical-stripes">
-        <Header />
-        {children}
-        <Footer />
+        <Header></Header>
+        <main>{children}</main>
+        <Footer></Footer>
       </body>
     </html>
   );

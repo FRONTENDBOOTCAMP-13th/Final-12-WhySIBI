@@ -1,16 +1,37 @@
-function DropdownSize() {
+import { ChangeEvent } from 'react';
+
+export default function DropdownSize({
+  onChange,
+  id,
+  content,
+  option,
+}: {
+  id: string;
+  content: string;
+  onChange: (e: ChangeEvent<HTMLSelectElement>) => void;
+  option: string[];
+}) {
+  console.log('나야 옵션', option);
+
   return (
     <>
       <div className="bg-white  w-[250px] h-[31px] rounded-sm text-size-sm border-1 border-[#c7c7c7] focus-within:outline-1 relative flex items-center">
         <select
+          onChange={onChange}
           name="sort"
-          id="sort"
+          id={id}
           defaultValue="default"
           className="w-full text-[#777777] font-semibold cursor-pointer outline-0 appearance-none text-center"
         >
-          <option value="default">사이즈를 선택해 주세요</option>
-          <option value="latest">s</option>
-          <option value="oldest">m</option>
+          <option value="default">{content}</option>
+          {option &&
+            option.map((item, index) => {
+              return (
+                <option key={index} value={item}>
+                  {item}
+                </option>
+              );
+            })}
         </select>
         <svg
           className="absolute right-3 pointer-events-none"
@@ -29,5 +50,3 @@ function DropdownSize() {
     </>
   );
 }
-
-export default DropdownSize;

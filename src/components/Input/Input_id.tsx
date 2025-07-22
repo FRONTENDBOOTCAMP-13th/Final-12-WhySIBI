@@ -6,7 +6,12 @@ interface inputProps {
   pattern?: string;
 }
 
-function InputId({ text, placeholder, idValue, inputType }: inputProps) {
+export default function InputId({
+  text,
+  placeholder,
+  idValue,
+  inputType,
+}: inputProps) {
   return (
     <>
       <div className="mt-9">
@@ -26,5 +31,3 @@ function InputId({ text, placeholder, idValue, inputType }: inputProps) {
     </>
   );
 }
-
-export default InputId;

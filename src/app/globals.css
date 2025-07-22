@@ -42,6 +42,19 @@
   --color-cal-poly-green-400: #1c3120;
   --color-cal-poly-green-500: #142518;
 
+  --columbia-blue-100: #eff7ff;
+  --columbia-blue-200: #cae4ff;
+  --columbia-blue-300: #d2e8ff;
+  --columbia-blue-400: #a2c9e6;
+  --columbia-blue-500: #7aaacd;
+
+  /* Cal Poly Green */
+  --color-cal-poly-green-100: #4c6751;
+  --color-cal-poly-green-200: #3f5844;
+  --color-cal-poly-green-300: #26422a;
+  --color-cal-poly-green-400: #1c3120;
+  --color-cal-poly-green-500: #142518;
+
   /* Bistre */
   --color-bistre-100: #8b6b5f;
   --color-bistre-200: #75584d;
@@ -52,13 +65,24 @@
   /* Flame */
   --color-flame-100: #ffb899;
   --color-flame-200: #ff9466;
+  --color-flame-250: #eb692f;
   --color-flame-300: #ea672d;
   --color-flame-400: #c6531f;
   --color-flame-500: #a04014;
 
+  /* border */
+  --color-gray-150: #eaeaea;
+  --color-gray-550: #777777;
+
   /*button*/
   --color-button-color: #25442c;
   --color-menu-text: #eb692f;
+
+  --flame-100: #ffb899;
+  --flame-200: #ff9466;
+  --flame-300: #ea672d;
+  --flame-400: #c6531f;
+  --flame-500: #a04014;
 
   /*button*/
   --color-button-color: #25442c;
