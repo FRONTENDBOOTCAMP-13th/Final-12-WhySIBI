@@ -1,10 +1,10 @@
 'use client';
 
-import Image from 'next/image';
 import LikeButton from './Like_button';
 import DropdownSize from '../Dropdown/Dropdown_size';
 import ButtonBasic from '../Buttons/Button_basic';
 import { ChangeEvent, ReactElement, useState } from 'react';
+import DropdownCount from '../Dropdown/Dropdown_count';
 
 interface ShoppingFormType {
   title: string;
@@ -14,6 +14,7 @@ interface ShoppingFormType {
   star: number;
   color: string[];
   size: string[];
+  reviewCount: number;
 }
 
 export default function ShoppingForm({
@@ -24,6 +25,7 @@ export default function ShoppingForm({
   star,
   color,
   size,
+  reviewCount,
 }: ShoppingFormType) {
   // 폼태그 상태관리
   const [option, setOption] = useState({
@@ -42,12 +44,18 @@ export default function ShoppingForm({
     setOption({ ...option, color: e.target.value });
   }
 
-  //수량
-  function handleQuantityChange(e: ChangeEvent<HTMLSelectElement>) {
-    setOption({ ...option, quantity: Number(e.target.value) });
+  function increase() {
+    setOption({ ...option, quantity: option.quantity + 1 });
   }
 
-  console.log('데이터확인:::');
+  function decrease() {
+    setOption({ ...option, quantity: option.quantity - 1 });
+  }
+
+  const discountRate = Math.round(
+    ((originalPrice - price) / originalPrice) * 100,
+  ); //할인율
+
   return (
     <section className="min-w-[500]">
       <header className="flex items-center gap-28 relative">
@@ -63,7 +71,7 @@ export default function ShoppingForm({
         <span className="font-bold text-xl" aria-label="5점 만점에 4점">
           {star}
         </span>
-        <span className="text-[#777777] ">리뷰 855</span>
+        <span className="text-[#777777] ">리뷰 {reviewCount}</span>
       </p>
 
       {/* 가격정보 */}
@@ -71,7 +79,7 @@ export default function ShoppingForm({
         <h3 className="sr-only">가격정보</h3>
         <p className="pt-1">
           <strong className="text-flame-250 text-2xl" aria-label="할인율">
-            91%
+            {discountRate}%
           </strong>
           <s className="text-[#a7a7a7] text-xl ml-3" aria-label="정가">
             {originalPrice.toLocaleString()}원
@@ -116,12 +124,13 @@ export default function ShoppingForm({
           </div>
           <div className="w-[340px] flex justify-between pt-3 pb-4">
             <label className="w-[64px] text-center">구매수량</label>
-            <DropdownSize
-              onChange={handleQuantityChange}
-              id={'quantity-select'}
-              content={'수량을 선택해주세요'}
-            ></DropdownSize>
+            <DropdownCount
+              increase={increase}
+              decrease={decrease}
+              count={option.quantity}
+            ></DropdownCount>
           </div>
+          <div>TotalPrice : {price * option.quantity}</div>
         </fieldset>
       </form>
 

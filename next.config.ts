@@ -1,9 +1,15 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  /* config options here */
   images: {
-    domains: ['clever-chimera-f2736a.netlify.app'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'fesp-api.koyeb.app',
+        port: '',
+        pathname: '/market/files/**',
+      },
+    ],
   },
 };
 

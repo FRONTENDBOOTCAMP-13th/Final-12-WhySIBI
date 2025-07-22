@@ -23,18 +23,15 @@ export async function Product_Detail() {
 }
 
 export default async function ShoppingDetail({ stars }: ShoppingDetailType) {
-  // const detailOption = await getProductInfo('1');
-  // console.log('api 호출 확인', detailOption);
   const item = await Product_Detail();
-  console.log('메인이미지라고?', item.mainImages[0].path);
+  const reviewCount = item.replies.length;
 
   return (
     <section className="bg-white flex gap-24 justify-center">
       {/* 상품 사진 영역 */}
       <figure className="bg-white min-w-[600px] min-h-[600px] overflow-hidden  flex justify-center items-center rounded-sm shadow-md">
-        {/* 이미지가 왜 깨지는거지.. */}
         <Image
-          src={`${item.mainImages[0].path}`}
+          src={`${process.env.NEXT_PUBLIC_API_URL}${item.mainImages[0].path}`}
           width={590}
           height={590}
           className="object-cover"
@@ -50,6 +47,7 @@ export default async function ShoppingDetail({ stars }: ShoppingDetailType) {
         stars={stars}
         color={item.extra.color}
         size={item.extra.size}
+        reviewCount={reviewCount}
       />
     </section>
   );

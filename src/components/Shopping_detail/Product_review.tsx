@@ -5,59 +5,22 @@ import StarBar from './Star_bar';
 import ReviewList from './Review_list';
 import { ProductReviewProps } from '@/types/shopping_detail';
 
-const mockData = [
-  {
-    id: 1,
-    star: 1,
-    profile: '/image/profile.png',
-    author: '농담곰 운동 좀 그만해',
-    content:
-      ' 이거 사지마시고 다른거 사세요 소음이 진짜 기분 나쁘게 나요 진짜 짜증남.',
-    image: '/image/main_banner_image_5.png',
-    date: '2020.10.20',
-  },
-  {
-    id: 2,
-    star: 5,
-    profile: '/image/profile.png',
-    author: '허허',
-    content: '요즘 더워서 나보다 고양이가 먼저 더위를 호소하더라고요 😮😂',
-    image: '/image/main_banner_image_3.png',
-    date: '2020.02.01',
-  },
-  {
-    id: 3,
-    star: 1,
-    profile: '/image/profile.png',
-    author: '치악산복숭아당도최고',
-    content: '글쎄요 그냥 그럼',
-    image: '',
-    date: '2020.11.11',
-  },
-  {
-    id: 4,
-    star: 4,
-    profile: '/image/profile.png',
-    author: '최강롯데자이언츠',
-    content: '좋아요 야구 보면서 선풍기 바람쐬기 좋아요',
-    image: '',
-    date: '2000.10.20',
-  },
-];
-
-export default function ProductReview({ stars }: ProductReviewProps) {
+export default function ProductReview({ stars, replies }: ProductReviewProps) {
   const selectedStar = [...stars, '별점순'];
   const [active, setActive] = useState(false);
   const [selected, setSelected] = useState(selectedStar[5]);
+  console.log('리플라이야', replies);
 
   return (
     <section className="max-w-[1028px] mx-auto mt-12 ">
       <div className="flex justify-between border-b-2 pb-3 border-[#a5a5a5]">
-        <h3 className="text-xl font-semibold text-[#777777]">리뷰 876</h3>
+        <h3 className="text-xl font-semibold text-[#777777]">
+          리뷰 {replies.length}
+        </h3>
         <div className="flex  items-center gap-8">
-          <span>추천순</span>
-          <span>최근등록순</span>
-          <span>사진리뷰</span>
+          <button className="cursor-pointer">추천순</button>
+          <button className="cursor-pointer">최근등록순</button>
+          <button className="cursor-pointer">사진리뷰</button>
           {/* 별점 셀렉박스 */}
           <div className="selectBox cursor-pointer inline-block">
             <div
@@ -120,18 +83,19 @@ export default function ProductReview({ stars }: ProductReviewProps) {
       </div>
 
       {/* 댓글 영역 */}
+      {/* 타입오류, 이미지 깨짐 */}
       <ul className="pb-12">
-        {mockData.map(item => {
+        {replies.map(item => {
           return (
             <ReviewList
-              key={item.id}
+              key={item._id}
               stars={stars} //별점 1-5 들어있는 배열
-              star={5 - item.star} //별점 배열의 인덱스
-              profile={item.profile}
-              author={item.author}
+              star={5 - item.extra.star} //별점 배열의 인덱스
+              profile={item.user.image}
+              author={item.user.name}
               content={item.content}
-              image={item.image}
-              date={item.date}
+              image={item.extra.image.path}
+              date={item.extra.date}
             ></ReviewList>
           );
         })}

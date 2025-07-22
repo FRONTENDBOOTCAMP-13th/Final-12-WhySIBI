@@ -2,6 +2,7 @@ import { ReactElement } from 'react';
 
 export interface ProductReviewProps {
   stars: ReactElement[][];
+  replies: string[];
 }
 
 export interface ReviewListProps {

@@ -11,7 +11,7 @@ export default function DropdownSize({
   onChange: (e: ChangeEvent<HTMLSelectElement>) => void;
   option: string[];
 }) {
-  console.log('나야 사이즈', option);
+  console.log('나야 옵션', option);
 
   return (
     <>

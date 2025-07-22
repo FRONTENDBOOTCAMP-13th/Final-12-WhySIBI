@@ -4602,13 +4602,23 @@ export const initData = async (clientId, nextSeq) => {
         user: {
           _id: 3,
           name: '김하영',
-          image: 'user-jayg.webp',
+          image: `/files/${clientId}/bodyfillow.png`,
         },
         order_id: 1,
-        product_id: 8,
+        product_id: 1,
         rating: 5,
-        content: '아이가 좋아해요.',
+        content:
+          ' 이거 사지마시고 다른거 사세요 소음이 진짜 기분 나쁘게 나요 진짜 짜증남.',
         createdAt: getTime(-4, -60 * 60 * 12),
+        extra: {
+          image: {
+            path: `/files/${clientId}/cleankit.png`,
+            name: 'cleankit.png',
+            originalname: '청소키트.png',
+          },
+          star: 1,
+          date: '2020.02.01',
+        },
       },
       {
         _id: await nextSeq('review'),
@@ -4616,13 +4626,45 @@ export const initData = async (clientId, nextSeq) => {
         user: {
           _id: 4,
           name: '조현수',
-          image: 'user-jayg.webp',
+          image: `/files/${clientId}/bodyfillow.png`,
         },
-        order_id: 3,
-        product_id: 13,
+        order_id: 2,
+        product_id: 1,
         rating: 5,
         content: '배송이 너무 느려요.',
         createdAt: getTime(-4, -60 * 60 * 12),
+        extra: {
+          image: {
+            path: `/files/${clientId}/bodyfillow.png`,
+            name: 'bodyfillow.png',
+            originalname: '청소키트.png',
+          },
+          star: 4,
+          date: '2020.02.10',
+        },
+      },
+      {
+        _id: await nextSeq('review'),
+        user_id: 4,
+        user: {
+          _id: 4,
+          name: '조현수',
+          image: `/files/${clientId}/bodyfillow.png`,
+        },
+        order_id: 2,
+        product_id: 1,
+        rating: 5,
+        content: '아니 언제오냐고요 진짜 개빡치네',
+        createdAt: getTime(-4, -60 * 60 * 12),
+        extra: {
+          image: {
+            path: ``,
+            name: '',
+            originalname: '',
+          },
+          star: 1,
+          date: '2020.02.11',
+        },
       },
     ],
 

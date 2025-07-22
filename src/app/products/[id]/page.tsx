@@ -1,4 +1,6 @@
-import ShoppingDetail from '@/components/Shopping_detail/Shopping_detail';
+import ShoppingDetail, {
+  Product_Detail,
+} from '@/components/Shopping_detail/Shopping_detail';
 import Link from 'next/link';
 import ProductInfo from '@/components/Shopping_detail/Product_Info';
 import ProductReview from '@/components/Shopping_detail/Product_review';
@@ -55,18 +57,13 @@ export default async function ProductDetail({
     stars.push(lineStars);
   }
 
+  const item = await Product_Detail();
   return (
     <>
       <div className="bg-white min-w-[1280px]">
-        <ShoppingDetail
-          title={'플로우 저상형 침대깔판'}
-          originalPrice={1240000}
-          price={124000}
-          imageSrc={'/image/airconCleanKit.png'}
-          stars={stars}
-        ></ShoppingDetail>
+        <ShoppingDetail stars={stars}></ShoppingDetail>
 
-        <nav className="bg-[#d9d9d9] text-xl font-bold flex gap-8 pl-24 ">
+        <nav className="bg-[#d9d9d9] text-xl font-bold flex gap-8 pl-24 mt-5">
           <Link
             href={'?tab=info'}
             scroll={false} // 이거 쓰면 링크 클릭할때마다 맨위로 안감
@@ -91,7 +88,11 @@ export default async function ProductDetail({
         </nav>
 
         {tab === 'info' ? <ProductInfo /> : ''}
-        {tab === 'review' ? <ProductReview stars={stars} /> : ''}
+        {tab === 'review' ? (
+          <ProductReview stars={stars} replies={item.replies} />
+        ) : (
+          ''
+        )}
         {tab === 'inquiry' ? <ProductInquiry /> : ''}
       </div>
     </>
