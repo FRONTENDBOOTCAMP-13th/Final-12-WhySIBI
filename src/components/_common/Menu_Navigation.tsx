@@ -23,6 +23,19 @@ function MenuNavigation() {
   const isSubMenuActive = (path: string) =>
     sub_pathName === path ? 'text-menu-text border-b-4 border-flame-300' : '';
 
+  let token = null;
+  const userStorageString = sessionStorage.getItem('user');
+  if (userStorageString) {
+    try {
+      const userStorage = JSON.parse(userStorageString);
+      if (userStorage?.state?.user?.token?.accessToken) {
+        token = userStorage.state.user.token.accessToken;
+      }
+    } catch (error) {
+      console.error('JSON 파싱 오류:', error);
+    }
+  }
+
   return (
     <>
       <nav className="header_bottom w-full min-w-[1280px] bg-[#D4E8F8] flex flex-wrap justify-between items-center text-center">
@@ -60,17 +73,21 @@ function MenuNavigation() {
               고객센터
             </Link>
           </li>
-          <li
-            className={`w-[9.375rem] h-[4.375rem] p-3.5 pb-0 mt-3 overflow-hidden  active:bg-white rounded-t-4xl ${isListMenuActive('/my_page')} `}
-          >
-            <Link
-              href={'/my_page'}
-              className={`block text-button-color w-full h-full  active:text-menu-text ${isAnchorMenuActive('/my_page')}`}
-              onClick={() => handleMenuClick('myPage')}
+          {token ? (
+            <li
+              className={`w-[9.375rem] h-[4.375rem] p-3.5 pb-0 mt-3 overflow-hidden  active:bg-white rounded-t-4xl ${isListMenuActive('/my_page')} `}
             >
-              마이페이지
-            </Link>
-          </li>
+              <Link
+                href={'/my_page'}
+                className={`block text-button-color w-full h-full  active:text-menu-text ${isAnchorMenuActive('/my_page')}`}
+                onClick={() => handleMenuClick('myPage')}
+              >
+                마이페이지
+              </Link>
+            </li>
+          ) : (
+            <li></li>
+          )}
         </ul>
 
         <div className="header_bottom_icons flex flex-wrap  items-center  gap-11 mr-7">

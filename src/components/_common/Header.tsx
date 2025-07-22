@@ -14,8 +14,6 @@ export default function Header() {
     resetUser();
     alert('로그아웃 되었습니다.');
   };
-
-  console.log(user?.image);
   return (
     <header className="mt-16 min-w-[1280px]">
       <section className="header_top max-w-[98%]  grid grid-cols-3 items-center mx-auto my-0">
@@ -34,7 +32,11 @@ export default function Header() {
             <p className="col-start-3 logout_button_area flex flex-wrap items-center justify-end gap-3 mr-13">
               <Image
                 className="object-cover rounded-full mr-2"
-                src={user.image ? `${API_URL}/${user?.image}` : ''}
+                src={
+                  user.image
+                    ? `${API_URL}/${user?.image}`
+                    : '/image/image/profile.png'
+                }
                 width="60"
                 height="60"
                 alt={`${user.name} 프로필 이미지`}
@@ -51,13 +53,13 @@ export default function Header() {
         ) : (
           <div className="col-start-3 login_button_area flex flex-wrap items-center justify-end gap-3 mr-13">
             <Link
-              href={'/my_page/login'}
+              href={'/login'}
               className="font-basic nahonsan-btn-3d  p-2 pl-5 pr-5 rounded-radius-md text-size-sm"
             >
               로그인
             </Link>
             <Link
-              href={'/my_page/regiester'}
+              href={'/regiester'}
               className="font-basic nahonsan-btn-3d-vanilla  p-2 pl-5 pr-5 rounded-radius-md text-size-sm"
             >
               회원가입
