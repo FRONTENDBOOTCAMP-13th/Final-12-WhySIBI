@@ -9,7 +9,6 @@ export default function ProductReview({ stars, replies }: ProductReviewProps) {
   const selectedStar = [...stars, '별점순'];
   const [active, setActive] = useState(false);
   const [selected, setSelected] = useState(selectedStar[5]);
-  console.log('리플라이야', replies);
 
   return (
     <section className="max-w-[1028px] mx-auto mt-12 ">
@@ -86,6 +85,7 @@ export default function ProductReview({ stars, replies }: ProductReviewProps) {
       {/* 타입오류, 이미지 깨짐 */}
       <ul className="pb-12">
         {replies.map(item => {
+          console.log('아이템임', item);
           return (
             <ReviewList
               key={item._id}
@@ -94,7 +94,7 @@ export default function ProductReview({ stars, replies }: ProductReviewProps) {
               profile={item.user.image}
               author={item.user.name}
               content={item.content}
-              image={item.extra.image.path}
+              image={item.extra.image?.path}
               date={item.extra.date}
             ></ReviewList>
           );

@@ -4,7 +4,6 @@ import LikeButton from './Like_button';
 import DropdownSize from '../Dropdown/Dropdown_size';
 import ButtonBasic from '../Buttons/Button_basic';
 import { ChangeEvent, ReactElement, useState } from 'react';
-import DropdownCount from '../Dropdown/Dropdown_count';
 
 interface ShoppingFormType {
   title: string;
@@ -45,7 +44,9 @@ export default function ShoppingForm({
   }
 
   function increase() {
-    setOption({ ...option, quantity: option.quantity + 1 });
+    setOption(prev => {
+      return { ...prev, quantity: option.quantity + 1 };
+    });
   }
 
   function decrease() {
@@ -124,11 +125,19 @@ export default function ShoppingForm({
           </div>
           <div className="w-[340px] flex justify-between pt-3 pb-4">
             <label className="w-[64px] text-center">구매수량</label>
-            <DropdownCount
-              increase={increase}
-              decrease={decrease}
-              count={option.quantity}
-            ></DropdownCount>
+            {/* 카운터 */}
+            <div>
+              <button
+                onClick={e => {
+                  e.preventDefault();
+                  decrease();
+                }}
+              >
+                -
+              </button>
+              <span>{option.quantity}</span>
+              <button onClick={() => increase()}>+</button>
+            </div>
           </div>
           <div>TotalPrice : {price * option.quantity}</div>
         </fieldset>
