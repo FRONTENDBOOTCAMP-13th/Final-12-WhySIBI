@@ -2,6 +2,9 @@ export interface Buttontype {
   text: string;
   background: string;
   color?: string;
+  hover?: string;
+  animate?: string;
+  event?: () => void;
 }
 
 export default function ButtonBasic({ text, background, color }: Buttontype) {

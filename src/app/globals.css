@@ -10,7 +10,7 @@
   --font-variable: 'Pretendard Variable', sans-serif;
 
   /* ==============================
-          🎨 liveAlone 대표 컬러 (Base)
+       🎨 liveAlone 대표 컬러 (Base)
           ============================== */
   --color-livealone-vanilla: #ffeebc;
   --color-livealone-columbia-blue: #d2e8ff;
@@ -28,33 +28,21 @@
   --color-vanilla-400: #e6d7a8;
   --color-vanilla-500: #ccbd92;
 
+  
   /* Columbia Blue */
   --color-columbia-blue-100: #eff7ff;
   --color-columbia-blue-200: #cae4ff;
   --color-columbia-blue-300: #d2e8ff;
   --color-columbia-blue-400: #a2c9e6;
   --color-columbia-blue-500: #7aaacd;
-
+  
   /* Cal Poly Green */
   --color-cal-poly-green-100: #4c6751;
   --color-cal-poly-green-200: #3f5844;
   --color-cal-poly-green-300: #26422a;
   --color-cal-poly-green-400: #1c3120;
   --color-cal-poly-green-500: #142518;
-
-  --columbia-blue-100: #eff7ff;
-  --columbia-blue-200: #cae4ff;
-  --columbia-blue-300: #d2e8ff;
-  --columbia-blue-400: #a2c9e6;
-  --columbia-blue-500: #7aaacd;
-
-  /* Cal Poly Green */
-  --color-cal-poly-green-100: #4c6751;
-  --color-cal-poly-green-200: #3f5844;
-  --color-cal-poly-green-300: #26422a;
-  --color-cal-poly-green-400: #1c3120;
-  --color-cal-poly-green-500: #142518;
-
+  
   /* Bistre */
   --color-bistre-100: #8b6b5f;
   --color-bistre-200: #75584d;
@@ -70,23 +58,12 @@
   --color-flame-400: #c6531f;
   --color-flame-500: #a04014;
 
+  /* Gray for icon */
+  --color-gray-icon: #777777;
+
   /* border */
   --color-gray-150: #eaeaea;
   --color-gray-550: #777777;
-
-  /*button*/
-  --color-button-color: #25442c;
-  --color-menu-text: #eb692f;
-
-  --flame-100: #ffb899;
-  --flame-200: #ff9466;
-  --flame-300: #ea672d;
-  --flame-400: #c6531f;
-  --flame-500: #a04014;
-
-  /*button*/
-  --color-button-color: #25442c;
-  --color-menu-text: #eb692f;
 
   /*button*/
   --color-button-color: #25442c;
@@ -121,24 +98,25 @@
   --color-vanilla-opaque-50: rgba(255, 238, 188, 0.5);
 
   --color-button-color-opaque-25: rgba(37, 68, 44, 0.25);
+  
   /* ==============================
-          🎨 Shadow
-          ============================== */
+       🎨 Shadow
+       ============================== */
   --shadow-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
   --shadow-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
   --shadow-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.15);
 
   /* ==============================
-          🎨 Radius
-          ============================== */
+       🎨 Radius
+       ============================== */
   --radius-radius-sm: 4px;
   --radius-radius-md: 8px;
   --radius-radius-lg: 16px;
   --radius-radius-full: 9999px;
 
   /* ==============================
-          🎨 Transition
-          ============================== */
+       🎨 Transition
+       ============================== */
   --animate-transition-fast: 150ms ease-out;
   --animate-transition-medium: 300ms ease-out;
   --animate-transition-slow: 500ms ease-out;
@@ -151,6 +129,7 @@
   --z-index-dropdown: 10;
   --z-index-modal: 100;
   --z-index-toast: 1000;
+
 
   /* ==============================
           ✍️ Typography
@@ -179,12 +158,17 @@
   --leading-4xl: 46px;
   --leading-5xl: 52px;
 
+  --spacing-letter-default: -0.6px;
+
+  --spacing-paragraph-default: 0px;
+  
   --tracking-letter-default: -0.6px;
 
   --tracking-paragraph-default: 0px;
 
   --animate-wobble-hor-bottom: wobble-hor-bottom 0.8s both;
 }
+
 @keyframes wobble-hor-bottom {
   0%,
   100% {
@@ -212,6 +196,7 @@
   background-size: theme(--bg-size-stripes);
 }
 
+
 @utility vertical-stripes {
   background: theme(--bg-vertical-stripes);
   background-size: theme(--bg-size-stripes);
@@ -219,6 +204,7 @@
 
 /* custom style */
 @layer components {
+  
   /* swiper style */
   .swiper {
     overflow: hidden;
@@ -342,6 +328,7 @@
       0 0 0 1px rgba(0, 0, 0, 0.4);
     transform: translateY(6px);
   }
+  
   /* main-Talk-button */
   .btn-gradient-animate {
     background: linear-gradient(
@@ -356,9 +343,65 @@
     transition: 1.5s;
   }
 
-  .btn-gradient-animate:hover {
+  
+  .btn-gradient-animate:hover{
     background-position: right center;
   }
+
+  /* btn-gradient-infinite */
+  @keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+.btn-gradient {
+  background: linear-gradient(45deg, #d2e8ff 0%, #d2e8ff 20%, #ffeebc 40%, #d2e8ff 60%, #ffeebc 80%);
+  background-size: 400% 400%;
+  animation: gradientMove 3s linear infinite;
+  transition: background 0.5s ease;
+}
+
+.btn-gradient:hover {
+  animation: none;
+  background: #ffeebc;
+}
+
+  /* pencil-animation */
+  @keyframes pencil-zigzag {
+    0% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    25% {
+      transform: translate(1px, -1px) rotate(-1deg);
+    }
+    50% {
+      transform: translate(-1px, 1px) rotate(1deg);
+    }
+    75% {
+      transform: translate(1px, 1px) rotate(-1deg);
+    }
+    100% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+  }
+
+  .animate-pencil-zigzag:hover {
+    animation: pencil-zigzag 0.8s ease-in-out infinite;
+  }
+
+  /* image-uploader-animate */
+  .hover-lift {
+    --hover-lift-duration: 0.44s;
+    --hover-lift-offset: -4px;
+
+    transition: transform var(--hover-lift-duration) ease, filter var(--hover-lift-duration) ease;
+    transform: translateY(0);
+  }
+
+  .group:hover .hover-lift {
+    transform: translateY(var(--hover-lift-offset));
+  }
+}
 
   /* custom style */
   @layer components {
