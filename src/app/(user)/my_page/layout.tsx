@@ -19,8 +19,8 @@ export default function MyPage({
             <ul className="flex flex-col pt-10 pb-10 gap-10 justify-center items-center text-center font-logo font-[600] text-size-2xl  text-button-color">
               <li>
                 <Link
-                  href=""
-                  className={`active:text-menu-text ${isAnchorMenuActive('/')}`}
+                  href="/my_page/edit_info"
+                  className={`active:text-menu-text ${isAnchorMenuActive('/my_page/edit_info')}`}
                 >
                   내정보 수정
                 </Link>

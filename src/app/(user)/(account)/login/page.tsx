@@ -17,11 +17,22 @@ export default function Login() {
         _id: userState.item._id,
         email: userState.item.email,
         name: userState.item.name,
+        nickname: userState.item.nickname,
         type: userState.item.type,
         image: userState.item.image,
+        phone: userState.item.phone,
         token: {
           accessToken: userState.item.token?.accessToken || '',
           refreshToken: userState.item.token?.refreshToken || '',
+        },
+        extra: {
+          addressBook: [
+            {
+              id: userState.item.extra.addressBook[0].id,
+              name: userState.item.extra.addressBook[0].name,
+              value: userState.item.extra.addressBook[0].value,
+            },
+          ],
         },
       });
       alert('로그인이 완료되었습니다.');
