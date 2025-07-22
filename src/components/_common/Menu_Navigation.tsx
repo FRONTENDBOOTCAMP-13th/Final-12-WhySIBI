@@ -4,12 +4,33 @@ import useMenuStore from '@/zustand/menuStore';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useRouter } from 'next/navigation';
+
+type SubMenuItem = {
+  label: string;
+  path: string;
+};
 
 function MenuNavigation() {
-  // Zustand store에서 필요한 상태와 함수들 가져오기
-  const { activeMenu, subMenuData, handleMenuClick } = useMenuStore();
+  const router = useRouter();
 
-  const currentSubMenuItems = subMenuData[activeMenu] || [];
+  // Zustand store에서 필요한 상태와 함수들 가져오기
+  const { activeMenu, subMenuData, handleMenuClick, mainCategoryId } =
+    useMenuStore();
+
+  const currentSubMenuItems: SubMenuItem[] =
+    activeMenu === 'community'
+      ? subMenuData.community.items.map(label => ({
+          label,
+          path: '/community',
+        }))
+      : activeMenu === 'shopping'
+        ? [
+            { label: '추천 상품', path: '/shopping/recommend' },
+            { label: '베스트 상품', path: '/shopping/best' },
+            { label: '카테고리', path: '/shopping/category' },
+          ]
+        : [];
 
   const listPathName = usePathname();
   const isListMenuActive = (path: string) =>
@@ -55,9 +76,14 @@ function MenuNavigation() {
             className={`w-[9.375rem] h-[4.375rem] p-3.5 pb-0 mt-3 overflow-hidden  active:bg-white rounded-t-4xl ${isListMenuActive('/my_page/login')} `}
           >
             <Link
-              href={''}
-              className={`block text-button-color w-full h-full  active:text-menu-text ${isAnchorMenuActive('')}`}
-              onClick={() => handleMenuClick('shopping')}
+              href={'/shopping/category'}
+              className={`block text-button-color w-full h-full  active:text-menu-text ${isAnchorMenuActive('/my_page/login')}`}
+              onClick={e => {
+                //쇼핑 메뉴 렌더링 순서 보장
+                e.preventDefault();
+                handleMenuClick('shopping', mainCategoryId);
+                router.push('/shopping/category');
+              }}
             >
               쇼핑
             </Link>
@@ -125,7 +151,7 @@ function MenuNavigation() {
           ))}
         </ul>
       </section>
-      {sub_pathName === '/' && <Categroy />}
+      {sub_pathName === '/shopping/category' && <Categroy />}
     </>
   );
 }

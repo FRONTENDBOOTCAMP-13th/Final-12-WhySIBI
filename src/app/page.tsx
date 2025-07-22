@@ -1,13 +1,13 @@
 import MainBannerSlider from '@/components/main_banner_slider';
-import MainProductSlider from '@/components/main_product_slider';
+import MainBestProductSection from '@/components/main_best_product_section';
+import MainBottomSlider from '@/components/main_bottom_slider';
 export default function Home() {
   return (
     <>
       <main>
-        <h1>배너</h1>
         <MainBannerSlider />
-        <h1>나혼산 BEST 상품</h1>
-        <MainProductSlider />
+        <MainBestProductSection />
+        <MainBottomSlider />
       </main>
     </>
   );
