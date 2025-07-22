@@ -6,10 +6,10 @@ export function ButtonBack(){
 
   return(
   <>
-  <button onClick={() => router.back()} className="w-[600px] mb-6 cursor-pointer group">
-    <img src="/image/community_icon/backIcon.svg" alt="이전페이지" className="opacity-50 w-4 group-hover:opacity-80">
-    </img>
-    </button>
+    <button onClick={() => router.back()} className="cursor-pointer group">
+      <img src="/image/community_icon/backIcon.svg" alt="이전페이지" className="opacity-50 w-4 group-hover:opacity-80">
+      </img>
+      </button>
   </>
   );
 }

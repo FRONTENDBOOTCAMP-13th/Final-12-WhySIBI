@@ -1,11 +1,10 @@
-import PostCard from '@/components/Post_card';
-import { dummyHousePosts } from '@/components/dummyHousePosts';
+'use client';
+import PostCard from '@/components/PostCard';
 import Title from '@/components/Title';
 import ButtonNew from '@/components/Button_new';
 import DropdownTime from '@/components/Dropdown/Dropdown_time';
 
 export default function PostCardPage() {
-console.log('dummyHousePosts:', dummyHousePosts); 
 
   return (
     <div className="post-list-wrapper bg-white p-20">
