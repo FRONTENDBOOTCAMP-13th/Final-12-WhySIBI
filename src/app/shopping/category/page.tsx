@@ -1,4 +1,3 @@
-import Pagenation from '@/components/Pagenation';
 import ShoppingBannerSlider from '@/components/Shopping_banner_slider';
 import ShoppingProductsList from '@/components/Shopping_products_list';
 import ShoppingSubcategory from '@/components/Shopping_Subcategory';
@@ -12,7 +11,6 @@ export default function ShoppingCategory() {
         <ShoppingSubcategory />
         <ShoppingViewest />
         <ShoppingProductsList />
-        <Pagenation />
       </main>
     </>
   );
