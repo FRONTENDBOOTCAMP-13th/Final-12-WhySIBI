@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 type SubMenuItem = {
   label: string;
@@ -44,18 +45,21 @@ function MenuNavigation() {
   const isSubMenuActive = (path: string) =>
     sub_pathName === path ? 'text-menu-text border-b-4 border-flame-300' : '';
 
-  let token = null;
-  const userStorageString = sessionStorage.getItem('user');
-  if (userStorageString) {
-    try {
-      const userStorage = JSON.parse(userStorageString);
-      if (userStorage?.state?.user?.token?.accessToken) {
-        token = userStorage.state.user.token.accessToken;
+  const [token, setToken] = useState(null);
+
+  useEffect(() => {
+    const userStorageString = sessionStorage.getItem('user');
+    if (userStorageString) {
+      try {
+        const userStorage = JSON.parse(userStorageString);
+        if (userStorage?.state?.user?.token?.accessToken) {
+          setToken(userStorage.state.user.token.accessToken);
+        }
+      } catch (error) {
+        console.error('JSON 파싱 오류:', error);
       }
-    } catch (error) {
-      console.error('JSON 파싱 오류:', error);
     }
-  }
+  }, []);
 
   return (
     <>
@@ -73,11 +77,11 @@ function MenuNavigation() {
             </Link>
           </li>
           <li
-            className={`w-[9.375rem] h-[4.375rem] p-3.5 pb-0 mt-3 overflow-hidden  active:bg-white rounded-t-4xl ${isListMenuActive('/my_page/login')} `}
+            className={`w-[9.375rem] h-[4.375rem] p-3.5 pb-0 mt-3 overflow-hidden  active:bg-white rounded-t-4xl ${isListMenuActive('/shopping/category')} `}
           >
             <Link
               href={'/shopping/category'}
-              className={`block text-button-color w-full h-full  active:text-menu-text ${isAnchorMenuActive('/my_page/login')}`}
+              className={`block text-button-color w-full h-full  active:text-menu-text ${isAnchorMenuActive('/shopping/category')}`}
               onClick={e => {
                 //쇼핑 메뉴 렌더링 순서 보장
                 e.preventDefault();

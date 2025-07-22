@@ -25,7 +25,6 @@ export async function createUser(
     let image;
     if (attach.size > 0) {
       const fileRes = await upLoadFile(formData);
-      console.log(`fileRes`, fileRes);
       if (fileRes.ok) {
         image = fileRes.item[0].path;
       } else {

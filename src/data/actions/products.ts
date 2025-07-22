@@ -10,7 +10,7 @@ const CLIENT_ID = process.env.NEXT_PUBLIC_WHY_SIBI_CLIENT_ID || '';
  */
 export async function getProductList(): ApiResPromise<ProductList> {
   try {
-    const res = await axios.get(`${API_URL}/products/`, {
+    const res = await axios.get(`${API_URL}/products?page=1&limit=10`, {
       headers: {
         'Content-Type': 'application/json',
         'Client-Id': CLIENT_ID,
