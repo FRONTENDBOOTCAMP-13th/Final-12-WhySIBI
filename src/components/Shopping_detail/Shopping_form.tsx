@@ -123,11 +123,13 @@ export default function ShoppingForm({
               ></DropdownSize>
             </div>
           </div>
-          <div className="w-[340px] flex justify-between pt-3 pb-4">
+          <div className="w-[340px] flex justify-between pt-3 pb-4 items-center">
             <label className="w-[64px] text-center">구매수량</label>
-            {/* 카운터 */}
-            <div>
+
+            {/* 구매수량 카운터 */}
+            <div className="flex gap-10 items-center border-1 border-gray-150 rounded-md overflow-hidden w-[170px]">
               <button
+                className="bg-flame-250 p-2 w-8 text-white"
                 onClick={e => {
                   e.preventDefault();
                   decrease();
@@ -135,11 +137,24 @@ export default function ShoppingForm({
               >
                 -
               </button>
-              <span>{option.quantity}</span>
-              <button onClick={() => increase()}>+</button>
+              <span className="flex-1 text-center">{option.quantity}</span>
+              <button
+                className="bg-flame-250 p-2 w-8 text-white"
+                onClick={e => {
+                  e.preventDefault();
+                  increase();
+                }}
+              >
+                +
+              </button>
             </div>
           </div>
-          <div>TotalPrice : {price * option.quantity}</div>
+          <div className="flex items-center gap-2 justify-end pb-2">
+            <span className="text-xl ">TotalPrice :</span>
+            <span className="text-3xl font-bold text-flame-300 w-[120px]">
+              {(price * option.quantity).toLocaleString()}
+            </span>
+          </div>
         </fieldset>
       </form>
 
