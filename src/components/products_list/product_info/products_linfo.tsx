@@ -1,10 +1,11 @@
 import { ProductListProps } from '@/types';
 import Image from 'next/image';
 import Link from 'next/link';
+import { memo } from 'react';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-export default function ProductInfo({
+const ProductInfo = memo(function ProductInfo({
   _id,
   price,
   name,
@@ -59,4 +60,5 @@ export default function ProductInfo({
       </div>
     </li>
   );
-}
+});
+export default ProductInfo;
