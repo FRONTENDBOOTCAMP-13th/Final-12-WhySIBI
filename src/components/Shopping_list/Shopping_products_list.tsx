@@ -115,6 +115,7 @@ function ShoppingProductsList() {
             : ''; //할인율
           return (
             <ProductCard
+              id={product._id}
               key={product._id}
               name={product.name}
               imageUrl={`${API_URL}/${product.mainImages[0]?.path}`}
