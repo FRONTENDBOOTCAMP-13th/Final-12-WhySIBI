@@ -8,17 +8,14 @@ import 'swiper/css/pagination';
 import { Navigation, Scrollbar } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import ProductCard from '@/components/product_card';
+import ProductCard from '@/components/product_component/product_card';
 import { useEffect, useState } from 'react';
-import { ProductListProps } from '@/types';
 import { getProductList } from '@/data/actions/products.fetch';
-// import useMenuStore from '@/zustand/menuStore';
+import { ProductListProps } from '@/types';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-function ShoppingViewestSlider() {
-  // const { mainCategoryId } = useMenuStore(); //나중에 메인카테 ID 별 상품 불러와서 연동하기
-
+function MainProductSlider() {
   SwiperCore.use([Navigation, Scrollbar]);
 
   const [slideData, setSlideData] = useState<ProductListProps[]>([]);
@@ -82,4 +79,4 @@ function ShoppingViewestSlider() {
     </>
   );
 }
-export default ShoppingViewestSlider;
+export default MainProductSlider;

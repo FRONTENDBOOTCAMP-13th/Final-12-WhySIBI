@@ -1,6 +1,6 @@
 'use client';
 
-import ShoppingViewestSlider from '@/components/Shopping_viewest_slider';
+import ShoppingViewestSlider from '@/components/Shopping_list/Shopping_viewest_slider';
 import Title from '@/components/Title';
 
 const today = new Date();

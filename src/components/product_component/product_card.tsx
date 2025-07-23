@@ -1,7 +1,7 @@
 //상품 썸네일 카드 컴포넌트
 
-import LikeBadge from '@/components/Like_badge';
-import RankBadge from '@/components/rank_badge';
+import LikeBadge from '@/components/product_component/Like_badge';
+import RankBadge from '@/components/product_component/rank_badge';
 import Image from 'next/image';
 
 type ProductCardProps = {

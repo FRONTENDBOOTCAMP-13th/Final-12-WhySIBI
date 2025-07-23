@@ -1,8 +1,8 @@
 'use client';
 
-import DropdownShoppingList from '@/components/Dropdown/Dropdown_shopping_list';
-import Pagenation from '@/components/Pagenation';
-import ProductCard from '@/components/product_card';
+import DropdownShoppingList from '@/components/Shopping_list/Dropdown_shopping_list';
+import Pagenation from '@/components/basic_component/Pagenation';
+import ProductCard from '@/components/product_component/product_card';
 import { getProductList } from '@/data/actions/products.fetch';
 import { ProductListProps } from '@/types';
 import { useEffect, useState } from 'react';
