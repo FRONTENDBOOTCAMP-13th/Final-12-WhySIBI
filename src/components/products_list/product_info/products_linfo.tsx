@@ -50,7 +50,7 @@ export default function ProductInfo({
             주문 &middot; 배송 취소
           </Link>
           <Link
-            href={`/my_page/review/write/${_id}`}
+            href={`/my_page/reviews/write/${_id}`}
             className="block rounded-radius-full px-16 py-3 border-2 text-button-color bg-columbia-blue-300"
           >
             리뷰 작성하기
