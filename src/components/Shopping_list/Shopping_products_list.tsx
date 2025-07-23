@@ -5,6 +5,7 @@ import Pagenation from '@/components/basic_component/Pagenation';
 import ProductCard from '@/components/product_component/product_card';
 import { getProductList } from '@/data/actions/products.fetch';
 import { ProductListProps } from '@/types';
+import useMenuStore from '@/zustand/menuStore';
 import { useEffect, useState } from 'react';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -13,10 +14,7 @@ function ShoppingProductsList() {
   const [productData, setProductData] = useState<ProductListProps[]>([]);
   const [page, setPage] = useState(1);
   const [sort, setSort] = useState('latest'); //신상품 기본필터
-
-  const onePage = 12; //한 페이지에 보여줄 상품 수
-
-  const totalPage = Math.ceil(productData.length / onePage); //총 페이지 수
+  const { mainCategoryId, subCategoryId } = useMenuStore(); //zustand 에서 카테고리 상태 가져옴
 
   //상품 불러오기
   useEffect(() => {
@@ -37,10 +35,23 @@ function ShoppingProductsList() {
     productsList();
   }, []);
 
+  //상품 카테고리별로 필터
+  const filterData = productData.filter(item => {
+    const category = item.extra?.category || [];
+
+    if (!category.includes(mainCategoryId)) {
+      return false;
+    }
+    if (subCategoryId && !category.includes(subCategoryId)) {
+      return false;
+    }
+    return true;
+  });
+
   //상품 정렬하기
   console.log('필터링기준:', sort);
 
-  const sortData = [...productData].sort((a, b) => {
+  const sortData = [...filterData].sort((a, b) => {
     if (sort === 'latest') {
       return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
     }
@@ -67,6 +78,9 @@ function ShoppingProductsList() {
   const handlePagenation = (page: number) => {
     setPage(page);
   };
+  const onePage = 12; //한 페이지에 보여줄 상품 수
+
+  const totalPage = Math.ceil(sortData.length / onePage); //총 페이지 수
 
   const startPage = (page - 1) * onePage; //(1-1) * 12 = 0 , (2-1) * 12 = 12
   const endPage = page * onePage; //1 * 12 = 12 , 2 * 12 = 24
@@ -74,6 +88,9 @@ function ShoppingProductsList() {
 
   return (
     <>
+      <div>
+        <span>전체 {sortData.length}개</span>
+      </div>
       <DropdownShoppingList value={sort} onDropChange={setSort} />
       <div
         className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid-rows-4 gap-4
