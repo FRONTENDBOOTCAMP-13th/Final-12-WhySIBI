@@ -13,7 +13,7 @@ export default function ProductList() {
       try {
         const res = await getProductList();
         if (res.ok === 1) {
-          setProductList(res.item.list);
+          setProductList(res.item);
         } else {
           setProductList(null);
         }
