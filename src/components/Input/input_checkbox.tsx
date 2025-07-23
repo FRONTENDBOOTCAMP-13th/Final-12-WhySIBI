@@ -6,6 +6,7 @@ interface inputProps {
   inputType: string;
   pattern?: string;
   bgImg?: string;
+  valueText?: string;
   onTagChange: () => void;
 }
 
@@ -14,6 +15,7 @@ function InputCheckBox({
   idValue,
   inputType,
   bgImg,
+  valueText,
   onTagChange,
 }: inputProps) {
   const [isActive, setIsActive] = useState(false);

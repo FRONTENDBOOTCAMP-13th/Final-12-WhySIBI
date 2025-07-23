@@ -1,4 +1,3 @@
-'use client';
 import Categroy from '@/components/_common/category';
 import useMenuStore from '@/zustand/menuStore';
 import Image from 'next/image';
@@ -73,11 +72,11 @@ function MenuNavigation() {
             </Link>
           </li>
           <li
-            className={`w-[9.375rem] h-[4.375rem] p-3.5 pb-0 mt-3 overflow-hidden  active:bg-white rounded-t-4xl ${isListMenuActive('/my_page/login')} `}
+            className={`w-[9.375rem] h-[4.375rem] p-3.5 pb-0 mt-3 overflow-hidden  active:bg-white rounded-t-4xl ${isListMenuActive('/shopping/category')} `}
           >
             <Link
               href={'/shopping/category'}
-              className={`block text-button-color w-full h-full  active:text-menu-text ${isAnchorMenuActive('/my_page/login')}`}
+              className={`block text-button-color w-full h-full  active:text-menu-text ${isAnchorMenuActive('/shopping/category')}`}
               onClick={e => {
                 //쇼핑 메뉴 렌더링 순서 보장
                 e.preventDefault();
