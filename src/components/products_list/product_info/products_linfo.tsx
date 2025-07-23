@@ -1,7 +1,6 @@
 import { ProductListProps } from '@/types';
 import Image from 'next/image';
 import Link from 'next/link';
-// import { usePathname } from 'next/navigation';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
