@@ -10,6 +10,31 @@ export default function ProductReview({ stars, replies }: ProductReviewProps) {
   const [active, setActive] = useState(false);
   const [selected, setSelected] = useState(selectedStar[5]);
 
+  // 리뷰들의 별점을 받아와서 배열에 저장함
+  const repliesStars = [];
+  for (let i = 0; i < replies.length; i++) {
+    repliesStars.push(replies[i].extra.star);
+  }
+  console.log('카운팅 스타~', repliesStars);
+
+  //별점의 평균 구하기
+  let sum = 0;
+  for (let i = 0; i < repliesStars.length; i++) {
+    sum += repliesStars[i];
+  }
+  const avg = sum / repliesStars.length;
+
+  //각 별점을 각각 몇개 있는지 객체 형태로 저장
+  const starBoard = {
+    1: 0,
+    2: 0,
+    3: 0,
+    4: 0,
+    5: 0,
+  };
+
+  // for()
+
   return (
     <section className="max-w-[1028px] mx-auto mt-12 ">
       <div className="flex justify-between border-b-2 pb-3 border-[#a5a5a5]">
@@ -68,9 +93,9 @@ export default function ProductReview({ stars, replies }: ProductReviewProps) {
       <div className="bg-vanilla-300 flex min-h-[188px] m-12 rounded-xl items-center gap-25 justify-center">
         {/* 별점 평균 0-4까지 넣어줘야함 db 로 받아올수 있겠지..?*/}
         <span className="flex scale-200 transform origin-center gap-1">
-          {stars[4]}
+          {stars[5 - avg]}
         </span>
-        <span className="text-5xl font-extrabold">4.9</span>
+        <span className="text-5xl font-extrabold">{avg}</span>
         <div className="flex gap-10">
           {/* 순위를 1-5까지 넣으면 됩니당. */}
           <StarBar rank={4} count={343} score={5}></StarBar>

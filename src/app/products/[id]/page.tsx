@@ -10,10 +10,11 @@ export default async function ProductDetail({
   searchParams,
   params,
 }: {
-  searchParams: { tab: string };
-  params: { id: string };
+  searchParams: Promise<{ tab: string }>;
+  params: Promise<{ id: string }>;
 }) {
   const { tab } = await searchParams;
+  const { id } = await params;
 
   //별찍기 1-5
   const stars = [];
@@ -59,17 +60,17 @@ export default async function ProductDetail({
     stars.push(lineStars);
   }
 
-  const item = await Product_Detail(params.id);
+  const item = await Product_Detail(id);
   return (
     <>
       <div className="bg-white min-w-[1280px]">
-        <ShoppingDetail stars={stars} pageNum={params.id}></ShoppingDetail>
+        <ShoppingDetail stars={stars} pageNum={id}></ShoppingDetail>
 
         <nav className="bg-[#d9d9d9] text-xl font-bold flex gap-8 pl-24">
           <Link
             href={'?tab=info'}
             scroll={false} // 이거 쓰면 링크 클릭할때마다 맨위로 안감
-            className={`p-4 ${tab === 'info' ? 'text-flame-250 border-b-3 border-flame-250' : ''}`}
+            className={`p-4 ${tab === 'info' || tab === undefined ? 'text-flame-250 border-b-3 border-flame-250' : ''}`}
           >
             상품정보
           </Link>
