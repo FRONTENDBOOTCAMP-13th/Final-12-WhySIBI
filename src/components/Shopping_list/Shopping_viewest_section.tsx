@@ -13,6 +13,7 @@ function ShoppingViewest() {
     <>
       <Title title="어제 가장 많이 본 5가지" subTitle={`${yesterday} 기준`} />
       <ShoppingViewestSlider />
+      <hr className="h-0.25 border-0 bg-gray-300" />
     </>
   );
 }

@@ -6,6 +6,7 @@ import ProductCard from '@/components/product_component/product_card';
 import { getProductList } from '@/data/actions/products.fetch';
 import { ProductListProps } from '@/types';
 import useMenuStore from '@/zustand/menuStore';
+import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -14,7 +15,19 @@ function ShoppingProductsList() {
   const [productData, setProductData] = useState<ProductListProps[]>([]);
   const [page, setPage] = useState(1);
   const [sort, setSort] = useState('latest'); //신상품 기본필터
-  const { mainCategoryId, subCategoryId } = useMenuStore(); //zustand 에서 카테고리 상태 가져옴
+  const { mainCategoryId, subCategoryId, handleMenuClick } = useMenuStore(); //zustand 에서 카테고리 상태 가져옴
+  const params = useParams();
+
+  //주소에서 카테고리 값 가져오기
+  useEffect(() => {
+    if (params.mainCategoryId) {
+      handleMenuClick(
+        'shopping',
+        params.mainCategoryId as string,
+        params.subCategoryId as string,
+      );
+    }
+  }, [params.mainCategoryId, params.subCategoryId, handleMenuClick]);
 
   //상품 불러오기
   useEffect(() => {
@@ -88,10 +101,10 @@ function ShoppingProductsList() {
 
   return (
     <>
-      <div>
-        <span>전체 {sortData.length}개</span>
+      <div className="flex justify-between items-center">
+        <span className="text-sm text-gray-500">전체 {sortData.length}개</span>
+        <DropdownShoppingList value={sort} onDropChange={setSort} />
       </div>
-      <DropdownShoppingList value={sort} onDropChange={setSort} />
       <div
         className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid-rows-4 gap-4
        items-center"
