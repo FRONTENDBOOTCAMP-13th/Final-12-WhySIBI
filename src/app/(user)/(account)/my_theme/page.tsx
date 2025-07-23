@@ -30,6 +30,7 @@ export default function MyTheme({ state, onClose }: IsClickProps) {
             idValue={'bathroom_decor'}
             inputType={'checkbox'}
             bgImg={'/image/theme_image/bathroom_deco.png'}
+            valueText="욕실꾸미기"
             onTagChange={handleTag}
           />
           <InputCheckBox
@@ -37,6 +38,7 @@ export default function MyTheme({ state, onClose }: IsClickProps) {
             idValue={'home_cafe'}
             inputType={'checkbox'}
             bgImg={'/image/theme_image/home_cafe.png'}
+            valueText="홈카페"
             onTagChange={handleTag}
           />
           <InputCheckBox
@@ -44,6 +46,7 @@ export default function MyTheme({ state, onClose }: IsClickProps) {
             idValue={'home_work'}
             inputType={'checkbox'}
             bgImg={'/image/theme_image/home_work.png'}
+            valueText="재택근무"
             onTagChange={handleTag}
           />
           <InputCheckBox
@@ -51,6 +54,7 @@ export default function MyTheme({ state, onClose }: IsClickProps) {
             idValue={'solo_meal'}
             inputType={'checkbox'}
             bgImg={'/image/theme_image/solo_meal.png'}
+            valueText="1인 식단"
             onTagChange={handleTag}
           />
           <InputCheckBox
@@ -58,6 +62,7 @@ export default function MyTheme({ state, onClose }: IsClickProps) {
             idValue={'space_division'}
             inputType={'checkbox'}
             bgImg={'/image/theme_image/space_division.png'}
+            valueText="공간 분리"
             onTagChange={handleTag}
           />
           <InputCheckBox
@@ -65,6 +70,7 @@ export default function MyTheme({ state, onClose }: IsClickProps) {
             idValue={'diy'}
             inputType={'checkbox'}
             bgImg={'/image/theme_image/diy.png'}
+            valueText="DIY"
             onTagChange={handleTag}
           />
           <InputCheckBox
@@ -72,6 +78,7 @@ export default function MyTheme({ state, onClose }: IsClickProps) {
             idValue={'desk_decor'}
             inputType={'checkbox'}
             bgImg={'/image/theme_image/desk_decor.png'}
+            valueText="책상꾸미기"
             onTagChange={handleTag}
           />
           <InputCheckBox
@@ -79,6 +86,7 @@ export default function MyTheme({ state, onClose }: IsClickProps) {
             idValue={'interior_design'}
             inputType={'checkbox'}
             bgImg={'/image/theme_image/interior_design.png'}
+            valueText="인테리어"
             onTagChange={handleTag}
           />
           <InputCheckBox
@@ -86,6 +94,7 @@ export default function MyTheme({ state, onClose }: IsClickProps) {
             idValue={'minimal_style'}
             inputType={'checkbox'}
             bgImg={'/image/theme_image/minimal_style.png'}
+            valueText="미니멀"
             onTagChange={handleTag}
           />
           <InputCheckBox
@@ -93,6 +102,7 @@ export default function MyTheme({ state, onClose }: IsClickProps) {
             idValue={'digital_tag'}
             inputType={'checkbox'}
             bgImg={'/image/theme_image/digital_tag.png'}
+            valueText="디지털테크"
             onTagChange={handleTag}
           />
           <InputCheckBox
@@ -100,6 +110,7 @@ export default function MyTheme({ state, onClose }: IsClickProps) {
             idValue={'clean_freak'}
             inputType={'checkbox'}
             bgImg={'/image/theme_image/clean_freak.png'}
+            valueText="청소광"
             onTagChange={handleTag}
           />
           <InputCheckBox
@@ -107,6 +118,7 @@ export default function MyTheme({ state, onClose }: IsClickProps) {
             idValue={'bedding_organize'}
             inputType={'checkbox'}
             bgImg={'/image/theme_image/bedding_organize.png'}
+            valueText="침구정리"
             onTagChange={handleTag}
           />
           <div className="selected_tag_area w-full row-start-5 col-span-3 ">
