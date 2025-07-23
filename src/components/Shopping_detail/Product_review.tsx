@@ -4,6 +4,7 @@ import { useState } from 'react';
 import StarBar from './Star_bar';
 import ReviewList from './Review_list';
 import { ProductReviewProps } from '@/types/shopping_detail';
+import CommentItem from '../Detail_posts/CommentItem';
 
 export default function ProductReview({ stars, replies }: ProductReviewProps) {
   const selectedStar = [...stars, '별점순'];
@@ -15,7 +16,6 @@ export default function ProductReview({ stars, replies }: ProductReviewProps) {
   for (let i = 0; i < replies.length; i++) {
     repliesStars.push(replies[i].extra.star);
   }
-  console.log('카운팅 스타~', repliesStars);
 
   //별점의 평균 구하기
   let sum = 0;
@@ -33,7 +33,31 @@ export default function ProductReview({ stars, replies }: ProductReviewProps) {
     5: 0,
   };
 
-  // for()
+  for (let i = 0; i < repliesStars.length; i++) {
+    switch (repliesStars[i]) {
+      case 1:
+        starBoard[1]++;
+        break;
+      case 2:
+        starBoard[2]++;
+        break;
+      case 3:
+        starBoard[3]++;
+        break;
+      case 4:
+        starBoard[4]++;
+        break;
+      case 5:
+        starBoard[5]++;
+        break;
+      default:
+        console.log('잘못된 별점 입력');
+    }
+  }
+
+  const sortedByCount = Object.entries(starBoard).sort((a, b) => b[1] - a[1]);
+  console.log('정렬됐나?', sortedByCount);
+  const maxCount = sortedByCount[0][1];
 
   return (
     <section className="max-w-[1028px] mx-auto mt-12 ">
@@ -91,19 +115,46 @@ export default function ProductReview({ stars, replies }: ProductReviewProps) {
       </div>
 
       <div className="bg-vanilla-300 flex min-h-[188px] m-12 rounded-xl items-center gap-25 justify-center">
-        {/* 별점 평균 0-4까지 넣어줘야함 db 로 받아올수 있겠지..?*/}
-        <span className="flex scale-200 transform origin-center gap-1">
-          {stars[5 - avg]}
-        </span>
-        <span className="text-5xl font-extrabold">{avg}</span>
-        <div className="flex gap-10">
-          {/* 순위를 1-5까지 넣으면 됩니당. */}
-          <StarBar rank={4} count={343} score={5}></StarBar>
-          <StarBar rank={2} count={44} score={4}></StarBar>
-          <StarBar rank={3} count={55} score={3}></StarBar>
-          <StarBar rank={1} count={12} score={2}></StarBar>
-          <StarBar rank={5} count={999} score={1}></StarBar>
-        </div>
+        {replies.length > 0 ? (
+          <>
+            <span className="flex scale-200 transform origin-center gap-1">
+              {stars[5 - avg]}
+            </span>
+            <span className="text-5xl font-extrabold">{avg}</span>
+            <div className="flex gap-10">
+              {/* rank에 순위를 넣으면 높은거 순서대로 게이지가 많이 차있음 */}
+              <StarBar
+                count={starBoard[5]}
+                score={5}
+                maxCount={maxCount}
+              ></StarBar>
+              <StarBar
+                count={starBoard[4]}
+                score={4}
+                maxCount={maxCount}
+              ></StarBar>
+              <StarBar
+                count={starBoard[3]}
+                score={3}
+                maxCount={maxCount}
+              ></StarBar>
+              <StarBar
+                count={starBoard[2]}
+                score={2}
+                maxCount={maxCount}
+              ></StarBar>
+              <StarBar
+                count={starBoard[1]}
+                score={1}
+                maxCount={maxCount}
+              ></StarBar>
+            </div>
+          </>
+        ) : (
+          <div className="text-4xl font-semibold text-flame-250">
+            아직 리뷰가 없습니다!
+          </div>
+        )}
       </div>
 
       {/* 댓글 영역 */}
