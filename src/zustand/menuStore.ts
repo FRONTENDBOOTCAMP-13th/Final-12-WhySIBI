@@ -26,10 +26,19 @@ interface ShoppingItems {
   };
 }
 
+interface CommunityItems {
+  집들이: {
+    type: 'showRoom';
+  };
+  '자취 상담소': {
+    type: 'talk';
+  };
+}
+
 interface SubMenuData {
   community: {
     type: 'community';
-    items: string[];
+    items: CommunityItems;
   };
   shopping: {
     type: 'shopping';
@@ -51,7 +60,18 @@ const useMenuStore = create<MenuState>(set => ({
   subCategoryId: null,
 
   subMenuData: {
-    community: { type: 'community', items: ['집들이', '자취 상담소'] },
+    community: {
+      type: 'community',
+      items: {
+        집들이: {
+          type: 'showRoom',
+        },
+        '자취 상담소': {
+          type: 'talk',
+        },
+      },
+    },
+
     shopping: {
       type: 'shopping',
       items: {

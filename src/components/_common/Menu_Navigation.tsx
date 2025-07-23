@@ -19,9 +19,9 @@ function MenuNavigation() {
 
   const currentSubMenuItems: SubMenuItem[] =
     activeMenu === 'community'
-      ? subMenuData.community.items.map(label => ({
+      ? Object.entries(subMenuData.community.items).map(([label, item]) => ({
           label,
-          path: '/community',
+          path: `/community/${item.type}`,
         }))
       : activeMenu === 'shopping'
         ? [
