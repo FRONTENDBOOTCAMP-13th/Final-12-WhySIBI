@@ -1,5 +1,5 @@
 'use client';
-import MyTheme from '@/app/(user)/(account)/my_theme/page';
+import MyTheme from '@/components/my_theme/page';
 import InputEdit from '@/components/Input/Input_edit';
 import { EditUserInfo, GetUserInfo } from '@/data/actions/user';
 import { User } from '@/types';
@@ -104,6 +104,7 @@ export default function EditInfo() {
           inputType={'text'}
           defaultValue={userInfo?.email as string}
         />
+        {state?.ok === 0 && state.errors?.email?.msg}
         <InputEdit
           text={'닉네임'}
           placeholder={userInfo?.nickname as string}
@@ -111,6 +112,7 @@ export default function EditInfo() {
           inputType={'text'}
           defaultValue={userInfo?.nickname as string}
         />
+        {state?.ok === 0 && state.errors?.nickname?.msg}
         <InputEdit
           text={'이름'}
           placeholder={userInfo?.name as string}
@@ -124,6 +126,7 @@ export default function EditInfo() {
           idValue={'password'}
           inputType={'password'}
         />
+        {state?.ok === 0 && state.errors?.password?.msg}
         <InputEdit
           text={'휴대전화 번호'}
           placeholder={userInfo?.phone as string}
@@ -131,6 +134,7 @@ export default function EditInfo() {
           inputType={'text'}
           defaultValue={userInfo?.phone as string}
         />
+        {state?.ok === 0 && state.errors?.phone?.msg}
         <div className="w-full font-basic mt-9">
           <p className=" font-bold pl-4 ">생년월일</p>
           <div className=" flex gap-4 h-10">
@@ -192,7 +196,6 @@ export default function EditInfo() {
           inputType={'text'}
           defaultValue={userInfo?.extra.addressBook[0].value as string}
         />
-
         <button
           type="button"
           className="block nahonsan-btn-3d-white border-button-color mx-auto rounded-radius-full mt-16 py-4 px-8 font-basic tracking-paragraph-default font-bold text-size-md"

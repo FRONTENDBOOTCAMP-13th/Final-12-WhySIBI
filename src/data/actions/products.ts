@@ -1,3 +1,4 @@
+'use server';
 import { ApiResPromise, Product, ProductList } from '@/types';
 import axios from 'axios';
 
@@ -10,7 +11,7 @@ const CLIENT_ID = process.env.NEXT_PUBLIC_WHY_SIBI_CLIENT_ID || '';
  */
 export async function getProductList(): ApiResPromise<ProductList> {
   try {
-    const res = await axios.get(`${API_URL}/products/`, {
+    const res = await axios.get(`${API_URL}/products`, {
       headers: {
         'Content-Type': 'application/json',
         'Client-Id': CLIENT_ID,

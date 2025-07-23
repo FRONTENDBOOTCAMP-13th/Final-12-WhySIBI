@@ -1,3 +1,4 @@
+'use server';
 import { upLoadFile } from '@/data/actions/file';
 import { ApiRes, ApiResPromise, User } from '@/types';
 import axios, { AxiosResponse } from 'axios';
@@ -25,7 +26,6 @@ export async function createUser(
     let image;
     if (attach.size > 0) {
       const fileRes = await upLoadFile(formData);
-      console.log(`fileRes`, fileRes);
       if (fileRes.ok) {
         image = fileRes.item[0].path;
       } else {
@@ -67,10 +67,14 @@ export async function createUser(
     });
 
     data = res.data;
-  } catch (error) {
-    // 네트워크 오류 처리
-    console.error(error);
-    return { ok: 0, message: '일시적인 네트워크 문제가 발생했습니다.' };
+  } catch (error: any) {
+    if (error.response?.data) {
+      return error.response.data;
+    }
+    return {
+      ok: 0,
+      message: '일시적인 네트워크 문제가 발생했습니다.',
+    };
   }
   return data;
 }
@@ -144,10 +148,14 @@ export async function EditUserInfo(
     });
 
     data = res.data;
-  } catch (error) {
-    // 네트워크 오류 처리
-    console.error(error);
-    return { ok: 0, message: '일시적인 네트워크 문제가 발생했습니다.' };
+  } catch (error: any) {
+    if (error.response?.data) {
+      return error.response.data;
+    }
+    return {
+      ok: 0,
+      message: '일시적인 네트워크 문제가 발생했습니다.',
+    };
   }
   return data;
 }
