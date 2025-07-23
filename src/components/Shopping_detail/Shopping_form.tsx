@@ -49,8 +49,14 @@ export default function ShoppingForm({
     });
   }
 
+  //구매수량 1밑으로는 떨어지지 않게
   function decrease() {
-    setOption({ ...option, quantity: option.quantity - 1 });
+    setOption(prev => {
+      if (prev.quantity > 1) {
+        return { ...prev, quantity: prev.quantity - 1 };
+      }
+      return prev;
+    });
   }
 
   const discountRate = Math.round(

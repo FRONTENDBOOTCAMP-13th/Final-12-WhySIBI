@@ -38,8 +38,9 @@ export default async function ShoppingDetail({
           width={590}
           height={590}
           className="object-cover"
-          alt="제품이미지"
+          alt={`${item.name} 상품이미지`}
         />
+        <figcaption className="sr-only">{item.name}</figcaption>
       </figure>
 
       <ShoppingForm
