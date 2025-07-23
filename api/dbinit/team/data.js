@@ -359,8 +359,8 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/javara.png`,
-            name: 'javara.png',
+            path: `/files/${clientId}/jabara.png`,
+            name: 'jabara.png',
             originalname: '자바라거치대.png',
           },
         ],
@@ -384,7 +384,7 @@ export const initData = async (clientId, nextSeq) => {
           detailimg: [
             //세부 이미지
             {
-              path: `/files/${clientId}/detail/javara.png`,
+              path: `/files/${clientId}/detail/jabara.png`,
             },
           ],
           star: 4, //별점
