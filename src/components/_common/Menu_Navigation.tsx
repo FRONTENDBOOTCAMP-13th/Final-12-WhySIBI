@@ -1,11 +1,9 @@
-'use client';
 import Categroy from '@/components/_common/category';
 import useMenuStore from '@/zustand/menuStore';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
 
 type SubMenuItem = {
   label: string;

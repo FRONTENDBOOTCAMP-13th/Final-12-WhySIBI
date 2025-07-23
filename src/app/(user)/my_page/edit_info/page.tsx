@@ -1,5 +1,5 @@
 'use client';
-import MyTheme from '@/app/(user)/(account)/my_theme/page';
+import MyTheme from '@/components/my_theme/page';
 import InputEdit from '@/components/Input/Input_edit';
 import { EditUserInfo, GetUserInfo } from '@/data/actions/user';
 import { User } from '@/types';
