@@ -20,27 +20,28 @@ function ShoppingSubcategory() {
     return <div>서브 카테고리가 없습니다.</div>;
   }
   return (
-    <ul className="subcategory-container">
-      {categoryData.subCategory.map(sub => {
-        const activeCategory = subCategoryId === sub.id;
-
-        return (
-          <li key={sub.id}>
-            <Link
-              href={`/shopping/category/${mainCategoryId}/${sub.id}`}
-              onClick={() => {
-                handleMenuClick('shopping', mainCategoryId, sub.id);
-              }}
-              className={`subcategory 
-                ${activeCategory ? 'subcategory-active' : ''}
-                `}
-            >
-              {sub.label}
-            </Link>
-          </li>
-        );
-      })}
-    </ul>
+    <div className="pb-20">
+      <ul className="subcategory-container">
+        {categoryData.subCategory.map(sub => {
+          const activeCategory = subCategoryId === sub.id;
+          return (
+            <li key={sub.id}>
+              <Link
+                href={`/shopping/category/${mainCategoryId}/${sub.id}`}
+                onClick={() => {
+                  handleMenuClick('shopping', mainCategoryId, sub.id);
+                }}
+                className={`subcategory
+                  ${activeCategory ? 'subcategory-active' : ''}
+                  `}
+              >
+                {sub.label}
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
   );
 }
 export default ShoppingSubcategory;

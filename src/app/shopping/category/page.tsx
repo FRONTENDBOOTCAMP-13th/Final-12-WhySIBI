@@ -6,8 +6,8 @@ import ShoppingViewest from '@/components/Shopping_list/Shopping_viewest_section
 export default function ShoppingCategory() {
   return (
     <>
-      <main className="bg-white ">
-        <ShoppingBannerSlider />
+      <ShoppingBannerSlider />
+      <main className="bg-white p-20">
         <ShoppingSubcategory />
         <ShoppingViewest />
         <ShoppingProductsList />

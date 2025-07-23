@@ -106,7 +106,7 @@ function ShoppingProductsList() {
         <DropdownShoppingList value={sort} onDropChange={setSort} />
       </div>
       <div
-        className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid-rows-4 gap-4
+        className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4
        items-center"
       >
         {sliceData.map(product => {
