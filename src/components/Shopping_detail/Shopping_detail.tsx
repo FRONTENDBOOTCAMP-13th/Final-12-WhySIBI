@@ -29,6 +29,19 @@ export default async function ShoppingDetail({
   const item = await Product_Detail(pageNum);
   const reviewCount = item.replies.length;
 
+  // 리뷰들의 별점을 받아와서 배열에 저장함
+  const repliesStars = [];
+  for (let i = 0; i < item.replies.length; i++) {
+    repliesStars.push(item.replies[i].extra.star);
+  }
+
+  //별점의 평균 구하기
+  let sum = 0;
+  for (let i = 0; i < repliesStars.length; i++) {
+    sum += repliesStars[i];
+  }
+  const avg = sum / repliesStars.length;
+
   return (
     <section className="bg-white flex gap-24 justify-center py-4">
       {/* 상품 사진 영역 */}
@@ -52,6 +65,7 @@ export default async function ShoppingDetail({
         color={item.extra.color}
         size={item.extra.size}
         reviewCount={reviewCount}
+        avg={avg}
       />
     </section>
   );

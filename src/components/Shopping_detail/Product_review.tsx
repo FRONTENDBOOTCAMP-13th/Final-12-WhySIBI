@@ -4,7 +4,7 @@ import { useState } from 'react';
 import StarBar from './Star_bar';
 import ReviewList from './Review_list';
 import { ProductReviewProps } from '@/types/shopping_detail';
-import CommentItem from '../Detail_posts/CommentItem';
+// import CommentItem from '../Detail_posts/CommentItem';
 
 export default function ProductReview({ stars, replies }: ProductReviewProps) {
   const selectedStar = [...stars, '별점순'];
