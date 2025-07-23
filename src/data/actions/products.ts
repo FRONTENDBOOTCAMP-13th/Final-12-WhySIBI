@@ -1,3 +1,4 @@
+'use server'
 import { ApiResPromise, Product, ProductList } from '@/types';
 import axios from 'axios';
 

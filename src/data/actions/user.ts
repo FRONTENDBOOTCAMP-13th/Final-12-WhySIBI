@@ -1,3 +1,4 @@
+'use server';
 import { upLoadFile } from '@/data/actions/file';
 import { ApiRes, ApiResPromise, User } from '@/types';
 import axios, { AxiosResponse } from 'axios';
