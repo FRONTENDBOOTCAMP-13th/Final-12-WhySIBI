@@ -29,7 +29,6 @@ function OrderProductInfo({ _id, price, name, image, state }: OrderProduct) {
                 width={140}
                 height={140}
                 className="rounded-radius-lg"
-                unoptimized
               />
             )}
 

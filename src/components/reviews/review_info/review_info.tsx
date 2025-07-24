@@ -20,7 +20,6 @@ function ReviewInfo({
             width={140}
             height={140}
             className="rounded-radius-lg"
-            unoptimized
           />
 
           <figcaption className="font-basic flex flex-col gap-2">
