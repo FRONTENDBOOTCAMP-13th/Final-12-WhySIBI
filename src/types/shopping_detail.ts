@@ -51,3 +51,15 @@ export interface ShoppingDetailType {
   pageNum: string;
   params?: { id: string };
 }
+
+export interface ShoppingFormType {
+  title: string;
+  originalPrice: number;
+  price: number;
+  stars: ReactElement[][];
+  star: number;
+  color: string[];
+  size: string[];
+  reviewCount: number;
+  avg: number;
+}

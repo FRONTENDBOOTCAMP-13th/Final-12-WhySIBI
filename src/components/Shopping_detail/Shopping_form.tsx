@@ -3,19 +3,8 @@
 import LikeButton from './Like_button';
 import DropdownSize from '../Dropdown/Dropdown_size';
 import ButtonBasic from '../Buttons/Button_basic';
-import { ChangeEvent, ReactElement, useState } from 'react';
-
-interface ShoppingFormType {
-  title: string;
-  originalPrice: number;
-  price: number;
-  stars: ReactElement[][];
-  star: number;
-  color: string[];
-  size: string[];
-  reviewCount: number;
-  avg: number;
-}
+import { ChangeEvent, useState } from 'react';
+import { ShoppingFormType } from '@/types/shopping_detail';
 
 export default function ShoppingForm({
   title,
@@ -72,11 +61,38 @@ export default function ShoppingForm({
       </header>
 
       {/* 평점, 리뷰 */}
+      {/* 리뷰가 하나도 없을떄 처리 */}
       <p className="flex gap-2 items-center">
-        <span className="flex gap-[1px]">{stars[5 - avg]}</span>
-        <span className="font-bold text-xl" aria-label="5점 만점에 4점">
-          {avg}
-        </span>
+        {avg ? (
+          <>
+            <span className="flex gap-[1px]">{stars[5 - avg]}</span>
+            <span className="font-bold text-xl" aria-label="5점 만점에 4점">
+              {avg}
+            </span>
+          </>
+        ) : (
+          <>
+            <span className="flex gap-[1px]">
+              {
+                <svg
+                  width="20"
+                  height="19"
+                  viewBox="0 0 20 19"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M6.85419 2.53038C7.82887 -0.469378 12.0727 -0.469378 13.0474 2.53038C13.4833 3.87191 14.7334 4.78019 16.144 4.78019C19.2981 4.78019 20.6096 8.81634 18.0578 10.6703C16.9166 11.4994 16.4391 12.969 16.875 14.3106C17.8497 17.3103 14.4164 19.8048 11.8646 17.9508C10.7234 17.1217 9.17817 17.1217 8.03699 17.9508C5.48525 19.8048 2.0519 17.3103 3.02658 14.3106C3.46247 12.969 2.98495 11.4994 1.84378 10.6703C-0.707966 8.81634 0.603456 4.78019 3.75759 4.78019C5.16815 4.78019 6.4183 3.87191 6.85419 2.53038Z"
+                    fill="#D9D9D9"
+                  />
+                </svg>
+              }
+            </span>
+            <span className="font-bold text-xl" aria-label="5점 만점에 4점">
+              0
+            </span>
+          </>
+        )}
         <span className="text-[#777777] ">리뷰 {reviewCount}</span>
       </p>
 
@@ -134,7 +150,7 @@ export default function ShoppingForm({
             {/* 구매수량 카운터 */}
             <div className="flex gap-10 items-center border-1 border-gray-150 rounded-md overflow-hidden w-[170px]">
               <button
-                className="bg-flame-250 p-2 w-8 text-white"
+                className="bg-flame-250 p-2 w-8 text-white cursor-pointer"
                 onClick={e => {
                   e.preventDefault();
                   decrease();
@@ -144,7 +160,7 @@ export default function ShoppingForm({
               </button>
               <span className="flex-1 text-center">{option.quantity}</span>
               <button
-                className="bg-flame-250 p-2 w-8 text-white"
+                className="bg-flame-250 p-2 w-8 text-white cursor-pointer"
                 onClick={e => {
                   e.preventDefault();
                   increase();

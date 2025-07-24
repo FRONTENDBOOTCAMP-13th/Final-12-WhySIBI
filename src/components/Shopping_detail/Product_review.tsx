@@ -4,6 +4,7 @@ import { useState } from 'react';
 import StarBar from './Star_bar';
 import ReviewList from './Review_list';
 import { ProductReviewProps } from '@/types/shopping_detail';
+import Image from 'next/image';
 // import CommentItem from '../Detail_posts/CommentItem';
 
 export default function ProductReview({ stars, replies }: ProductReviewProps) {
@@ -151,8 +152,15 @@ export default function ProductReview({ stars, replies }: ProductReviewProps) {
             </div>
           </>
         ) : (
-          <div className="text-4xl font-semibold text-flame-250">
-            아직 리뷰가 없습니다!
+          <div className="text-3xl font-semibold text-flame-250 flex flex-col items-center gap-4">
+            <Image
+              src="/image/logo/footer_logo.svg"
+              width={60}
+              height={60}
+              alt="메인로고"
+              aria-hidden="true"
+            ></Image>
+            이 상품의 첫 리뷰를 작성할 기회입니다!
           </div>
         )}
       </div>
