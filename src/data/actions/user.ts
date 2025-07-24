@@ -96,11 +96,6 @@ export async function EditUserInfo(
   let data: ApiRes<User>;
 
   try {
-    const userStronge = JSON.parse(sessionStorage.getItem('user') as string);
-    const user = userStronge.state.user;
-    const userID = user._id;
-    const token = user.token.accessToken;
-
     const attach = formData.get('attach') as File;
     let image;
     if (attach.size > 0) {
@@ -112,6 +107,8 @@ export async function EditUserInfo(
         return fileRes;
       }
     }
+    const token = formData.get('token') as string;
+    const userID = formData.get('user_id');
     // 회원정보 수정 요청 바디 생성
     const body = {
       type: formData.get('type') || 'user',
@@ -147,7 +144,7 @@ export async function EditUserInfo(
       },
     });
 
-    data = res.data;
+    return { ok: 1, item: res.data.item };
   } catch (error: any) {
     if (error.response?.data) {
       return error.response.data;
@@ -170,7 +167,6 @@ export async function EditUserInfo(
 
 export async function GetUserInfo(userId: string): ApiResPromise<User> {
   let res: AxiosResponse;
-  let data: ApiRes<User>;
   try {
     // 회원정보  API 호출
     res = await axios.get(`${API_URL}/users/${userId}`, {
@@ -179,13 +175,12 @@ export async function GetUserInfo(userId: string): ApiResPromise<User> {
         'Client-Id': CLIENT_ID,
       },
     });
-    data = res.data;
+    return { ok: 1, item: res.data.item };
   } catch (error) {
     // 네트워크 오류 처리
     console.error(error);
     return { ok: 0, message: '일시적인 네트워크 문제가 발생했습니다.' };
   }
-  return data;
 }
 
 /**

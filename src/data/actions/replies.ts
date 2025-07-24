@@ -11,11 +11,6 @@ export async function createReplie(
   let data: ApiRes<replie>;
 
   try {
-    const userStronge = JSON.parse(sessionStorage.getItem('user') as string);
-    const user = userStronge.state.user;
-    const userID = user._id;
-    const token = user.token.accessToken;
-
     const attach = formData.getAll('attach') as File[];
     let images: string[] = [];
 
@@ -35,6 +30,8 @@ export async function createReplie(
     const day = today.getDate().toString().padStart(2, '0');
     const dateString = `${year}.${month}.${day}`;
 
+    const token = formData.get('token') as string;
+    const userID = Number(formData.get('user_id'));
     // body 객체를 단계별로 안전하게 생성
     const baseBody = {
       order_id: Number(userID),
