@@ -20,7 +20,7 @@ const ProductInfo = memo(function ProductInfo({
           <figure className="flex gap-6">
             {mainImages[0]?.path && (
               <Image
-                src={`${API_URL}${mainImages[0]?.path}`} // 첫 번째 이미지 path 사용
+                src={`${API_URL}/${mainImages[0]?.path}`} // 첫 번째 이미지 path 사용
                 alt={name || '상품 이미지'}
                 width={140}
                 height={140}
