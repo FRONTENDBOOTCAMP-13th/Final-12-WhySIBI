@@ -8,7 +8,7 @@ import 'swiper/css/pagination';
 import { Navigation, Scrollbar } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import ProductCard from '@/components/product_card';
+import ProductCard from '@/components/product_component/product_card';
 import { useEffect, useState } from 'react';
 import { getProductList } from '@/data/actions/products.fetch';
 import { ProductListProps } from '@/types';
@@ -61,6 +61,7 @@ function MainProductSlider() {
             return (
               <SwiperSlide key={product._id}>
                 <ProductCard
+                  id={product._id}
                   name={product.name}
                   imageUrl={`${API_URL}/${product.mainImages[0]?.path}`}
                   price={`${product.price.toLocaleString()}원`}

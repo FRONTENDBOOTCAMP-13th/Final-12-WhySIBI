@@ -1,12 +1,12 @@
 import { create } from 'zustand';
 
 interface SubCategory {
-  id: number;
+  id: string;
   label: string;
 }
 
 interface MainCategory {
-  id: number;
+  id: string;
   label: string;
   subCategory: SubCategory[];
 }
@@ -21,15 +21,24 @@ interface ShoppingItems {
   카테고리: {
     type: 'category';
     items: {
-      [mainCategoryId: number]: MainCategory;
+      [mainCategoryId: string]: MainCategory;
     };
+  };
+}
+
+interface CommunityItems {
+  집들이: {
+    type: 'showRoom';
+  };
+  '자취 상담소': {
+    type: 'talk';
   };
 }
 
 interface SubMenuData {
   community: {
     type: 'community';
-    items: string[];
+    items: CommunityItems;
   };
   shopping: {
     type: 'shopping';
@@ -39,19 +48,30 @@ interface SubMenuData {
 
 interface MenuState {
   activeMenu: string;
-  mainCategoryId: number;
-  subCategoryId: number | null;
+  mainCategoryId: string;
+  subCategoryId: string | null;
   subMenuData: SubMenuData;
-  handleMenuClick: (menuName: string, mainId?: number, subId?: number) => void;
+  handleMenuClick: (menuName: string, mainId?: string, subId?: string) => void;
 }
 
 const useMenuStore = create<MenuState>(set => ({
   activeMenu: '',
-  mainCategoryId: 500, //기본값ID
+  mainCategoryId: 'PC0301', //기본값ID ('여름나기 용품')
   subCategoryId: null,
 
   subMenuData: {
-    community: { type: 'community', items: ['집들이', '자취 상담소'] },
+    community: {
+      type: 'community',
+      items: {
+        집들이: {
+          type: 'showRoom',
+        },
+        '자취 상담소': {
+          type: 'talk',
+        },
+      },
+    },
+
     shopping: {
       type: 'shopping',
       items: {
@@ -64,72 +84,72 @@ const useMenuStore = create<MenuState>(set => ({
         카테고리: {
           type: 'category',
           items: {
-            100: {
-              id: 100,
+            PC0301: {
+              id: 'PC0301',
               label: '여름나기 용품',
               subCategory: [
-                { id: 101, label: '장마 대비' },
-                { id: 102, label: '무더위 대비' },
+                { id: 'PC030101', label: '장마 대비' },
+                { id: 'PC030102', label: '무더위 대비' },
               ],
             },
-            200: {
-              id: 200,
+            PC0302: {
+              id: 'PC0302',
               label: '가구',
               subCategory: [
-                { id: 201, label: '소파 / 의자' },
-                { id: 202, label: '매트리스 / 토퍼' },
-                { id: 203, label: '밥상 / 테이블 / 협탁' },
+                { id: 'PC030201', label: '소파 / 의자' },
+                { id: 'PC030202', label: '매트리스 / 토퍼' },
+                { id: 'PC030203', label: '밥상 / 테이블 / 협탁' },
               ],
             },
-            300: {
-              id: 300,
+            PC0303: {
+              id: 'PC0303',
               label: '생활용품',
               subCategory: [
-                { id: 301, label: '청소 / 설거지' },
-                { id: 302, label: '주방용품' },
-                { id: 303, label: '욕실용품' },
-                { id: 304, label: '생필품' },
+                { id: 'PC030301', label: '청소 / 설거지' },
+                { id: 'PC030302', label: '주방용품' },
+                { id: 'PC030303', label: '욕실용품' },
+                { id: 'PC030304', label: '생필품' },
               ],
             },
-            400: {
-              id: 400,
+            PC0304: {
+              id: 'PC0304',
               label: '소품·데코',
               subCategory: [
-                { id: 401, label: '디퓨저 / 캔들 / 인센스' },
-                { id: 402, label: '인테리어 소품' },
-                { id: 403, label: '식물 / 조화' },
-                { id: 404, label: '시계 / 데스크테리어' },
+                { id: 'PC030401', label: '디퓨저 / 캔들 / 인센스' },
+                { id: 'PC030402', label: '인테리어 소품' },
+                { id: 'PC030403', label: '식물 / 조화' },
+                { id: 'PC030404', label: '시계 / 데스크테리어' },
               ],
             },
-            500: {
-              id: 500,
+            PC0305: {
+              id: 'PC0305',
               label: '가전·디지털',
               subCategory: [
-                { id: 501, label: '청소가전' },
-                { id: 502, label: '휴대폰 / 태블릿PC' },
-                { id: 503, label: '생활 / 욕실가전' },
-                { id: 504, label: '미용가전' },
-                { id: 505, label: '주방가전' },
-                { id: 506, label: '영상 / 음향가전' },
+                { id: 'PC030501', label: '청소가전' },
+                { id: 'PC030502', label: '휴대폰 / 태블릿PC' },
+                { id: 'PC030503', label: '생활 / 욕실가전' },
+                { id: 'PC030504', label: '미용가전' },
+                { id: 'PC030505', label: '주방가전' },
+                { id: 'PC030506', label: '영상 / 음향가전' },
               ],
             },
-            600: {
-              id: 600,
+            PC0306: {
+              id: 'PC0306',
               label: '공구·DIY',
               subCategory: [
-                { id: 601, label: '벽지 / 바닥 / 시트' },
-                { id: 602, label: '공구 / 부자재 / 기타' },
-                { id: 603, label: '안전 / 방범 / 방한' },
+                { id: 'PC030601', label: '벽지 / 바닥 / 시트' },
+                { id: 'PC030602', label: '공구 / 부자재 / 기타' },
+                { id: 'PC030603', label: '안전 / 방범 / 방한' },
               ],
             },
-            700: {
-              id: 700,
+            PC0307: {
+              id: 'PC0307',
               label: '수납·정리',
               subCategory: [
-                { id: 601, label: '서랍장 / 수납장' },
-                { id: 602, label: '가벽 / 파티션' },
-                { id: 603, label: '선반 / 책장 / 장식장' },
-                { id: 604, label: '행거 / 옷장 / 신발장' },
+                { id: 'PC030701', label: '서랍장 / 수납장' },
+                { id: 'PC030702', label: '가벽 / 파티션' },
+                { id: 'PC030703', label: '선반 / 책장 / 장식장' },
+                { id: 'PC030704', label: '행거 / 옷장 / 신발장' },
               ],
             },
           },

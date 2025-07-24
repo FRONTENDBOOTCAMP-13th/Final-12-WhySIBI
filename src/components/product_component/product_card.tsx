@@ -1,10 +1,13 @@
 //상품 썸네일 카드 컴포넌트
 
-import LikeBadge from '@/components/Like_badge';
-import RankBadge from '@/components/rank_badge';
+import LikeBadge from '@/components/product_component/Like_badge';
+import RankBadge from '@/components/product_component/rank_badge';
 import Image from 'next/image';
+import Link from 'next/link';
+import React from 'react';
 
 type ProductCardProps = {
+  id: number;
   name: string; //상품명
   imageUrl: string; //상품이미지
   price: string; //판매가
@@ -17,6 +20,7 @@ type ProductCardProps = {
 };
 
 function ProductCard({
+  id,
   name,
   imageUrl,
   price,
@@ -28,8 +32,8 @@ function ProductCard({
   onClick,
 }: ProductCardProps) {
   return (
-    <>
-      <div className="w-[300px] p-4">
+    <article className="w-[300px] p-4" onClick={onClick}>
+      <Link href={`/products/${id}`}>
         <div className="mx-auto w-fit">
           <div className="relative">
             {/* 상품순위 */}
@@ -70,8 +74,8 @@ function ProductCard({
             <span className="text-gray-500 ml-2.5">리뷰 {reviewCount}</span>
           </div>
         </div>
-      </div>
-    </>
+      </Link>
+    </article>
   );
 }
 export default ProductCard;
