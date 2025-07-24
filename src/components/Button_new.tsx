@@ -2,10 +2,14 @@
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 
-export default function ButtonNew() {
+export default function ButtonNew({ boardType }: { boardType: string }) {
   const router = useRouter();
   const handleClick = () => {
-    router.push('/showRoom/new');  // 🔥 /app/new/ 경로로 이동
+    if (!boardType) {
+    alert("잘못된 게시판입니다.");
+    return;
+  }
+  router.push(`/community/${boardType}/new`);
   };
 
   return (

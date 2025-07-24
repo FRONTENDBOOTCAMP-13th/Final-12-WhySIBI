@@ -1,29 +1,31 @@
 'use client';
-
 import Link from "next/link";
 import Image from "next/image";
-import { HousePost } from "@/types/housePost";
+import { Post } from "@/types";
 
 interface PostCardItemProps {
-  post: HousePost;
+  post: Post;
   isBookmarked: boolean;
   toggleBookmark: (id: number) => void;
   index: number;
+  boardType: string;
 }
 
-export default function PostCardItem({ post, isBookmarked, toggleBookmark, index }: PostCardItemProps) {
+
+export default function PostCardItem({ post, isBookmarked, toggleBookmark, index, boardType }: PostCardItemProps) {
+  
   return (
     <div 
       className="flex flex-col relative items-center cursor-pointer hover:scale-101 hover:duration-200 group"
     >
       {/* 게시글 링크 */}
       <Link 
-        href={`/showRoom/${post._id}`}
+        href={`/community/${boardType}/${post._id}`}
         className="flex flex-col items-center w-full"
       >
         <div className="relative w-[300px] h-[190px] mb-3">
           <Image
-            src={post.imgUrl}
+            src={post.image || "/image/room_photo/postThumbnail.svg"}
             alt="썸네일"
             fill
             sizes="300px"
@@ -53,11 +55,11 @@ export default function PostCardItem({ post, isBookmarked, toggleBookmark, index
       {/* 게시글 하단 정보 */}
       <div className="forIcon flex mt-2 text-xs font-regular text-gray-icon gap-2">
         <img src="/image/community_icon/heartIcon.svg" alt="공감" width="15" height="15" />
-        <span>{post.isLiked}</span>
+        <span>{post.views}</span>
         <img src="/image/community_icon/eyeIcon.svg" alt="조회수" width="15" height="15" />
         <span>{post.views}</span>
         <img src="/image/community_icon/chatIcon.svg" alt="댓글수" width="15" height="15" />
-        <span>{post.comments}</span>
+        <span>{post.repliesCount}</span>
       </div>
     </div>
   );

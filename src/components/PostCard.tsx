@@ -1,19 +1,37 @@
 'use client';
-
-import { useRoomStore } from "@/zustand/roomStore";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PostCardItem from "@/components/PostCard_Item";
+import { getPosts } from '@/data/functions/post';
+import { Post } from '@/types';
 
-export default function PostCard() {
-  const posts = useRoomStore((state) => state.posts);
+interface PostCardProps {
+  boardType: string;
+}
 
-  const [bookmarkStates, setBookmarkStates] = useState(
-    posts.reduce((acc, post) => {
-      acc[post._id] = post.bookMark;
-      return acc;
-    }, {} as { [key: number]: boolean })
-  );
+export default function PostCard({ boardType }: PostCardProps) {
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [bookmarkStates, setBookmarkStates] = useState<{ [key: number]: boolean }>({});
 
+  // 클라이언트에서 서버 fetch
+  useEffect(() => {
+    async function fetchPosts() {
+      const res = await getPosts(boardType);
+      if (res.ok && res.item) {
+        setPosts(res.item); // posts 상태 갱신함
+
+        // 북마크 상태 초기화
+        const initialState: { [key: number]: boolean } = {};
+        res.item.forEach((post) => {
+          initialState[post._id] = false;
+        });
+        setBookmarkStates(initialState);
+      }
+    }
+
+    fetchPosts();
+  }, [boardType]);
+
+  // 북마크 토글 함수
   const toggleBookmark = (id: number) => {
     setBookmarkStates((prev) => ({
       ...prev,
@@ -30,6 +48,7 @@ export default function PostCard() {
           isBookmarked={bookmarkStates[post._id]}
           toggleBookmark={toggleBookmark}
           index={index}
+          boardType={boardType}
         />
       ))}
     </div>

@@ -1,22 +1,22 @@
 import { create } from 'zustand';
-import { HousePost } from '@/types/housePost';
-import { dummyHousePosts } from '@/components/Detail_posts/housePosts';
+import { dummyHousePosts } from '@/components/Detail_posts/dummyHousePosts';
+import { Post } from '@/types';
 
 // 게시글을 새로 등록할 때 사용하는 입력값
 interface PostInput {
   title: string;
   content: string;
-  imgUrl: string;
-  bookMark: boolean;
+  image: string;
   detailImages?: string[];
-  category?: string[];
+  bookMark: boolean;
+  tags?: string[];
 }
 
 //zustand 상태 및 메서드 정의
 interface PostState {
-  posts: HousePost[];
+  posts: Post[];
   addPost: (post: PostInput) => void;
-  setPosts: (posts: HousePost[]) => void;
+  setPosts: (posts: Post[]) => void;
 }
 
 export const useRoomStore = create<PostState>((set) => ({
@@ -26,18 +26,23 @@ export const useRoomStore = create<PostState>((set) => ({
     set((state) => {
       const nextId = Math.max(...state.posts.map((p) => p._id)) + 1;
 
-      const postWithId: HousePost = {
+      const postWithId: Post = {
         _id: nextId,
-        user: '',
+        user: {
+          _id: 1,
+          name: 'yeonho',
+        },
         title: newPost.title,
         content: newPost.content,
-        imgUrl: newPost.imgUrl,
+        image: newPost.image,
+        detailImages: newPost.detailImages,
         isLiked: 0,
         views: 0,
-        comments: 0,
-        bookMark: newPost.bookMark,
-        detailImages: newPost.detailImages ?? [],
-        category: newPost.category ?? [],
+        repliesCount: 0,
+        tags: newPost.tags,
+        type: '',
+        createdAt: '',
+        updatedAt: ''
       };
 
       return { posts: [postWithId, ...state.posts] };

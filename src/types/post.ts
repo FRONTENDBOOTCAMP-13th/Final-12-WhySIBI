@@ -39,9 +39,11 @@ export interface Post {
   // 게시글 본문 내용
   content: string,
   // 게시글 작성자 정보 (id, 이름, 이미지)
-  user: Pick<User, '_id' | 'name' | 'image'>,
+  user: Pick<User, '_id' | 'name'>,
   // 게시글 조회수
   views: number,
+  // 게시글 좋아요 수
+  isLiked: number,
   // 댓글 개수
   repliesCount: number,
   // 댓글 목록
@@ -50,6 +52,12 @@ export interface Post {
   createdAt: string,
   // 게시글 수정일
   updatedAt: string,
+  // 게시글 이미지
+  image?: string,
+  // 게시글 상세 이미지
+  detailImages?: string[],
+  // 태그
+  tags?: string[],
 }
 
 /**
@@ -59,7 +67,7 @@ export interface Post {
  */
 export type PostForm = Partial<Pick<Post, 'type' | 'title' | 'content' | '_id'>> & {
   // 게시글 이미지
-  image?: string | string[],
-  // 게시글 태그(쉼표로 구분된 문자열)
-  tags?: string,
+  image?: string[],
+  // 게시글 태그
+  tags?: string | string[],
 }

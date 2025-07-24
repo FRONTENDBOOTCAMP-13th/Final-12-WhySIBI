@@ -17,7 +17,7 @@ export default function DetailHeader(){
   <>
     <div className="w-[600px] text-center overflow-hidden">
       <Image
-        src={post.imgUrl}
+        src={post.image || '/image/room_photo/postThumnail.svg'}
         alt="썸네일"
         width={300}
         height={190}

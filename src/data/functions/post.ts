@@ -17,9 +17,9 @@ export async function getPosts(boardType: string): ApiResPromise<Post[]> {
       cache: 'force-cache',
     });
 
-    const json = await res.json() as { ok: 0 | 1; item: Post[] };
-
-    return res.json();
+    const json = await res.json();
+    return json;
+    
   }catch(error){
     console.error(error);
     return { ok: 0, message: '일시적인 네트워크 문제로 등록에 실패했습니다.' };

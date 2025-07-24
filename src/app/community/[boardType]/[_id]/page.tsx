@@ -28,12 +28,12 @@ export default function PostDetail({ postId }: { postId: number }) {
         </div>
       </div>
       <DetailHeader />
-      <span className="text-gray-icon font-extrabold my-10">{post.user}님의 집</span>
+      <span className="text-gray-icon font-extrabold my-10">{post.user.name}님의 집</span>
       <DetailSwiper images={post?.detailImages ?? []} ></DetailSwiper>
       <section className="w-[600px] text-gray-icon text-center pt-20 pb-25 border-b px-10 space-y-15">
         <div className="space-y-4">
           <h2 className="font-bold text-xl">집정보</h2>
-          <p className="font-light">{post.category?.join(' | ')}</p>
+          <p className="font-light">{post.tags?.join(' | ')}</p>
         </div>
         <div className="space-y-4">
           <h2 className="font-bold text-xl">집을 소개합니다</h2>

@@ -39,7 +39,7 @@ export default function ImageUploader({ images, setImages }: ImageUploaderProps)
         <div className="button-wrapper pr-3">
           <button
             className="!w-[140px] !h-[140px] rounded-4xl bg-gradient-to-b from-vanilla-200 to-columbia-blue-200 cursor-pointer group"
-            onClick={openFileDialog}>
+            onClick={openFileDialog} type="button">
             <div className="flex items-center justify-center w-full h-full">
               <Image
                 src="/image/community_icon/plusIcon.svg"
