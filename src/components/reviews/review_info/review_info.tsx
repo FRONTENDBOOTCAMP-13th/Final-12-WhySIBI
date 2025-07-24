@@ -1,8 +1,9 @@
 import { ReviewInfoProps } from '@/types/replies';
 import Image from 'next/image';
+import { memo } from 'react';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
-export default function ReviewInfo({
+function ReviewInfo({
   content,
   productImage,
   star,
@@ -49,3 +50,4 @@ export default function ReviewInfo({
     </li>
   );
 }
+export default memo(ReviewInfo);

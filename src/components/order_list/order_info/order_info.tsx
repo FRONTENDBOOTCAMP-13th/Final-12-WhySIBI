@@ -5,13 +5,7 @@ import { memo } from 'react';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-const OrderProductInfo = memo(function OrderProductInfo({
-  _id,
-  price,
-  name,
-  image,
-  state,
-}: OrderProduct) {
+function OrderProductInfo({ _id, price, name, image, state }: OrderProduct) {
   let deliveryState = '';
   if (state === 'OS010') {
     deliveryState = '상품준비중';
@@ -68,5 +62,5 @@ const OrderProductInfo = memo(function OrderProductInfo({
       </div>
     </li>
   );
-});
-export default OrderProductInfo;
+}
+export default memo(OrderProductInfo);
