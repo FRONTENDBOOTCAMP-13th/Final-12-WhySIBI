@@ -6,7 +6,7 @@ function ShoppingRecommendSection() {
     <>
       <RecommendTitle
         title="FOR YOU"
-        subTitle="12조님의 취향저격 상품을 찾았어요 🥳"
+        subTitle="님의 취향저격 상품을 찾았어요 🥳"
       />
       <RecommendBox />
     </>
