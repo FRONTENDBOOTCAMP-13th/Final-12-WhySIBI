@@ -2,8 +2,6 @@
 import { ButtonBack } from "@/components/Button_back";
 import RegistForm from "@/components/Write_posts/RegistForm";
 
-
-
 export default function NewPost(){
   return(
     <>

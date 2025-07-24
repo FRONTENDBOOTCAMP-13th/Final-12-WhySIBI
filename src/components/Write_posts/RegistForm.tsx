@@ -2,6 +2,7 @@
 
 import { useState, useRef } from 'react';
 import { useActionState } from 'react';
+import { useRouter } from 'next/navigation';
 import { createPost } from '@/data/actions/post';
 import GuideBox from './Guide_box';
 import TitleInput from './Title_input';
@@ -12,6 +13,7 @@ import ButtonRounded from '../Buttons/Button_rounded';
 
 export default function RegistForm() {
   const [state, formAction, isLoading] = useActionState(createPost, null);
+  const router = useRouter();
 
   // 로컬 상태값
   const [title, setTitle] = useState('');
@@ -32,6 +34,7 @@ export default function RegistForm() {
     const isConfirmed = confirm("게시글을 등록하시겠습니까?");
       if (isConfirmed && formRef.current) {
       formRef.current.requestSubmit(); // 서버 액션과 함께 submit
+      router.back();
     }
   };
 
