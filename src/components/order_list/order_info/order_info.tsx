@@ -5,7 +5,7 @@ import { memo } from 'react';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-const ProductInfo = memo(function ProductInfo({
+const OrderProductInfo = memo(function OrderProductInfo({
   _id,
   price,
   name,
@@ -69,4 +69,4 @@ const ProductInfo = memo(function ProductInfo({
     </li>
   );
 });
-export default ProductInfo;
+export default OrderProductInfo;

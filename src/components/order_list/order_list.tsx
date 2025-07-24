@@ -1,10 +1,10 @@
 'use client';
-import ProductInfo from '@/components/products_list/product_info/products_linfo';
+import OrderProductInfo from '@/components/order_list/order_info/order_info';
 import { getOrderList } from '@/data/actions/order';
 import { OrderItem } from '@/types/order';
 import { useEffect, useState } from 'react';
 
-export default function ProductList() {
+export default function OrderList() {
   //상품 리스트 불러오는 부분
   const [productList, setProductList] = useState<OrderItem[] | null>(null);
 
@@ -22,7 +22,7 @@ export default function ProductList() {
   }
 
   useEffect(() => {
-    const producListData = async () => {
+    const orderListData = async () => {
       try {
         const res = await getOrderList(token);
         if (res.ok === 1) {
@@ -36,7 +36,7 @@ export default function ProductList() {
       }
     };
 
-    producListData();
+    orderListData();
   }, []);
 
   return (
@@ -44,7 +44,7 @@ export default function ProductList() {
       <ul className="flex flex-col flex-wrap gap-16">
         {productList?.map(order =>
           order.products.map(product => (
-            <ProductInfo
+            <OrderProductInfo
               key={``}
               _id={product._id}
               price={product.price}

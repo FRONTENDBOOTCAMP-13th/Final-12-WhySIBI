@@ -1,5 +1,5 @@
-import ProductList from '@/components/products_list/products_list';
+import OrderList from '@/components/order_list/order_list';
 
 export default async function MyPage() {
-  return <ProductList />;
+  return <OrderList />;
 }

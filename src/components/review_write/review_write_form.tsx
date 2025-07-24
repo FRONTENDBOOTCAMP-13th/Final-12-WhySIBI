@@ -16,7 +16,6 @@ export default function ReviewWriteForm({
   productData,
   productId,
 }: ReviewWriteFormProps) {
-
   const [imageSrc, setImageSrc] = useState<string[]>([]);
   const [state, formAction, isLoading] = useActionState(createReplie, null);
   const router = useRouter();
@@ -49,8 +48,8 @@ export default function ReviewWriteForm({
 
   useEffect(() => {
     if (state?.ok) {
-      alert('리뷰 작성이 완료되었습니다. 제품 페이지로 이동합니다.');
-      router.replace('/my_page');
+      alert('리뷰 작성이 완료되었습니다. 리뷰 페이지로 이동합니다.');
+      router.replace('/my_page/reviews');
     } else if (state?.ok === 0 && !state?.errors) {
       alert(state?.message);
     }
