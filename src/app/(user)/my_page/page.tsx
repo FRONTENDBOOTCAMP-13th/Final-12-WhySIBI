@@ -1,6 +1,5 @@
-'use client';
-import ProductList from '@/components/products_list/products_list';
+import OrderList from '@/components/order_list/order_list';
 
-export default function MyPage() {
-  return <ProductList />;
+export default async function MyPage() {
+  return <OrderList />;
 }

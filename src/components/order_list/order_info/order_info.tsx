@@ -1,27 +1,37 @@
-import { ProductListProps } from '@/types';
+import { OrderProduct } from '@/types/order';
 import Image from 'next/image';
 import Link from 'next/link';
 import { memo } from 'react';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-const ProductInfo = memo(function ProductInfo({
+const OrderProductInfo = memo(function OrderProductInfo({
   _id,
   price,
   name,
-  mainImages,
-}: ProductListProps) {
+  image,
+  state,
+}: OrderProduct) {
+  let deliveryState = '';
+  if (state === 'OS010') {
+    deliveryState = '상품준비중';
+  } else if (state === 'OS020') {
+    deliveryState = '배송준비중';
+  } else if (state === 'OS030') {
+    deliveryState = '배송중';
+  } else if (state === 'OS035') {
+    deliveryState = '배송완료';
+  }
   return (
     <li className="w-4/5 border-2 border-button-color-opaque-25 shadow-shadow-md p-5 rounded-radius-lg">
-      <p className="font-logo text-2xl ml-5">배송중</p>
+      <p className="font-logo text-2xl ml-5">{deliveryState}</p>
       <div className="flex justify-between mt-6 items-center">
         <Link href={`/products/${_id}`}>
-          {/* 상품 상세 페이지 링크 */}
           <figure className="flex gap-6">
-            {mainImages[0]?.path && (
+            {image && (
               <Image
-                src={`${API_URL}/${mainImages[0]?.path}`} // 첫 번째 이미지 path 사용
-                alt={name || '상품 이미지'}
+                src={`${API_URL}/${image.path}`}
+                alt={image.name || '상품 이미지'}
                 width={140}
                 height={140}
                 className="rounded-radius-lg"
@@ -31,9 +41,7 @@ const ProductInfo = memo(function ProductInfo({
 
             <figcaption className="font-basic font-bold">
               <p>상품명: {name}</p>
-              <p className="mt-7 text-menu-text">
-                가격: {price.toLocaleString()}원
-              </p>
+              <p className="mt-7 text-menu-text">가격: {price}원</p>
             </figcaption>
           </figure>
         </Link>
@@ -61,4 +69,4 @@ const ProductInfo = memo(function ProductInfo({
     </li>
   );
 });
-export default ProductInfo;
+export default OrderProductInfo;

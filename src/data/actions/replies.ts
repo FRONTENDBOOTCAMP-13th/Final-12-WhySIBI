@@ -1,6 +1,6 @@
 import { upLoadFile } from '@/data/actions/file';
 import { ApiRes, ApiResPromise } from '@/types';
-import { replie } from '@/types/replies';
+import { replie, ReviewItem } from '@/types/replies';
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 const CLIENT_ID = process.env.NEXT_PUBLIC_WHY_SIBI_CLIENT_ID || '';
 export async function createReplie(
@@ -11,11 +11,6 @@ export async function createReplie(
   let data: ApiRes<replie>;
 
   try {
-    const userStronge = JSON.parse(sessionStorage.getItem('user') as string);
-    const user = userStronge.state.user;
-    const userID = user._id;
-    const token = user.token.accessToken;
-
     const attach = formData.getAll('attach') as File[];
     let images: string[] = [];
 
@@ -35,6 +30,8 @@ export async function createReplie(
     const day = today.getDate().toString().padStart(2, '0');
     const dateString = `${year}.${month}.${day}`;
 
+    const token = formData.get('token') as string;
+    const userID = Number(formData.get('user_id'));
     // body 객체를 단계별로 안전하게 생성
     const baseBody = {
       order_id: Number(userID),
@@ -68,4 +65,23 @@ export async function createReplie(
   }
 
   return data;
+}
+
+export async function GetReplie(token: string): ApiResPromise<ReviewItem[]> {
+  try {
+    const res = await fetch(`${API_URL}/replies`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+        'Client-Id': CLIENT_ID,
+      },
+    });
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    // 네트워크 오류 처리
+    console.error('상품 조회 실패:', error);
+    return { ok: 0, message: '상품 정보를 불러오는데 실패했습니다.' };
+  }
 }
