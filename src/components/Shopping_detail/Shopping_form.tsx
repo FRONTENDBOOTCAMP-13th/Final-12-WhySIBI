@@ -14,6 +14,7 @@ interface ShoppingFormType {
   color: string[];
   size: string[];
   reviewCount: number;
+  avg: number;
 }
 
 export default function ShoppingForm({
@@ -21,10 +22,10 @@ export default function ShoppingForm({
   originalPrice,
   price,
   stars,
-  star,
   color,
   size,
   reviewCount,
+  avg,
 }: ShoppingFormType) {
   // 폼태그 상태관리
   const [option, setOption] = useState({
@@ -49,8 +50,14 @@ export default function ShoppingForm({
     });
   }
 
+  //구매수량 1밑으로는 떨어지지 않게
   function decrease() {
-    setOption({ ...option, quantity: option.quantity - 1 });
+    setOption(prev => {
+      if (prev.quantity > 1) {
+        return { ...prev, quantity: prev.quantity - 1 };
+      }
+      return prev;
+    });
   }
 
   const discountRate = Math.round(
@@ -66,11 +73,9 @@ export default function ShoppingForm({
 
       {/* 평점, 리뷰 */}
       <p className="flex gap-2 items-center">
-        {/* 나중에 db받아오면 사용 */}
-        {/* 평점을  0-4까지 배열안에 넣으면 된다. 나중에 api연동하면 extra에 star있음 */}
-        <span className="flex gap-[1px]">{stars[5 - star]}</span>
+        <span className="flex gap-[1px]">{stars[5 - avg]}</span>
         <span className="font-bold text-xl" aria-label="5점 만점에 4점">
-          {star}
+          {avg}
         </span>
         <span className="text-[#777777] ">리뷰 {reviewCount}</span>
       </p>

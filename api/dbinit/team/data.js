@@ -20,7 +20,7 @@ export const initData = async (clientId, nextSeq) => {
         address: '부산시 연제구',
         type: 'admin',
         loginType: 'email',
-        image: `/files/${clientId}/user-muzi.png`,
+        image: `files/${clientId}/user-muzi.png`,
         createdAt: getTime(-100, -60 * 60 * 3),
         updatedAt: getTime(-100, -60 * 60 * 3),
         extra: {
@@ -50,7 +50,7 @@ export const initData = async (clientId, nextSeq) => {
         address: '부산시 연제구',
         type: 'seller',
         loginType: 'email',
-        image: `/files/${clientId}/user-neo.png`,
+        image: `files/${clientId}/user-neo.png`,
         createdAt: getTime(-50),
         updatedAt: getTime(-30, -60 * 60 * 3),
         extra: {
@@ -80,7 +80,7 @@ export const initData = async (clientId, nextSeq) => {
         address: '전라남도 목포',
         type: 'user',
         loginType: 'email',
-        image: `/files/${clientId}/user-neo.png`,
+        image: `files/${clientId}/user-neo.png`,
         createdAt: getTime(-50),
         updatedAt: getTime(-30, -60 * 60 * 3),
         extra: {
@@ -111,7 +111,7 @@ export const initData = async (clientId, nextSeq) => {
         address: '서울시 강남구 삼성동 456',
         type: 'user',
         loginType: 'email',
-        image: `/files/${clientId}/user-neo.png`,
+        image: `files/${clientId}/user-neo.png`,
         createdAt: getTime(-50),
         updatedAt: getTime(-30, -60 * 60 * 3),
         extra: {
@@ -148,7 +148,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/cooling.png`,
+            path: `files/${clientId}/cooling.png`,
             name: 'cooling.png',
             originalname: '쿨링패드.png',
           },
@@ -191,7 +191,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/tv.png`,
+            path: `files/${clientId}/tv.png`,
             name: 'tv.png',
             originalname: '티비세트.png',
           },
@@ -232,7 +232,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/pushbot.png`,
+            path: `files/${clientId}/pushbot.png`,
             name: 'pushbot.png',
             originalname: '푸시봇.png',
           },
@@ -273,7 +273,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/curtain.png`,
+            path: `files/${clientId}/curtain.png`,
             name: 'curtain.png',
             originalname: '암막커튼.png',
           },
@@ -316,7 +316,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/summercooling.png`,
+            path: `files/${clientId}/summercooling.png`,
             name: 'summercooling.png',
             originalname: '쿨링 이불.png',
           },
@@ -359,8 +359,8 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/javara.png`,
-            name: 'javara.png',
+            path: `files/${clientId}/jabara.png`,
+            name: 'jabara.png',
             originalname: '자바라거치대.png',
           },
         ],
@@ -384,7 +384,7 @@ export const initData = async (clientId, nextSeq) => {
           detailimg: [
             //세부 이미지
             {
-              path: `/files/${clientId}/detail/javara.png`,
+              path: `/files/${clientId}/detail/jabara.png`,
             },
           ],
           star: 4, //별점
@@ -402,7 +402,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/topper.png`,
+            path: `files/${clientId}/topper.png`,
             name: 'topper.png',
             originalname: '토퍼.png',
           },
@@ -453,7 +453,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/bodyfillow.png`,
+            path: `files/${clientId}/bodyfillow.png`,
             name: 'bodyfillow.png',
             originalname: '바디필로우.png',
           },
@@ -496,7 +496,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/minix.png`,
+            path: `files/${clientId}/minix.png`,
             name: 'minix.png',
             originalname: '미닉스.png',
           },
@@ -539,7 +539,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/bath.png`,
+            path: `files/${clientId}/bath.png`,
             name: 'bath.png',
             originalname: '욕조.png',
           },
@@ -582,7 +582,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/cleankit.png`,
+            path: `files/${clientId}/cleankit.png`,
             name: 'cleankit.png',
             originalname: '청소키트.png',
           },
@@ -625,7 +625,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/cosmetic.png`,
+            path: `files/${clientId}/cosmetic.png`,
             name: 'cosmetic.png',
             originalname: '화장품정리함.png',
           },
@@ -668,7 +668,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/hangger.png`,
+            path: `files/${clientId}/hangger.png`,
             name: 'hangger.png',
             originalname: '행거.png',
           },
@@ -711,7 +711,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/coolpan.png`,
+            path: `files/${clientId}/coolpan.png`,
             name: 'coolpan.png',
             originalname: '선풍기.png',
           },
@@ -754,7 +754,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/theslim.png`,
+            path: `files/${clientId}/theslim.png`,
             name: 'theslim.png',
             originalname: '음식물처리기.png',
           },
@@ -797,7 +797,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/airflier.png`,
+            path: `files/${clientId}/airflier.png`,
             name: 'airflier.png',
             originalname: '에어프라이어.png',
           },
@@ -840,7 +840,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/trap.png`,
+            path: `files/${clientId}/trap.png`,
             name: 'trap.png',
             originalname: '하수구트랩.png',
           },
@@ -883,7 +883,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/bug.png`,
+            path: `files/${clientId}/bug.png`,
             name: 'bug.png',
             originalname: '해충퇴치.png',
           },
@@ -926,7 +926,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/multiport.png`,
+            path: `files/${clientId}/multiport.png`,
             name: 'multiport.png',
             originalname: '냄비.png',
           },
@@ -969,7 +969,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/jellyfish.png`,
+            path: `files/${clientId}/jellyfish.png`,
             name: 'jellyfish.png',
             originalname: '해파리무드등.png',
           },
@@ -1012,7 +1012,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/copybara.png`,
+            path: `files/${clientId}/copybara.png`,
             name: 'copybara.png',
             originalname: '감기걸린카피바라.png',
           },
@@ -1055,7 +1055,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/copybara2.png`,
+            path: `files/${clientId}/copybara2.png`,
             name: 'copybara2.png',
             originalname: '츤데레카피바라.png',
           },
@@ -1098,7 +1098,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/dockmood.png`,
+            path: `files/${clientId}/dockmood.png`,
             name: 'dockmood.png',
             originalname: '오리무드등.png',
           },
@@ -1141,7 +1141,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/sanroconcent.png`,
+            path: `files/${clientId}/sanroconcent.png`,
             name: 'sanroconcent.png',
             originalname: '산로콘센트 커버.png',
           },
@@ -1184,7 +1184,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/pabricCover.png`,
+            path: `files/${clientId}/pabricCover.png`,
             name: 'pabricCover.png',
             originalname: '패브릭커버.png',
           },
@@ -1227,7 +1227,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/smartplug.png`,
+            path: `files/${clientId}/smartplug.png`,
             name: 'smartplug.png',
             originalname: '스마트플러그.png',
           },
@@ -1270,7 +1270,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/deskmultitab.png`,
+            path: `files/${clientId}/deskmultitab.png`,
             name: 'deskmultitab.png',
             originalname: '책상고정멀티탭.png',
           },
@@ -1313,7 +1313,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/sofabed.png`,
+            path: `files/${clientId}/sofabed.png`,
             name: 'sofabed.png',
             originalname: '소파베드.png',
           },
@@ -1356,7 +1356,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/magsafepan.png`,
+            path: `files/${clientId}/magsafepan.png`,
             name: 'magsafepan.png',
             originalname: '맥세이프선풍기.png',
           },
@@ -1399,7 +1399,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/airsurqu.png`,
+            path: `files/${clientId}/airsurqu.png`,
             name: 'airsurqu.png',
             originalname: '에어써큘레이터.png',
           },
@@ -1442,7 +1442,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/decotile.png`,
+            path: `files/${clientId}/decotile.png`,
             name: 'decotile.png',
             originalname: '데코타일.png',
           },
@@ -1490,7 +1490,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/minispoon.png`,
+            path: `files/${clientId}/minispoon.png`,
             name: 'minispoon.png',
             originalname: '미니국자.png',
           },
@@ -1533,7 +1533,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/sinamonmobil.png`,
+            path: `files/${clientId}/sinamonmobil.png`,
             name: 'sinamonmobil.png',
             originalname: '시나몬 모빌.png',
           },
@@ -1581,7 +1581,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/minisofa.png`,
+            path: `files/${clientId}/minisofa.png`,
             name: 'minisofa.png',
             originalname: '미니소파.png',
           },
@@ -1624,7 +1624,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/maisondesk.png`,
+            path: `files/${clientId}/maisondesk.png`,
             name: 'maisondesk.png',
             originalname: '유니온데스크.png',
           },
@@ -1667,7 +1667,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/moveaircon.png`,
+            path: `files/${clientId}/moveaircon.png`,
             name: 'moveaircon.png',
             originalname: '이동식에어컨.png',
           },
@@ -1710,7 +1710,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/wooddrawer.png`,
+            path: `files/${clientId}/wooddrawer.png`,
             name: 'wooddrawer.png',
             originalname: '우드서랍장.png',
           },
@@ -1753,7 +1753,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/sliconspoon.png`,
+            path: `files/${clientId}/sliconspoon.png`,
             name: 'sliconspoon.png',
             originalname: '실리콘알뜰주걱.png',
           },
@@ -1796,7 +1796,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/lovelytable.png`,
+            path: `files/${clientId}/lovelytable.png`,
             name: 'lovelytable.png',
             originalname: '사이드테이블.png',
           },
@@ -1839,7 +1839,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/greentile.png`,
+            path: `files/${clientId}/greentile.png`,
             name: 'greentile.png',
             originalname: '그린라벨 카페트.png',
           },
@@ -1890,7 +1890,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/felltier.png`,
+            path: `files/${clientId}/felltier.png`,
             name: 'felltier.png',
             originalname: '미니제습기.png',
           },
@@ -1933,7 +1933,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/windowdry.png`,
+            path: `files/${clientId}/windowdry.png`,
             name: 'windowdry.png',
             originalname: '창틀건조대.png',
           },
@@ -1976,7 +1976,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/doordry.png`,
+            path: `files/${clientId}/doordry.png`,
             name: 'doordry.png',
             originalname: '문걸이빨래건조대.png',
           },
@@ -2019,7 +2019,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/sleepbakery.png`,
+            path: `files/${clientId}/sleepbakery.png`,
             name: 'sleepbakery.png',
             originalname: '토핑필로우.png',
           },
@@ -2062,7 +2062,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/shoesdry.png`,
+            path: `files/${clientId}/shoesdry.png`,
             name: 'shoesdry.png',
             originalname: '신발살균건조기.png',
           },
@@ -2105,7 +2105,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/minifridge.png`,
+            path: `files/${clientId}/minifridge.png`,
             name: 'minifridge.png',
             originalname: '미니화장품냉장고.png',
           },
@@ -2148,7 +2148,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/scapeposter.png`,
+            path: `files/${clientId}/scapeposter.png`,
             name: 'scapeposter.png',
             originalname: '풍경패브릭포스터.png',
           },
@@ -2191,7 +2191,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/beddingset.png`,
+            path: `files/${clientId}/beddingset.png`,
             name: 'beddingset.png',
             originalname: '침낭형침구세트.png',
           },
@@ -2234,7 +2234,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/vanity.png`,
+            path: `files/${clientId}/vanity.png`,
             name: 'vanity.png',
             originalname: '커스텀수납화장대.png',
           },
@@ -2277,7 +2277,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/honeypop.png`,
+            path: `files/${clientId}/honeypop.png`,
             name: 'honeypop.png',
             originalname: '허니팝여름이불.png',
           },
@@ -2328,7 +2328,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/drawtray.png`,
+            path: `files/${clientId}/drawtray.png`,
             name: 'drawtray.png',
             originalname: '서랍식옷정리트레이.png',
           },
@@ -2371,7 +2371,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/minibimproject.png`,
+            path: `files/${clientId}/minibimproject.png`,
             name: 'minibimproject.png',
             originalname: '미니빔프로젝터.png',
           },
@@ -2414,7 +2414,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/ramenorganizer.png`,
+            path: `files/${clientId}/ramenorganizer.png`,
             name: 'ramenorganizer.png',
             originalname: '라면정리함.png',
           },
@@ -2457,7 +2457,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/diykitchen.png`,
+            path: `files/${clientId}/diykitchen.png`,
             name: 'diykitchen.png',
             originalname: '주방타일28종.png',
           },
@@ -2500,7 +2500,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/icebedding.png`,
+            path: `files/${clientId}/icebedding.png`,
             name: 'icebedding.png',
             originalname: '냉감여름이불.png',
           },
@@ -2543,7 +2543,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/partitionhangger.png`,
+            path: `files/${clientId}/partitionhangger.png`,
             name: 'partitionhangger.png',
             originalname: '2단파티션행거.png',
           },
@@ -2586,7 +2586,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/partitionorganize.png`,
+            path: `files/${clientId}/partitionorganize.png`,
             name: 'partitionorganize.png',
             originalname: '칸막이속옷정리함.png',
           },
@@ -2629,7 +2629,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/darkcutton.png`,
+            path: `files/${clientId}/darkcutton.png`,
             name: 'darkcutton.png',
             originalname: '무타공암막커튼세트.png',
           },
@@ -2672,7 +2672,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/pipehangger.png`,
+            path: `files/${clientId}/pipehangger.png`,
             name: 'pipehangger.png',
             originalname: '파이프행거.png',
           },
@@ -2715,7 +2715,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/insect.png`,
+            path: `files/${clientId}/insect.png`,
             name: 'insect.png',
             originalname: '날벌레퇴치기.png',
           },
@@ -2758,7 +2758,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/oneroomvacuum.png`,
+            path: `files/${clientId}/oneroomvacuum.png`,
             name: 'oneroomvacuum.png',
             originalname: '원룸용무선청소기.png',
           },
@@ -2801,7 +2801,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/dockbody.png`,
+            path: `files/${clientId}/dockbody.png`,
             name: 'dockbody.png',
             originalname: '냉감오리바디필로우.png',
           },
@@ -2844,7 +2844,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/francoumbrella.png`,
+            path: `files/${clientId}/francoumbrella.png`,
             name: 'francoumbrella.png',
             originalname: '자석우산꽂이.png',
           },
@@ -2887,7 +2887,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/shoesrack.png`,
+            path: `files/${clientId}/shoesrack.png`,
             name: 'shoesrack.png',
             originalname: '높이조절슈즈렉.png',
           },
@@ -2930,7 +2930,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/microwavedesk.png`,
+            path: `files/${clientId}/microwavedesk.png`,
             name: 'microwavedesk.png',
             originalname: '전자레인지선반.png',
           },
@@ -2973,7 +2973,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/zigzagtree.png`,
+            path: `files/${clientId}/zigzagtree.png`,
             name: 'zigzagtree.png',
             originalname: '트리북타워.png',
           },
@@ -3016,7 +3016,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/insectscreen.png`,
+            path: `files/${clientId}/insectscreen.png`,
             name: 'insectscreen.png',
             originalname: '자석방충망.png',
           },
@@ -3059,7 +3059,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/doorinsect.png`,
+            path: `files/${clientId}/doorinsect.png`,
             name: 'doorinsect.png',
             originalname: '현관문모기장.png',
           },
@@ -3102,7 +3102,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/stripepartition.png`,
+            path: `files/${clientId}/stripepartition.png`,
             name: 'stripepartition.png',
             originalname: '가벽파티션.png',
           },
@@ -3145,7 +3145,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/autoswitch.png`,
+            path: `files/${clientId}/autoswitch.png`,
             name: 'autoswitch.png',
             originalname: '자동불끄기.png',
           },
@@ -3188,7 +3188,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/magicpartition.png`,
+            path: `files/${clientId}/magicpartition.png`,
             name: 'magicpartition.png',
             originalname: '매직파티션.png',
           },
@@ -3231,7 +3231,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/blikbimproject.png`,
+            path: `files/${clientId}/blikbimproject.png`,
             name: 'blikbimproject.png',
             originalname: '블릭빔프로젝터.png',
           },
@@ -3274,7 +3274,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/kankan.png`,
+            path: `files/${clientId}/kankan.png`,
             name: 'kankan.png',
             originalname: '칸칸이정리함.png',
           },
@@ -3317,7 +3317,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/summercandy.png`,
+            path: `files/${clientId}/summercandy.png`,
             name: 'summercandy.png',
             originalname: '여름침구모음.png',
           },
@@ -3366,7 +3366,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/clover.png`,
+            path: `files/${clientId}/clover.png`,
             name: 'clover.png',
             originalname: '클로버키우기.png',
           },
@@ -3409,7 +3409,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/socksdry.png`,
+            path: `files/${clientId}/socksdry.png`,
             name: 'socksdry.png',
             originalname: '파이프행거.png',
           },
@@ -3452,7 +3452,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/sinamonstick.png`,
+            path: `files/${clientId}/sinamonstick.png`,
             name: 'sinamonstick.png',
             originalname: '시나몬스틱.png',
           },
@@ -3495,7 +3495,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/ramenset.png`,
+            path: `files/${clientId}/ramenset.png`,
             name: 'ramenset.png',
             originalname: '라면그릇세트.png',
           },
@@ -3538,7 +3538,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/steamiron.png`,
+            path: `files/${clientId}/steamiron.png`,
             name: 'steamiron.png',
             originalname: '스팀다리미.png',
           },
@@ -3581,7 +3581,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/cooltouch.png`,
+            path: `files/${clientId}/cooltouch.png`,
             name: 'cooltouch.png',
             originalname: '여름파자마.png',
           },
@@ -3624,7 +3624,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/airconCleankit.png`,
+            path: `files/${clientId}/airconCleankit.png`,
             name: 'airconCleankit.png',
             originalname: '에어컨청소키트.png',
           },
@@ -3667,7 +3667,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/alarmdoor.png`,
+            path: `files/${clientId}/alarmdoor.png`,
             name: 'alarmdoor.png',
             originalname: '알람도어센서.png',
           },
@@ -3710,7 +3710,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/selftile.png`,
+            path: `files/${clientId}/selftile.png`,
             name: 'selftile.png',
             originalname: '셀프시공장판.png',
           },
@@ -3753,7 +3753,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/doorstopper.png`,
+            path: `files/${clientId}/doorstopper.png`,
             name: 'doorstopper.png',
             originalname: '도어스토퍼.png',
           },
@@ -3796,7 +3796,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/oneroomwhite.png`,
+            path: `files/${clientId}/oneroomwhite.png`,
             name: 'oneroomwhite.png',
             originalname: '화이트식탁.png',
           },
@@ -3839,7 +3839,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/minicandle.png`,
+            path: `files/${clientId}/minicandle.png`,
             name: 'minicandle.png',
             originalname: '오브제캔들.png',
           },
@@ -3889,7 +3889,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/selfback.png`,
+            path: `files/${clientId}/selfback.png`,
             name: 'selfback.png',
             originalname: '셀프등밀이.png',
           },
@@ -3932,7 +3932,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/bbogglemat.png`,
+            path: `files/${clientId}/bbogglemat.png`,
             name: 'bbogglemat.png',
             originalname: '뽀글이조각매트.png',
           },
@@ -3975,7 +3975,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/hipperdesk.png`,
+            path: `files/${clientId}/hipperdesk.png`,
             name: 'hipperdesk.png',
             originalname: '히퍼컴퓨터책상.png',
           },
@@ -4018,7 +4018,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/coolingbody.png`,
+            path: `files/${clientId}/coolingbody.png`,
             name: 'coolingbody.png',
             originalname: '쿨링바디스프레이.png',
           },
@@ -4061,7 +4061,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/kitchenpartition.png`,
+            path: `files/${clientId}/kitchenpartition.png`,
             name: 'kitchenpartition.png',
             originalname: '투명가림막.png',
           },
@@ -4104,7 +4104,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/tabletstand.png`,
+            path: `files/${clientId}/tabletstand.png`,
             name: 'tabletstand.png',
             originalname: '태블릿거치대.png',
           },
@@ -4147,7 +4147,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/steelwood.png`,
+            path: `files/${clientId}/steelwood.png`,
             name: 'steelwood.png',
             originalname: '우드책상.png',
           },
@@ -4190,7 +4190,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/hairhangger.png`,
+            path: `files/${clientId}/hairhangger.png`,
             name: 'hairhangger.png',
             originalname: '악세사리행거.png',
           },
@@ -4233,7 +4233,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/minivacuum.png`,
+            path: `files/${clientId}/minivacuum.png`,
             name: 'minivacuum.png',
             originalname: '미니청소기모음.png',
           },
@@ -4276,7 +4276,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/artboard.png`,
+            path: `files/${clientId}/artboard.png`,
             name: 'artboard.png',
             originalname: '방음아트보드.png',
           },
@@ -4319,7 +4319,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/softtouch.png`,
+            path: `files/${clientId}/softtouch.png`,
             name: 'softtouch.png',
             originalname: '여름파자마.png',
           },
@@ -4362,7 +4362,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/modernmirror.png`,
+            path: `files/${clientId}/modernmirror.png`,
             name: 'modernmirror.png',
             originalname: '모던거울.png',
           },
@@ -4405,7 +4405,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/woodmirror.png`,
+            path: `files/${clientId}/woodmirror.png`,
             name: 'woodmirror.png',
             originalname: '전신거울.png',
           },
@@ -4448,7 +4448,7 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 310,
         mainImages: [
           {
-            path: `/files/${clientId}/coffee.png`,
+            path: `files/${clientId}/coffee.png`,
             name: 'coffee.png',
             originalname: '커피머신.png',
           },
@@ -4494,7 +4494,7 @@ export const initData = async (clientId, nextSeq) => {
             state: 'OS020',
             name: '냉감 찹쌀떡 바디필로우',
             image: {
-              path: `/files/${clientId}/bodyfillow.png`,
+              path: `files/${clientId}/bodyfillow.png`,
               name: 'bodyfillow.png',
               originalname: '바디필로우.png',
             },
@@ -4530,7 +4530,7 @@ export const initData = async (clientId, nextSeq) => {
             state: 'OS020',
             name: '벽걸이 에어컨 청소 키트',
             image: {
-              path: `/files/${clientId}/cleankit.png`,
+              path: `files/${clientId}/cleankit.png`,
               name: 'cleankit.png',
               originalname: '청소키트.png',
             },
@@ -4567,7 +4567,7 @@ export const initData = async (clientId, nextSeq) => {
             state: 'OS020',
             name: '무볼트 드레스룸 행거',
             image: {
-              path: `/files/${clientId}/hangger.png`,
+              path: `files/${clientId}/hangger.png`,
               name: 'hangger.png',
               originalname: '행거.png',
             },
@@ -4602,7 +4602,7 @@ export const initData = async (clientId, nextSeq) => {
         user: {
           _id: 3,
           name: '김하영',
-          image: `/files/${clientId}/bodyfillow.png`,
+          image: `files/${clientId}/bodyfillow.png`,
         },
         order_id: 1,
         product_id: 1,
@@ -4612,7 +4612,7 @@ export const initData = async (clientId, nextSeq) => {
         createdAt: getTime(-4, -60 * 60 * 12),
         extra: {
           image: {
-            path: `/files/${clientId}/cleankit.png`,
+            path: `files/${clientId}/cleankit.png`,
             name: 'cleankit.png',
             originalname: '청소키트.png',
           },
@@ -4626,7 +4626,7 @@ export const initData = async (clientId, nextSeq) => {
         user: {
           _id: 4,
           name: '조현수',
-          image: `/files/${clientId}/bodyfillow.png`,
+          image: `files/${clientId}/bodyfillow.png`,
         },
         order_id: 2,
         product_id: 1,
@@ -4635,7 +4635,7 @@ export const initData = async (clientId, nextSeq) => {
         createdAt: getTime(-4, -60 * 60 * 12),
         extra: {
           image: {
-            path: `/files/${clientId}/bodyfillow.png`,
+            path: `files/${clientId}/bodyfillow.png`,
             name: 'bodyfillow.png',
             originalname: '청소키트.png',
           },
@@ -4649,7 +4649,7 @@ export const initData = async (clientId, nextSeq) => {
         user: {
           _id: 4,
           name: '조현수',
-          image: `/files/${clientId}/bodyfillow.png`,
+          image: `files/${clientId}/bodyfillow.png`,
         },
         order_id: 2,
         product_id: 1,
@@ -4712,7 +4712,7 @@ export const initData = async (clientId, nextSeq) => {
         user: {
           _id: 3,
           name: '김하영',
-          image: `/files/${clientId}/user-jayg.webp`,
+          image: `files/${clientId}/user-jayg.webp`,
         },
         type: 'product',
         target_id: 2,
@@ -4725,7 +4725,7 @@ export const initData = async (clientId, nextSeq) => {
         user: {
           _id: 4,
           name: '조현수',
-          image: `/files/${clientId}/user-jayg.webp`,
+          image: `files/${clientId}/user-jayg.webp`,
         },
         type: 'product',
         target_id: 5,

@@ -65,7 +65,7 @@ function ShoppingViewestSlider() {
               <SwiperSlide key={product._id}>
                 <ProductCard
                   name={product.name}
-                  imageUrl={`${API_URL}${product.mainImages[0]?.path}`}
+                  imageUrl={`${API_URL}/${product.mainImages[0]?.path}`}
                   price={`${product.price.toLocaleString()}원`}
                   discount={discount}
                   rank={index + 1}
