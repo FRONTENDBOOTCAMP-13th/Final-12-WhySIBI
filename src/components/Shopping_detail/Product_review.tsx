@@ -63,7 +63,7 @@ export default function ProductReview({ stars, replies }: ProductReviewProps) {
   return (
     <section className="max-w-[1028px] mx-auto mt-12 ">
       <div className="flex justify-between border-b-2 pb-3 border-[#a5a5a5]">
-        <h3 className="text-xl font-semibold text-[#777777]">
+        <h3 className="text-xl font-semibold text-gray-550">
           리뷰 {replies.length}
         </h3>
         <div className="flex  items-center gap-8">
@@ -81,7 +81,9 @@ export default function ProductReview({ stars, replies }: ProductReviewProps) {
               <div className="selected-value flex w-16">{selected}</div>
               <div className="w-[13px] h-[13px]">
                 <svg
-                  className={`w-full h-full ${active ? 'scale-y-[-1] transition-all duration-100 ease-in' : ''}`}
+                  className={`w-full h-full transition-transform duration-300 ease-out ${
+                    active ? 'rotate-180' : 'rotate-0'
+                  }`}
                   viewBox="0 0 30 26"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -115,7 +117,7 @@ export default function ProductReview({ stars, replies }: ProductReviewProps) {
         </div>
       </div>
 
-      <div className="bg-vanilla-300 flex min-h-[188px] m-12 rounded-xl items-center gap-25 justify-center">
+      <div className="bg-vanilla-opaque-50 flex min-h-[188px] m-12 rounded-xl items-center gap-25 justify-center">
         {replies.length > 0 ? (
           <>
             <span className="flex scale-200 transform origin-center gap-1">
