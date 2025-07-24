@@ -1,19 +1,33 @@
+'use client';
 import ProductInfo from '@/components/products_list/product_info/products_linfo';
-import { getProductList } from '@/data/actions/products';
-import type { ProductList, ProductListProps } from '@/types';
+import { getOrderList } from '@/data/actions/order';
+import { OrderItem } from '@/types/order';
 import { useEffect, useState } from 'react';
 
 export default function ProductList() {
   //상품 리스트 불러오는 부분
-  const [productList, setProductList] = useState<ProductListProps[] | null>(
-    null,
-  );
+  const [productList, setProductList] = useState<OrderItem[] | null>(null);
+
+  let token = null;
+  const userStorageString = sessionStorage.getItem('user');
+  if (userStorageString) {
+    try {
+      const userStorage = JSON.parse(userStorageString);
+      if (userStorage?.state?.user?.token?.accessToken) {
+        token = userStorage.state.user.token.accessToken;
+      }
+    } catch (error) {
+      console.error('JSON 파싱 오류:', error);
+    }
+  }
+
   useEffect(() => {
     const producListData = async () => {
       try {
-        const res = await getProductList();
+        const res = await getOrderList(token);
         if (res.ok === 1) {
           setProductList(res.item);
+          console.log(res.item);
         } else {
           setProductList(null);
         }
@@ -28,16 +42,18 @@ export default function ProductList() {
   return (
     <nav className="mt-20">
       <ul className="flex flex-col flex-wrap gap-16">
-        {productList?.map(product => (
-          <ProductInfo
-            key={product._id}
-            _id={product._id}
-            price={product.price}
-            name={product.name}
-            mainImages={product.mainImages}
-            createdAt=""
-          />
-        ))}
+        {productList?.map(order =>
+          order.products.map(product => (
+            <ProductInfo
+              key={``}
+              _id={product._id}
+              price={product.price}
+              name={product.name}
+              image={product.image}
+              state={order.state}
+            />
+          )),
+        )}
       </ul>
     </nav>
   );
