@@ -34,7 +34,7 @@ export default function MyPageMenuList() {
         </li>
         <li>
           <Link
-            href=""
+            href="/my_page/reviews"
             className={`active:text-menu-text ${isAnchorMenuActive('')}`}
           >
             내리뷰

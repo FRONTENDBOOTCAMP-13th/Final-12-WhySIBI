@@ -1,6 +1,6 @@
 import { upLoadFile } from '@/data/actions/file';
 import { ApiRes, ApiResPromise } from '@/types';
-import { replie } from '@/types/replies';
+import { replie, ReviewItem } from '@/types/replies';
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 const CLIENT_ID = process.env.NEXT_PUBLIC_WHY_SIBI_CLIENT_ID || '';
 export async function createReplie(
@@ -65,4 +65,23 @@ export async function createReplie(
   }
 
   return data;
+}
+
+export async function GetReplie(token: string): ApiResPromise<ReviewItem[]> {
+  try {
+    const res = await fetch(`${API_URL}/replies`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+        'Client-Id': CLIENT_ID,
+      },
+    });
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    // 네트워크 오류 처리
+    console.error('상품 조회 실패:', error);
+    return { ok: 0, message: '상품 정보를 불러오는데 실패했습니다.' };
+  }
 }
