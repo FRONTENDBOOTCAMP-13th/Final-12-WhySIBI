@@ -46,7 +46,7 @@ function InputCheckBox({
           onChange={onTagChange}
           id={idValue}
           name={'preference'}
-          value={text}
+          value={valueText}
         />
       </div>
     </>

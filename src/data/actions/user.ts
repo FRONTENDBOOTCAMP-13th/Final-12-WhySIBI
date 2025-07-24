@@ -96,7 +96,7 @@ export async function EditUserInfo(
   let data: ApiRes<User>;
 
   try {
-    const userStronge = JSON.parse(sessionStorage.getItem('user'));
+    const userStronge = JSON.parse(sessionStorage.getItem('user') as string);
     const user = userStronge.state.user;
     const userID = user._id;
     const token = user.token.accessToken;

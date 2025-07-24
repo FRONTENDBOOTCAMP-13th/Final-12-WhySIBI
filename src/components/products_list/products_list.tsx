@@ -12,8 +12,10 @@ export default function ProductList() {
     const producListData = async () => {
       try {
         const res = await getProductList();
-        if (res) {
+        if (res.ok === 1) {
           setProductList(res.item);
+        } else {
+          setProductList(null);
         }
       } catch (error) {
         console.error('상품 정보 로딩 실패:', error);
@@ -33,6 +35,7 @@ export default function ProductList() {
             price={product.price}
             name={product.name}
             mainImages={product.mainImages}
+            createdAt=""
           />
         ))}
       </ul>

@@ -17,7 +17,7 @@ export async function getProductList(): ApiResPromise<ProductList> {
         'Client-Id': CLIENT_ID,
       },
     });
-    return res.data;
+    return { ok: 1, item: res.data.item };
   } catch (error) {
     // 네트워크 오류 처리
     console.error('상품 리스트 조회 실패:', error);
@@ -37,7 +37,7 @@ export async function getProductInfo(path: string): ApiResPromise<Product> {
         'Client-Id': CLIENT_ID,
       },
     });
-    return res.data;
+    return { ok: 1, item: res.data.item };
   } catch (error) {
     // 네트워크 오류 처리
     console.error('상품 조회 실패:', error);

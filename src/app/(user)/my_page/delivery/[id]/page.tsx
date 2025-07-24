@@ -8,18 +8,23 @@ import { useEffect, useState } from 'react';
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export default function DeliverState() {
+  //상품 정보 불러오기
   const [productData, setProductData] = useState<Product | null>(null);
   const pathname = usePathname();
   const productID = pathname.split('/').pop();
   useEffect(() => {
     const getData = async () => {
-      const res = await getProductInfo(productID);
-      setProductData(res.item);
+      const res = await getProductInfo(productID as string);
+
+      if (res.ok === 1) {
+        setProductData(res.item);
+      } else {
+        console.error('상품 조회 실패:', res.message);
+        setProductData(null);
+      }
     };
     getData();
   }, []);
-  console.log(productData);
-  console.log(productData?.mainImages[0].path);
 
   const [userName, setUserName] = useState('');
   const [userAddress, setuserAddress] = useState('');

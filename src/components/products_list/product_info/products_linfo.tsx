@@ -1,10 +1,11 @@
 import { ProductListProps } from '@/types';
 import Image from 'next/image';
 import Link from 'next/link';
+import { memo } from 'react';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-export default function ProductInfo({
+const ProductInfo = memo(function ProductInfo({
   _id,
   price,
   name,
@@ -19,7 +20,7 @@ export default function ProductInfo({
           <figure className="flex gap-6">
             {mainImages[0]?.path && (
               <Image
-                src={`${API_URL}${mainImages[0]?.path}`} // 첫 번째 이미지 path 사용
+                src={`${API_URL}/${mainImages[0]?.path}`} // 첫 번째 이미지 path 사용
                 alt={name || '상품 이미지'}
                 width={140}
                 height={140}
@@ -50,7 +51,7 @@ export default function ProductInfo({
             주문 &middot; 배송 취소
           </Link>
           <Link
-            href={`/my_page/review/write/${_id}`}
+            href={`/my_page/reviews/write/${_id}`}
             className="block rounded-radius-full px-16 py-3 border-2 text-button-color bg-columbia-blue-300"
           >
             리뷰 작성하기
@@ -59,4 +60,5 @@ export default function ProductInfo({
       </div>
     </li>
   );
-}
+});
+export default ProductInfo;
