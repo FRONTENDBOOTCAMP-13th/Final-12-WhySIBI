@@ -47,6 +47,7 @@ function InputCheckBox({
           id={idValue}
           name={'preference'}
           value={valueText}
+          data-text={text}
         />
       </div>
     </>
