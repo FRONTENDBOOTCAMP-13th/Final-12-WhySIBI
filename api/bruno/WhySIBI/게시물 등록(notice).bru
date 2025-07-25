@@ -5,40 +5,42 @@ meta {
 }
 
 post {
-  url: {{url}}/posts?type=notice
+  url: {{url}}/posts?type=qna
   body: json
   auth: inherit
 }
 
 params:query {
-  type: notice
+  type: qna
 }
 
 body:json {
-   {
-        "_id": 7,
-        "type": "notice",
-        "title": "여행 후기 입니다.",
-        "content": "주말에 다녀온 여행지 입니다. 날씨가 맑아서 좋았어요.",
-        "image": "sample-bugatti.png",
-        "tag": "혼자,떠나요,제주도",
-        "views": 0,
+  {
+        "_id": 5,
+        "type": "qna",
+        "product_id": 1,
+        "seller_id": 2,
+        "views": 50,
         "user": {
           "_id": 4,
-          "type": "user",
           "name": "조현수",
-          "email": "johyunsoo123@market.com",
-          "image": "files/febc13-final12-emjf/yujgb7jfO.jpg"
+          "image": "user-jayg.webp"
         },
-        "createdAt": "2025.07.25 00:17:59",
-        "updatedAt": "2025.07.25 00:17:59",
-        "seller_id": null,
-        "bookmarks": 0,
-        "repliesCount": 0,
+        "title": "리뷰이벤트로 짜장면주셈",
+        "content": "배고파요",
+        "createdAt": "2025.07.22 14:24:14",
+        "updatedAt": "2025.07.22 19:24:14",
         "product": {
-          "image": null
-        }
-   }
+          "name": "아이스모찌 쿨링 토퍼패드",
+          "image": {
+            "path": "files/febc13-final12-emjf/cooling.png",
+            "name": "cooling.png",
+            "originalname": "쿨링패드.png"
+          }
+        },
+        "bookmarks": 0,
+        "repliesCount": 0
+      }
 }
 
 settings {

@@ -2,8 +2,12 @@
 
 import { useEffect, useState } from 'react';
 import { Inquiry_Detail } from './fetch/Inquiry_detail';
+import { InquiryItem } from '@/types/shopping_detail';
 
-export default function InquiryList({ item }) {
+interface InquiryListProps {
+  item: InquiryItem;
+}
+export default function InquiryList({ item }: InquiryListProps) {
   const [active, setActive] = useState(false);
   const [replyContent, setReplyContent] = useState(null);
   console.log('우째 넘어오는데', item);

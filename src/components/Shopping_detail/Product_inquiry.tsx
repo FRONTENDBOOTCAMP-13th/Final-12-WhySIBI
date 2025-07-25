@@ -1,33 +1,8 @@
+import { InquiryItem } from '@/types/shopping_detail';
 import ButtonQuestion from '../Buttons/Button_question';
 import { Inquiry_Detail } from './fetch/Inquiry_detail';
 import InquiryList from './Inquiry_list';
 
-// 사용자 정보 타입
-interface User {
-  _id: number;
-  name: string;
-  image: string;
-}
-// 상품 정보 타입
-interface Product {
-  name: string;
-}
-// 메인 문의 타입
-export interface InquiryItem {
-  _id: number;
-  type: 'qna';
-  product_id: number;
-  seller_id: number;
-  views: number;
-  user: User;
-  title: string;
-  content: string;
-  createdAt: string;
-  updatedAt: string;
-  product: Product;
-  bookmarks: number;
-  repliesCount: number;
-}
 // 문의 목록 타입
 export type InquiryListType = InquiryItem[];
 
@@ -36,7 +11,7 @@ export default async function ProductInquiry({ id }: { id: string }) {
   console.log('여기서부터 댓글임', items);
 
   //해당 페이지만 필터 해서 배열에 넣음
-  const itemList = items.filter(item => {
+  const itemList: InquiryListType = items.filter(item => {
     return item.product_id === Number(id);
   });
 
@@ -66,14 +41,8 @@ export default async function ProductInquiry({ id }: { id: string }) {
 
       <ul>
         {itemList.map(item => {
-          // const content = reply[item._id]?.replies[0]?.content || null;
-          return (
-            <InquiryList
-              key={item._id}
-              item={item}
-              // Content={content || null}
-            ></InquiryList>
-          );
+          console.log('타입에러 잡아야하는데', item);
+          return <InquiryList key={item._id} item={item}></InquiryList>;
         })}
       </ul>
     </section>
