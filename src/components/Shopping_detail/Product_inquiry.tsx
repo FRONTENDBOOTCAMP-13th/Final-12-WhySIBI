@@ -1,14 +1,56 @@
 import ButtonQuestion from '../Buttons/Button_question';
+import { Inquiry_Detail } from './fetch/Inquiry_detail';
 import InquiryList from './Inquiry_list';
 
-export default function ProductInquiry() {
+// 사용자 정보 타입
+interface User {
+  _id: number;
+  name: string;
+  image: string;
+}
+// 상품 정보 타입
+interface Product {
+  name: string;
+}
+// 메인 문의 타입
+export interface InquiryItem {
+  _id: number;
+  type: 'qna';
+  product_id: number;
+  seller_id: number;
+  views: number;
+  user: User;
+  title: string;
+  content: string;
+  createdAt: string;
+  updatedAt: string;
+  product: Product;
+  bookmarks: number;
+  repliesCount: number;
+}
+// 문의 목록 타입
+export type InquiryListType = InquiryItem[];
+
+export default async function ProductInquiry({ id }: { id: string }) {
+  const items: InquiryListType = await Inquiry_Detail('?type=qna');
+  console.log('여기서부터 댓글임', items);
+
+  //해당 페이지만 필터 해서 배열에 넣음
+  const itemList = items.filter(item => {
+    return item.product_id === Number(id);
+  });
+
+  console.log('필터되나?', itemList);
+
   return (
-    <section className="max-w-[1028px] mx-auto mt-12 ">
+    <section className="max-w-[1028px] mx-auto mt-12 pb-6">
       <div
         className="flex justify-between border-b-2 pb-3 border-gray-450
       "
       >
-        <h3 className="text-xl font-semibold text-gray-550">문의 876</h3>
+        <h3 className="text-xl font-semibold text-gray-550">
+          문의 {itemList.length}
+        </h3>
         <div className=" w-[140px] text-center">
           <ButtonQuestion />
         </div>
@@ -23,9 +65,16 @@ export default function ProductInquiry() {
       </div>
 
       <ul>
-        <InquiryList></InquiryList>
-        <InquiryList></InquiryList>
-        <InquiryList></InquiryList>
+        {itemList.map(item => {
+          // const content = reply[item._id]?.replies[0]?.content || null;
+          return (
+            <InquiryList
+              key={item._id}
+              item={item}
+              // Content={content || null}
+            ></InquiryList>
+          );
+        })}
       </ul>
     </section>
   );

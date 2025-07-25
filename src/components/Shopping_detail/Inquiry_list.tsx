@@ -1,9 +1,24 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { Inquiry_Detail } from './fetch/Inquiry_detail';
 
-export default function InquiryList() {
+export default function InquiryList({ item }) {
   const [active, setActive] = useState(false);
+  const [replyContent, setReplyContent] = useState(null);
+  console.log('우째 넘어오는데', item);
+
+  useEffect(() => {
+    async function fetch() {
+      if (item.repliesCount > 0) {
+        const reply = await Inquiry_Detail(`/${item._id}`);
+        setReplyContent(reply.replies[0].content);
+      }
+    }
+    fetch();
+  }, []);
+
+  console.log('오이오이', replyContent);
 
   return (
     <>
@@ -13,14 +28,20 @@ export default function InquiryList() {
         }}
         className="flex p-5 border-b-1 border-gray-150 text-gray-550 font-bold items-center cursor-pointer"
       >
-        <h4 className=" flex-1 text-center">
-          바람세기가 너무 약한데 고장난거 아닌가요?
-        </h4>
-        <span className="w-[150px] text-center">조현수</span>
-        <time className="w-[150px] text-center" dateTime="2020.01.01">
-          2020.01.01
+        <h4 className=" flex-1 text-center">{item.title}</h4>
+        <span className="w-[150px] text-center">{item.user.name}</span>
+        <time
+          className="w-[150px] text-center"
+          dateTime={`${item.createdAt.split(' ')[0]}`}
+        >
+          {item.createdAt.split(' ')[0]}
         </time>
-        <span className="w-[100px] text-center">답변완료</span>
+        {replyContent ? (
+          <span className="w-[100px] text-center text-flame-250">답변완료</span>
+        ) : (
+          <span className="w-[100px] text-center">답변대기</span>
+        )}
+
         <div className="w-[13px] h-[13px]">
           <svg
             className={`w-full h-full transition-transform duration-300 ease-out ${
@@ -42,30 +63,17 @@ export default function InquiryList() {
       >
         <div className="flex gap-12 ">
           <span className="text-flame-250 text-3xl font-bold">Q.</span>
-          <p className="pt-3 text-gray-550 font-semibold">
-            AI 코딩 도구를 활용하면 코드 생성 및 자동화, 개발 워크플로우와의
-            통합 등이 가능하며 기존 개발 환경 대비 생산성을 높일 수 있습니다.
-            그러나 개발자를 꿈꾸며 학습을하는 예비 개발자에게 AI 코딩 도구는
-            양날의 검이 될 수 있습니다. AI 코딩 도구에만 의존하는 주니어
-            개발자는 경쟁력을 갖출 수 없기 때문입니다. 오히려 더 깊이 있게
-            언어를 학습하고 좋은 질문을 할 수 있도록 문해력(Literacy)을 기르는
-            것이 필요합니다. 다만 AI 도구를 완전히 배제하는 것이 아닌 학습을
-            위한 파트너로서 활용할 것을 추천합니다.
-          </p>
+          <p className="pt-3 text-gray-550 font-semibold">{item.content}</p>
         </div>
-        <div className="flex gap-12">
-          <span className="text-button-color text-3xl font-bold">A.</span>
-          <p className="pt-3 text-gray-550 font-semibold">
-            AI 코딩 도구를 활용하면 코드 생성 및 자동화, 개발 워크플로우와의
-            통합 등이 가능하며 기존 개발 환경 대비 생산성을 높일 수 있습니다.
-            그러나 개발자를 꿈꾸며 학습을하는 예비 개발자에게 AI 코딩 도구는
-            양날의 검이 될 수 있습니다. AI 코딩 도구에만 의존하는 주니어
-            개발자는 경쟁력을 갖출 수 없기 때문입니다. 오히려 더 깊이 있게
-            언어를 학습하고 좋은 질문을 할 수 있도록 문해력(Literacy)을 기르는
-            것이 필요합니다. 다만 AI 도구를 완전히 배제하는 것이 아닌 학습을
-            위한 파트너로서 활용할 것을 추천합니다.
-          </p>
-        </div>
+        {/* 대댓글이 있을때만 표시 */}
+        {replyContent ? (
+          <div className="flex gap-12">
+            <span className="text-button-color text-3xl font-bold">A.</span>
+            <p className="pt-3 text-gray-550 font-semibold">{replyContent}</p>
+          </div>
+        ) : (
+          ''
+        )}
       </article>
     </>
   );
