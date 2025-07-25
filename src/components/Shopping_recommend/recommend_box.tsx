@@ -5,6 +5,7 @@ import { getProductList } from '@/data/actions/products.fetch';
 import { ProductListProps } from '@/types';
 import PreferenceTagMap from '@/utils/preferenceTagMap';
 import useUserStore from '@/zustand/useUserStore';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
@@ -100,7 +101,7 @@ function RecommendBox() {
         <>
           {/* 비회원 관심 태그 선택창 */}
           <p className="text-lg font-bold text-livealone-cal-poly-green mb-5">
-            요즘 자취 관심사를 알려주세요
+            요즘 자취 관심사를 선택해주세요
           </p>
           <div className="overflow-x-auto h-[250px]  whitespace-nowrap mb-10">
             <div className="flex gap-4 w-max">
@@ -228,7 +229,8 @@ function RecommendBox() {
           </div>
 
           {/* 비회원 선택 기반 추천 상품 */}
-          {checkTag.length > 0 && //checkTag 배열이 0 보다 크면
+          {/* checkTag 배열이 0 보다 크면 - 선택 시 */}
+          {checkTag.length > 0 ? (
             checkTag.map((tag, index) => {
               //checkTag 배열을 돌면서 태그 필터 -> 상품 4개 가져옴
               const tagProduct = productData
@@ -274,7 +276,22 @@ function RecommendBox() {
                   </div>
                 </div>
               );
-            })}
+            })
+          ) : (
+            /* checkTag 배열이 0 보다 작을때 - 선택 안했을 시 */
+            <div className="bg-gradient-to-b border-2 border-gray-200 rounded-2xl flex items-center justify-center flex-col">
+              <Image
+                src="/image/category_icon/furniture.svg"
+                alt="관심사 미선택"
+                width="200"
+                height="200"
+                className="w-[100px] opacity-20 mt-5 mb-2.5"
+              />
+              <p className="text-center text-gray-500 text-base mb-5">
+                앗! 선택된 관심사가 없어요 <br /> 관심 태그를 선택해 주세요
+              </p>
+            </div>
+          )}
         </>
       )}
     </>
