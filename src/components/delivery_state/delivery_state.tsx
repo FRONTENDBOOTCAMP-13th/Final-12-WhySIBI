@@ -1,5 +1,6 @@
 'use client';
 import { Product } from '@/types';
+import useUserStore from '@/zustand/useUserStore';
 import Image from 'next/image';
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 interface DeliveryStateClientProps {
@@ -10,23 +11,7 @@ export default function DeliveryState({
   productID,
   productData,
 }: DeliveryStateClientProps) {
-  
-  let userName = '';
-  let userAddress = '';
-  const userStorageString = sessionStorage.getItem('user');
-
-  if (userStorageString) {
-    try {
-      const userStorage = JSON.parse(userStorageString);
-      if (userStorage?.state?.user?.token?.accessToken) {
-        userName = userStorage.state.user.name;
-        userAddress = userStorage.state.user.extra.addressBook[0].value;
-      }
-    } catch (error) {
-      console.error('JSON 파싱 오류:', error);
-    }
-  }
-
+  const { user } = useUserStore();
   return (
     <>
       <h2 className="font-logo text-5xl ml-9 my-9">배송조희</h2>
@@ -111,8 +96,8 @@ export default function DeliveryState({
           </div>
         </div>
         <div className="ml-4 text-lg font-basic">
-          <p>받는사람:{userName}</p>
-          <p className="mt-2.5">배송지:{userAddress}</p>
+          <p>받는사람:{user?.name}</p>
+          <p className="mt-2.5">배송지:{user?.address}</p>
         </div>
       </section>
     </>
