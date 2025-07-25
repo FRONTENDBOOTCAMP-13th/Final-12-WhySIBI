@@ -1,4 +1,5 @@
 'use client';
+import ReviewStar from '@/components/review_write/star';
 import { createReplie } from '@/data/actions/replies';
 import { Product } from '@/types';
 import useUserStore from '@/zustand/useUserStore';
@@ -65,9 +66,7 @@ export default function ReviewWriteForm({
           <div className="font-basic">
             <input type="hidden" name="product_id" value={productData._id} />
             <p className="text-size-md">상품명: {productData.name}</p>
-            <select name="rating" id="rating">
-              <option value={5}>5</option>
-            </select>
+            <ReviewStar />
           </div>
         </section>
         <section className="flex gap-3 mt-9">
