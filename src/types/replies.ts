@@ -49,6 +49,7 @@ export interface ReviewItem {
   createdAt: string;
   extra: ReviewExtra;
   product: ReviewProduct;
+  token: string;
 }
 
 // ReviewInfo 컴포넌트의 Props 타입
