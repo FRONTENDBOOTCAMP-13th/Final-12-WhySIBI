@@ -5,11 +5,12 @@ meta {
 }
 
 get {
-  url: {{url}}/users
+  url: {{url}}/posts?type=notice
   body: none
   auth: inherit
 }
 
 params:query {
+  type: notice
   ~type: qna
 }

@@ -1,26 +1,7 @@
 import Image from 'next/image';
 import ShoppingForm from './Shopping_form';
-// import { getProductInfo } from '@/data/actions/products';
 import { ShoppingDetailType } from '@/types/shopping_detail';
-
-//fetch로직
-export async function Product_Detail(pageNum: string) {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/products/${pageNum}`,
-    {
-      headers: {
-        'Content-Type': 'application/json',
-        'Client-Id': 'febc13-final12-emjf',
-      },
-    },
-  );
-  if (!response.ok) {
-    <div>오류가 발생했습니다.</div>;
-  }
-  const detail = await response.json();
-  console.log('데이터 확인', detail.item);
-  return detail.item;
-}
+import { Product_Detail } from './fetch/Product_detail';
 
 export default async function ShoppingDetail({
   stars,
