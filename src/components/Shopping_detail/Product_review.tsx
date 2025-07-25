@@ -11,6 +11,7 @@ export default function ProductReview({ stars, replies }: ProductReviewProps) {
   const selectedStar = [...stars, '별점순'];
   const [active, setActive] = useState(false);
   const [selected, setSelected] = useState(selectedStar[5]);
+  const [sort, setSort] = useState('');
 
   // 리뷰들의 별점을 받아와서 배열에 저장함
   const repliesStars = [];
@@ -60,6 +61,18 @@ export default function ProductReview({ stars, replies }: ProductReviewProps) {
   console.log('정렬됐나?', sortedByCount);
   const maxCount = sortedByCount[0][1];
 
+  // 사진이 있는 리뷰를 필터링
+  console.log('어케넘어오는데', replies);
+  const photoReview = replies.filter(reply => {
+    return reply?.extra?.image?.path;
+  });
+
+  console.log('보자 필터 됐는가', photoReview);
+  // 정렬상태가 isPhoto이면 리뷰를 포토리뷰로 바꿈
+  if (sort === 'isPhoto') {
+    replies = photoReview;
+  }
+
   return (
     <section className="max-w-[1028px] mx-auto mt-12 ">
       <div className="flex justify-between border-b-2 pb-3 border-[#a5a5a5]">
@@ -68,9 +81,24 @@ export default function ProductReview({ stars, replies }: ProductReviewProps) {
         </h3>
         <div className="flex  items-center gap-8">
           <button className="cursor-pointer">추천순</button>
-          <button className="cursor-pointer">최근등록순</button>
-          <button className="cursor-pointer">사진리뷰</button>
-          {/* 별점 셀렉박스 */}
+          <button
+            className="cursor-pointer"
+            onClick={() => {
+              setSort('latest');
+            }}
+          >
+            최근등록순
+          </button>
+          <button
+            className="cursor-pointer"
+            onClick={() => {
+              setSort('isPhoto');
+            }}
+          >
+            사진리뷰
+          </button>
+
+          {/*  ---- 별점 셀렉박스 영역 ---- */}
           <div className="selectBox cursor-pointer inline-block">
             <div
               onClick={() => {
@@ -114,6 +142,8 @@ export default function ProductReview({ stars, replies }: ProductReviewProps) {
               })}
             </ul>
           </div>
+
+          {/* ----여기까지 별점 셀렉박스 영역 ---- */}
         </div>
       </div>
 
