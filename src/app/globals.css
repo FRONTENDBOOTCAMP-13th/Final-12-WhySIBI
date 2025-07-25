@@ -524,6 +524,23 @@
     transition-timing-function: linear !important;
   }
 
+  .recommend-swiper .swiper-slide {
+    width: auto !important;
+  }
+
+  .recommend-swiper .swiper-scrollbar {
+    position: relative !important;
+    height: 6px !important;
+    background: #e0e0e0 !important;
+    margin-top: 12px;
+    border-radius: 9999px;
+  }
+
+  .recommend-swiper .swiper-scrollbar-drag {
+    background: #888 !important;
+    border-radius: 9999px;
+  }
+
   /* subcategory menu */
   .subcategory-container {
     display: grid;

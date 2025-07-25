@@ -1,8 +1,10 @@
+import ShoppingRecommendSection from '@/components/Shopping_recommend/shopping_recommend_section';
+
 export default function ShoppingRecommend() {
   return (
     <>
-      <main>
-        <h1>쇼핑추천페이지</h1>
+      <main className="bg-white p-20">
+        <ShoppingRecommendSection />
       </main>
     </>
   );
