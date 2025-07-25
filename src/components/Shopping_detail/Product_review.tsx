@@ -8,7 +8,7 @@ import Image from 'next/image';
 // import CommentItem from '../Detail_posts/CommentItem';
 
 export default function ProductReview({ stars, replies }: ProductReviewProps) {
-  const selectedStar = [...stars, '별점순'];
+  const selectedStar = [...stars, '필터'];
   const [active, setActive] = useState(false);
   const [selected, setSelected] = useState(selectedStar[5]);
   const [sort, setSort] = useState('');
@@ -24,7 +24,7 @@ export default function ProductReview({ stars, replies }: ProductReviewProps) {
   for (let i = 0; i < repliesStars.length; i++) {
     sum += repliesStars[i];
   }
-  const avg = sum / repliesStars.length;
+  const avg = (sum / repliesStars.length).toFixed(1);
 
   //각 별점을 각각 몇개 있는지 객체 형태로 저장
   const starBoard = {
