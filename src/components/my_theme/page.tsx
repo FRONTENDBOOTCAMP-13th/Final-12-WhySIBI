@@ -13,9 +13,9 @@ export default function MyTheme({ state, onClose }: IsClickProps) {
     const checkedInputs = document.querySelectorAll(
       'input[name="preference"]:checked',
     );
-    const selectedTags = Array.from(checkedInputs).map(
-      input => (input as HTMLInputElement).dataset.text,
-    );
+    const selectedTags = Array.from(checkedInputs)
+      .map(input => (input as HTMLInputElement).dataset.text)
+      .filter(Boolean) as string[];
     setCheckTag(selectedTags);
   };
   return (
