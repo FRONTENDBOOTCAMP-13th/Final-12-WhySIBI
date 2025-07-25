@@ -2,6 +2,7 @@
 import ProductCard from '@/components/product_component/product_card';
 import { getProductList } from '@/data/actions/products.fetch';
 import { ProductListProps } from '@/types';
+import PreferenceTagMap from '@/utils/preferenceTagMap';
 import useUserStore from '@/zustand/useUserStore';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -42,36 +43,41 @@ function RecommendBox() {
           return (
             <div
               key={index}
-              className="bg-gradient-to-b from-vanilla-300 to-columbia-blue-300 mb-10 rounded-2xl"
+              className="bg-gradient-to-b  from-vanilla-300 to-columbia-blue-300 mb-10 rounded-2xl"
             >
               <div className="flex justify-between p-5">
                 <p className="text-lg font-bold text-livealone-cal-poly-green">
-                  {tag} 인기 상품 추천 ✨
+                  {PreferenceTagMap[tag]} 인기 상품 추천 ✨
                 </p>
-                <Link href="/shopping/category">
+                <Link href="/shopping/best">
                   <span className="text-gray-400">{`더보기 >`}</span>
                 </Link>
               </div>
-              {tagProduct.map((product, index) => {
-                const discount = product?.extra?.originalPrice
-                  ? `${Math.round(100 - (product.price * 100) / product.extra.originalPrice)}%`
-                  : ''; //할인율
-                return (
-                  <ProductCard
-                    key={product._id}
-                    id={product._id}
-                    name={product.name}
-                    imageUrl={`${API_URL}/${product.mainImages[0]?.path}`}
-                    price={`${product.price.toLocaleString()}원`}
-                    discount={discount}
-                    rank={index + 1}
-                    rating={product.extra?.star ? product.extra?.star : 0}
-                    reviewCount={100} //리뷰카운트 계산예정
-                    isLiked={product.extra?.isLike ? true : false}
-                    onClick={() => {}}
-                  />
-                );
-              })}
+              <div
+                className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4
+ items-center"
+              >
+                {tagProduct.map((product, index) => {
+                  const discount = product?.extra?.originalPrice
+                    ? `${Math.round(100 - (product.price * 100) / product.extra.originalPrice)}%`
+                    : ''; //할인율
+                  return (
+                    <ProductCard
+                      key={product._id}
+                      id={product._id}
+                      name={product.name}
+                      imageUrl={`${API_URL}/${product.mainImages[0]?.path}`}
+                      price={`${product.price.toLocaleString()}원`}
+                      discount={discount}
+                      rank={index + 1}
+                      rating={product.extra?.star ? product.extra?.star : 0}
+                      reviewCount={100} //리뷰카운트 계산예정
+                      isLiked={product.extra?.isLike ? true : false}
+                      onClick={() => {}}
+                    />
+                  );
+                })}
+              </div>
             </div>
           );
         })
@@ -82,7 +88,7 @@ function RecommendBox() {
             <p className="text-lg font-bold text-livealone-cal-poly-green">
               홈카페 인기 상품 추천 ✨
             </p>
-            <Link href="">
+            <Link href="/shopping/best">
               <span className="text-gray-400">{`더보기 >`}</span>
             </Link>
           </div>

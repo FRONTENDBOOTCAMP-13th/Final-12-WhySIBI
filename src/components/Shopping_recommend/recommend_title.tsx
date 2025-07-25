@@ -1,4 +1,5 @@
 'use client';
+import preferenceTagMap from '@/utils/preferenceTagMap';
 import useUserStore from '@/zustand/useUserStore';
 import { ReactNode } from 'react';
 
@@ -7,35 +8,9 @@ interface TitleProps {
   subTitle: string | ReactNode;
 }
 
-// const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
 function RecommendTitle({ title, subTitle }: TitleProps) {
   const { user } = useUserStore();
   console.log('user.extra:', user?.extra);
-
-  //최신 상태의 취향 태그를 db에서 받아옴
-  // useEffect(() => {
-  //   const fetchPreference = async () => {
-  //     if (!user?._id) return;
-  //     try {
-  //       const res = await fetch(`${API_URL}/users/${user._id}`);
-  //       const data = await res.json();
-  //       if (data.ok) {
-  //         setUser({
-  //           ...user,
-  //           extra: {
-  //             ...user.extra,
-  //             preference: data.item.extra.preference || [],
-  //           },
-  //         });
-  //       }
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   };
-
-  //   fetchPreference();
-  // }, []);
 
   return (
     <header className="mb-10">
@@ -60,7 +35,7 @@ function RecommendTitle({ title, subTitle }: TitleProps) {
                       key={i}
                       className=" p-2 rounded-radius-full border-2 border-button-color-opaque-25"
                     >
-                      # {tag}
+                      # {preferenceTagMap[tag]}
                     </li>
                   );
                 })}

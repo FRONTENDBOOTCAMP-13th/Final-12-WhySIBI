@@ -32,7 +32,7 @@ function ProductCard({
   onClick,
 }: ProductCardProps) {
   return (
-    <article className="w-[300px] p-4" onClick={onClick}>
+    <article className="p-4" onClick={onClick}>
       <Link href={`/products/${id}`}>
         <div className="mx-auto w-fit">
           <div className="relative">
