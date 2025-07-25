@@ -9,9 +9,30 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
+//로딩중일때 보여줄 스켈레톤 UI
+function SkeletonUI() {
+  const skeleton = [];
+
+  for (let i = 0; i < 4; i++) {
+    //ui 4번반복
+    skeleton.push(
+      <div key={i} className="flex flex-col gap-2 p-4">
+        <div className="bg-gray-300 h-[180px] w-full rounded-md" />
+        <div className="h-4 bg-gray-300 rounded w-3/4" />
+        <div className="h-4 bg-gray-300 rounded w-1/2" />
+        <div className="h-4 bg-gray-300 rounded w-1/2" />
+      </div>,
+    );
+  }
+
+  return <>{skeleton}</>;
+}
+
+//추천 상품 박스
 function RecommendBox() {
   const [checkTag, setCheckTag] = useState<string[]>([]);
   const [productData, setProductData] = useState<ProductListProps[]>([]);
+  const [loading, setLoading] = useState(true);
   const { user } = useUserStore();
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -41,6 +62,8 @@ function RecommendBox() {
         }
       } catch (err) {
         console.error('상품을 불러오지 못했습니다.', err);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -73,25 +96,31 @@ function RecommendBox() {
                 className="grid sm:grid-cols-2 md:grid-cols-2 
                 lg:grid-cols-4 gap-4 items-center"
               >
-                {tagProduct.map(product => {
-                  const discount = product?.extra?.originalPrice
-                    ? `${Math.round(100 - (product.price * 100) / product.extra.originalPrice)}%`
-                    : ''; //할인율
-                  return (
-                    <ProductCard
-                      key={product._id}
-                      id={product._id}
-                      name={product.name}
-                      imageUrl={`${API_URL}/${product.mainImages[0]?.path}`}
-                      price={`${product.price.toLocaleString()}원`}
-                      discount={discount}
-                      rating={product.extra?.star ? product.extra?.star : 0}
-                      reviewCount={100} //리뷰카운트 계산예정
-                      isLiked={product.extra?.isLike ? true : false}
-                      onClick={() => {}}
-                    />
-                  );
-                })}
+                {/* 상품 로딩중일때 스켈레톤 UI 불러옴 */}
+                {loading ? (
+                  <SkeletonUI />
+                ) : (
+                  // 로딩중이 아니면 프로덕트 카드로 대체
+                  tagProduct.map(product => {
+                    const discount = product?.extra?.originalPrice
+                      ? `${Math.round(100 - (product.price * 100) / product.extra.originalPrice)}%`
+                      : ''; //할인율
+                    return (
+                      <ProductCard
+                        key={product._id}
+                        id={product._id}
+                        name={product.name}
+                        imageUrl={`${API_URL}/${product.mainImages[0]?.path}`}
+                        price={`${product.price.toLocaleString()}원`}
+                        discount={discount}
+                        rating={product.extra?.star ? product.extra?.star : 0}
+                        reviewCount={100} //리뷰카운트 계산예정
+                        isLiked={product.extra?.isLike ? true : false}
+                        onClick={() => {}}
+                      />
+                    );
+                  })
+                )}
               </div>
             </div>
           );
