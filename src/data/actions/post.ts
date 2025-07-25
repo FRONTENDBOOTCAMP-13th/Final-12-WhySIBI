@@ -19,9 +19,20 @@ const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID || '';
  */
 export async function createPost(state: ApiRes<Post> | null, formData: FormData): ApiResPromise<Post> {
   // FormData를 일반 Object로 변환
-  const body = Object.fromEntries(formData.entries());
+  // const body = Object.fromEntries(formData.entries());
   let res: Response;
   let data: ApiRes<Post>;
+
+  // const accessToken = formData.get("accessToken") as string;
+
+  // FormData
+  const type = formData.get("type") as string;
+  const title = formData.get("title") as string;
+  const content = formData.get("content") as string;
+  const image = JSON.parse(formData.get("image") as string);
+  const tag = JSON.parse(formData.get("tag") as string);
+
+  const body = { type, title, content, image, tag }
 
   try{
     res = await fetch(`${API_URL}/posts`, {
@@ -32,6 +43,14 @@ export async function createPost(state: ApiRes<Post> | null, formData: FormData)
       },
       body: JSON.stringify(body),
     });
+
+    const postResult = await res.json();
+    console.log("게시글 등록 응답:", postResult);
+
+    if (postResult.ok !== 1) {
+      console.log("게시글 등록 실패:", postResult);
+      return { ok: 0, message: `게시글 등록 실패: ${postResult.message || "Unknown error"}` };
+    }
 
     data = await res.json();
     

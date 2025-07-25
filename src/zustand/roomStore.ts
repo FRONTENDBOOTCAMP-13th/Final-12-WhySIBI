@@ -6,10 +6,8 @@ import { Post } from '@/types';
 interface PostInput {
   title: string;
   content: string;
-  image: string;
-  detailImages?: string[];
-  bookMark: boolean;
-  tags?: string[];
+  image: string[];
+  tag?: string[];
 }
 
 //zustand 상태 및 메서드 정의
@@ -35,11 +33,10 @@ export const useRoomStore = create<PostState>((set) => ({
         title: newPost.title,
         content: newPost.content,
         image: newPost.image,
-        detailImages: newPost.detailImages,
         isLiked: 0,
         views: 0,
         repliesCount: 0,
-        tags: newPost.tags,
+        tag: newPost.tag,
         type: '',
         createdAt: '',
         updatedAt: ''

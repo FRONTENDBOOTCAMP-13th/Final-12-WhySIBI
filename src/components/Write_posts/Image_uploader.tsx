@@ -6,22 +6,22 @@ import 'swiper/css';
 import Image from 'next/image';
 
 interface ImageUploaderProps {
-  images: string[];
-  setImages: (images: string[]) => void;
+  image: string[];
+  setImage: (image: string[]) => void;
 }
 
-export default function ImageUploader({ images, setImages }: ImageUploaderProps) {
+export default function ImageUploader({ image, setImage }: ImageUploaderProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (!files) return;
 
-    const newImages = Array.from(files).map((file) =>
+    const newImage = Array.from(files).map((file) =>
       URL.createObjectURL(file)
     );
 
-    setImages([...images, ...newImages]);
+    setImage([...image, ...newImage]);
   };
 
   const openFileDialog = () => {
@@ -29,7 +29,7 @@ export default function ImageUploader({ images, setImages }: ImageUploaderProps)
   };
 
   const deleteImage = (indexToDelete: number) => {
-    setImages(images.filter((_, index) => index !== indexToDelete));
+    setImage(image.filter((_, index) => index !== indexToDelete));
   };
 
   return (
@@ -60,7 +60,7 @@ export default function ImageUploader({ images, setImages }: ImageUploaderProps)
           </button>
         </div>
         <Swiper slidesPerView="auto" spaceBetween={12} className="w-[450px] overflow-hidden py-3">
-          {images.map((src, i) => (
+          {image.map((src, i) => (
             <SwiperSlide
               key={i}
               className="!w-[140px] !h-[140px] relative flex items-center justify-center rounded-4xl cursor-pointer border-2 border-gray-400 overflow-hidden group"

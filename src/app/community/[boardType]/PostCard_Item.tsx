@@ -5,14 +5,14 @@ import { Post } from "@/types";
 
 interface PostCardItemProps {
   post: Post;
+  boardType: string;
   isBookmarked: boolean;
   toggleBookmark: (id: number) => void;
   index: number;
-  boardType: string;
 }
 
 
-export default function PostCardItem({ post, isBookmarked, toggleBookmark, index, boardType }: PostCardItemProps) {
+export default function PostCardItem({ post, boardType, isBookmarked, toggleBookmark, index }: PostCardItemProps) {
   
   return (
     <div 
@@ -25,7 +25,7 @@ export default function PostCardItem({ post, isBookmarked, toggleBookmark, index
       >
         <div className="relative w-[300px] h-[190px] mb-3">
           <Image
-            src={post.image || "/image/room_photo/postThumbnail.svg"}
+            src={post.image[0] || "/image/room_photo/postThumbnail.svg"}
             alt="썸네일"
             fill
             sizes="300px"
