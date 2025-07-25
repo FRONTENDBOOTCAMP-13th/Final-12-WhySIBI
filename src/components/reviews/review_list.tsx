@@ -47,7 +47,7 @@ export default function ReviewLists() {
             content={review.content}
             productName={review.product.name}
             productImage={review.product.image}
-            productId={review.product._id}
+            productId={review._id}
             star={review.extra.star}
             key={i}
           />

@@ -1,5 +1,8 @@
+import { DeleteReplie } from '@/data/actions/replies';
 import { ReviewInfoProps } from '@/types/replies';
+import useUserStore from '@/zustand/useUserStore';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 export default function ReviewInfo({
@@ -7,7 +10,28 @@ export default function ReviewInfo({
   productImage,
   star,
   productName,
+  productId,
 }: ReviewInfoProps) {
+  const { user } = useUserStore();
+  const token = user?.token?.accessToken;
+  const ID = String(productId);
+  const route = useRouter();
+  const handleDelete = async () => {
+    try {
+      const result = await DeleteReplie(ID as string, token as string);
+      if (result.ok) {
+        // 성공 처리
+        console.log('삭제 완료');
+        route.push('/my_page/reviews');
+      } else {
+        // 실패 처리
+        console.error('삭제 실패:', result.message);
+      }
+    } catch (error) {
+      console.error('에러:', error);
+    }
+  };
+
   const starArray = new Array(star).fill(0);
   return (
     <li className="w-4/5 border-2 border-button-color-opaque-25 shadow-shadow-md p-5 rounded-radius-lg">
@@ -45,6 +69,15 @@ export default function ReviewInfo({
             <p>{content}</p>
           </figcaption>
         </figure>
+        <aside>
+          <button
+            type="button"
+            className="font-basic nahonsan-btn-3d-red text-white  p-2 pl-5 pr-5 rounded-radius-md text-size-sm"
+            onClick={handleDelete}
+          >
+            삭제
+          </button>
+        </aside>
       </div>
     </li>
   );
