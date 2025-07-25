@@ -1,4 +1,5 @@
 'use client';
+
 import InputCheckBox from '@/components/Input/input_checkbox';
 import ProductCard from '@/components/product_component/product_card';
 import { getProductList } from '@/data/actions/products.fetch';
@@ -8,6 +9,10 @@ import useUserStore from '@/zustand/useUserStore';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Scrollbar } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/scrollbar';
 
 //로딩중일때 보여줄 스켈레톤 UI
 function SkeletonUI() {
@@ -132,129 +137,167 @@ function RecommendBox() {
           <p className="text-lg font-bold text-livealone-cal-poly-green mb-5">
             요즘 자취 관심사를 선택해주세요
           </p>
-          <div className="overflow-x-auto h-[250px]  whitespace-nowrap mb-10">
-            <div className="flex gap-4 w-max">
-              <div className="min-w-[120px] ">
-                <InputCheckBox
-                  text={'🛁 욕실꾸미기'}
-                  idValue={'bathroom_decor'}
-                  inputType={'checkbox'}
-                  bgImg={'/image/theme_image/bathroom_deco.png'}
-                  valueText="TAG1"
-                  onTagChange={handleTag}
-                />
-              </div>
-              <div className="min-w-[120px]">
-                <InputCheckBox
-                  text={'☕ 홈카페'}
-                  idValue={'home_cafe'}
-                  inputType={'checkbox'}
-                  bgImg={'/image/theme_image/home_cafe.png'}
-                  valueText="TAG2"
-                  onTagChange={handleTag}
-                />
-              </div>
-              <div className="min-w-[120px]">
-                <InputCheckBox
-                  text={'💻 재택근무'}
-                  idValue={'home_work'}
-                  inputType={'checkbox'}
-                  bgImg={'/image/theme_image/home_work.png'}
-                  valueText="TAG5"
-                  onTagChange={handleTag}
-                />
-              </div>
-              <div className="min-w-[120px] ">
-                <InputCheckBox
-                  text={'🥗 1인 식단'}
-                  idValue={'solo_meal'}
-                  inputType={'checkbox'}
-                  bgImg={'/image/theme_image/solo_meal.png'}
-                  valueText="TAG7"
-                  onTagChange={handleTag}
-                />
-              </div>
-              <div className="min-w-[120px] ">
-                <InputCheckBox
-                  text={'🧹 공간 분리'}
-                  idValue={'space_division'}
-                  inputType={'checkbox'}
-                  bgImg={'/image/theme_image/space_division.png'}
-                  valueText="TAG4"
-                  onTagChange={handleTag}
-                />
-              </div>
-              <div className="min-w-[120px] ">
-                <InputCheckBox
-                  text={'🎨 DIY'}
-                  idValue={'diy'}
-                  inputType={'checkbox'}
-                  bgImg={'/image/theme_image/diy.png'}
-                  valueText="TAG3"
-                  onTagChange={handleTag}
-                />
-              </div>
-              <div className="min-w-[120px]  ">
-                <InputCheckBox
-                  text={'📚 책상꾸미기'}
-                  idValue={'desk_decor'}
-                  inputType={'checkbox'}
-                  bgImg={'/image/theme_image/desk_decor.png'}
-                  valueText="TAG9"
-                  onTagChange={handleTag}
-                />
-              </div>
-              <div className="min-w-[120px]  ">
-                <InputCheckBox
-                  text={'🛋️ 인테리어'}
-                  idValue={'interior_design'}
-                  inputType={'checkbox'}
-                  bgImg={'/image/theme_image/interior_design.png'}
-                  valueText="TAG8"
-                  onTagChange={handleTag}
-                />
-              </div>
-              <div className="min-w-[120px] ">
-                <InputCheckBox
-                  text={'🧸 미니멀'}
-                  idValue={'minimal_style'}
-                  inputType={'checkbox'}
-                  bgImg={'/image/theme_image/minimal_style.png'}
-                  valueText="TAG11"
-                  onTagChange={handleTag}
-                />
-              </div>
-              <div className="min-w-[120px] ">
-                <InputCheckBox
-                  text={'🎮 디지털테크'}
-                  idValue={'digital_tag'}
-                  inputType={'checkbox'}
-                  bgImg={'/image/theme_image/digital_tag.png'}
-                  valueText="TAG10"
-                  onTagChange={handleTag}
-                />
-              </div>
-              <div className="min-w-[120px] ">
-                <InputCheckBox
-                  text={'🫧 청소광'}
-                  idValue={'clean_freak'}
-                  inputType={'checkbox'}
-                  bgImg={'/image/theme_image/clean_freak.png'}
-                  valueText="TAG12"
-                  onTagChange={handleTag}
-                />
-              </div>
-              <div className="min-w-[120px] ">
-                <InputCheckBox
-                  text={'🛏️ 침구정리'}
-                  idValue={'bedding_organize'}
-                  inputType={'checkbox'}
-                  bgImg={'/image/theme_image/bedding_organize.png'}
-                  valueText="TAG6"
-                  onTagChange={handleTag}
-                />
-              </div>
-            </div>
+
+          <div className="recommend-swiper mb-10">
+            <Swiper
+              modules={[Scrollbar]}
+              loop={false} // 슬라이드 루프
+              spaceBetween={16} // 슬라이스 사이 간격
+              slidesPerView="auto" // 보여질 슬라이스 수
+              grabCursor={true} //마우스 선택
+              scrollbar={{
+                //스크롤바
+                el: '.swiper-scrollbar',
+                draggable: true,
+              }}
+            >
+              <SwiperSlide>
+                <div className="min-w-[120px]">
+                  <InputCheckBox
+                    text={'🛁 욕실꾸미기'}
+                    idValue={'bathroom_decor'}
+                    inputType={'checkbox'}
+                    bgImg={'/image/theme_image/bathroom_deco.png'}
+                    valueText="TAG1"
+                    onTagChange={handleTag}
+                  />
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="min-w-[120px]">
+                  <InputCheckBox
+                    text={'☕ 홈카페'}
+                    idValue={'home_cafe'}
+                    inputType={'checkbox'}
+                    bgImg={'/image/theme_image/home_cafe.png'}
+                    valueText="TAG2"
+                    onTagChange={handleTag}
+                  />
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="min-w-[120px]">
+                  <InputCheckBox
+                    text={'💻 재택근무'}
+                    idValue={'home_work'}
+                    inputType={'checkbox'}
+                    bgImg={'/image/theme_image/home_work.png'}
+                    valueText="TAG5"
+                    onTagChange={handleTag}
+                  />
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="min-w-[120px] ">
+                  <InputCheckBox
+                    text={'🥗 1인 식단'}
+                    idValue={'solo_meal'}
+                    inputType={'checkbox'}
+                    bgImg={'/image/theme_image/solo_meal.png'}
+                    valueText="TAG7"
+                    onTagChange={handleTag}
+                  />
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="min-w-[120px] ">
+                  <InputCheckBox
+                    text={'🧹 공간 분리'}
+                    idValue={'space_division'}
+                    inputType={'checkbox'}
+                    bgImg={'/image/theme_image/space_division.png'}
+                    valueText="TAG4"
+                    onTagChange={handleTag}
+                  />
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="min-w-[120px] ">
+                  <InputCheckBox
+                    text={'🎨 DIY'}
+                    idValue={'diy'}
+                    inputType={'checkbox'}
+                    bgImg={'/image/theme_image/diy.png'}
+                    valueText="TAG3"
+                    onTagChange={handleTag}
+                  />
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="min-w-[120px]  ">
+                  <InputCheckBox
+                    text={'📚 책상꾸미기'}
+                    idValue={'desk_decor'}
+                    inputType={'checkbox'}
+                    bgImg={'/image/theme_image/desk_decor.png'}
+                    valueText="TAG9"
+                    onTagChange={handleTag}
+                  />
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="min-w-[120px]  ">
+                  <InputCheckBox
+                    text={'🛋️ 인테리어'}
+                    idValue={'interior_design'}
+                    inputType={'checkbox'}
+                    bgImg={'/image/theme_image/interior_design.png'}
+                    valueText="TAG8"
+                    onTagChange={handleTag}
+                  />
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="min-w-[120px] ">
+                  <InputCheckBox
+                    text={'🧸 미니멀'}
+                    idValue={'minimal_style'}
+                    inputType={'checkbox'}
+                    bgImg={'/image/theme_image/minimal_style.png'}
+                    valueText="TAG11"
+                    onTagChange={handleTag}
+                  />
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="min-w-[120px] ">
+                  <InputCheckBox
+                    text={'🎮 디지털테크'}
+                    idValue={'digital_tag'}
+                    inputType={'checkbox'}
+                    bgImg={'/image/theme_image/digital_tag.png'}
+                    valueText="TAG10"
+                    onTagChange={handleTag}
+                  />
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="min-w-[120px] ">
+                  <InputCheckBox
+                    text={'🫧 청소광'}
+                    idValue={'clean_freak'}
+                    inputType={'checkbox'}
+                    bgImg={'/image/theme_image/clean_freak.png'}
+                    valueText="TAG12"
+                    onTagChange={handleTag}
+                  />
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="min-w-[120px] ">
+                  <InputCheckBox
+                    text={'🛏️ 침구정리'}
+                    idValue={'bedding_organize'}
+                    inputType={'checkbox'}
+                    bgImg={'/image/theme_image/bedding_organize.png'}
+                    valueText="TAG6"
+                    onTagChange={handleTag}
+                  />
+                </div>
+              </SwiperSlide>
+
+              <div className="swiper-scrollbar"></div>
+            </Swiper>
           </div>
 
           {/* 비회원 선택 기반 추천 상품 */}
