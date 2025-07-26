@@ -3,33 +3,37 @@ import { ReviewInfoProps } from '@/types/replies';
 import useUserStore from '@/zustand/useUserStore';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
+interface ExtendedReviewInfoProps extends ReviewInfoProps {
+  onDelete?: () => void;
+}
+
 export default function ReviewInfo({
   content,
   productImage,
   star,
   productName,
   productId,
-}: ReviewInfoProps) {
+  onDelete,
+}: ExtendedReviewInfoProps) {
   const { user } = useUserStore();
+  const [loading, setLoading] = useState(false);
   const token = user?.token?.accessToken;
   const ID = String(productId);
   const route = useRouter();
   const handleDelete = async () => {
-    try {
-      const result = await DeleteReplie(ID as string, token as string);
-      if (result.ok) {
-        // 성공 처리
-        console.log('삭제 완료');
-        route.push('/my_page/reviews');
-      } else {
-        // 실패 처리
-        console.error('삭제 실패:', result.message);
-      }
-    } catch (error) {
-      console.error('에러:', error);
+    setLoading(true);
+    const result = await DeleteReplie(ID as string, token as string);
+    if (result.ok) {
+      onDelete?.();
+      route.refresh();
+    } else {
+      alert(result.message);
     }
+    setLoading(false);
   };
 
   const starArray = new Array(star).fill(0);
@@ -75,7 +79,7 @@ export default function ReviewInfo({
             className="font-basic nahonsan-btn-3d-red text-white  p-2 pl-5 pr-5 rounded-radius-md text-size-sm"
             onClick={handleDelete}
           >
-            삭제
+            {loading ? '삭제 중...' : '삭제하기'}
           </button>
         </aside>
       </div>

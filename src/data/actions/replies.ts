@@ -100,6 +100,7 @@ export async function DeleteReplie(
       },
     });
     const data = await res.json();
+
     return data;
   } catch (error) {
     console.error('상품 조회 실패:', error);
