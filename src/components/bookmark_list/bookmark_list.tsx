@@ -51,22 +51,33 @@ const slideData = [
 ];
 export default function BookMarkList() {
   SwiperCore.use([Navigation, Scrollbar, Pagination]);
-  const [productList, setProductList] = useState<BookMarkItem | null>(null);
+  const [productList, setProductList] = useState<BookMarkItem[] | null>(null);
+  const [postList, setPostList] = useState<BookMarkItem[] | null>(null);
   const { user } = useUserStore();
 
   useEffect(() => {
     const getData = async () => {
-      const res = await GetBookMarkList(
+      const resProduct = await GetBookMarkList(
         'product',
         user?.token?.accessToken as string,
       );
-      console.log(res);
+      const resPost = await GetBookMarkList(
+        'post',
+        user?.token?.accessToken as string,
+      );
+      console.log(resProduct);
+      console.log(resPost);
       try {
-        if (res.ok === 1) {
-          setProductList(res.item[0]);
-          console.log(res.item[0]);
+        if (resProduct.ok === 1) {
+          setProductList(resProduct.item);
         } else {
-          console.log(res.message);
+          console.log('Product error:', resProduct.message);
+        }
+
+        if (resPost.ok === 1) {
+          setPostList(resPost.item);
+        } else {
+          console.log('Post error:', resPost.message);
         }
       } catch (error) {
         console.error('상품 정보 로딩 실패:', error);
@@ -75,6 +86,7 @@ export default function BookMarkList() {
     getData();
   }, []);
   console.log(productList);
+  console.log(postList);
   return (
     <>
       <section className="mt-11 pb-16 border-b-[1px] border-button-color-opaque-25">
@@ -82,10 +94,31 @@ export default function BookMarkList() {
         <div className="bookmark-swiper  max-w-11/12 mx-auto">
           <Swiper
             loop={true}
-            slidesPerView={3} // 기본값 유지
-            spaceBetween={100}
-            centeredSlides={true}
+            // Responsive breakpoints
+            breakpoints={{
+              320: {
+                slidesPerView: 1,
+                spaceBetween: 20,
+                centeredSlides: true,
+              },
+              768: {
+                slidesPerView: 2,
+                spaceBetween: 40,
+                centeredSlides: true,
+              },
+              1024: {
+                slidesPerView: 3,
+                spaceBetween: 60,
+                centeredSlides: true,
+              },
+              1280: {
+                slidesPerView: 3,
+                spaceBetween: 80,
+                centeredSlides: true,
+              },
+            }}
             navigation={true}
+            className="bookmark-swiper-container"
           >
             {slideData.map(slide => (
               <SwiperSlide key={slide.id} className="relative">

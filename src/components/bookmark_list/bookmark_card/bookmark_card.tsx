@@ -10,17 +10,25 @@ type BannerCardProps = {
 
 function BookMarkCard({ title, imageUrl, contentUrl }: BannerCardProps) {
   return (
-    <>
-      <div className="relative w-full h-[18.75rem] shadow-shadow-lg p-5 rounded-radius-lg">
-        <Link href={contentUrl}>
-          <Image src={imageUrl} alt={title} className="object-cover" fill />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-          <div className="absolute  text-white bottom-10 text-4xl text-left font-bold left-15 whitespace-pre-line">
+    <div className="relative w-full max-w-[280px] mx-auto group hover:scale-105 transition-transform duration-300">
+      <Link href={contentUrl} className="block w-full">
+        <div className="relative w-full aspect-square rounded-radius-lg overflow-hidden mb-3">
+          <Image
+            src={imageUrl}
+            alt={title}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 280px, (max-width: 1024px) 250px, 220px"
+          />
+        </div>
+
+        <div className="px-1">
+          <h3 className="text-gray-900 text-sm sm:text-base font-medium leading-tight whitespace-pre-line line-clamp-2">
             {title}
-          </div>
-        </Link>
-      </div>
-    </>
+          </h3>
+        </div>
+      </Link>
+    </div>
   );
 }
 
