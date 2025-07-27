@@ -285,7 +285,7 @@ export default function ProductReview({ stars, replies }: ProductReviewProps) {
               author={item.user.name}
               content={item.content}
               image={item.extra.image?.path}
-              date={item.extra.date}
+              createdAt={item.createdAt}
             ></ReviewList>
           );
         })}
