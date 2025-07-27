@@ -44,20 +44,13 @@ export async function createPost(state: ApiRes<Post> | null, formData: FormData)
       body: JSON.stringify(body),
     });
 
-    const postResult = await res.json();
-    console.log("게시글 등록 응답:", postResult);
+    const data = await res.json();
+    console.log("게시글 등록 응답:", data);
 
-    if (postResult.ok !== 1) {
-      console.log("게시글 등록 실패:", postResult);
-      return { ok: 0, message: `게시글 등록 실패: ${postResult.message || "Unknown error"}` };
+    if (data.ok !== 1) {
+      console.log("게시글 등록 실패:", data);
+      return { ok: 0, message: `게시글 등록 실패: ${data.message || "Unknown error"}` };
     }
-
-    data = await res.json();
-    
-  }catch(error){ // 네트워크 오류 처리
-    console.error(error);
-    return { ok: 0, message: '일시적인 네트워크 문제로 등록에 실패했습니다.' };
-  }
 
   // redirect는 예외를 throw 하는 방식이라서 try 문에서 사용하면 catch로 처리되므로 제대로 동작하지 않음
   if (data.ok) {
@@ -65,6 +58,11 @@ export async function createPost(state: ApiRes<Post> | null, formData: FormData)
     redirect(`/${body.type}`);
   }else{
     return data;
+  }
+
+  } catch (error) {
+    console.error("게시글 등록 에러:", error);
+    return { ok: 0, message: '일시적인 네트워크 문제로 등록에 실패했습니다.' };
   }
 }
 

@@ -51,8 +51,6 @@ export default async function PostCardPage({ params }: ListPageProps) {
             <PostCardItem
               key={post._id}
               post={post}
-              isBookmarked={false} // 서버에서는 북마크 상태 알 수 없음
-              toggleBookmark={() => {}} // 서버에서는 빈 함수 전달
               index={index}
               boardType={boardType}
             />

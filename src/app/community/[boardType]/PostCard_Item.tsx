@@ -2,17 +2,22 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Post } from "@/types";
+import { useState } from "react";
 
 interface PostCardItemProps {
   post: Post;
   boardType: string;
-  isBookmarked: boolean;
-  toggleBookmark: (id: number) => void;
   index: number;
 }
 
 
-export default function PostCardItem({ post, boardType, isBookmarked, toggleBookmark, index }: PostCardItemProps) {
+export default function PostCardItem({ post, boardType, index }: PostCardItemProps) {
+  const [isBookmarked, setIsBookmarked] = useState(false);
+
+    // 북마크 토글 함수
+  const toggleBookmark = (id: number) => {
+    setIsBookmarked((prev) => !prev);
+  };
   
   return (
     <div 

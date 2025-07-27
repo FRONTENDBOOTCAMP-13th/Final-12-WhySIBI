@@ -10,15 +10,15 @@ import { Post } from "@/types";
 
 export default function PostDetail({ post }: { post: Post }) {
   return (
-    <div className="wrapper flex flex-col w-[600px] justify-center items-center bg-white p-20 font-variable">
-      <div className="button-wrapper flex justify-between items-center text-gray-icon text-md mb-6">
+    <div className="wrapper flex flex-col justify-center items-center bg-white p-20 font-variable">
+      <div className="button-wrapper w-[600px] flex justify-between items-center text-gray-icon text-md mb-6">
         <ButtonBack />
         <div className='button-list space-x-3 mr-2'>
           <button className="cursor-pointer hover:opacity-80">수정</button>
           <button className="cursor-pointer hover:opacity-80">삭제</button>
         </div>
       </div>
-      <div className="title-wrapper text-center overflow-hidden">
+      <div className="title-wrapper w-[600px] text-center overflow-hidden">
       <Image
         src={post.image[0] || '/image/room_photo/postThumnail.svg'}
         alt="썸네일"

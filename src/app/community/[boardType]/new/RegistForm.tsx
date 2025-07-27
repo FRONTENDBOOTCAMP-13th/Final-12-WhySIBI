@@ -1,8 +1,10 @@
 'use client';
+
 import { useState, useRef } from 'react';
 import { useActionState } from 'react';
 import { useRouter } from 'next/navigation';
 import { createPost } from '@/data/actions/post';
+
 import TitleInput from '../../../../components/Write_posts/Title_input';
 import CategorySelect from '../../../../components/Write_posts/Category_select';
 import ContentInput from '../../../../components/Write_posts/Content_input';
@@ -15,8 +17,6 @@ interface RegistFormProps {
 
 export default function RegistForm({ boardType }: RegistFormProps) {
   const [state, formAction, isLoading] = useActionState(createPost, null);
-  console.log(isLoading, state);
-
   const router = useRouter();
 
   // 로컬 상태값
