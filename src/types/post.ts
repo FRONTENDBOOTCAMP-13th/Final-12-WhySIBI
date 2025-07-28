@@ -1,4 +1,4 @@
-import { User } from "@/types/user";
+import { User } from '@/types/user';
 
 /**
  * 게시글에 대한 답글(댓글) 정보를 나타내는 인터페이스
@@ -8,17 +8,17 @@ import { User } from "@/types/user";
  */
 export interface PostReply {
   // 답글의 고유 ID
-  _id: number,
+  _id: number;
   // 답글 작성자 정보 (id, 이름, 이미지)
-  user: Pick<User, '_id' | 'name' | 'image'>,
+  user: Pick<User, '_id' | 'name' | 'image'>;
   // 답글 내용
-  content: string,
+  content: string;
   // 답글의 좋아요 수
-  like: number,
+  like: number;
   // 답글 생성일
-  createdAt: string,
+  createdAt: string;
   // 답글 수정일
-  updatedAt: string,
+  updatedAt: string;
 }
 
 /**
@@ -31,33 +31,33 @@ export type PostReplyForm = Pick<PostReply, 'content'>;
  */
 export interface Post {
   // 게시글의 고유 ID
-  _id: number,
+  _id: number;
   // 게시글 타입
-  type: string,
+  type: string;
   // 게시글 제목
-  title: string,
+  title: string;
   // 게시글 본문 내용
-  content: string,
+  content: string;
   // 게시글 작성자 정보 (id, 이름, 이미지)
-  user: Pick<User, '_id' | 'name'>,
+  user: Pick<User, '_id' | 'name'>;
   // 게시글 조회수
-  views: number,
+  views: number;
   // 게시글 좋아요 수
-  isLiked: number,
+  isLiked: number;
   // 댓글 개수
-  repliesCount: number,
+  repliesCount: number;
   // 댓글 목록
-  replies?: PostReply[],
+  replies?: PostReply[];
   // 게시글 생성일
-  createdAt: string,
+  createdAt: string;
   // 게시글 수정일
-  updatedAt: string,
+  updatedAt: string;
   // 게시글 이미지
-  image?: string,
+  image?: string;
   // 게시글 상세 이미지
-  detailImages?: string[],
+  detailImages?: string[];
   // 태그
-  tags?: string[],
+  tags?: string[];
 }
 
 /**
@@ -65,9 +65,11 @@ export interface Post {
  * - Partial<Pick<Post, 'type' | 'title' | 'content' | '_id'>>: Post 타입에서 type, title, content, _id만 선택해 모두 옵셔널로 만듦
  * - image, tags는 옵션
  */
-export type PostForm = Partial<Pick<Post, 'type' | 'title' | 'content' | '_id'>> & {
+export type PostForm = Partial<
+  Pick<Post, 'type' | 'title' | 'content' | '_id'>
+> & {
   // 게시글 이미지
-  image?: string[],
+  image?: string[];
   // 게시글 태그
-  tags?: string | string[],
-}
+  tags?: string | string[];
+};

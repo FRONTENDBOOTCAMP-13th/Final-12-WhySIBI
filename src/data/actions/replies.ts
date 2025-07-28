@@ -76,6 +76,7 @@ export async function GetReplie(token: string): ApiResPromise<ReviewItem[]> {
         'Content-Type': 'application/json',
         'Client-Id': CLIENT_ID,
       },
+      cache: 'force-cache',
     });
     const data = await res.json();
     return data;
