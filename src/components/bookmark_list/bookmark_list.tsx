@@ -47,7 +47,7 @@ export default function BookMarkList() {
       }
     };
     getData();
-  }, []);
+  }, [user?.token?.accessToken]);
   console.log(productList);
   console.log(postList);
   return (

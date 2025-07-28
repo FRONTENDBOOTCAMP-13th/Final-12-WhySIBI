@@ -28,14 +28,14 @@ export default function ReviewLists() {
     };
 
     reviewListData();
-  }, []);
+  }, [user?.token?.accessToken]);
 
   const handleDeleteSuccess = async () => {
     if (isRefreshing) return;
 
     setIsRefreshing(true);
     try {
-      const res = await GetReplie(token);
+      const res = await GetReplie(user?.token?.accessToken as string);
       if (res.ok === 1) {
         setReviewList(res.item);
         console.log('삭제 후 목록 새로고침 완료');
