@@ -4,11 +4,8 @@ export interface ProductImage {
   originalname: string;
 }
 export interface replie {
-  // 구매 고유 ID
   order_id: number;
-  // 상품 고유
   product_id: number;
-  // 상품 제목
   rating: number;
   content: string;
   mainImages: ProductImage[];
@@ -41,7 +38,7 @@ export interface ReviewProduct {
   name: string;
 }
 
-// 전체 리뷰 데이터 타입
+
 export interface ReviewItem {
   _id: number;
   user: ReviewUser;
@@ -52,7 +49,6 @@ export interface ReviewItem {
   token: string;
 }
 
-// ReviewInfo 컴포넌트의 Props 타입
 export interface ReviewInfoProps {
   userImage?: string;
   content: string;

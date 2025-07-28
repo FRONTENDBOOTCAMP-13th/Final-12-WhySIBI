@@ -588,4 +588,54 @@
     background-color: #ea672d;
     color: white;
   }
+  .bookmark-swiper .swiper-slide {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .bookmark-swiper .swiper-pagination-bullet {
+    background: none;
+    width: 0;
+  }
+  .bookmark-swiper .swiper-button-prev {
+    left: 10px;
+  }
+
+  .bookmark-swiper .swiper-button-next {
+    right: 10px;
+  }
+  .bookmark-swiper .swiper-button-next::after,
+  .bookmark-swiper .swiper-button-prev::after {
+    color: #26422a;
+    font-size: 25px;
+  }
+  .bookmark-swiper .swiper-button-next::after,
+  .bookmark-swiper .swiper-button-prev::after {
+    color: #26422a;
+    font-size: 25px;
+  }
+
+  .bookmark-swiper .swiper-button-prev {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    width: 3.125rem;
+    height: 3.125rem;
+  }
+
+  .bookmark-swiper .swiper-button-next {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    width: 3.125rem;
+    height: 3.125rem;
+  }
+  .bookmark-swiper .swiper {
+    padding: 0 50px !important;
+  }
+  .bookmark-swiper {
+    position: relative;
+    padding: 0 60px; /* 네비게이션 버튼 공간 확보 */
+  }
 }

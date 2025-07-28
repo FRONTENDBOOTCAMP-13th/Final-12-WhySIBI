@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useActionState, useEffect, useState } from 'react';
 import { User } from '@/types';
+import useUserStore from '@/zustand/useUserStore';
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 export default function EditInfoForm() {
   //이미지 주소 추출
@@ -31,27 +32,16 @@ export default function EditInfoForm() {
   //취향 선택 컴포넌트 렌더링
   const [isClick, setIsClick] = useState(false);
 
-  let userID = '';
-  let token = null;
-  const userStorageString = sessionStorage.getItem('user');
-  if (userStorageString) {
-    try {
-      const userStorage = JSON.parse(userStorageString);
-      if (userStorage?.state?.user?.token?.accessToken) {
-        token = userStorage.state.user.token.accessToken;
-        userID = userStorage.state.user._id;
-      }
-    } catch (error) {
-      console.error('JSON 파싱 오류:', error);
-    }
-  }
+  const { user } = useUserStore();
+  let userID = user?._id;
+  let token = user?.token?.accessToken;
 
   //회원정보 가져오기
   const [userInfo, setuserInfo] = useState<User | null>(null);
   useEffect(() => {
     const userData = async () => {
       try {
-        const res = await GetUserInfo(userID);
+        const res = await GetUserInfo(userID as string);
         if (res) {
           setuserInfo(res.item);
         }
