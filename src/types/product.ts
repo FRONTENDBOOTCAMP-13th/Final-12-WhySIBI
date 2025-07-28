@@ -63,6 +63,8 @@ export interface ProductListProps {
   price: number;
   // 상품 제목
   name: string;
+  //리뷰 개수
+  replies: number;
   mainImages: ProductImage[];
   //상품 엑스트라 정보
   extra?: ProductExtra;
@@ -73,6 +75,21 @@ export interface ProductList {
   // 상품 고유 ID
   list: ProductListProps[];
 }
+
+export interface Pagination {
+  page: number;
+  limit: number;
+  total: number;
+  totalPages: number;
+}
+
+export interface ProductListResponse {
+  ok: number;
+  message?: string;
+  item: ProductListProps[];
+  pagination: Pagination;
+}
+
 /**
  * 게시글 작성/수정 폼에서 사용하는 타입
  * - Partial<Pick<Post, 'type' | 'title' | 'content' | '_id'>>: Post 타입에서 type, title, content, _id만 선택해 모두 옵셔널로 만듦
