@@ -1,7 +1,7 @@
 import { ApiResPromise, Post } from '@/types';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
-const CLIENT_ID = process.env.NEXT_PUBLIC_WHY_SIBI_CLIENT_ID || '';
+const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID || '';
 
 /**
  * 게시판 타입에 해당하는 게시글 목록을 가져옵니다.
