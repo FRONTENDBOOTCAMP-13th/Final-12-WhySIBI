@@ -1,17 +1,19 @@
 import Image from "next/image";
 import Link from "next/link";
+import { PostReply } from "@/types";
 
-export default function CommentItem() {
+export default function CommentItem({ reply }: { reply: PostReply }) {
+
   return (
     <div className="w-[600px] flex py-7 text-[14px] text-black gap-3">
        <div>
-         <Image
+         {<Image
             src="/image/community_icon/profile_sample.png"
             alt="유저프로필"
             width={34}
             height={34}
             className="h-[34px] object-cover rounded-full outline-1 outline-black"
-          />
+          />}
        </div>
         <div>
           <Link href="" className="font-bold leading-xl">농담곰 운동 좀 그만해</Link>

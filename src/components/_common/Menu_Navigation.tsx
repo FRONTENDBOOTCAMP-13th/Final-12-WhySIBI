@@ -1,9 +1,12 @@
+'use client';
+
 import Categroy from '@/components/_common/category';
 import useMenuStore from '@/zustand/menuStore';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
 type SubMenuItem = {
   label: string;
@@ -42,19 +45,23 @@ function MenuNavigation() {
   const sub_pathName = usePathname();
   const isSubMenuActive = (path: string) =>
     sub_pathName === path ? 'text-menu-text border-b-4 border-flame-300' : '';
-
   let token = null;
-  const userStorageString = sessionStorage.getItem('user');
-  if (userStorageString) {
-    try {
-      const userStorage = JSON.parse(userStorageString);
-      if (userStorage?.state?.user?.token?.accessToken) {
-        token = userStorage.state.user.token.accessToken;
-      }
-    } catch (error) {
-      console.error('JSON 파싱 오류:', error);
-    }
-  }
+
+ useEffect(() => {
+   const userStorageString = sessionStorage.getItem('user');
+   if (userStorageString) {
+     try {
+       const userStorage = JSON.parse(userStorageString);
+       if (userStorage?.state?.user?.token?.accessToken) {
+         token = userStorage.state.user.token.accessToken;
+       }
+     } catch (error) {
+       console.error('JSON 파싱 오류:', error);
+     }
+   }
+ }, [])
+
+
 
   return (
     <>
