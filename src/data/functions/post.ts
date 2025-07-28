@@ -14,18 +14,26 @@ export async function getPosts(boardType: string): ApiResPromise<Post[]> {
       headers: {
         'Client-Id': CLIENT_ID,
       },
-      cache: 'force-cache',
+      // cache: 'force-cache',
     });
 
+        if (!res.ok) {
+      const text = await res.text(); // 응답이 JSON이 아닐 수도 있음
+      console.error("API 응답 에러", res.status, text);
+      return { ok: 0, message: `서버 오류 (${res.status})` };
+    }
+    
+    
     const json = await res.json();
+    console.log('getPost 요청', json);
     return json;
+    
     
   }catch(error){
     console.error(error);
     return { ok: 0, message: '일시적인 네트워크 문제로 등록에 실패했습니다.' };
   }
 }
-
 
 /**
  * 특정 게시글의 상세 정보를 가져옵니다.

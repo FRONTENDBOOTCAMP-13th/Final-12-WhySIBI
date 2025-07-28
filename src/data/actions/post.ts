@@ -19,9 +19,20 @@ const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID || '';
  */
 export async function createPost(state: ApiRes<Post> | null, formData: FormData): ApiResPromise<Post> {
   // FormData를 일반 Object로 변환
-  const body = Object.fromEntries(formData.entries());
+  // const body = Object.fromEntries(formData.entries());
   let res: Response;
   let data: ApiRes<Post>;
+
+  // const accessToken = formData.get("accessToken") as string;
+
+  // FormData
+  const type = formData.get("type") as string;
+  const title = formData.get("title") as string;
+  const content = formData.get("content") as string;
+  const image = JSON.parse(formData.get("image") as string);
+  const tag = JSON.parse(formData.get("tag") as string);
+
+  const body = { type, title, content, image, tag }
 
   try{
     res = await fetch(`${API_URL}/posts`, {
@@ -33,12 +44,13 @@ export async function createPost(state: ApiRes<Post> | null, formData: FormData)
       body: JSON.stringify(body),
     });
 
-    data = await res.json();
-    
-  }catch(error){ // 네트워크 오류 처리
-    console.error(error);
-    return { ok: 0, message: '일시적인 네트워크 문제로 등록에 실패했습니다.' };
-  }
+    const data = await res.json();
+    console.log("게시글 등록 응답:", data);
+
+    if (data.ok !== 1) {
+      console.log("게시글 등록 실패:", data);
+      return { ok: 0, message: `게시글 등록 실패: ${data.message || "Unknown error"}` };
+    }
 
   // redirect는 예외를 throw 하는 방식이라서 try 문에서 사용하면 catch로 처리되므로 제대로 동작하지 않음
   if (data.ok) {
@@ -46,6 +58,11 @@ export async function createPost(state: ApiRes<Post> | null, formData: FormData)
     redirect(`/${body.type}`);
   }else{
     return data;
+  }
+
+  } catch (error) {
+    console.error("게시글 등록 에러:", error);
+    return { ok: 0, message: '일시적인 네트워크 문제로 등록에 실패했습니다.' };
   }
 }
 
