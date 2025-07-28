@@ -59,6 +59,36 @@ export interface Post {
   // 태그
   tags?: string[];
 }
+export interface Inqury {
+  // 문의의 고유 ID
+  _id: number;
+  // 문의 제목
+  title: string;
+  // 문의 본문 내용
+  content: string;
+  // 문의 작성자 정보 (id, 이름, 이미지)
+  user?: Pick<User, '_id' | 'name' | 'image'>;
+  // 문의 생성일
+  createdAt: string;
+  product?: InquryProduct;
+  // 태그
+  tags?: string[];
+}
+export interface InquryProduct {
+  image: InquryProductImage;
+}
+export interface InquryProductImage {
+  path: string;
+  name?: string;
+  originalname?: string;
+}
+export interface InquryProductProps {
+  title: string;
+  content: string;
+  _id?: number;
+  createdAt: string;
+  productImage?: InquryProductImage;
+}
 
 /**
  * 게시글 작성/수정 폼에서 사용하는 타입

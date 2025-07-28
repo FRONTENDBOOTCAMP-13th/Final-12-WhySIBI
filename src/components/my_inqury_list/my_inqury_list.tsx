@@ -1,67 +1,45 @@
 'use client';
-import ReviewInfo from '@/components/reviews/review_info/review_info';
-import { GetReplie } from '@/data/actions/replies';
-import { Post } from '@/types';
+import InquryInfo from '@/components/my_inqury_list/my_inqury_info/my_inqury_info';
+import { GetMyInqury } from '@/data/actions/inqury';
+import { Inqury } from '@/types';
 import useUserStore from '@/zustand/useUserStore';
 import { useEffect, useState } from 'react';
 
-export default function ReviewLists() {
+export default function MyInquryList() {
   //상품 리스트 불러오는 부분
-  const [inquryList, setInqury] = useState<Post[] | null>(null);
-  // 수동으로 페이지 새로고침
-  const [isRefreshing, setIsRefreshing] = useState(false);
+  const [inquryList, setInqury] = useState<Inqury[] | null>(null);
 
   const { user } = useUserStore();
-
+  // user?.token?.accessToken as string;
   useEffect(() => {
-    const reviewListData = async () => {
+    const InquryListData = async () => {
       try {
-        const res = await GetReplie(token);
+        const res = await GetMyInqury(user?.token?.accessToken as string);
         if (res.ok === 1) {
-          setReviewList(res.item);
+          setInqury(res.item);
           console.log(res.item);
         } else {
-          setReviewList(null);
+          setInqury(null);
         }
       } catch (error) {
         console.error('상품 정보 로딩 실패:', error);
       }
     };
 
-    reviewListData();
+    InquryListData();
   }, []);
-
-  const handleDeleteSuccess = async () => {
-    if (isRefreshing) return;
-
-    setIsRefreshing(true);
-    try {
-      const res = await GetReplie(token);
-      if (res.ok === 1) {
-        setReviewList(res.item);
-        console.log('삭제 후 목록 새로고침 완료');
-      } else {
-        setReviewList(null);
-      }
-    } catch (error) {
-      console.error('새로고침 실패:', error);
-    } finally {
-      setIsRefreshing(false);
-    }
-  };
 
   return (
     <nav className="mt-20">
       <ul className="flex flex-col flex-wrap gap-16">
-        {reviewList?.map((review, i) => (
-          <ReviewInfo
-            content={review.content}
-            productName={review.product.name}
-            productImage={review.product.image}
-            productId={review._id}
-            star={review.extra.star}
+        {inquryList?.map((inqury, i) => (
+          <InquryInfo
+            title={inqury.title}
+            content={inqury.content}
+            productImage={inqury.product?.image}
+            _id={inqury._id}
+            createdAt={inqury.createdAt}
             key={i}
-            onDelete={handleDeleteSuccess}
           />
         ))}
       </ul>

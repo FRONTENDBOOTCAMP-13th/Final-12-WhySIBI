@@ -5,7 +5,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
-const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID || '';
+const CLIENT_ID = process.env.NEXT_PUBLIC_WHY_SIBI_CLIENT_ID || '';
 
 /**
  * 게시글을 생성하는 함수

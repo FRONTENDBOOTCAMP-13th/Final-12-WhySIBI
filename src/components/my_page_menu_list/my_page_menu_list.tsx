@@ -26,8 +26,8 @@ export default function MyPageMenuList() {
         </li>
         <li>
           <Link
-            href=""
-            className={`active:text-menu-text ${isAnchorMenuActive('')}`}
+            href="/my_page/my_inqury"
+            className={`active:text-menu-text ${isAnchorMenuActive('/my_page/my_inqury')}`}
           >
             문의내역
           </Link>

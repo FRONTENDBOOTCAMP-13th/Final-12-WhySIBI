@@ -1,7 +1,7 @@
 import { ApiResPromise, Post } from '@/types';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
-const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID || '';
+const CLIENT_ID = process.env.NEXT_PUBLIC_WHY_SIBI_CLIENT_ID || '';
 
 /**
  * 게시판 타입에 해당하는 게시글 목록을 가져옵니다.
@@ -28,9 +28,10 @@ export async function getPosts(boardType: string): ApiResPromise<Post[]> {
  * 사용자가 등록한 목록을 가져옵니다.
  * @returns {Promise<ApiRes<Post[]>>} - 게시글 목록 응답 객체
  */
-export async function getMyInqury(token: string): ApiResPromise<Post[]> {
+export async function GetMyInqury(token: string): ApiResPromise<Post[]> {
+  console.log(CLIENT_ID);
   try {
-    const res = await fetch(`${API_URL}/posts/users}`, {
+    const res = await fetch(`${API_URL}/posts/users?type=qna`, {
       headers: {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
@@ -38,7 +39,9 @@ export async function getMyInqury(token: string): ApiResPromise<Post[]> {
       },
       cache: 'force-cache',
     });
-    return res.json();
+    const data = res.json();
+    console.log(data);
+    return data;
   } catch (error) {
     // 네트워크 오류 처리
     console.error(error);
