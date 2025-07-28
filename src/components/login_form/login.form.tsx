@@ -35,6 +35,8 @@ export default function LoginForm() {
               value: userState.item.extra.addressBook[0].value,
             },
           ],
+          preference: userState.item.extra.preference || [],
+          birthday: userState.item.extra.birthday,
         },
       });
       alert('로그인이 완료되었습니다.');

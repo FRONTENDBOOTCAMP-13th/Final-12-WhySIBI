@@ -6,7 +6,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
 
 type SubMenuItem = {
   label: string;
@@ -45,6 +44,7 @@ function MenuNavigation() {
   const sub_pathName = usePathname();
   const isSubMenuActive = (path: string) =>
     sub_pathName === path ? 'text-menu-text border-b-4 border-flame-300' : '';
+
   const { user } = useUserStore();
   const token = user?.token?.accessToken;
 

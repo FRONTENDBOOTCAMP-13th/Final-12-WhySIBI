@@ -11,7 +11,7 @@ export interface ReviewListProps {
   author: string;
   content: string;
   image?: string;
-  date: string;
+  createdAt: string;
   star: number;
 }
 
@@ -50,4 +50,43 @@ export interface ShoppingDetailType {
   stars: ReactElement[][];
   pageNum: string;
   params?: { id: string };
+}
+
+export interface ShoppingFormType {
+  title: string;
+  originalPrice: number;
+  price: number;
+  stars: ReactElement[][];
+  star: number;
+  color: string[];
+  size: string[];
+  reviewCount: number;
+  avg: number;
+}
+
+// 사용자 정보 타입
+export interface User {
+  _id: number;
+  name: string;
+  image: string;
+}
+// 상품 정보 타입
+export interface Product {
+  name: string;
+}
+// 메인 문의 타입
+export interface InquiryItem {
+  _id: number;
+  type: 'qna';
+  product_id: number;
+  seller_id: number;
+  views: number;
+  user: User;
+  title: string;
+  content: string;
+  createdAt: string;
+  updatedAt: string;
+  product: Product;
+  bookmarks: number;
+  repliesCount: number;
 }

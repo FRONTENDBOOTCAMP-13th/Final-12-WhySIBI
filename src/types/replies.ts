@@ -46,6 +46,7 @@ export interface ReviewItem {
   createdAt: string;
   extra: ReviewExtra;
   product: ReviewProduct;
+  token: string;
 }
 
 export interface ReviewInfoProps {

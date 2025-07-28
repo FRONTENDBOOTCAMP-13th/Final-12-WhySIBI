@@ -3,16 +3,18 @@ import MenuNavigation from '@/components/_common/Menu_Navigation';
 import useUserStore from '@/zustand/useUserStore';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export default function Header() {
   const { user, resetUser } = useUserStore();
-
+  const router = useRouter();
   const handleLogout = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     resetUser();
     alert('로그아웃 되었습니다.');
+    router.push('/');
   };
   return (
     <header className="mt-16 min-w-[1280px]">

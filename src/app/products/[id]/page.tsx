@@ -1,10 +1,9 @@
-import ShoppingDetail, {
-  Product_Detail,
-} from '@/components/Shopping_detail/Shopping_detail';
+import ShoppingDetail from '@/components/Shopping_detail/Shopping_detail';
 import Link from 'next/link';
 import ProductInfo from '@/components/Shopping_detail/Product_Info';
 import ProductReview from '@/components/Shopping_detail/Product_review';
 import ProductInquiry from '@/components/Shopping_detail/Product_inquiry';
+import { Product_Detail } from '@/components/Shopping_detail/fetch/Product_detail';
 
 export default async function ProductDetail({
   searchParams,
@@ -63,7 +62,7 @@ export default async function ProductDetail({
   const item = await Product_Detail(id);
   return (
     <>
-      <div className="bg-white min-w-[1280px]">
+      <div className="bg-white min-w-[1280px] ">
         <ShoppingDetail stars={stars} pageNum={id}></ShoppingDetail>
 
         <nav className="bg-[#d9d9d9] text-xl font-bold flex gap-8 pl-24">
@@ -96,7 +95,7 @@ export default async function ProductDetail({
         ) : (
           ''
         )}
-        {tab === 'inquiry' ? <ProductInquiry /> : ''}
+        {tab === 'inquiry' ? <ProductInquiry id={id} /> : ''}
       </div>
     </>
   );
