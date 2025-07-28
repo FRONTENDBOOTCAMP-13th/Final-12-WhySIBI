@@ -1,6 +1,11 @@
-import PostDetail from "@/components/Detail_posts/PostDetail";
+import PostDetail from "@/app/community/[boardType]/[_id]/PostDetail";
 import { getPost } from "@/data/functions/post";
 import { ApiRes } from "@/types";
+import DetailSimilar from "@/components/Detail_posts/Detail_similar";
+import DetailOther from "@/components/Detail_posts/Detail_other";
+import CommentNew from "@/components/Detail_posts/CommentNew";
+import CommentList from "./CommentList";
+
 
 function isError<T>(res: ApiRes<T>): res is { ok: 0; message: string } {
   return res.ok === 0;
@@ -9,7 +14,7 @@ function isError<T>(res: ApiRes<T>): res is { ok: 0; message: string } {
 interface InfoPageProps {
   params: Promise<{
     boardType: string;
-    _id: string;
+    _id: number;
   }>;
 }
 
@@ -21,5 +26,13 @@ export default async function DetailPage({ params }: InfoPageProps) {
     return <div>{post.message || '게시글을 불러올 수 없습니다.'}</div>;
   }
 
-  return <PostDetail post={post.item} />;
+  return (
+      <div className="wrapper flex flex-col justify-center items-center bg-white p-20 font-variable">
+        <PostDetail post={post.item} />
+        <DetailSimilar></DetailSimilar>
+        <DetailOther _id={_id}></DetailOther>
+        <CommentNew></CommentNew>
+        <CommentList _id={_id}></CommentList>
+      </div>
+  );
 }

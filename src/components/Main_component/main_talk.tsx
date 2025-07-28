@@ -1,3 +1,5 @@
+'use client';
+import { useRouter } from 'next/navigation';
 import Title from '@/components/Title';
 
 interface Post {
@@ -30,7 +32,9 @@ const dummyPosts: Post[] = [
   },
 ];
 
-function Talk(){
+export default function MainTalk(){
+  const router = useRouter();
+
   return(
     <>
     <div className="community-wrapper w-3xl">
@@ -56,12 +60,10 @@ function Talk(){
             </ul>
           </div>
       </div>
-      <button className="btn-gradient-animate w-full text-center font-variable font-semibold py-3 text-livealone-cal-poly-green bg-livealone-columbia-blue rounded-b-4xl cursor-pointer hover:text-cal-poly-green-100">
+      <button onClick={() => router.push('/community/talk')} className="btn-gradient-animate w-full text-center font-variable font-semibold py-3 text-livealone-cal-poly-green bg-livealone-columbia-blue rounded-b-4xl cursor-pointer hover:text-cal-poly-green-100">
         글 작성하러 가기
       </button>
     </div>
     </>
   );
 }
-
-export default Talk;

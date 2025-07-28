@@ -30,7 +30,7 @@ export default function PostCardItem({ post, boardType, index }: PostCardItemPro
       >
         <div className="relative w-[300px] h-[190px] mb-3">
           <Image
-            src={post.image[0] || "/image/room_photo/postThumbnail.svg"}
+            src={post.image?.[0] || "/image/room_photo/postThumbnail.svg"}
             alt="썸네일"
             fill
             sizes="300px"
