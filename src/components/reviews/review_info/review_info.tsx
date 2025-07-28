@@ -2,6 +2,12 @@ import { DeleteReplie } from '@/data/actions/replies';
 import { ReviewInfoProps } from '@/types/replies';
 import useUserStore from '@/zustand/useUserStore';
 import Image from 'next/image';
+
+import Link from 'next/link';
+import { memo } from 'react';
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+function ReviewInfo({
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
@@ -39,17 +45,16 @@ export default function ReviewInfo({
   const starArray = new Array(star).fill(0);
   return (
     <li className="w-4/5 border-2 border-button-color-opaque-25 shadow-shadow-md p-5 rounded-radius-lg">
-      <div className="flex justify-between mt-6 items-center">
-        <figure className="flex gap-6">
-          <Image
-            src={`${API_URL}/${productImage.path}`}
-            alt={'상품 이미지'}
-            width={140}
-            height={140}
-            className="rounded-radius-lg"
-            unoptimized
-          />
-
+      <Link href={`/products/${productId}`}>
+        <div className="flex justify-between mt-6 items-center">
+          <figure className="flex gap-6">
+            <Image
+              src={`${API_URL}/${productImage.path}`}
+              alt={'상품 이미지'}
+              width={140}
+              height={140}
+              className="rounded-radius-lg"
+            />
           <figcaption className="font-basic flex flex-col gap-2">
             <p className="font-bold">{productName} </p>
             <span className="flex">
@@ -86,3 +91,4 @@ export default function ReviewInfo({
     </li>
   );
 }
+export default memo(ReviewInfo);

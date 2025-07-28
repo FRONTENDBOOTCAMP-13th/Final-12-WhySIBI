@@ -1,7 +1,9 @@
 'use client';
 import ReviewInfo from '@/components/reviews/review_info/review_info';
+import ReviewStar from '@/components/review_write/star';
 import { GetReplie } from '@/data/actions/replies';
 import { ReviewItem } from '@/types/replies';
+import useUserStore from '@/zustand/useUserStore';
 import { useEffect, useState } from 'react';
 
 export default function ReviewLists() {
@@ -9,26 +11,14 @@ export default function ReviewLists() {
   const [reviewList, setReviewList] = useState<ReviewItem[] | null>(null);
   // 수동으로 페이지 새로고침
   const [isRefreshing, setIsRefreshing] = useState(false);
-  let token = null;
-  const userStorageString = sessionStorage.getItem('user');
-  if (userStorageString) {
-    try {
-      const userStorage = JSON.parse(userStorageString);
-      if (userStorage?.state?.user?.token?.accessToken) {
-        token = userStorage.state.user.token.accessToken;
-      }
-    } catch (error) {
-      console.error('JSON 파싱 오류:', error);
-    }
-  }
+  const { user } = useUserStore();
 
   useEffect(() => {
     const reviewListData = async () => {
       try {
-        const res = await GetReplie(token);
+        const res = await GetReplie(user?.token?.accessToken as string);
         if (res.ok === 1) {
           setReviewList(res.item);
-          console.log(res.item);
         } else {
           setReviewList(null);
         }
