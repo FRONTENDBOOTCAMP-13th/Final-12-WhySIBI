@@ -15,6 +15,7 @@ function ShoppingProductsList() {
   const [productData, setProductData] = useState<ProductListProps[]>([]);
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(1);
+  const [totalItems, setTotalItems] = useState(0);
   const [sort, setSort] = useState<
     'latest' | 'low-cost' | 'high-cost' | 'high-star' | 'high-review'
   >('latest'); //신상품 기본필터
@@ -43,13 +44,14 @@ function ShoppingProductsList() {
           custom: {
             //상품 카테고리별로 필터
             ...(mainCategoryId ? { 'extra.category': mainCategoryId } : {}),
-            ...(subCategoryId ? { 'extra.subCategory': subCategoryId } : {}),
+            ...(subCategoryId ? { 'extra.category': subCategoryId } : {}),
           },
         });
         if (res.ok === 1) {
           // console.log(res.item);
           setProductData(res.item);
           setTotalPage(res.pagination.totalPages);
+          setTotalItems(res.pagination.total);
         } else {
           console.error(res.message);
         }
@@ -69,9 +71,7 @@ function ShoppingProductsList() {
   return (
     <>
       <div className="flex justify-between items-center">
-        <span className="text-sm text-gray-500">
-          전체 {productData.length}개
-        </span>
+        <span className="text-sm text-gray-500">전체 {totalItems}개</span>
         <DropdownShoppingList value={sort} onDropChange={setSort} />
       </div>
       <div
