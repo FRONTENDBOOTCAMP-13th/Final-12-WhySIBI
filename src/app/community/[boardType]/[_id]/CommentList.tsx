@@ -2,8 +2,8 @@ import CommentItem from "./CommentItem"
 import { getReplies } from "@/data/functions/post"
 import { PostReply } from "@/types"
 
-export default async function CommentList({ _id }: { _id: string }){
-  const res = await getReplies(Number(_id));
+export default async function CommentList({ _id }: { _id: number }){
+  const res = await getReplies(_id);
 
   return(
     <>

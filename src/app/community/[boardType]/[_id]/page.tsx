@@ -13,7 +13,7 @@ function isError<T>(res: ApiRes<T>): res is { ok: 0; message: string } {
 interface InfoPageProps {
   params: Promise<{
     boardType: string;
-    _id: string;
+    _id: number;
   }>;
 }
 
@@ -27,9 +27,9 @@ export default async function DetailPage({ params }: InfoPageProps) {
 
   return (
       <div className="wrapper flex flex-col justify-center items-center bg-white p-20 font-variable">
-        <PostDetail post={post.item} />;
+        <PostDetail post={post.item} />
         <DetailSimilar></DetailSimilar>
-        <DetailOther></DetailOther>
+        <DetailOther _id={_id}></DetailOther>
         <CommentNew></CommentNew>
         <CommentList _id={_id}></CommentList>
       </div>

@@ -6,7 +6,7 @@ import { Post } from "@/types";
 
 export default function PostDetail({ post }: { post: Post }) {
   return (
-    <div>
+    <div className="text-center">
       <div className="button-wrapper w-[600px] flex justify-between items-center text-gray-icon text-md mb-6">
         <ButtonBack />
         <div className='button-list space-x-3 mr-2'>
@@ -33,7 +33,7 @@ export default function PostDetail({ post }: { post: Post }) {
       </div>
       <span className="text-gray-icon font-extrabold my-10">{post.user.name}님의 집</span>
       <DetailSwiper images={post.image?.slice(1) ?? []} ></DetailSwiper>
-      <section className="w-[600px] text-gray-icon text-center pt-20 pb-25 border-b px-10 space-y-15">
+      <section className="content-wrapper w-[600px] text-gray-icon text-center pt-20 pb-25 border-b px-10 space-y-15">
         <div className="space-y-4">
           <h2 className="font-bold text-xl">집정보</h2>
           <p className="font-light">{post.tag?.join(' | ')}</p>
