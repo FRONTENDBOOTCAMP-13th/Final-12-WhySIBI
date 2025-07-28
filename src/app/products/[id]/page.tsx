@@ -62,7 +62,6 @@ export default async function ProductDetail({
   const item = await Product_Detail(id);
   return (
     <>
-      {/* 문의하기 모달창을 위한 relattive임 */}
       <div className="bg-white min-w-[1280px] ">
         <ShoppingDetail stars={stars} pageNum={id}></ShoppingDetail>
 
