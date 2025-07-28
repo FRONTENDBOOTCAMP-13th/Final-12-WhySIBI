@@ -1,7 +1,6 @@
 'use server';
 import { ApiResPromise } from '@/types';
 import { OrderItem } from '@/types/order';
-import { error } from 'console';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 const CLIENT_ID = process.env.NEXT_PUBLIC_WHY_SIBI_CLIENT_ID || '';

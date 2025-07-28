@@ -1,9 +1,3 @@
-export interface ReviewProductImage {
-  path: string;
-  name: string;
-  originalname: string;
-}
-
 export interface BookMarkUser {
   _id: number;
   image: string;
@@ -25,27 +19,43 @@ export interface BookMarkExtra {
   star?: number;
 }
 
-export interface BookMarkProduct {
+export interface LikeProduct {
   _id: number;
-  image: ReviewProductImage;
+  mainImages: BookmarkImage[];
   name: string;
   price: number;
 }
-
+export interface BookmarkImage {
+  path: string;
+  name: string;
+  originalname: string;
+}
 export interface BookMarkItem {
   _id: number;
   user: BookMarkUser;
+  title: string;
   content: string;
   createdAt: string;
   extra: BookMarkExtra;
-  product: BookMarkProduct;
+  product: LikeProduct;
+  post: BookMarkProduct;
+  memo?: string;
 }
-
+export interface BookMarkProduct {
+  _id: number;
+  title: string;
+  image?: BookmarkImage;
+}
 export interface BookMarkInfoProps {
-  userImage?: string;
-  content: string;
-  star: number;
+  title: string;
+  _id: number;
+  productImage?: BookmarkImage;
+}
+export interface LikekInfoProps {
+  star?: number;
+  _id: number;
   productId?: number;
   productName: string;
-  productImage: ReviewProductImage;
+  productImage?: BookmarkImage;
+  price: number;
 }
