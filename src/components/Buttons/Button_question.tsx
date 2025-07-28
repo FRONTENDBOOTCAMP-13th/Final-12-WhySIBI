@@ -1,8 +1,15 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { createInquiryAction } from '@/data/actions/create_inquiry_action';
+import { useActionState, useEffect, useRef, useState } from 'react';
 
-export default function ButtonQuestion({ name }: { name: string }) {
+export default function ButtonQuestion({
+  name,
+  id,
+}: {
+  name: string;
+  id: string;
+}) {
   const [modal, setModal] = useState(false);
   const dialogRef = useRef<HTMLDialogElement>(null);
 
@@ -34,29 +41,77 @@ export default function ButtonQuestion({ name }: { name: string }) {
     }
   }, [modal]);
 
+  // 초기 상태 정의
+  const initialState: { status?: boolean; error: string } = {
+    // status: false,
+    error: '',
+  };
+
+  const [state, formAction, isPending] = useActionState(
+    createInquiryAction,
+    initialState,
+  );
+
+  useEffect(() => {
+    if (state && state.status === false) {
+      alert(state.error);
+    } else if (state && state.status === true) {
+      closeModal();
+    }
+  }, [state]);
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Escape') {
+      closeModal();
+    }
+  };
   return (
     <>
       {/* 모달입니다. 평소에는 보이지 않음 */}
       <dialog
+        onKeyDown={handleKeyDown}
         ref={dialogRef}
         className="backdrop:bg-black/50 p-0 m-0 border-0 bg-transparent max-w-none max-h-none w-full h-full open:flex justify-center items-center"
       >
-        <form action="" className="bg-white w-150 h-170 p-10 rounded-md">
+        <form
+          action={formAction}
+          className="bg-white w-150 h-185 p-10 rounded-md"
+        >
+          {/* 페이지 번호를 서버액션으로 넘겨주기 위한 히든 인풋 */}
+          <input name="id" value={id} hidden readOnly />
           <h3 className="text-xl font-bold pb-10">상품 문의하기</h3>
-          <dl className="flex mb-12 border-b-1 pb-3">
+          <dl className="flex mb-12 border-b-1 pb-3 border-gray-150">
             <dt className="font-bold w-20 text-start">상품</dt>
             <dd className="text-gray-550 font-bold">{name}</dd>
           </dl>
-          <div className="flex mb-10">
-            <label htmlFor="content" className="font-bold w-20 text-start">
-              문의내용
-            </label>
-            <textarea
-              name="content"
-              id="content"
-              className="flex-1 h-60 border-1 resize-none border-gray-350 rounded-md outline-0 px-3 py-1"
-              placeholder="문의 내용을 입력하세요"
-            ></textarea>
+          <div className="flex flex-col mb-10 gap-8">
+            <div className="flex items-center border-b-1 pb-5 border-gray-150">
+              <label htmlFor="title" className="font-bold w-20 text-start">
+                제목
+              </label>
+              <input
+                disabled={isPending}
+                required
+                type="text"
+                name="title"
+                id="title"
+                className="border-1 border-gray-350 rounded-md flex-1 px-3 py-1 outline-0"
+                placeholder="제목을 입력하세요"
+              />
+            </div>
+            <div className="flex">
+              <label htmlFor="content" className="font-bold w-20 text-start">
+                문의내용
+              </label>
+              <textarea
+                disabled={isPending}
+                required
+                name="content"
+                id="content"
+                className="flex-1 h-60 border-1 resize-none border-gray-350 rounded-md outline-0 px-3 py-1"
+                placeholder="문의 내용을 입력하세요"
+              ></textarea>
+            </div>
           </div>
           <small className="text-[10px] flex flex-col items-start gap-1 text-gray-550">
             <span>
@@ -81,9 +136,11 @@ export default function ButtonQuestion({ name }: { name: string }) {
               취소하기
             </button>
             <button
+              disabled={isPending}
+              type="submit"
               className={`box-border cursor-pointer bg-flame-250 w-[196px] h-[48px] text-white border-2 border-flame-250 rounded-sm font-bold`}
             >
-              문의하기
+              {isPending ? '전송중...' : '문의하기'}
             </button>
           </div>
         </form>
@@ -92,6 +149,7 @@ export default function ButtonQuestion({ name }: { name: string }) {
       <button
         onClick={openModal}
         className={`cursor-pointer bg-flame-250 w-[100px] h-[35px] text-xs text-white rounded-sm `}
+        type="submit"
       >
         문의하기
       </button>

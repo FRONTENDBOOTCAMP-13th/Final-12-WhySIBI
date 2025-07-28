@@ -10,6 +10,7 @@ export type InquiryListType = InquiryItem[];
 export default async function ProductInquiry({ id }: { id: string }) {
   const items: InquiryListType = await Inquiry_Detail('?type=qna');
   const { name } = await Product_Detail(id);
+  console.log('나야나', items);
 
   //해당 페이지만 필터 해서 배열에 넣음
   const itemList: InquiryListType = items.filter(item => {
@@ -26,7 +27,7 @@ export default async function ProductInquiry({ id }: { id: string }) {
           문의 {itemList.length}
         </h3>
         <div className=" w-[140px] text-center">
-          <ButtonQuestion name={name} />
+          <ButtonQuestion name={name} id={id} />
         </div>
       </div>
 
