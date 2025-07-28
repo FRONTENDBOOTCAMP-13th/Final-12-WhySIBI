@@ -6,6 +6,7 @@ import DetailOther from "@/components/Detail_posts/Detail_other";
 import CommentNew from "@/components/Detail_posts/CommentNew";
 import CommentList from "./CommentList";
 
+
 function isError<T>(res: ApiRes<T>): res is { ok: 0; message: string } {
   return res.ok === 0;
 }
