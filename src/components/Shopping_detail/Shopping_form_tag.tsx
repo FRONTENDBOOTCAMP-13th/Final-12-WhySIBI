@@ -3,16 +3,18 @@
 import { ChangeEvent, useActionState, useEffect, useState } from 'react';
 import DropdownSize from '../Dropdown/Dropdown_size';
 import { createCartAction } from '@/data/actions/create_cart_action';
-import ButtonBasic from '../Buttons/Button_basic';
+import useUserStore from '@/zustand/useUserStore';
 
 export default function ShoppingFormTag({
   color,
   size,
   price,
+  id,
 }: {
   color: string[];
   size: string[];
   price: number;
+  id: string;
 }) {
   // 폼태그 상태관리
   const [option, setOption] = useState({
@@ -36,7 +38,7 @@ export default function ShoppingFormTag({
       return { ...prev, quantity: option.quantity + 1 };
     });
   }
-
+  console.log('사이즈와컬러', size, color);
   //구매수량 1밑으로는 떨어지지 않게
   function decrease() {
     setOption(prev => {
@@ -61,14 +63,23 @@ export default function ShoppingFormTag({
     if (state && state.status === false) {
       alert(state.error);
     }
-  });
+  }, [state]);
+
+  const { user } = useUserStore();
+  const token = user?.token?.accessToken;
   return (
-    <form action="">
-      <fieldset className="w-[400px] border-y-1 border-[#eaeaea]">
+    <form action={formAction}>
+      <fieldset className="w-[400px] border-y-1 border-gray-150">
         <legend className="sr-only">상품 옵션 선택</legend>
-        <div className="w-[400px] border-b-1 border-[#eaeaea] pt-5 pb-2">
+        {/* 서버액션에 넘겨주기 위한 히든 인풋들 */}
+        <input name="size" value={option.size} hidden readOnly />
+        <input name="color" value={option.color} hidden readOnly />
+        <input name="quantity" value={option.quantity} hidden readOnly />
+        <input name="id" value={id} hidden readOnly />
+        <input name="token" value={token} hidden readOnly />
+        <div className="w-[400px] border-b-1 border-gray-150 pt-5 pb-2">
           <div className="w-[340px] flex justify-between">
-            <label htmlFor="size-select" className="w-[64px] text-center">
+            <label htmlFor="size-select" className="w-16 text-center">
               사이즈
             </label>
             <DropdownSize
@@ -79,7 +90,7 @@ export default function ShoppingFormTag({
             ></DropdownSize>
           </div>
           <div className="w-[340px] flex justify-between pt-3">
-            <label className="w-[64px] text-center">색상</label>
+            <label className="w-16 text-center">색상</label>
             <DropdownSize
               option={color}
               onChange={handleColorChange}
@@ -89,7 +100,7 @@ export default function ShoppingFormTag({
           </div>
         </div>
         <div className="w-[340px] flex justify-between pt-3 pb-4 items-center">
-          <label className="w-[64px] text-center">구매수량</label>
+          <label className="w-16 text-center">구매수량</label>
 
           {/* 구매수량 카운터 */}
           <div className="flex gap-10 items-center border-1 border-gray-150 rounded-md overflow-hidden w-[170px]">
@@ -123,16 +134,19 @@ export default function ShoppingFormTag({
       </fieldset>
       {/* 구매 버튼 영역 */}
       <div className="pt-4 flex gap-3">
-        <ButtonBasic
-          text={'장바구니'}
-          background={'white'}
-          color={'flame-250'}
-        ></ButtonBasic>
-        <ButtonBasic
-          text={'바로구매'}
-          background={'flame-250'}
-          color={'white'}
-        ></ButtonBasic>
+        <button
+          disabled={isPending}
+          className={`box-border cursor-pointer bg-white w-[196px] h-[48px] text-flame-250 border-2 border-flame-250 rounded-sm font-bold`}
+        >
+          장바구니
+        </button>
+
+        <button
+          disabled={isPending}
+          className={`box-border cursor-pointer bg-flame-250 w-[196px] h-[48px] text-white border-2 border-flame-250 rounded-sm font-bold`}
+        >
+          바로구매
+        </button>
       </div>
     </form>
   );

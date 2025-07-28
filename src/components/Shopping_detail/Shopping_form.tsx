@@ -11,6 +11,7 @@ export default function ShoppingForm({
   size,
   reviewCount,
   avg,
+  id,
 }: ShoppingFormType) {
   //할인율
   const discountRate = Math.round(
@@ -85,7 +86,7 @@ export default function ShoppingForm({
       </section>
 
       {/* 상품 옵션 선택 영역 */}
-      <ShoppingFormTag color={color} size={size} price={price} />
+      <ShoppingFormTag color={color} size={size} price={price} id={id} />
     </section>
   );
 }
