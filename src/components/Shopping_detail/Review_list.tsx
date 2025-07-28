@@ -7,7 +7,7 @@ export default function ReviewList({
   author,
   content,
   image,
-  date,
+  createdAt,
   star,
 }: ReviewListProps) {
   return (
@@ -23,8 +23,8 @@ export default function ReviewList({
         <div className="flex flex-col gap-3">
           <h4 className="font-bold">{author}</h4>
           <span className="flex ">{stars[star]}</span>
-          <time className="text-gray-550 font-semibold" dateTime="2020-01-01">
-            {date}
+          <time className="text-gray-550 font-semibold" dateTime={createdAt}>
+            {createdAt.split(' ')[0]}
           </time>
         </div>
       </div>

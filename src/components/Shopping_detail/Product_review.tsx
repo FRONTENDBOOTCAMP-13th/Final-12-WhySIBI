@@ -3,14 +3,17 @@
 import { useState } from 'react';
 import StarBar from './Star_bar';
 import ReviewList from './Review_list';
-import { ProductReviewProps } from '@/types/shopping_detail';
+import { ProductReviewProps, Reply } from '@/types/shopping_detail';
 import Image from 'next/image';
-// import CommentItem from '../Detail_posts/CommentItem';
 
 export default function ProductReview({ stars, replies }: ProductReviewProps) {
-  const selectedStar = [...stars, '별점순'];
+  const selectedStar = [...stars, '필터'];
   const [active, setActive] = useState(false);
   const [selected, setSelected] = useState(selectedStar[5]);
+  const [sortType, setSortType] = useState<
+    'none' | 'photo' | 'latest' | 'recommend'
+  >('none'); // 저 4개만 들어올꺼임 이라고 타입단언
+  const [score, setScore] = useState(0);
 
   // 리뷰들의 별점을 받아와서 배열에 저장함
   const repliesStars = [];
@@ -23,7 +26,10 @@ export default function ProductReview({ stars, replies }: ProductReviewProps) {
   for (let i = 0; i < repliesStars.length; i++) {
     sum += repliesStars[i];
   }
-  const avg = sum / repliesStars.length;
+  const avg = (sum / repliesStars.length).toFixed(1);
+
+  //별점 보이게하는 배열의 인덱스에 반올림 해서 따로 넣어줄 숫자값
+  const avgIndex = Math.round(sum / repliesStars.length);
 
   //각 별점을 각각 몇개 있는지 객체 형태로 저장
   const starBoard = {
@@ -60,6 +66,69 @@ export default function ProductReview({ stars, replies }: ProductReviewProps) {
   console.log('정렬됐나?', sortedByCount);
   const maxCount = sortedByCount[0][1];
 
+  //필터된 리뷰들을 담을곳 정의
+  let filteredReplies: Reply[] = [...replies];
+
+  // 사진이 있는 리뷰를 필터링
+  const photoReview = replies.filter(reply => {
+    return reply?.extra?.image?.path;
+  });
+
+  // 최신 정렬 순으로 정렬, 원본 배열은 보존
+  const latestReview = [...replies].sort((a, b) => {
+    return b.createdAt.localeCompare(a.createdAt);
+  });
+
+  //------------------- 추천순 로직 정렬할 자리 -------------------
+
+  //sortType에 따라 filteredReplies에 필터링된걸 담아줌, 아직 추천순은 안해써염
+  switch (sortType) {
+    case 'photo':
+      filteredReplies = photoReview;
+      break;
+    case 'latest':
+      filteredReplies = latestReview;
+      break;
+    case 'recommend':
+      //나중에 추천순 로직 넣을자리
+      filteredReplies = [...replies];
+      break;
+    default:
+      filteredReplies = [...replies];
+  }
+
+  //별점 필터
+
+  if (score > 0) {
+    switch (score) {
+      case 5:
+        filteredReplies = filteredReplies.filter(reply => {
+          return reply.extra.star === 5;
+        });
+        break;
+      case 4:
+        filteredReplies = filteredReplies.filter(reply => {
+          return reply.extra.star === 4;
+        });
+        break;
+      case 3:
+        filteredReplies = filteredReplies.filter(reply => {
+          return reply.extra.star === 3;
+        });
+        break;
+      case 2:
+        filteredReplies = filteredReplies.filter(reply => {
+          return reply.extra.star === 2;
+        });
+        break;
+      case 1:
+        filteredReplies = filteredReplies.filter(reply => {
+          return reply.extra.star === 1;
+        });
+        break;
+    }
+  }
+
   return (
     <section className="max-w-[1028px] mx-auto mt-12 ">
       <div className="flex justify-between border-b-2 pb-3 border-[#a5a5a5]">
@@ -67,10 +136,32 @@ export default function ProductReview({ stars, replies }: ProductReviewProps) {
           리뷰 {replies.length}
         </h3>
         <div className="flex  items-center gap-8">
-          <button className="cursor-pointer">추천순</button>
-          <button className="cursor-pointer">최근등록순</button>
-          <button className="cursor-pointer">사진리뷰</button>
-          {/* 별점 셀렉박스 */}
+          <button
+            className={`cursor-pointer ${sortType === 'recommend' ? 'font-extrabold' : ''}`}
+            onClick={() => {
+              setSortType(sortType === 'recommend' ? 'none' : 'recommend');
+            }}
+          >
+            추천순
+          </button>
+          <button
+            className={`cursor-pointer ${sortType === 'latest' ? 'font-extrabold' : ''}`}
+            onClick={() => {
+              setSortType(sortType === 'latest' ? 'none' : 'latest');
+            }}
+          >
+            최근등록순
+          </button>
+          <button
+            className={`cursor-pointer ${sortType === 'photo' ? 'font-extrabold' : ''}`}
+            onClick={() => {
+              setSortType(sortType === 'photo' ? 'none' : 'photo');
+            }}
+          >
+            사진리뷰
+          </button>
+
+          {/*  ---- 별점 셀렉박스 영역 ---- */}
           <div className="selectBox cursor-pointer inline-block">
             <div
               onClick={() => {
@@ -106,14 +197,27 @@ export default function ProductReview({ stars, replies }: ProductReviewProps) {
                     onClick={() => {
                       setSelected(star);
                       setActive(!active);
+                      setScore(5 - index);
                     }}
                   >
                     {star}
                   </li>
                 );
               })}
+              <li
+                className="text-gray-550  hover:bg-livealone-columbia-blue "
+                onClick={() => {
+                  setSelected('전체');
+                  setActive(!active);
+                  setScore(0);
+                }}
+              >
+                전체
+              </li>
             </ul>
           </div>
+
+          {/* ----여기까지 별점 셀렉박스 영역 ---- */}
         </div>
       </div>
 
@@ -121,7 +225,7 @@ export default function ProductReview({ stars, replies }: ProductReviewProps) {
         {replies.length > 0 ? (
           <>
             <span className="flex scale-200 transform origin-center gap-1">
-              {stars[5 - avg]}
+              {stars[5 - avgIndex]}
             </span>
             <span className="text-5xl font-extrabold">{avg}</span>
             <div className="flex gap-10">
@@ -170,7 +274,7 @@ export default function ProductReview({ stars, replies }: ProductReviewProps) {
       {/* 댓글 영역 */}
       {/* 타입오류, 이미지 깨짐 */}
       <ul className="pb-12">
-        {replies.map(item => {
+        {filteredReplies.map(item => {
           console.log('아이템임', item);
           return (
             <ReviewList
@@ -181,7 +285,7 @@ export default function ProductReview({ stars, replies }: ProductReviewProps) {
               author={item.user.name}
               content={item.content}
               image={item.extra.image?.path}
-              date={item.extra.date}
+              createdAt={item.createdAt}
             ></ReviewList>
           );
         })}

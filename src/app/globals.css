@@ -62,6 +62,7 @@
 
   /* border */
   --color-gray-150: #eaeaea;
+  --color-gray-350: #c7c7c7;
   --color-gray-450: #a5a5a5;
   --color-gray-550: #777777;
 
@@ -136,6 +137,7 @@
   --font-weight-bold: bold;
   --font-weight-regular: normal;
 
+  --text-size-xxs: 11px;
   --text-size-xs: 12px;
   --text-size-sm: 14px;
   --text-size-md: 16px;

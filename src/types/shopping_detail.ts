@@ -11,7 +11,7 @@ export interface ReviewListProps {
   author: string;
   content: string;
   image?: string;
-  date: string;
+  createdAt: string;
   star: number;
 }
 
