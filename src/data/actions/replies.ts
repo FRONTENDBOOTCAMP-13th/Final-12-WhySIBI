@@ -85,3 +85,25 @@ export async function GetReplie(token: string): ApiResPromise<ReviewItem[]> {
     return { ok: 0, message: '상품 정보를 불러오는데 실패했습니다.' };
   }
 }
+
+export async function DeleteReplie(
+  ID: string,
+  token: string,
+): ApiResPromise<ReviewItem[]> {
+  try {
+    const res = await fetch(`${API_URL}/replies/${ID}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+        'Client-Id': CLIENT_ID,
+      },
+    });
+    const data = await res.json();
+
+    return data;
+  } catch (error) {
+    console.error('상품 조회 실패:', error);
+    return { ok: 0, message: '상품 정보를 불러오는데 실패했습니다.' };
+  }
+}

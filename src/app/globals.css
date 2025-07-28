@@ -252,7 +252,6 @@
     box-shadow:
       0 0 0 1px var(--color-button-color) inset,
       0 0 0 2px rgba(255, 238, 188, 0.15) inset,
-      0 6px 0 0 rgba(37, 68, 44, 0.7),
       0 6px 0 1px rgba(0, 0, 0, 0.4),
       0 6px 8px 1px rgba(0, 0, 0, 0.5);
     @apply transition-all duration-100 ease-in-out cursor-pointer border-0 outline-none font-semibold;
@@ -323,6 +322,26 @@
       0 0 0 1px #d4e8f8 inset,
       0 6px 0 0 rgba(212, 232, 248, 0.7) inset,
       0 0 0 1px rgba(0, 0, 0, 0.4);
+    transform: translateY(6px);
+  }
+
+  .nahonsan-btn-3d-red {
+    background-color: var(--color-flame-400); /* #ff9466 */
+    color: var(--color-button-color);
+    border: 1px solid var(--color-flame-500); /* #a04014 */
+    box-shadow:
+      0 0 0 1px var(--color-flame-500) inset,
+      0 6px 0 0 rgba(126, 38, 0, 0.7),
+      /* flame-200 with 0.7 opacity */ 0 6px 0 1px rgba(0, 0, 0, 0.2),
+      0 6px 8px 1px rgba(0, 0, 0, 0.5);
+    @apply transition-all duration-100 ease-in-out cursor-pointer border-0 outline-none font-semibold;
+  }
+
+  .nahonsan-btn-3d-red:active {
+    box-shadow:
+      0 0 0 1px var(--color-flame-400) inset,
+      0 6px 0 0 rgba(198, 83, 31, 0.7) inset,
+      /* flame-200 with 0.7 opacity */ 0 0 0 1px rgba(0, 0, 0, 0.4);
     transform: translateY(6px);
   }
 
