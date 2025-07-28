@@ -168,7 +168,7 @@ export const initData = async (clientId, nextSeq) => {
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
-          isLike: false, //찜하기
+          isLike: true, //찜하기
           originalPrice: 89900, //원가
           detailimg: [
             //세부 이미지
@@ -250,7 +250,7 @@ export const initData = async (clientId, nextSeq) => {
           category: ['PC03', 'PC0305', 'PC030503'],
           tag: 'TAG10', //취향태그
           sort: 5,
-          isLike: false, //찜하기
+          isLike: true, //찜하기
           originalPrice: 349000, //원가
           detailimg: [
             //세부 이미지
@@ -4732,6 +4732,61 @@ export const initData = async (clientId, nextSeq) => {
         memo: '여자친구 선물.',
         createdAt: getTime(-3, -60 * 60 * 2),
       },
+      {
+        _id: await nextSeq('bookmark'),
+        user_id: 4,
+        user: {
+          _id: 4,
+          name: '조현수',
+          image: `files/${clientId}/user-jayg.webp`,
+        },
+        type: 'product',
+        target_id: 1,
+        memo: '그냥해봄',
+        createdAt: getTime(-3, -60 * 60 * 2),
+      },
+      {
+        _id: await nextSeq('bookmark'),
+        user_id: 4,
+        user: {
+          _id: 4,
+          name: '조현수',
+          image: `files/${clientId}/user-jayg.webp`,
+        },
+        type: 'product',
+        target_id: 2,
+        memo: '불만있냐',
+        createdAt: getTime(-3, -60 * 60 * 2),
+      },
+
+      {
+        _id: await nextSeq('bookmark'),
+        user_id: 4,
+        user: {
+          _id: 4,
+          name: '조현수',
+          image: `files/${clientId}/user-jayg.webp`,
+        },
+        type: 'post',
+        target_id: 3,
+        memo: '나 김하영인데',
+        createdAt: getTime(-3, -60 * 60 * 2),
+        image: `/files/${clientId}/detail/coffee.png`,
+      },
+      {
+        _id: await nextSeq('bookmark'),
+        user_id: 4,
+        user: {
+          _id: 4,
+          name: '조현수',
+          image: `files/${clientId}/user-jayg.webp`,
+        },
+        type: 'post',
+        target_id: 4,
+        memo: '에러방 다녀옴',
+        createdAt: getTime(-3, -60 * 60 * 2),
+        image: `/files/${clientId}/detail/curtain.png`,
+      },
     ],
 
     // QnA, 공지사항 등의 게시판
@@ -4843,6 +4898,72 @@ export const initData = async (clientId, nextSeq) => {
         },
         title: '배송 빨리 보내주세요.',
         content: '양품으로 보내주세요.',
+        createdAt: getTime(-1, -60 * 60 * 14),
+        updatedAt: getTime(-1, -60 * 60 * 2),
+      },
+
+      {
+        _id: await nextSeq('post'),
+        type: 'showRoom',
+        product_id: 4,
+        seller_id: 2,
+        views: 0,
+        user: {
+          _id: 3,
+          name: '김하영',
+          image: 'user-neo.png',
+        },
+        title: '하영님 쇼룸 예시',
+        content: '예시123123 나 김하영임',
+        createdAt: getTime(-1, -60 * 60 * 14),
+        updatedAt: getTime(-1, -60 * 60 * 2),
+      },
+
+      {
+        _id: await nextSeq('post'),
+        type: 'showRoom',
+        product_id: 4,
+        seller_id: 2,
+        views: 0,
+        user: {
+          _id: 3,
+          name: '김하영',
+          image: 'user-neo.png',
+        },
+        title: '하영님 쇼룸 예시2',
+        content: '예시123123 나 김하영임22222',
+        createdAt: getTime(-1, -60 * 60 * 14),
+        updatedAt: getTime(-1, -60 * 60 * 2),
+      },
+      {
+        _id: await nextSeq('post'),
+        type: 'showRoom',
+        product_id: 4,
+        seller_id: 2,
+        views: 0,
+        user: {
+          _id: 3,
+          name: '김하영',
+          image: 'user-neo.png',
+        },
+        title: '하영님 쇼룸 예시3',
+        content: '23423432423423',
+        createdAt: getTime(-1, -60 * 60 * 14),
+        updatedAt: getTime(-1, -60 * 60 * 2),
+      },
+      {
+        _id: await nextSeq('post'),
+        type: 'showRoom',
+        product_id: 4,
+        seller_id: 2,
+        views: 0,
+        user: {
+          _id: 3,
+          name: '김하영',
+          image: 'user-neo.png',
+        },
+        title: '하영님 쇼룸 예시4',
+        content: '내 목포 김하영인데',
         createdAt: getTime(-1, -60 * 60 * 14),
         updatedAt: getTime(-1, -60 * 60 * 2),
       },
