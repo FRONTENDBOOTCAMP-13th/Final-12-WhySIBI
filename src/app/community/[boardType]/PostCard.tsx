@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from "react";
-import PostCardItem from "@/components/PostCard_Item";
+import PostCardItem from "@/app/community/[boardType]/PostCard_Item";
 import { getPosts } from '@/data/functions/post';
 import { Post } from '@/types';
 
@@ -40,17 +40,6 @@ export default function PostCard({ boardType }: PostCardProps) {
   };
 
   return (
-    <div className="grid grid-flow-row grid-cols-[repeat(auto-fill,_300px)] gap-20 font-variable justify-center items-center">
-      {posts.map((post, index) => (
-        <PostCardItem
-          key={post._id}
-          post={post}
-          isBookmarked={bookmarkStates[post._id]}
-          toggleBookmark={toggleBookmark}
-          index={index}
-          boardType={boardType}
-        />
-      ))}
-    </div>
+<></>
   );
 }

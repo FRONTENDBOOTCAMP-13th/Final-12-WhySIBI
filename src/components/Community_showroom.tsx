@@ -19,7 +19,7 @@ export function ShowRoom(){
                 className="bg-white rounded-lg shadow-md p-3 flex flex-col items-center cursor-pointer hover:scale-105 hover:duration-150"
               >
                 <img
-                  src={post.imgUrl}
+                  src={post.image[0] || '/image/room_photo/roomThumbnail.svg'}
                   alt='썸네일'
                   className="w-full h-30 object-cover mb-3 bg-livealone-columbia-blue"
                 />

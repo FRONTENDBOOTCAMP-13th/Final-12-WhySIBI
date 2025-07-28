@@ -11,10 +11,10 @@ interface CategorySelectProps {
 
 export default function CategorySelect({ value, onChange }: CategorySelectProps) {
   const options = [
-    { title: '주거형태', category: ['원룸', '투룸', '복층'] },
-    { title: '방개수', category: ['1개', '2개', '3개 이상'] },
-    { title: '작업자', category: ['셀프 • DIY', '반셀프', '전문가'] },
-    { title: '반려동물 유무', category: ['없음', '강아지', '고양이', '어류', '조류', '파충류', '기타'] },
+    { title: '주거형태', tag: ['원룸', '투룸', '복층'] },
+    { title: '방개수', tag: ['1개', '2개', '3개 이상'] },
+    { title: '작업자', tag: ['셀프 • DIY', '반셀프', '전문가'] },
+    { title: '반려동물 유무', tag: ['없음', '강아지', '고양이', '어류', '조류', '파충류', '기타'] },
   ];
 
   const handleSelect = (title: string, selected: string) => {
@@ -30,7 +30,7 @@ export default function CategorySelect({ value, onChange }: CategorySelectProps)
         <DropdownCustom
           key={item.title}
           title={item.title}
-          category={item.category}
+          category={item.tag}
           onSelect={(selected) => handleSelect(item.title, selected)}
         />
       ))}
