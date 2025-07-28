@@ -62,6 +62,8 @@ export default function ShoppingFormTag({
   useEffect(() => {
     if (state && state.status === false) {
       alert(state.error);
+    } else if (state && state.status === true) {
+      alert('성공적으로 장바구니에 담겼습니다!');
     }
   }, [state]);
 

@@ -10,11 +10,13 @@ export async function createCartAction(
   const id = formData.get('id')?.toString();
   const token = formData.get('token')?.toString();
 
+  console.log(size, color, quantity);
+
   //예외처리
-  if (!quantity || !id) {
+  if (!quantity || !id || !token) {
     return {
       status: false,
-      error: '리뷰 내용과 작성자를 입력해주세요',
+      error: '로그인이 필요합니다.',
     };
   }
 
@@ -28,15 +30,14 @@ export async function createCartAction(
         color: color,
       }),
       headers: {
+        Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
         'Client-Id': 'febc13-final12-emjf',
-        'Access-Token': `${token}`,
       },
     });
     if (!response.ok) {
       throw new Error(response.statusText);
     }
-
     return {
       status: true,
       error: '',
