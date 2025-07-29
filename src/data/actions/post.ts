@@ -34,8 +34,9 @@ export async function createPost(
   const content = formData.get('content') as string;
   const image = JSON.parse(formData.get('image') as string);
   const tag = JSON.parse(formData.get('tag') as string);
-
-  const body = { type, title, content, image, tag };
+  const subject = JSON.parse(formData.get('subject') as string);
+  const extra = { subject };
+  const body = { type, title, content, image, tag, extra };
 
   try {
     res = await fetch(`${API_URL}/posts`, {

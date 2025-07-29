@@ -58,6 +58,8 @@ export interface Post {
   detailImages?: string[];
   // 태그
   tags?: string[];
+  // 태그
+  tag?: string[];
 }
 export interface Inqury {
   // 문의의 고유 ID
@@ -88,9 +90,9 @@ export interface InquryProductProps {
   _id?: number;
   createdAt: string;
   productImage?: InquryProductImage;
-  image: string[],
+  image: string[];
   // 태그
-  tag?: string[],
+  tag?: string[];
 }
 
 /**
@@ -99,10 +101,12 @@ export interface InquryProductProps {
  * - image, tags는 옵션
  */
 
-export type PostForm = Partial<Pick<Post, 'type' | 'title' | 'content' | '_id' | 'image'>> & {
+export type PostForm = Partial<
+  Pick<Post, 'type' | 'title' | 'content' | '_id' | 'image'>
+> & {
   // 게시글 태그
-  tag?: string[],
-}
+  tag?: string[];
+};
 
 /**
  * 게시글에 대한 답글(댓글) 정보를 나타내는 인터페이스
@@ -112,16 +116,15 @@ export type PostForm = Partial<Pick<Post, 'type' | 'title' | 'content' | '_id' |
  */
 export interface PostReply {
   // 답글의 고유 ID
-  _id: number,
+  _id: number;
   // 답글 작성자 정보 (id, 이름, 이미지)
-  user: Pick<User, '_id' | 'name' | 'image'>,
+  user: Pick<User, '_id' | 'name' | 'image'>;
   // 답글 내용
-  content: string,
+  content: string;
   // 답글의 좋아요 수
-  like: number,
+  like: number;
   // 답글 생성일
-  createdAt: string,
+  createdAt: string;
   // 답글 수정일
-  updatedAt: string,
+  updatedAt: string;
 }
-

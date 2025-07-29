@@ -6,6 +6,7 @@ import ButtonNew from '@/components/Button_new';
 import DropdownTime from '@/components/Dropdown/Dropdown_time';
 import TalkCategory from '@/components/talk_category/talk_category';
 import BestTalkList from '@/components/best_talk_list/best_talk_list';
+import TalkList from '@/components/talk_list/talk_list';
 
 interface ListPageProps {
   params: Promise<{
@@ -84,14 +85,26 @@ export default async function PostCardPage({ params }: ListPageProps) {
 
         {res.ok ? (
           <div className="bookmark-swiper">
-            <BestTalkList />
+            <BestTalkList item={res.item} boardType={boardType} />
           </div>
         ) : (
           <p className="text-center text-gray-500">{res.message}</p>
         )}
 
+        <section className="relative ">
+          <div className="absolute  right-0">
+            <DropdownTime />
+          </div>
+        </section>
+
         <section>
-          <DropdownTime />
+          {res.ok ? (
+            <div className="bookmark-swiper">
+              <TalkList item={res.item} boardType={boardType} />
+            </div>
+          ) : (
+            <p className="text-center text-gray-500">{res.message}</p>
+          )}
         </section>
       </div>
     );
