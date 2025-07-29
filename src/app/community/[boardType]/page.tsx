@@ -83,6 +83,9 @@ export default async function PostCardPage({ params }: ListPageProps) {
           </div>
         </div>
 
+        <div className="text-xl md:text-3xl mb-8 font-basic font-bold">
+          베스트 고민 Awards 🏆
+        </div>
         {res.ok ? (
           <div className="bookmark-swiper pb-10">
             <BestTalkList item={res.item} boardType={boardType} />
