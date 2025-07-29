@@ -108,7 +108,7 @@ export const initData = async (clientId, nextSeq) => {
           '$2b$10$S.8GNMDyvUF0xzujPtHBu.j5gtS19.OhRmYbpJBnCHg2S83WLx1T2',
         name: '조현수',
         phone: '01022223333',
-        address: '서울시 강남구 삼성동 456',
+        address: '부산 동래구 사직로 55-32(사직야구장)',
         type: 'user',
         loginType: 'email',
         image: `files/${clientId}/user-neo.png`,
@@ -122,7 +122,7 @@ export const initData = async (clientId, nextSeq) => {
             {
               id: 1,
               name: '회사',
-              value: '서울시 강남구 삼성동 567',
+              value: '부산 동래구 사직로 55-32(사직야구장)',
             },
             {
               id: 2,
@@ -144,8 +144,8 @@ export const initData = async (clientId, nextSeq) => {
         show: true,
         active: true,
         name: '아이스모찌 쿨링 토퍼패드',
-        quantity: 320,
-        buyQuantity: 310,
+        quantity: 330,
+        buyQuantity: 320,
         mainImages: [
           {
             path: `files/${clientId}/cooling.png`,
@@ -187,8 +187,8 @@ export const initData = async (clientId, nextSeq) => {
         show: true,
         active: true,
         name: '중소바이미 TV세트',
-        quantity: 320,
-        buyQuantity: 310,
+        quantity: 330,
+        buyQuantity: 320,
         mainImages: [
           {
             path: `files/${clientId}/tv.png`,
@@ -269,8 +269,8 @@ export const initData = async (clientId, nextSeq) => {
         show: true,
         active: true,
         name: '자국없는 벨크로 암막커튼',
-        quantity: 320,
-        buyQuantity: 310,
+        quantity: 330,
+        buyQuantity: 320,
         mainImages: [
           {
             path: `files/${clientId}/curtain.png`,
@@ -398,8 +398,8 @@ export const initData = async (clientId, nextSeq) => {
         show: true,
         active: true,
         name: '꺼짐없는 접이식 매트토퍼',
-        quantity: 320,
-        buyQuantity: 310,
+        quantity: 330,
+        buyQuantity: 320,
         mainImages: [
           {
             path: `files/${clientId}/topper.png`,
@@ -535,8 +535,8 @@ export const initData = async (clientId, nextSeq) => {
         show: true,
         active: true,
         name: '발뻗는 접이식 욕조',
-        quantity: 320,
-        buyQuantity: 310,
+        quantity: 330,
+        buyQuantity: 320,
         mainImages: [
           {
             path: `files/${clientId}/bath.png`,
@@ -965,8 +965,8 @@ export const initData = async (clientId, nextSeq) => {
         show: true,
         active: true,
         name: '해파리 무드등 1+1',
-        quantity: 320,
-        buyQuantity: 310,
+        quantity: 330,
+        buyQuantity: 320,
         mainImages: [
           {
             path: `files/${clientId}/jellyfish.png`,
@@ -2101,8 +2101,8 @@ export const initData = async (clientId, nextSeq) => {
         show: true,
         active: true,
         name: '미니 화장품 냉장고',
-        quantity: 320,
-        buyQuantity: 310,
+        quantity: 330,
+        buyQuantity: 320,
         mainImages: [
           {
             path: `files/${clientId}/minifridge.png`,
@@ -2144,8 +2144,8 @@ export const initData = async (clientId, nextSeq) => {
         show: true,
         active: true,
         name: '대형 풍경 패브릭 포스터',
-        quantity: 320,
-        buyQuantity: 310,
+        quantity: 330,
+        buyQuantity: 320,
         mainImages: [
           {
             path: `files/${clientId}/scapeposter.png`,
@@ -2230,8 +2230,8 @@ export const initData = async (clientId, nextSeq) => {
         show: true,
         active: true,
         name: 'DIY 커스텀 수납화장대',
-        quantity: 320,
-        buyQuantity: 310,
+        quantity: 330,
+        buyQuantity: 320,
         mainImages: [
           {
             path: `files/${clientId}/vanity.png`,

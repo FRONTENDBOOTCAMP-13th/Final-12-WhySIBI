@@ -5,7 +5,11 @@ meta {
 }
 
 get {
-  url: {{url}}/products/1
+  url: {{url}}/products?sort={"buyQuantity":-1}
   body: none
   auth: inherit
+}
+
+params:query {
+  sort: {"buyQuantity":-1}
 }

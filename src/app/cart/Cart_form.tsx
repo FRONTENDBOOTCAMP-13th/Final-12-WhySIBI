@@ -1,6 +1,49 @@
+'use client';
+import useUserStore from '@/zustand/useUserStore';
 import CartList from './Cart_list';
+import { useEffect, useState } from 'react';
 
 export default function CartForm() {
+  const { user } = useUserStore();
+  const token = user?.token?.accessToken;
+  console.log('유전데', user);
+
+  const [cartData, setCartData] = useState(null);
+  // 로그인한 유저의 장바구니를 불러옴
+  useEffect(() => {
+    if (!token) return;
+    async function fetchCart() {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/carts`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+          'Client-Id': 'febc13-final12-emjf',
+        },
+      });
+      const data = await response.json();
+      setCartData(data);
+    }
+    fetchCart();
+  }, [token]);
+  console.log('이게 된다고?', cartData);
+  // const cost = cartData?.cost;
+  // const items = cartData?.item;
+
+  //장바구니가 비어있을때 처리
+  if (cartData?.item.length === 0) {
+    return (
+      <section className="h-72 flex flex-col justify-center items-center gap-3">
+        <h3 className="font-bold text-2xl">장바구니에 담긴 상품이 없어요</h3>
+        <p className="text-gray-550 pb-4">상품을 담아보세요</p>
+        <button
+          className={`box-border cursor-pointer bg-flame-250 w-[300px] h-[48px] text-white border-2 border-flame-250 rounded-sm font-bold`}
+        >
+          장바구니 채우러가기
+        </button>
+      </section>
+    );
+  }
+
   return (
     <form action="" className="flex justify-center gap-5">
       <section className="min-w-[630px] flex flex-col gap-6">
@@ -17,8 +60,21 @@ export default function CartForm() {
         </div>
         {/* 나중에 불러오면 map으로 처리 */}
         <ul className="flex flex-col border-1 px-5 pt-3 rounded-2xl">
-          <CartList />
-          <CartList />
+          {cartData?.item.map(item => {
+            return (
+              <CartList
+                key={item._id}
+                color={item.color || null}
+                size={item.size || null}
+                name={item.product.name}
+                img={item.product.image.path}
+                price={item.product.price}
+                quantity={item.quantity}
+              />
+            );
+          })}
+
+          {/* <CartList /> */}
         </ul>
       </section>
       <aside className="min-w-[630px] flex flex-col gap-6">
@@ -27,7 +83,7 @@ export default function CartForm() {
             배송지
           </h3>
           <p className="text-gray-550 pb-8 border-b-1 border-gray-150 mt-3">
-            부산 동래구 사직로 55-32(사직야구장)
+            {user?.extra.addressBook[0].value}
           </p>
           <div className="flex justify-center mt-6">
             <button className="border-2 rounded-3xl text-button-color w-24 h-9 font-bold">
@@ -42,7 +98,9 @@ export default function CartForm() {
           <dl className="flex flex-col gap-5 pt-4 pb-6 border-b-1 border-gray-150">
             <div className="flex justify-between text-xl">
               <dt className="text-gray-550 ">총 상품금액</dt>
-              <dd className="font-extrabold">123,000원</dd>
+              <dd className="font-extrabold">
+                {cartData?.cost.products.toLocaleString()} 원
+              </dd>
             </div>
             <div className="flex justify-between text-xl ">
               <dt className="text-gray-550">총 배송비</dt>
@@ -52,7 +110,9 @@ export default function CartForm() {
 
           <dl className="flex justify-between text-xl pt-6">
             <dt className="text-gray-550">결제예정금액</dt>
-            <dd className="font-extrabold">123,000원</dd>
+            <dd className="font-extrabold">
+              {cartData?.cost.products.toLocaleString()} 원
+            </dd>
           </dl>
         </section>
         <button
