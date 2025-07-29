@@ -13,6 +13,7 @@ import { useEffect, useState } from 'react';
 import { getProductList } from '@/data/actions/products.fetch';
 import { ProductListProps } from '@/types';
 import SkeletonUI from '@/components/product_component/skeleton_ui';
+import Link from 'next/link';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -93,6 +94,13 @@ function MainProductSlider() {
             })}
           </Swiper>
         )}
+        <Link
+          href={'/shopping/best'}
+          className="btn-gradient-animate block w-full py-3 text-center font-variable font-semibold  text-livealone-cal-poly-green bg-livealone-columbia-blue rounded-md cursor-pointer hover:text-cal-poly-green-100"
+        >
+          BEST 상품 더보기
+        </Link>
+        <hr className="h-0.25 border-0 bg-gray-300 mt-10" />
       </div>
     </>
   );
