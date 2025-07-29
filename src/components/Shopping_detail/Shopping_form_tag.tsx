@@ -50,7 +50,7 @@ export default function ShoppingFormTag({
   }
   // 서버액션
   const initialState: { status?: boolean; error: string } = {
-    //status: false,
+    // status: false,
     error: '',
   };
 

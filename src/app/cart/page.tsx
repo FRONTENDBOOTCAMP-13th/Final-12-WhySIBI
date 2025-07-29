@@ -1,5 +1,3 @@
-import ButtonBasic from '@/components/Buttons/Button_basic';
-
 export default function Cart() {
   return (
     <section className="bg-white min-w-[1280px] pb-24">

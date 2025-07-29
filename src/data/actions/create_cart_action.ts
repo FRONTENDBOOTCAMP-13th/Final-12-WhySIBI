@@ -6,14 +6,15 @@ export async function createCartAction(
 ) {
   const size = formData.get('size')?.toString();
   const color = formData.get('color')?.toString();
-  const quantity = formData.get('quantity')?.toString();
-  const id = formData.get('id')?.toString();
+  const quantity = Number(formData.get('quantity'));
+  const id = Number(formData.get('id'));
   const token = formData.get('token')?.toString();
+  console.log('이게 토큰이라고?', token);
 
-  console.log(size, color, quantity);
+  console.log('안녕안녕', size, color, quantity);
 
-  //예외처리
-  if (!quantity || !id || !token) {
+  //로그인 안했을때 예외처리
+  if (!token) {
     return {
       status: false,
       error: '로그인이 필요합니다.',
@@ -26,13 +27,13 @@ export async function createCartAction(
       body: JSON.stringify({
         product_id: id,
         quantity: quantity,
-        size: size,
         color: color,
+        size: size,
       }),
       headers: {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
-        'Client-Id': 'febc13-final12-emjf',
+        'client-Id': 'febc13-final12-emjf',
       },
     });
     if (!response.ok) {
