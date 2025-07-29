@@ -1,5 +1,6 @@
 'use client';
 import TimeStamp from '@/components/basic_component/Time_stamp';
+import SkeletonUI from '@/components/product_component/skeleton_ui';
 import ProductCard from '@/components/product_component/product_card';
 import DropdownShoppingList from '@/components/Shopping_list/Dropdown_shopping_list';
 import Title from '@/components/Title';
@@ -24,6 +25,7 @@ function ShoppingBestSection() {
     | 'best-selling'
   >('best-selling'); //많이 팔린순
   const params = useParams();
+  const [loading, setLoading] = useState(true);
 
   //카테고리가 없으면 top100
   const top100 = !params.mainCategoryId;
@@ -48,6 +50,8 @@ function ShoppingBestSection() {
         }
       } catch (err) {
         console.error('상품을 불러오지 못했습니다.', err);
+      } finally {
+        setLoading(false);
       }
     },
     [sort],
@@ -135,26 +139,31 @@ function ShoppingBestSection() {
           className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4
        items-center"
         >
-          {productData.map((product, index) => {
-            const discount = product?.extra?.originalPrice
-              ? `${Math.round(100 - (product.price * 100) / product.extra.originalPrice)}%`
-              : ''; //할인율
-            return (
-              <ProductCard
-                id={product._id}
-                key={product._id}
-                name={product.name}
-                imageUrl={`${API_URL}/${product.mainImages[0]?.path}`}
-                price={`${product.price.toLocaleString()}원`}
-                discount={discount}
-                rank={index + 1}
-                rating={product.extra?.star ? product.extra?.star : 0}
-                reviewCount={product?.replies}
-                isLiked={product.extra?.isLike ? true : false}
-                onClick={() => {}}
-              />
-            );
-          })}
+          {/* 상품 로딩중일때 스켈레톤 UI 불러옴 */}
+          {loading ? (
+            <SkeletonUI count={100} />
+          ) : (
+            productData.map((product, index) => {
+              const discount = product?.extra?.originalPrice
+                ? `${Math.round(100 - (product.price * 100) / product.extra.originalPrice)}%`
+                : ''; //할인율
+              return (
+                <ProductCard
+                  id={product._id}
+                  key={product._id}
+                  name={product.name}
+                  imageUrl={`${API_URL}/${product.mainImages[0]?.path}`}
+                  price={`${product.price.toLocaleString()}원`}
+                  discount={discount}
+                  rank={index + 1}
+                  rating={product.extra?.star ? product.extra?.star : 0}
+                  reviewCount={product?.replies}
+                  isLiked={product.extra?.isLike ? true : false}
+                  onClick={() => {}}
+                />
+              );
+            })
+          )}
         </div>
       </div>
     </>

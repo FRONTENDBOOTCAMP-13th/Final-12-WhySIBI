@@ -13,25 +13,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Scrollbar } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/scrollbar';
-
-//로딩중일때 보여줄 스켈레톤 UI
-function SkeletonUI() {
-  const skeleton = [];
-
-  for (let i = 0; i < 4; i++) {
-    //ui 4번반복
-    skeleton.push(
-      <div key={i} className="flex flex-col gap-2 p-4">
-        <div className="bg-gray-300 h-[180px] w-full rounded-md" />
-        <div className="h-4 bg-gray-300 rounded w-3/4" />
-        <div className="h-4 bg-gray-300 rounded w-1/2" />
-        <div className="h-4 bg-gray-300 rounded w-1/2" />
-      </div>,
-    );
-  }
-
-  return <>{skeleton}</>;
-}
+import SkeletonUI from '@/components/product_component/skeleton_ui';
 
 //추천 상품 박스
 function RecommendBox() {
@@ -103,7 +85,7 @@ function RecommendBox() {
               >
                 {/* 상품 로딩중일때 스켈레톤 UI 불러옴 */}
                 {loading ? (
-                  <SkeletonUI />
+                  <SkeletonUI count={4} />
                 ) : (
                   // 로딩중이 아니면 프로덕트 카드로 대체
                   tagProduct.map(product => {
