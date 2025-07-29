@@ -13,7 +13,6 @@ export default function TalkPostDropdownTime({
         <select
           name="sort"
           id="sort"
-          defaultValue={value || 'latest'} // value가 없으면 기본값
           value={value}
           className="w-full h-full cursor-pointer font-semibold appearance-none outline-0 text-center pr-4"
           onChange={e => {
