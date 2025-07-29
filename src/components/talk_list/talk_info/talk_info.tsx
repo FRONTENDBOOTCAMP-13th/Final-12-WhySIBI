@@ -8,15 +8,11 @@ interface PostCardItemProps {
   index: number;
 }
 interface ExtendedPostProps extends Post {
-  extra: {
+  extra?: {
     subject: string[];
   };
 }
-export default function TalkInfo({
-  post,
-  index,
-  boardType,
-}: PostCardItemProps) {
+export default function TalkInfo({ post }: PostCardItemProps) {
   return (
     <section className="border-b-[1px] border-button-color-opaque-25 p-4">
       <p className="text-size-xs md:text-size-lg font-basic font-bold text-[#353535]">
