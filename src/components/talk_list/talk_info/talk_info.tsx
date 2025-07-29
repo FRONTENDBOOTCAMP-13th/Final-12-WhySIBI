@@ -8,7 +8,7 @@ interface PostCardItemProps {
   boardType: string;
   index: number;
 }
-interface ExtendedPostProps extends Post {
+export interface ExtendedPostProps extends Post {
   extra?: {
     subject: string[];
   };
@@ -35,7 +35,12 @@ export default function TalkInfo({ post, boardType }: PostCardItemProps) {
                 height={150}
               />
             ) : (
-              <Image src={``} alt="" width={150} height={150} />
+              <Image
+                src="/image/room_photo/postThumbnail.svg"
+                alt={`게시물  이미지 없음`}
+                width={150}
+                height={150}
+              />
             )}
           </p>
         </section>

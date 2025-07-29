@@ -1,18 +1,24 @@
 'use client';
 import Pagenation from '@/components/basic_component/Pagenation';
 import TalkPostDropdownTime from '@/components/Dropdown/Talk_Dropdown_custom';
-import TalkInfo from '@/components/talk_list/talk_info/talk_info';
+import TalkInfo, {
+  ExtendedPostProps,
+} from '@/components/talk_list/talk_info/talk_info';
 import { Post } from '@/types';
+import useSubjectStore from '@/zustand/subjectStore';
 import { useState } from 'react';
 
 export interface TalkListProps {
-  item: Post[];
+  item: ExtendedPostProps[];
   boardType: string;
 }
 
 export default function TalkList({ item, boardType }: TalkListProps) {
   const [page, setPage] = useState(1);
-  const [sortValue, setSortValue] = useState<string>('latest'); // 상태명 변경
+  const [sortValue, setSortValue] = useState<string>('latest');
+  // 상태명 변경
+  const { activeSubject } = useSubjectStore();
+
   const sortedData = [...item].sort((a, b) => {
     const dateA = new Date(a.createdAt).getTime();
     const dateB = new Date(b.createdAt).getTime();
@@ -21,6 +27,7 @@ export default function TalkList({ item, boardType }: TalkListProps) {
       ? dateB - dateA // 최신순
       : dateA - dateB; // 오래된순
   });
+
   const handleSortChange = (value: string) => {
     setSortValue(value);
     setPage(1); // 정렬 변경 시 첫 페이지로
@@ -38,15 +45,28 @@ export default function TalkList({ item, boardType }: TalkListProps) {
   const endPage = page * onePage; //1 * 12 = 12 , 2 * 12 = 24
   const sliceData = sortedData.slice(startPage, endPage); //12 , 24 ... 개씩 잘라서 보여주기
 
+  const filteredData = sliceData.filter(post => {
+    if (activeSubject === 'all') {
+      return true;
+    }
+    return post.extra?.subject?.[0] == activeSubject;
+  });
+  console.log('activeSubject:', activeSubject);
+  console.log('sliceData:', sliceData);
+  console.log('첫 번째 post의 subject:', sliceData[0]?.extra?.subject?.[0]);
+  console.log('filteredData:', filteredData);
   return (
     <>
       <section className="w-full block pr-14">
         <div className="float-right">
-          <TalkPostDropdownTime value={sortValue} onDropChange={handleSortChange} />
+          <TalkPostDropdownTime
+            value={sortValue}
+            onDropChange={handleSortChange}
+          />
         </div>
       </section>
 
-      {sliceData.map((post: Post, index: number) => (
+      {filteredData.map((post: Post, index: number) => (
         <TalkInfo
           key={post._id}
           post={post}
