@@ -3,8 +3,12 @@ import { ButtonBack } from "@/components/Button_back";
 import DetailSwiper from '@/components/Detail_posts/Detail_swiper';
 import Image from "next/image";
 import { Post } from "@/types";
+import { useBookmarkStore } from "@/zustand/bookMarkStore";
 
 export default function PostDetail({ post }: { post: Post }) {
+  const toggleBookmark = useBookmarkStore((state) => state.toggleBookmark);
+  const isBookmarked = useBookmarkStore((state) => state.isBookmarked(post._id));
+
   return (
     <div className="text-center">
       <div className="button-wrapper w-[600px] flex justify-between items-center text-gray-icon text-md mb-6">
@@ -23,12 +27,21 @@ export default function PostDetail({ post }: { post: Post }) {
         priority
         className="w-full h-90 object-cover bg-livealone-columbia-blue pointer-events-none"
       />
-      <section className="h-25 [box-shadow:0px_2px_20px_0px_rgba(0,0,0,0.1)] bg-white p-5 mb-20 flex items-center justify-between">
-        <Image src="/image/community_icon/heartIcon.svg" width={28} height={28} alt="공감하기" className="w-auto mt-2 self-start" />
+      <section className="h-25 [box-shadow:0px_2px_20px_0px_rgba(0,0,0,0.1)] bg-white p-7 mb-20 flex items-center justify-between">
         <div className="space-y-1.5">
-          <h1 className="text-xl font-bold">{post.title}</h1>
+          <h1 className="w-full text-xl font-bold">{post.title}</h1>
         </div>
-        <Image src="/image/community_icon/bookMark_gray.svg" width={20} height={20} alt="복마크" className="w-auto mt-2 self-start" />
+        <button onClick={() => toggleBookmark(post._id)} className="text-livealone-cal-poly-green">
+          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 48 61" fill="none">
+            <path d="M2 59V2H46V59L23.2414 44.75L2 59Z"
+              fill="currentColor"
+              fillOpacity={isBookmarked ? 1 : 0}
+              stroke="currentColor"
+              strokeWidth="5"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
       </section>
       </div>
       <span className="text-gray-icon font-extrabold">{post.user.name}님의 집</span>

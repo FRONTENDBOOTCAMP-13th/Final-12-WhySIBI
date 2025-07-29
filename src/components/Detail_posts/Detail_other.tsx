@@ -14,8 +14,8 @@ export default async function DetailOther({ _id }: {_id: number}){
   const sliced = filtered.slice(0, 2);
 
   return(
-        <div className="w-[600px] mt-10 pb-15 text-center border-b">
-        <h2 className="font-bold text-2xl">이런 인테리어는 어때요?</h2>
+        <div className="w-[600px] mt-15 pb-15 text-center border-b">
+        <h2 className="font-bold text-xl">이런 인테리어는 어때요?</h2>
           {res.ok ? (
             <div className="flex flex-row font-variable justify-center items-center mt-7">
               {sliced.map((post: Post, index: number) => (
