@@ -18,7 +18,7 @@ function ShoppingBestSection() {
     return <div>메인 카테고리에 데이터가 없습니다.</div>;
   }
 
-  const top100 = !params.mainCategoryId;
+  // const top100 = !params.mainCategoryId;
 
   return (
     <div className="text-center">
