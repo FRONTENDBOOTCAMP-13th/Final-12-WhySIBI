@@ -26,7 +26,7 @@ export default function OrderList() {
     };
 
     orderListData();
-  }, []);
+  }, [user?.token?.accessToken]);
 
   return (
     <nav className="mt-20">

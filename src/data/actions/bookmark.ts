@@ -1,7 +1,7 @@
 import { ApiResPromise } from '@/types';
 import { BookMarkItem } from '@/types/bookmark';
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
-const CLIENT_ID = process.env.NEXT_PUBLIC_WHY_SIBI_CLIENT_ID || '';
+const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID || '';
 export default async function GetBookMarkList(
   type: string,
   token: string,

@@ -43,7 +43,7 @@ export default function MyPageMenuList() {
         <li>
           <Link
             href="/my_page/bookmarks"
-            className={`active:text-menu-text ${isAnchorMenuActive('')}`}
+            className={`active:text-menu-text ${isAnchorMenuActive('/my_page/bookmarks')}`}
           >
             북마크&찜
           </Link>

@@ -63,7 +63,7 @@ const useMenuStore = create<MenuState>(set => ({
     community: {
       type: 'community',
       items: {
-        집들이: {
+        '집들이': {
           type: 'showRoom',
         },
         '자취 상담소': {

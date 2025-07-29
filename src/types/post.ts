@@ -40,7 +40,6 @@ export interface Post {
   content: string;
   // 게시글 작성자 정보 (id, 이름, 이미지)
   user: Pick<User, '_id' | 'name'>;
-  content: string,
   // 게시글 조회수
   views: number;
   // 게시글 좋아요 수

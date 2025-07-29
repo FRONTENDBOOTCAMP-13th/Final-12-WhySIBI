@@ -2,7 +2,7 @@ import { upLoadFile } from '@/data/actions/file';
 import { ApiRes, ApiResPromise } from '@/types';
 import { replie, ReviewItem } from '@/types/replies';
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
-const CLIENT_ID = process.env.NEXT_PUBLIC_WHY_SIBI_CLIENT_ID || '';
+const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID || '';
 export async function createReplie(
   state: ApiRes<replie> | null,
   formData: FormData,

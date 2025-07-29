@@ -58,9 +58,14 @@ function MenuNavigation() {
             className={`w-[9.375rem] h-[4.375rem] p-3.5 pb-0 mt-3   active:bg-white rounded-t-4xl ${isListMenuActive('/community')}`}
           >
             <Link
-              href={''}
-              className={`block text-button-color w-full h-full active:text-menu-text ${isAnchorMenuActive('/community')}`}
-              onClick={() => handleMenuClick('community')}
+              href={`/community/showRoom`}
+              className={`block text-button-color w-full h-full active:text-menu-text ${isAnchorMenuActive('/community/showRoom')}`}
+              onClick={e => {
+                //쇼핑 메뉴 렌더링 순서 보장
+                e.preventDefault();
+                handleMenuClick('community');
+                router.push('/community/showRoom');
+              }}
             >
               커뮤니티
             </Link>

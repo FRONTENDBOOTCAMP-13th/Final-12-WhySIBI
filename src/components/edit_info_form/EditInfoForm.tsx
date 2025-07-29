@@ -50,7 +50,7 @@ export default function EditInfoForm() {
       }
     };
     userData();
-  }, []);
+  }, [token]);
   //회원정보 수정
   const [state, formAction, isLoading] = useActionState(EditUserInfo, null);
   const navigation = useRouter();
