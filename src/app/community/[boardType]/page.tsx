@@ -35,7 +35,7 @@ export default async function PostCardPage({ params }: ListPageProps) {
 
   // 서버에서 게시글 목록 받아오기
   const res = await getPosts(boardType);
-  console.log(res);
+
   if (boardType === 'showRoom') {
     return (
       <div className="post-list-wrapper bg-white p-20">
