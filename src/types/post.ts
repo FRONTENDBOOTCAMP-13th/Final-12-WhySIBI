@@ -40,7 +40,6 @@ export interface Post {
   content: string;
   // 게시글 작성자 정보 (id, 이름, 이미지)
   user: Pick<User, '_id' | 'name'>;
-  content: string,
   // 게시글 조회수
   views: number;
   // 게시글 좋아요 수
@@ -54,7 +53,7 @@ export interface Post {
   // 게시글 수정일
   updatedAt: string;
   // 게시글 이미지
-  image?: string;
+  image?: string[];
   // 게시글 상세 이미지
   detailImages?: string[];
   // 태그
@@ -99,14 +98,7 @@ export interface InquryProductProps {
  * - Partial<Pick<Post, 'type' | 'title' | 'content' | '_id'>>: Post 타입에서 type, title, content, _id만 선택해 모두 옵셔널로 만듦
  * - image, tags는 옵션
  */
-export type PostForm = Partial<
-  Pick<Post, 'type' | 'title' | 'content' | '_id'>
-> & {
-  // 게시글 이미지
-  image?: string[];
-  // 게시글 태그
-  tags?: string | string[];
-};
+
 export type PostForm = Partial<Pick<Post, 'type' | 'title' | 'content' | '_id' | 'image'>> & {
   // 게시글 태그
   tag?: string[],
@@ -133,7 +125,3 @@ export interface PostReply {
   updatedAt: string,
 }
 
-/**
- * 답글 작성 폼에서 사용하는 타입 (content만 포함)
- */
-export type PostReplyForm = Pick<PostReply, 'content'>;

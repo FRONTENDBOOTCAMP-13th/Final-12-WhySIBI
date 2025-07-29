@@ -36,7 +36,7 @@ export default function PostDetail({ post }: { post: Post }) {
       <section className="content-wrapper w-[600px] text-gray-icon text-center pt-20 pb-25 border-b px-10 space-y-15">
         <div className="space-y-4">
           <h2 className="font-bold text-xl">집정보</h2>
-          <p className="font-light">{post.tag?.join(' | ')}</p>
+          <p className="font-light">{post.tags?.join(' | ')}</p>
         </div>
         <div className="space-y-4">
           <h2 className="font-bold text-xl">집을 소개합니다</h2>
