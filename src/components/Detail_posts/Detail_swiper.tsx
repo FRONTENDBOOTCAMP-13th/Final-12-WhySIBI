@@ -13,7 +13,7 @@ export default function DetailSwiper({ images }: RoomSwiperProps) {
   const isSingle = images.length === 1;
 
   return (
-    <div className="w-[600px] flex justify-center">
+    <div className="w-[600px] flex justify-center mt-5">
       {images.length === 0 ? (
         <div className="w-[350px] h-[450px] relative overflow-hidden">
           <Image
