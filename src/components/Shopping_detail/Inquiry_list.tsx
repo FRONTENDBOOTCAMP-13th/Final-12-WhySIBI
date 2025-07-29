@@ -10,7 +10,6 @@ interface InquiryListProps {
 export default function InquiryList({ item }: InquiryListProps) {
   const [active, setActive] = useState(false);
   const [replyContent, setReplyContent] = useState(null);
-  console.log('우째 넘어오는데', item);
 
   useEffect(() => {
     async function fetch() {
@@ -22,8 +21,6 @@ export default function InquiryList({ item }: InquiryListProps) {
     fetch();
   }, []);
 
-  console.log('오이오이', replyContent);
-
   return (
     <>
       <li
@@ -34,10 +31,7 @@ export default function InquiryList({ item }: InquiryListProps) {
       >
         <h4 className=" flex-1 text-center">{item.title}</h4>
         <span className="w-[150px] text-center">{item.user.name}</span>
-        <time
-          className="w-[150px] text-center"
-          dateTime={`${item.createdAt.split(' ')[0]}`}
-        >
+        <time className="w-[150px] text-center" dateTime={item.createdAt}>
           {item.createdAt.split(' ')[0]}
         </time>
         {replyContent ? (

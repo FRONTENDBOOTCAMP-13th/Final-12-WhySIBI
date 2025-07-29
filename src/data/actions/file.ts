@@ -2,7 +2,7 @@ import { ApiResPromise, FileUpload } from '@/types';
 import axios from 'axios';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
-const CLIENT_ID = process.env.NEXT_PUBLIC_WHY_SIBI_CLIENT_ID || '';
+const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID || '';
 
 /**
  * 파일 업로드 함수

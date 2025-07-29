@@ -49,9 +49,10 @@ export default function ShoppingForm({
     });
   }
 
+  //할인율
   const discountRate = Math.round(
     ((originalPrice - price) / originalPrice) * 100,
-  ); //할인율
+  );
 
   return (
     <section className="min-w-[500]">
@@ -65,9 +66,9 @@ export default function ShoppingForm({
       <p className="flex gap-2 items-center">
         {avg ? (
           <>
-            <span className="flex gap-[1px]">{stars[5 - avg]}</span>
+            <span className="flex gap-[1px]">{stars[5 - Math.round(avg)]}</span>
             <span className="font-bold text-xl" aria-label="5점 만점에 4점">
-              {avg}
+              {avg.toFixed(1)}
             </span>
           </>
         ) : (
@@ -88,7 +89,10 @@ export default function ShoppingForm({
                 </svg>
               }
             </span>
-            <span className="font-bold text-xl" aria-label="5점 만점에 4점">
+            <span
+              className="font-bold text-xl"
+              aria-label="아직 점수가 없습니다."
+            >
               0
             </span>
           </>

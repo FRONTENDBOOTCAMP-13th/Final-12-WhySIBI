@@ -1,6 +1,8 @@
 'use client';
+import ReviewStar from '@/components/review_write/star';
 import { createReplie } from '@/data/actions/replies';
 import { Product } from '@/types';
+import useUserStore from '@/zustand/useUserStore';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useActionState, useEffect, useState } from 'react';
@@ -16,33 +18,19 @@ export default function ReviewWriteForm({
   productData,
   productId,
 }: ReviewWriteFormProps) {
-  const [imageSrc, setImageSrc] = useState<string[]>([]);
+  const [imageSrc, setImageSrc] = useState<string>();
   const [state, formAction, isLoading] = useActionState(createReplie, null);
   const router = useRouter();
-
-  let token = null;
-  let userID = 0;
-  const userStorageString = sessionStorage.getItem('user');
-  if (userStorageString) {
-    try {
-      const userStorage = JSON.parse(userStorageString);
-      if (userStorage?.state?.user?.token?.accessToken) {
-        token = userStorage.state.user.token.accessToken;
-        userID = userStorage.state.user._id;
-      }
-    } catch (error) {
-      console.error('JSON 파싱 오류:', error);
-    }
-  }
+  const { user } = useUserStore();
 
   const handleFilePath = (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log('파일 선택 이벤트 발생!');
     const target = e.target as HTMLInputElement;
-    const files = target.files;
-    if (files) {
-      const filesArray = Array.from(files);
-      const filesSrc = filesArray.map(file => URL.createObjectURL(file));
-      setImageSrc(prev => [...prev, ...filesSrc]);
+    const file = target.files?.[0]; // 첫 번째 파일만 가져오기
+
+    if (file) {
+      const fileSrc = URL.createObjectURL(file);
+      setImageSrc(fileSrc); // 배열을 새로 만들어서 단일 파일만
     }
   };
 
@@ -58,8 +46,12 @@ export default function ReviewWriteForm({
   return (
     <div className="w-2/4 mx-auto p-10 border-2 rounded-3xl">
       <form action={formAction}>
-        <input type="hidden" name="token" value={token || ''} />
-        <input type="hidden" name="user_id" value={userID} />
+        <input
+          type="hidden"
+          name="token"
+          value={user?.token?.accessToken || ''}
+        />
+        <input type="hidden" name="user_id" value={user?._id} />
         <section className="flex pb-9 border-b-2 border-button-color-opaque-25">
           {productData?.mainImages?.[0] ? (
             <Image
@@ -74,9 +66,7 @@ export default function ReviewWriteForm({
           <div className="font-basic">
             <input type="hidden" name="product_id" value={productData._id} />
             <p className="text-size-md">상품명: {productData.name}</p>
-            <select name="rating" id="rating">
-              <option value={5}>5</option>
-            </select>
+            <ReviewStar />
           </div>
         </section>
         <section className="flex gap-3 mt-9">
@@ -106,20 +96,16 @@ export default function ReviewWriteForm({
               onChange={handleFilePath}
             />
           </div>
-          <div className="border-2 mt-12 flex gap-4">
-            {imageSrc.length > 0 ? (
-              imageSrc.map((item, index) => (
-                <Image
-                  key={index}
-                  src={item}
-                  alt="리뷰 등록 이미지"
-                  width={100}
-                  height={100}
-                  className="object-cover"
-                />
-              ))
-            ) : (
-              <p></p>
+          <div className="mt-12 flex gap-4">
+            {imageSrc && (
+              <Image
+                key={'1'}
+                src={imageSrc}
+                alt="리뷰 등록 이미지"
+                width={100}
+                height={100}
+                className="object-cover"
+              />
             )}
           </div>
         </section>

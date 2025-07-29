@@ -4,7 +4,7 @@ import DetailSwiper from '@/components/Detail_posts/Detail_swiper';
 import DetailSimilar from '@/components/Detail_posts/Detail_similar';
 import DetailOther from '@/components/Detail_posts/Detail_other';
 import CommentList from '@/components/Detail_posts/CommentList';
-import CommentNew from '@/components/Detail_posts/CommentNew';
+import CommentNew from '@/app/community/[boardType]/[_id]/CommentNew';
 import Image from "next/image";
 import { Post } from "@/types";
 

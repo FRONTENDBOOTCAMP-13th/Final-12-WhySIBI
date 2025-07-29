@@ -1,10 +1,9 @@
 'use server';
 import { ApiResPromise } from '@/types';
 import { OrderItem } from '@/types/order';
-import { error } from 'console';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
-const CLIENT_ID = process.env.NEXT_PUBLIC_WHY_SIBI_CLIENT_ID || '';
+const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID || '';
 
 /**
  * 등록된 주문 목록 리스트를 가져옵니다.
@@ -19,6 +18,7 @@ export async function getOrderList(token: string): ApiResPromise<OrderItem[]> {
         'Content-Type': 'application/json',
         'Client-Id': CLIENT_ID,
       },
+      cache: 'force-cache',
     });
 
     const data = await res.json();

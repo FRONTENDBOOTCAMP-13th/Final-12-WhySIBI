@@ -26,8 +26,8 @@ export default function MyPageMenuList() {
         </li>
         <li>
           <Link
-            href=""
-            className={`active:text-menu-text ${isAnchorMenuActive('')}`}
+            href="/my_page/my_inqury"
+            className={`active:text-menu-text ${isAnchorMenuActive('/my_page/my_inqury')}`}
           >
             문의내역
           </Link>
@@ -35,15 +35,15 @@ export default function MyPageMenuList() {
         <li>
           <Link
             href="/my_page/reviews"
-            className={`active:text-menu-text ${isAnchorMenuActive('')}`}
+            className={`active:text-menu-text ${isAnchorMenuActive('/my_page/reviews')}`}
           >
             내리뷰
           </Link>
         </li>
         <li>
           <Link
-            href=""
-            className={`active:text-menu-text ${isAnchorMenuActive('')}`}
+            href="/my_page/bookmarks"
+            className={`active:text-menu-text ${isAnchorMenuActive('/my_page/bookmarks')}`}
           >
             북마크&찜
           </Link>

@@ -2,7 +2,7 @@ import { upLoadFile } from '@/data/actions/file';
 import { ApiRes, ApiResPromise } from '@/types';
 import { replie, ReviewItem } from '@/types/replies';
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
-const CLIENT_ID = process.env.NEXT_PUBLIC_WHY_SIBI_CLIENT_ID || '';
+const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID || '';
 export async function createReplie(
   state: ApiRes<replie> | null,
   formData: FormData,
@@ -12,12 +12,17 @@ export async function createReplie(
 
   try {
     const attach = formData.getAll('attach') as File[];
-    let images: string[] = [];
-
+    let imageObject = null;
     if (attach.length > 0) {
       const fileRes = await upLoadFile(formData);
       if (fileRes.ok) {
-        images = fileRes.item.map(item => item.path);
+        // 여러 이미지 중 첫 번째를 객체로, 나머지는 배열로
+        const images = fileRes.item.map(item => ({
+          path: item.path,
+          name: item.name,
+          originalname: item.originalname,
+        }));
+        imageObject = images[0];
       } else {
         return fileRes;
       }
@@ -41,9 +46,8 @@ export async function createReplie(
       extra: {
         star: Number(formData.get('rating')),
         date: dateString,
+        image: imageObject,
       },
-      // 이미지를 처음부터 포함 (빈 배열이라도)
-      ...(images && images.length > 0 ? { images: images } : {}),
     };
 
     console.log('전송할 body:', baseBody);
@@ -76,6 +80,7 @@ export async function GetReplie(token: string): ApiResPromise<ReviewItem[]> {
         'Content-Type': 'application/json',
         'Client-Id': CLIENT_ID,
       },
+      cache: 'force-cache',
     });
     const data = await res.json();
     return data;

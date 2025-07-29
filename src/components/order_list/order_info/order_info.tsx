@@ -5,13 +5,7 @@ import { memo } from 'react';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-const OrderProductInfo = memo(function OrderProductInfo({
-  _id,
-  price,
-  name,
-  image,
-  state,
-}: OrderProduct) {
+function OrderProductInfo({ _id, price, name, image, state }: OrderProduct) {
   let deliveryState = '';
   if (state === 'OS010') {
     deliveryState = '상품준비중';
@@ -26,7 +20,7 @@ const OrderProductInfo = memo(function OrderProductInfo({
     <li className="w-4/5 border-2 border-button-color-opaque-25 shadow-shadow-md p-5 rounded-radius-lg">
       <p className="font-logo text-2xl ml-5">{deliveryState}</p>
       <div className="flex justify-between mt-6 items-center">
-        <Link href={`/products/${_id}`}>
+        <Link href={`/community/${_id}`}>
           <figure className="flex gap-6">
             {image && (
               <Image
@@ -35,7 +29,6 @@ const OrderProductInfo = memo(function OrderProductInfo({
                 width={140}
                 height={140}
                 className="rounded-radius-lg"
-                unoptimized
               />
             )}
 
@@ -68,5 +61,5 @@ const OrderProductInfo = memo(function OrderProductInfo({
       </div>
     </li>
   );
-});
-export default OrderProductInfo;
+}
+export default memo(OrderProductInfo);

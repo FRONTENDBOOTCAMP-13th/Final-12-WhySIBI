@@ -2,16 +2,16 @@ import ReviewWriteForm from '@/components/review_write/review_write_form';
 import { getProductInfo } from '@/data/actions/products';
 
 interface PageProps {
-  params: {
-    id: string;
-  };
+  params: Promise<{
+    productID: string;
+  }>;
 }
 
 export default async function ReviewWritePage({ params }: PageProps) {
-  const productId = params.id;
+  const { productID } = await params;
 
   // 서버에서 상품 정보 미리 가져오기
-  const res = await getProductInfo(productId);
+  const res = await getProductInfo(productID);
 
   if (res.ok !== 1) {
     return (
@@ -25,7 +25,7 @@ export default async function ReviewWritePage({ params }: PageProps) {
   return (
     <>
       <h2 className="font-logo text-5xl ml-9 my-9">상품 리뷰</h2>
-      <ReviewWriteForm productData={res.item} productId={productId} />
+      <ReviewWriteForm productData={res.item} productId={productID} />
     </>
   );
 }

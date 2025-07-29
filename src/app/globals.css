@@ -62,6 +62,7 @@
 
   /* border */
   --color-gray-150: #eaeaea;
+  --color-gray-350: #c7c7c7;
   --color-gray-450: #a5a5a5;
   --color-gray-550: #777777;
 
@@ -136,6 +137,7 @@
   --font-weight-bold: bold;
   --font-weight-regular: normal;
 
+  --text-size-xxs: 11px;
   --text-size-xs: 12px;
   --text-size-sm: 14px;
   --text-size-md: 16px;
@@ -585,5 +587,55 @@
   .subcategory-active {
     background-color: #ea672d;
     color: white;
+  }
+  .bookmark-swiper .swiper-slide {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .bookmark-swiper .swiper-pagination-bullet {
+    background: none;
+    width: 0;
+  }
+  .bookmark-swiper .swiper-button-prev {
+    left: 10px;
+  }
+
+  .bookmark-swiper .swiper-button-next {
+    right: 10px;
+  }
+  .bookmark-swiper .swiper-button-next::after,
+  .bookmark-swiper .swiper-button-prev::after {
+    color: #26422a;
+    font-size: 25px;
+  }
+  .bookmark-swiper .swiper-button-next::after,
+  .bookmark-swiper .swiper-button-prev::after {
+    color: #26422a;
+    font-size: 25px;
+  }
+
+  .bookmark-swiper .swiper-button-prev {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    width: 3.125rem;
+    height: 3.125rem;
+  }
+
+  .bookmark-swiper .swiper-button-next {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    width: 3.125rem;
+    height: 3.125rem;
+  }
+  .bookmark-swiper .swiper {
+    padding: 0 50px !important;
+  }
+  .bookmark-swiper {
+    position: relative;
+    padding: 0 60px; /* 네비게이션 버튼 공간 확보 */
   }
 }

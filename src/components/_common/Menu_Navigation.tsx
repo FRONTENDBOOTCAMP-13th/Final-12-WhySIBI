@@ -1,7 +1,7 @@
 'use client';
-
 import Categroy from '@/components/_common/category';
 import useMenuStore from '@/zustand/menuStore';
+import useUserStore from '@/zustand/useUserStore';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -61,6 +61,9 @@ function MenuNavigation() {
     }
   }, []);
 
+  const { user } = useUserStore();
+  const token = user?.token?.accessToken;
+
   return (
     <>
       <nav className="header_bottom w-full min-w-[1280px] bg-[#D4E8F8] flex flex-wrap justify-between items-center text-center">
@@ -69,9 +72,14 @@ function MenuNavigation() {
             className={`w-[9.375rem] h-[4.375rem] p-3.5 pb-0 mt-3   active:bg-white rounded-t-4xl ${isListMenuActive('/community')}`}
           >
             <Link
-              href={''}
-              className={`block text-button-color w-full h-full active:text-menu-text ${isAnchorMenuActive('/community')}`}
-              onClick={() => handleMenuClick('community')}
+              href={`/community/showRoom`}
+              className={`block text-button-color w-full h-full active:text-menu-text ${isAnchorMenuActive('/community/showRoom')}`}
+              onClick={e => {
+                //쇼핑 메뉴 렌더링 순서 보장
+                e.preventDefault();
+                handleMenuClick('community');
+                router.push('/community/showRoom');
+              }}
             >
               커뮤니티
             </Link>
