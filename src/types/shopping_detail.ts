@@ -48,7 +48,7 @@ export interface ShoppingDetailType {
   // price: number;
   // imageSrc: string;
   stars: ReactElement[][];
-  pageNum: string;
+  id: string;
   params?: { id: string };
 }
 
@@ -62,6 +62,7 @@ export interface ShoppingFormType {
   size: string[];
   reviewCount: number;
   avg: number;
+  id: string;
 }
 
 // 사용자 정보 타입

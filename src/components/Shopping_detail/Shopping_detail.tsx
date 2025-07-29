@@ -5,9 +5,9 @@ import { Product_Detail } from './fetch/Product_detail';
 
 export default async function ShoppingDetail({
   stars,
-  pageNum,
+  id,
 }: ShoppingDetailType) {
-  const item = await Product_Detail(pageNum);
+  const item = await Product_Detail(id);
   const reviewCount = item.replies.length;
 
   // 리뷰들의 별점을 받아와서 배열에 저장함
@@ -47,6 +47,7 @@ export default async function ShoppingDetail({
         size={item.extra.size}
         reviewCount={reviewCount}
         avg={avg}
+        id={id}
       />
     </section>
   );
