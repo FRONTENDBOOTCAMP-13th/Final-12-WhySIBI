@@ -7,15 +7,13 @@ import MainTalk from '@/components/Main_component/main_talk';
 export default function Home() {
   return (
     <>
-      <main>
-        <MainBannerSlider />
-        <MainBestProductSection />
-        <div className="community-wrapper flex flex-row gap-15 mt-10 justify-center items-center">
-          <MainShowRoom></MainShowRoom>
-          <MainTalk></MainTalk>
-        </div>
-        <MainBottomSlider />
-      </main>
+      <MainBannerSlider />
+      <MainBestProductSection />
+      <div className="community-wrapper flex flex-row gap-15 mt-10 justify-center items-center">
+        <MainShowRoom></MainShowRoom>
+        <MainTalk></MainTalk>
+      </div>
+      <MainBottomSlider />
     </>
   );
 }

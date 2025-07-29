@@ -19,6 +19,7 @@ export default function CartForm() {
           'Content-Type': 'application/json',
           'Client-Id': 'febc13-final12-emjf',
         },
+        next: { tags: [`cartData`] },
       });
       const data = await response.json();
       setCartData(data);
@@ -45,8 +46,8 @@ export default function CartForm() {
   }
 
   return (
-    <form action="" className="flex justify-center gap-5">
-      <section className="min-w-[630px] flex flex-col gap-6">
+    <section className="flex justify-center gap-5">
+      <div className="min-w-[630px] flex flex-col gap-6">
         <div className="border-1 px-5 py-3 rounded-2xl flex justify-between items-center">
           <div className="flex items-center gap-3">
             <input type="checkbox" id="allcheck" className="w-4 h-4" />
@@ -58,12 +59,14 @@ export default function CartForm() {
             선택삭제
           </button>
         </div>
-        {/* 나중에 불러오면 map으로 처리 */}
+
+        {/* 장바구니 목록 영역 */}
         <ul className="flex flex-col border-1 px-5 pt-3 rounded-2xl">
           {cartData?.item.map(item => {
             return (
               <CartList
                 key={item._id}
+                id={item._id}
                 color={item.color || null}
                 size={item.size || null}
                 name={item.product.name}
@@ -76,7 +79,7 @@ export default function CartForm() {
 
           {/* <CartList /> */}
         </ul>
-      </section>
+      </div>
       <aside className="min-w-[630px] flex flex-col gap-6">
         <section className="border-1 px-5 py-6 rounded-2xl">
           <h3 className="text-xl font-extrabold border-b-1 pb-3 border-gray-150">
@@ -118,9 +121,9 @@ export default function CartForm() {
         <button
           className={`box-border cursor-pointer bg-flame-250 w-full h-[48px] text-white border-2 border-flame-250 rounded-sm font-bold`}
         >
-          총 123,000 구매하기
+          총 {cartData?.cost.products.toLocaleString()} 구매하기
         </button>
       </aside>
-    </form>
+    </section>
   );
 }

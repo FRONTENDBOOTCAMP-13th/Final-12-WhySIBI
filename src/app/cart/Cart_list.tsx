@@ -1,6 +1,15 @@
 import Image from 'next/image';
+import CartDeleteButton from './list_delete_button';
 
-export default function CartList({ color, size, name, img, price, quantity }) {
+export default function CartList({
+  id,
+  color,
+  size,
+  name,
+  img,
+  price,
+  quantity,
+}) {
   return (
     <li className="flex gap-4 px-5 pt-6 pb-6 border-b-1 last:border-b-0">
       <input type="checkbox" id="check" className="w-5 h-5" />
@@ -29,9 +38,8 @@ export default function CartList({ color, size, name, img, price, quantity }) {
             <span>{quantity}</span>
             <button className="flex-1 cursor-pointer">+</button>
           </div>
-          <button className="border-2 rounded-3xl text-button-color w-24 h-9 font-bold">
-            삭제
-          </button>
+
+          <CartDeleteButton id={id} />
         </div>
       </div>
     </li>
