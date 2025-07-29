@@ -3,7 +3,7 @@ import { getProductInfo } from '@/data/actions/products';
 
 interface DeliveryStatePageProps {
   params: Promise<{
-    productID: string;
+    id: string;
   }>;
 }
 export default async function DeliverState({ params }: DeliveryStatePageProps) {

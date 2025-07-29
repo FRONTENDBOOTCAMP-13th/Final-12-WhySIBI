@@ -3,7 +3,7 @@ import { getProductInfo } from '@/data/actions/products';
 
 interface PageProps {
   params: Promise<{
-    productID: string;
+    id: string;
   }>;
 }
 
