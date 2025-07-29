@@ -7,7 +7,6 @@ import Title from '@/components/Title';
 function MainBestProductSection() {
   return (
     <>
-      <Title title="FOR YOU" subTitle="좋아하실 만한 상품을 추천해드려요 🧐" />
       <Title
         title="나혼산 BEST 상품"
         subTitle={
