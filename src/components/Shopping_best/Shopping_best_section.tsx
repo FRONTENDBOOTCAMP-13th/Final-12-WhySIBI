@@ -18,44 +18,68 @@ function ShoppingBestSection() {
     return <div>메인 카테고리에 데이터가 없습니다.</div>;
   }
 
-  // const top100 = !params.mainCategoryId;
+  const top100 = !params.mainCategoryId;
 
   return (
-    <div className="text-center">
-      <Title
-        title="나혼산 BEST"
-        subTitle={
-          <>
-            현재시각 <TimeStamp /> 실시간 인기상품 🔥🔥🔥
-          </>
-        }
-      />
+    <>
+      <div className="text-center">
+        <Title
+          title="나혼산 BEST"
+          subTitle={
+            <>
+              현재시각 <TimeStamp /> 실시간 인기상품 🔥🔥🔥
+            </>
+          }
+        />
 
-      <div>
-        <Link href="/shopping/best">TOP100</Link>
-      </div>
+        {/* Top100 or 카테고리 베스트 */}
+        <div className="flex justify-center mt-10 w-full mx-auto">
+          <Link
+            href="/shopping/best"
+            className={`subcategory flex-1 font-bold text-xl py-3
+                    ${top100 ? 'subcategory-active' : ''}
+                    `}
+          >
+            TOP100
+          </Link>
+          <Link
+            href={`/shopping/best/${mainCategoryId || categoryData[0].id}`}
+            className={`subcategory flex-1 font-bold text-xl py-3
+                    ${!top100 ? 'subcategory-active' : ''}
+                    `}
+          >
+            카테고리 베스트
+          </Link>
+        </div>
 
-      <ul className="subcategory-container">
-        {categoryData.map(main => {
-          const activeCategory = mainCategoryId === main.id;
-          return (
-            <li key={main.id}>
-              <Link
-                href={`/shopping/best/${main.id}/`}
-                onClick={() => {
-                  handleMenuClick('shopping', main.id);
-                }}
-                className={`subcategory
-                  ${activeCategory ? 'subcategory-active' : ''}
+        {/* 실시간 베스트 TOP100 */}
+        <div></div>
+
+        {/* Top100 이 아닐때만 서브카테고리 보여줌 */}
+        {!top100 && (
+          <ul className="subcategory-container">
+            {categoryData.map(main => {
+              const activeCategory = mainCategoryId === main.id;
+              return (
+                <li key={main.id}>
+                  <Link
+                    href={`/shopping/best/${main.id}/`}
+                    onClick={() => {
+                      handleMenuClick('shopping', main.id);
+                    }}
+                    className={`subsubcategory
+                  ${activeCategory ? 'subsubcategory-active' : ''}
                   `}
-              >
-                {main.label}
-              </Link>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
+                  >
+                    {main.label}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        )}
+      </div>
+    </>
   );
 }
 
