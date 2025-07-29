@@ -1,4 +1,3 @@
-
 export interface ProductExtra {
   isNew?: boolean;
   isBest?: boolean;
@@ -37,6 +36,9 @@ export interface ProductListProps {
   name: string;
   //리뷰 개수
   replies: number;
+  //상품 판매갯수
+  buyQuantity: number;
+  //상품 메인 이미지
   mainImages: ProductImage[];
   //상품 엑스트라 정보
   extra?: ProductExtra;

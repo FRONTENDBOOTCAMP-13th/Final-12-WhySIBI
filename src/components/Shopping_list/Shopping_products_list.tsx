@@ -17,7 +17,12 @@ function ShoppingProductsList() {
   const [totalPage, setTotalPage] = useState(1);
   const [totalItems, setTotalItems] = useState(0);
   const [sort, setSort] = useState<
-    'latest' | 'low-cost' | 'high-cost' | 'high-star' | 'high-review'
+    | 'latest'
+    | 'low-cost'
+    | 'high-cost'
+    | 'high-star'
+    | 'high-review'
+    | 'best-selling'
   >('latest'); //신상품 기본필터
   const { mainCategoryId, subCategoryId, handleMenuClick } = useMenuStore(); //zustand 에서 카테고리 상태 가져옴
   const params = useParams();

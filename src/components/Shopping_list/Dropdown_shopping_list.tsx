@@ -3,7 +3,8 @@ type SortType =
   | 'low-cost'
   | 'high-cost'
   | 'high-star'
-  | 'high-review';
+  | 'high-review'
+  | 'best-selling';
 
 type DropdownShoppingProps = {
   value: SortType;
@@ -24,6 +25,7 @@ function DropdownShoppingList({ value, onDropChange }: DropdownShoppingProps) {
           className="w-full cursor-pointer text-cal-poly-green-600 font-semibold appearance-none outline-0 pl-3"
         >
           <option value="latest">신상품</option>
+          <option value="best-selling">인기순</option>
           <option value="low-cost">낮은가격순</option>
           <option value="high-cost">높은가격순</option>
           <option value="high-star">별점높은순</option>

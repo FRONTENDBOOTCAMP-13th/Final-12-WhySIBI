@@ -35,7 +35,13 @@ export async function getAllProductList(): ApiResPromise<ProductListProps[]> {
  */
 // 상품 옵션 타입
 export interface ProductListOptions {
-  sort?: 'latest' | 'low-cost' | 'high-cost' | 'high-star' | 'high-review';
+  sort?:
+    | 'latest'
+    | 'low-cost'
+    | 'high-cost'
+    | 'high-star'
+    | 'high-review'
+    | 'best-selling';
   limit?: number;
   page?: number;
   minPrice?: number;
@@ -49,7 +55,12 @@ export type SortValue = { [field: string]: number };
 
 //상품 정렬 map
 const sort: Record<
-  'latest' | 'low-cost' | 'high-cost' | 'high-star' | 'high-review',
+  | 'latest'
+  | 'low-cost'
+  | 'high-cost'
+  | 'high-star'
+  | 'high-review'
+  | 'best-selling',
   SortValue
 > = {
   latest: { createdAt: -1 }, //신상품
@@ -57,6 +68,7 @@ const sort: Record<
   'low-cost': { price: 1 }, //가격낮은순
   'high-cost': { price: -1 }, //가격높은순
   'high-review': { 'extra.replies': -1 }, //리뷰순
+  'best-selling': { buyQuantity: -1 }, //많이 팔린순(베스트상품)
 };
 
 export async function getProductList(
@@ -65,8 +77,12 @@ export async function getProductList(
   try {
     const query = new URLSearchParams();
 
-    if (options.sort)
-      query.append('sort', JSON.stringify(sort[options.sort] || {}));
+    if (options.sort) {
+      const sortParam = JSON.stringify(sort[options.sort] || {});
+      console.log('sort 정렬 기준값:', sortParam);
+      query.append('sort', sortParam);
+    }
+
     if (options.limit) query.append('limit', String(options.limit));
     if (options.page) query.append('page', String(options.page));
     if (options.minPrice) query.append('minPrice', String(options.minPrice));
