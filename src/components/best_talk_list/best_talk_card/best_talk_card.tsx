@@ -6,12 +6,7 @@ interface PostCardItemProps {
   boardType: string;
   index: number;
 }
-export default function BestTalkCard({
-  post,
-  index,
-  boardType,
-}: PostCardItemProps) {
-  console.log(post);
+export default function BestTalkCard({ post, boardType }: PostCardItemProps) {
   return (
     <div
       className="relative w-full max-w-[28.125rem] p-9 rounded-2xl border-2 border-button-color-opaque-25 mx-auto group overflow-hidden"

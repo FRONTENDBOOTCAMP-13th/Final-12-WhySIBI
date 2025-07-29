@@ -68,7 +68,7 @@ export default async function PostCardPage({ params }: ListPageProps) {
   }
   if (boardType === 'talk') {
     return (
-      <div className="post-list-wrapper bg-white p-20">
+      <div className="relative post-list-wrapper bg-white p-20">
         <div className="post-header flex justify-between pl-5 mb-10">
           <div className="flex flex-col">
             <div>
@@ -84,20 +84,14 @@ export default async function PostCardPage({ params }: ListPageProps) {
         </div>
 
         {res.ok ? (
-          <div className="bookmark-swiper">
+          <div className="bookmark-swiper pb-10">
             <BestTalkList item={res.item} boardType={boardType} />
           </div>
         ) : (
           <p className="text-center text-gray-500">{res.message}</p>
         )}
 
-        <section className="relative ">
-          <div className="absolute  right-0">
-            <DropdownTime />
-          </div>
-        </section>
-
-        <section>
+        <section className="mt-14">
           {res.ok ? (
             <div className="bookmark-swiper">
               <TalkList item={res.item} boardType={boardType} />
