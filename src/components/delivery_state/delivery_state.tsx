@@ -12,6 +12,7 @@ export default function DeliveryState({
   productData,
 }: DeliveryStateClientProps) {
   const { user } = useUserStore();
+  console.log(user);
   return (
     <>
       <h2 className="font-logo text-5xl ml-9 my-9">배송조희</h2>
@@ -97,7 +98,7 @@ export default function DeliveryState({
         </div>
         <div className="ml-4 text-lg font-basic">
           <p>받는사람:{user?.name}</p>
-          <p className="mt-2.5">배송지:{user?.address}</p>
+          <p className="mt-2.5">배송지:{user?.extra.addressBook[0].value}</p>
         </div>
       </section>
     </>
