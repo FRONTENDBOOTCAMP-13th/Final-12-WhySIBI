@@ -7,12 +7,14 @@ export default async function CommentList({ _id }: { _id: number }){
 
   return(
     <>
-    { res.ok ? 
-      res.item.map((reply: PostReply) => (
-        <CommentItem key={reply._id} reply={reply} />
-      )) : 
-      <p>{ res.message }</p>
-    }
+    <div className="mt-5">
+      { res.ok ?
+        res.item.map((reply: PostReply) => (
+          <CommentItem key={reply._id} reply={reply} />
+        )) :
+        <p>{ res.message }</p>
+      }
+    </div>
     </>
   )
 }

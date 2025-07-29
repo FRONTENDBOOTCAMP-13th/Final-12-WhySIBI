@@ -3,7 +3,7 @@ import { getPost } from "@/data/functions/post";
 import { ApiRes } from "@/types";
 import DetailSimilar from "@/components/Detail_posts/Detail_similar";
 import DetailOther from "@/components/Detail_posts/Detail_other";
-import CommentNew from "@/components/Detail_posts/CommentNew";
+import CommentNew from "@/app/community/[boardType]/[_id]/CommentNew";
 import CommentList from "./CommentList";
 
 
@@ -31,7 +31,7 @@ export default async function DetailPage({ params }: InfoPageProps) {
         <PostDetail post={post.item} />
         <DetailSimilar></DetailSimilar>
         <DetailOther _id={_id}></DetailOther>
-        <CommentNew></CommentNew>
+        <CommentNew _id={_id} repliesCount={post.item.repliesCount}></CommentNew>
         <CommentList _id={_id}></CommentList>
       </div>
   );

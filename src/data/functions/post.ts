@@ -43,7 +43,7 @@ export async function getPost(_id: number): ApiResPromise<Post> {
       headers: {
         'Client-Id': CLIENT_ID,
       },
-      cache: 'force-cache',
+      // cache: 'force-cache',
     });
     return res.json();
   } catch (error) {
