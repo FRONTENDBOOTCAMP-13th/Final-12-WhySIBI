@@ -1,8 +1,8 @@
-import { Post } from '@/types';
+import { ExtendedPostProps } from '@/components/talk_list/talk_info/talk_info';
 import Image from 'next/image';
 import Link from 'next/link';
 interface PostCardItemProps {
-  post: Post;
+  post: ExtendedPostProps;
   boardType: string;
   index: number;
 }
@@ -19,6 +19,9 @@ export default function BestTalkCard({ post, boardType }: PostCardItemProps) {
         className="block w-full"
       >
         <div className="px-1">
+          <p className="text-size-xs md:text-size-md  font-basic font-bold text-[#353535]">
+            {post.extra?.subject?.[0]}
+          </p>
           <section>
             <h3 className="text-gray-900  font-basic sm:text-base font-bold leading-tight whitespace-pre-line line-clamp-2">
               {/* {title} */}

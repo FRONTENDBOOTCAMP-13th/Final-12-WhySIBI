@@ -45,10 +45,10 @@ export default function BestTalkList({ item, boardType }: TalkListProps) {
         },
       }}
       navigation={true}
-      className="bookmark-swiper-container"
+      className="bookmark-swiper-container text-left"
     >
       {sortedData.map((post: Post, index: number) => (
-        <SwiperSlide key={post._id} className="relative">
+        <SwiperSlide key={post._id} className="relative text-left">
           <BestTalkCard post={post} index={index} boardType={boardType} />
         </SwiperSlide>
       ))}
