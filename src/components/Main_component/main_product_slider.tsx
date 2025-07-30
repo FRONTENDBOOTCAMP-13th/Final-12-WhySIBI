@@ -7,7 +7,6 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Navigation, Scrollbar } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-
 import ProductCard from '@/components/product_component/product_card';
 import { useEffect, useState } from 'react';
 import { getProductList } from '@/data/actions/products.fetch';
@@ -85,7 +84,7 @@ function MainProductSlider() {
                     discount={discount}
                     rank={index + 1}
                     rating={product.extra?.star ? product.extra?.star : 0}
-                    reviewCount={100} //리뷰카운트 계산예정
+                    reviewCount={product.replies}
                     isLiked={product.extra?.isLike ? true : false}
                     onClick={() => {}}
                   />
@@ -100,7 +99,7 @@ function MainProductSlider() {
         >
           BEST 상품 더보기
         </Link>
-        <hr className="h-0.25 border-0 bg-gray-300 mt-10" />
+        <hr className="h-0.25 border-0 bg-gray-300 my-10" />
       </div>
     </>
   );
