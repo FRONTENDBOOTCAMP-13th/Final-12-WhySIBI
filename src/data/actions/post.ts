@@ -23,8 +23,6 @@ export async function createPost(state: ApiRes<Post> | null, formData: FormData)
   // FormData를 일반 Object로 변환
   // const body = Object.fromEntries(formData.entries());
   let res: Response;
-  let data: ApiRes<Post>;
-
   
   // FormData
   const type = formData.get('type') as string;
@@ -32,9 +30,11 @@ export async function createPost(state: ApiRes<Post> | null, formData: FormData)
   const content = formData.get('content') as string;
   const image = JSON.parse(formData.get('image') as string);
   const tag = JSON.parse(formData.get('tag') as string);
+  
   const accessToken = formData.get("accessToken") as string;
-
-  const body = { type, title, content, image, tag, accessToken };
+  const subject = JSON.parse(formData.get('subject') as string);
+  const extra = { subject };
+  const body = { type, title, content, image, tag, accessToken, extra };
 
   try {
     res = await fetch(`${API_URL}/posts`, {

@@ -20,7 +20,7 @@ function OrderProductInfo({ _id, price, name, image, state }: OrderProduct) {
     <li className="w-4/5 border-2 border-button-color-opaque-25 shadow-shadow-md p-5 rounded-radius-lg">
       <p className="font-logo text-2xl ml-5">{deliveryState}</p>
       <div className="flex justify-between mt-6 items-center">
-        <Link href={`/community/${_id}`}>
+        <Link href={`/products/${_id}`}>
           <figure className="flex gap-6">
             {image && (
               <Image

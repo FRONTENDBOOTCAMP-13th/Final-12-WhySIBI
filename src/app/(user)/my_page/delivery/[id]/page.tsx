@@ -3,14 +3,15 @@ import { getProductInfo } from '@/data/actions/products';
 
 interface DeliveryStatePageProps {
   params: Promise<{
-    productID: string;
+    id: string;
   }>;
 }
 export default async function DeliverState({ params }: DeliveryStatePageProps) {
-  const { productID } = await params;
+  const { id } = await params;
+  console.log(id);
   // 서버에서 상품 정보 미리 가져오기
-  const res = await getProductInfo(productID);
+  const res = await getProductInfo(id);
   if (res.ok === 1) {
-    return <DeliveryState productData={res.item} productID={productID} />;
+    return <DeliveryState productData={res.item} productID={id} />;
   }
 }

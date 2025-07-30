@@ -67,14 +67,10 @@ export async function createUser(
     });
 
     data = res.data;
-  } catch (error: any) {
-    if (error.response?.data) {
-      return error.response.data;
-    }
-    return {
-      ok: 0,
-      message: '일시적인 네트워크 문제가 발생했습니다.',
-    };
+  } catch (error) {
+    // 네트워크 오류 처리
+    console.error(error);
+    return { ok: 0, message: '일시적인 네트워크 문제가 발생했습니다.' };
   }
   return data;
 }
@@ -145,14 +141,10 @@ export async function EditUserInfo(
     });
 
     return { ok: 1, item: res.data.item };
-  } catch (error: any) {
-    if (error.response?.data) {
-      return error.response.data;
-    }
-    return {
-      ok: 0,
-      message: '일시적인 네트워크 문제가 발생했습니다.',
-    };
+  } catch (error) {
+    // 네트워크 오류 처리
+    console.error(error);
+    return { ok: 0, message: '일시적인 네트워크 문제가 발생했습니다.' };
   }
   return data;
 }
