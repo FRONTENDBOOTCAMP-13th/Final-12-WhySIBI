@@ -26,12 +26,13 @@ interface ExtendedPostProps extends Post {
 export default function TalkDetail({ post, boardType }: TalkCardItemProps) {
   const [talkPost, setTalkPost] = useState<ExtendedPostProps[] | null>(null);
   const [showAll, setShowAll] = useState(false);
+
   const [isBookmarked, setIsBookmarked] = useState(!!post.bookmarks);
   const [bookmarkId, setBookmarkId] = useState<BookMarkItem | null>(null);
+
   const { user } = useUserStore();
   const token = user?.token?.accessToken;
   const _id = Number(post._id);
-  console.log(_id);
   const type = post.type;
   const getBookmarkType = (postType: string) => {
     switch (postType) {

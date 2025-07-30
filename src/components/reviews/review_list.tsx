@@ -40,7 +40,6 @@ export default function ReviewLists() {
       const res = await GetReplie(user?.token?.accessToken as string);
       if (res.ok === 1) {
         setReviewList(res.item);
-        console.log('삭제 후 목록 새로고침 완료');
       } else {
         setReviewList(null);
       }
@@ -59,7 +58,6 @@ export default function ReviewLists() {
     setPage(page);
   };
 
-  console.log(reviewList);
   return (
     <nav className="mt-20">
       <ul className="flex flex-col flex-wrap gap-16">

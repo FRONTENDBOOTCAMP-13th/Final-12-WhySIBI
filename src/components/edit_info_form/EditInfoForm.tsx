@@ -12,7 +12,6 @@ export default function EditInfoForm() {
   //이미지 주소 추출
   const [imageSrc, setImageSrc] = useState('');
   const handleFilePath = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log('파일 선택 이벤트 발생!');
     const target = e.target as HTMLInputElement;
     const file = target.files?.[0];
     if (file) {

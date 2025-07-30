@@ -57,7 +57,6 @@ export async function createUser(
       },
       ...(image ? { image } : {}),
     };
-    console.log('전송할 preference:', formData.getAll('preference'));
     // 회원가입 API 호출
     res = await axios.post(`${API_URL}/users`, body, {
       headers: {
@@ -96,7 +95,6 @@ export async function EditUserInfo(
     let image;
     if (attach.size > 0) {
       const fileRes = await upLoadFile(formData);
-      console.log(`fileRes`, fileRes);
       if (fileRes.ok) {
         image = fileRes.item[0].path;
       } else {
@@ -188,7 +186,6 @@ export async function login(
   formData: FormData,
 ): ApiResPromise<User> {
   const body = Object.fromEntries(formData.entries());
-  console.log(body);
   let res: AxiosResponse;
   let data: ApiRes<User>;
 
