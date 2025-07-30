@@ -4,10 +4,13 @@ import { deleteReply } from "@/data/actions/post";
 import { PostReply } from "@/types";
 import { useActionState } from "react";
 import { useParams } from "next/navigation";
+import useUserStore from "@/zustand/useUserStore";
+import { ButtonNostyle } from "@/components/Buttons/Button_nostyle";
 
 export default function CommentDeleteForm({ reply }: { reply: PostReply }) {
   const { type, _id } = useParams();
   const [state, formAction, isLoading] = useActionState(deleteReply, null);
+  const { user } = useUserStore();
   console.log(state, isLoading);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -18,7 +21,8 @@ export default function CommentDeleteForm({ reply }: { reply: PostReply }) {
       <input type="hidden" name="type" value={type} />
       <input type="hidden" name="_id" value={_id} />
       <input type="hidden" name="replyId" value={reply._id} />
-      <button type="submit"  className="hover:underline">삭제</button>
+      <input type="hidden" name="accessToken" value={user?.token?.accessToken ?? ''} />
+      <ButtonNostyle type="submit" disabled={isLoading} ownerId={reply.user._id} needLogin>삭제</ButtonNostyle>
     </form>
   )
 }

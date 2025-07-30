@@ -188,6 +188,7 @@ export async function deletePost(state: ApiRes<Post> | null, formData: FormData)
  */
 export async function createReply(state: ApiRes<PostReply> | null, formData: FormData): ApiResPromise<PostReply> {
   const body = Object.fromEntries(formData.entries());
+  const accessToken = formData.get('accessToken');
 
   let res: Response;
   let data: ApiRes<PostReply>;
@@ -198,6 +199,7 @@ export async function createReply(state: ApiRes<PostReply> | null, formData: For
       headers: {
         'Content-Type': 'application/json',
         'Client-Id': CLIENT_ID,
+        'Authorization': `Bearer ${accessToken}`,
       },
       body: JSON.stringify(body),
     });
@@ -228,6 +230,7 @@ export async function createReply(state: ApiRes<PostReply> | null, formData: For
 export async function deleteReply(state: ApiRes<PostReply> | null, formData: FormData): ApiResPromise<PostReply> {
   const _id = formData.get('_id');
   const replyId = formData.get('replyId');
+  const accessToken = formData.get('accessToken');
 
   let res: Response;
   let data: ApiRes<PostReply>;
@@ -238,6 +241,7 @@ export async function deleteReply(state: ApiRes<PostReply> | null, formData: For
       headers: {
         'Content-Type': 'application/json',
         'Client-Id': CLIENT_ID,
+        'Authorization': `Bearer ${accessToken}`,
       },
     });
 

@@ -1,9 +1,11 @@
 'use client';
 import { createReply } from "@/data/actions/post";
 import { useActionState } from "react";
+import useUserStore from "@/zustand/useUserStore";
 
 export default function CommentNew({ _id, repliesCount }: { _id: number; repliesCount: number }) {
   const [state, formAction, isLoading] = useActionState(createReply, null);
+  const { user } = useUserStore();
 
   return (
     <div>
@@ -11,6 +13,7 @@ export default function CommentNew({ _id, repliesCount }: { _id: number; replies
       <div className="border-1 rounded-full h-14 p-4 flex items-center justify-between focus-within:outline-1">
         <form action={formAction} className="flex w-[500px] items-center justify-between">
             <input type="hidden" name="_id" value={_id}></input>
+            <input type="hidden" name="accessToken" value={user?.token?.accessToken ?? ''} />
             <div>
               <input type="text" name="content" placeholder="댓글 달기..." className="w-[420px] outline-0 text-sm ml-2"></input>
               <p className="ml-2 mt-1 text-sm text-red-500">

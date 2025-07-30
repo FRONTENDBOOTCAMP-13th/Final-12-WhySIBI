@@ -11,7 +11,7 @@ const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID || '';
 export default function CommentItem({ reply }: { reply: PostReply }) {
 
     const profileImage = reply.user.image
-    ? `${API_URL}/files/${CLIENT_ID}/${reply.user.image}`
+    ? `${API_URL}/${reply.user.image}`
     : '/image/community_icon/profile_sample.png';
 
   return (
@@ -30,7 +30,6 @@ export default function CommentItem({ reply }: { reply: PostReply }) {
           <p className="mb-3 mt-1">{reply.content}</p>
           <div className="flex items-center text-gray-400 text-[12px] space-x-2">
             <time dateTime={reply.createdAt}>{getTimeAgo(reply.createdAt)}</time>
-            <span>|</span>
             <CommentDeleteForm reply={reply}/>
           </div>
         </div>

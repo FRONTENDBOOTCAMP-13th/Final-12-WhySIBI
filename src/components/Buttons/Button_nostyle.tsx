@@ -12,26 +12,21 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 export const ButtonNostyle: React.FC<ButtonProps> = ({ children, type='button', needLogin, ownerId, disabled, ...rest }) => {
   const { user } = useUserStore(); // 로그인 사용자 정보 가져오기
 
-  // needLogin이 true인데 로그인 안 되어 있으면 비활성화
-  const notLoggedIn = needLogin && !user;
-  // ownerId가 있는데 현재 유저가 작성자가 아니면 비활성화
-  const notOwner = ownerId !== undefined && user?._id !== ownerId;
-  
-  // 로그인 필요 & 로그인 안 된 경우 버튼 미노출
-  if (notLoggedIn) return null;
-  // ownerId가 있고, 현재 로그인 사용자가 owner가 아니면 버튼 미노출
-  if (notOwner) return null;
+ // 로그인 필요 + 미로그인 || 사용자 불일치 시 → 숨김 처리
+  if ((needLogin && !user) || (ownerId !== undefined && user?._id !== ownerId)) {
+    return null;
+  }
 
-  const isDisabled = disabled || notLoggedIn || notOwner
-  
   return (
-    <button
-      type={ type }
-      className={`cursor-pointer hover:opacity-80`}
-      disabled={isDisabled}
-      { ...rest }
-    >
-      { children }
-    </button>
+    <div>
+      <button
+        type={type}
+        className={`cursor-pointer hover:opacity-80`}
+        disabled={disabled}
+        {...rest}
+      >
+        {children}
+      </button>
+    </div>
   );
 };
