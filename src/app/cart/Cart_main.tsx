@@ -1,9 +1,10 @@
 'use client';
 import useUserStore from '@/zustand/useUserStore';
 import CartList from './Cart_list';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { CartData } from '@/types/cart';
 import CartAllDeleteButton from './Cart_all_delete_button';
+import CartPurchaseButton from './Cart_purchase_button';
 
 export default function CartMain() {
   const { user } = useUserStore();
@@ -12,11 +13,20 @@ export default function CartMain() {
 
   const [allcheck, setAllcheck] = useState(false);
   const [checkedItems, setCheckedItems] = useState<number[]>([]);
+  const [address, setAddress] = useState('');
+
+  //랜더링 되고 난 후에 setAddress를 해줘야 input에 기본값이 설정되더라.. user데이터가 먼저 load되어야함
+  useEffect(() => {
+    if (user?.extra.addressBook[0].value) {
+      setAddress(user?.extra.addressBook[0].value);
+    }
+  }, [user]);
 
   console.log(' 체크드 아이템', checkedItems);
 
   const [cartData, setCartData] = useState<CartData | null>(null);
   // 로그인한 유저의 장바구니를 불러옴
+  console.log('카트데이턴데', cartData);
   useEffect(() => {
     if (!token) return;
     async function fetchCart() {
@@ -94,6 +104,9 @@ export default function CartMain() {
     });
   }
 
+  //변경하기 버튼을 눌렀을때 주소input에 포커스 주기
+  const addressInput = useRef<HTMLInputElement>(null);
+
   //장바구니가 비어있을때 보여줄 화면
   if (cartData?.item.length === 0) {
     return (
@@ -156,11 +169,19 @@ export default function CartMain() {
           <h3 className="text-xl font-extrabold border-b-1 pb-3 border-gray-150">
             배송지
           </h3>
-          <p className="text-gray-550 pb-8 border-b-1 border-gray-150 mt-3">
-            {user?.extra.addressBook[0].value}
-          </p>
+          <input
+            ref={addressInput}
+            value={address}
+            onChange={e => setAddress(e.target.value)}
+            className="text-gray-550 pb-8 border-b-1 border-gray-150 mt-3 w-full"
+          />
           <div className="flex justify-center mt-6">
-            <button className="border-2 rounded-3xl text-button-color w-24 h-9 font-bold">
+            <button
+              className="border-2 rounded-3xl text-button-color w-24 h-9 font-bold"
+              onClick={() => {
+                addressInput.current?.focus();
+              }}
+            >
               변경하기
             </button>
           </div>
@@ -189,11 +210,10 @@ export default function CartMain() {
             </dd>
           </dl>
         </section>
-        <button
-          className={`box-border cursor-pointer bg-flame-250 w-full h-[48px] text-white border-2 border-flame-250 rounded-sm font-bold`}
-        >
-          총 {cartData?.cost.products.toLocaleString()} 구매하기
-        </button>
+        <CartPurchaseButton
+          price={cartData?.cost.products}
+          cartData={cartData}
+        />
       </aside>
     </section>
   );
