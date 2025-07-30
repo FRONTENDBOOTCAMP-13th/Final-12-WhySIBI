@@ -11,11 +11,14 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Navigation, Pagination, Scrollbar } from 'swiper/modules';
 import useUserStore from '@/zustand/useUserStore';
+import Pagenation from '@/components/basic_component/Pagenation';
 
 export default function BookMarkList() {
   SwiperCore.use([Navigation, Scrollbar, Pagination]);
   const [productList, setProductList] = useState<BookMarkItem[] | null>(null);
   const [postList, setPostList] = useState<BookMarkItem[] | null>(null);
+  //페이지 네이션
+  const [page, setPage] = useState(1);
   const { user } = useUserStore();
 
   useEffect(() => {
@@ -48,8 +51,17 @@ export default function BookMarkList() {
     };
     getData();
   }, [user?.token?.accessToken]);
-  console.log(productList);
-  console.log(postList);
+  const onePage = 16; //한 페이지에 보여줄 상품 수
+  const totalPage = Math.max(
+    1,
+    Math.ceil((productList?.length || 0) / onePage),
+  ); //총 페이지 수
+  const startPage = (page - 1) * onePage; //(1-1) * 12 = 0 , (2-1) * 12 = 12
+  const endPage = page * onePage; //1 * 12 = 12 , 2 * 12 = 24
+  const sliceData = productList?.slice(startPage, endPage); //12 , 24 ... 개씩 잘라서 보여주기
+  const handlePagenation = (page: number) => {
+    setPage(page);
+  };
   return (
     <>
       <section className="mt-11 pb-16 border-b-[1px] border-button-color-opaque-25">
@@ -96,7 +108,7 @@ export default function BookMarkList() {
       <section className="mt-24">
         <h4 className="font-logo text-4xl">찜 목록</h4>
         <div className="grid grid-cols-4 grid-rows-4 gap-16 items-center">
-          {productList?.map((product, i) => (
+          {sliceData?.map((product, i) => (
             <BookMarkInfo
               key={i}
               _id={product._id}
@@ -107,6 +119,11 @@ export default function BookMarkList() {
             />
           ))}
         </div>
+        <Pagenation
+          page={page}
+          totalPage={totalPage}
+          onPageTurner={handlePagenation}
+        />
       </section>
     </>
   );
