@@ -1,4 +1,4 @@
-import CartForm from './Cart_form';
+import CartMain from './Cart_main';
 
 export default async function Cart() {
   return (
@@ -8,7 +8,7 @@ export default async function Cart() {
         {/* <p className="text-gray-550">총 2개 상품 담아주셨네요!</p> */}
       </div>
 
-      <CartForm />
+      <CartMain />
     </section>
   );
 }

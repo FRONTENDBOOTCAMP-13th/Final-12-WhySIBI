@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import CartDeleteButton from './list_delete_button';
+import { CartListProps } from '@/types/cart';
 
 export default function CartList({
   id,
@@ -9,7 +10,7 @@ export default function CartList({
   img,
   price,
   quantity,
-}) {
+}: CartListProps) {
   return (
     <li className="flex gap-4 px-5 pt-6 pb-6 border-b-1 last:border-b-0">
       <input type="checkbox" id="check" className="w-5 h-5" />

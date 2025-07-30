@@ -4,7 +4,7 @@ import { deleteCartAction } from '@/data/actions/delete_cart_action';
 import useUserStore from '@/zustand/useUserStore';
 import { useActionState, useEffect } from 'react';
 
-export default function CartDeleteButton({ id }) {
+export default function CartDeleteButton({ id }: { id: number }) {
   const { user } = useUserStore();
   const token = user?.token?.accessToken;
 

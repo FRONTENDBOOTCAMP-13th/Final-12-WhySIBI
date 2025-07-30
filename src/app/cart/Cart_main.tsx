@@ -2,13 +2,14 @@
 import useUserStore from '@/zustand/useUserStore';
 import CartList from './Cart_list';
 import { useEffect, useState } from 'react';
+import { CartData } from '@/types/cart';
 
-export default function CartForm() {
+export default function CartMain() {
   const { user } = useUserStore();
   const token = user?.token?.accessToken;
   console.log('유전데', user);
 
-  const [cartData, setCartData] = useState(null);
+  const [cartData, setCartData] = useState<CartData | null>(null);
   // 로그인한 유저의 장바구니를 불러옴
   useEffect(() => {
     if (!token) return;
@@ -19,7 +20,6 @@ export default function CartForm() {
           'Content-Type': 'application/json',
           'Client-Id': 'febc13-final12-emjf',
         },
-        next: { tags: [`cartData`] },
       });
       const data = await response.json();
       setCartData(data);

@@ -1,7 +1,5 @@
 'use server';
 
-import { revalidateTag } from 'next/cache';
-
 export async function deleteCartAction(
   _: { status?: boolean; error: string },
   formData: FormData,
@@ -31,7 +29,6 @@ export async function deleteCartAction(
     if (!response.ok) {
       throw new Error(response.statusText);
     }
-    revalidateTag(`cartData`);
     return {
       status: true,
       error: '',
