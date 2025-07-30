@@ -4,7 +4,6 @@ import { Post } from "@/types";
 
 export default async function DetailOther({ _id }: {_id: number}){
   const res = await getPosts('showRoom');
-
   const currentId = Number(_id);
 
   // 동일한 ID 제외 후 상위 2개만 추출

@@ -1,16 +1,17 @@
 interface CategoryProps {
   title: string;
   category: string[];
+  value?: string;
   onSelect: (selected: string) => void;
 }
 
-function DropdownCustom({ title, category, onSelect }: CategoryProps) {
+function DropdownCustom({ title, category, value, onSelect }: CategoryProps) {
   return (
     <div className="relative inline-flex items-center bg-white font-variable h-[31px] rounded-sm text-size-sm border-1 border-[#c7c7c7] focus-within:outline-1">
       <select
         name="sort"
         id="sort"
-        defaultValue={title}
+        value={value || title}
         className="text-[#777777] font-semibold cursor-pointer outline-0 appearance-none text-center pl-3 pr-6"
         onChange={e => onSelect(e.target.value)}
         

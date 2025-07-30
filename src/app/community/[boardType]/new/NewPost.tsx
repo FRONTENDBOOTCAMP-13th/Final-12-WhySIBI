@@ -1,6 +1,6 @@
 'use client';
-import { ButtonBack } from "../Button_back";
-import RegistForm from "../../app/community/[boardType]/new/RegistForm";
+import { ButtonBack } from "../../../../components/Button_back";
+import RegistForm from "./RegistForm";
 
 interface Props {
   boardType: string;
