@@ -1,8 +1,10 @@
 'use client';
 import { ButtonBack } from '@/components/Button_back';
 import getTimeAgo from '@/components/talk_list/time';
+import { AddBookMark } from '@/data/actions/bookmark';
 import { getPosts } from '@/data/functions/post';
 import { Post } from '@/types';
+import useUserStore from '@/zustand/useUserStore';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -18,6 +20,26 @@ interface ExtendedPostProps extends Post {
 export default function TalkDetail({ post, boardType }: TalkCardItemProps) {
   const [talkPost, setTalkPost] = useState<ExtendedPostProps[] | null>(null);
   const [showAll, setShowAll] = useState(false);
+  const [isBookmarked, setIsBookmarked] = useState(false);
+  const { user } = useUserStore();
+  const token = user?.token?.accessToken;
+  const _id = Number(post._id);
+  const type = post.type;
+  const getBookmarkType = (postType: string) => {
+    switch (postType) {
+      case 'talk':
+      case 'qna':
+      case 'showRoom':
+        return 'post';
+      case 'product':
+        return 'product';
+      case 'user':
+        return 'user';
+      default:
+        return 'post';
+    }
+  };
+
   useEffect(() => {
     const getSameCategory = async () => {
       const res = await getPosts(boardType);
@@ -40,8 +62,24 @@ export default function TalkDetail({ post, boardType }: TalkCardItemProps) {
     );
   });
 
+  const handleBookmark = async () => {
+    const bookmarkType = getBookmarkType(type);
+    const result = await AddBookMark(
+      bookmarkType as string,
+      token as string,
+      _id,
+    );
+    if (result.ok === 1) {
+      setIsBookmarked(true);
+    } else {
+      console.log('되겠냐', result.errors);
+      alert(result.message);
+    }
+  };
+
   const limitData = showAll ? filteredData : filteredData?.slice(0, 3);
   const moreData = (filteredData?.length || 1) > 3;
+
   return (
     <section className="w-4/5">
       <div className="button-wrapper  flex justify-between items-center text-gray-icon text-md mb-6">
@@ -60,9 +98,13 @@ export default function TalkDetail({ post, boardType }: TalkCardItemProps) {
           <p className="font-light text-size-md text-gray-400">
             {getTimeAgo(post.createdAt)}
           </p>
-          <button type="button" className="ml-auto">
+          <button type="button" className="ml-auto " onClick={handleBookmark}>
             <Image
-              src={'/image/community_icon/heartIcon.svg'}
+              src={
+                isBookmarked
+                  ? '/image/community_icon/heartIcon_active.svg'
+                  : '/image/community_icon/heartIcon.svg'
+              }
               alt="좋아요 아이콘"
               width={30}
               height={30}
