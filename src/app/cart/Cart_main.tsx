@@ -3,13 +3,17 @@ import useUserStore from '@/zustand/useUserStore';
 import CartList from './Cart_list';
 import { useEffect, useState } from 'react';
 import { CartData } from '@/types/cart';
+import CartAllDeleteButton from './Cart_all_delete_button';
 
 export default function CartMain() {
   const { user } = useUserStore();
   const token = user?.token?.accessToken;
   console.log('유전데', user);
 
-  const [allcheck, SetAllcheck] = useState(false);
+  const [allcheck, setAllcheck] = useState(false);
+  const [checkedItems, setCheckedItems] = useState<number[]>([]);
+
+  console.log(' 체크드 아이템', checkedItems);
 
   const [cartData, setCartData] = useState<CartData | null>(null);
   // 로그인한 유저의 장바구니를 불러옴
@@ -29,10 +33,68 @@ export default function CartMain() {
     fetchCart();
   }, [token]);
   console.log('이게 된다고?', cartData);
-  // const cost = cartData?.cost;
-  // const items = cartData?.item;
 
-  //장바구니가 비어있을때 처리
+  // 모든 상품 선택/해제 핸들러
+  function handleAllCheck() {
+    //올체크가 아닐때 클릭하면 checkedItem배열에 모든것을 넣고 올체크 상태를 true로 설정
+    if (!allcheck) {
+      if (cartData?.item) {
+        const allItemId = cartData?.item.map(item => item._id);
+        setCheckedItems(allItemId);
+        setAllcheck(true);
+      }
+      //올체크 일때 클릭하면 checkedItem배열을 비우고 올체크 상태를 false로설정
+    } else {
+      setCheckedItems([]);
+      setAllcheck(false);
+    }
+  }
+
+  //개별 아이템 선택/해제 핸들러
+  function handleItemCheck(itemId: number, isChecked: boolean) {
+    if (isChecked) {
+      const newCheckedItems = [...checkedItems, itemId];
+      setCheckedItems(newCheckedItems);
+
+      //모든 상품을 개별로 체크하면 allcheck상태를 true로 설정해줌
+      if (cartData?.item && newCheckedItems.length === cartData.item.length) {
+        setAllcheck(true);
+      }
+    } else {
+      //상품 선택 해제
+      const newCheckedItems = checkedItems?.filter(id => id !== itemId);
+      setCheckedItems(newCheckedItems);
+      setAllcheck(false);
+    }
+  }
+
+  //개별 아이템 수량 업데이트 함수
+  function handleQuantity(itemId: number, newQuantity: number) {
+    if (!cartData) return;
+
+    // 장바구니 아이템 아이디가 일치하는 것만 찾아서 수량만 바꿔준다.
+    const updatedItems = cartData.item.map(item =>
+      item._id === itemId ? { ...item, quantity: newQuantity } : item,
+    );
+
+    // 새로운 총 금액 계산
+    let newTotalCost = 0;
+    for (let i = 0; i < updatedItems.length; i++) {
+      const item = updatedItems[i];
+      newTotalCost += item.product.price * item.quantity;
+    }
+
+    setCartData({
+      ...cartData,
+      item: updatedItems,
+      cost: {
+        ...cartData.cost,
+        products: newTotalCost,
+      },
+    });
+  }
+
+  //장바구니가 비어있을때 보여줄 화면
   if (cartData?.item.length === 0) {
     return (
       <section className="h-72 flex flex-col justify-center items-center gap-3">
@@ -57,15 +119,13 @@ export default function CartMain() {
               id="allcheck"
               className="w-4 h-4"
               checked={allcheck}
-              onClick={() => SetAllcheck(!allcheck)}
+              onChange={handleAllCheck}
             />
             <label htmlFor="allcheck" className="text-lg text-gray-550">
               모두 선택
             </label>
           </div>
-          <button className="border-2 rounded-3xl text-button-color w-24 h-9 font-bold">
-            선택삭제
-          </button>
+          <CartAllDeleteButton checkedItems={checkedItems} />
         </div>
 
         {/* 장바구니 목록 영역 */}
@@ -82,12 +142,13 @@ export default function CartMain() {
                 price={item.product.price}
                 quantity={item.quantity}
                 token={token}
-                allcheck={allcheck}
+                // checkedItem배열에 포함되어 있냐 없냐로checked설정
+                isChecked={checkedItems?.includes(item._id)}
+                handleItemCheck={handleItemCheck}
+                handleQuantity={handleQuantity}
               />
             );
           })}
-
-          {/* <CartList /> */}
         </ul>
       </div>
       <aside className="min-w-[630px] flex flex-col gap-6">

@@ -32,5 +32,7 @@ export interface CartListProps {
   price: number;
   quantity: number;
   token: string | undefined;
-  allcheck: boolean;
+  isChecked: boolean | undefined;
+  handleItemCheck: (itemId: number, isChecked: boolean) => void;
+  handleQuantity: (itemId: number, newQuantity: number) => void;
 }

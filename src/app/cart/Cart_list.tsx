@@ -1,9 +1,9 @@
 'use client';
 
 import Image from 'next/image';
-import CartDeleteButton from './list_delete_button';
+import CartDeleteButton from './Cart_delete_button';
 import { CartListProps } from '@/types/cart';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 export default function CartList({
   id,
@@ -14,50 +14,64 @@ export default function CartList({
   price,
   quantity,
   token,
-  allcheck,
+  isChecked,
+  handleItemCheck,
+  handleQuantity,
 }: CartListProps) {
-  const [count, setCount] = useState(quantity);
-
   function increase() {
-    setCount(count + 1);
+    handleQuantity(id, quantity + 1);
   }
 
   function decrease() {
-    if (count > 1) setCount(count - 1);
-    return count;
+    if (quantity > 1) {
+      handleQuantity(id, quantity - 1);
+    }
+    return quantity;
+  }
+
+  function handleCheckChange(e: React.ChangeEvent<HTMLInputElement>) {
+    handleItemCheck(id, e.target.checked);
   }
 
   //상품 수량 수정을 위한 patch로직
+  //api를 그때그때 호출하는것 방지 하기 위해 수량 선택후 1초 딜레이줌
   useEffect(() => {
-    if (!token) return;
-    async function fetchCart() {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/carts/${id}`,
-        {
-          method: 'PATCH',
-          body: JSON.stringify({
-            quantity: count,
-          }),
-          headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json',
-            'Client-Id': 'febc13-final12-emjf',
+    if (!token) return; // 초기값과 같으면 API 호출 안함
+    const timeoutId = setTimeout(async () => {
+      try {
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/carts/${id}`,
+          {
+            method: 'PATCH',
+            body: JSON.stringify({
+              quantity: quantity,
+            }),
+            headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'application/json',
+              'Client-Id': 'febc13-final12-emjf',
+            },
           },
-        },
-      );
-      const data = await response.json();
-      console.log('된건가', data);
-    }
-    fetchCart();
-  }, [token, id, count]);
+        );
+        const data = await response.json();
+        console.log('된건가', data);
+      } catch (err) {
+        console.error(err);
+      }
+    }, 1000);
+
+    return () => clearTimeout(timeoutId);
+  }, [token, id, quantity]);
 
   return (
     <li className="flex gap-4 px-5 pt-6 pb-6 border-b-1 last:border-b-0">
       <input
         type="checkbox"
-        id="check"
+        id={`check-${id}`}
         className="w-5 h-5"
-        checked={allcheck}
+        //checkedItems배열에 포함되어 있냐없냐를 기준으로 checked설정
+        checked={isChecked}
+        onChange={handleCheckChange}
       />
       <label htmlFor="check" className="sr-only">
         선택
@@ -83,7 +97,7 @@ export default function CartList({
             <button className="flex-1 cursor-pointer" onClick={decrease}>
               -
             </button>
-            <span>{count}</span>
+            <span>{quantity}</span>
             <button className="flex-1 cursor-pointer" onClick={increase}>
               +
             </button>
