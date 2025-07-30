@@ -57,7 +57,7 @@ export interface Post {
   // 게시글 상세 이미지
   detailImages?: string[];
   // 태그
-  tags?: string[];
+  tag?: string[];
 }
 export interface Inqury {
   // 문의의 고유 ID

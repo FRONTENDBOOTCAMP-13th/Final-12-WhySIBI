@@ -10,8 +10,8 @@ const similarItems = [
 
 export default function DetailSimilar(){
   return(
-    <div className="w-[600px] my-20 text-center">
-      <h2 className="font-bold text-2xl">비슷한 상품을 찾아줄게요</h2>
+    <div className="w-[600px] mt-15 text-center">
+      <h2 className="font-bold text-xl">비슷한 상품을 찾아줄게요</h2>
       <div className="flex items-center mt-8 justify-center gap-5">
         {similarItems.map((src, idx) => (
           <div key={idx} className="flex items-center">
