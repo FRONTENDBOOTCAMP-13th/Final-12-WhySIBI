@@ -64,22 +64,18 @@ export default function BookMarkList() {
               320: {
                 slidesPerView: 1,
                 spaceBetween: 20,
-                centeredSlides: true,
               },
               768: {
                 slidesPerView: 2,
                 spaceBetween: 40,
-                centeredSlides: true,
               },
               1024: {
                 slidesPerView: 3,
                 spaceBetween: 60,
-                centeredSlides: true,
               },
               1280: {
                 slidesPerView: 3,
                 spaceBetween: 80,
-                centeredSlides: true,
               },
             }}
             className="bookmark-swiper-container"
