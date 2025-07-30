@@ -1,7 +1,6 @@
 'use client';
 import { BookMarkItem } from '@/types/bookmark';
 import { useEffect, useState } from 'react';
-import GetBookMarkList from '@/data/actions/bookmark';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import BookMarkInfo from '@/components/bookmark_list/bookmark_info/bookmark_info';
 import BookMarkCard from '@/components/bookmark_list/bookmark_card/bookmark_card';
@@ -12,6 +11,7 @@ import 'swiper/css/pagination';
 import { Navigation, Pagination, Scrollbar } from 'swiper/modules';
 import useUserStore from '@/zustand/useUserStore';
 import Pagenation from '@/components/basic_component/Pagenation';
+import { GetBookMarkList } from '@/data/actions/bookmark';
 
 export default function BookMarkList() {
   SwiperCore.use([Navigation, Scrollbar, Pagination]);
