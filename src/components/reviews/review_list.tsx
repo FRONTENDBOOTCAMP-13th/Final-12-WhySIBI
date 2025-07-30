@@ -1,6 +1,5 @@
 'use client';
 import ReviewInfo from '@/components/reviews/review_info/review_info';
-import ReviewStar from '@/components/review_write/star';
 import { GetReplie } from '@/data/actions/replies';
 import { ReviewItem } from '@/types/replies';
 import useUserStore from '@/zustand/useUserStore';

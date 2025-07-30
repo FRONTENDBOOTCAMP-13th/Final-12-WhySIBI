@@ -27,7 +27,7 @@ export default function MyInquryList() {
     };
 
     InquryListData();
-  }, []);
+  }, [user?.token?.accessToken]);
 
   return (
     <nav className="mt-20">

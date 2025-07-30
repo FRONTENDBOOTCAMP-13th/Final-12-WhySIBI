@@ -24,7 +24,6 @@ export async function createPost(
   // FormData를 일반 Object로 변환
   // const body = Object.fromEntries(formData.entries());
   let res: Response;
-  let data: ApiRes<Post>;
 
   // const accessToken = formData.get("accessToken") as string;
 

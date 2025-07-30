@@ -1,6 +1,7 @@
 'use client';
 import { useRouter } from 'next/navigation';
 import Title from '@/components/Title';
+import Image from 'next/image';
 
 interface Post {
   id: number;
@@ -54,7 +55,7 @@ export default function MainTalk(){
                       ))}
                     </div>
                   </div>
-                  <img src={post.imageUrl} alt="썸네일" className="w-35 h-35 object-cover rounded-md bg-livealone-columbia-blue group-hover:scale-105 group-hover:duration-150 group-hover:opacity-50" />
+                  <Image src={post.imageUrl} alt="썸네일" className="w-35 h-35 object-cover rounded-md bg-livealone-columbia-blue group-hover:scale-105 group-hover:duration-150 group-hover:opacity-50" />
                 </li>
               ))}
             </ul>

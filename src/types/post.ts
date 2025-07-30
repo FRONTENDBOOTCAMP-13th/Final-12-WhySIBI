@@ -77,7 +77,7 @@ export interface Inqury {
   tags?: string[];
 }
 export interface InquryProduct {
-  image: InquryProductImage;
+  image?: InquryProductImage;
 }
 export interface InquryProductImage {
   path: string;
@@ -90,7 +90,7 @@ export interface InquryProductProps {
   _id?: number;
   createdAt: string;
   productImage?: InquryProductImage;
-  image: string[];
+  image?: string[];
   // 태그
   tag?: string[];
 }

@@ -5,7 +5,7 @@ interface SearhState {
   handleSearchClick: (Text: string) => void;
 }
 
-const useSearchStore = create<SearhState>((set, get) => ({
+const useSearchStore = create<SearhState>((set) => ({
   text: '',
   handleSearchClick: Text => {
     console.log(Text);
