@@ -74,6 +74,7 @@ function MainBannerSlider() {
             </SwiperSlide>
           ))}
         </Swiper>
+        <div className="w-full overflow-hidden h-6 bg-vanilla-300"></div>
       </div>
     </>
   );
