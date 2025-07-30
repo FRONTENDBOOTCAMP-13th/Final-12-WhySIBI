@@ -51,10 +51,7 @@ export default function TalkList({ item, boardType }: TalkListProps) {
     }
     return post.extra?.subject?.[0] == activeSubject;
   });
-  console.log('activeSubject:', activeSubject);
-  console.log('sliceData:', sliceData);
-  console.log('첫 번째 post의 subject:', sliceData[0]?.extra?.subject?.[0]);
-  console.log('filteredData:', filteredData);
+
   return (
     <>
       <section className="w-full block pr-14">
