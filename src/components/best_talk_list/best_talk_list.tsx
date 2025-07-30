@@ -21,10 +21,12 @@ export default function BestTalkList({ item, boardType }: TalkListProps) {
     return viewsB - viewsA; // 항상 높은 조회수 순
   });
 
+  const BestList = sortedData.slice(0, 5);
+
   console.log(sortedData);
   return (
     <Swiper
-      loop={true}
+      loop={false}
       modules={[Navigation, Pagination, Scrollbar, A11y]}
       breakpoints={{
         320: {
@@ -47,7 +49,7 @@ export default function BestTalkList({ item, boardType }: TalkListProps) {
       navigation={true}
       className="bookmark-swiper-container text-left"
     >
-      {sortedData.map((post: Post, index: number) => (
+      {BestList.map((post: Post, index: number) => (
         <SwiperSlide key={post._id} className="relative text-left">
           <BestTalkCard post={post} index={index} boardType={boardType} />
         </SwiperSlide>
