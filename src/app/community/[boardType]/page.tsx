@@ -7,6 +7,7 @@ import DropdownTime from '@/components/Dropdown/Dropdown_time';
 import TalkCategory from '@/components/talk_category/talk_category';
 import BestTalkList from '@/components/best_talk_list/best_talk_list';
 import TalkList from '@/components/talk_list/talk_list';
+import TalkPostSearch from '@/components/talk_list/talk_post_search';
 
 interface ListPageProps {
   params: Promise<{
@@ -78,7 +79,8 @@ export default async function PostCardPage({ params }: ListPageProps) {
             <TalkCategory />
           </div>
 
-          <div className="button-wrapper flex items-center">
+          <div className="button-wrapper flex flex-col items-end">
+            <TalkPostSearch/>
             <ButtonNew boardType={boardType} />
           </div>
         </div>
