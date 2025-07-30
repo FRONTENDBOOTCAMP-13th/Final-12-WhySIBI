@@ -63,7 +63,7 @@ export default async function ProductDetail({
   return (
     <>
       <div className="bg-white min-w-[1280px] ">
-        <ShoppingDetail stars={stars} pageNum={id}></ShoppingDetail>
+        <ShoppingDetail stars={stars} id={id}></ShoppingDetail>
 
         <nav className="bg-[#d9d9d9] text-xl font-bold flex gap-8 pl-24">
           <Link

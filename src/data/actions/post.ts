@@ -2,6 +2,7 @@
 
 import { ApiRes, ApiResPromise, Post, PostReply } from '@/types';
 import { revalidatePath } from 'next/cache';
+import { revalidateTag } from "next/cache";
 import { redirect } from 'next/navigation';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -109,5 +110,96 @@ export async function createReply(
     revalidatePath(`/${body.type}/${body._id}/replies`);
   }
 
+  return data;
+}
+
+/**
+* 게시글을 수정하는 함수
+* @param {ApiRes<Post> | null} state - 이전 상태(사용하지 않음)
+* @param {FormData} formData - 게시글 정보를 담은 FormData 객체
+* @returns {Promise<ApiRes<Post>>} - 수정 결과 응답 객체
+* @description
+* 게시글을 수정하고, 성공 시 해당 게시글 상세 페이지로 이동합니다.
+* 실패 시 에러 메시지를 반환합니다.
+*/
+export async function updatePost(state: ApiRes<Post> | null, formData: FormData): ApiResPromise<Post> {
+  const _id = formData.get('_id'); // 게시글 고유 ID
+  const type = formData.get('type'); // 게시판 타입
+
+  const body = {
+    type: formData.get('type'),
+    title: formData.get('title'),
+    content: formData.get('content'),
+    image: formData.get('image'),
+    tag: formData.get('tag'),
+  };
+
+  let res: Response;
+  let data: ApiRes<Post>;
+  
+  try{
+    // 게시글 수정 API 호출
+    res = await fetch(`${API_URL}/posts/${_id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'Client-Id': CLIENT_ID,
+      },
+      body: JSON.stringify(body),
+    });
+
+    data = await res.json();
+    
+  }catch(error){ // 네트워크 오류 처리
+    console.error(error);
+    return { ok: 0, message: '일시적인 네트워크 문제가 발생했습니다.' };
+  }
+
+  // 수정 성공 시 해당 게시글 상세 페이지로 이동
+  if (data.ok) {
+    revalidateTag(`posts/${_id}`); // 게시글 상세 페이지 갱신
+    revalidateTag(`posts?type=${type}`); // 게시글 목록 페이지 갱신
+    redirect(`/${type}/${_id}`);
+  }else{
+    return data;
+  }
+}
+
+
+/**
+* 댓글을 삭제하는 함수
+* @param {ApiRes<PostReply> | null} state - 이전 상태(사용하지 않음)
+* @param {FormData} formData - 삭제할 댓글 정보를 담은 FormData 객체
+* @returns {Promise<ApiRes<PostReply>>} - 삭제 결과 응답 객체
+* @description
+* 댓글을 삭제하고, 성공 시 해당 게시글의 댓글 목록을 갱신합니다.
+*/
+export async function deleteReply(state: ApiRes<PostReply> | null, formData: FormData): ApiResPromise<PostReply> {
+  const _id = formData.get('_id');
+  const replyId = formData.get('replyId');
+
+  let res: Response;
+  let data: ApiRes<PostReply>;
+  
+  try{
+    res = await fetch(`${API_URL}/posts/${_id}/replies/${replyId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Client-Id': CLIENT_ID,
+      },
+    });
+
+    data = await res.json();
+    
+  }catch(error){ // 네트워크 오류 처리
+    console.error(error);
+    return { ok: 0, message: '일시적인 네트워크 문제가 발생했습니다.' };
+  }
+
+  if (data.ok) {
+    revalidateTag(`posts/${_id}/replies`);
+  }
+  
   return data;
 }

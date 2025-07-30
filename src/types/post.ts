@@ -56,7 +56,7 @@ export interface Post {
   image?: string[];
   // 게시글 상세 이미지
   detailImages?: string[];
-  // 태그
+  // 태그들
   tags?: string[];
   // 태그
   tag?: string[];
