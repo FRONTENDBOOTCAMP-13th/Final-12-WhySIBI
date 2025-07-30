@@ -20,6 +20,11 @@ export default function TalkPostSearch() {
         ref={searchText}
         placeholder="제목이나 내용을 입력해주세요"
         className="max-w-[280px] w-64"
+        onKeyDown={e => {
+          if (e.key === 'Enter') {
+            handleClick();
+          }
+        }}
       />
       <button type="submit" onClick={handleClick}>
         <Image
