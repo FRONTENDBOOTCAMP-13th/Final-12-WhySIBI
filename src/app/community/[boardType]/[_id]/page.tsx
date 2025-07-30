@@ -51,7 +51,7 @@ export default async function DetailPage({ params }: InfoPageProps) {
   if (boardType === 'talk') {
     return (
       <div className="wrapper flex flex-col justify-center items-center bg-white p-20 font-variable">
-        <TalkDetail post={post.item} />
+        <TalkDetail post={post.item} boardType={boardType}  />
         <CommentNew
           _id={_id}
           repliesCount={post.item.repliesCount}

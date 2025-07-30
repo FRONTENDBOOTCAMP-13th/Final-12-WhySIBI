@@ -1,15 +1,47 @@
+'use client';
 import { ButtonBack } from '@/components/Button_back';
 import getTimeAgo from '@/components/talk_list/time';
+import { getPosts } from '@/data/functions/post';
 import { Post } from '@/types';
 import Image from 'next/image';
 import Link from 'next/link';
-
+import { useEffect, useState } from 'react';
+interface TalkCardItemProps {
+  post: ExtendedPostProps;
+  boardType: string;
+}
 interface ExtendedPostProps extends Post {
   extra?: {
     subject: string[];
   };
 }
-export default function TalkDetail({ post }: { post: ExtendedPostProps }) {
+export default function TalkDetail({ post, boardType }: TalkCardItemProps) {
+  const [talkPost, setTalkPost] = useState<ExtendedPostProps[] | null>(null);
+  const [showAll, setShowAll] = useState(false);
+  useEffect(() => {
+    const getSameCategory = async () => {
+      const res = await getPosts(boardType);
+      try {
+        if (res.ok === 1) {
+          setTalkPost(res.item);
+        }
+      } catch (error) {
+        console.error('에러 발생:', error);
+      }
+    };
+    getSameCategory();
+  }, [boardType]);
+
+  const filteredData = talkPost?.filter(talkPostItem => {
+    const currentPostSubject = post.extra?.subject?.[0];
+    const talkPostSubject = talkPostItem.extra?.subject?.[0];
+    return (
+      currentPostSubject === talkPostSubject && post._id !== talkPostItem._id
+    );
+  });
+
+  const limitData = showAll ? filteredData : filteredData?.slice(0, 3);
+  const moreData = (filteredData?.length || 1) > 3;
   return (
     <section className="w-4/5">
       <div className="button-wrapper  flex justify-between items-center text-gray-icon text-md mb-6">
@@ -68,24 +100,26 @@ export default function TalkDetail({ post }: { post: ExtendedPostProps }) {
           <p className="font-bold font-basic text-lg md:text-2xl">
             비슷한 고민을 찾아봐요
           </p>
-          <Link
-            href={''}
-            className="block font-basic text-center border-[1px] rounded-full mt-4 py-3 bg-custom-gradient"
-          >
-            다른 게시글의 제목을 어떻게 불러오라는거지??
-          </Link>
-          <Link
-            href={''}
-            className="block font-basic text-center border-[1px] rounded-full mt-4 py-3 bg-custom-gradient"
-          >
-            다른 게시글의 제목을 어떻게 불러오라는거지??
-          </Link>
-          <Link
-            href={''}
-            className="block font-basic text-center border-[1px] rounded-full mt-4 py-3 bg-custom-gradient"
-          >
-            다른 게시글의 제목을 어떻게 불러오라는거지??
-          </Link>
+          {limitData?.map(post => (
+            <Link
+              key={post._id}
+              href={`/community/talk/${post._id}`}
+              className="block font-basic text-center border-[1px] rounded-full mt-4 py-3 bg-custom-gradient"
+            >
+              {post.title}
+            </Link>
+          ))}
+
+          {moreData && (
+            <button
+              onClick={() => setShowAll(!showAll)}
+              className="mt-6 px-6 py-2 border border-gray-300 rounded-full hover:bg-gray-50 transition-colors font-basic"
+            >
+              {showAll
+                ? '접기'
+                : `더보기 (+${(filteredData?.length || 1) - 3}개)`}
+            </button>
+          )}
         </div>
       </section>
     </section>
