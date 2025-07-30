@@ -31,4 +31,5 @@ export interface CartListProps {
   img: string;
   price: number;
   quantity: number;
+  token: string;
 }

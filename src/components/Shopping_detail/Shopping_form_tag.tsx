@@ -38,7 +38,6 @@ export default function ShoppingFormTag({
       return { ...prev, quantity: option.quantity + 1 };
     });
   }
-  console.log('사이즈와컬러', size, color);
   //구매수량 1밑으로는 떨어지지 않게
   function decrease() {
     setOption(prev => {

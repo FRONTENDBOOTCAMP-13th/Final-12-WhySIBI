@@ -73,6 +73,7 @@ export default function CartMain() {
                 img={item.product.image.path}
                 price={item.product.price}
                 quantity={item.quantity}
+                token={token}
               />
             );
           })}
