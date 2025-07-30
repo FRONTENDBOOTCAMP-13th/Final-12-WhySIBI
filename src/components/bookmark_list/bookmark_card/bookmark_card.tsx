@@ -2,7 +2,7 @@
 import { BookMarkInfoProps } from '@/types/bookmark';
 import Image from 'next/image';
 import Link from 'next/link';
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+// const API_URL = process.env.NEXT_PUBLIC_API_URL;
 function BookMarkCard({ title, _id, type, productImage }: BookMarkInfoProps) {
   return (
     <div className="relative w-full max-w-[280px] mx-auto group">
@@ -11,7 +11,7 @@ function BookMarkCard({ title, _id, type, productImage }: BookMarkInfoProps) {
           <Image
             src={
               productImage
-                ? `${API_URL}/${productImage.path}`
+                ? `${productImage}`
                 : `/image/theme_image/desk_decor.png`
             }
             // src={`/image/theme_image/desk_decor.png`}
