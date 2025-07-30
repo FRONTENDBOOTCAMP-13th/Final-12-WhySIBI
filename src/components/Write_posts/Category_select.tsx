@@ -31,6 +31,7 @@ export default function CategorySelect({ value, onChange }: CategorySelectProps)
           key={item.title}
           title={item.title}
           category={item.tag}
+          value={value[item.title] || ''}
           onSelect={(selected) => handleSelect(item.title, selected)}
         />
       ))}

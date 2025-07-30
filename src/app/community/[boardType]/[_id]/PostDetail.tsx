@@ -2,6 +2,7 @@
 import { ButtonBack } from "@/components/Button_back";
 import DetailSwiper from '@/components/Detail_posts/Detail_swiper';
 import Image from "next/image";
+import Link from "next/link";
 import { Post } from "@/types";
 import { useBookmarkStore } from "@/zustand/bookMarkStore";
 
@@ -14,7 +15,7 @@ export default function PostDetail({ post }: { post: Post }) {
       <div className="button-wrapper w-[600px] flex justify-between items-center text-gray-icon text-md mb-6">
         <ButtonBack />
         <div className='button-list space-x-3 mr-2'>
-          <button className="cursor-pointer hover:opacity-80">수정</button>
+          <Link href={`/community/showRoom/${post._id}/edit`}><button className="cursor-pointer hover:opacity-80">수정</button></Link>
           <button className="cursor-pointer hover:opacity-80">삭제</button>
         </div>
       </div>

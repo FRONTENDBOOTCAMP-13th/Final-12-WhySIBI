@@ -1,9 +1,10 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useActionState } from 'react';
 import { useRouter } from 'next/navigation';
 import { createPost } from '@/data/actions/post';
+import useUserStore from '@/zustand/useUserStore';
 
 import TitleInput from '../../../../components/Write_posts/Title_input';
 import CategorySelect from '../../../../components/Write_posts/Category_select';
@@ -18,6 +19,14 @@ interface RegistFormProps {
 export default function RegistForm({ boardType }: RegistFormProps) {
   const [state, formAction, isLoading] = useActionState(createPost, null);
   const router = useRouter();
+  const { user } = useUserStore();
+
+    useEffect(() => {
+    if(!user){
+      // 렌더링 중에 페이지를 이동하면 에러가 발생하므로 렌더링 완료 후 이동한다.
+      router.replace(`/login?redirect=${boardType}/new`);
+    }
+  }, [user]);
 
   // 로컬 상태값
   const [title, setTitle] = useState('');
@@ -42,6 +51,14 @@ export default function RegistForm({ boardType }: RegistFormProps) {
   };
 
   return (
+    <>
+    { !user ? (
+        <div className="flex justify-center items-center min-h-[300px]">
+          <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-200 mb-4">
+            로그인 페이지로 이동합니다.
+          </h3>
+        </div>
+    ) : (
     <form ref={formRef} action={formAction}>
       <div className="w-[600px] px-12 py-8 rounded-3xl shadow outline-1 bg-linear-to-b from-vanilla-100 to-columbia-blue-100">
         <p className="font-variable text-lg font-bold mb-2">집들이에 초대해주셔서 감사해요.</p>
@@ -62,6 +79,7 @@ export default function RegistForm({ boardType }: RegistFormProps) {
       <input type="hidden" name="image" value={JSON.stringify(image)} />
       <input type="hidden" name="tag" value={JSON.stringify(Object.values(tag))} />
       <input type="hidden" name="type" value={boardType} /> {/* 게시판 구분용 */}
+      <input type="hidden" name="accessToken" value={ user?.token?.accessToken ?? ''} />
 
       <div className="flex font-variable gap-7 mt-20">
         <ButtonRounded text="상품 태그" background="bg-vanilla-200" hover="hover:bg-vanilla-100"></ButtonRounded>
@@ -72,5 +90,7 @@ export default function RegistForm({ boardType }: RegistFormProps) {
         <p className="text-red-500 mt-3">{state.message}</p>
       )}
     </form>
+  )}
+    </>
   );
 }
