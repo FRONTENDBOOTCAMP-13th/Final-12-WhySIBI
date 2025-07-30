@@ -13,8 +13,8 @@ export default function Home() {
         <MainBannerSlider />
         <div className="bg-white p-20">
           <MainCategorySection />
-          <MainRecommendProductSection />
           <MainBestProductSection />
+          <MainRecommendProductSection />
           <div className="community-wrapper flex flex-row gap-15 mt-10 justify-center items-center">
             <MainShowRoom></MainShowRoom>
             <MainTalk></MainTalk>

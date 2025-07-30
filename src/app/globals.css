@@ -562,6 +562,25 @@
     border-radius: 9999px;
   }
 
+  .recommend-swiper .swiper-button-next,
+  .recommend-swiper .swiper-button-prev {
+    background-color: white;
+    box-shadow: rgba(63, 71, 77, 0.15) 0px 2px 5px;
+    width: 48px !important;
+    height: 48px !important;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .recommend-swiper .swiper-button-next::after,
+  .recommend-swiper .swiper-button-prev::after {
+    color: #26422a;
+    font-size: 20px !important;
+  }
+
   /* subcategory menu */
   .subcategory-container {
     display: grid;
