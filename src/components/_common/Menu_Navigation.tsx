@@ -48,7 +48,6 @@ function MenuNavigation() {
   const { user } = useUserStore();
   const token = user?.token?.accessToken;
 
-
   return (
     <>
       <nav className="header_bottom w-full min-w-[1280px] bg-[#D4E8F8] flex flex-wrap justify-between items-center text-center">

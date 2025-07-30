@@ -7,7 +7,6 @@ import { ProductListProps } from '@/types';
 import PreferenceTagMap from '@/utils/preferenceTagMap';
 import useUserStore from '@/zustand/useUserStore';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Scrollbar } from 'swiper/modules';
@@ -16,7 +15,7 @@ import 'swiper/css/scrollbar';
 import SkeletonUI from '@/components/product_component/skeleton_ui';
 
 //추천 상품 박스
-function RecommendBox() {
+function MainRecommendBox() {
   const [checkTag, setCheckTag] = useState<string[]>([]);
   const [productData, setProductData] = useState<ProductListProps[]>([]);
   const [loading, setLoading] = useState(true);
@@ -60,58 +59,73 @@ function RecommendBox() {
   return (
     <>
       {user ? ( //회원이면
-        user.extra.preference?.map((tag, index) => {
-          //상품 Tag 와 회원 preference 같은 값을 4개까지 필터
-          const tagProduct = productData
-            .filter(product => product.extra?.tag?.includes(tag))
-            .slice(0, 4);
+        <Swiper
+          modules={[Scrollbar]}
+          loop={false} // 슬라이드 루프
+          spaceBetween={16} // 슬라이스 사이 간격
+          slidesPerView="auto" // 보여질 슬라이스 수
+          grabCursor={true} //마우스 선택
+          scrollbar={{
+            //스크롤바
+            el: '.swiper-scrollbar',
+            draggable: true,
+          }}
+        >
+          {user.extra.preference?.map((tag, index) => {
+            //상품 Tag 와 회원 preference 같은 값을 4개까지 필터
+            const tagProduct = productData
+              .filter(product => product.extra?.tag?.includes(tag))
+              .slice(0, 2);
 
-          return (
-            <div
-              key={index}
-              className="bg-gradient-to-b  from-vanilla-300 to-columbia-blue-300 mb-10 rounded-2xl"
-            >
-              <div className="flex justify-between p-5">
-                <p className="text-lg font-bold text-livealone-cal-poly-green">
-                  {PreferenceTagMap[tag]} 인기 상품 추천 ✨
-                </p>
-                <Link href="/shopping/best">
-                  <span className="text-gray-400">{`더보기 >`}</span>
-                </Link>
-              </div>
-              <div
-                className="grid sm:grid-cols-2 md:grid-cols-2 
-                lg:grid-cols-4 gap-4 items-center"
-              >
-                {/* 상품 로딩중일때 스켈레톤 UI 불러옴 */}
-                {loading ? (
-                  <SkeletonUI count={4} />
-                ) : (
-                  // 로딩중이 아니면 프로덕트 카드로 대체
-                  tagProduct.map(product => {
-                    const discount = product?.extra?.originalPrice
-                      ? `${Math.round(100 - (product.price * 100) / product.extra.originalPrice)}%`
-                      : ''; //할인율
-                    return (
-                      <ProductCard
-                        key={product._id}
-                        id={product._id}
-                        name={product.name}
-                        imageUrl={`${API_URL}/${product.mainImages[0]?.path}`}
-                        price={`${product.price.toLocaleString()}원`}
-                        discount={discount}
-                        rating={product.extra?.star ? product.extra?.star : 0}
-                        reviewCount={product.replies}
-                        isLiked={product.extra?.isLike ? true : false}
-                        onClick={() => {}}
-                      />
-                    );
-                  })
-                )}
-              </div>
-            </div>
-          );
-        })
+            return (
+              <SwiperSlide key={index} className="!w-[80%] md:!w-[48%]">
+                <div className="bg-gradient-to-b w-full  from-vanilla-300 to-columbia-blue-300 mb-10 rounded-2xl">
+                  <div className="flex justify-between p-5">
+                    <p className="text-lg font-bold text-livealone-cal-poly-green">
+                      {PreferenceTagMap[tag]} 인기 상품 추천 ✨
+                    </p>
+                    {/* <Link href="/shopping/best">
+                      <span className="text-gray-400">{`더보기 >`}</span>
+                    </Link> */}
+                  </div>
+                  <div
+                    className="grid sm:grid-cols-2 md:grid-cols-2
+                  lg:grid-cols-2 gap-4 items-center"
+                  >
+                    {/* 상품 로딩중일때 스켈레톤 UI 불러옴 */}
+                    {loading ? (
+                      <SkeletonUI count={2} />
+                    ) : (
+                      // 로딩중이 아니면 프로덕트 카드로 대체
+                      tagProduct.map(product => {
+                        const discount = product?.extra?.originalPrice
+                          ? `${Math.round(100 - (product.price * 100) / product.extra.originalPrice)}%`
+                          : ''; //할인율
+                        return (
+                          <ProductCard
+                            key={product._id}
+                            id={product._id}
+                            name={product.name}
+                            imageUrl={`${API_URL}/${product.mainImages[0]?.path}`}
+                            price={`${product.price.toLocaleString()}원`}
+                            discount={discount}
+                            rating={
+                              product.extra?.star ? product.extra?.star : 0
+                            }
+                            reviewCount={product.replies}
+                            isLiked={product.extra?.isLike ? true : false}
+                            onClick={() => {}}
+                          />
+                        );
+                      })
+                    )}
+                  </div>
+                </div>
+              </SwiperSlide>
+            );
+          })}
+          <div className="swiper-scrollbar"></div>
+        </Swiper>
       ) : (
         //비회원이면
         <>
@@ -122,16 +136,11 @@ function RecommendBox() {
 
           <div className="recommend-swiper mb-10">
             <Swiper
-              modules={[Scrollbar]}
               loop={false} // 슬라이드 루프
               spaceBetween={16} // 슬라이스 사이 간격
               slidesPerView="auto" // 보여질 슬라이스 수
               grabCursor={true} //마우스 선택
-              scrollbar={{
-                //스크롤바
-                el: '.swiper-scrollbar',
-                draggable: true,
-              }}
+              navigation={true} // prev, next button
             >
               <SwiperSlide>
                 <div className="min-w-[120px]">
@@ -278,66 +287,80 @@ function RecommendBox() {
                 </div>
               </SwiperSlide>
 
-              <div className="swiper-scrollbar"></div>
+              {/* <div className="swiper-scrollbar"></div> */}
             </Swiper>
           </div>
 
           {/* 비회원 선택 기반 추천 상품 */}
           {/* checkTag 배열이 0 보다 크면 - 선택 시 */}
           {checkTag.length > 0 ? (
-            checkTag.map((tag, index) => {
-              //checkTag 배열을 돌면서 태그 필터 -> 상품 4개 가져옴
-              const tagProduct = productData
-                .filter(product => product.extra?.tag?.includes(tag))
-                .slice(0, 4);
+            <Swiper
+              modules={[Scrollbar]}
+              loop={false} // 슬라이드 루프
+              spaceBetween={16} // 슬라이스 사이 간격
+              slidesPerView="auto" // 보여질 슬라이스 수
+              grabCursor={true} //마우스 선택
+              scrollbar={{
+                //스크롤바
+                el: '.swiper-scrollbar',
+                draggable: true,
+              }}
+            >
+              {checkTag.map((tag, index) => {
+                //checkTag 배열을 돌면서 태그 필터 -> 상품 4개 가져옴
+                const tagProduct = productData
+                  .filter(product => product.extra?.tag?.includes(tag))
+                  .slice(0, 2);
 
-              return (
-                <div
-                  key={index}
-                  className="bg-gradient-to-b from-vanilla-300 to-columbia-blue-300 mb-10 rounded-2xl"
-                >
-                  <div className="flex justify-between p-5">
-                    <p className="text-lg font-bold text-livealone-cal-poly-green">
-                      {PreferenceTagMap[tag]} 인기 상품 추천 ✨
-                    </p>
-                    <Link href="/shopping/best">
-                      <span className="text-gray-400">{`더보기 >`}</span>
-                    </Link>
-                  </div>
-                  <div
-                    className="grid sm:grid-cols-2 md:grid-cols-2 
-                lg:grid-cols-4 gap-4 items-center"
-                  >
-                    {/* 상품 로딩중일때 스켈레톤 UI 불러옴 */}
-                    {loading ? (
-                      <SkeletonUI count={4} />
-                    ) : (
-                      tagProduct.map(product => {
-                        const discount = product?.extra?.originalPrice
-                          ? `${Math.round(100 - (product.price * 100) / product.extra.originalPrice)}%`
-                          : ''; //할인율
-                        return (
-                          <ProductCard
-                            key={product._id}
-                            id={product._id}
-                            name={product.name}
-                            imageUrl={`${API_URL}/${product.mainImages[0]?.path}`}
-                            price={`${product.price.toLocaleString()}원`}
-                            discount={discount}
-                            rating={
-                              product.extra?.star ? product.extra?.star : 0
-                            }
-                            reviewCount={product.replies}
-                            isLiked={product.extra?.isLike ? true : false}
-                            onClick={() => {}}
-                          />
-                        );
-                      })
-                    )}
-                  </div>
-                </div>
-              );
-            })
+                return (
+                  <SwiperSlide key={index} className="!w-[80%] md:!w-[48%]">
+                    <div className="bg-gradient-to-b w-full from-vanilla-300 to-columbia-blue-300 mb-10 rounded-2xl">
+                      <div className="flex justify-between p-5">
+                        <p className="text-lg font-bold text-livealone-cal-poly-green">
+                          {PreferenceTagMap[tag]} 인기 상품 추천 ✨
+                        </p>
+                        {/* <Link href="/shopping/best">
+                          <span className="text-gray-400">{`더보기 >`}</span>
+                        </Link> */}
+                      </div>
+                      <div
+                        className="grid sm:grid-cols-2 md:grid-cols-2 
+                lg:grid-cols-2 gap-4 items-center"
+                      >
+                        {/* 상품 로딩중일때 스켈레톤 UI 불러옴 */}
+                        {loading ? (
+                          <SkeletonUI count={2} />
+                        ) : (
+                          // 로딩중이 아니면 프로덕트 카드로 대체
+                          tagProduct.map(product => {
+                            const discount = product?.extra?.originalPrice
+                              ? `${Math.round(100 - (product.price * 100) / product.extra.originalPrice)}%`
+                              : ''; //할인율
+                            return (
+                              <ProductCard
+                                key={product._id}
+                                id={product._id}
+                                name={product.name}
+                                imageUrl={`${API_URL}/${product.mainImages[0]?.path}`}
+                                price={`${product.price.toLocaleString()}원`}
+                                discount={discount}
+                                rating={
+                                  product.extra?.star ? product.extra?.star : 0
+                                }
+                                reviewCount={product.replies}
+                                isLiked={product.extra?.isLike ? true : false}
+                                onClick={() => {}}
+                              />
+                            );
+                          })
+                        )}
+                      </div>
+                    </div>
+                  </SwiperSlide>
+                );
+              })}
+              <div className="swiper-scrollbar"></div>
+            </Swiper>
           ) : (
             /* checkTag 배열이 0 보다 작을때 - 선택 안했을 시 */
             <div className="bg-gradient-to-b border-2 border-gray-200 rounded-2xl flex items-center justify-center flex-col">
@@ -358,4 +381,4 @@ function RecommendBox() {
     </>
   );
 }
-export default RecommendBox;
+export default MainRecommendBox;

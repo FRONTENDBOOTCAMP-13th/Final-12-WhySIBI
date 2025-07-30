@@ -1,6 +1,14 @@
+type SortType =
+  | 'latest'
+  | 'low-cost'
+  | 'high-cost'
+  | 'high-star'
+  | 'high-review'
+  | 'best-selling';
+
 type DropdownShoppingProps = {
-  value: string;
-  onDropChange: (value: string) => void;
+  value: SortType;
+  onDropChange: (value: SortType) => void;
 };
 
 function DropdownShoppingList({ value, onDropChange }: DropdownShoppingProps) {
@@ -12,11 +20,12 @@ function DropdownShoppingList({ value, onDropChange }: DropdownShoppingProps) {
           id="sort"
           value={value}
           onChange={e => {
-            onDropChange(e.target.value);
+            onDropChange(e.target.value as SortType);
           }}
           className="w-full cursor-pointer text-cal-poly-green-600 font-semibold appearance-none outline-0 pl-3"
         >
           <option value="latest">신상품</option>
+          <option value="best-selling">인기순</option>
           <option value="low-cost">낮은가격순</option>
           <option value="high-cost">높은가격순</option>
           <option value="high-star">별점높은순</option>
