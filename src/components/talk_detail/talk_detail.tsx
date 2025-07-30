@@ -1,12 +1,18 @@
 'use client';
 import { ButtonBack } from '@/components/Button_back';
 import getTimeAgo from '@/components/talk_list/time';
-import { AddBookMark } from '@/data/actions/bookmark';
+import {
+  AddBookMark,
+  DeleteBookMark,
+  GetBookMarkInfo,
+} from '@/data/actions/bookmark';
 import { getPosts } from '@/data/functions/post';
 import { Post } from '@/types';
+import { BookMarkItem } from '@/types/bookmark';
 import useUserStore from '@/zustand/useUserStore';
 import Image from 'next/image';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 import { useEffect, useState } from 'react';
 interface TalkCardItemProps {
   post: ExtendedPostProps;
@@ -20,10 +26,12 @@ interface ExtendedPostProps extends Post {
 export default function TalkDetail({ post, boardType }: TalkCardItemProps) {
   const [talkPost, setTalkPost] = useState<ExtendedPostProps[] | null>(null);
   const [showAll, setShowAll] = useState(false);
-  const [isBookmarked, setIsBookmarked] = useState(false);
+  const [isBookmarked, setIsBookmarked] = useState(!!post.bookmarks);
+  const [bookmarkId, setBookmarkId] = useState<BookMarkItem | null>(null);
   const { user } = useUserStore();
   const token = user?.token?.accessToken;
   const _id = Number(post._id);
+  console.log(_id);
   const type = post.type;
   const getBookmarkType = (postType: string) => {
     switch (postType) {
@@ -42,17 +50,26 @@ export default function TalkDetail({ post, boardType }: TalkCardItemProps) {
 
   useEffect(() => {
     const getSameCategory = async () => {
+      const bookmarkType = getBookmarkType(type);
       const res = await getPosts(boardType);
+      const bookmarkRes = await GetBookMarkInfo(
+        bookmarkType,
+        token as string,
+        _id,
+      );
       try {
         if (res.ok === 1) {
           setTalkPost(res.item);
+        }
+        if (bookmarkRes.ok === 1) {
+          setBookmarkId(bookmarkRes.item);
         }
       } catch (error) {
         console.error('에러 발생:', error);
       }
     };
     getSameCategory();
-  }, [boardType]);
+  }, [boardType, _id, token, type]);
 
   const filteredData = talkPost?.filter(talkPostItem => {
     const currentPostSubject = post.extra?.subject?.[0];
@@ -62,18 +79,49 @@ export default function TalkDetail({ post, boardType }: TalkCardItemProps) {
     );
   });
 
-  const handleBookmark = async () => {
+  const handleDeleteBookmark = async () => {
+    const result = await DeleteBookMark(
+      token as string,
+      Number(bookmarkId?._id),
+    );
+    if (result.ok === 1) {
+      setIsBookmarked(false);
+      setBookmarkId(null);
+      redirect(`/community/talk/${_id}`);
+    } else {
+      alert(`삭제 실패: ${result.message}`);
+    }
+  };
+
+  const handleAddBookmark = async () => {
     const bookmarkType = getBookmarkType(type);
     const result = await AddBookMark(
       bookmarkType as string,
       token as string,
       _id,
     );
+
     if (result.ok === 1) {
       setIsBookmarked(true);
+      const newBookmarkRes = await GetBookMarkInfo(
+        bookmarkType,
+        token as string,
+        _id,
+      );
+      if (newBookmarkRes.ok === 1) {
+        setBookmarkId(newBookmarkRes.item);
+      }
+      redirect(`/community/talk/${_id}`);
     } else {
-      console.log('되겠냐', result.errors);
-      alert(result.message);
+      alert(`추가 실패: ${result.message}`);
+    }
+  };
+
+  const handleBookmark = () => {
+    if (isBookmarked) {
+      handleDeleteBookmark();
+    } else {
+      handleAddBookmark();
     }
   };
 
