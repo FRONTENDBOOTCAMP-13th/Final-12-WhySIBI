@@ -19,7 +19,6 @@ export default function MyInquryList() {
         const res = await GetMyInqury(user?.token?.accessToken as string);
         if (res.ok === 1) {
           setInqury(res.item);
-          console.log(res.item);
         } else {
           setInqury(null);
         }

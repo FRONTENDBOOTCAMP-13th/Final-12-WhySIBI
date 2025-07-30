@@ -23,7 +23,6 @@ export default function BestTalkList({ item, boardType }: TalkListProps) {
 
   const BestList = sortedData.slice(0, 5);
 
-  console.log(sortedData);
   return (
     <Swiper
       loop={false}

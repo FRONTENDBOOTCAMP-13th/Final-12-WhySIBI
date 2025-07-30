@@ -20,7 +20,6 @@ export default function OrderList() {
         const res = await getOrderList(user?.token?.accessToken as string);
         if (res.ok === 1) {
           setProductList(res.item);
-          console.log(res.item);
         } else {
           setProductList(null);
         }

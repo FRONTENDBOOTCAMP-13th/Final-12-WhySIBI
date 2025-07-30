@@ -24,7 +24,6 @@ export default function ReviewWriteForm({
   const { user } = useUserStore();
 
   const handleFilePath = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log('파일 선택 이벤트 발생!');
     const target = e.target as HTMLInputElement;
     const file = target.files?.[0]; // 첫 번째 파일만 가져오기
 

@@ -50,7 +50,6 @@ export async function createReplie(
       },
     };
 
-    console.log('전송할 body:', baseBody);
 
     res = await fetch(`${API_URL}/replies`, {
       method: 'POST',

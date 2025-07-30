@@ -17,7 +17,6 @@ export async function GetBookMarkList(
       },
     });
     const data = await res.json();
-    console.log(data);
     return data;
   } catch (error) {
     console.log('error', error);
@@ -40,7 +39,6 @@ export async function GetBookMarkInfo(
       },
     });
     const data = await res.json();
-    console.log(data);
     return data;
   } catch (error) {
     console.log('error', error);
@@ -70,8 +68,6 @@ export async function AddBookMark(
       body: JSON.stringify(body),
     });
     const data = await res.json();
-    console.log(data);
-    console.log('북마크 추가됨');
     return data;
   } catch (error) {
     console.log('error', error);
@@ -97,7 +93,6 @@ export async function DeleteBookMark(
       }),
     });
     const data = await res.json();
-    console.log(data);
     return data;
   } catch (error) {
     console.log('error', error);
