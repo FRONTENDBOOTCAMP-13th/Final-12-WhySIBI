@@ -60,6 +60,7 @@ export interface Post {
   tags?: string[];
   // 태그
   tag?: string[];
+  bookmarks: number;
 }
 export interface Inqury {
   // 문의의 고유 ID

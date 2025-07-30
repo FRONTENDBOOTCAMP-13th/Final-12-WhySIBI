@@ -24,7 +24,29 @@ export async function GetBookMarkList(
     return { ok: 0, message: '북마크 목록을 불러오지 못했습니다' };
   }
 }
-
+export async function GetBookMarkInfo(
+  type: string,
+  token: string,
+  _id: number,
+): ApiResPromise<BookMarkItem> {
+  let res: Response;
+  try {
+    res = await fetch(`${API_URL}/bookmarks/${type}/${_id}`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+        'Client-Id': CLIENT_ID,
+      },
+    });
+    const data = await res.json();
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.log('error', error);
+    return { ok: 0, message: '북마크 목록을 불러오지 못했습니다' };
+  }
+}
 export async function AddBookMark(
   type: string,
   token: string,
@@ -35,6 +57,7 @@ export async function AddBookMark(
     const body = {
       target_id: _id,
       type: type,
+      isBookmark: true,
     };
 
     res = await fetch(`${API_URL}/bookmarks/${type}`, {
@@ -58,17 +81,20 @@ export async function AddBookMark(
 
 export async function DeleteBookMark(
   token: string,
-  _id: string,
+  _id: number,
 ): ApiResPromise<BookMarkItem[]> {
   let res: Response;
   try {
     res = await fetch(`${API_URL}/bookmarks/${_id}`, {
-      method: 'POST',
+      method: 'DELETE',
       headers: {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
         'Client-Id': CLIENT_ID,
       },
+      body: JSON.stringify({
+        target_id: _id, // 또는 다른 값이 필요할 수도
+      }),
     });
     const data = await res.json();
     console.log(data);
