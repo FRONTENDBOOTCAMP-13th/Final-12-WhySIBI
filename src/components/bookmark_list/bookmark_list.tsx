@@ -56,31 +56,28 @@ export default function BookMarkList() {
         <h4 className="font-logo text-4xl">북마크 목록</h4>
         <div className="bookmark-swiper  max-w-11/12 mx-auto">
           <Swiper
+            modules={[Navigation, Pagination, Scrollbar]}
             loop={true}
+            navigation={true}
             // Responsive breakpoints
             breakpoints={{
               320: {
                 slidesPerView: 1,
                 spaceBetween: 20,
-                centeredSlides: true,
               },
               768: {
                 slidesPerView: 2,
                 spaceBetween: 40,
-                centeredSlides: true,
               },
               1024: {
                 slidesPerView: 3,
                 spaceBetween: 60,
-                centeredSlides: true,
               },
               1280: {
                 slidesPerView: 3,
                 spaceBetween: 80,
-                centeredSlides: true,
               },
             }}
-            navigation={true}
             className="bookmark-swiper-container"
           >
             {postList?.map(bookmark => (

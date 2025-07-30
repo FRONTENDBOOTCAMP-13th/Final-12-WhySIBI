@@ -4,7 +4,7 @@ interface CategoryProps {
   onSelect: (selected: string) => void;
 }
 
-function DropdownCustom({ title, category, onSelect }: CategoryProps) {
+function SubjectDropdownCustom({ title, category, onSelect }: CategoryProps) {
   return (
     <div className="relative inline-flex items-center bg-white font-variable h-[31px] rounded-sm text-size-sm border-1 border-[#c7c7c7] focus-within:outline-1">
       <select
@@ -13,7 +13,7 @@ function DropdownCustom({ title, category, onSelect }: CategoryProps) {
         defaultValue={title}
         className="text-[#777777] font-semibold cursor-pointer outline-0 appearance-none text-center pl-3 pr-6"
         onChange={e => onSelect(e.target.value)}
-        
+        required
       >
         <option value={title} disabled hidden>
           {title}
@@ -41,4 +41,4 @@ function DropdownCustom({ title, category, onSelect }: CategoryProps) {
   );
 }
 
-export default DropdownCustom;
+export default SubjectDropdownCustom;

@@ -2,10 +2,10 @@
 import { BookMarkInfoProps } from '@/types/bookmark';
 import Image from 'next/image';
 import Link from 'next/link';
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
 function BookMarkCard({ title, _id }: BookMarkInfoProps) {
   return (
-    <div className="relative w-full max-w-[280px] mx-auto group hover:scale-105 transition-transform duration-300">
+    <div className="relative w-full max-w-[280px] mx-auto group">
       <Link href={`/commuity/showRoom/${_id}`} className="block w-full">
         <div className="relative w-full aspect-square rounded-radius-lg overflow-hidden mb-3">
           <Image
