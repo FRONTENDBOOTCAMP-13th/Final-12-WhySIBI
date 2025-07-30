@@ -1,31 +1,35 @@
 'use client';
 import useSearchStore from '@/zustand/searchStore';
 import Image from 'next/image';
+import { useRef } from 'react';
 
 export default function TalkPostSearch() {
-  const { text, handleSearchClick } = useSearchStore();
-  const handleSearch = () => {
-    console.log('검색할래?');
+  const { handleSearchClick } = useSearchStore();
+  const searchText = useRef<HTMLInputElement>(null);
+
+  const handleClick = () => {
+    const searchValue = String(searchText.current?.value);
+    handleSearchClick(searchValue);
   };
   return (
-    <form onSubmit={handleSearch}>
-      <div className="flex items-center mb-8">
-        <input
-          type="search"
-          name="search_post"
-          id="search_post"
-          placeholder="제목이나 내용을 입력해주세요"
-          className="max-w-[280px] w-64"
+    <div className="flex items-center mb-8">
+      <input
+        type="search"
+        name="search_post"
+        id="search_post"
+        ref={searchText}
+        placeholder="제목이나 내용을 입력해주세요"
+        className="max-w-[280px] w-64"
+      />
+      <button type="submit" onClick={handleClick}>
+        <Image
+          src={'/image/community_icon/search_icon.svg'}
+          alt="검색 아이콘"
+          width={20}
+          height={20}
+          onClick={() => handleSearchClick}
         />
-        <button type="submit">
-          <Image
-            src={'/image/community_icon/search_icon.svg'}
-            alt="검색 아이콘"
-            width={20}
-            height={20}
-          />
-        </button>
-      </div>
-    </form>
+      </button>
+    </div>
   );
 }

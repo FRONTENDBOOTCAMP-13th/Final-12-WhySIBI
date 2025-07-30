@@ -1,16 +1,16 @@
 import { create } from 'zustand';
 
 interface SearhState {
-  text: string;
+  searchText: string;
   handleSearchClick: (Text: string) => void;
 }
 
-const useSearchStore = create<SearhState>((set) => ({
-  text: '',
-  handleSearchClick: Text => {
+const useSearchStore = create<SearhState>(set => ({
+  searchText: '',
+  handleSearchClick: (Text: string) => {
     console.log(Text);
     set({
-      text: Text,
+      searchText: Text,
     });
   },
 }));
