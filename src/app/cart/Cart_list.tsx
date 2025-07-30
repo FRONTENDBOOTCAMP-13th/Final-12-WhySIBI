@@ -14,6 +14,7 @@ export default function CartList({
   price,
   quantity,
   token,
+  allcheck,
 }: CartListProps) {
   const [count, setCount] = useState(quantity);
 
@@ -26,6 +27,7 @@ export default function CartList({
     return count;
   }
 
+  //상품 수량 수정을 위한 patch로직
   useEffect(() => {
     if (!token) return;
     async function fetchCart() {
@@ -51,7 +53,12 @@ export default function CartList({
 
   return (
     <li className="flex gap-4 px-5 pt-6 pb-6 border-b-1 last:border-b-0">
-      <input type="checkbox" id="check" className="w-5 h-5" />
+      <input
+        type="checkbox"
+        id="check"
+        className="w-5 h-5"
+        checked={allcheck}
+      />
       <label htmlFor="check" className="sr-only">
         선택
       </label>

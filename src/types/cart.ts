@@ -31,5 +31,6 @@ export interface CartListProps {
   img: string;
   price: number;
   quantity: number;
-  token: string;
+  token: string | undefined;
+  allcheck: boolean;
 }

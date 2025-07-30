@@ -9,6 +9,8 @@ export default function CartMain() {
   const token = user?.token?.accessToken;
   console.log('유전데', user);
 
+  const [allcheck, SetAllcheck] = useState(false);
+
   const [cartData, setCartData] = useState<CartData | null>(null);
   // 로그인한 유저의 장바구니를 불러옴
   useEffect(() => {
@@ -50,7 +52,13 @@ export default function CartMain() {
       <div className="min-w-[630px] flex flex-col gap-6">
         <div className="border-1 px-5 py-3 rounded-2xl flex justify-between items-center">
           <div className="flex items-center gap-3">
-            <input type="checkbox" id="allcheck" className="w-4 h-4" />
+            <input
+              type="checkbox"
+              id="allcheck"
+              className="w-4 h-4"
+              checked={allcheck}
+              onClick={() => SetAllcheck(!allcheck)}
+            />
             <label htmlFor="allcheck" className="text-lg text-gray-550">
               모두 선택
             </label>
@@ -74,6 +82,7 @@ export default function CartMain() {
                 price={item.product.price}
                 quantity={item.quantity}
                 token={token}
+                allcheck={allcheck}
               />
             );
           })}
