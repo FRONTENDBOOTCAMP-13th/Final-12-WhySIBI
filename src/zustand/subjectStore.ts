@@ -9,7 +9,6 @@ interface MenuState {
 const useSubjectStore = create<MenuState>(set => ({
   activeSubject: 'all',
   handleMenuClick: subject => {
-    console.log(subject);
     set({
       activeSubject: subject,
     });
