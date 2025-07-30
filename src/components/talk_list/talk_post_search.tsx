@@ -1,12 +1,13 @@
 'use client';
 import useSearchStore from '@/zustand/searchStore';
+import useSubjectStore from '@/zustand/subjectStore';
 import Image from 'next/image';
 import { useRef } from 'react';
 
 export default function TalkPostSearch() {
   const { handleSearchClick } = useSearchStore();
   const searchText = useRef<HTMLInputElement>(null);
-
+  const { resetSubject } = useSubjectStore();
   const handleClick = () => {
     const searchValue = String(searchText.current?.value);
     handleSearchClick(searchValue);
@@ -23,6 +24,7 @@ export default function TalkPostSearch() {
         onKeyDown={e => {
           if (e.key === 'Enter') {
             handleClick();
+            resetSubject();
           }
         }}
       />
@@ -32,7 +34,10 @@ export default function TalkPostSearch() {
           alt="검색 아이콘"
           width={20}
           height={20}
-          onClick={() => handleSearchClick}
+          onClick={() => {
+            handleClick();
+            resetSubject();
+          }}
         />
       </button>
     </div>
