@@ -6,6 +6,10 @@ import DetailSimilar from "@/components/Detail_posts/Detail_similar";
 import DetailOther from "@/components/Detail_posts/Detail_other";
 import CommentList from "./CommentList";
 import CommentNew from "./CommentNew";
+import { ButtonBack } from "@/components/Button_back";
+import Link from "next/link";
+import DeleteForm from "./DeleteForm";
+import { ButtonNostyle } from "@/components/Buttons/Button_nostyle";
 
 
 function isError<T>(res: ApiRes<T>): res is { ok: 0; message: string } {
@@ -35,6 +39,13 @@ export default async function DetailPage({ params }: InfoPageProps) {
 
   return (
       <div className="wrapper flex flex-col justify-center items-center bg-white p-20 font-variable">
+        <div className="button-wrapper w-[600px] flex justify-between items-center text-gray-icon text-md mb-6">
+          <ButtonBack />
+          <div className='button-list flex flex-row space-x-3 mr-2'>
+            <Link href={`/community/showRoom/${_id}/edit`}><ButtonNostyle ownerId={post.item?.user._id} needLogin>수정</ButtonNostyle></Link>
+            <DeleteForm boardType={boardType} _id={_id} ownerId={post.item?.user._id}></DeleteForm>
+          </div>
+        </div>
         <PostDetail post={post.item} />
         <DetailSimilar></DetailSimilar>
         <DetailOther _id={_id}></DetailOther>
