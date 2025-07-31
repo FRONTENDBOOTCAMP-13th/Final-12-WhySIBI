@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import { PostReply } from '@/types';
 import { getTimeAgo } from '@/utils/time';
 import CommentDeleteForm from './CommentDeleteForm';
@@ -23,9 +22,9 @@ export default function CommentItem({ reply }: { reply: PostReply }) {
         />
       </div>
       <div>
-        <Link href="" className="font-bold leading-xl">
+        <span className="font-bold leading-xl">
           {reply.user.name}
-        </Link>
+        </span>
         <p className="mb-3 mt-1">{reply.content}</p>
         <div className="flex items-center text-gray-400 text-[12px] space-x-2">
           <time dateTime={reply.createdAt}>{getTimeAgo(reply.createdAt)}</time>

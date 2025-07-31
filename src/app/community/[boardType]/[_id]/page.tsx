@@ -1,15 +1,17 @@
+
 import PostDetail from '@/app/community/[boardType]/[_id]/PostDetail';
-import { getPost, getPosts } from '@/data/functions/post';
+import { getPost } from '@/data/functions/post';
+import { ApiRes } from "@/types";
 import { getReplies } from '@/data/functions/post';
-import { ApiRes } from '@/types';
-import DetailSimilar from '@/components/Detail_posts/Detail_similar';
-import DetailOther from '@/components/Detail_posts/Detail_other';
-import CommentList from './CommentList';
-import CommentNew from './CommentNew';
-import { ButtonBack } from '@/components/Button_back';
-import Link from 'next/link';
-import DeleteForm from './DeleteForm';
-import { ButtonNostyle } from '@/components/Buttons/Button_nostyle';
+import { getPosts } from '@/data/actions/inqury';
+import DetailSimilar from "@/components/Detail_posts/Detail_similar";
+import DetailOther from "@/components/Detail_posts/Detail_other";
+import CommentList from "./CommentList";
+import CommentNew from "./CommentNew";
+import { ButtonBack } from "@/components/Button_back";
+import Link from "next/link";
+import DeleteForm from "./DeleteForm";
+import { ButtonNostyle } from "@/components/Buttons/Button_nostyle";
 import TalkDetail from '@/components/talk_detail/talk_detail';
 import { cookies } from 'next/headers';
 
@@ -32,16 +34,12 @@ export default async function DetailPage({ params }: InfoPageProps) {
   const posts = await getPosts(String(_id));
   const repliesRes = await getReplies(Number(_id));
 
-  const repliesCount =
-    repliesRes.ok === 1 && Array.isArray(repliesRes.item)
-      ? repliesRes.item.length
-      : 0;
-
   if (isError(post)) {
     return <div>{post.message || '게시글을 불러올 수 없습니다.'}</div>;
   }
+  
   if (boardType === 'showRoom') {
-    return (
+  return (
       <div className="wrapper flex flex-col justify-center items-center bg-white p-20 font-variable">
         <div className="button-wrapper w-[600px] flex justify-between items-center text-gray-icon text-md mb-6">
           <ButtonBack />
@@ -84,5 +82,5 @@ export default async function DetailPage({ params }: InfoPageProps) {
         <CommentList _id={_id}></CommentList>
       </div>
     );
-  }
+}
 }

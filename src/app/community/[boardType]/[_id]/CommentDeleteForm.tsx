@@ -11,8 +11,7 @@ export default function CommentDeleteForm({ reply }: { reply: PostReply }) {
   const { type, _id } = useParams();
   const [state, formAction, isLoading] = useActionState(deleteReply, null);
   const { user } = useUserStore();
-  console.log(state, isLoading);
-
+  
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     if (!window.confirm("정말 삭제하시겠습니까?")) event.preventDefault();
   };
