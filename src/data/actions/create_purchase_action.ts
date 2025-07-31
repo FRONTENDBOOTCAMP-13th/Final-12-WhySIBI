@@ -1,10 +1,10 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
-type PurchaseItem = {
+interface PurchaseItem {
   _id: number;
   quantity: number;
-};
+}
 export async function createPurchaseAction(
   _: { status?: boolean; error: string },
   formData: FormData,

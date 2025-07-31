@@ -91,3 +91,12 @@ export interface InquiryItem {
   bookmarks: number;
   repliesCount: number;
 }
+
+export interface ProductButtonProps {
+  option: {
+    size: string;
+    color: string;
+    quantity: number;
+  };
+  id: string;
+}

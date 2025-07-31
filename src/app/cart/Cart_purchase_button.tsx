@@ -26,8 +26,6 @@ export default function CartPurchaseButton({
       size: item.size,
     })) || [];
 
-  console.log('돼ㅆ나?', products);
-
   // 초기 상태 정의
   const initialState: { status?: boolean; error: string } = {
     // status: false,
