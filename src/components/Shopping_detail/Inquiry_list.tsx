@@ -19,7 +19,7 @@ export default function InquiryList({ item }: InquiryListProps) {
       }
     }
     fetch();
-  }, []);
+  }, [item]);
 
   return (
     <>
