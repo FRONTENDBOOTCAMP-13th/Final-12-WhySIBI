@@ -33,8 +33,6 @@ function ReviewInfo({
     if (result.ok) {
       onDelete?.();
       route.refresh();
-    } else {
-      alert(result.message);
     }
     setLoading(false);
   };

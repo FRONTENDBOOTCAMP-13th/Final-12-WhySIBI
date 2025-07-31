@@ -58,9 +58,6 @@ export default function EditInfoForm() {
     if (state?.ok) {
       alert('회원 정보 수정이 완료되었습니다. 메인 페이지로 이동합니다.');
       navigation.replace('/');
-    } else if (state?.ok === 0 && !state?.errors) {
-      // 입력값 검증에러가 아닌 경우
-      alert(state?.message);
     }
   }, [state, navigation]);
 

@@ -37,8 +37,6 @@ export default function ReviewWriteForm({
     if (state?.ok) {
       alert('리뷰 작성이 완료되었습니다. 리뷰 페이지로 이동합니다.');
       router.replace('/my_page/reviews');
-    } else if (state?.ok === 0 && !state?.errors) {
-      alert(state?.message);
     }
   }, [state, router]);
 
