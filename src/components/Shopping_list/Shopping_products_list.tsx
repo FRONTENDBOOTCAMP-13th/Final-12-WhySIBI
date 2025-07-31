@@ -3,6 +3,7 @@
 import DropdownShoppingList from '@/components/Shopping_list/Dropdown_shopping_list';
 import Pagenation from '@/components/basic_component/Pagenation';
 import ProductCard from '@/components/product_component/product_card';
+import SkeletonUI from '@/components/product_component/skeleton_ui';
 import { getProductList } from '@/data/actions/products.fetch';
 import { ProductListProps } from '@/types';
 import useMenuStore from '@/zustand/menuStore';
@@ -26,6 +27,7 @@ function ShoppingProductsList() {
   >('latest'); //신상품 기본필터
   const { mainCategoryId, subCategoryId, handleMenuClick } = useMenuStore(); //zustand 에서 카테고리 상태 가져옴
   const params = useParams();
+  const [loading, setLoading] = useState(true);
 
   //주소에서 카테고리 값 가져오기
   useEffect(() => {
@@ -62,6 +64,8 @@ function ShoppingProductsList() {
         }
       } catch (err) {
         console.error('상품을 불러오지 못했습니다.', err);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -83,25 +87,30 @@ function ShoppingProductsList() {
         className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4
        items-center"
       >
-        {productData.map(product => {
-          const discount = product?.extra?.originalPrice
-            ? `${Math.round(100 - (product.price * 100) / product.extra.originalPrice)}%`
-            : ''; //할인율
-          return (
-            <ProductCard
-              id={product._id}
-              key={product._id}
-              name={product.name}
-              imageUrl={`${API_URL}/${product.mainImages[0]?.path}`}
-              price={`${product.price.toLocaleString()}원`}
-              discount={discount}
-              rating={product.extra?.star ? product.extra?.star : 0}
-              reviewCount={product?.replies}
-              isLiked={product.extra?.isLike ? true : false}
-              onClick={() => {}}
-            />
-          );
-        })}
+        {/* 상품 로딩중일때 스켈레톤 UI 불러옴 */}
+        {loading ? (
+          <SkeletonUI count={12} />
+        ) : (
+          productData.map(product => {
+            const discount = product?.extra?.originalPrice
+              ? `${Math.round(100 - (product.price * 100) / product.extra.originalPrice)}%`
+              : ''; //할인율
+            return (
+              <ProductCard
+                id={product._id}
+                key={product._id}
+                name={product.name}
+                imageUrl={`${API_URL}/${product.mainImages[0]?.path}`}
+                price={`${product.price.toLocaleString()}원`}
+                discount={discount}
+                rating={product.extra?.star ? product.extra?.star : 0}
+                reviewCount={product?.replies}
+                isLiked={product.extra?.isLike ? true : false}
+                onClick={() => {}}
+              />
+            );
+          })
+        )}
       </div>
       <Pagenation
         page={page}
