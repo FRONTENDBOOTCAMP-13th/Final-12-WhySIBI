@@ -13,25 +13,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Scrollbar } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/scrollbar';
-
-//로딩중일때 보여줄 스켈레톤 UI
-function SkeletonUI() {
-  const skeleton = [];
-
-  for (let i = 0; i < 4; i++) {
-    //ui 4번반복
-    skeleton.push(
-      <div key={i} className="flex flex-col gap-2 p-4">
-        <div className="bg-gray-300 h-[180px] w-full rounded-md" />
-        <div className="h-4 bg-gray-300 rounded w-3/4" />
-        <div className="h-4 bg-gray-300 rounded w-1/2" />
-        <div className="h-4 bg-gray-300 rounded w-1/2" />
-      </div>,
-    );
-  }
-
-  return <>{skeleton}</>;
-}
+import SkeletonUI from '@/components/product_component/skeleton_ui';
 
 //추천 상품 박스
 function RecommendBox() {
@@ -47,10 +29,10 @@ function RecommendBox() {
       'input[name="preference"]:checked',
     );
     const selectedTags = Array.from(checkedInputs)
-      .map(input => (input as HTMLInputElement).dataset.valueText)
+      .map(input => (input as HTMLInputElement).dataset.valueText || '')
       .filter(Boolean) as string[];
 
-    setCheckTag(selectedTags);
+    setCheckTag([...new Set(selectedTags)]);
     // console.log(selectedTags);
   };
 
@@ -103,7 +85,7 @@ function RecommendBox() {
               >
                 {/* 상품 로딩중일때 스켈레톤 UI 불러옴 */}
                 {loading ? (
-                  <SkeletonUI />
+                  <SkeletonUI count={4} />
                 ) : (
                   // 로딩중이 아니면 프로덕트 카드로 대체
                   tagProduct.map(product => {
@@ -119,7 +101,7 @@ function RecommendBox() {
                         price={`${product.price.toLocaleString()}원`}
                         discount={discount}
                         rating={product.extra?.star ? product.extra?.star : 0}
-                        reviewCount={100} //리뷰카운트 계산예정
+                        reviewCount={product.replies}
                         isLiked={product.extra?.isLike ? true : false}
                         onClick={() => {}}
                       />
@@ -326,25 +308,32 @@ function RecommendBox() {
                     className="grid sm:grid-cols-2 md:grid-cols-2 
                 lg:grid-cols-4 gap-4 items-center"
                   >
-                    {tagProduct.map(product => {
-                      const discount = product?.extra?.originalPrice
-                        ? `${Math.round(100 - (product.price * 100) / product.extra.originalPrice)}%`
-                        : ''; //할인율
-                      return (
-                        <ProductCard
-                          key={product._id}
-                          id={product._id}
-                          name={product.name}
-                          imageUrl={`${API_URL}/${product.mainImages[0]?.path}`}
-                          price={`${product.price.toLocaleString()}원`}
-                          discount={discount}
-                          rating={product.extra?.star ? product.extra?.star : 0}
-                          reviewCount={100} //리뷰카운트 계산예정
-                          isLiked={product.extra?.isLike ? true : false}
-                          onClick={() => {}}
-                        />
-                      );
-                    })}
+                    {/* 상품 로딩중일때 스켈레톤 UI 불러옴 */}
+                    {loading ? (
+                      <SkeletonUI count={4} />
+                    ) : (
+                      tagProduct.map(product => {
+                        const discount = product?.extra?.originalPrice
+                          ? `${Math.round(100 - (product.price * 100) / product.extra.originalPrice)}%`
+                          : ''; //할인율
+                        return (
+                          <ProductCard
+                            key={product._id}
+                            id={product._id}
+                            name={product.name}
+                            imageUrl={`${API_URL}/${product.mainImages[0]?.path}`}
+                            price={`${product.price.toLocaleString()}원`}
+                            discount={discount}
+                            rating={
+                              product.extra?.star ? product.extra?.star : 0
+                            }
+                            reviewCount={product.replies}
+                            isLiked={product.extra?.isLike ? true : false}
+                            onClick={() => {}}
+                          />
+                        );
+                      })
+                    )}
                   </div>
                 </div>
               );
@@ -360,7 +349,7 @@ function RecommendBox() {
                 className="w-[100px] opacity-20 mt-5 mb-2.5"
               />
               <p className="text-center text-gray-500 text-base mb-5">
-                앗! 선택된 관심사가 없어요 <br /> 관심 태그를 선택해 주세요
+                관심사를 골라보세요 <br /> 취향저격 상품을 소개할게요
               </p>
             </div>
           )}

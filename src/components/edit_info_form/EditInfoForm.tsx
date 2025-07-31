@@ -33,16 +33,16 @@ export default function EditInfoForm() {
   const [isClick, setIsClick] = useState(false);
 
   const { user } = useUserStore();
-  let userID = user?._id;
-  let token = user?.token?.accessToken;
+  const userID = String(user?._id);
+  const token = user?.token?.accessToken;
 
   //회원정보 가져오기
   const [userInfo, setuserInfo] = useState<User | null>(null);
   useEffect(() => {
     const userData = async () => {
       try {
-        const res = await GetUserInfo(userID as string);
-        if (res) {
+        const res = await GetUserInfo(userID);
+        if (res.ok === 1) {
           setuserInfo(res.item);
         }
       } catch (error) {
@@ -50,7 +50,8 @@ export default function EditInfoForm() {
       }
     };
     userData();
-  }, [token]);
+  }, [userID]);
+
   //회원정보 수정
   const [state, formAction, isLoading] = useActionState(EditUserInfo, null);
   const navigation = useRouter();
@@ -62,7 +63,7 @@ export default function EditInfoForm() {
       // 입력값 검증에러가 아닌 경우
       alert(state?.message);
     }
-  }, [state]);
+  }, [state, navigation]);
 
   return (
     <form

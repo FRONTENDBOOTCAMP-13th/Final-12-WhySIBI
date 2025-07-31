@@ -1,4 +1,4 @@
-import NewPost from "@/components/Write_posts/NewPost"
+import NewPost from "@/app/community/[boardType]/new/NewPost"
 
 interface NewPageProps {
   params: Promise<{

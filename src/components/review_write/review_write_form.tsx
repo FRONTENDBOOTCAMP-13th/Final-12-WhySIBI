@@ -41,7 +41,7 @@ export default function ReviewWriteForm({
     } else if (state?.ok === 0 && !state?.errors) {
       alert(state?.message);
     }
-  }, [state]);
+  }, [state, router]);
 
   return (
     <div className="w-2/4 mx-auto p-10 border-2 rounded-3xl">

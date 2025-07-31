@@ -1,6 +1,7 @@
 'use client';
 import { useRouter } from 'next/navigation';
 import Title from '@/components/Title';
+import Image from 'next/image';
 
 interface Post {
   id: number;
@@ -32,38 +33,56 @@ const dummyPosts: Post[] = [
   },
 ];
 
-export default function MainTalk(){
+export default function MainTalk() {
   const router = useRouter();
 
-  return(
+  return (
     <>
-    <div className="community-wrapper w-3xl">
-      <div className="community bg-linear-to-b from-livealone-vanilla to-columbia-blue-100 rounded-t-4xl 4xl px-10 pt-10 pb-7" >
-        <Title title={"자취상담소🏠"} subTitle={"우리집 구해줘 홈즈"}></Title>
+      <div className="community-wrapper w-3xl">
+        <div className="community bg-linear-to-b from-livealone-vanilla to-columbia-blue-100 rounded-t-4xl 4xl px-10 pt-10 pb-7">
+          <Title title={'자취상담소🏠'} subTitle={'우리집 구해줘 홈즈'}></Title>
           <div className="list-wrapper font-variable">
             <ul className="space-y-4 divide-y divide-gray-300">
-              {dummyPosts.map((post) => (
-                <li key={post.id} className="flex justify-between items-center pb-4 cursor-pointer group">
+              {dummyPosts.map(post => (
+                <li
+                  key={post.id}
+                  className="flex justify-between items-center pb-4 cursor-pointer group"
+                >
                   <div className="w-3/4">
-                    <p className="text-sm text-li font-semibold text-livealone-cal-poly-green">{post.category}</p>
-                    <h2 className="font-extrabold text-lg mt-1">Q {post.title}</h2>
-                    <p className="text-sm text-gray-700 mt-2 line-clamp-2">{post.content}</p>
+                    <p className="text-sm text-li font-semibold text-livealone-cal-poly-green">
+                      {post.category}
+                    </p>
+                    <h2 className="font-extrabold text-lg mt-1">
+                      Q {post.title}
+                    </h2>
+                    <p className="text-sm text-gray-700 mt-2 line-clamp-2">
+                      {post.content}
+                    </p>
                     <div className="flex flex-wrap gap-1 mt-3 text-sm text-livealone-cal-poly-green font-semibold">
                       {post.tags.map((tag, i) => (
                         <span key={i}>{tag}</span>
                       ))}
                     </div>
                   </div>
-                  <img src={post.imageUrl} alt="썸네일" className="w-35 h-35 object-cover rounded-md bg-livealone-columbia-blue group-hover:scale-105 group-hover:duration-150 group-hover:opacity-50" />
+                  <Image
+                    src={post.imageUrl}
+                    alt="썸네일"
+                    className="w-35 h-35 object-cover rounded-md bg-livealone-columbia-blue group-hover:scale-105 group-hover:duration-150 group-hover:opacity-50"
+                    width={30}
+                    height={30}
+                  />
                 </li>
               ))}
             </ul>
           </div>
+        </div>
+        <button
+          onClick={() => router.push('/community/talk')}
+          className="btn-gradient-animate w-full text-center font-variable font-semibold py-3 text-livealone-cal-poly-green bg-livealone-columbia-blue rounded-b-4xl cursor-pointer hover:text-cal-poly-green-100"
+        >
+          글 작성하러 가기
+        </button>
       </div>
-      <button onClick={() => router.push('/community/talk')} className="btn-gradient-animate w-full text-center font-variable font-semibold py-3 text-livealone-cal-poly-green bg-livealone-columbia-blue rounded-b-4xl cursor-pointer hover:text-cal-poly-green-100">
-        글 작성하러 가기
-      </button>
-    </div>
     </>
   );
 }

@@ -16,7 +16,7 @@ import { getProductList } from '@/data/actions/products.fetch';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-function ShoppingViewestSlider() {
+function ShoppingSellingSlider() {
   // const { mainCategoryId } = useMenuStore(); //나중에 메인카테 ID 별 상품 불러와서 연동하기
 
   SwiperCore.use([Navigation, Scrollbar]);
@@ -83,4 +83,4 @@ function ShoppingViewestSlider() {
     </>
   );
 }
-export default ShoppingViewestSlider;
+export default ShoppingSellingSlider;

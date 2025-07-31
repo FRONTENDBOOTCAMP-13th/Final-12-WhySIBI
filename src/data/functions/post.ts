@@ -15,6 +15,9 @@ export async function getPosts(boardType: string): ApiResPromise<Post[]> {
         'Client-Id': CLIENT_ID,
       },
       // cache: 'force-cache',
+      next: {
+      tags: [`posts?type=${boardType}`],
+    },
     });
 
     if (!res.ok) {
@@ -44,6 +47,9 @@ export async function getPost(_id: number): ApiResPromise<Post> {
         'Client-Id': CLIENT_ID,
       },
       // cache: 'force-cache',
+      next: {
+      tags: [`posts/${_id}`],
+      },
     });
     return res.json();
   } catch (error) {
@@ -64,6 +70,9 @@ export async function getReplies(_id: number): ApiResPromise<PostReply[]> {
       headers: {
         'Client-Id': CLIENT_ID,
       },
+      next: {
+      tags: [`posts/${_id}/replies`],
+    },
     });
     return res.json();
   } catch (error) {
