@@ -7,8 +7,6 @@ export async function deleteAllCartAction(
   const stringItems = formData.get('checkedItems'); //배열 데이터를 넘겨받을때는 getAll을 사용
   const token = formData.get('token')?.toString();
 
-  console.log('ㅎㅇㅎㅇ3', stringItems);
-
   //조건식 이렇게 하면 parse에 타입에러 없어짐
   if (!stringItems || typeof stringItems !== 'string') {
     return {

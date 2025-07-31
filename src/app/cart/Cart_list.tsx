@@ -36,7 +36,7 @@ export default function CartList({
   //상품 수량 수정을 위한 patch로직
   //api를 그때그때 호출하는것 방지 하기 위해 수량 선택후 1초 딜레이줌
   useEffect(() => {
-    if (!token) return; // 초기값과 같으면 API 호출 안함
+    if (!token) return;
     const timeoutId = setTimeout(async () => {
       try {
         const response = await fetch(

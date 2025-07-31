@@ -28,7 +28,6 @@ export default function CartMain() {
 
   const [cartData, setCartData] = useState<CartData | null>(null);
   // 로그인한 유저의 장바구니를 불러옴
-  console.log('카트데이턴데', cartData);
   useEffect(() => {
     if (!token) return;
     async function fetchCart() {
@@ -44,7 +43,6 @@ export default function CartMain() {
     }
     fetchCart();
   }, [token, refreshTrigger]);
-  console.log('이게 된다고?', cartData);
 
   // 모든 상품 선택/해제 핸들러
   function handleAllCheck() {
