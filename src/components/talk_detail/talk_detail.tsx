@@ -48,7 +48,7 @@ export default function TalkDetail({ post, posts }: TalkCardItemProps) {
   });
 
   const handleDeleteBookmark = async () => {
-    const result = await DeleteBookMark(token as string, post.myBookmarkId);
+    const result = await DeleteBookMark(token as string, post.myBookmarkId as number);
     if (result.ok === 1) {
       redirect(`/community/talk/${_id}`);
     }

@@ -63,7 +63,7 @@ export interface Post {
   extra?: {
     subject: string[];
   };
-  myBookmarkId: number;
+  myBookmarkId?: number;
 }
 export interface Inqury {
   // 문의의 고유 ID

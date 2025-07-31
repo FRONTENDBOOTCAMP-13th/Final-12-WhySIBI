@@ -41,7 +41,7 @@ export interface BookMarkItem {
   product: LikeProduct;
   post: BookMarkProduct;
   memo?: string;
-  myBookmarkId: number;
+  myBookmarkId?: number;
 }
 export interface BookMarkProduct {
   _id: number;

@@ -38,7 +38,7 @@ export default function MyInquryList({ MyInqury }: MyInQuryListProp) {
   const handlePagenation = (page: number) => {
     setPage(page);
   };
-  
+
   return (
     <nav className="mt-20">
       <ul className="flex flex-col flex-wrap gap-16">
@@ -53,11 +53,13 @@ export default function MyInquryList({ MyInqury }: MyInQuryListProp) {
           />
         ))}
       </ul>
-      <Pagenation
-        page={page}
-        totalPage={totalPage}
-        onPageTurner={handlePagenation}
-      />
+      <div className="w-4/5">
+        <Pagenation
+          page={page}
+          totalPage={totalPage}
+          onPageTurner={handlePagenation}
+        />
+      </div>
     </nav>
   );
 }
