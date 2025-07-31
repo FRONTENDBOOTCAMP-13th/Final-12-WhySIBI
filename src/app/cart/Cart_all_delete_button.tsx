@@ -1,6 +1,7 @@
 'use client';
 
 import { deleteAllCartAction } from '@/data/actions/delete_all_cart_action';
+import useCartRefreshStore from '@/zustand/useCartRefreshStore';
 import useUserStore from '@/zustand/useUserStore';
 // import { useActionState, useEffect } from 'react';
 
@@ -11,6 +12,8 @@ export default function CartAllDeleteButton({
 }) {
   const { user } = useUserStore();
   const token = user?.token?.accessToken;
+
+  const { triggerRefresh } = useCartRefreshStore();
   // 서버액션
   // const initialState: { status?: boolean; error: string } = {
   //   // status: false,
@@ -37,8 +40,7 @@ export default function CartAllDeleteButton({
       alert('삭제할 아이템을 선택해주세요');
     } else {
       await deleteAllCartAction(checkedItems, token);
-      alert('삭제가 완료되었습니다.');
-      window.location.reload();
+      triggerRefresh();
     }
   }
   return (

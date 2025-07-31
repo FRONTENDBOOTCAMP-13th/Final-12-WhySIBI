@@ -40,7 +40,15 @@ export async function createPurchaseAction(
     if (!response.ok) {
       throw new Error(response.statusText);
     }
-
+    //장바구니 비우는 코드
+    await fetch(`${process.env.NEXT_PUBLIC_API_URL}/carts/cleanup`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+        'Client-Id': 'febc13-final12-emjf',
+      },
+    });
     //재검증
     revalidatePath(`/cart`);
     return {

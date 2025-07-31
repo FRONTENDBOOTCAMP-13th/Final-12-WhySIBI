@@ -2,6 +2,7 @@
 
 import { createPurchaseAction } from '@/data/actions/create_purchase_action';
 import { CartData } from '@/types/cart';
+import useCartRefreshStore from '@/zustand/useCartRefreshStore';
 import useUserStore from '@/zustand/useUserStore';
 import { useActionState, useEffect } from 'react';
 
@@ -14,6 +15,8 @@ export default function CartPurchaseButton({
 }) {
   const { user } = useUserStore();
   const token = user?.token?.accessToken;
+
+  const { triggerRefresh } = useCartRefreshStore();
   // 구매 서버액션에 넘겨줄 상품 목록배열
   const products =
     cartData?.item.map(item => ({
@@ -32,11 +35,15 @@ export default function CartPurchaseButton({
     createPurchaseAction,
     initialState,
   );
+
   useEffect(() => {
     if (state && state.status === false) {
       alert(state.error);
+    } else if (state && state.status === true) {
+      alert('주문이 완료되었습니다.');
+      triggerRefresh();
     }
-  }, [state]);
+  }, [state, triggerRefresh]);
   return (
     <form action={formAction}>
       <input name="token" value={token || ''} hidden readOnly />

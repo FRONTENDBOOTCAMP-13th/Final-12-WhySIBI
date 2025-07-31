@@ -5,11 +5,13 @@ import { useEffect, useRef, useState } from 'react';
 import { CartData } from '@/types/cart';
 import CartAllDeleteButton from './Cart_all_delete_button';
 import CartPurchaseButton from './Cart_purchase_button';
+import useCartRefreshStore from '@/zustand/useCartRefreshStore';
 
 export default function CartMain() {
   const { user } = useUserStore();
   const token = user?.token?.accessToken;
-  console.log('유전데', user);
+
+  const { refreshTrigger } = useCartRefreshStore();
 
   const [allcheck, setAllcheck] = useState(false);
   const [checkedItems, setCheckedItems] = useState<number[]>([]);
@@ -41,7 +43,7 @@ export default function CartMain() {
       setCartData(data);
     }
     fetchCart();
-  }, [token]);
+  }, [token, refreshTrigger]);
   console.log('이게 된다고?', cartData);
 
   // 모든 상품 선택/해제 핸들러
