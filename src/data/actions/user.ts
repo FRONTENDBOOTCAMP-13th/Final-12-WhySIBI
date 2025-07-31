@@ -2,6 +2,7 @@
 import { upLoadFile } from '@/data/actions/file';
 import { ApiRes, ApiResPromise, User } from '@/types';
 import axios, { AxiosResponse } from 'axios';
+import { cookies } from 'next/headers';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID || '';
@@ -197,6 +198,20 @@ export async function login(
       },
     });
     data = res.data;
+    if (data.ok === 1 && data.item?.token?.accessToken) {
+      (await cookies()).set('accessToken', data.item.token.accessToken, {
+        maxAge: 60 * 60 * 24 * 1, // 1일
+        httpOnly: true,
+        sameSite: 'strict',
+        path: '/',
+      });
+      (await cookies()).set('_id', String(data.item._id), {
+        maxAge: 60 * 60 * 24 * 1, // 1일
+        httpOnly: true,
+        sameSite: 'strict',
+        path: '/',
+      });
+    }
   } catch (error) {
     // 네트워크 오류 처리
     console.error(error);
@@ -204,4 +219,7 @@ export async function login(
   }
 
   return data;
+}
+export async function logoutAction() {
+  (await cookies()).delete('accessToken');
 }

@@ -18,7 +18,6 @@ export async function getOrderList(token: string): ApiResPromise<OrderItem[]> {
         'Content-Type': 'application/json',
         'Client-Id': CLIENT_ID,
       },
-      cache: 'force-cache',
     });
 
     const data = await res.json();

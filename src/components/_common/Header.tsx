@@ -1,5 +1,6 @@
 'use client';
 import MenuNavigation from '@/components/_common/Menu_Navigation';
+import { logoutAction } from '@/data/actions/user';
 import useUserStore from '@/zustand/useUserStore';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -12,6 +13,7 @@ export default function Header() {
   const handleLogout = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     resetUser();
+    logoutAction();
     redirect('/');
   };
   return (

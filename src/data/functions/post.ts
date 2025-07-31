@@ -40,10 +40,11 @@ export async function getPosts(boardType: string): ApiResPromise<Post[]> {
  * @param {number} _id - 게시글의 고유 ID
  * @returns {Promise<ApiRes<Post>>} - 게시글 상세 정보 응답 객체
  */
-export async function getPost(_id: number): ApiResPromise<Post> {
+export async function getPost(_id: number, token?: string): ApiResPromise<Post> {
   try {
     const res = await fetch(`${API_URL}/posts/${_id}`, {
       headers: {
+        Authorization: `Bearer ${token}`,
         'Client-Id': CLIENT_ID,
       },
       // cache: 'force-cache',

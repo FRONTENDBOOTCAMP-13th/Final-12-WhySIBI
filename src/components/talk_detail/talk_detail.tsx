@@ -1,40 +1,29 @@
 'use client';
 import { ButtonBack } from '@/components/Button_back';
 import getTimeAgo from '@/components/talk_list/time';
-import {
-  AddBookMark,
-  DeleteBookMark,
-  GetBookMarkInfo,
-} from '@/data/actions/bookmark';
-import { getPosts } from '@/data/functions/post';
+import { AddBookMark, DeleteBookMark } from '@/data/actions/bookmark';
 import { Post } from '@/types';
-import { BookMarkItem } from '@/types/bookmark';
 import useUserStore from '@/zustand/useUserStore';
 import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 interface TalkCardItemProps {
-  post: ExtendedPostProps;
-  boardType: string;
+  post: Post;
+  boardType?: string;
+  posts?: Post[];
 }
-interface ExtendedPostProps extends Post {
-  extra?: {
-    subject: string[];
-  };
-}
-export default function TalkDetail({ post, boardType }: TalkCardItemProps) {
-  const [talkPost, setTalkPost] = useState<ExtendedPostProps[] | null>(null);
+export default function TalkDetail({ post, posts }: TalkCardItemProps) {
   const [showAll, setShowAll] = useState(false);
-
-  const [isBookmarked, setIsBookmarked] = useState(!!post.bookmarks);
-  const [bookmarkId, setBookmarkId] = useState<BookMarkItem | null>(null);
 
   const { user } = useUserStore();
   const token = user?.token?.accessToken;
   const _id = Number(post._id);
   const type = post.type;
-  
+
+  console.log(post);
+  console.log(post.myBookmarkId);
+
   const getBookmarkType = (postType: string) => {
     switch (postType) {
       case 'talk':
@@ -50,30 +39,7 @@ export default function TalkDetail({ post, boardType }: TalkCardItemProps) {
     }
   };
 
-  useEffect(() => {
-    const getSameCategory = async () => {
-      const bookmarkType = getBookmarkType(type);
-      const res = await getPosts(boardType);
-      const bookmarkRes = await GetBookMarkInfo(
-        bookmarkType,
-        token as string,
-        _id,
-      );
-      try {
-        if (res.ok === 1) {
-          setTalkPost(res.item);
-        }
-        if (bookmarkRes.ok === 1) {
-          setBookmarkId(bookmarkRes.item);
-        }
-      } catch (error) {
-        console.error('에러 발생:', error);
-      }
-    };
-    getSameCategory();
-  }, [boardType, _id, token, type]);
-
-  const filteredData = talkPost?.filter(talkPostItem => {
+  const filteredData = posts?.filter(talkPostItem => {
     const currentPostSubject = post.extra?.subject?.[0];
     const talkPostSubject = talkPostItem.extra?.subject?.[0];
     return (
@@ -82,16 +48,9 @@ export default function TalkDetail({ post, boardType }: TalkCardItemProps) {
   });
 
   const handleDeleteBookmark = async () => {
-    const result = await DeleteBookMark(
-      token as string,
-      Number(bookmarkId?._id),
-    );
+    const result = await DeleteBookMark(token as string, post.myBookmarkId);
     if (result.ok === 1) {
-      setIsBookmarked(false);
-      setBookmarkId(null);
       redirect(`/community/talk/${_id}`);
-    } else {
-      alert(`삭제 실패: ${result.message}`);
     }
   };
 
@@ -104,23 +63,12 @@ export default function TalkDetail({ post, boardType }: TalkCardItemProps) {
     );
 
     if (result.ok === 1) {
-      const newBookmarkRes = await GetBookMarkInfo(
-        bookmarkType,
-        token as string,
-        _id,
-      );
-      if (newBookmarkRes.ok === 1) {
-        setIsBookmarked(true);
-        setBookmarkId(newBookmarkRes.item);
-      }
       redirect(`/community/talk/${_id}`);
-    } else {
-      alert(`추가 실패: ${result.message}`);
     }
   };
 
   const handleBookmark = () => {
-    if (isBookmarked) {
+    if (post.myBookmarkId !== undefined) {
       handleDeleteBookmark();
     } else {
       handleAddBookmark();
@@ -151,7 +99,7 @@ export default function TalkDetail({ post, boardType }: TalkCardItemProps) {
           <button type="button" className="ml-auto " onClick={handleBookmark}>
             <Image
               src={
-                isBookmarked
+                post.myBookmarkId !== undefined
                   ? '/image/community_icon/heartIcon_active.svg'
                   : '/image/community_icon/heartIcon.svg'
               }
