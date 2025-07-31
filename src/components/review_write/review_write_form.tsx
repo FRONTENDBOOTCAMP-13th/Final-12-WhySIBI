@@ -24,7 +24,6 @@ export default function ReviewWriteForm({
   const { user } = useUserStore();
 
   const handleFilePath = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log('파일 선택 이벤트 발생!');
     const target = e.target as HTMLInputElement;
     const file = target.files?.[0]; // 첫 번째 파일만 가져오기
 
@@ -36,10 +35,12 @@ export default function ReviewWriteForm({
 
   useEffect(() => {
     if (state?.ok) {
-      alert('리뷰 작성이 완료되었습니다. 리뷰 페이지로 이동합니다.');
-      router.replace('/my_page/reviews');
-    } else if (state?.ok === 0 && !state?.errors) {
-      alert(state?.message);
+      const navigateAndRefresh = async () => {
+        alert('리뷰 작성이 완료되었습니다. 리뷰 페이지로 이동합니다.');
+        await router.push('/my_page/reviews'); // 이동 완료 기다림
+        router.refresh(); // 새로고침
+      };
+      navigateAndRefresh();
     }
   }, [state, router]);
 

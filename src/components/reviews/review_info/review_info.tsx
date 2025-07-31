@@ -4,14 +4,11 @@ import useUserStore from '@/zustand/useUserStore';
 import Image from 'next/image';
 
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { memo } from 'react';
 
-import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-interface ExtendedReviewInfoProps extends ReviewInfoProps {
-  onDelete?: () => void;
-}
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 function ReviewInfo({
@@ -20,21 +17,19 @@ function ReviewInfo({
   star,
   productName,
   productId,
-  onDelete,
-}: ExtendedReviewInfoProps) {
+  _id,
+}: ReviewInfoProps) {
   const { user } = useUserStore();
   const [loading, setLoading] = useState(false);
   const token = user?.token?.accessToken;
-  const ID = String(productId);
-  const route = useRouter();
+  const router = useRouter();
+
   const handleDelete = async () => {
     setLoading(true);
-    const result = await DeleteReplie(ID as string, token as string);
-    if (result.ok) {
-      onDelete?.();
-      route.refresh();
-    } else {
-      alert(result.message);
+    const result = await DeleteReplie(String(_id), token as string);
+    if (result.ok === 1) {
+      await router.push('/my_page/reviews');
+      router.refresh();
     }
     setLoading(false);
   };
@@ -43,9 +38,8 @@ function ReviewInfo({
 
   return (
     <li className="w-4/5 border-2 border-button-color-opaque-25 shadow-shadow-md p-5 rounded-radius-lg">
-      {' '}
-      <Link href={`/products/${productId}`}>
-        <div className="flex justify-between mt-6 items-center">
+      <div className="flex justify-between mt-6 items-center">
+        <Link href={`/products/${productId}`}>
           <figure className="flex gap-6">
             <Image
               src={`${API_URL}/${productImage.path}`}
@@ -77,17 +71,17 @@ function ReviewInfo({
               <p>{content}</p>
             </figcaption>
           </figure>
-          <aside>
-            <button
-              type="button"
-              className="font-basic nahonsan-btn-3d-red text-white  p-2 pl-5 pr-5 rounded-radius-md text-size-sm"
-              onClick={handleDelete}
-            >
-              {loading ? '삭제 중...' : '삭제하기'}
-            </button>
-          </aside>
-        </div>
-      </Link>
+        </Link>
+        <aside>
+          <button
+            type="button"
+            className="font-basic nahonsan-btn-3d-red text-white  p-2 pl-5 pr-5 rounded-radius-md text-size-sm"
+            onClick={handleDelete}
+          >
+            {loading ? '삭제 중...' : '삭제하기'}
+          </button>
+        </aside>
+      </div>
     </li>
   );
 }

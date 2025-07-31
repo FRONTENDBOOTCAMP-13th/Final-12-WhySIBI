@@ -1,25 +1,24 @@
 'use client';
 import Pagenation from '@/components/basic_component/Pagenation';
 import InquryInfo from '@/components/my_inqury_list/my_inqury_info/my_inqury_info';
-import { GetMyInqury } from '@/data/actions/inqury';
 import { Inqury } from '@/types';
-import useUserStore from '@/zustand/useUserStore';
 import { useEffect, useState } from 'react';
 
-export default function MyInquryList() {
+interface MyInQuryListProp {
+  MyInqury: Inqury[];
+}
+
+export default function MyInquryList({ MyInqury }: MyInQuryListProp) {
   //상품 리스트 불러오는 부분
   const [inquryList, setInqury] = useState<Inqury[] | null>(null);
   //페이지 네이션
   const [page, setPage] = useState(1);
-  const { user } = useUserStore();
-  // user?.token?.accessToken as string;
+
   useEffect(() => {
     const InquryListData = async () => {
       try {
-        const res = await GetMyInqury(user?.token?.accessToken as string);
-        if (res.ok === 1) {
-          setInqury(res.item);
-          console.log(res.item);
+        if (MyInqury) {
+          setInqury(MyInqury);
         } else {
           setInqury(null);
         }
@@ -29,7 +28,8 @@ export default function MyInquryList() {
     };
 
     InquryListData();
-  }, [user?.token?.accessToken]);
+  }, [MyInqury]);
+
   const onePage = 10; //한 페이지에 보여줄 상품 수
   const totalPage = Math.max(1, Math.ceil((inquryList?.length || 0) / onePage)); //총 페이지 수
   const startPage = (page - 1) * onePage; //(1-1) * 12 = 0 , (2-1) * 12 = 12
@@ -38,6 +38,7 @@ export default function MyInquryList() {
   const handlePagenation = (page: number) => {
     setPage(page);
   };
+
   return (
     <nav className="mt-20">
       <ul className="flex flex-col flex-wrap gap-16">
@@ -52,11 +53,13 @@ export default function MyInquryList() {
           />
         ))}
       </ul>
-      <Pagenation
-        page={page}
-        totalPage={totalPage}
-        onPageTurner={handlePagenation}
-      />
+      <div className="w-4/5">
+        <Pagenation
+          page={page}
+          totalPage={totalPage}
+          onPageTurner={handlePagenation}
+        />
+      </div>
     </nav>
   );
 }

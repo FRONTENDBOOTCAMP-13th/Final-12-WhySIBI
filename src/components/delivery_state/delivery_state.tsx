@@ -12,7 +12,6 @@ export default function DeliveryState({
   productData,
 }: DeliveryStateClientProps) {
   const { user } = useUserStore();
-  console.log(user);
   return (
     <>
       <h2 className="font-logo text-5xl ml-9 my-9">배송조희</h2>

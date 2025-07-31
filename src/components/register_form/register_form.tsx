@@ -10,7 +10,6 @@ export default function RegisterForm() {
   // 이미지 주소 추출
   const [imageSrc, setImageSrc] = useState('');
   const handleFilePath = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log('파일 선택 이벤트 발생!');
     const target = e.target as HTMLInputElement;
     const file = target.files?.[0];
     if (file) {
@@ -29,8 +28,6 @@ export default function RegisterForm() {
     if (state?.ok) {
       alert('회원 가입이 완료되었습니다. 로그인 페이지로 이동합니다.');
       navigation.replace('/login');
-    } else if (state?.ok === 0 && !state?.errors) {
-      alert(state?.message);
     }
   }, [state, navigation]);
 

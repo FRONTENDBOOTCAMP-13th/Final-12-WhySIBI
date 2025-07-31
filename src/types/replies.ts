@@ -50,6 +50,7 @@ export interface ReviewItem {
 }
 
 export interface ReviewInfoProps {
+  _id:number
   userImage?: string;
   content: string;
   star: number;

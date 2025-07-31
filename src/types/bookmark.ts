@@ -24,6 +24,7 @@ export interface LikeProduct {
   mainImages: BookmarkImage[];
   name: string;
   price: number;
+  type: string;
 }
 export interface BookmarkImage {
   path: string;
@@ -40,16 +41,19 @@ export interface BookMarkItem {
   product: LikeProduct;
   post: BookMarkProduct;
   memo?: string;
+  myBookmarkId?: number;
 }
 export interface BookMarkProduct {
   _id: number;
   title: string;
-  image?: BookmarkImage;
+  image?: BookmarkImage[];
+  type: string;
 }
 export interface BookMarkInfoProps {
   title: string;
   _id: number;
   productImage?: BookmarkImage;
+  type: string;
 }
 export interface LikekInfoProps {
   star?: number;

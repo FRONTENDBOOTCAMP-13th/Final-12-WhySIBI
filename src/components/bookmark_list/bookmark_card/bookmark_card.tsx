@@ -2,15 +2,19 @@
 import { BookMarkInfoProps } from '@/types/bookmark';
 import Image from 'next/image';
 import Link from 'next/link';
-
-function BookMarkCard({ title, _id }: BookMarkInfoProps) {
+// const API_URL = process.env.NEXT_PUBLIC_API_URL;
+function BookMarkCard({ title, _id, type, productImage }: BookMarkInfoProps) {
   return (
     <div className="relative w-full max-w-[280px] mx-auto group">
-      <Link href={`/commuity/showRoom/${_id}`} className="block w-full">
+      <Link href={`/community/${type}/${_id}`} className="block w-full">
         <div className="relative w-full aspect-square rounded-radius-lg overflow-hidden mb-3">
           <Image
-            // src={`${API_URL}/${productImage?.path}`}
-            src={`/image/theme_image/desk_decor.png`}
+            src={
+              productImage
+                ? `${productImage}`
+                : `/image/theme_image/desk_decor.png`
+            }
+            // src={`/image/theme_image/desk_decor.png`}
             alt={`${_id}번째 게시물 사진`}
             fill
             className="object-cover"

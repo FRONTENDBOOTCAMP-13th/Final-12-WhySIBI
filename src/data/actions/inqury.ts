@@ -14,7 +14,7 @@ export async function getPosts(boardType: string): ApiResPromise<Post[]> {
       headers: {
         'Client-Id': CLIENT_ID,
       },
-      cache: 'force-cache',
+      cache: 'no-cache',
     });
     return res.json();
   } catch (error) {
@@ -37,7 +37,7 @@ export async function GetMyInqury(token: string): ApiResPromise<Post[]> {
         'Content-Type': 'application/json',
         'Client-Id': CLIENT_ID,
       },
-      cache: 'force-cache',
+      cache: 'no-cache',
     });
     const data = res.json();
     console.log(data);

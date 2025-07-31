@@ -1,18 +1,25 @@
 'use client';
 import MyTheme from '@/components/my_theme/page';
 import InputEdit from '@/components/Input/Input_edit';
-import { EditUserInfo, GetUserInfo } from '@/data/actions/user';
+import { EditUserInfo } from '@/data/actions/user';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useActionState, useEffect, useState } from 'react';
 import { User } from '@/types';
-import useUserStore from '@/zustand/useUserStore';
+interface EditInfoFormProp {
+  user_id: string;
+  token: string;
+  MyInfo: User;
+}
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
-export default function EditInfoForm() {
+export default function EditInfoForm({
+  user_id,
+  token,
+  MyInfo,
+}: EditInfoFormProp) {
   //이미지 주소 추출
   const [imageSrc, setImageSrc] = useState('');
   const handleFilePath = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log('파일 선택 이벤트 발생!');
     const target = e.target as HTMLInputElement;
     const file = target.files?.[0];
     if (file) {
@@ -32,25 +39,20 @@ export default function EditInfoForm() {
   //취향 선택 컴포넌트 렌더링
   const [isClick, setIsClick] = useState(false);
 
-  const { user } = useUserStore();
-  const userID = String(user?._id);
-  const token = user?.token?.accessToken;
-
   //회원정보 가져오기
   const [userInfo, setuserInfo] = useState<User | null>(null);
   useEffect(() => {
     const userData = async () => {
       try {
-        const res = await GetUserInfo(userID);
-        if (res.ok === 1) {
-          setuserInfo(res.item);
+        if (MyInfo) {
+          setuserInfo(MyInfo);
         }
       } catch (error) {
         console.error('상품 정보 로딩 실패:', error);
       }
     };
     userData();
-  }, [userID]);
+  }, [MyInfo]);
 
   //회원정보 수정
   const [state, formAction, isLoading] = useActionState(EditUserInfo, null);
@@ -59,9 +61,6 @@ export default function EditInfoForm() {
     if (state?.ok) {
       alert('회원 정보 수정이 완료되었습니다. 메인 페이지로 이동합니다.');
       navigation.replace('/');
-    } else if (state?.ok === 0 && !state?.errors) {
-      // 입력값 검증에러가 아닌 경우
-      alert(state?.message);
     }
   }, [state, navigation]);
 
@@ -71,7 +70,7 @@ export default function EditInfoForm() {
       className="col-start-2 col-end-4 mt-20 max-w-[46.25rem]"
     >
       <input type="hidden" name="token" value={token || ''} />
-      <input type="hidden" name="user_id" value={userID} />
+      <input type="hidden" name="user_id" value={user_id} />
       <div className={isClick ? 'hidden' : 'block'}>
         <div className="flex items-center gap-10">
           <Image

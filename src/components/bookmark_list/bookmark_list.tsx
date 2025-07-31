@@ -1,20 +1,18 @@
 'use client';
 import { BookMarkItem } from '@/types/bookmark';
 import { useEffect, useState } from 'react';
-import GetBookMarkList from '@/data/actions/bookmark';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import BookMarkInfo from '@/components/bookmark_list/bookmark_info/bookmark_info';
 import BookMarkCard from '@/components/bookmark_list/bookmark_card/bookmark_card';
-import SwiperCore from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import { Navigation, Pagination, Scrollbar } from 'swiper/modules';
+import { Navigation, Pagination } from 'swiper/modules';
 import useUserStore from '@/zustand/useUserStore';
 import Pagenation from '@/components/basic_component/Pagenation';
+import { GetBookMarkList } from '@/data/actions/bookmark';
 
 export default function BookMarkList() {
-  SwiperCore.use([Navigation, Scrollbar, Pagination]);
   const [productList, setProductList] = useState<BookMarkItem[] | null>(null);
   const [postList, setPostList] = useState<BookMarkItem[] | null>(null);
   //페이지 네이션
@@ -31,8 +29,6 @@ export default function BookMarkList() {
         'post',
         user?.token?.accessToken as string,
       );
-      console.log(resProduct);
-      // console.log(resPost);
       try {
         if (resProduct.ok === 1) {
           setProductList(resProduct.item);
@@ -68,10 +64,9 @@ export default function BookMarkList() {
         <h4 className="font-logo text-4xl">북마크 목록</h4>
         <div className="bookmark-swiper  max-w-11/12 mx-auto">
           <Swiper
-            modules={[Navigation, Pagination, Scrollbar]}
-            loop={true}
+            modules={[Navigation, Pagination]}
+            loop={false}
             navigation={true}
-            // Responsive breakpoints
             breakpoints={{
               320: {
                 slidesPerView: 1,
@@ -96,7 +91,8 @@ export default function BookMarkList() {
               <SwiperSlide key={bookmark._id} className="relative">
                 <BookMarkCard
                   title={bookmark.post.title}
-                  // productImage={bookmark.product[0]}
+                  productImage={bookmark.post.image?.[0]}
+                  type={bookmark.post.type}
                   _id={bookmark.post._id}
                 />
               </SwiperSlide>

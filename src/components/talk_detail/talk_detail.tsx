@@ -1,15 +1,83 @@
+'use client';
 import { ButtonBack } from '@/components/Button_back';
 import getTimeAgo from '@/components/talk_list/time';
+import { AddBookMark, DeleteBookMark } from '@/data/actions/bookmark';
 import { Post } from '@/types';
+import useUserStore from '@/zustand/useUserStore';
 import Image from 'next/image';
 import Link from 'next/link';
-
-interface ExtendedPostProps extends Post {
-  extra?: {
-    subject: string[];
-  };
+import { redirect } from 'next/navigation';
+import { useState } from 'react';
+interface TalkCardItemProps {
+  post: Post;
+  boardType?: string;
+  posts?: Post[];
 }
-export default function TalkDetail({ post }: { post: ExtendedPostProps }) {
+export default function TalkDetail({ post, posts }: TalkCardItemProps) {
+  const [showAll, setShowAll] = useState(false);
+
+  const { user } = useUserStore();
+  const token = user?.token?.accessToken;
+  const _id = Number(post._id);
+  const type = post.type;
+
+  console.log(post);
+  console.log(post.myBookmarkId);
+
+  const getBookmarkType = (postType: string) => {
+    switch (postType) {
+      case 'talk':
+      case 'qna':
+      case 'showRoom':
+        return 'post';
+      case 'product':
+        return 'product';
+      case 'user':
+        return 'user';
+      default:
+        return 'post';
+    }
+  };
+
+  const filteredData = posts?.filter(talkPostItem => {
+    const currentPostSubject = post.extra?.subject?.[0];
+    const talkPostSubject = talkPostItem.extra?.subject?.[0];
+    return (
+      currentPostSubject === talkPostSubject && post._id !== talkPostItem._id
+    );
+  });
+
+  const handleDeleteBookmark = async () => {
+    const result = await DeleteBookMark(token as string, post.myBookmarkId as number);
+    if (result.ok === 1) {
+      redirect(`/community/talk/${_id}`);
+    }
+  };
+
+  const handleAddBookmark = async () => {
+    const bookmarkType = getBookmarkType(type);
+    const result = await AddBookMark(
+      bookmarkType as string,
+      token as string,
+      _id,
+    );
+
+    if (result.ok === 1) {
+      redirect(`/community/talk/${_id}`);
+    }
+  };
+
+  const handleBookmark = () => {
+    if (post.myBookmarkId !== undefined) {
+      handleDeleteBookmark();
+    } else {
+      handleAddBookmark();
+    }
+  };
+
+  const limitData = showAll ? filteredData : filteredData?.slice(0, 3);
+  const moreData = (filteredData?.length || 1) > 3;
+
   return (
     <section className="w-4/5">
       <div className="button-wrapper  flex justify-between items-center text-gray-icon text-md mb-6">
@@ -28,9 +96,13 @@ export default function TalkDetail({ post }: { post: ExtendedPostProps }) {
           <p className="font-light text-size-md text-gray-400">
             {getTimeAgo(post.createdAt)}
           </p>
-          <button type="button" className="ml-auto">
+          <button type="button" className="ml-auto " onClick={handleBookmark}>
             <Image
-              src={'/image/community_icon/heartIcon.svg'}
+              src={
+                post.myBookmarkId !== undefined
+                  ? '/image/community_icon/heartIcon_active.svg'
+                  : '/image/community_icon/heartIcon.svg'
+              }
               alt="좋아요 아이콘"
               width={30}
               height={30}
@@ -68,24 +140,46 @@ export default function TalkDetail({ post }: { post: ExtendedPostProps }) {
           <p className="font-bold font-basic text-lg md:text-2xl">
             비슷한 고민을 찾아봐요
           </p>
-          <Link
-            href={''}
-            className="block font-basic text-center border-[1px] rounded-full mt-4 py-3 bg-custom-gradient"
-          >
-            다른 게시글의 제목을 어떻게 불러오라는거지??
-          </Link>
-          <Link
-            href={''}
-            className="block font-basic text-center border-[1px] rounded-full mt-4 py-3 bg-custom-gradient"
-          >
-            다른 게시글의 제목을 어떻게 불러오라는거지??
-          </Link>
-          <Link
-            href={''}
-            className="block font-basic text-center border-[1px] rounded-full mt-4 py-3 bg-custom-gradient"
-          >
-            다른 게시글의 제목을 어떻게 불러오라는거지??
-          </Link>
+          {limitData?.map(post => (
+            <Link
+              key={post._id}
+              href={`/community/talk/${post._id}`}
+              className="block font-basic text-center border-[1px] rounded-full mt-4 py-3 bg-custom-gradient"
+            >
+              {post.title}
+            </Link>
+          ))}
+
+          {moreData && (
+            <button
+              onClick={() => setShowAll(!showAll)}
+              className="mt-6 px-6 py-2 border border-gray-300 rounded-full hover:bg-gray-50 transition-colors font-basic"
+            >
+              {showAll
+                ? '접기'
+                : `더보기 (+${(filteredData?.length || 1) - 3}개)`}
+            </button>
+          )}
+          {limitData?.map(post => (
+            <Link
+              key={post._id}
+              href={`/community/talk/${post._id}`}
+              className="block font-basic text-center border-[1px] rounded-full mt-4 py-3 bg-custom-gradient"
+            >
+              {post.title}
+            </Link>
+          ))}
+
+          {moreData && (
+            <button
+              onClick={() => setShowAll(!showAll)}
+              className="mt-6 px-6 py-2 border border-gray-300 rounded-full hover:bg-gray-50 transition-colors font-basic"
+            >
+              {showAll
+                ? '접기'
+                : `더보기 (+${(filteredData?.length || 1) - 3}개)`}
+            </button>
+          )}
         </div>
       </section>
     </section>

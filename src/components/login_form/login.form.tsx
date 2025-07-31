@@ -41,10 +41,6 @@ export default function LoginForm() {
       });
       alert('로그인이 완료되었습니다.');
       navigation.replace('/');
-    } else {
-      if (!userState?.errors && userState?.message) {
-        alert(userState.message);
-      }
     }
   }, [userState, setUser, navigation]);
 

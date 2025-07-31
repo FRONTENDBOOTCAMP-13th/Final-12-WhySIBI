@@ -8,7 +8,6 @@ interface DeliveryStatePageProps {
 }
 export default async function DeliverState({ params }: DeliveryStatePageProps) {
   const { id } = await params;
-  console.log(id);
   // 서버에서 상품 정보 미리 가져오기
   const res = await getProductInfo(id);
   if (res.ok === 1) {
