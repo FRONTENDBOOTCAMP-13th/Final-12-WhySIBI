@@ -160,6 +160,26 @@ export default function TalkDetail({ post, posts }: TalkCardItemProps) {
                 : `더보기 (+${(filteredData?.length || 1) - 3}개)`}
             </button>
           )}
+          {limitData?.map(post => (
+            <Link
+              key={post._id}
+              href={`/community/talk/${post._id}`}
+              className="block font-basic text-center border-[1px] rounded-full mt-4 py-3 bg-custom-gradient"
+            >
+              {post.title}
+            </Link>
+          ))}
+
+          {moreData && (
+            <button
+              onClick={() => setShowAll(!showAll)}
+              className="mt-6 px-6 py-2 border border-gray-300 rounded-full hover:bg-gray-50 transition-colors font-basic"
+            >
+              {showAll
+                ? '접기'
+                : `더보기 (+${(filteredData?.length || 1) - 3}개)`}
+            </button>
+          )}
         </div>
       </section>
     </section>
