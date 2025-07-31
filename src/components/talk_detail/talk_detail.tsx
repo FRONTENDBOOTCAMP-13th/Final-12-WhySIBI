@@ -34,6 +34,7 @@ export default function TalkDetail({ post, boardType }: TalkCardItemProps) {
   const token = user?.token?.accessToken;
   const _id = Number(post._id);
   const type = post.type;
+  
   const getBookmarkType = (postType: string) => {
     switch (postType) {
       case 'talk':
@@ -103,13 +104,13 @@ export default function TalkDetail({ post, boardType }: TalkCardItemProps) {
     );
 
     if (result.ok === 1) {
-      setIsBookmarked(true);
       const newBookmarkRes = await GetBookMarkInfo(
         bookmarkType,
         token as string,
         _id,
       );
       if (newBookmarkRes.ok === 1) {
+        setIsBookmarked(true);
         setBookmarkId(newBookmarkRes.item);
       }
       redirect(`/community/talk/${_id}`);
