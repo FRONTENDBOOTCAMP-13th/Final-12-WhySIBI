@@ -177,6 +177,11 @@ export default function RegistForm({ boardType }: RegistFormProps) {
           value={JSON.stringify(Object.values(subjectTag))}
         />
         <input type="hidden" name="type" value={boardType} />{' '}
+        <input
+          type="hidden"
+          name="accessToken"
+          value={user?.token?.accessToken ?? ''}
+        />
         {/* 게시판 구분용 */}
         <div className="flex font-variable gap-7 mt-20">
           <ButtonRounded
