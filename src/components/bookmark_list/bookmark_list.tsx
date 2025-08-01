@@ -11,8 +11,8 @@ import { Navigation, Pagination } from 'swiper/modules';
 import Pagenation from '@/components/basic_component/Pagenation';
 
 interface BookMarkListProp {
-  resProduct: BookMarkItem[];
-  resPost: BookMarkItem[];
+  resProduct: BookMarkItem[] | null;
+  resPost: BookMarkItem[] | null;
 }
 
 export default function BookMarkList({
