@@ -22,6 +22,7 @@ export default function CommentDeleteForm({ reply }: { reply: PostReply }) {
       <input type="hidden" name="replyId" value={reply._id} />
       <input type="hidden" name="accessToken" value={user?.token?.accessToken ?? ''} />
       <ButtonNostyle type="submit" disabled={isLoading} ownerId={reply.user._id} needLogin>삭제</ButtonNostyle>
+      {state?.ok === 0 && <p className="text-red-500 mt-2">{state.message}</p>}
     </form>
   )
 }

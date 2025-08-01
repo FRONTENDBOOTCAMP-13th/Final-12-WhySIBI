@@ -2,7 +2,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Post } from "@/types";
-import { useState } from 'react';
 import { useBookmarkStore } from "@/zustand/bookMarkStore";
 
 interface PostCardItemProps {

@@ -13,10 +13,10 @@ interface PostCardPageProps {
 
 export default function PostCardList({ boardType, posts: initialPosts }: PostCardPageProps) {
   const [posts, setPosts] = useState<Post[]>([]);
-  const [sortType, setSortType] = useState('latest');
+  const [sortType, setSortType] = useState('high-view');
 
   useEffect(() => {
-    let sorted = [...initialPosts];
+    const sorted = [...initialPosts];
     if (sortType === 'high-view') {
       sorted.sort((a, b) => (b.views ?? 0) - (a.views ?? 0));
     } else {
@@ -27,6 +27,7 @@ export default function PostCardList({ boardType, posts: initialPosts }: PostCar
 
   const boardTitle = boardType === 'showRoom' ? '집들이🏠' : '자취 상담소💬';
   const boardSub = boardType === 'showRoom' ? '우리집에 왜 왔니' : '우리집 구해줘 홈즈';
+
 
   return (
     <div className="post-list-wrapper bg-white p-20">

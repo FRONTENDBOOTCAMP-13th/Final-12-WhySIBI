@@ -34,6 +34,11 @@ export default async function DetailPage({ params }: InfoPageProps) {
   const posts = await getPosts(String(_id));
   const repliesRes = await getReplies(Number(_id));
 
+  const repliesCount =
+    repliesRes.ok === 1 && Array.isArray(repliesRes.item)
+      ? repliesRes.item.length
+      : 0;
+
   if (isError(post)) {
     return <div>{post.message || '게시글을 불러올 수 없습니다.'}</div>;
   }
@@ -61,7 +66,7 @@ export default async function DetailPage({ params }: InfoPageProps) {
         <DetailOther _id={_id}></DetailOther>
         <CommentNew
           _id={_id}
-          repliesCount={post.item.repliesCount}
+          repliesCount={repliesCount}
         ></CommentNew>
         <CommentList _id={_id}></CommentList>
       </div>
@@ -77,7 +82,7 @@ export default async function DetailPage({ params }: InfoPageProps) {
         )}
         <CommentNew
           _id={_id}
-          repliesCount={post.item.repliesCount}
+          repliesCount={repliesCount}
         ></CommentNew>
         <CommentList _id={_id}></CommentList>
       </div>

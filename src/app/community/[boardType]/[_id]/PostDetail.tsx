@@ -42,7 +42,7 @@ export default function PostDetail({ post }: { post: Post }) {
                 fill="currentColor"
                 fillOpacity={isBookmarked ? 1 : 0}
                 stroke="currentColor"
-                strokeWidth="6"
+                strokeWidth="5"
                 strokeLinejoin="round"
               />
             </svg>
