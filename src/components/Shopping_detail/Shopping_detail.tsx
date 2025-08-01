@@ -6,10 +6,10 @@ import { Product_Detail } from './fetch/Product_detail';
 export default async function ShoppingDetail({
   stars,
   id,
+  token,
 }: ShoppingDetailType) {
-  const item = await Product_Detail(id);
-  const reviewCount = item.replies.length;
-
+  const item = await Product_Detail(id, token);
+  const reviewCount = item.replies?.length || 0;
   // 리뷰들의 별점을 받아와서 배열에 저장함
   const repliesStars = [];
   for (let i = 0; i < item.replies.length; i++) {
@@ -45,9 +45,11 @@ export default async function ShoppingDetail({
         stars={stars}
         color={item.extra.color}
         size={item.extra.size}
+        myBookmarkId={item.myBookmarkId}
         reviewCount={reviewCount}
         avg={avg}
         id={id}
+        token={token}
       />
     </section>
   );
