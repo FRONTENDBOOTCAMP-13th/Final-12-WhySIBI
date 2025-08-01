@@ -1,8 +1,8 @@
 'use client';
-import Link from 'next/link';
-import Image from 'next/image';
-import { Post } from '@/types';
-import { useBookmarkStore } from '@/zustand/bookMarkStore';
+import Link from "next/link";
+import Image from "next/image";
+import { Post } from "@/types";
+import { useBookmarkStore } from "@/zustand/bookMarkStore";
 
 interface PostCardItemProps {
   post: Post;
@@ -41,7 +41,7 @@ export default function PostCardItem({
       {/* 북마크 버튼 */}
       <button
         onClick={() => toggleBookmark(post._id)}
-        className="absolute right-[12px] top-[150px] z-10"
+        className="absolute right-[15px] top-[150px] z-10"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -61,21 +61,20 @@ export default function PostCardItem({
         </svg>
       </button>
 
+      {/* 게시글 작성자 */}
+            <div className="flex justify-center items-center gap-2 mt-0.5">
+              <div>
+                <span className="font-medium text-sm text-gray-icon">
+                  {post.user?.name}
+                </span>
+              </div>
+            </div>
+
       {/* 게시글 하단 정보 */}
       <div className="forIcon flex mt-2 text-xs font-regular text-gray-icon gap-2">
-        <Image
-          src="/image/community_icon/eyeIcon.svg"
-          alt="조회수"
-          width="15"
-          height="15"
-        />
+        <Image src="/image/community_icon/eyeIcon.svg" alt="조회수" width="15" height="15" />
         <span>{post.views}</span>
-        <Image
-          src="/image/community_icon/chatIcon.svg"
-          alt="댓글수"
-          width="15"
-          height="15"
-        />
+        <Image src="/image/community_icon/chatIcon.svg" alt="댓글수" width="15" height="15" />
         <span>{post.repliesCount}</span>
       </div>
     </div>
