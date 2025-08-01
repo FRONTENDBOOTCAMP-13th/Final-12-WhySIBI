@@ -48,7 +48,10 @@ export default function TalkDetail({ post, posts }: TalkCardItemProps) {
   });
 
   const handleDeleteBookmark = async () => {
-    const result = await DeleteBookMark(token as string, post.myBookmarkId as number);
+    const result = await DeleteBookMark(
+      token as string,
+      post.myBookmarkId as number,
+    );
     if (result.ok === 1) {
       redirect(`/community/talk/${_id}`);
     }
@@ -79,14 +82,7 @@ export default function TalkDetail({ post, posts }: TalkCardItemProps) {
   const moreData = (filteredData?.length || 1) > 3;
 
   return (
-    <section className="w-4/5">
-      <div className="button-wrapper  flex justify-between items-center text-gray-icon text-md mb-6">
-        <ButtonBack />
-        <div className="button-list space-x-3 mr-2">
-          <button className="cursor-pointer hover:opacity-80">수정</button>
-          <button className="cursor-pointer hover:opacity-80">삭제</button>
-        </div>
-      </div>
+    <>
       <p className="text-size-xs md:text-size-lg py-2 font-basic font-bold text-[#353535]">
         {post.extra?.subject?.[0] || ''}
       </p>
@@ -182,6 +178,6 @@ export default function TalkDetail({ post, posts }: TalkCardItemProps) {
           )}
         </div>
       </section>
-    </section>
+    </>
   );
 }
