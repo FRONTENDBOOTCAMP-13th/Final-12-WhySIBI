@@ -8,16 +8,20 @@ const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID || '';
  * @param {string} boardType - 게시판 타입(예: notice, free 등)
  * @returns {Promise<ApiRes<Post[]>>} - 게시글 목록 응답 객체
  */
-export async function getPosts(boardType: string): ApiResPromise<Post[]> {
+export async function getPosts(
+  boardType: string,
+  token?: string,
+): ApiResPromise<Post[]> {
   try {
     const res = await fetch(`${API_URL}/posts?type=${boardType}`, {
       headers: {
+        Authorization: `Bearer ${token}`,
         'Client-Id': CLIENT_ID,
       },
-      // cache: 'force-cache',
+      cache: 'no-cache',
       next: {
-      tags: [`posts?type=${boardType}`],
-    },
+        tags: [`posts?type=${boardType}`],
+      },
     });
 
     if (!res.ok) {
@@ -40,16 +44,19 @@ export async function getPosts(boardType: string): ApiResPromise<Post[]> {
  * @param {number} _id - 게시글의 고유 ID
  * @returns {Promise<ApiRes<Post>>} - 게시글 상세 정보 응답 객체
  */
-export async function getPost(_id: number, token?: string): ApiResPromise<Post> {
+export async function getPost(
+  _id: number,
+  token?: string,
+): ApiResPromise<Post> {
   try {
     const res = await fetch(`${API_URL}/posts/${_id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
         'Client-Id': CLIENT_ID,
       },
-      // cache: 'force-cache',
+      cache: 'no-cache',
       next: {
-      tags: [`posts/${_id}`],
+        tags: [`posts/${_id}`],
       },
     });
     return res.json();
@@ -72,8 +79,8 @@ export async function getReplies(_id: number): ApiResPromise<PostReply[]> {
         'Client-Id': CLIENT_ID,
       },
       next: {
-      tags: [`posts/${_id}/replies`],
-    },
+        tags: [`posts/${_id}/replies`],
+      },
     });
     return res.json();
   } catch (error) {
