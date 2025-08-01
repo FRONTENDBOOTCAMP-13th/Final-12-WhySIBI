@@ -1,12 +1,13 @@
 'use client';
 import useUserStore from '@/zustand/useUserStore';
 import CartList from './Cart_list';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { CartData } from '@/types/cart';
 import CartAllDeleteButton from './Cart_all_delete_button';
 import CartPurchaseButton from './Cart_purchase_button';
 import useCartRefreshStore from '@/zustand/useCartRefreshStore';
 import CartAddressInput from './Cart_address_input';
+import CartListSkeleton from './skeleton/Cart_list_skeleton';
 
 export default function CartMain() {
   const { user } = useUserStore();
@@ -132,27 +133,31 @@ export default function CartMain() {
         </div>
 
         {/* 장바구니 목록 영역 */}
-        <ul className="flex flex-col border-1 px-5 pt-3 rounded-2xl">
-          {cartData?.item.map(item => {
-            return (
-              <CartList
-                key={item._id}
-                id={item._id}
-                color={item.color || null}
-                size={item.size || null}
-                name={item.product.name}
-                img={item.product.image.path}
-                price={item.product.price}
-                quantity={item.quantity}
-                token={token}
-                // checkedItem배열에 포함되어 있냐 없냐로checked설정
-                isChecked={checkedItems?.includes(item._id)}
-                handleItemCheck={handleItemCheck}
-                handleQuantity={handleQuantity}
-              />
-            );
-          })}
-        </ul>
+        {cartData ? (
+          <ul className="flex flex-col border-1 px-5 pt-3 rounded-2xl">
+            {cartData?.item.map(item => {
+              return (
+                <CartList
+                  key={item._id}
+                  id={item._id}
+                  color={item.color || null}
+                  size={item.size || null}
+                  name={item.product.name}
+                  img={item.product.image.path}
+                  price={item.product.price}
+                  quantity={item.quantity}
+                  token={token}
+                  // checkedItem배열에 포함되어 있냐 없냐로checked설정
+                  isChecked={checkedItems?.includes(item._id)}
+                  handleItemCheck={handleItemCheck}
+                  handleQuantity={handleQuantity}
+                />
+              );
+            })}
+          </ul>
+        ) : (
+          <CartListSkeleton count={3} />
+        )}
       </div>
       <aside className="min-w-[630px] flex flex-col gap-6">
         <CartAddressInput />
