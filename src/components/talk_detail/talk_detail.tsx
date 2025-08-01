@@ -1,5 +1,4 @@
 'use client';
-import { ButtonBack } from '@/components/Button_back';
 import getTimeAgo from '@/components/talk_list/time';
 import { AddBookMark, DeleteBookMark } from '@/data/actions/bookmark';
 import { Post } from '@/types';
