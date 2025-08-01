@@ -1,7 +1,7 @@
 'use client';
 import useUserStore from '@/zustand/useUserStore';
-import CartList from './Cart_list';
-import { Suspense, useEffect, useState } from 'react';
+import CartItem from './Cart_item';
+import { useEffect, useState } from 'react';
 import { CartData } from '@/types/cart';
 import CartAllDeleteButton from './Cart_all_delete_button';
 import CartPurchaseButton from './Cart_purchase_button';
@@ -137,7 +137,7 @@ export default function CartMain() {
           <ul className="flex flex-col border-1 px-5 pt-3 rounded-2xl">
             {cartData?.item.map(item => {
               return (
-                <CartList
+                <CartItem
                   key={item._id}
                   id={item._id}
                   color={item.color || null}
