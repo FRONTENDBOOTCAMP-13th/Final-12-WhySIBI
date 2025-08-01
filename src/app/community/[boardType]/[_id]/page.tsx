@@ -13,7 +13,6 @@ import { ButtonNostyle } from '@/components/Buttons/Button_nostyle';
 import TalkDetail from '@/components/talk_detail/talk_detail';
 import { cookies } from 'next/headers';
 
-
 function isError<T>(res: ApiRes<T>): res is { ok: 0; message: string } {
   return res.ok === 0;
 }
@@ -72,16 +71,33 @@ export default async function DetailPage({ params }: InfoPageProps) {
   if (boardType === 'talk') {
     return (
       <div className="wrapper flex flex-col justify-center items-center bg-white p-20 font-variable">
-        {posts.ok === 1 ? (
-          <TalkDetail post={post.item} posts={posts.item} />
-        ) : (
-          <TalkDetail post={post.item} />
-        )}
-        <CommentNew
-          _id={_id}
-          repliesCount={post.item.repliesCount}
-        ></CommentNew>
-        <CommentList _id={_id}></CommentList>
+        <section className="w-4/5">
+          <div className="button-wrapper flex justify-between items-center text-gray-icon text-md mb-6">
+            <ButtonBack />
+            <div className="button-list flex flex-row space-x-3 mr-2">
+              <Link href={`/community/showRoom/${_id}/edit`}>
+                <ButtonNostyle ownerId={post.item?.user._id} needLogin>
+                  수정
+                </ButtonNostyle>
+              </Link>
+              <DeleteForm
+                boardType={boardType}
+                _id={_id}
+                ownerId={post.item?.user._id}
+              ></DeleteForm>
+            </div>
+          </div>
+          {posts.ok === 1 ? (
+            <TalkDetail post={post.item} posts={posts.item} />
+          ) : (
+            <TalkDetail post={post.item} />
+          )}
+          <CommentNew
+            _id={_id}
+            repliesCount={post.item.repliesCount}
+          ></CommentNew>
+          <CommentList _id={_id}></CommentList>
+        </section>
       </div>
     );
   }
