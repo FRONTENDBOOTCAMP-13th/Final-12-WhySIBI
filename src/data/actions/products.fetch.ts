@@ -73,6 +73,7 @@ const sort: Record<
 
 export async function getProductList(
   options: ProductListOptions = {},
+  token?: string,
 ): Promise<ProductListResponse> {
   try {
     const query = new URLSearchParams();
@@ -93,9 +94,11 @@ export async function getProductList(
     const res = await fetch(`${API_URL}/products?${query.toString()}`, {
       method: 'GET',
       headers: {
+        Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
         'Client-Id': CLIENT_ID,
       },
+      cache: 'no-cache',
     });
 
     return await res.json();

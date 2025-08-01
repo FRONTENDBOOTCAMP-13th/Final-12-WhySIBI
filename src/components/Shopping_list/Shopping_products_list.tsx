@@ -1,5 +1,4 @@
 'use client';
-
 import DropdownShoppingList from '@/components/Shopping_list/Dropdown_shopping_list';
 import Pagenation from '@/components/basic_component/Pagenation';
 import ProductCard from '@/components/product_component/product_card';
@@ -11,7 +10,7 @@ import { useEffect, useState } from 'react';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-function ShoppingProductsList() {
+function ShoppingProductsList({ token }: { token?: string | undefined }) {
   const [productData, setProductData] = useState<ProductListProps[]>([]);
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(1);
@@ -42,18 +41,21 @@ function ShoppingProductsList() {
   useEffect(() => {
     const productsList = async () => {
       try {
-        const res = await getProductList({
-          sort, //상품 정렬하기
-          page, ////상품 slice해서 보여주기
-          limit: 12,
-          custom: {
-            //상품 카테고리별로 필터
-            ...(mainCategoryId ? { 'extra.category': mainCategoryId } : {}),
-            ...(subCategoryId ? { 'extra.category': subCategoryId } : {}),
+        const res = await getProductList(
+          {
+            sort, //상품 정렬하기
+            page, ////상품 slice해서 보여주기
+            limit: 12,
+            custom: {
+              //상품 카테고리별로 필터
+              ...(mainCategoryId ? { 'extra.category': mainCategoryId } : {}),
+              ...(subCategoryId ? { 'extra.category': subCategoryId } : {}),
+            },
           },
-        });
+          token,
+        );
         if (res.ok === 1) {
-          // console.log(res.item);
+          console.log(res.item);
           setProductData(res.item);
           setTotalPage(res.pagination.totalPages);
           setTotalItems(res.pagination.total);
@@ -68,6 +70,7 @@ function ShoppingProductsList() {
     productsList();
   }, [sort, page, mainCategoryId, subCategoryId]);
 
+  console.log(productData);
   //상품 페이지네이션 핸들러
   const handlePagenation = (page: number) => {
     setPage(page);
@@ -99,6 +102,9 @@ function ShoppingProductsList() {
               reviewCount={product?.replies}
               isLiked={product.extra?.isLike ? true : false}
               onClick={() => {}}
+              myBookmarkId={product.myBookmarkId}
+              token={token}
+              type={'product'}
             />
           );
         })}
