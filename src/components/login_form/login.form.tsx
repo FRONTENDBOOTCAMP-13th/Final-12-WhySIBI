@@ -53,10 +53,7 @@ export default function LoginForm() {
         height={120}
         className="my-0 mx-auto"
       />
-      <form
-        action={formAction}
-        className="w-3/4 my-0 mx-auto border-b-2 border-button-color-opaque-25"
-      >
+      <form action={formAction} className="w-3/4 my-0 mx-auto">
         <InputId
           text={''}
           placeholder={'아이디를 입력해주세요'}
@@ -76,29 +73,12 @@ export default function LoginForm() {
           로그인
         </button>
         <Link
-          href={'/my_page/regiester'}
+          href={'/regiester'}
           className="block text-center nahonsan-btn-3d-white border-button-color border-2 mt-2.5 mb-12 rounded-radius-lg w-full py-3.5 font-basic tracking-paragraph-default font-bold text-button-color text-size-md"
         >
           회원가입
         </Link>
       </form>
-      <aside className="w-3/4 my-0 mx-auto">
-        <p className="font-logo text-3xl text-button-color pt-8 text-center">
-          SNS 로그인
-        </p>
-        <button
-          type="submit"
-          className="bg-button-color rounded-radius-lg w-full mt-6 py-3.5 font-basic tracking-paragraph-default font-bold text-white text-size-md"
-        >
-          로그인
-        </button>
-        <button
-          type="button"
-          className="border-button-color border-2 mt-2.5 mb-12 rounded-radius-lg w-full py-3.5 font-basic tracking-paragraph-default font-bold text-button-color text-size-md"
-        >
-          회원가입
-        </button>
-      </aside>
     </>
   );
 }

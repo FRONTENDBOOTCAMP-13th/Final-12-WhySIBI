@@ -123,7 +123,7 @@ function MenuNavigation() {
               ></Image>
             </button>
           </div>
-          <Link href={''}>
+          <Link href={'/cart'}>
             <Image
               src={'/image/header_icon/shopping_cart_icon.svg'}
               alt="장바구니아이콘"
