@@ -2,26 +2,23 @@
 import getTimeAgo from '@/components/talk_list/time';
 import { AddBookMark, DeleteBookMark } from '@/data/actions/bookmark';
 import { Post } from '@/types';
-import useUserStore from '@/zustand/useUserStore';
 import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { useState } from 'react';
+
 interface TalkCardItemProps {
   post: Post;
   boardType?: string;
   posts?: Post[];
+  token: string;
 }
-export default function TalkDetail({ post, posts }: TalkCardItemProps) {
+
+export default function TalkDetail({ post, posts, token }: TalkCardItemProps) {
   const [showAll, setShowAll] = useState(false);
 
-  const { user } = useUserStore();
-  const token = user?.token?.accessToken;
   const _id = Number(post._id);
   const type = post.type;
-
-  console.log(post);
-  console.log(post.myBookmarkId);
 
   const getBookmarkType = (postType: string) => {
     switch (postType) {

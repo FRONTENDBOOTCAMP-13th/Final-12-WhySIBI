@@ -6,6 +6,7 @@ import BestTalkList from '@/components/best_talk_list/best_talk_list';
 import TalkList from '@/components/talk_list/talk_list';
 import TalkPostSearch from '@/components/talk_list/talk_post_search';
 import PostCardList from '@/app/community/[boardType]/PostCardList';
+import { cookies } from 'next/headers';
 
 interface ListPageProps {
   params: Promise<{
@@ -15,7 +16,7 @@ interface ListPageProps {
 
 export default async function PostCardPage({ params }: ListPageProps) {
   const { boardType } = await params;
-
+  const token = (await cookies()).get('accessToken');
   let boardTitle = '';
   let boardSub = '';
   switch (boardType) {
@@ -33,10 +34,16 @@ export default async function PostCardPage({ params }: ListPageProps) {
   }
 
   // 서버에서 게시글 목록 받아오기
-  const res = await getPosts(boardType);
+  const res = await getPosts(boardType, token?.value as string);
 
   if (boardType === 'showRoom') {
-    return <PostCardList boardType={boardType} posts={res.ok ? res.item : []}/>;
+    return (
+      <PostCardList
+        boardType={boardType}
+        posts={res.ok ? res.item : []}
+        token={token?.value as string}
+      />
+    );
   }
   if (boardType === 'talk') {
     return (
@@ -50,7 +57,7 @@ export default async function PostCardPage({ params }: ListPageProps) {
           </div>
 
           <div className="button-wrapper flex flex-col items-end">
-            <TalkPostSearch/>
+            <TalkPostSearch />
             <ButtonNew boardType={boardType} />
           </div>
         </div>

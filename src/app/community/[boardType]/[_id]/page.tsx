@@ -59,7 +59,7 @@ export default async function DetailPage({ params }: InfoPageProps) {
             ></DeleteForm>
           </div>
         </div>
-        <PostDetail post={post.item} />
+        <PostDetail post={post.item} token={token?.value as string} />
         <DetailSimilar></DetailSimilar>
         <DetailOther _id={_id}></DetailOther>
         <CommentNew _id={_id} repliesCount={repliesCount}></CommentNew>
@@ -87,7 +87,11 @@ export default async function DetailPage({ params }: InfoPageProps) {
             </div>
           </div>
           {posts.ok === 1 ? (
-            <TalkDetail post={post.item} posts={posts.item} />
+            <TalkDetail
+              post={post.item}
+              posts={posts.item}
+              token={token?.value as string}
+            />
           ) : (
             <TalkDetail post={post.item} />
           )}
