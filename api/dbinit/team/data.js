@@ -140,11 +140,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 37900,
+        keyword: ['이불', '토퍼패드', '쿨링', '토퍼', '아이스'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '아이스모찌 쿨링 토퍼패드',
-        quantity: 330,
+        quantity: 900,
         buyQuantity: 320,
         mainImages: [
           {
@@ -164,18 +165,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: ['아이보리', '핑크', '스카이블루', '네이비', '그레이'],
           size: ['s', 'm'],
-          keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
           isLike: true, //찜하기
           originalPrice: 89900, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/cooling.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -183,11 +177,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 236000,
+        keyword: ['티비', 'tv'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '중소바이미 TV세트',
-        quantity: 330,
+        quantity: 900,
         buyQuantity: 320,
         mainImages: [
           {
@@ -205,18 +200,11 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          keyword: 'TV',
           category: ['PC03', 'PC0305', 'PC030506'],
           tag: 'TAG10', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 688000, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/tv.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -224,11 +212,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 29800,
+        keyword: ['스마트', '불끄기'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '스마트 불끄기 푸시봇',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -246,18 +235,11 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: true,
-          keyword: 'switch', //키워드
           category: ['PC03', 'PC0305', 'PC030503'],
           tag: 'TAG10', //취향태그
           sort: 5,
           isLike: true, //찜하기
           originalPrice: 349000, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/pushbot.png`,
-            },
-          ],
           star: 4, //별점
         },
       },
@@ -265,11 +247,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 17700,
+        keyword: ['커튼', '암막커튼'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '자국없는 벨크로 암막커튼',
-        quantity: 330,
+        quantity: 900,
         buyQuantity: 320,
         mainImages: [
           {
@@ -289,18 +272,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: ['아이보리', '진그레이', '연그레이', '블랙'],
           size: ['소형', '중형'],
-          keyword: 'curtain', //키워드
           category: ['PC03', 'PC0304', 'PC030402'],
           tag: 'TAG6', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 40000, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/curtain.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -308,11 +284,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 39900,
+        keyword: ['쿨링', '이불', '여름'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '써머쿨링 냉감 여름이불',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -332,18 +309,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: ['핑크베리', '그린샤벳', '블루레몬', '그레이스톤'],
           size: ['ss', 'q'],
-          keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 39900, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/summercooling.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -351,11 +321,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 34800,
+        keyword: ['충전', '거치대', '고속충전'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '고속충전 자바라 거치대',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -381,12 +352,6 @@ export const initData = async (clientId, nextSeq) => {
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 54900, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/jabara.png`,
-            },
-          ],
           star: 4, //별점
         },
       },
@@ -394,11 +359,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 66900,
+        keyword: ['접이식', '매트', '토퍼', '매트토퍼'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '꺼짐없는 접이식 매트토퍼',
-        quantity: 330,
+        quantity: 900,
         buyQuantity: 320,
         mainImages: [
           {
@@ -432,12 +398,6 @@ export const initData = async (clientId, nextSeq) => {
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 147000, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/topper.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -445,11 +405,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 29900,
+        keyword: ['냉감', '아이스', '바디필로우'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '냉감 찹쌀떡 바디필로우',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -475,12 +436,6 @@ export const initData = async (clientId, nextSeq) => {
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 99000, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/bodyfillow.png`,
-            },
-          ],
           star: 3, //별점
         },
       },
@@ -488,11 +443,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 299000,
+        keyword: ['미닉스', '건조기'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '미닉스 미니 건조기 PRO+',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -518,12 +474,6 @@ export const initData = async (clientId, nextSeq) => {
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 499000, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/minix.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -531,11 +481,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 52900,
+        keyword: ['욕조', '접이식'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '발뻗는 접이식 욕조',
-        quantity: 330,
+        quantity: 900,
         buyQuantity: 320,
         mainImages: [
           {
@@ -561,12 +512,6 @@ export const initData = async (clientId, nextSeq) => {
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 60000, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/bath.png`,
-            },
-          ],
           star: 4, //별점
         },
       },
@@ -574,11 +519,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 14400,
+        keyword: ['벽걸이', '에어컨', '청소'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '벽걸이 에어컨 청소 키트',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -604,12 +550,6 @@ export const initData = async (clientId, nextSeq) => {
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 20000, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/cleankit.png`,
-            },
-          ],
           star: 4, //별점
         },
       },
@@ -617,11 +557,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 34900,
+        keyword: ['화장품', '정리함', '정리'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '대용량 화장품 정리함',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -647,12 +588,6 @@ export const initData = async (clientId, nextSeq) => {
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 40000, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/cosmetic.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -660,11 +595,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 26900,
+        keyword: ['드레스룸', '행거'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '무볼트 드레스룸 행거',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -690,12 +626,6 @@ export const initData = async (clientId, nextSeq) => {
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 43900, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/hangger.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -703,11 +633,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 9900,
+        keyword: ['에어컨', '냉각', '선풍기'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '에어컨 냉각 선풍기',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -733,12 +664,6 @@ export const initData = async (clientId, nextSeq) => {
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 13900, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/coolpan.png`,
-            },
-          ],
           star: 4, //별점
         },
       },
@@ -746,11 +671,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 399000,
+        keyword: ['음식물 처리기', '음식물', '처리기'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '더슬림 음식물 처리기 4L',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -776,12 +702,6 @@ export const initData = async (clientId, nextSeq) => {
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 438900, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/theslim.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -789,11 +709,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 59000,
+        keyword: ['에어프라이어', '오븐'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '대용량 에어프라이어 오븐',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -813,18 +734,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: [],
           size: [],
-          keyword: 'airflier', //키워드
           category: ['PC03', 'PC0305', 'PC030505'], // 카테고리 - 대분류, 소분류
           tag: 'TAG2', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 198000, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/airflier.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -832,11 +746,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 19800,
+        keyword: ['하수구', '트랩', '하수구 트랩', '청소'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '완벽밀폐 하수구 트랩',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -856,18 +771,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: [],
           size: [],
-          keyword: 'cleaning', //키워드
           category: ['PC03', 'PC0303', 'PC030304'], // 카테고리 - 대분류, 소분류
           tag: 'TAG12', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 24900, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/trap.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -875,11 +783,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 8900,
+        keyword: ['해충퇴치', '벌레', '신기패'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '해충퇴치 분필형 신기패',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -899,18 +808,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: [],
           size: [],
-          keyword: 'bug', //키워드
           category: ['PC03', 'PC0303', 'PC030304'], // 카테고리 - 대분류, 소분류
           tag: 'TAG12', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 9900, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/bug.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -918,11 +820,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 49900,
+        keyword: ['냄비', '멀티포트', '냄비분리'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '냄비분리 3in1 멀티포트',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -942,18 +845,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: [],
           size: [],
-          keyword: 'pot', //키워드
           category: ['PC03', 'PC0303', 'PC030302'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 69800, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/multiport.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -961,11 +857,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 10900,
+        keyword: ['해파리', '무드등'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '해파리 무드등 1+1',
-        quantity: 330,
+        quantity: 900,
         buyQuantity: 320,
         mainImages: [
           {
@@ -985,18 +882,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: ['블루', '퍼플', '핑크', '그린'],
           size: [],
-          keyword: 'mood_light', //키워드
           category: ['PC03', 'PC0304', 'PC030402'], // 카테고리 - 대분류, 소분류
           tag: 'TAG9', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 12900, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/jellyfish.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -1004,11 +894,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 12900,
+        keyword: ['카피바라', '무드등', '카피바라 무드등'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '감기걸린 카피바라 무드등',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -1028,18 +919,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: [],
           size: [],
-          keyword: 'mood_light', //키워드
           category: ['PC03', 'PC0304', 'PC030402'], // 카테고리 - 대분류, 소분류
           tag: 'TAG9', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 19900, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/copybara.png`,
-            },
-          ],
           star: 4, //별점
         },
       },
@@ -1047,11 +931,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 19900,
+        keyword: ['카피바라', '무드등', '카피바라 무드등'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '츤데레 카피바라 무드등',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -1071,18 +956,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: [],
           size: [],
-          keyword: 'mood_light', //키워드
           category: ['PC03', 'PC0304', 'PC030402'], // 카테고리 - 대분류, 소분류
           tag: 'TAG9', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 33900, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/copybara2.png`,
-            },
-          ],
           star: 4, //별점
         },
       },
@@ -1090,11 +968,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 17800,
+        keyword: ['오리', '무드등', '오리 무드등'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '철푸덕 오리 무드등',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -1114,18 +993,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: [],
           size: [],
-          keyword: 'mood_light', //키워드
           category: ['PC03', 'PC0304', 'PC030402'], // 카테고리 - 대분류, 소분류
           tag: 'TAG9', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 19000, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/dockmood.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -1133,11 +1005,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 16000,
+        keyword: ['산로', '콘센트', '콘센트 커버'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '산로 무타공 콘센트 커버',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -1157,18 +1030,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: [],
           size: ['1구', '2구', '3구'],
-          keyword: 'concent', //키워드
           category: ['PC03', 'PC0304', 'PC030402'], // 카테고리 - 대분류, 소분류
           tag: 'TAG11', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 22100, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/sanroconcent.png`,
-            },
-          ],
           star: 4, //별점
         },
       },
@@ -1176,11 +1042,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 9800,
+        keyword: ['패브릭', '스위치', '콘센트', '덮개'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '패브릭 스위치/콘센트 덮개',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -1200,18 +1067,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: [],
           size: [],
-          keyword: 'concent', //키워드
           category: ['PC03', 'PC0304', 'PC030402'], // 카테고리 - 대분류, 소분류
           tag: 'TAG11', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 15000, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/pabricCover.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -1219,11 +1079,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 15900,
+        keyword: ['스마트', '플러그', '스마트 플러그'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '스마트 플러그 Air',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -1249,12 +1110,6 @@ export const initData = async (clientId, nextSeq) => {
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 19900, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/smartplug.png`,
-            },
-          ],
           star: 4, //별점
         },
       },
@@ -1262,11 +1117,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 25900,
+        keyword: ['멀티탭', '고정', '고정 멀티탭'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '책상 고정 멀티탭',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -1286,18 +1142,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: ['옐로우', '블루', '그린', '오렌지'],
           size: ['3구', '5구'],
-          keyword: 'multitab', //키워드
           category: ['PC03', 'PC0304', 'PC030404'], // 카테고리 - 대분류, 소분류
           tag: 'TAG9', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 35900, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/deskmultitab.png`,
-            },
-          ],
           star: 4, //별점
         },
       },
@@ -1305,11 +1154,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 125900,
+        keyword: ['소파베드', '베드', '집순이'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '각도조절 집순이 소파베드',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -1329,18 +1179,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: ['아이보리'],
           size: [],
-          keyword: 'bed', //키워드
           category: ['PC03', 'PC0302', 'PC030201'], // 카테고리 - 대분류, 소분류
           tag: 'TAG5', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 150000, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/sofabed.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -1348,11 +1191,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 14900,
+        keyword: ['선풍기', '맥세이프'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '핸즈프리 맥세이프 선풍기',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -1372,18 +1216,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: ['크림화이트', '다크그레이'],
           size: [],
-          keyword: 'fan', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG10', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 22000, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/magsafepan.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -1391,11 +1228,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 39800,
+        keyword: ['써큘레이터', '선풍기'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '스탠드형 에어써큘레이터',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -1415,18 +1253,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: [],
           size: [],
-          keyword: 'fan', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG10', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 78900, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/airsurqu.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -1434,11 +1265,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 21000,
+        keyword: ['타일', 'diy', '데코'],
         shippingFees: 0,
         show: true,
         active: true,
         name: 'DIY 도든 데코타일',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -1463,18 +1295,11 @@ export const initData = async (clientId, nextSeq) => {
             '브레드 버터',
           ],
           size: ['47cm', '60cm'],
-          keyword: 'tile', //키워드
           category: ['PC03', 'PC0306', 'PC030601'], // 카테고리 - 대분류, 소분류
           tag: 'TAG3', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 39900, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/decotile.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -1482,11 +1307,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 6900,
+        keyword: ['국자', '다용도', '미니국자'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '다용도 앞접시 미니국자',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -1506,18 +1332,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: ['아이보리', '그레이', '딥그레이', '블랙', '퍼플'],
           size: [],
-          keyword: 'spoon', //키워드
           category: ['PC03', 'PC0303', 'PC030302'], // 카테고리 - 대분류, 소분류
           tag: 'TAG2', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 15900, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/minispoon.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -1525,11 +1344,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 7900,
+        keyword: ['벌레', '벌레퇴치', '시나몬', '모빌'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '벌레퇴치 시나몬 모빌',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -1554,18 +1374,11 @@ export const initData = async (clientId, nextSeq) => {
             '토끼 유칼립투스',
             '고슴도치 파블로',
           ],
-          keyword: 'bug', //키워드
           category: ['PC03', 'PC0304', 'PC030402'], // 카테고리 - 대분류, 소분류
           tag: 'TAG8', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 8900, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/sinamonmobil.png`,
-            },
-          ],
           star: 4, //별점
         },
       },
@@ -1573,11 +1386,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 53900,
+        keyword: ['소파', '미니소파', '빈백', '베드'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '원룸 미니 빈백 소파',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -1597,18 +1411,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: ['오트밀', '그레이'],
           size: ['1인용', '2인용'],
-          keyword: 'bed', //키워드
           category: ['PC03', 'PC0302', 'PC030201'], // 카테고리 - 대분류, 소분류
           tag: 'TAG2', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 182000, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/minisofa.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -1616,11 +1423,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 25900,
+        keyword: ['데스크', '책상', '메종드꼼마'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '메종드꼼마 유니온 데스크',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -1640,18 +1448,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: ['화이트', '우드'],
           size: ['800', '1000', '1200', '1400', '1600'],
-          keyword: 'desk', //키워드
           category: ['PC03', 'PC0302', 'PC030203'], // 카테고리 - 대분류, 소분류
           tag: 'TAG9', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 379000, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/maisondesk.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -1659,11 +1460,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 428000,
+        keyword: ['에어컨', '이동식 에어컨'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '신일 냉난방 이동식 에어컨',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -1683,18 +1485,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: [],
           size: [],
-          keyword: 'aircon', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG5', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 569000, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/moveaircon.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -1702,11 +1497,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 29900,
+        keyword: ['서랍장', '조립식 서랍장', '서랍'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '우드 상판 조립식 서랍장',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -1726,18 +1522,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: ['아이보리', '버터옐로우'],
           size: ['m', 'l'],
-          keyword: 'drawer', //키워드
           category: ['PC03', 'PC0307', 'PC030701'], // 카테고리 - 대분류, 소분류
           tag: 'TAG11', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 29900, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/wooddrawer.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -1745,11 +1534,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 7900,
+        keyword: ['주걱', '실리콘 주걱'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '공중부양 실리콘 알뜰주걱',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -1769,18 +1559,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: ['머스타드', '올리브', '핑크', '퍼플', '진그레이'],
           size: ['s', 'm'],
-          keyword: 'spoon', //키워드
           category: ['PC03', 'PC0303', 'PC030302'], // 카테고리 - 대분류, 소분류
           tag: 'TAG2', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 10000, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/sliconspoon.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -1788,11 +1571,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 29900,
+        keyword: ['데스크', '테이블', '사이드 테이블'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '러블리 사이드 테이블',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -1812,18 +1596,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: ['화이트', '버터'],
           size: ['m', 'l'],
-          keyword: 'desk', //키워드
           category: ['PC03', 'PC0302', 'PC030203'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 69900, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/lovelytable.png`,
-            },
-          ],
           star: 4, //별점
         },
       },
@@ -1831,11 +1608,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 4900,
+        keyword: ['카페트', '타일'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '그린라벨 빅 타일카페트',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -1863,18 +1641,11 @@ export const initData = async (clientId, nextSeq) => {
             '미드나잇블루',
           ],
           size: ['50*50', '60*60'],
-          keyword: 'tile', //키워드
           category: ['PC03', 'PC0306', 'PC030601'], // 카테고리 - 대분류, 소분류
           tag: 'TAG8', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 8900, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/greentile.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -1882,11 +1653,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 79900,
+        keyword: ['제습기', '저소음'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '펠티어 저소음 미니제습기',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -1906,18 +1678,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: ['화이트'],
           size: [],
-          keyword: 'dehumidifier', //키워드
           category: ['PC03', 'PC0301', 'PC030101'], // 카테고리 - 대분류, 소분류
           tag: 'TAG10', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 159000, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/felltier.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -1925,11 +1690,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 48000,
+        keyword: ['건조대', '빨래 건조대', '선반'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '창틀 빨래 건조대 선반',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -1949,18 +1715,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: [],
           size: ['2단', '4단'],
-          keyword: 'dryerstand', //키워드
           category: ['PC03', 'PC0307', 'PC030704'], // 카테고리 - 대분류, 소분류
           tag: 'TAG12', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 87900, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/windowdry.png`,
-            },
-          ],
           star: 4, //별점
         },
       },
@@ -1968,11 +1727,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 39900,
+        keyword: ['건조대', '빨래건조대', '문걸이'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '튼튼한 문걸이 빨래건조대',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -1992,18 +1752,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: [],
           size: [],
-          keyword: 'dryerstand', //키워드
           category: ['PC03', 'PC0307', 'PC030704'], // 카테고리 - 대분류, 소분류
           tag: 'TAG12', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 50000, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/doordry.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -2011,11 +1764,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 23900,
+        keyword: ['배게', '필로우'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '슬립베이커리 토핑필로우',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -2035,18 +1789,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: ['초코필로우', '버터필로우'],
           size: [],
-          keyword: 'bedding', //키워드
           category: ['PC03', 'PC0302', 'PC030202'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 28900, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/sleepbakery.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -2054,11 +1801,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 32800,
+        keyword: ['건조기', '신발 건조기', '살균'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '슈즈쏙 신발 살균건조기',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -2078,18 +1826,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: [],
           size: [],
-          keyword: 'shoes_dryer', //키워드
           category: ['PC03', 'PC0301', 'PC030101'], // 카테고리 - 대분류, 소분류
           tag: 'TAG12', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 39800, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/shoesdry.png`,
-            },
-          ],
           star: 4, //별점
         },
       },
@@ -2097,11 +1838,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 42900,
+        keyword: ['화장품', '화장품 냉장고'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '미니 화장품 냉장고',
-        quantity: 330,
+        quantity: 900,
         buyQuantity: 320,
         mainImages: [
           {
@@ -2121,18 +1863,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: [],
           size: [],
-          keyword: 'cosmetic_fridge', //키워드
           category: ['PC03', 'PC0305', 'PC030504'], // 카테고리 - 대분류, 소분류
           tag: 'TAG11', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 99000, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/minifridge.png`,
-            },
-          ],
           star: 4, //별점
         },
       },
@@ -2140,11 +1875,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 9700,
+        keyword: ['포스터', '풍경 포스터', '패브릭'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '대형 풍경 패브릭 포스터',
-        quantity: 330,
+        quantity: 900,
         buyQuantity: 320,
         mainImages: [
           {
@@ -2164,18 +1900,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: ['창문', '일본', '반고흐', '레트로'],
           size: ['s', 'l'],
-          keyword: 'poster', //키워드
           category: ['PC03', 'PC0306', 'PC030601'], // 카테고리 - 대분류, 소분류
           tag: 'TAG8', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 26700, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/scapeposter.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -2183,11 +1912,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 29900,
+        keyword: ['침낭', '베드', '이불', '매트'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '바람찬 침낭형 침구세트',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -2207,18 +1937,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: ['핑크', '그레이', '네이비', '민트', '블루'],
           size: [],
-          keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 59000, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/beddingset.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -2226,11 +1949,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 77900,
+        keyword: ['화장품', '화장대', 'diy', '서랍'],
         shippingFees: 0,
         show: true,
         active: true,
         name: 'DIY 커스텀 수납화장대',
-        quantity: 330,
+        quantity: 900,
         buyQuantity: 320,
         mainImages: [
           {
@@ -2250,18 +1974,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: ['화이트', '버터'],
           size: ['2단', '3단'],
-          keyword: 'drawer', //키워드
           category: ['PC03', 'PC0307', 'PC030703'], // 카테고리 - 대분류, 소분류
           tag: 'TAG3', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 140000, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/vanity.png`,
-            },
-          ],
           star: 4, //별점
         },
       },
@@ -2269,11 +1986,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 9900,
+        keyword: ['이불', '쿨링', '냉각'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '허니팝 시어서커 여름이불',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -2301,18 +2019,11 @@ export const initData = async (clientId, nextSeq) => {
             '오션네이비',
           ],
           size: ['ss', 'q', 'k'],
-          keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 19900, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/honeypop.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -2320,11 +2031,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 3510,
+        keyword: ['서랍', '트레이', '서랍장'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '서랍식 옷정리 트레이',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -2344,18 +2056,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: [],
           size: ['s', 'm'],
-          keyword: 'drawer', //키워드
           category: ['PC03', 'PC0307', 'PC030701'], // 카테고리 - 대분류, 소분류
           tag: 'TAG11', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 5000, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/drawtray.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -2363,11 +2068,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 59900,
+        keyword: ['빔프로젝터', '프로젝터'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '오브룸 미니 빔프로젝터',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -2387,18 +2093,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: [],
           size: [],
-          keyword: 'bim_project', //키워드
           category: ['PC03', 'PC0305', 'PC030506'], // 카테고리 - 대분류, 소분류
           tag: 'TAG10', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 77800, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/minibimproject.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -2406,11 +2105,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 4900,
+        keyword: ['정리함', '서랍', '라면'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '화이트 라면 정리함',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -2430,18 +2130,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: [],
           size: ['s', 'm'],
-          keyword: 'organizer', //키워드
           category: ['PC03', 'PC0307', 'PC030701'], // 카테고리 - 대분류, 소분류
           tag: 'TAG12', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 0, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/ramenorganizer.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -2449,11 +2142,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 5500,
+        keyword: ['타일', 'diy'],
         shippingFees: 0,
         show: true,
         active: true,
         name: 'DIY 스티커 주방타일 28종',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -2473,18 +2167,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: ['써브웨이', '스퀘어', '해링본', '헥사곤', '롱브릭'],
           size: [],
-          keyword: 'tile', //키워드
           category: ['PC03', 'PC0306', 'PC030601'], // 카테고리 - 대분류, 소분류
           tag: 'TAG3', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 7500, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/diykitchen.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -2492,11 +2179,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 11900,
+        keyword: ['이불', '아이스', '냉감'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '오싹아이스 냉감 여름이불',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -2516,18 +2204,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: ['오션블루', '쿨그레이', '스노우크림'],
           size: ['ss', 'q'],
-          keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 19900, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/icebedding.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -2535,11 +2216,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 69800,
+        keyword: ['행거', '파티션'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '튼튼한 2단 파티션 행거',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -2559,18 +2241,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: ['화이트', '블랙', '그레이지'],
           size: [],
-          keyword: 'hangger', //키워드
           category: ['PC03', 'PC0307', 'PC030704'], // 카테고리 - 대분류, 소분류
           tag: 'TAG12', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 85000, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/partitionhangger.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -2578,11 +2253,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 8800,
+        keyword: ['정리함'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '투명한 칸막이 속옷정리함',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -2602,18 +2278,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: ['투명'],
           size: ['1칸', '8칸', '16칸'],
-          keyword: 'organizer', //키워드
           category: ['PC03', 'PC0307', 'PC030701'], // 카테고리 - 대분류, 소분류
           tag: 'TAG12', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 9900, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/partitionorganize.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -2621,11 +2290,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 44900,
+        keyword: ['커튼', '암막', '암막커튼'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '무타공 암막 커튼 세트',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -2645,18 +2315,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: ['화이트', '블랙'],
           size: [],
-          keyword: 'curtain', //키워드
           category: ['PC03', 'PC0304', 'PC030402'], // 카테고리 - 대분류, 소분류
           tag: 'TAG8', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 65900, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/darkcutton.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -2664,11 +2327,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 17010,
+        keyword: ['행거', '파이프'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '무너짐없는 파이프 행거',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -2688,18 +2352,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: [],
           size: ['1단', '2단'],
-          keyword: 'hangger', //키워드
           category: ['PC03', 'PC0307', 'PC030704'], // 카테고리 - 대분류, 소분류
           tag: 'TAG12', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 18900, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/pipehangger.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -2707,11 +2364,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 21900,
+        keyword: ['벌레', '벌레퇴치'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '아차거 날벌레 퇴치기',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -2731,18 +2389,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: [],
           size: [],
-          keyword: 'bug', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG12', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 49800, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/insect.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -2750,11 +2401,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 34900,
+        keyword: ['청소기', '무선청소기', '청소'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '원룸용 가벼운 무선청소기',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -2774,18 +2426,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: ['화이트', '블랙'],
           size: [],
-          keyword: 'TAG12', //키워드
           category: ['PC03', 'PC0305', 'PC030501'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 59800, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/oneroomvacuum.png`,
-            },
-          ],
           star: 4, //별점
         },
       },
@@ -2793,11 +2438,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 19900,
+        keyword: ['바디필로우', '오리', '냉감', '쿨링'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '냉감 오리 바디필로우',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -2817,18 +2463,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: [],
           size: [],
-          keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 49900, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/dockbody.png`,
-            },
-          ],
           star: 4, //별점
         },
       },
@@ -2836,11 +2475,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 19900,
+        keyword: ['우산꽂이', '우산', '자석'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '프랑코 자석 우산꽂이',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -2860,18 +2500,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: ['화이트', '그레이', '옐로우', '라벤더', '핑크'],
           size: [],
-          keyword: 'umbrealla_stand', //키워드
           category: ['PC03', 'PC0301', 'PC030101'], // 카테고리 - 대분류, 소분류
           tag: 'TAG11', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 35000, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/francoumbrella.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -2879,11 +2512,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 1400,
+        keyword: ['정리함', '신발정리'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '3단계 높이조절 슈즈렉',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -2903,18 +2537,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: [],
           size: [],
-          keyword: 'shoesrack', //키워드
           category: ['PC03', 'PC0307', 'PC030704'], // 카테고리 - 대분류, 소분류
           tag: 'TAG12', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 3900, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/shoesrack.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -2922,11 +2549,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 34900,
+        keyword: ['선반'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '타공수납 전자레인지 선반',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -2946,18 +2574,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: [],
           size: ['m', 'l'],
-          keyword: 'shelf', //키워드
           category: ['PC03', 'PC0307', 'PC030703'], // 카테고리 - 대분류, 소분류
           tag: 'TAG4', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 45000, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/microwavedesk.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -2965,11 +2586,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 47900,
+        keyword: ['책장', '북타워'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '지그재그 트리 북타워',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -2989,18 +2611,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: ['월넛', '우드'],
           size: ['100cm', '120cm', '139cm', '158cm'],
-          keyword: 'bookcase', //키워드
           category: ['PC03', 'PC0307', 'PC030703'], // 카테고리 - 대분류, 소분류
           tag: 'TAG9', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 60000, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/zigzagtree.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -3008,11 +2623,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 11900,
+        keyword: ['방충망', '자석', '벌레'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '셀프교체 자석 방충망',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -3032,18 +2648,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: [],
           size: ['50*80', '60*120', '100*120', '130*150', '150*200'],
-          keyword: 'bug', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG3', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 49000, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/insectscreen.png`,
-            },
-          ],
           star: 4, //별점
         },
       },
@@ -3051,11 +2660,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 15900,
+        keyword: ['방충망', '모기장', '자석', '벌레'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '현관문 자석 모기장',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -3075,18 +2685,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: ['블랙', '화이트'],
           size: ['90x210', '100x210', '120x210'],
-          keyword: 'insect', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG3', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 34900, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/doorinsect.png`,
-            },
-          ],
           star: 4, //별점
         },
       },
@@ -3094,11 +2697,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 43900,
+        keyword: ['파티션', '가벽'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '스트라이프 가벽 파티션',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -3118,18 +2722,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: ['화이트', '오크', '블랙'],
           size: ['310', '402', '494'],
-          keyword: 'partition', //키워드
           category: ['PC03', 'PC0307', 'PC030702'], // 카테고리 - 대분류, 소분류
           tag: 'TAG4', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 71900, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/stripepartition.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -3137,11 +2734,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 4500,
+        keyword: ['스위치', '스마트', '불끄기'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '자동 불끄기 스위치 커버',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -3161,18 +2759,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: [],
           size: [],
-          keyword: 'switch', //키워드
           category: ['PC03', 'PC0305', 'PC030503'], // 카테고리 - 대분류, 소분류
           tag: 'TAG10', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 4950, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/autoswitch.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -3180,11 +2771,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 59900,
+        keyword: ['파티션'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '매직 가림막 파티션',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -3204,18 +2796,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: ['블랙', '화이트'],
           size: [],
-          keyword: 'partition', //키워드
           category: ['PC03', 'PC0307', 'PC030702'], // 카테고리 - 대분류, 소분류
           tag: 'TAG4', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 97900, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/magicpartition.png`,
-            },
-          ],
           star: 4, //별점
         },
       },
@@ -3223,11 +2808,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 99000,
+        keyword: ['빔프로젝터', '프로젝터'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '블릭 미니 빔프로젝터',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -3247,18 +2833,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: [],
           size: [],
-          keyword: 'bim_project', //키워드
           category: ['PC03', 'PC0305', 'PC030506'], // 카테고리 - 대분류, 소분류
           tag: 'TAG10', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 250000, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/blikbimproject.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -3266,11 +2845,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 2700,
+        keyword: ['정리함'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '칸칸이 뚜껑 속옷정리함',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -3290,18 +2870,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: ['화이트', '스카이블루'],
           size: ['1칸', '10칸', '15칸'],
-          keyword: 'organizer', //키워드
           category: ['PC03', 'PC0307', 'PC030701'], // 카테고리 - 대분류, 소분류
           tag: 'TAG12', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 5200, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/kankan.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -3309,11 +2882,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 8900,
+        keyword: ['이불', '토퍼', '매트', '쿨링'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '썸머캔디 여름 침구 모음',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -3339,18 +2913,11 @@ export const initData = async (clientId, nextSeq) => {
             '피치캔디',
           ],
           size: ['s', 'q'],
-          keyword: 'bedding', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG6', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 14900, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/summercandy.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -3358,11 +2925,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 7500,
+        keyword: ['클로버', '식물'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '행운의 클로버 키우기',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -3382,18 +2950,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: [],
           size: [],
-          keyword: 'plant', //키워드
           category: ['PC03', 'PC0304', 'PC030403'], // 카테고리 - 대분류, 소분류
           tag: 'TAG3', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 10000, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/clover.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -3401,11 +2962,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 8900,
+        keyword: ['건조대'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '3단 집게 양말건조대',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -3425,18 +2987,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: [],
           size: [],
-          keyword: 'dryerstand', //키워드
           category: ['PC03', 'PC0307', 'PC030704'], // 카테고리 - 대분류, 소분류
           tag: 'TAG12', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 11900, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/socksdry.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -3444,11 +2999,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 8500,
+        keyword: ['벌레', '시나몬'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '벌레퇴치 시나몬스틱 세트',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -3468,18 +3024,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: [],
           size: [],
-          keyword: 'bug', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG3', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 9500, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/sinamonstick.png`,
-            },
-          ],
           star: 4, //별점
         },
       },
@@ -3487,11 +3036,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 17800,
+        keyword: ['그릇', '농담곰', '라면'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '농담곰 라면그릇 세트',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -3511,18 +3061,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: [],
           size: [],
-          keyword: 'bowl', //키워드
           category: ['PC03', 'PC0303', 'PC030302'], // 카테고리 - 대분류, 소분류
           tag: 'TAG7', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 19800, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/ramenset.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -3530,11 +3073,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 35900,
+        keyword: ['다리미', '스팀 다리미'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '2in1 강력 스팀 다리미',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -3554,18 +3098,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: [],
           size: [],
-          keyword: 'iron', //키워드
           category: ['PC03', 'PC0305', 'PC030503'], // 카테고리 - 대분류, 소분류
           tag: 'TAG11', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 59900, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/steamiron.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -3573,11 +3110,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 19900,
+        keyword: ['파자마', '잠옷', '쿨링'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '쿨터치 여름 파자마',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -3597,18 +3135,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: ['페어리 블루', '베이비 핑크', '쿨 네이비'],
           size: ['m', 'l', 'xl'],
-          keyword: 'night_wear', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG11', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 30000, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/cooltouch.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -3616,11 +3147,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 39400,
+        keyword: ['청소', '에어컨'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '셀프 에어컨청소 풀세트',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -3640,18 +3172,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: [],
           size: [],
-          keyword: 'cleaning', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG12', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 45030, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/airconCleankit.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -3659,11 +3184,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 21900,
+        keyword: ['스마트', '도어센서'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '스마트 알람 도어센서',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -3683,18 +3209,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: [],
           size: [],
-          keyword: 'door_sensor', //키워드
           category: ['PC03', 'PC0306', 'PC030603'], // 카테고리 - 대분류, 소분류
           tag: 'TAG10', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 24090, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/alarmdoor.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -3702,11 +3221,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 6900,
+        keyword: ['타일', '장판', 'diy'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '초간편 셀프시공 장판',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -3726,18 +3246,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: [],
           size: ['대진', 'kcc', 'lg', '진양'],
-          keyword: 'tile', //키워드
           category: ['PC03', 'PC0306', 'PC030601'], // 카테고리 - 대분류, 소분류
           tag: 'TAG3', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 8000, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/selftile.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -3745,11 +3258,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 29000,
+        keyword: ['도어스토퍼', '문걸이', '문'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '무타공 자동 도어스토퍼',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -3769,18 +3283,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: ['블랙', '화이트', '그린'],
           size: [],
-          keyword: 'door_stopper', //키워드
           category: ['PC03', 'PC0306', 'PC030603'], // 카테고리 - 대분류, 소분류
           tag: 'TAG11', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 58000, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/doorstopper.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -3788,11 +3295,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 84000,
+        keyword: ['데스크', '테이블', '식탁'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '원룸 화이트 식탁 모음',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -3812,18 +3320,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: ['화이트'],
           size: ['800x600', '1000x600', '1200x600', '1200x800'],
-          keyword: 'table', //키워드
           category: ['PC03', 'PC0302', 'PC030203'], // 카테고리 - 대분류, 소분류
           tag: 'TAG11', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 111000, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/oneroomwhite.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -3831,11 +3332,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 3900,
+        keyword: ['캔들', '초'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '미니 촛농 오브제캔들',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -3862,18 +3364,11 @@ export const initData = async (clientId, nextSeq) => {
             '핑크베이지',
           ],
           size: ['s', 'm'],
-          keyword: 'candle', //키워드
           category: ['PC03', 'PC0304', 'PC030401'], // 카테고리 - 대분류, 소분류
           tag: 'TAG9', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 7800, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/minicandle.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -3881,11 +3376,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 12900,
+        keyword: ['브러쉬', '떄수건', '등밀이', '셀프'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '셀프 등밀이 브러쉬',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -3905,18 +3401,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: [],
           size: [],
-          keyword: 'brush', //키워드
           category: ['PC03', 'PC0303', 'PC030303'], // 카테고리 - 대분류, 소분류
           tag: 'TAG1', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 24900, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/selfback.png`,
-            },
-          ],
           star: 4, //별점
         },
       },
@@ -3924,11 +3413,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 15900,
+        keyword: ['타일', '매트'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '뽀글이 조각 매트 10장',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -3948,18 +3438,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: ['화이트', '퍼플', '블루', '블랙', '그레이'],
           size: [],
-          keyword: 'tile', //키워드
           category: ['PC03', 'PC0306', 'PC030601'], // 카테고리 - 대분류, 소분류
           tag: 'TAG3', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 30000, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/bbogglemat.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -3967,11 +3450,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 45900,
+        keyword: ['데스크', '책상'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '히퍼 1인용 컴퓨터 책상',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -3991,18 +3475,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: ['블랙', '화이트'],
           size: ['800x400', '1000x400', '1000x600', '1200x400'],
-          keyword: 'desk', //키워드
           category: ['PC03', 'PC0302', 'PC030203'], // 카테고리 - 대분류, 소분류
           tag: 'TAG11', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 80000, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/hipperdesk.png`,
-            },
-          ],
           star: 4, //별점
         },
       },
@@ -4010,11 +3487,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 17800,
+        keyword: ['바디스프레이', '쿨링'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '1초 쿨링 바디스프레이',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -4034,18 +3512,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: [],
           size: [],
-          keyword: 'spray', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG3', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 18900, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/coolingbody.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -4053,11 +3524,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 12000,
+        keyword: ['파티션', '가림막'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '기름튐방지 투명 가림막',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -4077,18 +3549,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: ['투명'],
           size: ['40x30', '50x30'],
-          keyword: 'partition', //키워드
           category: ['PC03', 'PC0303', 'PC030302'], // 카테고리 - 대분류, 소분류
           tag: 'TAG4', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 20000, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/kitchenpartition.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -4096,11 +3561,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 7900,
+        keyword: ['거치대', '태블릿'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '집게형 태블릿 거치대',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -4120,18 +3586,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: ['화이트', '블랙'],
           size: [],
-          keyword: 'stand', //키워드
           category: ['PC03', 'PC0305', 'PC030502'], // 카테고리 - 대분류, 소분류
           tag: 'TAG11', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 19900, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/tabletstand.png`,
-            },
-          ],
           star: 4, //별점
         },
       },
@@ -4139,11 +3598,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 45900,
+        keyword: ['책상', '데스크', '테이블'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '철제 우드 H형 책상',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -4163,18 +3623,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: ['화이트', '블랙'],
           size: ['1000', '1200'],
-          keyword: 'desk', //키워드
           category: ['PC03', 'PC0302', 'PC030203'], // 카테고리 - 대분류, 소분류
           tag: 'TAG11', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 70900, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/steelwood.png`,
-            },
-          ],
           star: 4, //별점
         },
       },
@@ -4182,11 +3635,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 6500,
+        keyword: ['행거', '악세서리'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '헤어 악세사리 행거',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -4206,18 +3660,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: ['화이트'],
           size: ['가로', '세로'],
-          keyword: 'hangger', //키워드
           category: ['PC03', 'PC0307', 'PC030704'], // 카테고리 - 대분류, 소분류
           tag: 'TAG12', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 9900, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/hairhangger.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -4225,11 +3672,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 28900,
+        keyword: ['청소기', '청소'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '원룸용 미니 청소기 모음',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -4249,18 +3697,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: ['아이보리', '미드나잇블루', '그레이'],
           size: [],
-          keyword: 'vacuum', //키워드
           category: ['PC03', 'PC0305', 'PC030501'], // 카테고리 - 대분류, 소분류
           tag: 'TAG12', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 49500, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/minivacuum.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -4268,11 +3709,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 7200,
+        keyword: ['타일', '방음', '보드'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '한번에 방음 아트 보드',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -4292,18 +3734,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: ['그레이', '베이지', '블루'],
           size: [],
-          keyword: 'tile', //키워드
           category: ['PC03', 'PC0306', 'PC030601'], // 카테고리 - 대분류, 소분류
           tag: 'TAG5', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 8800, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/artboard.png`,
-            },
-          ],
           star: 4, //별점
         },
       },
@@ -4311,11 +3746,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 19900,
+        keyword: ['파자마', '잠옷', '쿨링'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '소프트 터치 여름 파자마',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -4335,18 +3771,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: ['스모키차콜', '더스티핑크', '딥네이비'],
           size: ['m', 'l', 'xl'],
-          keyword: 'night_wear', //키워드
           category: ['PC03', 'PC0301', 'PC030102'], // 카테고리 - 대분류, 소분류
           tag: 'TAG11', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 30000, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/softtouch.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -4354,11 +3783,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 26000,
+        keyword: ['거울'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '무타공 모던 거울',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -4378,18 +3808,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: ['블랙', '화이트', '골드'],
           size: ['40cm', '50cm', '60cm'],
-          keyword: 'mirror', //키워드
           category: ['PC03', 'PC0303', 'PC030303'], // 카테고리 - 대분류, 소분류
           tag: 'TAG1', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 28000, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/modernmirror.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -4397,11 +3820,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 17900,
+        keyword: ['거울', '전신거울'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '원목 수납 전신거울',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -4421,18 +3845,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: [],
           size: ['m', 'l'],
-          keyword: 'mirror', //키워드
           category: ['PC03', 'PC0304', 'PC030402'], // 카테고리 - 대분류, 소분류
           tag: 'TAG11', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 17900, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/woodmirror.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -4440,11 +3857,12 @@ export const initData = async (clientId, nextSeq) => {
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 39900,
+        keyword: ['커피머신', '커피'],
         shippingFees: 0,
         show: true,
         active: true,
         name: '모리츠 레트로 커피머신',
-        quantity: 320,
+        quantity: 900,
         buyQuantity: 310,
         mainImages: [
           {
@@ -4464,18 +3882,11 @@ export const initData = async (clientId, nextSeq) => {
           isBest: true,
           color: ['그린', '브라운'],
           size: [],
-          keyword: 'coffee_machine', //키워드
           category: ['PC03', 'PC0305', 'PC030505'], // 카테고리 - 대분류, 소분류
           tag: 'TAG2', //취향태그
           sort: 5,
           isLike: false, //찜하기
           originalPrice: 59000, //원가
-          detailimg: [
-            //세부 이미지
-            {
-              path: `/files/${clientId}/detail/coffee.png`,
-            },
-          ],
           star: 5, //별점
         },
       },
@@ -4674,32 +4085,28 @@ export const initData = async (clientId, nextSeq) => {
       //   _id: await nextSeq('cart'),
       //   user_id: 3,
       //   product_id: 1,
-      //   quantity: 2,
-      //   createdAt: getTime(-7, -60 * 30),
+      //   quantity: 900      //   createdAt: getTime(-7, -60 * 30),
       //   updatedAt: getTime(-7, -60 * 30),
       // },
       // {
       //   _id: await nextSeq('cart'),
       //   user_id: 4,
       //   product_id: 4,
-      //   quantity: 3,
-      //   createdAt: getTime(-7, -60 * 30),
+      //   quantity: 900      //   createdAt: getTime(-7, -60 * 30),
       //   updatedAt: getTime(-7, -60 * 30),
       // },
       // {
       //   _id: await nextSeq('cart'),
       //   user_id: 4,
       //   product_id: 15,
-      //   quantity: 3,
-      //   createdAt: getTime(-7, -60 * 30),
+      //   quantity: 900      //   createdAt: getTime(-7, -60 * 30),
       //   updatedAt: getTime(-7, -60 * 30),
       // },
       // {
       //   _id: await nextSeq('cart'),
       //   user_id: 4,
       //   product_id: 55,
-      //   quantity: 3,
-      //   createdAt: getTime(-7, -60 * 30),
+      //   quantity: 900      //   createdAt: getTime(-7, -60 * 30),
       //   updatedAt: getTime(-7, -60 * 30),
       // },
     ],

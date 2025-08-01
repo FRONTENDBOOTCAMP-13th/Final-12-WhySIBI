@@ -1,5 +1,5 @@
 //타임 스탬프 컴포넌트
-
+'use client';
 import { useEffect, useState } from 'react';
 
 //현재 Date() 00:00 처럼 나타내기

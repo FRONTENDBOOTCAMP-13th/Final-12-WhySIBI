@@ -11,8 +11,7 @@ export default function CommentDeleteForm({ reply }: { reply: PostReply }) {
   const { type, _id } = useParams();
   const [state, formAction, isLoading] = useActionState(deleteReply, null);
   const { user } = useUserStore();
-  console.log(state, isLoading);
-
+  
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     if (!window.confirm("정말 삭제하시겠습니까?")) event.preventDefault();
   };
@@ -23,6 +22,7 @@ export default function CommentDeleteForm({ reply }: { reply: PostReply }) {
       <input type="hidden" name="replyId" value={reply._id} />
       <input type="hidden" name="accessToken" value={user?.token?.accessToken ?? ''} />
       <ButtonNostyle type="submit" disabled={isLoading} ownerId={reply.user._id} needLogin>삭제</ButtonNostyle>
+      {state?.ok === 0 && <p className="text-red-500 mt-2">{state.message}</p>}
     </form>
   )
 }
