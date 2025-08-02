@@ -5,9 +5,11 @@ import StarBar from './Star_bar';
 import ReviewList from './Review_list';
 import { ProductReviewProps, Reply } from '@/types/shopping_detail';
 import Image from 'next/image';
+import { useRecommendStore } from '@/zustand/recommendStore';
 
 export default function ProductReview({ stars, replies }: ProductReviewProps) {
   const selectedStar = [...stars, '필터'];
+  const { recommendations } = useRecommendStore();
   const [active, setActive] = useState(false);
   const [selected, setSelected] = useState(selectedStar[5]);
   const [sortType, setSortType] = useState<
@@ -79,8 +81,14 @@ export default function ProductReview({ stars, replies }: ProductReviewProps) {
     return b.createdAt.localeCompare(a.createdAt);
   });
 
-  //------------------- 추천순 로직 정렬할 자리 -------------------
-  const recommendReview = [...replies].sort((a, b) => b.rating - a.rating);
+  //추천 정렬순으로 정렬
+  const recommendReview = [...replies].sort((a, b) => {
+    // Zustand에서 각 리뷰의 현재 추천 수 가져오기
+    const aRecommendCount = recommendations[a._id] ?? a.rating; // Zustand 값 or 초기값
+    const bRecommendCount = recommendations[b._id] ?? b.rating; // Zustand 값 or 초기값
+
+    return bRecommendCount - aRecommendCount; // 높은 수부터 정렬
+  });
 
   //sortType에 따라 filteredReplies에 필터링된걸 담아줌, 아직 추천순은 안해써염
   switch (sortType) {
