@@ -8,6 +8,7 @@ import CartPurchaseButton from './Cart_purchase_button';
 import useCartRefreshStore from '@/zustand/useCartRefreshStore';
 import CartAddressInput from './Cart_address_input';
 import CartListSkeleton from './skeleton/Cart_list_skeleton';
+import Link from 'next/link';
 
 export default function CartMain() {
   const { user } = useUserStore();
@@ -104,11 +105,12 @@ export default function CartMain() {
       <section className="h-72 flex flex-col justify-center items-center gap-3">
         <h3 className="font-bold text-2xl">장바구니에 담긴 상품이 없어요</h3>
         <p className="text-gray-550 pb-4">상품을 담아보세요</p>
-        <button
-          className={`box-border cursor-pointer bg-flame-250 w-[300px] h-[48px] text-white border-2 border-flame-250 rounded-sm font-bold`}
+        <Link
+          href="/shopping/best"
+          className={`box-border cursor-pointer bg-flame-250 w-[300px] h-[48px] text-white border-2 border-flame-250 rounded-sm font-bold flex items-center justify-center`}
         >
-          장바구니 채우러가기
-        </button>
+          <span>장바구니 채우러 가기</span>
+        </Link>
       </section>
     );
   }

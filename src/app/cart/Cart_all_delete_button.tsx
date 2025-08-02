@@ -35,10 +35,10 @@ export default function CartAllDeleteButton({
 
   return (
     <form action={formAction}>
-      <input name="token" value={token} hidden readOnly />
+      <input name="token" value={token || ''} hidden readOnly />
       <input
         name="checkedItems"
-        value={JSON.stringify(checkedItems)}
+        value={JSON.stringify(checkedItems || [])}
         // value={stringItems}
         hidden
         readOnly

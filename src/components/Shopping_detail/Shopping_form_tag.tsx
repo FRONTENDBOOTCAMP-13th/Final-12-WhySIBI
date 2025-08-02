@@ -23,6 +23,13 @@ export default function ShoppingFormTag({
     quantity: 1,
   });
 
+  // 이렇게 안하면 next 에러 나더라 ㅠ 언디파인드 일수도 있어서
+  const safeOption = {
+    size: option.size || '',
+    color: option.color || '',
+    quantity: option.quantity || 1,
+  };
+
   //사이즈
   function handleSizeChange(e: ChangeEvent<HTMLSelectElement>) {
     setOption({ ...option, size: e.target.value });
@@ -111,9 +118,9 @@ export default function ShoppingFormTag({
       {/* 구매 버튼 영역 */}
       <div className="pt-4 flex gap-3">
         {/* 장바구니 버튼 폼 */}
-        <ProductCartButton option={option} id={id} />
+        <ProductCartButton option={safeOption} id={id ?? ''} />
         {/* 구매버튼 폼 */}
-        <ProductPurchaseButton option={option} id={id} />
+        <ProductPurchaseButton option={safeOption} id={id ?? ''} />
       </div>
     </section>
   );

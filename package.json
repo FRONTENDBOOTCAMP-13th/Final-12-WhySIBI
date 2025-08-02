@@ -17,6 +17,7 @@
     "next": "15.3.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-hot-toast": "^2.5.2",
     "swiper": "^11.2.10",
     "zustand": "^5.0.6"
   },
