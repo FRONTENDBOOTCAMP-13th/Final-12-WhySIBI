@@ -11,7 +11,7 @@ interface TalkCardItemProps {
   post: Post;
   boardType?: string;
   posts?: Post[];
-  token: string;
+  token?: string;
 }
 
 export default function TalkDetail({ post, posts, token }: TalkCardItemProps) {
