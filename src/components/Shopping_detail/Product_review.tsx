@@ -280,6 +280,7 @@ export default function ProductReview({ stars, replies }: ProductReviewProps) {
           return (
             <ReviewList
               key={item._id}
+              id={item._id}
               stars={stars} //별점 1-5 들어있는 배열
               star={5 - item.extra.star} //별점 배열의 인덱스
               profile={item.user.image}
@@ -287,6 +288,7 @@ export default function ProductReview({ stars, replies }: ProductReviewProps) {
               content={item.content}
               image={item.extra.image?.path}
               createdAt={item.createdAt}
+              rating={item.rating}
             ></ReviewList>
           );
         })}
