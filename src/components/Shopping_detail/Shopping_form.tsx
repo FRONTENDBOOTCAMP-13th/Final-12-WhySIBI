@@ -36,7 +36,7 @@ export default function ShoppingForm({
     const result = await AddBookMark('product', token as string, Number(id));
 
     if (result.ok === 1) {
-      redirect(`/community/talk/${id}`);
+      redirect(`/products/${id}`);
     }
   };
 

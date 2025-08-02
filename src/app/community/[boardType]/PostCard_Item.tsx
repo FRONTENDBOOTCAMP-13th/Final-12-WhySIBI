@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Post } from '@/types';
-import { useBookmarkStore } from '@/zustand/bookMarkStore';
+// import { useBookmarkStore } from '@/zustand/bookMarkStore';
 import { AddBookMark, DeleteBookMark } from '@/data/actions/bookmark';
 import { redirect } from 'next/navigation';
 
@@ -10,8 +10,8 @@ interface PostCardItemProps {
   post: Post;
   boardType: string;
   index: number;
-  token: string;
-  bookmarkID: number;
+  token?: string;
+  bookmarkID?: number | undefined;
 }
 
 export default function PostCardItem({
@@ -21,8 +21,8 @@ export default function PostCardItem({
   token,
   bookmarkID,
 }: PostCardItemProps) {
-  const toggleBookmark = useBookmarkStore(state => state.toggleBookmark);
-  const isBookmarked = useBookmarkStore(state => state.isBookmarked(post._id));
+  // const toggleBookmark = useBookmarkStore(state => state.toggleBookmark);
+  // const isBookmarked = useBookmarkStore(state => state.isBookmarked(post._id));
   const _id = Number(post._id);
   const type = post.type;
   const getBookmarkType = (postType: string) => {

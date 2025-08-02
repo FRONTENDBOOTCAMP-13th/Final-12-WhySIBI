@@ -2,7 +2,7 @@
 import DetailSwiper from '@/components/Detail_posts/Detail_swiper';
 import Image from 'next/image';
 import { Post } from '@/types';
-import { useBookmarkStore } from '@/zustand/bookMarkStore';
+// import { useBookmarkStore } from '@/zustand/bookMarkStore';
 import getTimeAgo from '@/components/talk_list/time';
 import { AddBookMark, DeleteBookMark } from '@/data/actions/bookmark';
 import { redirect } from 'next/navigation';
@@ -11,8 +11,8 @@ interface PostDetailProps {
   token: string;
 }
 export default function PostDetail({ post, token }: PostDetailProps) {
-  const toggleBookmark = useBookmarkStore(state => state.toggleBookmark);
-  const isBookmarked = useBookmarkStore(state => state.isBookmarked(post._id));
+  // const toggleBookmark = useBookmarkStore(state => state.toggleBookmark);
+  // const isBookmarked = useBookmarkStore(state => state.isBookmarked(post._id));
   const _id = Number(post._id);
   const type = post.type;
 

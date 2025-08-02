@@ -68,7 +68,7 @@ function ShoppingProductsList({ token }: { token?: string | undefined }) {
     };
 
     productsList();
-  }, [sort, page, mainCategoryId, subCategoryId]);
+  }, [sort, page, mainCategoryId, subCategoryId, token]);
 
   console.log(productData);
   //상품 페이지네이션 핸들러

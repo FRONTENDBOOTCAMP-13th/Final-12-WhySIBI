@@ -4,12 +4,12 @@ import Image from 'next/image';
 
 type LikeBadgeProps = {
   isLiked?: boolean;
-  onClick: () => void;
+  onClick?: () => void;
   myBookmarkId: number | undefined;
   handleBookmark: () => void;
 };
 
-function LikeBadge({ onClick, myBookmarkId, handleBookmark }: LikeBadgeProps) {
+function LikeBadge({ myBookmarkId, handleBookmark }: LikeBadgeProps) {
   const handleLikeBadgeClick = (e: React.MouseEvent) => {
     e.preventDefault(); // Link의 기본 동작 방지
     e.stopPropagation(); // 이벤트 버블링 방지

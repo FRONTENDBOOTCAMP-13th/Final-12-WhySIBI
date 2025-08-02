@@ -43,7 +43,7 @@ export default function BookMarkList({
       }
     };
     getData();
-  }, []);
+  }, [resPost,resProduct]);
 
   const onePage = 16; //한 페이지에 보여줄 상품 수
   const totalPage = Math.max(
