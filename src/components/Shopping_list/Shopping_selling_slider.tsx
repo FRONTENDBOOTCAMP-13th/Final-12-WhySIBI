@@ -16,7 +16,7 @@ import { getProductList } from '@/data/actions/products.fetch';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-function ShoppingSellingSlider() {
+function ShoppingSellingSlider({ token }: { token?: string | undefined }) {
   // const { mainCategoryId } = useMenuStore(); //나중에 메인카테 ID 별 상품 불러와서 연동하기
 
   SwiperCore.use([Navigation, Scrollbar]);
@@ -26,7 +26,7 @@ function ShoppingSellingSlider() {
   useEffect(() => {
     const sliceProducts = async () => {
       try {
-        const res = await getProductList();
+        const res = await getProductList({}, token);
         if (res.ok === 1) {
           setSlideData(res.item.slice(0, 5)); //5개만 가져오기
         } else {
@@ -74,6 +74,9 @@ function ShoppingSellingSlider() {
                   reviewCount={100} //리뷰카운트 계산예정
                   isLiked={product.extra?.isLike ? true : false}
                   onClick={() => {}}
+                  myBookmarkId={product.myBookmarkId}
+                  token={token}
+                  type={'product'}
                 />
               </SwiperSlide>
             );
