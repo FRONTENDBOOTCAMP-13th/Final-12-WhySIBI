@@ -1,6 +1,7 @@
 'use client';
 
 import { createInquiryAction } from '@/data/actions/create_inquiry_action';
+import useUserStore from '@/zustand/useUserStore';
 import { useActionState, useEffect, useRef, useState } from 'react';
 
 export default function ButtonQuestion({
@@ -12,6 +13,9 @@ export default function ButtonQuestion({
 }) {
   const [modal, setModal] = useState(false);
   const dialogRef = useRef<HTMLDialogElement>(null);
+
+  const { user } = useUserStore();
+  const token = user?.token?.accessToken || '';
 
   const openModal = () => {
     if (dialogRef.current) {
@@ -78,7 +82,8 @@ export default function ButtonQuestion({
           className="bg-white w-150 h-185 p-10 rounded-md"
         >
           {/* 페이지 번호를 서버액션으로 넘겨주기 위한 히든 인풋 */}
-          <input name="id" value={id} hidden readOnly />
+          <input name="id" value={id || ''} hidden readOnly />
+          <input name="token" value={token || ''} hidden readOnly />
           <h3 className="text-xl font-bold pb-10">상품 문의하기</h3>
           <dl className="flex mb-12 border-b-1 pb-3 border-gray-150">
             <dt className="font-bold w-20 text-start">상품</dt>

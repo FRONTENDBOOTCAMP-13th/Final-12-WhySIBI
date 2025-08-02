@@ -96,7 +96,7 @@ export default function ProductPurchaseButton({
 
   useEffect(() => {
     if (state && state.status === false) {
-      alert(state.error);
+      toast.error(state.error);
     } else if (state && state.status === true) {
       showSuccessToast();
     }
