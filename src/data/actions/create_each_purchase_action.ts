@@ -23,7 +23,6 @@ export async function createEachPurchaseAction(
   }
   const product = JSON.parse(stringProduct);
 
-  console.log('내가 문제야?', product);
   try {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/orders/`, {
       method: 'POST',

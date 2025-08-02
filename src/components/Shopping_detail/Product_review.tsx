@@ -80,6 +80,7 @@ export default function ProductReview({ stars, replies }: ProductReviewProps) {
   });
 
   //------------------- 추천순 로직 정렬할 자리 -------------------
+  const recommendReview = [...replies].sort((a, b) => b.rating - a.rating);
 
   //sortType에 따라 filteredReplies에 필터링된걸 담아줌, 아직 추천순은 안해써염
   switch (sortType) {
@@ -91,10 +92,10 @@ export default function ProductReview({ stars, replies }: ProductReviewProps) {
       break;
     case 'recommend':
       //나중에 추천순 로직 넣을자리
-      filteredReplies = [...replies];
+      filteredReplies = recommendReview;
       break;
     default:
-      filteredReplies = [...replies];
+      filteredReplies = recommendReview;
   }
 
   //별점 필터
@@ -137,7 +138,7 @@ export default function ProductReview({ stars, replies }: ProductReviewProps) {
         </h3>
         <div className="flex  items-center gap-8">
           <button
-            className={`cursor-pointer ${sortType === 'recommend' ? 'font-extrabold' : ''}`}
+            className={`cursor-pointer ${sortType === 'recommend' || sortType === 'none' ? 'font-extrabold' : ''}`}
             onClick={() => {
               setSortType(sortType === 'recommend' ? 'none' : 'recommend');
             }}
