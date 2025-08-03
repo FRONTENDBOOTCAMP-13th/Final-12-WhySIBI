@@ -1,11 +1,6 @@
 @import 'tailwindcss';
 @import '../../public/font/font.css';
 
-html,
-body {
-  overflow-x: hidden;
-}
-
 @theme {
   /* ==============================
        🖋 Fonts
