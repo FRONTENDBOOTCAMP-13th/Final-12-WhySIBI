@@ -2,6 +2,26 @@ import Header from '@/components/_common/Header';
 import './globals.css';
 import Footer from '@/components/_common/Footer';
 import { Toaster } from 'react-hot-toast';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: '나혼자산다',
+  description: '자취생을 위한 든든한 가게 나혼자산다 입니다.',
+  icons: {
+    icon: [
+      {
+        media: '(prefers-color-scheme: light)',
+        url: '/image/favicon-light.ico',
+        type: 'image/ico',
+      },
+      {
+        media: '(prefers-color-scheme: dark)',
+        url: '/image/favicon-dark.ico',
+        type: 'image/ico',
+      },
+    ],
+  },
+};
 
 export default function RootLayout({
   children,
