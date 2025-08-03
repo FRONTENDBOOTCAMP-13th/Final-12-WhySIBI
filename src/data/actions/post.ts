@@ -36,7 +36,8 @@ export async function createPost(
 
   const accessToken = formData.get('accessToken') as string;
   const subject = JSON.parse(formData.get('subject') as string);
-  const extra = { subject };
+  const products = formData.getAll('products').map((id) => Number(id));
+  const extra = { subject, products };
   const body = { type, title, content, image, tag, accessToken, extra };
 
   try {

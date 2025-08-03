@@ -12,6 +12,7 @@ interface PostCardItemProps {
   index: number;
   token?: string;
   bookmarkID?: number | undefined;
+  isHot?: boolean;
 }
 
 export default function PostCardItem({
@@ -20,6 +21,7 @@ export default function PostCardItem({
   index,
   token,
   bookmarkID,
+  isHot = false
 }: PostCardItemProps) {
   // const toggleBookmark = useBookmarkStore(state => state.toggleBookmark);
   // const isBookmarked = useBookmarkStore(state => state.isBookmarked(post._id));
@@ -76,6 +78,9 @@ export default function PostCardItem({
         href={`/community/${boardType}/${post._id}`}
         className="flex flex-col items-center w-full"
       >
+        {isHot && (
+            <Image src='/image/community_icon/hotIcon.svg' alt="인기게시글" width={40} height={40} className="absolute top-3 right-4 z-10"></Image>
+        )}
         <div className="relative w-[300px] h-[190px] mb-3">
           <Image
             src={post.image?.[0] || '/image/room_photo/postThumbnail.svg'}

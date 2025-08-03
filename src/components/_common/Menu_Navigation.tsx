@@ -1,5 +1,6 @@
 'use client';
 import Categroy from '@/components/_common/category';
+import ProductSearchButton from '@/components/product_search/product_search_button';
 import useMenuStore from '@/zustand/menuStore';
 import useUserStore from '@/zustand/useUserStore';
 import Image from 'next/image';
@@ -88,7 +89,7 @@ function MenuNavigation() {
             className={`w-[9.375rem] h-[4.375rem] p-3.5 pb-0 mt-3 overflow-hidden  active:bg-white rounded-t-4xl ${isListMenuActive('/csCenter')} `}
           >
             <Link
-              href={''}
+              href={'/service'}
               className={`block text-button-color w-full h-full  active:text-menu-text ${isAnchorMenuActive('/csCenter')}`}
               onClick={() => handleMenuClick('csCenter')}
             >
@@ -113,17 +114,10 @@ function MenuNavigation() {
         </ul>
 
         <div className="header_bottom_icons flex flex-wrap  items-center  gap-11 mr-7">
-          <div className="search_area h-8">
-            <button type="button">
-              <Image
-                src={'/image/header_icon/search_icon.svg'}
-                alt="검색아이콘"
-                width={'30'}
-                height={'30'}
-              ></Image>
-            </button>
-          </div>
-          <Link href={'/cart'}>
+
+          <ProductSearchButton />
+          <Link href={''}>
+
             <Image
               src={'/image/header_icon/shopping_cart_icon.svg'}
               alt="장바구니아이콘"

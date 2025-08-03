@@ -12,12 +12,15 @@ import ContentInput from '../../../../components/Write_posts/Content_input';
 import ImageUploader from '../../../../components/Write_posts/Image_uploader';
 import ButtonRounded from '../../../../components/Buttons/Button_rounded';
 import SubjectCategorySelect from '@/components/Write_posts/subject_category_select';
+import TagProductModal from './TagProductModal';
+import { Product } from '@/types';
 
 interface RegistFormProps {
   boardType: string;
+  productList: Product[];
 }
 
-export default function RegistForm({ boardType }: RegistFormProps) {
+export default function RegistForm({ boardType, productList }: RegistFormProps) {
   const [state, formAction, isLoading] = useActionState(createPost, null);
   const router = useRouter();
   const { user } = useUserStore();
@@ -35,6 +38,10 @@ export default function RegistForm({ boardType }: RegistFormProps) {
   const [tag, setTag] = useState<{ [key: string]: string }>({});
   const [subjectTag, setSubjectTag] = useState<{ [key: string]: string }>({});
   const [image, setImage] = useState<string[]>([]);
+
+  // 상품 태그 모달 열기
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedProducts, setSelectedProducts] = useState<Product[]>([]);
 
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -88,11 +95,10 @@ export default function RegistForm({ boardType }: RegistFormProps) {
             <input type="hidden" name="title" value={title} />
             <input type="hidden" name="content" value={content} />
             <input type="hidden" name="image" value={JSON.stringify(image)} />
-            <input
-              type="hidden"
-              name="tag"
-              value={JSON.stringify(Object.values(tag))}
-            />
+            <input type="hidden"  name="tag" value={JSON.stringify(Object.values(tag))} />
+            {selectedProducts.map((product) => ( 
+            <input key={product._id} type="hidden" name="products"  value={product._id} />
+            ))}
             <input type="hidden" name="type" value={boardType} />{' '}
             {/* 게시판 구분용 */}
             <input
@@ -105,6 +111,7 @@ export default function RegistForm({ boardType }: RegistFormProps) {
                 text="상품 태그"
                 background="bg-vanilla-200"
                 hover="hover:bg-vanilla-100"
+                event={() => setIsModalOpen(true)}
               ></ButtonRounded>
               <ButtonRounded
                 text={isLoading ? '등록 중...' : '발행신청'}
@@ -112,6 +119,9 @@ export default function RegistForm({ boardType }: RegistFormProps) {
                 animate="btn-gradient"
                 event={postPublish}
               ></ButtonRounded>
+              {isModalOpen && (
+                <TagProductModal onClose={() => setIsModalOpen(false)} productList={productList} selected={selectedProducts} setSelected={setSelectedProducts}></TagProductModal>
+               )}
             </div>
             {state?.ok === 0 && (
               <p className="text-red-500 mt-3">{state.message}</p>

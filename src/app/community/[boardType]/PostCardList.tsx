@@ -20,6 +20,7 @@ export default function PostCardList({
   const [posts, setPosts] = useState<Post[]>([]);
   const [sortType, setSortType] = useState('high-view');
 
+  // 필터링
   useEffect(() => {
     const sorted = [...initialPosts];
     if (sortType === 'high-view') {
@@ -58,6 +59,7 @@ export default function PostCardList({
             boardType={boardType}
             token={token}
             bookmarkID={post?.myBookmarkId}
+            isHot={sortType === 'high-view' && index < 3
           />
         ))}
       </div>

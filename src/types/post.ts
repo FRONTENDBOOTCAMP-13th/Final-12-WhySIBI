@@ -62,6 +62,7 @@ export interface Post {
   tag?: string[];
   extra?: {
     subject: string[];
+    products?: number[];
   };
   myBookmarkId?: number;
 }
@@ -110,6 +111,7 @@ export type PostForm = Partial<
 > & {
   // 게시글 태그
   tag?: string[];
+  products?: number[];
 };
 
 /**

@@ -13,6 +13,7 @@ import DeleteForm from './DeleteForm';
 import { ButtonNostyle } from '@/components/Buttons/Button_nostyle';
 import TalkDetail from '@/components/talk_detail/talk_detail';
 import { cookies } from 'next/headers';
+import { getProductList } from '@/data/actions/products.fetch';
 
 function isError<T>(res: ApiRes<T>): res is { ok: 0; message: string } {
   return res.ok === 0;
@@ -28,9 +29,12 @@ interface InfoPageProps {
 export default async function DetailPage({ params }: InfoPageProps) {
   const token = (await cookies()).get('accessToken');
   const { boardType, _id } = await params;
+
   const post = await getPost(Number(_id), token?.value as string);
   const posts = await getPosts(String(_id));
   const repliesRes = await getReplies(Number(_id));
+  const allProducts = await getProductList();
+
 
   const repliesCount =
     repliesRes.ok === 1 && Array.isArray(repliesRes.item)
@@ -41,6 +45,22 @@ export default async function DetailPage({ params }: InfoPageProps) {
     return <div>{post.message || '게시글을 불러올 수 없습니다.'}</div>;
   }
 
+
+const productIds = Array.isArray(post.item.extra?.products)
+  ? post.item.extra.products.map(String)
+  : [];
+  
+  const filteredProducts =
+    allProducts.ok === 1
+      ? allProducts.item.filter((product) =>
+          productIds.includes(product._id.toString())
+        )
+      : [];
+
+      console.log('productIds:', productIds);
+console.log('filteredProducts:', filteredProducts);
+
+  
   if (boardType === 'showRoom') {
     return (
       <div className="wrapper flex flex-col justify-center items-center bg-white p-20 font-variable">
@@ -61,6 +81,8 @@ export default async function DetailPage({ params }: InfoPageProps) {
         </div>
         <PostDetail post={post.item} token={token?.value as string} />
         <DetailSimilar></DetailSimilar>
+        <PostDetail post={post.item} />
+        <DetailSimilar products={filteredProducts}></DetailSimilar>
         <DetailOther _id={_id}></DetailOther>
         <CommentNew _id={_id} repliesCount={repliesCount}></CommentNew>
         <CommentList _id={_id}></CommentList>

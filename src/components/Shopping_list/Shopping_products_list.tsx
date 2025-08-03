@@ -2,6 +2,7 @@
 import DropdownShoppingList from '@/components/Shopping_list/Dropdown_shopping_list';
 import Pagenation from '@/components/basic_component/Pagenation';
 import ProductCard from '@/components/product_component/product_card';
+import SkeletonUI from '@/components/product_component/skeleton_ui';
 import { getProductList } from '@/data/actions/products.fetch';
 import { ProductListProps } from '@/types';
 import useMenuStore from '@/zustand/menuStore';
@@ -25,6 +26,7 @@ function ShoppingProductsList({ token }: { token?: string | undefined }) {
   >('latest'); //신상품 기본필터
   const { mainCategoryId, subCategoryId, handleMenuClick } = useMenuStore(); //zustand 에서 카테고리 상태 가져옴
   const params = useParams();
+  const [loading, setLoading] = useState(true);
 
   //주소에서 카테고리 값 가져오기
   useEffect(() => {
@@ -64,6 +66,8 @@ function ShoppingProductsList({ token }: { token?: string | undefined }) {
         }
       } catch (err) {
         console.error('상품을 불러오지 못했습니다.', err);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -86,10 +90,14 @@ function ShoppingProductsList({ token }: { token?: string | undefined }) {
         className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4
        items-center"
       >
-        {productData.map(product => {
-          const discount = product?.extra?.originalPrice
-            ? `${Math.round(100 - (product.price * 100) / product.extra.originalPrice)}%`
-            : ''; //할인율
+
+        {loading ? (
+          <SkeletonUI count={12} />
+        ) : (
+          productData.map(product => {
+            const discount = product?.extra?.originalPrice
+              ? `${Math.round(100 - (product.price * 100) / product.extra.originalPrice)}%`
+              : ''; //할인율
           return (
             <ProductCard
               id={product._id}
