@@ -62,7 +62,7 @@ export interface Post {
   tag?: string[];
   extra?: {
     subject: string[];
-    products: number[];
+    products?: number[];
   };
   myBookmarkId?: number;
 }

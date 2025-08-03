@@ -12,18 +12,17 @@ interface CommentNewProps {
 export default function CommentNew({ _id, repliesCount }: CommentNewProps) {
   const [state, formAction, isLoading] = useActionState(createReply, null);
   const { user } = useUserStore();
-
-  const [mention, setMention] = useState<string | null>(null);
   const [inputValue, setInputValue] = useState('');
   const [localError, setLocalError] = useState<string | null>(null);
 
-
   useEffect(() => {
-    const handler = (e: any) => {
+    const handler = (e: Event) => {
       if (!user) return;
 
-      if (typeof e.detail === 'string') {
-        const mentionTag = `@${e.detail} `;
+      const customEvent = e as CustomEvent<string>;
+
+      if (typeof customEvent.detail === 'string') {
+        const mentionTag = `@${customEvent.detail} `;
 
         // 기존 mention을 제거하고 새 mention으로 시작
         const withoutOldMention = inputValue.replace(/^@\S+\s/, '');
@@ -40,7 +39,6 @@ export default function CommentNew({ _id, repliesCount }: CommentNewProps) {
       setLocalError(state.errors.content.msg);
     }
   }, [state]);
-
   
   // 태그 한번에 지우기
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
