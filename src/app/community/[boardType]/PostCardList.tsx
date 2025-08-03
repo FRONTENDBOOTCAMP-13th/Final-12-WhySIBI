@@ -15,6 +15,7 @@ export default function PostCardList({ boardType, posts: initialPosts }: PostCar
   const [posts, setPosts] = useState<Post[]>([]);
   const [sortType, setSortType] = useState('high-view');
 
+  // 필터링
   useEffect(() => {
     const sorted = [...initialPosts];
     if (sortType === 'high-view') {
@@ -43,7 +44,7 @@ export default function PostCardList({ boardType, posts: initialPosts }: PostCar
 
       <div className="grid grid-flow-row grid-cols-[repeat(auto-fill,_300px)] gap-x-10 lg:gap-x-20 gap-y-8 font-variable justify-center items-center">
         {posts.map((post, index) => (
-          <PostCardItem key={post._id} post={post} index={index} boardType={boardType} />
+          <PostCardItem key={post._id} post={post} index={index} boardType={boardType} isHot={sortType === 'high-view' && index < 3}/>
         ))}
       </div>
     </div>
