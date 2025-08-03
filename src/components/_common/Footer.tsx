@@ -39,11 +39,10 @@ export default function Footer() {
         </section>
         <section className="footer_right text-right">
           <Link
-            href={''}
+            href={'/service'}
             className="font-logo text-size-lg bg-button-color pl-3.5 pr-3.5 pt-3 pb-3 text-vanilla-300 rounded-full text-right"
           >
-            {' '}
-            고객센터 &gt;{' '}
+            고객센터 &gt;
           </Link>
           <p className="text-[#767676] text-[14px] mt-7">
             전체 문의 상담 : 평일
