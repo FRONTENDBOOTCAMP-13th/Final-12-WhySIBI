@@ -8,7 +8,7 @@ import 'swiper/css/pagination';
 import { Navigation, Scrollbar } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import ProductCard from '@/components/product_component/product_card';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { ProductListProps } from '@/types';
 import { getProductList } from '@/data/actions/products.fetch';
 import SkeletonUI from '@/components/product_component/skeleton_ui';
@@ -23,25 +23,43 @@ function ShoppingSellingSlider({ token }: { token?: string | undefined }) {
   const [slideData, setSlideData] = useState<ProductListProps[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const sliceProducts = async () => {
-      try {
-        const res = await getProductList({}, token);
-        if (res.ok === 1) {
-          setSlideData(res.item.slice(0, 5)); //5개만 가져오기
-        } else {
-          console.error(res.message);
-        }
-      } catch (err) {
-        console.error('상품을 불러오지 못했습니다.', err);
-      } finally {
-        setLoading(false);
-      }
-    };
+  // useEffect(() => {
+  //   const sliceProducts = async () => {
+  //     try {
+  //       const res = await getProductList({}, token);
+  //       if (res.ok === 1) {
+  //         setSlideData(res.item.slice(0, 5)); //5개만 가져오기
+  //       } else {
+  //         console.error(res.message);
+  //       }
+  //     } catch (err) {
+  //       console.error('상품을 불러오지 못했습니다.', err);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
 
-    sliceProducts();
+  //   sliceProducts();
+  // }, [token]);
+  const sliceProducts = useCallback(async () => {
+    try {
+      setLoading(true); // 로딩 상태 추가
+      const res = await getProductList({}, token);
+      if (res.ok === 1) {
+        setSlideData(res.item.slice(0, 5)); //5개만 가져오기
+      } else {
+        console.error(res.message);
+      }
+    } catch (err) {
+      console.error('상품을 불러오지 못했습니다.', err);
+    } finally {
+      setLoading(false);
+    }
   }, [token]);
 
+  useEffect(() => {
+    sliceProducts();
+  }, [sliceProducts]);
   return (
     <>
       <div className="product-swiper">
@@ -84,6 +102,7 @@ function ShoppingSellingSlider({ token }: { token?: string | undefined }) {
                     myBookmarkId={product.myBookmarkId}
                     token={token}
                     type={'product'}
+                    UpdateProductState={sliceProducts}
                   />
                 </SwiperSlide>
               );

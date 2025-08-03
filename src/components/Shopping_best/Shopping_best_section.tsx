@@ -166,6 +166,7 @@ function ShoppingBestSection({ token }: { token: string | undefined }) {
                   myBookmarkId={product.myBookmarkId}
                   token={token}
                   type={'product'}
+                  UpdateProductState={fetchProducts}
                 />
               );
             })
