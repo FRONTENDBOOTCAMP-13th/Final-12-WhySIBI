@@ -8,7 +8,7 @@ import PreferenceTagMap from '@/utils/preferenceTagMap';
 import useUserStore from '@/zustand/useUserStore';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Scrollbar } from 'swiper/modules';
 import 'swiper/css';
@@ -37,26 +37,45 @@ function RecommendBox({ token }: { token?: string | undefined }) {
   };
 
   //상품 불러오기
-  useEffect(() => {
-    const productsList = async () => {
-      try {
-        const res = await getProductList({}, token);
-        if (res.ok === 1) {
-          // console.log(res.item);
-          setProductData(res.item);
-        } else {
-          console.error(res.message);
-        }
-      } catch (err) {
-        console.error('상품을 불러오지 못했습니다.', err);
-      } finally {
-        setLoading(false);
-      }
-    };
+  // useEffect(() => {
+  //   const productsList = async () => {
+  //     try {
+  //       const res = await getProductList({}, token);
+  //       if (res.ok === 1) {
+  //         // console.log(res.item);
+  //         setProductData(res.item);
+  //       } else {
+  //         console.error(res.message);
+  //       }
+  //     } catch (err) {
+  //       console.error('상품을 불러오지 못했습니다.', err);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
 
-    productsList();
+  //   productsList();
+  // }, [token]);
+  const productsList = useCallback(async () => {
+    try {
+      setLoading(true); // 로딩 상태 추가
+      const res = await getProductList({}, token);
+      if (res.ok === 1) {
+        // console.log(res.item);
+        setProductData(res.item);
+      } else {
+        console.error(res.message);
+      }
+    } catch (err) {
+      console.error('상품을 불러오지 못했습니다.', err);
+    } finally {
+      setLoading(false);
+    }
   }, [token]);
 
+  useEffect(() => {
+    productsList();
+  }, [productsList]);
   return (
     <>
       {user ? ( //회원이면
@@ -107,6 +126,7 @@ function RecommendBox({ token }: { token?: string | undefined }) {
                         myBookmarkId={product.myBookmarkId}
                         token={token}
                         type={'product'}
+                        UpdateProductState={productsList}
                       />
                     );
                   })

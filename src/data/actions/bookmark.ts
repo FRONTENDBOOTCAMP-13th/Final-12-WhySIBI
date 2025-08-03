@@ -65,6 +65,7 @@ export async function AddBookMark(
         'Content-Type': 'application/json',
         'Client-Id': CLIENT_ID,
       },
+      cache: 'no-cache',
       body: JSON.stringify(body),
     });
     const data = await res.json();
@@ -88,8 +89,9 @@ export async function DeleteBookMark(
         'Content-Type': 'application/json',
         'Client-Id': CLIENT_ID,
       },
+      cache: 'no-cache',
       body: JSON.stringify({
-        target_id: _id, // 또는 다른 값이 필요할 수도
+        target_id: _id,
       }),
     });
     const data = await res.json();
