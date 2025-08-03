@@ -80,8 +80,6 @@ console.log('filteredProducts:', filteredProducts);
           </div>
         </div>
         <PostDetail post={post.item} token={token?.value as string} />
-        <DetailSimilar></DetailSimilar>
-        <PostDetail post={post.item} />
         <DetailSimilar products={filteredProducts}></DetailSimilar>
         <DetailOther _id={_id}></DetailOther>
         <CommentNew _id={_id} repliesCount={repliesCount}></CommentNew>
