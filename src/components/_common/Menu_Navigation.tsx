@@ -88,7 +88,7 @@ function MenuNavigation() {
             className={`w-[9.375rem] h-[4.375rem] p-3.5 pb-0 mt-3 overflow-hidden  active:bg-white rounded-t-4xl ${isListMenuActive('/csCenter')} `}
           >
             <Link
-              href={''}
+              href={'/service'}
               className={`block text-button-color w-full h-full  active:text-menu-text ${isAnchorMenuActive('/csCenter')}`}
               onClick={() => handleMenuClick('csCenter')}
             >
