@@ -7,9 +7,10 @@ import useUserStore from '@/zustand/useUserStore';
 interface CommentNewProps {
     _id: number;
   repliesCount: number;
+  onSuccess: () => void;
 }
 
-export default function CommentNew({ _id, repliesCount }: CommentNewProps) {
+export default function CommentNew({ _id, repliesCount, onSuccess }: CommentNewProps) {
   const [state, formAction, isLoading] = useActionState(createReply, null);
   const { user } = useUserStore();
   const [inputValue, setInputValue] = useState('');
@@ -35,10 +36,15 @@ export default function CommentNew({ _id, repliesCount }: CommentNewProps) {
   }, [user, inputValue]);
 
   useEffect(() => {
-    if (state?.ok === 0 && state.errors?.content?.msg) {
-      setLocalError(state.errors.content.msg);
-    }
-  }, [state]);
+      if (state?.ok === 1) {
+        setInputValue('');
+        setLocalError(null);
+        onSuccess(); // ✅ 댓글 목록 다시 요청
+      }
+      if (state?.ok === 0 && state.errors?.content?.msg) {
+        setLocalError(state.errors.content.msg);
+      }
+    }, [state]);
   
   // 태그 한번에 지우기
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -100,7 +106,7 @@ export default function CommentNew({ _id, repliesCount }: CommentNewProps) {
             type="submit"
             className="bg-columbia-blue-200 w-15 h-7 font-semibold border-1 rounded-full text-[12px] cursor-pointer ml-3 hover:bg-livealone-columbia-blue"
           >
-            저장
+            {isLoading ? '로딩..' : '저장'}
           </button>
         </form>
       </div>
