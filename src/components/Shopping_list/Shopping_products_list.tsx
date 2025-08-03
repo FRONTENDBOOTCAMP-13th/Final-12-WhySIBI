@@ -87,10 +87,8 @@ function ShoppingProductsList({ token }: { token?: string | undefined }) {
         <DropdownShoppingList value={sort} onDropChange={setSort} />
       </div>
       <div
-        className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4
-       items-center"
+        className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 items-center"
       >
-
         {loading ? (
           <SkeletonUI count={12} />
         ) : (
@@ -98,24 +96,25 @@ function ShoppingProductsList({ token }: { token?: string | undefined }) {
             const discount = product?.extra?.originalPrice
               ? `${Math.round(100 - (product.price * 100) / product.extra.originalPrice)}%`
               : ''; //할인율
-          return (
-            <ProductCard
-              id={product._id}
-              key={product._id}
-              name={product.name}
-              imageUrl={`${API_URL}/${product.mainImages[0]?.path}`}
-              price={`${product.price.toLocaleString()}원`}
-              discount={discount}
-              rating={product.extra?.star ? product.extra?.star : 0}
-              reviewCount={product?.replies}
-              isLiked={product.extra?.isLike ? true : false}
-              onClick={() => {}}
-              myBookmarkId={product.myBookmarkId}
-              token={token}
-              type={'product'}
-            />
-          );
-        })}
+            return (
+              <ProductCard
+                id={product._id}
+                key={product._id}
+                name={product.name}
+                imageUrl={`${API_URL}/${product.mainImages[0]?.path}`}
+                price={`${product.price.toLocaleString()}원`}
+                discount={discount}
+                rating={product.extra?.star ? product.extra?.star : 0}
+                reviewCount={product?.replies}
+                isLiked={product.extra?.isLike ? true : false}
+                onClick={() => {}}
+                myBookmarkId={product.myBookmarkId}
+                token={token}
+                type={'product'}
+              />
+            );
+          })
+        )}
       </div>
       <Pagenation
         page={page}

@@ -59,7 +59,7 @@ export default function PostCardList({
             boardType={boardType}
             token={token}
             bookmarkID={post?.myBookmarkId}
-            isHot={sortType === 'high-view' && index < 3
+            isHot={sortType === 'high-view' && index < 3}
           />
         ))}
       </div>
