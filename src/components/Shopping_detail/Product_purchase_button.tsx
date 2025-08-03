@@ -1,44 +1,38 @@
 'use client';
 
-import { createPurchaseAction } from '@/data/actions/create_purchase_action';
-import { CartData } from '@/types/cart';
-import useCartRefreshStore from '@/zustand/useCartRefreshStore';
+import { createEachPurchaseAction } from '@/data/actions/create_each_purchase_action';
+import { ProductButtonProps } from '@/types/shopping_detail';
 import useUserStore from '@/zustand/useUserStore';
 import { useRouter } from 'next/navigation';
 import { useActionState, useCallback, useEffect } from 'react';
 import toast from 'react-hot-toast';
 
-export default function CartPurchaseButton({
-  price,
-  cartData,
-}: {
-  price: number | undefined;
-  cartData: CartData | null;
-}) {
-  const { user } = useUserStore();
-  const token = user?.token?.accessToken;
-  console.log('이게 카트데이터야', cartData);
-  const { triggerRefresh } = useCartRefreshStore();
-  // 구매 서버액션에 넘겨줄 상품 목록배열
-  const products =
-    cartData?.item.map(item => ({
-      _id: item.product_id,
-      quantity: item.quantity,
-      color: item.color,
-      size: item.size,
-    })) || [];
-
-  // 초기 상태 정의
+export default function ProductPurchaseButton({
+  option,
+  id,
+}: ProductButtonProps) {
   const initialState: { status?: boolean; error: string } = {
     // status: false,
     error: '',
   };
+
   const [state, formAction, isPending] = useActionState(
-    createPurchaseAction,
+    createEachPurchaseAction,
     initialState,
   );
 
+  const product = {
+    _id: Number(id ?? '0'),
+    quantity: option.quantity ?? 1,
+    color: option.color ?? '',
+    size: option.size ?? '',
+  };
+
+  const { user } = useUserStore();
+  const token = user?.token?.accessToken || '';
+
   const router = useRouter();
+
   // 구매버튼 클릭시 토스트ui
   const showSuccessToast = useCallback(() => {
     toast.custom(
@@ -102,26 +96,21 @@ export default function CartPurchaseButton({
 
   useEffect(() => {
     if (state && state.status === false) {
-      alert(state.error);
+      toast.error(state.error);
     } else if (state && state.status === true) {
       showSuccessToast();
-      triggerRefresh();
     }
-  }, [state, triggerRefresh, showSuccessToast]);
+  }, [state, showSuccessToast]);
+
   return (
     <form action={formAction}>
-      <input name="token" value={token || ''} hidden readOnly />
-      <input
-        name="purchaseList"
-        value={JSON.stringify(products)}
-        hidden
-        readOnly
-      />
+      <input name="product" value={JSON.stringify(product)} hidden readOnly />
+      <input name="token" value={token} hidden readOnly />
       <button
         disabled={isPending}
-        className={`box-border cursor-pointer bg-flame-250 w-full h-[48px] text-white border-2 border-flame-250 rounded-sm font-bold`}
+        className={`box-border cursor-pointer bg-flame-250 w-[196px] h-[48px] text-white border-2 border-flame-250 rounded-sm font-bold`}
       >
-        총 {price?.toLocaleString()} 구매하기
+        바로구매
       </button>
     </form>
   );

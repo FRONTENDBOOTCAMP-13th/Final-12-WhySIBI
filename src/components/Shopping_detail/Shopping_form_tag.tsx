@@ -1,9 +1,9 @@
 'use client';
 
-import { ChangeEvent, useActionState, useEffect, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import DropdownSize from '../Dropdown/Dropdown_size';
-import { createCartAction } from '@/data/actions/create_cart_action';
-import useUserStore from '@/zustand/useUserStore';
+import ProductCartButton from './Product_cart_button';
+import ProductPurchaseButton from './Product_purchase_button';
 
 export default function ShoppingFormTag({
   color,
@@ -22,6 +22,13 @@ export default function ShoppingFormTag({
     color: '',
     quantity: 1,
   });
+
+  // 이렇게 안하면 next 에러 나더라 ㅠ 언디파인드 일수도 있어서
+  const safeOption = {
+    size: option.size || '',
+    color: option.color || '',
+    quantity: option.quantity || 1,
+  };
 
   //사이즈
   function handleSizeChange(e: ChangeEvent<HTMLSelectElement>) {
@@ -47,37 +54,12 @@ export default function ShoppingFormTag({
       return prev;
     });
   }
-  // 서버액션
-  const initialState: { status?: boolean; error: string } = {
-    // status: false,
-    error: '',
-  };
 
-  const [state, formAction, isPending] = useActionState(
-    createCartAction,
-    initialState,
-  );
-
-  useEffect(() => {
-    if (state && state.status === false) {
-      alert(state.error);
-    } else if (state && state.status === true) {
-      alert('성공적으로 장바구니에 담겼습니다!');
-    }
-  }, [state]);
-
-  const { user } = useUserStore();
-  const token = user?.token?.accessToken;
   return (
-    <form action={formAction}>
-      <fieldset className="w-[400px] border-y-1 border-gray-150">
-        <legend className="sr-only">상품 옵션 선택</legend>
+    <section>
+      <div className="w-[400px] border-y-1 border-gray-150">
         {/* 서버액션에 넘겨주기 위한 히든 인풋들 */}
-        <input name="size" value={option.size} hidden readOnly />
-        <input name="color" value={option.color} hidden readOnly />
-        <input name="quantity" value={option.quantity} hidden readOnly />
-        <input name="id" value={id} hidden readOnly />
-        <input name="token" value={token} hidden readOnly />
+
         <div className="w-[400px] border-b-1 border-gray-150 pt-5 pb-2">
           <div className="w-[340px] flex justify-between">
             <label htmlFor="size-select" className="w-16 text-center">
@@ -132,23 +114,14 @@ export default function ShoppingFormTag({
             {(price * option.quantity).toLocaleString()}
           </span>
         </div>
-      </fieldset>
+      </div>
       {/* 구매 버튼 영역 */}
       <div className="pt-4 flex gap-3">
-        <button
-          disabled={isPending}
-          className={`box-border cursor-pointer bg-white w-[196px] h-[48px] text-flame-250 border-2 border-flame-250 rounded-sm font-bold`}
-        >
-          장바구니
-        </button>
-
-        <button
-          disabled={isPending}
-          className={`box-border cursor-pointer bg-flame-250 w-[196px] h-[48px] text-white border-2 border-flame-250 rounded-sm font-bold`}
-        >
-          바로구매
-        </button>
+        {/* 장바구니 버튼 폼 */}
+        <ProductCartButton option={safeOption} id={id ?? ''} />
+        {/* 구매버튼 폼 */}
+        <ProductPurchaseButton option={safeOption} id={id ?? ''} />
       </div>
-    </form>
+    </section>
   );
 }

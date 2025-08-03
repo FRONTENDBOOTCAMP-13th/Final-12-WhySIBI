@@ -1,11 +1,14 @@
 'use client';
 import useUserStore from '@/zustand/useUserStore';
-import CartList from './Cart_list';
-import { useEffect, useRef, useState } from 'react';
+import CartItem from './Cart_item';
+import { useEffect, useState } from 'react';
 import { CartData } from '@/types/cart';
 import CartAllDeleteButton from './Cart_all_delete_button';
 import CartPurchaseButton from './Cart_purchase_button';
 import useCartRefreshStore from '@/zustand/useCartRefreshStore';
+import CartAddressInput from './Cart_address_input';
+import CartListSkeleton from './skeleton/Cart_list_skeleton';
+import Link from 'next/link';
 
 export default function CartMain() {
   const { user } = useUserStore();
@@ -15,14 +18,6 @@ export default function CartMain() {
 
   const [allcheck, setAllcheck] = useState(false);
   const [checkedItems, setCheckedItems] = useState<number[]>([]);
-  const [address, setAddress] = useState('');
-
-  //랜더링 되고 난 후에 setAddress를 해줘야 input에 기본값이 설정되더라.. user데이터가 먼저 load되어야함
-  useEffect(() => {
-    if (user?.extra.addressBook[0].value) {
-      setAddress(user?.extra.addressBook[0].value);
-    }
-  }, [user]);
 
   console.log(' 체크드 아이템', checkedItems);
 
@@ -104,20 +99,18 @@ export default function CartMain() {
     });
   }
 
-  //변경하기 버튼을 눌렀을때 주소input에 포커스 주기
-  const addressInput = useRef<HTMLInputElement>(null);
-
   //장바구니가 비어있을때 보여줄 화면
   if (cartData?.item.length === 0) {
     return (
       <section className="h-72 flex flex-col justify-center items-center gap-3">
         <h3 className="font-bold text-2xl">장바구니에 담긴 상품이 없어요</h3>
         <p className="text-gray-550 pb-4">상품을 담아보세요</p>
-        <button
-          className={`box-border cursor-pointer bg-flame-250 w-[300px] h-[48px] text-white border-2 border-flame-250 rounded-sm font-bold`}
+        <Link
+          href="/shopping/best"
+          className={`box-border cursor-pointer bg-flame-250 w-[300px] h-[48px] text-white border-2 border-flame-250 rounded-sm font-bold flex items-center justify-center`}
         >
-          장바구니 채우러가기
-        </button>
+          <span>장바구니 채우러 가기</span>
+        </Link>
       </section>
     );
   }
@@ -142,50 +135,34 @@ export default function CartMain() {
         </div>
 
         {/* 장바구니 목록 영역 */}
-        <ul className="flex flex-col border-1 px-5 pt-3 rounded-2xl">
-          {cartData?.item.map(item => {
-            return (
-              <CartList
-                key={item._id}
-                id={item._id}
-                color={item.color || null}
-                size={item.size || null}
-                name={item.product.name}
-                img={item.product.image.path}
-                price={item.product.price}
-                quantity={item.quantity}
-                token={token}
-                // checkedItem배열에 포함되어 있냐 없냐로checked설정
-                isChecked={checkedItems?.includes(item._id)}
-                handleItemCheck={handleItemCheck}
-                handleQuantity={handleQuantity}
-              />
-            );
-          })}
-        </ul>
+        {cartData ? (
+          <ul className="flex flex-col border-1 px-5 pt-3 rounded-2xl">
+            {cartData?.item.map(item => {
+              return (
+                <CartItem
+                  key={item._id}
+                  id={item._id}
+                  color={item.color || null}
+                  size={item.size || null}
+                  name={item.product.name}
+                  img={item.product.image.path}
+                  price={item.product.price}
+                  quantity={item.quantity}
+                  token={token}
+                  // checkedItem배열에 포함되어 있냐 없냐로checked설정
+                  isChecked={checkedItems?.includes(item._id)}
+                  handleItemCheck={handleItemCheck}
+                  handleQuantity={handleQuantity}
+                />
+              );
+            })}
+          </ul>
+        ) : (
+          <CartListSkeleton count={3} />
+        )}
       </div>
       <aside className="min-w-[630px] flex flex-col gap-6">
-        <section className="border-1 px-5 py-6 rounded-2xl">
-          <h3 className="text-xl font-extrabold border-b-1 pb-3 border-gray-150">
-            배송지
-          </h3>
-          <input
-            ref={addressInput}
-            value={address}
-            onChange={e => setAddress(e.target.value)}
-            className="text-gray-550 pb-8 border-b-1 border-gray-150 mt-3 w-full"
-          />
-          <div className="flex justify-center mt-6">
-            <button
-              className="border-2 rounded-3xl text-button-color w-24 h-9 font-bold"
-              onClick={() => {
-                addressInput.current?.focus();
-              }}
-            >
-              변경하기
-            </button>
-          </div>
-        </section>
+        <CartAddressInput />
         <section className="border-1 px-5 py-6 rounded-2xl">
           <h3 className="text-xl font-extrabold border-b-1 pb-3 border-gray-150">
             결제금액

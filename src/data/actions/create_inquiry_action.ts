@@ -9,6 +9,7 @@ export async function createInquiryAction(
   const content = formData.get('content')?.toString();
   const title = formData.get('title')?.toString();
   const id = formData.get('id');
+  const token = formData.get('token');
 
   //예외 처리
   if (!content || !title) {
@@ -29,6 +30,7 @@ export async function createInquiryAction(
         seller_id: 2,
       }),
       headers: {
+        Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
         'Client-Id': 'febc13-final12-emjf',
       },

@@ -86,7 +86,12 @@ export default function ShoppingForm({
       </section>
 
       {/* 상품 옵션 선택 영역 */}
-      <ShoppingFormTag color={color} size={size} price={price} id={id} />
+      <ShoppingFormTag
+        color={color ?? ''}
+        size={size ?? ''}
+        price={price ?? ''}
+        id={id ?? ''}
+      />
     </section>
   );
 }

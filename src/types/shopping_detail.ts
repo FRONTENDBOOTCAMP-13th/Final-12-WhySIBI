@@ -6,6 +6,7 @@ export interface ProductReviewProps {
 }
 
 export interface ReviewListProps {
+  id: number;
   stars: ReactElement[][];
   profile: string;
   author: string;
@@ -13,6 +14,7 @@ export interface ReviewListProps {
   image?: string;
   createdAt: string;
   star: number;
+  rating: number;
 }
 
 // 사용자 타입
@@ -90,4 +92,13 @@ export interface InquiryItem {
   product: Product;
   bookmarks: number;
   repliesCount: number;
+}
+
+export interface ProductButtonProps {
+  option: {
+    size: string;
+    color: string;
+    quantity: number;
+  };
+  id: string;
 }

@@ -1,45 +1,30 @@
 'use client';
 
-import { createPurchaseAction } from '@/data/actions/create_purchase_action';
-import { CartData } from '@/types/cart';
-import useCartRefreshStore from '@/zustand/useCartRefreshStore';
+import { createCartAction } from '@/data/actions/create_cart_action';
+import { ProductButtonProps } from '@/types/shopping_detail';
 import useUserStore from '@/zustand/useUserStore';
 import { useRouter } from 'next/navigation';
 import { useActionState, useCallback, useEffect } from 'react';
 import toast from 'react-hot-toast';
 
-export default function CartPurchaseButton({
-  price,
-  cartData,
-}: {
-  price: number | undefined;
-  cartData: CartData | null;
-}) {
-  const { user } = useUserStore();
-  const token = user?.token?.accessToken;
-  console.log('이게 카트데이터야', cartData);
-  const { triggerRefresh } = useCartRefreshStore();
-  // 구매 서버액션에 넘겨줄 상품 목록배열
-  const products =
-    cartData?.item.map(item => ({
-      _id: item.product_id,
-      quantity: item.quantity,
-      color: item.color,
-      size: item.size,
-    })) || [];
+export default function ProductCartButton({ option, id }: ProductButtonProps) {
+  const router = useRouter();
 
-  // 초기 상태 정의
+  // 서버액션
   const initialState: { status?: boolean; error: string } = {
     // status: false,
     error: '',
   };
+
   const [state, formAction, isPending] = useActionState(
-    createPurchaseAction,
+    createCartAction,
     initialState,
   );
 
-  const router = useRouter();
-  // 구매버튼 클릭시 토스트ui
+  const { user } = useUserStore();
+  const token = user?.token?.accessToken;
+
+  // 장바구니 클릭시 토스트ui
   const showSuccessToast = useCallback(() => {
     toast.custom(
       t => (
@@ -71,7 +56,7 @@ export default function CartPurchaseButton({
 
             <div className="ml-3 flex-1 flex items-center justify-between">
               <p className="text-sm font-medium text-gray-900 mb-1">
-                구매완료!
+                장바구니에 상품을 담았습니다!
               </p>
 
               {/* 버튼 */}
@@ -79,14 +64,14 @@ export default function CartPurchaseButton({
                 <button
                   onClick={() => {
                     toast.dismiss(t.id);
-                    router.push('/my_page');
+                    router.push('/cart');
                   }}
                   className="
                     text-xs font-medium cursor-pointer border-b-1
                     text-cal-poly-green-200 border-b-cal-poly-green-200
                 "
                 >
-                  구매목록 이동
+                  장바구니 이동
                 </button>
               </div>
             </div>
@@ -102,27 +87,28 @@ export default function CartPurchaseButton({
 
   useEffect(() => {
     if (state && state.status === false) {
-      alert(state.error);
+      toast.error(state.error);
     } else if (state && state.status === true) {
       showSuccessToast();
-      triggerRefresh();
     }
-  }, [state, triggerRefresh, showSuccessToast]);
+  }, [state, showSuccessToast]);
+
   return (
-    <form action={formAction}>
-      <input name="token" value={token || ''} hidden readOnly />
-      <input
-        name="purchaseList"
-        value={JSON.stringify(products)}
-        hidden
-        readOnly
-      />
-      <button
-        disabled={isPending}
-        className={`box-border cursor-pointer bg-flame-250 w-full h-[48px] text-white border-2 border-flame-250 rounded-sm font-bold`}
-      >
-        총 {price?.toLocaleString()} 구매하기
-      </button>
-    </form>
+    <>
+      <form action={formAction}>
+        <input name="size" value={option.size ?? ''} hidden readOnly />
+        <input name="color" value={option.color ?? ''} hidden readOnly />
+        <input name="quantity" value={option.quantity ?? ''} hidden readOnly />
+        <input name="id" value={id ?? ''} hidden readOnly />
+        <input name="token" value={token ?? ''} hidden readOnly />
+        <button
+          type="submit"
+          disabled={isPending}
+          className={`box-border cursor-pointer bg-white w-[196px] h-[48px] text-flame-250 border-2 border-flame-250 rounded-sm font-bold`}
+        >
+          장바구니
+        </button>
+      </form>
+    </>
   );
 }

@@ -5,9 +5,11 @@ import StarBar from './Star_bar';
 import ReviewList from './Review_list';
 import { ProductReviewProps, Reply } from '@/types/shopping_detail';
 import Image from 'next/image';
+import { useRecommendStore } from '@/zustand/recommendStore';
 
 export default function ProductReview({ stars, replies }: ProductReviewProps) {
   const selectedStar = [...stars, '필터'];
+  const { recommendations } = useRecommendStore();
   const [active, setActive] = useState(false);
   const [selected, setSelected] = useState(selectedStar[5]);
   const [sortType, setSortType] = useState<
@@ -79,7 +81,14 @@ export default function ProductReview({ stars, replies }: ProductReviewProps) {
     return b.createdAt.localeCompare(a.createdAt);
   });
 
-  //------------------- 추천순 로직 정렬할 자리 -------------------
+  //추천 정렬순으로 정렬
+  const recommendReview = [...replies].sort((a, b) => {
+    // Zustand에서 각 리뷰의 현재 추천 수 가져오기
+    const aRecommendCount = recommendations[a._id] ?? a.rating; // Zustand 값 or 초기값
+    const bRecommendCount = recommendations[b._id] ?? b.rating; // Zustand 값 or 초기값
+
+    return bRecommendCount - aRecommendCount; // 높은 수부터 정렬
+  });
 
   //sortType에 따라 filteredReplies에 필터링된걸 담아줌, 아직 추천순은 안해써염
   switch (sortType) {
@@ -91,10 +100,10 @@ export default function ProductReview({ stars, replies }: ProductReviewProps) {
       break;
     case 'recommend':
       //나중에 추천순 로직 넣을자리
-      filteredReplies = [...replies];
+      filteredReplies = recommendReview;
       break;
     default:
-      filteredReplies = [...replies];
+      filteredReplies = recommendReview;
   }
 
   //별점 필터
@@ -137,7 +146,7 @@ export default function ProductReview({ stars, replies }: ProductReviewProps) {
         </h3>
         <div className="flex  items-center gap-8">
           <button
-            className={`cursor-pointer ${sortType === 'recommend' ? 'font-extrabold' : ''}`}
+            className={`cursor-pointer ${sortType === 'recommend' || sortType === 'none' ? 'font-extrabold' : ''}`}
             onClick={() => {
               setSortType(sortType === 'recommend' ? 'none' : 'recommend');
             }}
@@ -279,6 +288,7 @@ export default function ProductReview({ stars, replies }: ProductReviewProps) {
           return (
             <ReviewList
               key={item._id}
+              id={item._id}
               stars={stars} //별점 1-5 들어있는 배열
               star={5 - item.extra.star} //별점 배열의 인덱스
               profile={item.user.image}
@@ -286,6 +296,7 @@ export default function ProductReview({ stars, replies }: ProductReviewProps) {
               content={item.content}
               image={item.extra.image?.path}
               createdAt={item.createdAt}
+              rating={item.rating}
             ></ReviewList>
           );
         })}

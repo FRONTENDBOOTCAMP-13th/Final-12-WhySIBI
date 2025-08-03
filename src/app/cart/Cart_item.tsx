@@ -5,7 +5,7 @@ import CartDeleteButton from './Cart_delete_button';
 import { CartListProps } from '@/types/cart';
 import { useEffect } from 'react';
 
-export default function CartList({
+export default function CartItem({
   id,
   color,
   size,
