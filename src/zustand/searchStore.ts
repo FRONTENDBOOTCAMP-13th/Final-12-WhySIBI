@@ -7,10 +7,10 @@ interface SearhState {
 }
 
 const useSearchStore = create<SearhState>(set => ({
-  searchText: '',
+  searchText: ''.toLowerCase(),
   handleSearchClick: (Text: string) => {
     set({
-      searchText: Text,
+      searchText: Text.toLowerCase(),
     });
   },
   resetSearch: () => {

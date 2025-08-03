@@ -187,13 +187,13 @@ export default function RegistForm({ boardType, productList }: RegistFormProps) 
           value={JSON.stringify(Object.values(subjectTag))}
         />
         <input type="hidden" name="type" value={boardType} />{' '}
+        <input
+          type="hidden"
+          name="accessToken"
+          value={user?.token?.accessToken ?? ''}
+        />
         {/* 게시판 구분용 */}
         <div className="flex font-variable gap-7 mt-20">
-          <ButtonRounded
-            text="상품 태그"
-            background="bg-vanilla-200"
-            hover="hover:bg-vanilla-100"
-          ></ButtonRounded>
           <ButtonRounded
             text={isLoading ? '등록 중...' : '발행신청'}
             background="bg-livealone-columbia-blue"

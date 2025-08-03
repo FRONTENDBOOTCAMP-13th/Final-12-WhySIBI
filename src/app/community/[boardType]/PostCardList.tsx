@@ -9,9 +9,14 @@ import DropdownRoom from '@/components/Dropdown/Dropdown_room';
 interface PostCardPageProps {
   boardType: string;
   posts: Post[];
+  token: string;
 }
 
-export default function PostCardList({ boardType, posts: initialPosts }: PostCardPageProps) {
+export default function PostCardList({
+  boardType,
+  posts: initialPosts,
+  token,
+}: PostCardPageProps) {
   const [posts, setPosts] = useState<Post[]>([]);
   const [sortType, setSortType] = useState('high-view');
 
@@ -21,14 +26,17 @@ export default function PostCardList({ boardType, posts: initialPosts }: PostCar
     if (sortType === 'high-view') {
       sorted.sort((a, b) => (b.views ?? 0) - (a.views ?? 0));
     } else {
-      sorted.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+      sorted.sort(
+        (a, b) =>
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+      );
     }
     setPosts(sorted);
   }, [sortType, initialPosts]);
 
   const boardTitle = boardType === 'showRoom' ? '집들이🏠' : '자취 상담소💬';
-  const boardSub = boardType === 'showRoom' ? '우리집에 왜 왔니' : '우리집 구해줘 홈즈';
-
+  const boardSub =
+    boardType === 'showRoom' ? '우리집에 왜 왔니' : '우리집 구해줘 홈즈';
 
   return (
     <div className="post-list-wrapper bg-white p-20">
@@ -44,7 +52,15 @@ export default function PostCardList({ boardType, posts: initialPosts }: PostCar
 
       <div className="grid grid-flow-row grid-cols-[repeat(auto-fill,_300px)] gap-x-10 lg:gap-x-20 gap-y-8 font-variable justify-center items-center">
         {posts.map((post, index) => (
-          <PostCardItem key={post._id} post={post} index={index} boardType={boardType} isHot={sortType === 'high-view' && index < 3}/>
+          <PostCardItem
+            key={post._id}
+            post={post}
+            index={index}
+            boardType={boardType}
+            token={token}
+            bookmarkID={post?.myBookmarkId}
+            isHot={sortType === 'high-view' && index < 3
+          />
         ))}
       </div>
     </div>

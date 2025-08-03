@@ -1,9 +1,11 @@
 //상품 썸네일 카드 컴포넌트
-
+'use client';
 import LikeBadge from '@/components/product_component/Like_badge';
 import RankBadge from '@/components/product_component/rank_badge';
+import { AddBookMark, DeleteBookMark } from '@/data/actions/bookmark';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 
 type ProductCardProps = {
@@ -16,6 +18,9 @@ type ProductCardProps = {
   rating: number; //상품평점
   reviewCount: number; //리뷰갯수
   isLiked: boolean; //찜상태
+  myBookmarkId?: number; //북마크 아이디
+  type?: string;
+  token?: string | undefined;
   onClick: () => void;
 };
 
@@ -29,8 +34,39 @@ function ProductCard({
   rating,
   reviewCount,
   isLiked,
+  myBookmarkId,
+  type,
+  token,
   onClick,
 }: ProductCardProps) {
+  const router = useRouter();
+  const handleDeleteBookmark = async () => {
+    const result = await DeleteBookMark(
+      token as string,
+      myBookmarkId as number,
+    );
+    if (result.ok === 1) {
+      router.refresh();
+    }
+  };
+
+  const handleAddBookmark = async () => {
+    const result = await AddBookMark(type as unknown as string, token as string, id);
+
+    if (result.ok === 1) {
+      console.log('추가됨?');
+      router.refresh();
+    }
+  };
+
+  const handleBookmark = () => {
+    if (myBookmarkId !== undefined) {
+      handleDeleteBookmark();
+    } else {
+      handleAddBookmark();
+    }
+  };
+
   return (
     <article className="p-4" onClick={onClick}>
       <Link href={`/products/${id}`}>
@@ -40,7 +76,12 @@ function ProductCard({
             {rank && <RankBadge rank={rank} />}
 
             {/* 찜상태 */}
-            <LikeBadge isLiked={isLiked} onClick={onClick} />
+            <LikeBadge
+              isLiked={isLiked}
+              onClick={onClick}
+              handleBookmark={handleBookmark}
+              myBookmarkId={myBookmarkId}
+            />
 
             {/* 상품이미지 */}
             <Image

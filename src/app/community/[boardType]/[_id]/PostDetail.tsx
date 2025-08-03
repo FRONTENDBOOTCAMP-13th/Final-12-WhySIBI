@@ -2,12 +2,64 @@
 import DetailSwiper from '@/components/Detail_posts/Detail_swiper';
 import Image from 'next/image';
 import { Post } from '@/types';
-import { useBookmarkStore } from '@/zustand/bookMarkStore';
+// import { useBookmarkStore } from '@/zustand/bookMarkStore';
 import getTimeAgo from '@/components/talk_list/time';
+import { AddBookMark, DeleteBookMark } from '@/data/actions/bookmark';
+import { redirect } from 'next/navigation';
+interface PostDetailProps {
+  post: Post;
+  token: string;
+}
+export default function PostDetail({ post, token }: PostDetailProps) {
+  // const toggleBookmark = useBookmarkStore(state => state.toggleBookmark);
+  // const isBookmarked = useBookmarkStore(state => state.isBookmarked(post._id));
+  const _id = Number(post._id);
+  const type = post.type;
 
-export default function PostDetail({ post }: { post: Post }) {
-  const toggleBookmark = useBookmarkStore(state => state.toggleBookmark);
-  const isBookmarked = useBookmarkStore(state => state.isBookmarked(post._id));
+  const getBookmarkType = (postType: string) => {
+    switch (postType) {
+      case 'talk':
+      case 'qna':
+      case 'showRoom':
+        return 'post';
+      case 'product':
+        return 'product';
+      case 'user':
+        return 'user';
+      default:
+        return 'post';
+    }
+  };
+  const handleDeleteBookmark = async () => {
+    const result = await DeleteBookMark(
+      token as string,
+      post.myBookmarkId as number,
+    );
+    if (result.ok === 1) {
+      redirect(`/community/talk/${_id}`);
+    }
+  };
+
+  const handleAddBookmark = async () => {
+    const bookmarkType = getBookmarkType(type);
+    const result = await AddBookMark(
+      bookmarkType as string,
+      token as string,
+      _id,
+    );
+
+    if (result.ok === 1) {
+      redirect(`/community/showRoom/${_id}`);
+    }
+  };
+
+  const handleBookmark = () => {
+    if (post.myBookmarkId !== undefined) {
+      handleDeleteBookmark();
+    } else {
+      handleAddBookmark();
+    }
+  };
 
   return (
     <div className="text-center">
@@ -23,11 +75,14 @@ export default function PostDetail({ post }: { post: Post }) {
         <section className="h-25 [box-shadow:0px_2px_20px_0px_rgba(0,0,0,0.1)] bg-white p-7 mb-20 flex items-center justify-between">
           <div className="title-wrapper flex flex-col items-start text-left space-y-1">
             <h1 className="w-full text-xl font-bold">{post.title}</h1>
-            <time className="text-gray-icon text-sm" dateTime={post.createdAt}>{getTimeAgo(post.createdAt)}</time>
+            <time className="text-gray-icon text-sm" dateTime={post.createdAt}>
+              {getTimeAgo(post.createdAt)}
+            </time>
           </div>
           {/* 북마크 */}
           <button
-            onClick={() => toggleBookmark(post._id)}
+            // onClick={() => toggleBookmark(post._id)}
+            onClick={handleBookmark}
             className="text-livealone-cal-poly-green"
           >
             <svg
@@ -40,7 +95,7 @@ export default function PostDetail({ post }: { post: Post }) {
               <path
                 d="M2 59V2H46V59L23.2414 44.75L2 59Z"
                 fill="currentColor"
-                fillOpacity={isBookmarked ? 1 : 0}
+                fillOpacity={post.myBookmarkId ? 1 : 0}
                 stroke="currentColor"
                 strokeWidth="5"
                 strokeLinejoin="round"

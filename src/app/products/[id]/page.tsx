@@ -4,7 +4,7 @@ import ProductInfo from '@/components/Shopping_detail/Product_Info';
 import ProductReview from '@/components/Shopping_detail/Product_review';
 import ProductInquiry from '@/components/Shopping_detail/Product_inquiry';
 import { Product_Detail } from '@/components/Shopping_detail/fetch/Product_detail';
-
+import { cookies } from 'next/headers';
 export default async function ProductDetail({
   searchParams,
   params,
@@ -14,7 +14,7 @@ export default async function ProductDetail({
 }) {
   const { tab } = await searchParams;
   const { id } = await params;
-
+  const token = (await cookies()).get('accessToken');
   //별찍기 1-5
   const stars = [];
   const lines = 5;
@@ -60,10 +60,15 @@ export default async function ProductDetail({
   }
 
   const item = await Product_Detail(id);
+  console.log(item);
   return (
     <>
       <div className="bg-white min-w-[1280px] ">
-        <ShoppingDetail stars={stars} id={id}></ShoppingDetail>
+        <ShoppingDetail
+          stars={stars}
+          id={id}
+          token={token?.value}
+        ></ShoppingDetail>
 
         <nav className="bg-[#d9d9d9] text-xl font-bold flex gap-8 pl-24">
           <Link

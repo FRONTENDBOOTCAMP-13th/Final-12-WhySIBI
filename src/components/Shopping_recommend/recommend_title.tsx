@@ -10,6 +10,7 @@ interface TitleProps {
 
 function RecommendTitle({ title, subTitle }: TitleProps) {
   const { user } = useUserStore();
+  console.log(user);
   console.log('user.extra:', user?.extra);
 
   return (

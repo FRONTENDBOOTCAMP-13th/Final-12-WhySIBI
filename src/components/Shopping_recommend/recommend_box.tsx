@@ -16,7 +16,7 @@ import 'swiper/css/scrollbar';
 import SkeletonUI from '@/components/product_component/skeleton_ui';
 
 //추천 상품 박스
-function RecommendBox() {
+function RecommendBox({ token }: { token?: string | undefined }) {
   const [checkTag, setCheckTag] = useState<string[]>([]);
   const [productData, setProductData] = useState<ProductListProps[]>([]);
   const [loading, setLoading] = useState(true);
@@ -40,7 +40,7 @@ function RecommendBox() {
   useEffect(() => {
     const productsList = async () => {
       try {
-        const res = await getProductList();
+        const res = await getProductList({}, token);
         if (res.ok === 1) {
           // console.log(res.item);
           setProductData(res.item);
@@ -55,7 +55,7 @@ function RecommendBox() {
     };
 
     productsList();
-  }, []);
+  }, [token]);
 
   return (
     <>
@@ -104,6 +104,9 @@ function RecommendBox() {
                         reviewCount={product.replies}
                         isLiked={product.extra?.isLike ? true : false}
                         onClick={() => {}}
+                        myBookmarkId={product.myBookmarkId}
+                        token={token}
+                        type={'product'}
                       />
                     );
                   })

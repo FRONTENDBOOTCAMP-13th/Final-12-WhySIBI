@@ -114,8 +114,10 @@ function MenuNavigation() {
         </ul>
 
         <div className="header_bottom_icons flex flex-wrap  items-center  gap-11 mr-7">
+
           <ProductSearchButton />
           <Link href={''}>
+
             <Image
               src={'/image/header_icon/shopping_cart_icon.svg'}
               alt="장바구니아이콘"

@@ -1,6 +1,9 @@
+'use client';
 import LikeButton from './Like_button';
 import { ShoppingFormType } from '@/types/shopping_detail';
 import ShoppingFormTag from './Shopping_form_tag';
+import { AddBookMark, DeleteBookMark } from '@/data/actions/bookmark';
+import { redirect } from 'next/navigation';
 
 export default function ShoppingForm({
   title,
@@ -12,17 +15,49 @@ export default function ShoppingForm({
   reviewCount,
   avg,
   id,
+  myBookmarkId,
+  token,
 }: ShoppingFormType) {
   //할인율
   const discountRate = Math.round(
     ((originalPrice - price) / originalPrice) * 100,
   );
+  const handleDeleteBookmark = async () => {
+    const result = await DeleteBookMark(
+      token as string,
+      myBookmarkId as number,
+    );
+    if (result.ok === 1) {
+      redirect(`/products/${id}`);
+    }
+  };
 
+  const handleAddBookmark = async () => {
+    const result = await AddBookMark('product', token as string, Number(id));
+
+    if (result.ok === 1) {
+      redirect(`/products/${id}`);
+    }
+  };
+
+  const handleBookmark = () => {
+    if (myBookmarkId !== undefined) {
+      handleDeleteBookmark();
+    } else {
+      handleAddBookmark();
+    }
+  };
+  console.log(myBookmarkId);
   return (
     <section className="min-w-[500]">
       <header className="flex items-center gap-28 relative">
         <h2 className="text-2xl font-semibold mt-4">{title}</h2>
-        <LikeButton isLiked={false} position={'absolute right-20 top-3'} />
+        <LikeButton
+          isLiked={false}
+          position={'absolute right-20 top-3'}
+          myBookmarkId={myBookmarkId}
+          handleBookmark={handleBookmark}
+        />
       </header>
 
       {/* 평점, 리뷰 */}

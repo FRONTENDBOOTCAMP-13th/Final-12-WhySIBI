@@ -13,7 +13,7 @@ import { useCallback, useEffect, useState } from 'react';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-function ShoppingBestSection() {
+function ShoppingBestSection({ token }: { token: string | undefined }) {
   const { mainCategoryId, subMenuData, handleMenuClick } = useMenuStore();
   const [productData, setProductData] = useState<ProductListProps[]>([]);
   const [sort, setSort] = useState<
@@ -38,11 +38,14 @@ function ShoppingBestSection() {
   const fetchProducts = useCallback(
     async (customMap: Record<string, string> = {}) => {
       try {
-        const res = await getProductList({
-          sort,
-          limit: 100,
-          custom: customMap,
-        });
+        const res = await getProductList(
+          {
+            sort,
+            limit: 100,
+            custom: customMap,
+          },
+          token,
+        );
         if (res.ok === 1) {
           setProductData(res.item);
         } else {
@@ -54,7 +57,7 @@ function ShoppingBestSection() {
         setLoading(false);
       }
     },
-    [sort],
+    [sort, token],
   );
 
   //상품 불러오기
@@ -160,6 +163,9 @@ function ShoppingBestSection() {
                   reviewCount={product?.replies}
                   isLiked={product.extra?.isLike ? true : false}
                   onClick={() => {}}
+                  myBookmarkId={product.myBookmarkId}
+                  token={token}
+                  type={'product'}
                 />
               );
             })

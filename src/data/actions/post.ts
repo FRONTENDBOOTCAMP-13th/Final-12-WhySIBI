@@ -49,6 +49,7 @@ export async function createPost(
         Authorization: `Bearer ${body.accessToken}`,
       },
       body: JSON.stringify(body),
+      cache: 'no-cache',
     });
 
     const data = await res.json();

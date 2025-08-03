@@ -52,6 +52,7 @@ export interface ShoppingDetailType {
   stars: ReactElement[][];
   id: string;
   params?: { id: string };
+  token: string | undefined;
 }
 
 export interface ShoppingFormType {
@@ -65,6 +66,8 @@ export interface ShoppingFormType {
   reviewCount: number;
   avg: number;
   id: string;
+  myBookmarkId?: number;
+  token?: string;
 }
 
 // 사용자 정보 타입

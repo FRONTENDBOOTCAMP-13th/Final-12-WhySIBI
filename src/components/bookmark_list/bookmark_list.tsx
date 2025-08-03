@@ -8,45 +8,43 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Navigation, Pagination } from 'swiper/modules';
-import useUserStore from '@/zustand/useUserStore';
 import Pagenation from '@/components/basic_component/Pagenation';
-import { GetBookMarkList } from '@/data/actions/bookmark';
 
-export default function BookMarkList() {
+interface BookMarkListProp {
+  resProduct: BookMarkItem[] | null;
+  resPost: BookMarkItem[] | null;
+}
+
+export default function BookMarkList({
+  resProduct,
+  resPost,
+}: BookMarkListProp) {
   const [productList, setProductList] = useState<BookMarkItem[] | null>(null);
   const [postList, setPostList] = useState<BookMarkItem[] | null>(null);
   //페이지 네이션
   const [page, setPage] = useState(1);
-  const { user } = useUserStore();
 
   useEffect(() => {
     const getData = async () => {
-      const resProduct = await GetBookMarkList(
-        'product',
-        user?.token?.accessToken as string,
-      );
-      const resPost = await GetBookMarkList(
-        'post',
-        user?.token?.accessToken as string,
-      );
       try {
-        if (resProduct.ok === 1) {
-          setProductList(resProduct.item);
+        if (resProduct) {
+          setProductList(resProduct);
         } else {
-          console.log('Product error:', resProduct.message);
+          console.log('Product error:', resProduct);
         }
 
-        if (resPost.ok === 1) {
-          setPostList(resPost.item);
+        if (resPost) {
+          setPostList(resPost);
         } else {
-          console.log('Post error:', resPost.message);
+          console.log('Post error:', resPost);
         }
       } catch (error) {
         console.error('상품 정보 로딩 실패:', error);
       }
     };
     getData();
-  }, [user?.token?.accessToken]);
+  }, [resPost,resProduct]);
+
   const onePage = 16; //한 페이지에 보여줄 상품 수
   const totalPage = Math.max(
     1,
