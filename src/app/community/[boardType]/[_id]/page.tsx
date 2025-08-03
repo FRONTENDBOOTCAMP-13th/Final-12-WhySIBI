@@ -5,8 +5,6 @@ import { getReplies } from '@/data/functions/post';
 import { getPosts } from '@/data/actions/inqury';
 import DetailSimilar from '@/components/Detail_posts/Detail_similar';
 import DetailOther from '@/components/Detail_posts/Detail_other';
-import CommentList from './CommentList';
-import CommentNew from './CommentNew';
 import { ButtonBack } from '@/components/Button_back';
 import Link from 'next/link';
 import DeleteForm from './DeleteForm';
@@ -14,6 +12,7 @@ import { ButtonNostyle } from '@/components/Buttons/Button_nostyle';
 import TalkDetail from '@/components/talk_detail/talk_detail';
 import { cookies } from 'next/headers';
 import { getProductList } from '@/data/actions/products.fetch';
+import CommentSection from './CommentSection';
 
 function isError<T>(res: ApiRes<T>): res is { ok: 0; message: string } {
   return res.ok === 0;
@@ -57,8 +56,8 @@ const productIds = Array.isArray(post.item.extra?.products)
         )
       : [];
 
-      console.log('productIds:', productIds);
-console.log('filteredProducts:', filteredProducts);
+  console.log('productIds:', productIds);
+  console.log('filteredProducts:', filteredProducts);
 
   
   if (boardType === 'showRoom') {
@@ -82,8 +81,7 @@ console.log('filteredProducts:', filteredProducts);
         <PostDetail post={post.item} token={token?.value as string} />
         <DetailSimilar products={filteredProducts}></DetailSimilar>
         <DetailOther _id={_id}></DetailOther>
-        <CommentNew _id={_id} repliesCount={repliesCount}></CommentNew>
-        <CommentList _id={_id}></CommentList>
+        <CommentSection _id={_id}></CommentSection>
       </div>
     );
   }
@@ -115,11 +113,7 @@ console.log('filteredProducts:', filteredProducts);
           ) : (
             <TalkDetail post={post.item} />
           )}
-          <CommentNew
-            _id={_id}
-            repliesCount={post.item.repliesCount}
-          ></CommentNew>
-          <CommentList _id={_id}></CommentList>
+          <CommentSection _id={_id}></CommentSection>
         </section>
       </div>
     );
