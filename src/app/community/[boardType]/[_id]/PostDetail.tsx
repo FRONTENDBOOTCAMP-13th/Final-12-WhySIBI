@@ -8,7 +8,7 @@ import { AddBookMark, DeleteBookMark } from '@/data/actions/bookmark';
 import { redirect } from 'next/navigation';
 interface PostDetailProps {
   post: Post;
-  token: string;
+  token?: string;
 }
 export default function PostDetail({ post, token }: PostDetailProps) {
   // const toggleBookmark = useBookmarkStore(state => state.toggleBookmark);
