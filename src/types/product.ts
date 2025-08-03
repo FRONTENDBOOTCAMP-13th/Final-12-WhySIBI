@@ -44,6 +44,8 @@ export interface ProductListProps {
   extra?: ProductExtra;
   //상품 등록일
   createdAt: string;
+  //상품 검색 키워드
+  keyword: string[];
 }
 export interface ProductList {
   // 상품 고유 ID
