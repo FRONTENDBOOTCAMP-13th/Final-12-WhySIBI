@@ -116,7 +116,7 @@ function MenuNavigation() {
         <div className="header_bottom_icons flex flex-wrap  items-center  gap-11 mr-7">
 
           <ProductSearchButton />
-          <Link href={''}>
+          <Link href={'/cart'}>
 
             <Image
               src={'/image/header_icon/shopping_cart_icon.svg'}
