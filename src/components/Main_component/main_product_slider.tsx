@@ -79,7 +79,7 @@ function MainProductSlider() {
                   <ProductCard
                     id={product._id}
                     name={product.name}
-                    imageUrl={`${API_URL}/${product.mainImages[0]?.path}`}
+                    imageUrl={`/${product.mainImages[0]?.path}`}
                     price={`${product.price.toLocaleString()}원`}
                     discount={discount}
                     rank={index + 1}
