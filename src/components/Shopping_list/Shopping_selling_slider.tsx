@@ -12,11 +12,12 @@ import { useEffect, useState } from 'react';
 import { ProductListProps } from '@/types';
 import { getProductList } from '@/data/actions/products.fetch';
 import SkeletonUI from '@/components/product_component/skeleton_ui';
+import useMenuStore from '@/zustand/menuStore';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 function ShoppingSellingSlider({ token }: { token?: string | undefined }) {
-  // const { mainCategoryId } = useMenuStore(); //나중에 메인카테 ID 별 상품 불러와서 연동하기
+  const { mainCategoryId } = useMenuStore();
 
   SwiperCore.use([Navigation, Scrollbar]);
 
@@ -26,9 +27,16 @@ function ShoppingSellingSlider({ token }: { token?: string | undefined }) {
   useEffect(() => {
     const sliceProducts = async () => {
       try {
-        const res = await getProductList({}, token);
+        const res = await getProductList(
+          {
+            sort: 'best-selling',
+            limit: 5,
+            custom: mainCategoryId ? { 'extra.category': mainCategoryId } : {},
+          },
+          token,
+        );
         if (res.ok === 1) {
-          setSlideData(res.item.slice(0, 5)); //5개만 가져오기
+          setSlideData(res.item);
         } else {
           console.error(res.message);
         }
@@ -40,7 +48,7 @@ function ShoppingSellingSlider({ token }: { token?: string | undefined }) {
     };
 
     sliceProducts();
-  }, [token]);
+  }, [token, mainCategoryId]);
 
   return (
     <>

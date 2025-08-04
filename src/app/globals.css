@@ -416,11 +416,11 @@
   .animate-pencil-zigzag:hover {
     animation: pencil-zigzag 0.8s ease-in-out infinite;
   }
-  
+
   /* service-css */
   .text-stroke {
     -webkit-text-stroke-width: 0.5px;
-    -webkit-text-stroke-color: #25442C;;
+    -webkit-text-stroke-color: #25442c;
   }
 
   /* image-uploader-animate */

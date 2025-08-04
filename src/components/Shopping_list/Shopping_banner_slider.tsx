@@ -8,26 +8,23 @@ import 'swiper/css/pagination';
 import { Autoplay, Navigation, Pagination, Scrollbar } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import BannerCard from '@/components/banner_card';
+import ShoppingBannerCard from '@/components/Shopping_list/Shopping_banner_card';
 
 const slideData = [
   {
     id: 1,
-    title: '영화 촬영지로도 쓰인\n감각적인 원룸 ✨',
     imageUrl: '/image/shopping_banner_image_1.png',
-    contentUrl: '/',
+    contentUrl: '/shopping/best',
   },
   {
     id: 2,
-    title: '컬러와 패턴으로 완성한 1.5룸 🌿',
     imageUrl: '/image/shopping_banner_image_2.png',
-    contentUrl: '/',
+    contentUrl: '/shopping/category/PC0306',
   },
   {
     id: 3,
-    title: '침실은 무채색? 거실은 앤틱!\n취향따라 바뀌는 인테리어',
     imageUrl: '/image/shopping_banner_image_3.png',
-    contentUrl: '/',
+    contentUrl: '/shopping/category/PC0301',
   },
 ];
 
@@ -49,8 +46,7 @@ function ShoppingBannerSlider() {
         >
           {slideData.map(slide => (
             <SwiperSlide key={slide.id} className="relative">
-              <BannerCard
-                title={slide.title}
+              <ShoppingBannerCard
                 imageUrl={slide.imageUrl}
                 contentUrl={slide.contentUrl}
               />
