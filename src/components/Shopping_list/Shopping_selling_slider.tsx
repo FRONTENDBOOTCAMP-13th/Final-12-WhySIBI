@@ -14,8 +14,6 @@ import { getProductList } from '@/data/actions/products.fetch';
 import SkeletonUI from '@/components/product_component/skeleton_ui';
 import useMenuStore from '@/zustand/menuStore';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
 function ShoppingSellingSlider({ token }: { token?: string | undefined }) {
   const { mainCategoryId } = useMenuStore();
 
@@ -65,7 +63,7 @@ function ShoppingSellingSlider({ token }: { token?: string | undefined }) {
             slidesPerView={4}
             navigation={true}
             breakpoints={{
-              0: { slidesPerView: 2 },
+              0: { slidesPerView: 1 },
               640: { slidesPerView: 2 },
               1024: { slidesPerView: 3 },
               1280: { slidesPerView: 4 },
@@ -81,7 +79,7 @@ function ShoppingSellingSlider({ token }: { token?: string | undefined }) {
                   <ProductCard
                     id={product._id}
                     name={product.name}
-                    imageUrl={`${API_URL}/${product.mainImages[0]?.path}`}
+                    imageUrl={'/product.mainImages[0]?.path'}
                     price={`${product.price.toLocaleString()}원`}
                     discount={discount}
                     rank={index + 1}

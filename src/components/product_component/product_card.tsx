@@ -51,7 +51,11 @@ function ProductCard({
   };
 
   const handleAddBookmark = async () => {
-    const result = await AddBookMark(type as unknown as string, token as string, id);
+    const result = await AddBookMark(
+      type as unknown as string,
+      token as string,
+      id,
+    );
 
     if (result.ok === 1) {
       console.log('추가됨?');
