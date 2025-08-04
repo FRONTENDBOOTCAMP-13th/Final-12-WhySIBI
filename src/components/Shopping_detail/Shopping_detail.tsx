@@ -24,11 +24,11 @@ export default async function ShoppingDetail({
   const avg = sum / repliesStars.length;
 
   return (
-    <section className="bg-white flex gap-24 justify-center py-4">
+    <section className="bg-white flex flex-col md:flex-row lg:gap-24 justify-center py-4">
       {/* 상품 사진 영역 */}
-      <figure className="bg-white min-w-[600px] min-h-[600px] overflow-hidden flex justify-center items-center rounded-sm shadow-md">
+      <figure className="bg-white max-w-[600px] max-h-[600px] overflow-hidden flex justify-center items-center rounded-sm shadow-md">
         <Image
-          src={`${process.env.NEXT_PUBLIC_API_URL}/${item.mainImages[0].path}`}
+          src={`/${item.mainImages[0].path}`}
           width={590}
           height={590}
           className="object-cover"

@@ -690,3 +690,27 @@
     );
   }
 }
+
+/* 글로벌 컨테이너 반응형 규칙 /
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 1rem; / 좌우 여백 */
+
+@media (min-width: 640px) {
+  .container {
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1024px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
+  }
+}
