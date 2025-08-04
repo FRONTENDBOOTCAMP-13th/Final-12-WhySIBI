@@ -124,7 +124,7 @@ export default function RegisterForm() {
         {/* 생년월일 선택 */}
         <div className="w-full font-basic mt-9">
           <p className="font-bold pl-4">생년월일</p>
-          <div className="flex gap-4 h-10">
+          <div className="flex flex-col md:flex-row gap-4 h-10">
             <select
               name="birth_year"
               id="birth_year"
@@ -171,7 +171,7 @@ export default function RegisterForm() {
         <select
           name="address_name"
           id="address_name"
-          className="mt-9 mb-[-30px] font-basic block w-28 pl-4 border-2 outline-0 border-button-color-opaque-25 rounded-3xl py-1 focus:border-button-color transition-all duration-200 ease-in"
+          className="mt-28 md:mt-9 mb-[-30px] font-basic block w-28 pl-4 border-2 outline-0 border-button-color-opaque-25 rounded-3xl py-1 focus:border-button-color transition-all duration-200 ease-in"
           defaultValue="집"
           required
         >
