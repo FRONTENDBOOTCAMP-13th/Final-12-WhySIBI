@@ -197,11 +197,6 @@
   background-size: theme(--bg-size-stripes);
 }
 
-@utility vertical-stripes {
-  background: theme(--bg-vertical-stripes);
-  background-size: theme(--bg-size-stripes);
-}
-
 /* custom style */
 @layer components {
   /* swiper style */
