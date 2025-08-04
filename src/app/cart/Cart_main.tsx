@@ -116,8 +116,8 @@ export default function CartMain() {
   }
 
   return (
-    <section className="flex justify-center gap-5">
-      <div className="min-w-[630px] flex flex-col gap-6">
+    <section className="flex justify-center gap-5 flex-col md:flex-row items-center">
+      <div className="w-[480px] md:w-[630px] flex flex-col gap-6">
         <div className="border-1 px-5 py-3 rounded-2xl flex justify-between items-center">
           <div className="flex items-center gap-3">
             <input
@@ -161,7 +161,7 @@ export default function CartMain() {
           <CartListSkeleton count={3} />
         )}
       </div>
-      <aside className="min-w-[630px] flex flex-col gap-6">
+      <aside className="w-[480px] md:w-[630px] flex flex-col gap-6">
         <CartAddressInput />
         <section className="border-1 px-5 py-6 rounded-2xl">
           <h3 className="text-xl font-extrabold border-b-1 pb-3 border-gray-150">

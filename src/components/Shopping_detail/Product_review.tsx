@@ -139,8 +139,8 @@ export default function ProductReview({ stars, replies }: ProductReviewProps) {
   }
 
   return (
-    <section className="max-w-[1028px] mx-auto mt-12 ">
-      <div className="flex justify-between border-b-2 pb-3 border-[#a5a5a5]">
+    <section className="max-w-[1028px] mx-auto mt-12">
+      <div className="flex justify-between border-b-2 pb-3 px-2 lg:px-0 border-[#a5a5a5]">
         <h3 className="text-xl font-semibold text-gray-550">
           리뷰 {replies.length}
         </h3>
@@ -230,14 +230,14 @@ export default function ProductReview({ stars, replies }: ProductReviewProps) {
         </div>
       </div>
 
-      <div className="bg-vanilla-opaque-50 flex min-h-[188px] m-12 rounded-xl items-center gap-25 justify-center">
+      <div className="bg-vanilla-opaque-50 flex min-h-[188px] m-12 rounded-xl items-center md:gap-25 gap-5 px-6 md:p-0 justify-center ">
         {replies.length > 0 ? (
           <>
-            <span className="flex scale-200 transform origin-center gap-1">
+            <span className="flex scale-120 md:scale-200 transform origin-center gap-1">
               {stars[5 - avgIndex]}
             </span>
-            <span className="text-5xl font-extrabold">{avg}</span>
-            <div className="flex gap-10">
+            <span className="lg:text-5xl text-3xl font-extrabold">{avg}</span>
+            <div className="flex lg:gap-10 scale-77">
               {/* rank에 순위를 넣으면 높은거 순서대로 게이지가 많이 차있음 */}
               <StarBar
                 count={starBoard[5]}
