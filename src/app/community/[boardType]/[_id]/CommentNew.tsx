@@ -5,12 +5,16 @@ import { useActionState } from 'react';
 import useUserStore from '@/zustand/useUserStore';
 
 interface CommentNewProps {
-    _id: number;
+  _id: number;
   repliesCount: number;
   onSuccess: () => void;
 }
 
-export default function CommentNew({ _id, repliesCount, onSuccess }: CommentNewProps) {
+export default function CommentNew({
+  _id,
+  repliesCount,
+  onSuccess,
+}: CommentNewProps) {
   const [state, formAction, isLoading] = useActionState(createReply, null);
   const { user } = useUserStore();
   const [inputValue, setInputValue] = useState('');
@@ -36,16 +40,16 @@ export default function CommentNew({ _id, repliesCount, onSuccess }: CommentNewP
   }, [user, inputValue]);
 
   useEffect(() => {
-      if (state?.ok === 1) {
-        setInputValue('');
-        setLocalError(null);
-        onSuccess(); // ✅ 댓글 목록 다시 요청
-      }
-      if (state?.ok === 0 && state.errors?.content?.msg) {
-        setLocalError(state.errors.content.msg);
-      }
-    }, [state]);
-  
+    if (state?.ok === 1) {
+      setInputValue('');
+      setLocalError(null);
+      onSuccess(); // ✅ 댓글 목록 다시 요청
+    }
+    if (state?.ok === 0 && state.errors?.content?.msg) {
+      setLocalError(state.errors.content.msg);
+    }
+  }, [state, onSuccess]);
+
   // 태그 한번에 지우기
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     const mentionRegex = /^@\S+\s/;
@@ -57,15 +61,17 @@ export default function CommentNew({ _id, repliesCount, onSuccess }: CommentNewP
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
-  
+
   const handleFocus = () => {
     if (!user) {
-      alert("로그인이 필요합니다.");
-      const input = document.getElementById('comment-input') as HTMLInputElement;
+      alert('로그인이 필요합니다.');
+      const input = document.getElementById(
+        'comment-input',
+      ) as HTMLInputElement;
       input?.blur();
       return;
     }
-      setLocalError(null);
+    setLocalError(null);
   };
 
   return (
@@ -87,7 +93,7 @@ export default function CommentNew({ _id, repliesCount, onSuccess }: CommentNewP
           />
           <div>
             <input
-              id="comment-input"  
+              id="comment-input"
               type="text"
               name="content"
               value={inputValue}
@@ -97,9 +103,7 @@ export default function CommentNew({ _id, repliesCount, onSuccess }: CommentNewP
               placeholder="댓글 달기..."
               className="w-[420px] outline-0 text-sm ml-2"
             ></input>
-            <p className="ml-2 mt-1 text-sm text-red-500">
-              {localError}
-            </p>
+            <p className="ml-2 mt-1 text-sm text-red-500">{localError}</p>
           </div>
           <button
             disabled={isLoading}
