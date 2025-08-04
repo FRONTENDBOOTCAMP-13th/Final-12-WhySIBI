@@ -112,15 +112,7 @@ export default function BookMarkList({
 
           <section className="mt-24">
             <h4 className="font-logo text-4xl">찜 목록</h4>
-            <div
-              className="grid items-center"
-              style={{
-                gridTemplateColumns: 'repeat(4, 1fr)',
-                gridTemplateRows: 'repeat(4, 1fr)',
-                gap: 'min(4rem, 4vw)',
-                transform: 'scale(min(1, 100vw / 1280px))',
-              }}
-            >
+            <div className="grid grid-cols-4 grid-rows-4 gap-16 items-center">
               {sliceData?.map((product, i) => (
                 <BookMarkInfo
                   key={i}
