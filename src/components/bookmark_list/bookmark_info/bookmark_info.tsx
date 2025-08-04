@@ -10,7 +10,7 @@ function BookMarkInfo({
 }: LikekInfoProps) {
   return (
     <Link href={`/products/${productId}`}>
-      <figure className="shadow-shadow-lg p-5 items-center w-fit rounded-radius-lg">
+      <figure className="shadow-shadow-lg p-5 items-center  rounded-radius-lg">
         <Image
           src={`/${productImage?.path}`}
           alt={`${productName} 상품 이미지`}

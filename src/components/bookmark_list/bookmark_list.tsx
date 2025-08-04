@@ -25,7 +25,7 @@ export default function BookMarkList({
   const [isLoading, setLoading] = useState(true);
   //페이지 네이션
   const [page, setPage] = useState(1);
-
+  const [onePage, setOnePage] = useState(0);
   useEffect(() => {
     setLoading(true);
     const getData = async () => {
@@ -50,7 +50,13 @@ export default function BookMarkList({
     getData();
   }, [resPost, resProduct]);
 
-  const onePage = 16; //한 페이지에 보여줄 상품 수
+  useEffect(() => {
+    if (window.innerWidth >= 1024) {
+      setOnePage(16);
+    } else {
+      setOnePage(4);
+    }
+  }, []);
   const totalPage = Math.max(
     1,
     Math.ceil((productList?.length || 0) / onePage),
@@ -71,7 +77,7 @@ export default function BookMarkList({
         <>
           <section className="mt-11 pb-16 border-b-[1px] border-button-color-opaque-25">
             <h4 className="font-logo text-4xl">북마크 목록</h4>
-            <div className="bookmark-swiper  max-w-11/12 mx-auto">
+            <div className="bookmark-swiper  w-full lg:max-w-11/12 mx-auto">
               <Swiper
                 modules={[Navigation, Pagination]}
                 loop={false}
@@ -79,7 +85,7 @@ export default function BookMarkList({
                 breakpoints={{
                   320: {
                     slidesPerView: 1,
-                    spaceBetween: 20,
+                    spaceBetween: 100,
                   },
                   768: {
                     slidesPerView: 2,
@@ -112,7 +118,7 @@ export default function BookMarkList({
 
           <section className="mt-24">
             <h4 className="font-logo text-4xl">찜 목록</h4>
-            <div className="grid grid-cols-4 grid-rows-4 gap-16 items-center">
+            <div className="grid grid-rows-4 md:grid-cols-2  xl:grid-cols-4 xl:grid-rows-4 xl:gap-16 lg:gap-12 md:gap-8 gap-6 items-center">
               {sliceData?.map((product, i) => (
                 <BookMarkInfo
                   key={i}
