@@ -163,6 +163,8 @@
       "extra": {
         "isNew": true,
         "isBest": true,
+        "color": ["-----"],
+        "size": ["-----"],
         "category": ["PC03", "PC0305", "PC030506"],
         "tag": "TAG10",
         "sort": 5,
@@ -192,6 +194,8 @@
       "extra": {
         "isNew": true,
         "isBest": true,
+        "color": ["-----"],
+        "size": ["-----"],
         "category": ["PC03", "PC0305", "PC030503"],
         "tag": "TAG10",
         "sort": 5,
