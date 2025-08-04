@@ -14,8 +14,6 @@ import { getProductList } from '@/data/actions/products.fetch';
 import SkeletonUI from '@/components/product_component/skeleton_ui';
 import useMenuStore from '@/zustand/menuStore';
 
-
-
 function ShoppingSellingSlider({ token }: { token?: string | undefined }) {
   const { mainCategoryId } = useMenuStore();
 
