@@ -19,8 +19,6 @@ export default function CartMain() {
   const [allcheck, setAllcheck] = useState(false);
   const [checkedItems, setCheckedItems] = useState<number[]>([]);
 
-  console.log(' 체크드 아이템', checkedItems);
-
   const [cartData, setCartData] = useState<CartData | null>(null);
   // 로그인한 유저의 장바구니를 불러옴
   useEffect(() => {

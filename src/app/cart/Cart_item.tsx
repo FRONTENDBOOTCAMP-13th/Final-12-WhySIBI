@@ -77,7 +77,7 @@ export default function CartItem({
         선택
       </label>
       <Image
-        src={`/${img}`}
+        src={img}
         className="w-30 h-33 rounded-md"
         width={80}
         height={80}
