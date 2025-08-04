@@ -1,0 +1,48 @@
+meta {
+  name: 게시물 등록(notice)
+  type: http
+  seq: 8
+}
+
+post {
+  url: {{url}}/posts?type=qna
+  body: json
+  auth: inherit
+}
+
+params:query {
+  type: qna
+}
+
+body:json {
+  {
+        "_id": 5,
+        "type": "qna",
+        "product_id": 1,
+        "seller_id": 2,
+        "views": 50,
+        "user": {
+          "_id": 4,
+          "name": "조현수",
+          "image": "user-jayg.webp"
+        },
+        "title": "리뷰이벤트로 짜장면주셈",
+        "content": "배고파요",
+        "createdAt": "2025.07.22 14:24:14",
+        "updatedAt": "2025.07.22 19:24:14",
+        "product": {
+          "name": "아이스모찌 쿨링 토퍼패드",
+          "image": {
+            "path": "files/febc13-final12-emjf/cooling.png",
+            "name": "cooling.png",
+            "originalname": "쿨링패드.png"
+          }
+        },
+        "bookmarks": 0,
+        "repliesCount": 0
+      }
+}
+
+settings {
+  encodeUrl: true
+}

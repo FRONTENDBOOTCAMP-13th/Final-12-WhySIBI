@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "WhySIBI",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

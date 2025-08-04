@@ -1,0 +1,18 @@
+meta {
+  name: 로그인
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{url}}/users/login
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "email": "johyunsoo123@market.com",
+    "password": "11111111"
+  }
+}
