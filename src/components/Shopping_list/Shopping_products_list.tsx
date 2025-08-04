@@ -9,7 +9,6 @@ import useMenuStore from '@/zustand/menuStore';
 import { useParams } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 function ShoppingProductsList({ token }: { token?: string | undefined }) {
   const [productData, setProductData] = useState<ProductListProps[]>([]);
@@ -133,7 +132,7 @@ useEffect(() => {
                 id={product._id}
                 key={product._id}
                 name={product.name}
-                imageUrl={`${API_URL}/${product.mainImages[0]?.path}`}
+                imageUrl={`/${product.mainImages[0]?.path}`}
                 price={`${product.price.toLocaleString()}원`}
                 discount={discount}
                 rating={product.extra?.star ? product.extra?.star : 0}

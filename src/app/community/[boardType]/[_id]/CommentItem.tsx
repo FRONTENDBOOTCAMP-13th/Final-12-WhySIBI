@@ -4,8 +4,6 @@ import { PostReply } from '@/types';
 import { getTimeAgo } from '@/utils/time';
 import CommentDeleteForm from './CommentDeleteForm';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
 interface CommentProps {
   reply: PostReply;
   mentionUser: (name: string) => void;
@@ -13,7 +11,7 @@ interface CommentProps {
 
 export default function CommentItem({ reply, mentionUser }: CommentProps) {
   const profileImage = reply.user.image
-    ? `${API_URL}/${reply.user.image}`
+    ? `/${reply.user.image}`
     : '/image/community_icon/profile_sample.png';
 
   return (

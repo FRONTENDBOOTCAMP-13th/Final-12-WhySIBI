@@ -14,7 +14,7 @@ import { ProductListProps } from '@/types';
 import SkeletonUI from '@/components/product_component/skeleton_ui';
 import Link from 'next/link';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
 
 function MainProductSlider() {
   SwiperCore.use([Navigation, Scrollbar]);
@@ -79,7 +79,7 @@ function MainProductSlider() {
                   <ProductCard
                     id={product._id}
                     name={product.name}
-                    imageUrl={`${API_URL}/${product.mainImages[0]?.path}`}
+                    imageUrl={`/${product.mainImages[0]?.path}`}
                     price={`${product.price.toLocaleString()}원`}
                     discount={discount}
                     rank={index + 1}

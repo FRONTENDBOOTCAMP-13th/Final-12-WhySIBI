@@ -11,7 +11,7 @@ import useProductSearchStore from '@/zustand/productSearchStore';
 import Image from 'next/image';
 import { useCallback, useEffect, useState } from 'react';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
 
 function ProductSearchList() {
   const { searchText } = useProductSearchStore();
@@ -107,7 +107,7 @@ function ProductSearchList() {
                     id={product._id}
                     key={product._id}
                     name={product.name}
-                    imageUrl={`${API_URL}/${product.mainImages[0]?.path}`}
+                    imageUrl={`/${product.mainImages[0]?.path}`}
                     price={`${product.price.toLocaleString()}원`}
                     discount={discount}
                     rating={product.extra?.star ? product.extra?.star : 0}

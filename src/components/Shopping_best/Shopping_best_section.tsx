@@ -11,7 +11,7 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
 
 function ShoppingBestSection({ token }: { token: string | undefined }) {
   const { mainCategoryId, subMenuData, handleMenuClick } = useMenuStore();
@@ -155,7 +155,7 @@ function ShoppingBestSection({ token }: { token: string | undefined }) {
                   id={product._id}
                   key={product._id}
                   name={product.name}
-                  imageUrl={`${API_URL}/${product.mainImages[0]?.path}`}
+                  imageUrl={`/${product.mainImages[0]?.path}`}
                   price={`${product.price.toLocaleString()}원`}
                   discount={discount}
                   rank={index + 1}
