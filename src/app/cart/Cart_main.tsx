@@ -37,6 +37,7 @@ export default function CartMain() {
     fetchCart();
   }, [token, refreshTrigger]);
 
+  console.log('ㅇㅣ게 카트데티어', cartData);
   // 모든 상품 선택/해제 핸들러
   function handleAllCheck() {
     //올체크가 아닐때 클릭하면 checkedItem배열에 모든것을 넣고 올체크 상태를 true로 설정
@@ -114,8 +115,8 @@ export default function CartMain() {
   }
 
   return (
-    <section className="flex justify-center gap-5 flex-col md:flex-row items-center">
-      <div className="w-[480px] md:w-[630px] flex flex-col gap-6">
+    <section className="flex justify-center gap-5 flex-col md:flex-row">
+      <div className="w-[480px] md:w-[630px] flex flex-col gap-6 ">
         <div className="border-1 px-5 py-3 rounded-2xl flex justify-between items-center">
           <div className="flex items-center gap-3">
             <input
@@ -146,6 +147,7 @@ export default function CartMain() {
                   img={item.product.image.path}
                   price={item.product.price}
                   quantity={item.quantity}
+                  productId={item.product_id}
                   token={token}
                   // checkedItem배열에 포함되어 있냐 없냐로checked설정
                   isChecked={checkedItems?.includes(item._id)}

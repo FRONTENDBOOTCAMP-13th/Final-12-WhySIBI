@@ -33,6 +33,7 @@ export interface CartListProps {
   quantity: number;
   token: string | undefined;
   isChecked: boolean | undefined;
+  productId: number;
   handleItemCheck: (itemId: number, isChecked: boolean) => void;
   handleQuantity: (itemId: number, newQuantity: number) => void;
 }
