@@ -32,7 +32,6 @@ function MainRecommendBox() {
       .filter(Boolean) as string[];
 
     setCheckTag([...new Set(selectedTags)]);
-    // console.log(selectedTags);
   };
 
   //상품 불러오기
@@ -41,7 +40,6 @@ function MainRecommendBox() {
       try {
         const res = await getProductList();
         if (res.ok === 1) {
-          // console.log(res.item);
           setProductData(res.item);
         } else {
           console.error(res.message);

@@ -50,7 +50,6 @@ function ProductCard({
     );
     if (result.ok === 1) {
       await UpdateProductState?.(); 
-      console.log('삭제됨?');
       router.refresh();
     }
   };
@@ -64,7 +63,6 @@ function ProductCard({
 
     if (result.ok === 1) {
       await UpdateProductState?.();
-      console.log('추가됨?');
       router.refresh();
     }
   };

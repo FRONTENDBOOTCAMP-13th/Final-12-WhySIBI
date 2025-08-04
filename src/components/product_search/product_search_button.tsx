@@ -15,7 +15,6 @@ function ProductSearchButton() {
   //검색 입력
   const handleClick = () => {
     const searchValue = String(searchText.current?.value).trim();
-    // console.log(searchValue);
     if (!searchValue) return; //빈 검색어 제거
     handleSearchClick(searchValue);
     toggleModal(false);

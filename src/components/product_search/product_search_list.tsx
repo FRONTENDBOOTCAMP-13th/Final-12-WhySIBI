@@ -61,7 +61,6 @@ function ProductSearchList() {
 
   //상품 불러오기
   useEffect(() => {
-    // console.log(searchText);
     if (searchText) {
       fetchProducts();
     } else {
