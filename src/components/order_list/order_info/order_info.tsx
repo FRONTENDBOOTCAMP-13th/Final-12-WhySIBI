@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { memo } from 'react';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
 
 function OrderProductInfo({ _id, price, name, image, state }: OrderProduct) {
   let deliveryState = '';
@@ -24,7 +24,7 @@ function OrderProductInfo({ _id, price, name, image, state }: OrderProduct) {
           <figure className="flex gap-6">
             {image && (
               <Image
-                src={`${API_URL}/${image.path}`}
+                src={`/${image.path}`}
                 alt={image.name || '상품 이미지'}
                 width={140}
                 height={140}

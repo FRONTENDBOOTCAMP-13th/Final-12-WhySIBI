@@ -4,12 +4,11 @@ import useUserStore from '@/zustand/useUserStore';
 import Image from 'next/image';
 
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
 import { memo } from 'react';
 
 import { useState } from 'react';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 function ReviewInfo({
   content,
@@ -28,7 +27,7 @@ function ReviewInfo({
     setLoading(true);
     const result = await DeleteReplie(String(_id), token as string);
     if (result.ok === 1) {
-      await router.push('/my_page/reviews');
+      await redirect('/my_page/reviews');
       router.refresh();
     }
     setLoading(false);
@@ -42,7 +41,7 @@ function ReviewInfo({
         <Link href={`/products/${productId}`}>
           <figure className="flex gap-6">
             <Image
-              src={`${API_URL}/${productImage.path}`}
+              src={`/${productImage.path}`}
               alt={'상품 이미지'}
               width={140}
               height={140}

@@ -1,6 +1,7 @@
 'use client';
 import Pagenation from '@/components/basic_component/Pagenation';
 import OrderProductInfo from '@/components/order_list/order_info/order_info';
+import SkeletonUI from '@/components/product_component/skeleton_ui';
 import { OrderItem } from '@/types/order';
 import { useEffect, useState } from 'react';
 interface OrderListProp {
@@ -12,13 +13,20 @@ export default function OrderList({ orderItem }: OrderListProp) {
   const [productList, setProductList] = useState<OrderItem[] | null>(null);
   //페이지 네이션
   const [page, setPage] = useState(1);
-
+  const [isLoading, setLoading] = useState(true);
   useEffect(() => {
+    setLoading(true);
     const orderListData = async () => {
-      if (orderItem) {
-        setProductList(orderItem);
-      } else {
-        setProductList(null);
+      try {
+        if (orderItem) {
+          setProductList(orderItem);
+        } else {
+          setProductList(null);
+        }
+      } catch (error) {
+        console.error('상품 정보 로딩 실패:', error);
+      } finally {
+        setLoading(false);
       }
     };
     orderListData();
@@ -37,26 +45,34 @@ export default function OrderList({ orderItem }: OrderListProp) {
   };
 
   return (
-    <nav className="mt-20">
-      <ul className="flex flex-col flex-wrap gap-16">
-        {sliceData?.map(order =>
-          order.products.map((product, i) => (
-            <OrderProductInfo
-              key={i}
-              _id={product._id}
-              price={product.price}
-              name={product.name}
-              image={product.image}
-              state={order.state}
-            />
-          )),
-        )}
-      </ul>
-      <Pagenation
-        page={page}
-        totalPage={totalPage}
-        onPageTurner={handlePagenation}
-      />
-    </nav>
+    <>
+      {isLoading ? (
+        <div className="flex justify-center items-center mt-20">
+          <SkeletonUI count={10} />
+        </div>
+      ) : (
+        <nav className="mt-20">
+          <ul className="flex flex-col flex-wrap gap-16">
+            {sliceData?.map(order =>
+              order.products.map((product, i) => (
+                <OrderProductInfo
+                  key={i}
+                  _id={product._id}
+                  price={product.price}
+                  name={product.name}
+                  image={product.image}
+                  state={order.state}
+                />
+              )),
+            )}
+          </ul>
+          <Pagenation
+            page={page}
+            totalPage={totalPage}
+            onPageTurner={handlePagenation}
+          />
+        </nav>
+      )}
+    </>
   );
 }

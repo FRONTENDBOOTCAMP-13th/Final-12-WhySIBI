@@ -1,6 +1,6 @@
 import { InquryProductProps } from '@/types';
 import Image from 'next/image';
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
 export default function InquryInfo({
   content,
   title,
@@ -12,7 +12,7 @@ export default function InquryInfo({
       <div className="flex justify-between mt-6 items-center">
         <figure className="flex gap-6">
           <Image
-            src={`${API_URL}/${productImage?.path}`}
+            src={`/${productImage?.path}`}
             alt={'상품 이미지'}
             width={140}
             height={140}
