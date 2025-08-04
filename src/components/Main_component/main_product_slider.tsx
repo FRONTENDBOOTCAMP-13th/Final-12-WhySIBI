@@ -63,7 +63,7 @@ function MainProductSlider() {
             navigation={true} // prev, next button
             breakpoints={{
               //반응형
-              0: { slidesPerView: 2 },
+              0: { slidesPerView: 1 },
               640: { slidesPerView: 2 },
               1024: { slidesPerView: 3 },
               1280: { slidesPerView: 4 },

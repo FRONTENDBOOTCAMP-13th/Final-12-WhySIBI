@@ -11,7 +11,7 @@ function MainCategorySection() {
     <>
       <Title title="카테고리별 상품 찾기" subTitle="" />
       <section className="categroy block w-full bg-white pt-5">
-        <ul className="flex text-2xl justify-center gap-20 font-logo font-bold text-button-color text-center">
+        <ul className="flex xl:text-2xl lg:text-xl md:text-lg justify-center xl:gap-20 lg:gap-14 md:gap-10 gap-6 text-size-md font-logo font-bold text-button-color text-center">
           <li>
             <figure>
               <Link

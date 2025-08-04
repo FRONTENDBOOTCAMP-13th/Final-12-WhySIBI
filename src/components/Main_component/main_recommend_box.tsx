@@ -21,7 +21,6 @@ function MainRecommendBox() {
   const [loading, setLoading] = useState(true);
   const { user } = useUserStore();
 
-
   //비회원 - 태그 값 불러옴
   const handleTag = () => {
     const checkedInputs = document.querySelectorAll(
@@ -138,7 +137,7 @@ function MainRecommendBox() {
               spaceBetween={16} // 슬라이스 사이 간격
               slidesPerView="auto" // 보여질 슬라이스 수
               grabCursor={true} //마우스 선택
-              navigation={true} // prev, next button
+              // navigation={true} // prev, next button
             >
               <SwiperSlide>
                 <div className="min-w-[120px]">
@@ -290,50 +289,62 @@ function MainRecommendBox() {
           </div>
 
           {/* 비회원 선택 기반 추천 상품 */}
-          {/* checkTag 배열이 0 보다 크면 - 선택 시 */}
           {checkTag.length > 0 ? (
             <Swiper
               modules={[Scrollbar]}
-              loop={false} // 슬라이드 루프
-              spaceBetween={16} // 슬라이스 사이 간격
-              slidesPerView="auto" // 보여질 슬라이스 수
-              grabCursor={true} //마우스 선택
+              loop={false}
+              spaceBetween={16}
+              slidesPerView={1} // 한 번에 하나씩만 보이게
+              grabCursor={true}
               scrollbar={{
-                //스크롤바
                 el: '.swiper-scrollbar',
                 draggable: true,
               }}
+              breakpoints={{
+                // 모든 화면 크기에서 하나씩만
+                0: { slidesPerView: 1, spaceBetween: 12 },
+                640: { slidesPerView: 1, spaceBetween: 14 },
+                1024: { slidesPerView: 1, spaceBetween: 16 },
+                1280: { slidesPerView: 1, spaceBetween: 16 },
+              }}
             >
               {checkTag.map((tag, index) => {
-                //checkTag 배열을 돌면서 태그 필터 -> 상품 4개 가져옴
+                // 화면 크기별 상품 개수 계산 (JavaScript로는 정확한 breakpoint 감지가 어려우므로 최대값 사용)
+                const getProductCount = () => {
+                  if (typeof window !== 'undefined') {
+                    const width = window.innerWidth;
+                    if (width >= 1280) return 4; // xl
+                    if (width >= 1024) return 3; // lg
+                    if (width >= 768) return 2; // md
+                    return 1; // md 미만
+                  }
+                  return 4; // 서버사이드에서는 최대값
+                };
                 const tagProduct = productData
                   .filter(product => product.extra?.tag?.includes(tag))
-                  .slice(0, 2);
+                  .slice(0, getProductCount());
 
                 return (
-                  <SwiperSlide key={index} className="!w-[80%] md:!w-[48%]">
-                    <div className="bg-gradient-to-b w-full from-vanilla-300 to-columbia-blue-300 mb-10 rounded-2xl">
-                      <div className="flex justify-between p-5">
-                        <p className="text-lg font-bold text-livealone-cal-poly-green">
+                  <SwiperSlide key={index} className="!w-full">
+                    <div className="bg-gradient-to-b w-full from-vanilla-300 to-columbia-blue-300 mb-6 md:mb-10 rounded-xl md:rounded-2xl shadow-sm">
+                      <div className="flex justify-between items-center p-3 md:p-5">
+                        <p className="text-sm md:text-lg font-bold text-livealone-cal-poly-green leading-tight">
                           {PreferenceTagMap[tag]} 인기 상품 추천 ✨
                         </p>
-                        {/* <Link href="/shopping/best">
-                          <span className="text-gray-400">{`더보기 >`}</span>
-                        </Link> */}
+                        <span className="text-xs text-gray-500 bg-white/70 px-2 py-1 rounded-full">
+                          {index + 1} / {checkTag.length}
+                        </span>
                       </div>
-                      <div
-                        className="grid sm:grid-cols-2 md:grid-cols-2 
-                lg:grid-cols-2 gap-4 items-center"
-                      >
-                        {/* 상품 로딩중일때 스켈레톤 UI 불러옴 */}
+
+                      {/* 반응형 그리드 */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-4 items-center px-3 md:px-5 pb-3 md:pb-5">
                         {loading ? (
-                          <SkeletonUI count={2} />
+                          <SkeletonUI count={getProductCount()} />
                         ) : (
-                          // 로딩중이 아니면 프로덕트 카드로 대체
                           tagProduct.map(product => {
                             const discount = product?.extra?.originalPrice
                               ? `${Math.round(100 - (product.price * 100) / product.extra.originalPrice)}%`
-                              : ''; //할인율
+                              : '';
                             return (
                               <ProductCard
                                 key={product._id}
@@ -360,16 +371,16 @@ function MainRecommendBox() {
               <div className="swiper-scrollbar"></div>
             </Swiper>
           ) : (
-            /* checkTag 배열이 0 보다 작을때 - 선택 안했을 시 */
-            <div className="bg-gradient-to-b border-2 border-gray-200 rounded-2xl flex items-center justify-center flex-col">
+            /* 미선택 시 기본 화면 */
+            <div className="bg-gradient-to-b border-2 border-gray-200 rounded-xl md:rounded-2xl flex items-center justify-center flex-col py-8 md:py-12 mx-2 md:mx-0">
               <Image
                 src="/image/category_icon/furniture.svg"
                 alt="관심사 미선택"
                 width="200"
                 height="200"
-                className="w-[100px] opacity-20 mt-5 mb-2.5"
+                className="w-16 md:w-[100px] opacity-20 mb-3 md:mb-2.5"
               />
-              <p className="text-center text-gray-500 text-base mb-5">
+              <p className="text-center text-gray-500 text-sm md:text-base px-4">
                 관심사를 골라보세요 <br /> 취향저격 상품을 소개할게요
               </p>
             </div>
