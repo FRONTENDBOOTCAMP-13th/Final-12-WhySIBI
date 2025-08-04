@@ -75,7 +75,7 @@ export default async function ProductDetail({
             href={'?tab=info'}
             scroll={false} // 이거 쓰면 링크 클릭할때마다 맨위로 안감
             className={`p-4 ${tab === 'info' || tab === undefined ? 'text-flame-250 border-b-3 border-flame-250' : ''}`}
-          >
+          >````
             상품정보
           </Link>
           <Link

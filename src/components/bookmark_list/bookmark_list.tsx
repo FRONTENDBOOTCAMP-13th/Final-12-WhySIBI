@@ -112,7 +112,15 @@ export default function BookMarkList({
 
           <section className="mt-24">
             <h4 className="font-logo text-4xl">찜 목록</h4>
-            <div className="grid grid-cols-4 grid-rows-4 gap-16 items-center">
+            <div
+              className="grid items-center"
+              style={{
+                gridTemplateColumns: 'repeat(4, 1fr)',
+                gridTemplateRows: 'repeat(4, 1fr)',
+                gap: 'min(4rem, 4vw)',
+                transform: 'scale(min(1, 100vw / 1280px))',
+              }}
+            >
               {sliceData?.map((product, i) => (
                 <BookMarkInfo
                   key={i}
@@ -124,11 +132,13 @@ export default function BookMarkList({
                 />
               ))}
             </div>
-            <Pagenation
-              page={page}
-              totalPage={totalPage}
-              onPageTurner={handlePagenation}
-            />
+            <div className="w-4/5  mt-5">
+              <Pagenation
+                page={page}
+                totalPage={totalPage}
+                onPageTurner={handlePagenation}
+              />
+            </div>
           </section>
         </>
       )}

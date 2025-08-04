@@ -13,7 +13,7 @@ function BookMarkInfo({
       <figure className="shadow-shadow-lg p-5 items-center w-fit rounded-radius-lg">
         <Image
           src={`/${productImage?.path}`}
-          alt={`${productId} 상품 이미지`}
+          alt={`${productName} 상품 이미지`}
           width={270}
           height={270}
           className="object-cover"

@@ -61,11 +61,13 @@ export default function ReviewLists({ reviewItem }: reviewListProp) {
               />
             ))}
           </ul>
-          <Pagenation
-            page={page}
-            totalPage={totalPage}
-            onPageTurner={handlePagenation}
-          />
+          <div className="w-4/5 mt-5">
+            <Pagenation
+              page={page}
+              totalPage={totalPage}
+              onPageTurner={handlePagenation}
+            />
+          </div>
         </nav>
       )}
     </>

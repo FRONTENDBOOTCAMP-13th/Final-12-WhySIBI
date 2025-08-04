@@ -63,7 +63,7 @@ export default function MyInquryList({ MyInqury }: MyInQuryListProp) {
               />
             ))}
           </ul>
-          <div className="w-4/5">
+          <div className="w-4/5 mt-5">
             <Pagenation
               page={page}
               totalPage={totalPage}

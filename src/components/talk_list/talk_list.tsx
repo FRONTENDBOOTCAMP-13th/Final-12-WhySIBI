@@ -84,11 +84,13 @@ export default function TalkList({ item, boardType }: TalkListProps) {
           boardType={boardType}
         />
       ))}
-      <Pagenation
-        page={page}
-        totalPage={totalPage}
-        onPageTurner={handlePagenation}
-      />
+      <div className="w-4/5  mt-5">
+        <Pagenation
+          page={page}
+          totalPage={totalPage}
+          onPageTurner={handlePagenation}
+        />
+      </div>
     </>
   );
 }

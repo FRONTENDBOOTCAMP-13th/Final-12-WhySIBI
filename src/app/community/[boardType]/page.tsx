@@ -47,7 +47,14 @@ export default async function PostCardPage({ params }: ListPageProps) {
   }
   if (boardType === 'talk') {
     return (
-      <div className="relative post-list-wrapper bg-white p-20">
+      <div
+        className="relative post-list-wrapper bg-white p-20 overflow-x-auto"
+        style={{
+          minWidth: '1280px',
+          //브라우저의 너비를 기준으로 1280을나눠서 더 작을쪽을 선택해 하위요소들의 크기를 모두 줄임(단 시각적으로만 )
+          transform: 'scale(min(1, 100vw / 1280px))',
+        }}
+      >
         <div className="post-header flex justify-between pl-5 mb-10">
           <div className="flex flex-col">
             <div>
