@@ -6,15 +6,37 @@ import { useActionState } from "react";
 import { useParams } from "next/navigation";
 import useUserStore from "@/zustand/useUserStore";
 import { ButtonNostyle } from "@/components/Buttons/Button_nostyle";
+import { ApiRes } from "@/types";
 
-export default function CommentDeleteForm({ reply }: { reply: PostReply }) {
+interface CommentDeleteFormProps {
+  reply: PostReply;
+  onSuccess: () => void;
+  onDelete: (replyId: number) => void;
+}
+
+export default function CommentDeleteForm({ reply, onSuccess, onDelete }: CommentDeleteFormProps) {
   const { type, _id } = useParams();
-  const [state, formAction, isLoading] = useActionState(deleteReply, null);
   const { user } = useUserStore();
+
+  const [state, formAction, isLoading] = useActionState(
+    async (
+      prevState: ApiRes<PostReply, never> | null,
+      formData: FormData
+    ): Promise<ApiRes<PostReply, never>> => {
+      const result = await deleteReply(prevState, formData);
+      if (result.ok === 1) {
+        onDelete(reply._id); //  UI에서 즉시 삭제
+        onSuccess(); //  서버에서 재검증 필요 시
+      }
+      return result;
+    },
+    null
+  );
   
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     if (!window.confirm("정말 삭제하시겠습니까?")) event.preventDefault();
   };
+  
   return (
     <form action={formAction} onSubmit={handleSubmit} className="inline ml-2">
       <input type="hidden" name="type" value={type} />

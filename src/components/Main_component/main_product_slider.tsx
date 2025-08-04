@@ -14,8 +14,6 @@ import { ProductListProps } from '@/types';
 import SkeletonUI from '@/components/product_component/skeleton_ui';
 import Link from 'next/link';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
 function MainProductSlider() {
   SwiperCore.use([Navigation, Scrollbar]);
 

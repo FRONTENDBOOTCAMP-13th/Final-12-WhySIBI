@@ -2,7 +2,13 @@
 import CommentItem from './CommentItem';
 import { PostReply } from '@/types';
 
-export default function CommentList({ replies }: { replies: PostReply[]; }) {
+interface CommentListProps {
+  replies: PostReply[];
+  onDeleteSuccess: () => void;
+  onDelete: (replyId: number) => void;
+}
+
+export default function CommentList({ replies, onDeleteSuccess, onDelete }: CommentListProps) {
 
   return (
     <div className="mt-5">
@@ -10,6 +16,8 @@ export default function CommentList({ replies }: { replies: PostReply[]; }) {
         <CommentItem
           key={reply._id}
           reply={reply}
+          onDeleteSuccess={onDeleteSuccess}
+          onDelete={onDelete}
           mentionUser={(name) => {
             const input = document.getElementById('comment-input') as HTMLInputElement;
             if (input) {
