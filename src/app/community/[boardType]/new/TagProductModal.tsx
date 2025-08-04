@@ -54,14 +54,15 @@ export default function TagProductModal({ productList, selected, setSelected, on
                 }`}
                 onClick={() => toggleSelect(product)}
               >
-                {/* <Image
-                  src={`${process.env.NEXT_PUBLIC_API_URL}/${product.mainImages[0].path}` || '/image/room_photo/postThumbnail.svg'}
-                  alt={product.name}
-                  width={80}
-                  height={80}
-                  className="rounded-full object-cover"
-                /> */}
-              <div className="absolute z-10 bottom-0 w-full text-livealone-cal-poly-green bg-opacity-80 text-center text-xs font-light">
+                <Image
+                // src={`/${product.mainImages[0].path}` || '/image/room_photo/postThumbnail.svg'}
+                src={'/image/room_photo/postThumbnail.svg'}
+                alt={product.name}
+                width={80}
+                height={80}
+                className="rounded-xl object-cover w-25 h-25"
+              />
+              <div className="absolute z-10 bottom-0 w-full text-white bg-opacity-80 text-center text-xs font-light">
                 {product.name}
               </div>
                 {isSelected && (
@@ -75,17 +76,19 @@ export default function TagProductModal({ productList, selected, setSelected, on
         </div>
 
         {/* 선택된 상품 */}
-        <Swiper slidesPerView="auto" spaceBetween={12}  className="flex w-[436px] relative h-35 items-center gap-4 mb-6 bg-livealone-cal-poly-green rounded-xl">
+        <h3 className="text-lg font-bold mb-4 ml-4">태그된 상품</h3>
+        <Swiper slidesPerView="auto" spaceBetween={12}  className="flex w-[436px] relative h-35 items-center gap-4 mb-6 rounded-xl">
           {selected.map((product) => {
             return (
               <SwiperSlide key={product._id} className="group relative !w-25 !h-25 rounded-2xl overflow-hidden border">
-              {/* <Image
-                src={`${process.env.NEXT_PUBLIC_API_URL}/${product.mainImages[0].path}` || '/image/room_photo/postThumbnail.svg'}
+              <Image
+                // src={`/${product.mainImages[0].path}` || '/image/room_photo/postThumbnail.svg'}
+                src={'/image/room_photo/postThumbnail.svg'}
                 alt={product.name}
                 fill
                 className="object-cover rounded-2xl"
-              /> */}
-              <div className="absolute bottom-0 w-full bg-opacity-80 text-center text-xs font-light">
+              />
+              <div className="absolute bottom-0 w-full bg-opacity-80 text-center text-white text-xs font-light">
                 {product.name}
               </div>
               <Image

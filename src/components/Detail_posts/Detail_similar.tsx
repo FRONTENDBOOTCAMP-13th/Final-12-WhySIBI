@@ -1,16 +1,33 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Product } from '@/types';
+import { ProductListProps } from '@/types';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import useProductSearchStore from '@/zustand/productSearchStore';
 import 'swiper/css';
+import { useRouter } from 'next/navigation';
 
 interface ProductProps {
-  products?: Product[];
+  products?: ProductListProps[];
 }
 
 export default function DetailSimilar({ products }: ProductProps) {
+  const router = useRouter();
+  const { setMultiKeywordSearch } = useProductSearchStore();
+  
   if (!products?.length) return null;
+
+  const handleFindSimilar = () => {
+    const keywords = products
+      .map((p) => p.keyword?.[0])
+      .filter((k): k is string => !!k);
+
+    setMultiKeywordSearch(keywords);
+    setTimeout(() => {
+    router.push('/search');
+  }, 0);
+  };
+
 
   return (
     <div className="w-[600px] mt-15 text-center">
@@ -29,7 +46,6 @@ export default function DetailSimilar({ products }: ProductProps) {
               <Link href={`/products/${product._id}`}>
                 <Image
                   src={
-                    `${process.env.NEXT_PUBLIC_API_URL}/${product.mainImages[0].path}` ||
                     '/image/room_photo/postThumbnail.svg'
                   }
                   alt={product.name}
@@ -50,7 +66,7 @@ export default function DetailSimilar({ products }: ProductProps) {
             </SwiperSlide>
           ))}
           <SwiperSlide className="group relative !w-40 !h-40 rounded-2xl border overflow-hidden">
-            <button>비슷한 상품 찾기</button>
+            <button onClick={handleFindSimilar} className="w-full h-full cursor-pointer">비슷한 상품 찾기</button>
           </SwiperSlide>
         </Swiper>
       </div>

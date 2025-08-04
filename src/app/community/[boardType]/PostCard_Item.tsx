@@ -132,15 +132,15 @@ export default function PostCardItem({
         <Image
           src="/image/community_icon/eyeIcon.svg"
           alt="조회수"
-          width="15"
-          height="15"
+          width={15}
+          height={15}
         />
         <span>{post.views}</span>
         <Image
           src="/image/community_icon/chatIcon.svg"
           alt="댓글수"
-          width="15"
-          height="15"
+          width={15}
+          height={15}
         />
         <span>{post.repliesCount}</span>
       </div>

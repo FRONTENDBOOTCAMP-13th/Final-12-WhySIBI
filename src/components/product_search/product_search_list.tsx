@@ -1,5 +1,4 @@
 'use client';
-
 import ProductCard from '@/components/product_component/product_card';
 import SkeletonUI from '@/components/product_component/skeleton_ui';
 import ProductSearchTitle from '@/components/product_search/product_search_title';
@@ -11,10 +10,9 @@ import useProductSearchStore from '@/zustand/productSearchStore';
 import Image from 'next/image';
 import { useCallback, useEffect, useState } from 'react';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
 function ProductSearchList() {
   const { searchText } = useProductSearchStore();
+  const { searchKeywords } = useProductSearchStore(); // 비슷한 상품 찾기
   const [loading, setLoading] = useState(false);
   const [productData, setProductData] = useState<ProductListProps[]>([]);
   const [sort, setSort] = useState<
@@ -34,20 +32,32 @@ function ProductSearchList() {
         sort,
       });
       if (res.ok === 1) {
-        const text = searchText.toString().toLowerCase().replace(/\s+/g, ''); //정규식 사용(문자변환 +소문자 변환 + 공백제거)
-        const filter = res.item.filter((product: ProductListProps) => {
-          const nameFilter = product.name
-            .toLowerCase()
-            .replace(/\s+/g, '')
-            .includes(text);
-          const keywords = product.keyword.map(k =>
+          const text = searchText.trim().toLowerCase().replace(/\s+/g, '');
+          const keywords = searchKeywords.map(k =>
+            k.trim().toLowerCase().replace(/\s+/g, ''),
+          ); // 비슷한 상품 찾기 (키워드 병렬로 받음)
+          const filter = res.item.filter((product: ProductListProps) => {
+          const name = product.name.toLowerCase().replace(/\s+/g, '');
+          const productKeywords = product.keyword.map(k =>
             k.toLowerCase().replace(/\s+/g, ''),
-          );
-          const keywordsFilter = keywords.filter(index => index.includes(text));
-          const keywordFilter = keywordsFilter.length > 0;
-          return nameFilter || keywordFilter;
-        });
+          ); // 비슷한 상품 찾기
 
+          const nameMatch = text && name.includes(text);
+          const keywordMatch =
+            text &&
+            productKeywords.some(keyword => keyword.includes(text));
+
+          const multiKeywordMatch =
+            keywords.length > 0 &&
+            keywords.some(search => {
+              return (
+                name.includes(search) ||
+                productKeywords.some(k => k.includes(search))
+              );
+            });
+
+          return nameMatch || keywordMatch || multiKeywordMatch;
+        });
         setProductData(filter);
       } else {
         console.error(res.message);
@@ -57,18 +67,19 @@ function ProductSearchList() {
     } finally {
       setLoading(false);
     }
-  }, [sort, searchText]);
+  }, [sort, searchText, searchKeywords]);
 
   //상품 불러오기
   useEffect(() => {
-    // console.log(searchText);
-    if (searchText) {
-      fetchProducts();
+      if (searchKeywords.length > 0) {
+      fetchProducts(); // 병렬 키워드 검색 우선
+    } else if (searchText) {
+      fetchProducts(); // 일반 검색
     } else {
       setProductData([]);
       setLoading(false);
     }
-  }, [searchText, fetchProducts]);
+  }, [searchText, searchKeywords, fetchProducts]);
 
   const isSearch = productData.length > 0;
 
@@ -107,7 +118,7 @@ function ProductSearchList() {
                     id={product._id}
                     key={product._id}
                     name={product.name}
-                    imageUrl={`${API_URL}/${product.mainImages[0]?.path}`}
+                    imageUrl={`/${product.mainImages[0]?.path}`}
                     price={`${product.price.toLocaleString()}원`}
                     discount={discount}
                     rating={product.extra?.star ? product.extra?.star : 0}
