@@ -4,16 +4,16 @@ import { PostReply } from '@/types';
 import { getTimeAgo } from '@/utils/time';
 import CommentDeleteForm from './CommentDeleteForm';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
 interface CommentProps {
   reply: PostReply;
+  onDeleteSuccess: () => void;
+  onDelete: (replyId: number) => void;
   mentionUser: (name: string) => void;
 }
 
-export default function CommentItem({ reply, mentionUser }: CommentProps) {
+export default function CommentItem({ reply, onDeleteSuccess, onDelete, mentionUser }: CommentProps) {
   const profileImage = reply.user.image
-    ? `${API_URL}/${reply.user.image}`
+    ? `/${reply.user.image}`
     : '/image/community_icon/profile_sample.png';
 
   return (
@@ -45,7 +45,7 @@ export default function CommentItem({ reply, mentionUser }: CommentProps) {
         </p>
         <div className="flex items-center text-gray-400 text-[12px] space-x-2">
           <time dateTime={reply.createdAt}>{getTimeAgo(reply.createdAt)}</time>
-          <CommentDeleteForm reply={reply} />
+          <CommentDeleteForm reply={reply} onSuccess={onDeleteSuccess} onDelete={onDelete} />
         </div>
       </div>
     </div>

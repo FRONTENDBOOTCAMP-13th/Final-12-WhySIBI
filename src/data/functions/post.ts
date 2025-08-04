@@ -18,7 +18,7 @@ export async function getPosts(
         Authorization: `Bearer ${token}`,
         'Client-Id': CLIENT_ID,
       },
-      cache: 'no-cache',
+      // cache: 'no-cache',
       next: {
         tags: [`posts?type=${boardType}`],
       },
@@ -54,7 +54,7 @@ export async function getPost(
         Authorization: `Bearer ${token}`,
         'Client-Id': CLIENT_ID,
       },
-      cache: 'no-cache',
+      // cache: 'no-cache',
       next: {
         tags: [`posts/${_id}`],
       },

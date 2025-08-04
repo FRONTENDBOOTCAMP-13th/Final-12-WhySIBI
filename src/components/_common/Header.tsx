@@ -6,8 +6,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
 export default function Header() {
   const { user, resetUser } = useUserStore();
   const handleLogout = (e: React.FormEvent<HTMLFormElement>) => {
@@ -36,7 +34,7 @@ export default function Header() {
                 className="object-cover rounded-full mr-2"
                 src={
                   user.image
-                    ? `${API_URL}/${user?.image}`
+                    ? `/${user?.image}`
                     : '/image/image/profile.png'
                 }
                 width="60"
