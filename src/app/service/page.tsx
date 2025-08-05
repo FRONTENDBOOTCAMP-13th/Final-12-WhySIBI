@@ -27,7 +27,7 @@ export default function CustomerServicePage() {
 
 
   return (
-    <div className="flex justify-center p-20 font-variable bg-white">
+    <div className="flex justify-center px-20 py-30 font-variable bg-white">
       <div className="w-[600px]">
         {/* 헤더 */}
         <div className="text-center mb-15">
