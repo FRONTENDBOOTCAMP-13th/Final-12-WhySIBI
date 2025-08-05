@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ProductListProps } from '@/types';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import type { Swiper as SwiperClass } from 'swiper/types';
 import { Navigation } from 'swiper/modules';
 import useProductSearchStore from '@/zustand/productSearchStore';
 import 'swiper/css';
@@ -16,7 +17,26 @@ interface ProductProps {
 export default function DetailSimilar({ products }: ProductProps) {
   const router = useRouter();
   const { setMultiKeywordSearch } = useProductSearchStore();
-  
+
+  // 커스텀 Swiper Navigation
+  const prevRef = useRef<HTMLButtonElement | null>(null);
+  const nextRef = useRef<HTMLButtonElement | null>(null);
+  const [swiperInstance, setSwiperInstance] = useState<SwiperClass | null>(null);
+
+  useEffect(() => {
+    if (
+      swiperInstance &&
+      typeof swiperInstance.params.navigation === 'object' &&
+      prevRef.current &&
+      nextRef.current
+    ) {
+      swiperInstance.params.navigation.prevEl = prevRef.current;
+      swiperInstance.params.navigation.nextEl = nextRef.current;
+      swiperInstance.navigation.init();
+      swiperInstance.navigation.update();
+    }
+  }, [swiperInstance]);
+
   if (!products?.length) return null;
 
   const handleFindSimilar = () => {
@@ -29,25 +49,6 @@ export default function DetailSimilar({ products }: ProductProps) {
     router.push('/search');
   }, 0);
   };
-
-  // 커스텀 Swiper Navigation
-  const prevRef = useRef<HTMLButtonElement | null>(null);
-  const nextRef = useRef<HTMLButtonElement | null>(null);
-  const [swiperInstance, setSwiperInstance] = useState<any>(null);
-
-    useEffect(() => {
-    if (
-      swiperInstance &&
-      prevRef.current &&
-      nextRef.current &&
-      !swiperInstance.params.navigation.prevEl
-    ) {
-      swiperInstance.params.navigation.prevEl = prevRef.current;
-      swiperInstance.params.navigation.nextEl = nextRef.current;
-      swiperInstance.navigation.init();
-      swiperInstance.navigation.update();
-    }
-  }, [swiperInstance]);
 
   return (
     <div className="w-[600px] mt-20 text-center">
