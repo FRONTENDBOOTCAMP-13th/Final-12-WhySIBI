@@ -15,8 +15,9 @@ interface CommentNewProps {
 
 export default function CommentNew({ _id, repliesCount, onAdd }: CommentNewProps) {
   const { user } = useUserStore();
-  const [formAction, isLoading] = useActionState(
-    async (
+  const [, formAction, isLoading] = useActionState< ApiRes<PostReply, never> | null, FormData >
+  ( 
+  async (
       prevState: ApiRes<PostReply, never> | null,
       formData: FormData
     ): Promise<ApiRes<PostReply, never>> => {
