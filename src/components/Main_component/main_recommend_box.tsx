@@ -88,24 +88,28 @@ function MainRecommendBox() {
                     {loading ? (
                       <SkeletonUI count={2} />
                     ) : (
-                      tagProduct.map(product => (
-                        <ProductCard
-                          key={product._id}
-                          id={product._id}
-                          name={product.name}
-                          imageUrl={product.mainImages[0]?.path}
-                          price={`${product.price.toLocaleString()}원`}
-                          discount={
-                            product.extra?.originalPrice
-                              ? `${Math.round(100 - (product.price * 100) / product.extra.originalPrice)}%`
-                              : ''
-                          }
-                          rating={product.extra?.star || 0}
-                          reviewCount={product.replies}
-                          isLiked={!!product.extra?.isLike}
-                          onClick={() => {}}
-                        />
-                      ))
+                      // 로딩중이 아니면 프로덕트 카드로 대체
+                      tagProduct.map(product => {
+                        const discount = product?.extra?.originalPrice
+                          ? `${Math.round(100 - (product.price * 100) / product.extra.originalPrice)}%`
+                          : ''; //할인율
+                        return (
+                          <ProductCard
+                            key={product._id}
+                            id={product._id}
+                            name={product.name}
+                            imageUrl={product.mainImages[0]?.path}
+                            price={`${product.price.toLocaleString()}원`}
+                            discount={discount}
+                            rating={
+                              product.extra?.star ? product.extra?.star : 0
+                            }
+                            reviewCount={product.replies}
+                            isLiked={product.extra?.isLike ? true : false}
+                            onClick={() => {}}
+                          />
+                        );
+                      })
                     )}
                   </div>
                 </div>
@@ -313,24 +317,27 @@ function MainRecommendBox() {
                         {loading ? (
                           <SkeletonUI count={2} />
                         ) : (
-                          tagProduct.map(product => (
-                            <ProductCard
-                              key={product._id}
-                              id={product._id}
-                              name={product.name}
-                              imageUrl={product.mainImages[0]?.path}
-                              price={`${product.price.toLocaleString()}원`}
-                              discount={
-                                product.extra?.originalPrice
-                                  ? `${Math.round(100 - (product.price * 100) / product.extra.originalPrice)}%`
-                                  : ''
-                              }
-                              rating={product.extra?.star || 0}
-                              reviewCount={product.replies}
-                              isLiked={!!product.extra?.isLike}
-                              onClick={() => {}}
-                            />
-                          ))
+                          tagProduct.map(product => {
+                            const discount = product?.extra?.originalPrice
+                              ? `${Math.round(100 - (product.price * 100) / product.extra.originalPrice)}%`
+                              : '';
+                            return (
+                              <ProductCard
+                                key={product._id}
+                                id={product._id}
+                                name={product.name}
+                                imageUrl={product.mainImages[0]?.path}
+                                price={`${product.price.toLocaleString()}원`}
+                                discount={discount}
+                                rating={
+                                  product.extra?.star ? product.extra?.star : 0
+                                }
+                                reviewCount={product.replies}
+                                isLiked={product.extra?.isLike ? true : false}
+                                onClick={() => {}}
+                              />
+                            );
+                          })
                         )}
                       </div>
                     </div>

@@ -37,11 +37,11 @@ function MenuNavigation() {
 
   const listPathName = usePathname();
   const isListMenuActive = (path: string) =>
-    listPathName === path ? 'bg-white rounded-t-4xl' : '';
+    listPathName.includes(path) ? 'bg-white rounded-t-4xl' : '';
 
   const anchorPathName = usePathname();
   const isAnchorMenuActive = (path: string) =>
-    anchorPathName === path ? 'text-menu-text' : '';
+    anchorPathName.includes(path) ? 'text-menu-text' : '';
 
   const sub_pathName = usePathname();
   const isSubMenuActive = (path: string) =>
@@ -61,7 +61,7 @@ function MenuNavigation() {
             >
               <Link
                 href={`/community/showRoom`}
-                className={`block text-button-color w-full h-full active:text-menu-text ${isAnchorMenuActive('/community/showRoom')}`}
+                className={`block text-button-color w-full h-full active:text-menu-text ${isAnchorMenuActive('/community')}`}
                 onClick={e => {
                   e.preventDefault();
                   handleMenuClick('community');
@@ -72,11 +72,11 @@ function MenuNavigation() {
               </Link>
             </li>
             <li
-              className={`xl:w-[9.375rem] lg:w-[8rem] md:w-[7rem] xl:h-[4.375rem] lg:h-[4rem] md:h-[3.5rem] xl:p-3.5 lg:p-3 md:p-2.5 pb-0 mt-3 overflow-hidden active:bg-white rounded-t-4xl ${isListMenuActive('/shopping/category')}`}
+              className={`xl:w-[9.375rem] lg:w-[8rem] md:w-[7rem] xl:h-[4.375rem] lg:h-[4rem] md:h-[3.5rem] xl:p-3.5 lg:p-3 md:p-2.5 pb-0 mt-3 overflow-hidden active:bg-white rounded-t-4xl ${isListMenuActive('/shopping')}`}
             >
               <Link
                 href={'/shopping/category'}
-                className={`block text-button-color w-full h-full active:text-menu-text ${isAnchorMenuActive('/shopping/category')}`}
+                className={`block text-button-color w-full h-full active:text-menu-text ${isAnchorMenuActive('/shopping')}`}
                 onClick={e => {
                   e.preventDefault();
                   handleMenuClick('shopping', mainCategoryId);
@@ -87,12 +87,12 @@ function MenuNavigation() {
               </Link>
             </li>
             <li
-              className={`xl:w-[9.375rem] lg:w-[8rem] md:w-[7rem] xl:h-[4.375rem] lg:h-[4rem] md:h-[3.5rem] xl:p-3.5 lg:p-3 md:p-2.5 pb-0 mt-3 overflow-hidden active:bg-white rounded-t-4xl ${isListMenuActive('/csCenter')}`}
+              className={`xl:w-[9.375rem] lg:w-[8rem] md:w-[7rem] xl:h-[4.375rem] lg:h-[4rem] md:h-[3.5rem] xl:p-3.5 lg:p-3 md:p-2.5 pb-0 mt-3 overflow-hidden active:bg-white rounded-t-4xl ${isListMenuActive('/service')}`}
             >
               <Link
                 href={'/service'}
                 className={`block text-button-color w-full h-full active:text-menu-text ${isAnchorMenuActive('/service')}`}
-                onClick={() => handleMenuClick('csCenter')}
+                onClick={() => handleMenuClick('service')}
               >
                 고객센터
               </Link>
@@ -169,11 +169,11 @@ function MenuNavigation() {
             <li>
               <Link
                 href={`/community/showRoom`}
-                className={`block px-4 py-3 text-gray-800 hover:bg-gray-100 border-b border-gray-100 ${isAnchorMenuActive('/community/showRoom')}`}
+                className={`block px-4 py-3 text-gray-800 hover:bg-gray-100 border-b border-gray-100 ${isAnchorMenuActive('/community')}`}
                 onClick={e => {
                   e.preventDefault();
                   handleMenuClick('community');
-                  router.push('/community/showRoom');
+                  router.push('/community');
                   setIsMobileMenuOpen(false);
                 }}
               >
@@ -183,7 +183,7 @@ function MenuNavigation() {
             <li>
               <Link
                 href={'/shopping/category'}
-                className={`block px-4 py-3 text-gray-800 hover:bg-gray-100 border-b border-gray-100 ${isAnchorMenuActive('/shopping/category')}`}
+                className={`block px-4 py-3 text-gray-800 hover:bg-gray-100 border-b border-gray-100 ${isAnchorMenuActive('/shopping')}`}
                 onClick={e => {
                   e.preventDefault();
                   handleMenuClick('shopping', mainCategoryId);
@@ -199,7 +199,7 @@ function MenuNavigation() {
                 href={'/service'}
                 className={`block px-4 py-3 text-gray-800 hover:bg-gray-100 border-b border-gray-100 ${isAnchorMenuActive('/service')}`}
                 onClick={() => {
-                  handleMenuClick('csCenter');
+                  handleMenuClick('service');
                   setIsMobileMenuOpen(false);
                 }}
               >

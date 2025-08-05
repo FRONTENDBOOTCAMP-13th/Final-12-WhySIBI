@@ -12,7 +12,7 @@ function BookMarkInfo({
     <Link href={`/products/${productId}`}>
       <figure className="shadow-shadow-lg p-5 items-center  rounded-radius-lg">
         <Image
-          src={`/${productImage?.path}`}
+          src={productImage?.path||''}
           alt={`${productName} 상품 이미지`}
           width={270}
           height={270}

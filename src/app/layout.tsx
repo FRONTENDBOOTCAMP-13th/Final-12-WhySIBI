@@ -30,35 +30,37 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className="vertical-stripes">
-        <Header></Header>
-        <main className="w-full">{children}</main>
-        <Footer></Footer>
-        <Toaster
-          position="bottom-center"
-          toastOptions={{
-            duration: 5000,
-            style: {
-              background: '#fff',
-              color: '#333',
-              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
-              borderRadius: '8px',
-              padding: '16px',
-            },
-            success: {
-              iconTheme: {
-                primary: '#10b981', // 초록색
-                secondary: '#fff',
+      <body className="bg-white">
+        <div className="max-w-[1280px]  mx-auto my-0 vertical-stripes">
+          <Header></Header>
+          <main className="w-full bg-white">{children}</main>
+          <Footer></Footer>
+          <Toaster
+            position="bottom-center"
+            toastOptions={{
+              duration: 5000,
+              style: {
+                background: '#fff',
+                color: '#333',
+                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+                borderRadius: '8px',
+                padding: '16px',
               },
-            },
-            error: {
-              iconTheme: {
-                primary: '#ef4444', // 빨간색
-                secondary: '#fff',
+              success: {
+                iconTheme: {
+                  primary: '#10b981', // 초록색
+                  secondary: '#fff',
+                },
               },
-            },
-          }}
-        />
+              error: {
+                iconTheme: {
+                  primary: '#ef4444', // 빨간색
+                  secondary: '#fff',
+                },
+              },
+            }}
+          />
+        </div>
       </body>
     </html>
   );

@@ -107,7 +107,7 @@ export default function TalkDetail({ post, posts, token }: TalkCardItemProps) {
           {post.image?.map((image, i) => (
             <Image
               key={i}
-              src={`${image}`}
+              src={image}
               alt={`게시글 이미지`}
               width={500}
               height={500}
