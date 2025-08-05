@@ -83,7 +83,7 @@ export default function DeliveryState({
         <div className="flex border-r-[1px] border-button-color-opaque-25">
           {productData.mainImages[0] && (
             <Image
-              src={`/${productData.mainImages[0].path}`}
+              src={productData.mainImages[0].path}
               alt={`${productID}상품 이미지`}
               width={200}
               height={200}

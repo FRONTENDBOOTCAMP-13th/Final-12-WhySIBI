@@ -137,8 +137,7 @@ function ShoppingBestSection({ token }: { token: string | undefined }) {
           <DropdownShoppingList value={sort} onDropChange={setSort} />
         </div>
         <div
-          className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4
-       items-center"
+          className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 items-center"
         >
           {/* 상품 로딩중일때 스켈레톤 UI 불러옴 */}
           {loading ? (
@@ -153,7 +152,7 @@ function ShoppingBestSection({ token }: { token: string | undefined }) {
                   id={product._id}
                   key={product._id}
                   name={product.name}
-                  imageUrl={'product.mainImages[0]?.path'}
+                  imageUrl={product.mainImages[0]?.path}
                   price={`${product.price.toLocaleString()}원ㅌ`}
                   discount={discount}
                   rank={index + 1}

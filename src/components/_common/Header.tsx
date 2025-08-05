@@ -15,7 +15,7 @@ export default function Header() {
     redirect('/');
   };
   return (
-    <header className="mt-16 w-full">
+    <header className="pt-16 w-full">
       <section className="header_top xl:min-w-[1280px] lg:w-[95%] md:w-[95%] sm:w-[92%] w-[90%] grid grid-cols-3 items-center mx-auto my-0 px-2 sm:px-0">
         <h1 className="col-start-2 flex justify-center">
           <Link href={'/'}>

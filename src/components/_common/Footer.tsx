@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="w-full overflow-hidden h-16 bg-vanilla-300"></div>
 
       {/* 데스크톱/태블릿 레이아웃 (768px 이상) */}
-      <div className="info_footer xl:min-w-[1280px] lg:w-[95%] md:w-[95%] w-[90%] mx-auto xl:py-14 lg:py-12 md:py-10 py-8 md:grid md:grid-cols-3 md:items-end hidden">
+      <div className="info_footer xl:min-w-[1280px] lg:w-[95%] md:w-[95%] w-[90%] px-10 mx-auto xl:py-14 lg:py-12 md:py-10 py-8 md:grid md:grid-cols-3 md:items-end hidden">
         <section className="footer_left">
           <Image
             src={'/image/logo/footer_logo.svg'}
@@ -39,7 +39,7 @@ export default function Footer() {
             alt="나혼산 고양이 이미지"
             width={17}
             height={60}
-            className="xl:w-[17px] xl:h-[60px] lg:w-[15px] lg:h-[52px] md:w-[13px] md:h-[45px]"
+            className="xl:w-[20px] xl:h-[60px] lg:w-[15px] lg:h-[52px] md:w-[13px] md:h-[45px]"
           />
         </section>
 
@@ -101,15 +101,6 @@ export default function Footer() {
             <br />
             2025/07/08~2025/08/08 : 운영기간
           </p>
-        </div>
-
-        <div className="flex justify-center mt-6">
-          <Image
-            src={'/image/footer_cat.svg'}
-            alt="나혼산 고양이 이미지"
-            width={13}
-            height={45}
-          />
         </div>
       </div>
     </footer>

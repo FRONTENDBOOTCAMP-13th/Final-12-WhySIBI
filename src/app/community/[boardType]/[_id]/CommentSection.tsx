@@ -30,7 +30,7 @@ export default function CommentSection({ _id, initialReplies }: CommentSectionPr
 
     const res = await getReplies(_id);
     if (res.ok) setReplies(res.item);
-  }, [_id]);
+  }
 
 
   return (
