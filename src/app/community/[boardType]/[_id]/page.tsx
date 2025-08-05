@@ -5,6 +5,7 @@ import DetailSimilar from '@/components/Detail_posts/Detail_similar';
 import DetailOther from '@/components/Detail_posts/Detail_other';
 import TalkDetail from '@/components/talk_detail/talk_detail';
 import CommentSection from './CommentSection';
+import ToastDisplay from '../ToastDisplay';
 
 import { getPost, getPosts, getReplies } from '@/data/functions/post';
 import { ApiRes } from '@/types';
@@ -54,6 +55,8 @@ export default async function DetailPage({ params }: InfoPageProps) {
 
   if (boardType === 'showRoom') {
     return (
+      <>
+      <ToastDisplay></ToastDisplay>
       <div className="wrapper flex flex-col justify-center items-center bg-white p-10 md:p-20 font-variable">
         <div className="button-wrapper w-full min-w-2xs flex justify-between items-center text-gray-icon text-md mb-6">
           <ButtonBack />
@@ -78,6 +81,7 @@ export default async function DetailPage({ params }: InfoPageProps) {
           initialReplies={initialReplies}
         ></CommentSection>
       </div>
+      </>
     );
   }
   if (boardType === 'talk') {

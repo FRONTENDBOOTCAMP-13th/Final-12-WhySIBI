@@ -62,9 +62,9 @@ export default function EditForm({ post }: { post: Post }) {
       alert('수정하려면 로그인해야 합니다.');
       return;
     }
-
     const isConfirmed = confirm('게시글을 수정하시겠습니까?');
     if (isConfirmed && formRef.current) {
+      sessionStorage.setItem('post_success_toast', '게시글이 수정되었어요!');
       formRef.current.requestSubmit();
     }
   };

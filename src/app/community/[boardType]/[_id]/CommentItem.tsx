@@ -18,7 +18,7 @@ export default function CommentItem({
   mentionUser,
 }: CommentProps) {
   const profileImage = reply.user.image
-    ? `/${reply.user.image}`
+    ? reply.user.image
     : '/image/community_icon/profile_sample.png';
 
   return (
