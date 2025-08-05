@@ -1,0 +1,20 @@
+meta {
+  name: DB 초기화(initData만 업로드)
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{url}}/db/init
+  body: multipartForm
+  auth: inherit
+}
+
+body:multipart-form {
+  initData: @file(C:\Users\admin\likelion-bootcamp\04_final-project\Final-12-WhySIBI\api\dbinit\team\data.json)
+  ~attach: @file()
+}
+
+settings {
+  encodeUrl: true
+}
