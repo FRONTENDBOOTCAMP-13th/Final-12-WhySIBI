@@ -1,5 +1,4 @@
 'use client';
-
 import { Scrollbar } from 'swiper/modules';
 import { upLoadFile } from '@/data/actions/file';
 import { useRef, useState } from 'react';
@@ -18,16 +17,24 @@ export default function ImageUploader({ image, setImage }: ImageUploaderProps) {
   const [preview, setPreview] = useState<string[]>([]);
   const [isUploading, setIsUploading] = useState(false);
 
+  const MAX_IMAGES = 10;
+
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (!files) return;
+
+    const remain = MAX_IMAGES - image.length;
+    if (remain <= 0) {
+      alert("이미지는 최대 10장까지 업로드할 수 있습니다.");
+      return;
+    }
 
     setIsUploading(true);
 
     const uploadedUrls: string[] = [];
     const previewUrls: string[] = [];
 
-    for (const file of Array.from(files)) {
+    for (const file of Array.from(files).slice(0, remain)) {
       const formData = new FormData();
       formData.append('attach', file);
 
@@ -35,10 +42,8 @@ export default function ImageUploader({ image, setImage }: ImageUploaderProps) {
 
       try {
         const res = await upLoadFile(formData);
-          console.log('업로드 응답:', res);
         if (res.ok && res.item.length > 0) {
-          uploadedUrls.push(res.item[0].path); // Cloudinary URL 직접 사용
-          console.log('업로드 응답:', res);
+          uploadedUrls.push(res.item[0].path);
         } else {
           alert(`이미지 업로드 실패`);
         }
@@ -67,7 +72,16 @@ export default function ImageUploader({ image, setImage }: ImageUploaderProps) {
 
   return (
     <div className="w-[600px] mt-6">
-      <p className="mb-4 ml-12 text-lg font-bold font-variable">방을 자랑할 사진을 넣어주세요.</p>
+      <p className="mb-4 ml-5 text-lg font-bold font-variable">
+        방을 자랑할 사진을 넣어주세요
+        <span className="ml-3 text-gray-icon/50">{image.length}/{MAX_IMAGES}</span>
+      </p>
+
+      {/* 이미지 개수 표시 */}
+      <div className="absolute top-2 right-0 text-sm text-gray-400 z-10">
+        {image.length}/{MAX_IMAGES}
+      </div>
+
       <div className="flex pb-10 border-b">
         <div className="button-wrapper pr-3">
             <button
@@ -102,6 +116,7 @@ export default function ImageUploader({ image, setImage }: ImageUploaderProps) {
               />
             </button>
         </div>
+
         <Swiper slidesPerView="auto" spaceBetween={12} modules={[Scrollbar]} scrollbar={{ draggable: true }} className="w-[450px] overflow-hidden pt-3 pb-10">
           {image.map((src, i) => (
             <SwiperSlide
@@ -118,13 +133,13 @@ export default function ImageUploader({ image, setImage }: ImageUploaderProps) {
               {/* 첫번째 슬라이드 -> 커버이미지 표시 */}
               {i === 0 && (
                 <>
-                  <div className="absolute top-0 w-full h-full bg-livealone-cal-poly-green/50 z-10"></div>
+                 <div className="w-[200px] h-[150px] absolute z-10 bottom-0 right-0 bg-gradient-to-b from-transparent via-transparent to-livealone-cal-poly-green/80 rounded-md"></div>
                   <Image
                     src="/image/community_icon/coverIcon.svg"
                     alt="게시글 커버"
-                    width={60}
-                    height={60}
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20"
+                    width={45}
+                    height={45}
+                    className="absolute bottom-2.5 left-1/2 -translate-x-1/2 z-20"
                   />
                 </>
               )}

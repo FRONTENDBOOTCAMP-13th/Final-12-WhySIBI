@@ -13,10 +13,10 @@ export default function TitleInput({ value, onChange }: TitleInputProps) {
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder="제목"
-        maxLength={60}
+        maxLength={20}
         className="w-full text-xl py-5 font-medium outline-none placeholder-gray-300"
       />
-      <div className="p-5 text-right text-lg text-gray-400 bg-white">{value.length}/60</div>
+      <div className="p-5 text-right text-lg text-gray-400 bg-white">{value.length}/20</div>
     </div>
   );
 }
