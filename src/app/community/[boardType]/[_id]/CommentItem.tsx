@@ -13,7 +13,7 @@ interface CommentProps {
 
 export default function CommentItem({ reply, onDeleteSuccess, onDelete, mentionUser }: CommentProps) {
   const profileImage = reply.user.image
-    ? `/${reply.user.image}`
+    ? reply.user.image
     : '/image/community_icon/profile_sample.png';
 
   return (
