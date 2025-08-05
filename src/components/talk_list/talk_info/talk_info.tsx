@@ -29,7 +29,7 @@ export default function TalkInfo({ post, boardType }: PostCardItemProps) {
             {post.content}
             {post?.image?.[0] ? (
               <Image
-                src={`${post?.image?.[0]}`}
+                src={post?.image?.[0]}
                 alt={`${post._id}번째 게시물 첫번째 이미지`}
                 width={150}
                 height={150}
@@ -46,12 +46,6 @@ export default function TalkInfo({ post, boardType }: PostCardItemProps) {
         </section>
         <section className="flex justify-between ">
           <div className="flex gap-5">
-            <ul className="flex gap-4">
-              <li className="font-bold font-basic">#테그</li>
-              <li className="font-bold font-basic">#테그</li>
-              <li className="font-bold font-basic">#테그</li>
-              <li className="font-bold font-basic">#테그</li>
-            </ul>
             <p className="text-size-xs md:text-size-md font-basic  text-gray-400">
               {getTimeAgo(post.createdAt)}
             </p>

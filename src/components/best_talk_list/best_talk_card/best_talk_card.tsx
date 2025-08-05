@@ -8,7 +8,7 @@ interface PostCardItemProps {
 }
 export default function BestTalkCard({ post, boardType }: PostCardItemProps) {
   return (
-    <div className="relative w-full max-w-[28.125rem] p-9 rounded-2xl border-2 border-button-color-opaque-25 mx-auto group overflow-hidden bg-gradient-to-b  from-vanilla-300 to-columbia-blue-300">
+    <div className="relative w-full w-[6.25rem]: xl:w-[350px] lg:w-[18.75rem] md:w-[15.625rem] h-[4.375rem]: lg:h-[18.75rem] md:h-[11.25rem]  p-3 lg:p-9 md:p-4 rounded-2xl border-2 border-button-color-opaque-25 mx-auto group overflow-hidden bg-gradient-to-b  from-vanilla-300 to-columbia-blue-300">
       <Link
         href={`/community/${boardType}/${post._id}`}
         className="block w-full"
@@ -25,7 +25,7 @@ export default function BestTalkCard({ post, boardType }: PostCardItemProps) {
             <p className="text-[#353535]"> {post.content}</p>
           </section>
           <section className="relative flex max-w-[100%] rounded-radius-lg mb-3 gap-3">
-            {post.image?.map((image, i) => (
+            {post.image?.slice(0, 1).map((image, i) => (
               <Image
                 key={i}
                 src={image}
