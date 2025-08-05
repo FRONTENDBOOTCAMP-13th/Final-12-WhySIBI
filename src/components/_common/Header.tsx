@@ -4,15 +4,16 @@ import { logoutAction } from '@/data/actions/user';
 import useUserStore from '@/zustand/useUserStore';
 import Image from 'next/image';
 import Link from 'next/link';
-import { redirect } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 export default function Header() {
   const { user, resetUser } = useUserStore();
+  const router = useRouter();
   const handleLogout = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     resetUser();
     logoutAction();
-    redirect('/');
+    router.refresh();
   };
   return (
     <header className="pt-16 w-full">
@@ -32,11 +33,7 @@ export default function Header() {
           <form onSubmit={handleLogout}>
             <div className="col-start-3 logout_button_area flex flex-wrap items-center justify-end gap-1 sm:gap-2 md:gap-3 xl:mr-13 lg:mr-8 md:mr-4 sm:mr-3 mr-2">
               <Image
-                src={
-                  user.image
-                    ? user?.image
-                    : '/image/image/profile.png'
-                }
+                src={user.image ? user?.image : '/image/image/profile.png'}
                 width="60"
                 height="60"
                 alt={`${user.name} 프로필 이미지`}
