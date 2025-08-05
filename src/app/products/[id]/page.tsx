@@ -5,6 +5,7 @@ import ProductReview from '@/components/Shopping_detail/Product_review';
 import ProductInquiry from '@/components/Shopping_detail/Product_inquiry';
 import { Product_Detail } from '@/components/Shopping_detail/fetch/Product_detail';
 import { cookies } from 'next/headers';
+import { notFound } from 'next/navigation';
 export default async function ProductDetail({
   searchParams,
   params,
@@ -58,9 +59,17 @@ export default async function ProductDetail({
     }
     stars.push(lineStars);
   }
+  let item;
+  try {
+    item = await Product_Detail(id);
+    if (!item) {
+      notFound();
+    }
+  } catch (err) {
+    console.error('상품 정보 조회 중 오류 발생', err);
+    notFound();
+  }
 
-  const item = await Product_Detail(id);
-  console.log(item);
   return (
     <>
       <div className="max-w-[1280px]  mx-auto my-0 ">

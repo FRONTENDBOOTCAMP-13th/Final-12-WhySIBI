@@ -94,13 +94,65 @@ export default function ProductPurchaseButton({
     );
   }, [router]);
 
+  const showErrorToast = useCallback(() => {
+    toast.custom(
+      t => (
+        <div
+          className={`
+          ${t.visible ? 'animate-in slide-in-from-bottom-full' : 'animate-out slide-out-to-bottom-full'}
+          max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-red-200 p-4 border-l-4 border-red-500
+        `}
+          role="alert"
+          aria-live="assertive"
+          aria-label="로그인 실패 알림"
+        >
+          <div className="flex items-center">
+            {/* 에러 아이콘 */}
+            <div className="flex-shrink-0">
+              <div className="flex items-center justify-center h-8 w-8 rounded-full bg-red-100">
+                <svg
+                  className="h-5 w-5 text-red-500"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </div>
+            </div>
+
+            <div className="ml-3 flex-1">
+              <p className="text-sm font-medium text-red-800 mb-1">
+                로그인이 필요합니다.
+              </p>
+            </div>
+          </div>
+        </div>
+      ),
+      {
+        duration: 5000,
+        position: 'top-center',
+      },
+    );
+  }, []);
+
   useEffect(() => {
-    if (state && state.status === false) {
-      toast.error(state.error);
-    } else if (state && state.status === true) {
-      showSuccessToast();
+    if (state && typeof state.status === 'boolean') {
+      if (state.status === false && token) {
+        toast.error(state.error);
+      } else if (state.status === false && !token) {
+        showErrorToast(); // 서버 액션 실행 후 토큰이 없을 때만
+      } else if (state.status === true) {
+        showSuccessToast();
+      }
     }
-  }, [state, showSuccessToast]);
+  }, [state, showSuccessToast, showErrorToast, token]);
 
   return (
     <form action={formAction}>

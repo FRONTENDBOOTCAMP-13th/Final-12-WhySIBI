@@ -90,7 +90,7 @@ export default function CartAllDeleteButton({
         readOnly
       />
       <button
-        className="border-2 rounded-3xl text-button-color w-24 h-9 font-bold"
+        className="border-2 rounded-3xl text-button-color w-24 h-9 font-bold cursor-pointer hover:bg-black hover:text-white"
         disabled={isPending}
       >
         선택삭제

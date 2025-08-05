@@ -81,7 +81,7 @@ export default function CartDeleteButton({ id }: { id: number }) {
       <input name="token" value={token} hidden readOnly />
       <button
         disabled={isPending}
-        className="border-2 rounded-3xl text-button-color w-24 h-9 font-bold cursor-pointer"
+        className="border-2 rounded-3xl text-button-color w-24 h-9 font-bold cursor-pointer hover:bg-black hover:text-white"
       >
         삭제
       </button>

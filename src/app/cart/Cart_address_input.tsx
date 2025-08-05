@@ -27,7 +27,7 @@ export default function CartAddressInput() {
       />
       <div className="flex justify-center mt-6">
         <button
-          className="border-2 rounded-3xl text-button-color w-24 h-9 font-bold"
+          className="border-2 rounded-3xl text-button-color w-24 h-9 font-bold hover:bg-black hover:text-white cursor-pointer"
           onClick={() => {
             addressInput.current?.focus();
           }}

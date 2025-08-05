@@ -5,16 +5,64 @@ import useUserStore from '@/zustand/useUserStore';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useCallback } from 'react';
+import toast from 'react-hot-toast';
 
 export default function Header() {
   const { user, resetUser } = useUserStore();
   const router = useRouter();
+  const showSuccessToast = useCallback(() => {
+    toast.custom(
+      t => (
+        <div
+          className={`
+          ${t.visible ? 'animate-in slide-in-from-bottom-full' : 'animate-out slide-out-to-bottom-full'}
+          max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-gray-200 p-4 border-l-4 border-cal-poly-green-100
+        `}
+        >
+          <div className="flex">
+            {/* 체크 아이콘 */}
+            <div className="flex-shrink-0">
+              <div className="flex items-center justify-center h-8 w-8 rounded-full bg-cal-poly-green-100">
+                <svg
+                  className="h-5 w-5 text-green-500"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+              </div>
+            </div>
+
+            <div className="ml-3 flex-1 flex items-center justify-between">
+              <p className="text-sm font-medium text-gray-900 mb-1">
+                로그아웃 되었습니다.
+              </p>
+            </div>
+          </div>
+        </div>
+      ),
+      {
+        duration: 5000,
+        position: 'top-center',
+      },
+    );
+  }, []);
+
   const handleLogout = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     resetUser();
     logoutAction();
+    showSuccessToast();
     router.refresh();
   };
+  
   return (
     <header className="pt-16 w-full vertical-stripes">
       <div className="max-w-[1280px] mx-auto">

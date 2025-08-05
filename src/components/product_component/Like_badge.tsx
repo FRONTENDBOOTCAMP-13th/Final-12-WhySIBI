@@ -20,11 +20,12 @@ function LikeBadge({ myBookmarkId, handleBookmark }: LikeBadgeProps) {
       <button
         onClick={handleLikeBadgeClick}
         className={`
-       absolute bottom-2 right-2
-       w-8 h-8
-       flex items-center justify-center
-       rounded-[var(--radius-radius-full)]
-       ${'bg-gray-300'}`}
+          cursor-pointer
+        absolute bottom-2 right-2
+        w-8 h-8
+        flex items-center justify-center
+        rounded-[var(--radius-radius-full)]
+        ${'bg-gray-300'}`}
       >
         <Image
           src={
