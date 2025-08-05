@@ -14,29 +14,28 @@ interface ProductProps {
 export default function DetailSimilar({ products }: ProductProps) {
   const router = useRouter();
   const { setMultiKeywordSearch } = useProductSearchStore();
-  
+
   if (!products?.length) return null;
 
   const handleFindSimilar = () => {
     const keywords = products
-      .map((p) => p.keyword?.[0])
+      .map(p => p.keyword?.[0])
       .filter((k): k is string => !!k);
 
     setMultiKeywordSearch(keywords);
     setTimeout(() => {
-    router.push('/search');
-  }, 0);
+      router.push('/search');
+    }, 0);
   };
 
-
   return (
-    <div className="w-[600px] mt-15 text-center">
+    <div className="min-w-[15.625rem] max-w-[18.75rem] md:max-w-[600px] md:min-w-2xl mt-15 text-center">
       <h2 className="font-bold w-full text-xl">같은 상품으로 집을 꾸며봐요</h2>
       <div className="mt-8">
         <Swiper
           slidesPerView="auto"
           spaceBetween={12}
-          className="w-[600px] overflow-hidden h-40 gap-4 mb-6 bg-gray-300 rounded-xl"
+          className="min-w-[15.625rem] max-w-[18.75rem] md:max-w-[600px] md:min-w-2xl overflow-hidden h-40 gap-4 mb-6 bg-gray-300 rounded-xl"
         >
           {products.map(product => (
             <SwiperSlide
@@ -45,9 +44,7 @@ export default function DetailSimilar({ products }: ProductProps) {
             >
               <Link href={`/products/${product._id}`}>
                 <Image
-                  src={
-                    '/image/room_photo/postThumbnail.svg'
-                  }
+                  src={'/image/room_photo/postThumbnail.svg'}
                   alt={product.name}
                   fill
                   className="object-cover rounded-2xl"
@@ -66,7 +63,12 @@ export default function DetailSimilar({ products }: ProductProps) {
             </SwiperSlide>
           ))}
           <SwiperSlide className="group relative !w-40 !h-40 rounded-2xl border overflow-hidden">
-            <button onClick={handleFindSimilar} className="w-full h-full cursor-pointer">비슷한 상품 찾기</button>
+            <button
+              onClick={handleFindSimilar}
+              className="w-full h-full cursor-pointer"
+            >
+              비슷한 상품 찾기
+            </button>
           </SwiperSlide>
         </Swiper>
       </div>

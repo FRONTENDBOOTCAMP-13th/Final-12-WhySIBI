@@ -39,12 +39,14 @@ export default function PostCardList({
     boardType === 'showRoom' ? '우리집에 왜 왔니' : '우리집 구해줘 홈즈';
 
   return (
-    <div className="post-list-wrapper bg-white p-20">
-      <div className="post-header flex justify-between pl-5 mb-10">
-        <div className="title-wrapper flex items-center">
-          <Title title={boardTitle} subTitle={boardSub} />
+    <div className="post-list-wrapper bg-white p-9 md:p-20">
+      <div className="post-header flex flex-col md:flex-row justify-between gap-4 lg:gap-0 pl-1 sm:pl-2 md:pl-5 ">
+        <div>
+          <div className="w-fit">
+            <Title title={boardTitle} subTitle={boardSub} />
+          </div>
         </div>
-        <div className="button-wrapper flex items-center">
+        <div className="button-wrapper flex items-center ml-auto mb-5 md:ml-0">
           <DropdownRoom value={sortType} onDropChange={setSortType} />
           <ButtonNew boardType={boardType} />
         </div>
