@@ -103,7 +103,7 @@ function MainRecommendBox() {
                             key={product._id}
                             id={product._id}
                             name={product.name}
-                            imageUrl={`/${product.mainImages[0]?.path}`}
+                            imageUrl={product.mainImages[0]?.path}
                             price={`${product.price.toLocaleString()}원`}
                             discount={discount}
                             rating={
@@ -350,7 +350,7 @@ function MainRecommendBox() {
                                 key={product._id}
                                 id={product._id}
                                 name={product.name}
-                                imageUrl={`/${product.mainImages[0]?.path}`}
+                                imageUrl={product.mainImages[0]?.path}
                                 price={`${product.price.toLocaleString()}원`}
                                 discount={discount}
                                 rating={

@@ -5,15 +5,15 @@ import DetailSimilar from '@/components/Detail_posts/Detail_similar';
 import DetailOther from '@/components/Detail_posts/Detail_other';
 import TalkDetail from '@/components/talk_detail/talk_detail';
 import CommentSection from './CommentSection';
+import ToastDisplay from '../ToastDisplay';
 
-import { getPost } from '@/data/functions/post';
+import { getPost, getReplies } from '@/data/functions/post';
 import { ApiRes } from '@/types';
 import { getPosts } from '@/data/actions/inqury';
 import { ButtonBack } from '@/components/Button_back';
 import { ButtonNostyle } from '@/components/Buttons/Button_nostyle';
 import { cookies } from 'next/headers';
 import { getProductList } from '@/data/actions/products.fetch';
-import { getReplies } from '@/data/functions/post';
 
 function isError<T>(res: ApiRes<T>): res is { ok: 0; message: string } {
   return res.ok === 0;
@@ -33,29 +33,31 @@ export default async function DetailPage({ params }: InfoPageProps) {
   const post = await getPost(Number(_id), token?.value as string);
   const posts = await getPosts(String(_id));
   const allProducts = await getProductList();
-
+  const res = await getReplies(_id);
+  const initialReplies = res.ok ? res.item : [];
+  
   if (isError(post)) {
     return <div>{post.message || '게시글을 불러올 수 없습니다.'}</div>;
   }
 
+  const productIds = Array.isArray(post.item.extra?.products)
+    ? post.item.extra.products.map(String)
+    : [];
 
-const productIds = Array.isArray(post.item.extra?.products)
-  ? post.item.extra.products.map(String)
-  : [];
-  
   const filteredProducts =
     allProducts.ok === 1
-      ? allProducts.item.filter((product) =>
-          productIds.includes(product._id.toString())
+      ? allProducts.item.filter(product =>
+          productIds.includes(product._id.toString()),
         )
       : [];
 
   console.log('productIds:', productIds);
   console.log('filteredProducts:', filteredProducts);
 
-  
   if (boardType === 'showRoom') {
     return (
+      <>
+      <ToastDisplay></ToastDisplay>
       <div className="wrapper flex flex-col justify-center items-center bg-white p-20 font-variable">
         <div className="button-wrapper w-[600px] flex justify-between items-center text-gray-icon text-md mb-6">
           <ButtonBack />
@@ -75,8 +77,12 @@ const productIds = Array.isArray(post.item.extra?.products)
         <PostDetail post={post.item} token={token?.value as string} />
         <DetailSimilar products={filteredProducts}></DetailSimilar>
         <DetailOther _id={_id}></DetailOther>
-        <CommentSection _id={_id} initialReplies={initialReplies}></CommentSection>
+        <CommentSection
+          _id={_id}
+          initialReplies={initialReplies}
+        ></CommentSection>
       </div>
+      </>
     );
   }
   if (boardType === 'talk') {
@@ -107,7 +113,10 @@ const productIds = Array.isArray(post.item.extra?.products)
           ) : (
             <TalkDetail post={post.item} />
           )}
-          <CommentSection _id={_id} initialReplies={initialReplies}></CommentSection>
+          <CommentSection
+            _id={_id}
+            initialReplies={initialReplies}
+          ></CommentSection>
         </section>
       </div>
     );

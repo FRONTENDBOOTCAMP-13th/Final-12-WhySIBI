@@ -12,7 +12,7 @@ export default function InquryInfo({
       <div className="flex justify-between mt-6 items-center">
         <figure className="flex gap-6">
           <Image
-            src={`/${productImage?.path}`}
+            src={productImage?.path || ''}
             alt={'상품 이미지'}
             width={140}
             height={140}
