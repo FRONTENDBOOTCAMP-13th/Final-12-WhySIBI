@@ -5,7 +5,6 @@ import RankBadge from '@/components/product_component/rank_badge';
 import { AddBookMark, DeleteBookMark } from '@/data/actions/bookmark';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { useCallback } from 'react';
 import toast from 'react-hot-toast';
 
@@ -43,7 +42,7 @@ function ProductCard({
   UpdateProductState,
 }: ProductCardProps) {
   // const pathName = usePathname();
-  const router = useRouter();
+  // const router = useRouter();
 
   const showErrorToast = useCallback(() => {
     toast.custom(
@@ -100,7 +99,6 @@ function ProductCard({
     );
     if (result.ok === 1) {
       await UpdateProductState?.();
-      router.refresh();
     }
   };
 
@@ -113,7 +111,6 @@ function ProductCard({
 
     if (result.ok === 1) {
       await UpdateProductState?.();
-      router.refresh();
     } else {
       showErrorToast();
     }

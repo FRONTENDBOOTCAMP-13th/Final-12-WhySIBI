@@ -37,7 +37,6 @@ export default function CartMain() {
     fetchCart();
   }, [token, refreshTrigger]);
 
-  console.log('ㅇㅣ게 카트데티어', cartData);
   // 모든 상품 선택/해제 핸들러
   function handleAllCheck() {
     //올체크가 아닐때 클릭하면 checkedItem배열에 모든것을 넣고 올체크 상태를 true로 설정
