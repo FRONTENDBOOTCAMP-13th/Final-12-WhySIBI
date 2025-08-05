@@ -8,10 +8,7 @@ interface PostCardItemProps {
 }
 export default function BestTalkCard({ post, boardType }: PostCardItemProps) {
   return (
-    <div
-      className="relative w-full max-w-[28.125rem] p-9 rounded-2xl border-2 border-button-color-opaque-25 mx-auto group overflow-hidden"
-
-    >
+    <div className="relative w-full max-w-[28.125rem] p-9 rounded-2xl border-2 border-button-color-opaque-25 mx-auto group overflow-hidden bg-gradient-to-b  from-vanilla-300 to-columbia-blue-300">
       <Link
         href={`/community/${boardType}/${post._id}`}
         className="block w-full"
@@ -31,7 +28,7 @@ export default function BestTalkCard({ post, boardType }: PostCardItemProps) {
             {post.image?.map((image, i) => (
               <Image
                 key={i}
-                src={`${image}`}
+                src={image}
                 alt={`게시글 이미지`}
                 width={100}
                 height={100}

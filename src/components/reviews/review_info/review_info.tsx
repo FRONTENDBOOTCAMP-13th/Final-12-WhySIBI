@@ -41,7 +41,7 @@ function ReviewInfo({
         <Link href={`/products/${productId}`} className="flex-1">
           <figure className="flex xl:gap-6 lg:gap-5 md:gap-4">
             <Image
-              src={`/${productImage.path}`}
+              src={productImage.path}
               alt={'상품 이미지'}
               width={140}
               height={140}
@@ -88,7 +88,7 @@ function ReviewInfo({
         <Link href={`/products/${productId}`}>
           <figure className="flex gap-3 mb-4">
             <Image
-              src={`/${productImage.path}`}
+              src={productImage.path}
               alt={'상품 이미지'}
               width={80}
               height={80}
