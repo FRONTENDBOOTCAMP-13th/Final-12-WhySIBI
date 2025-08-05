@@ -40,7 +40,7 @@ export default async function PostCardPage({ params }: ListPageProps) {
   if (boardType === 'showRoom') {
     return (
       <>
-        <div>
+        <div className="max-w-[1280px]  mx-auto my-0 ">
           <ToastDisplay></ToastDisplay>
           <PostCardList
             boardType={boardType}
