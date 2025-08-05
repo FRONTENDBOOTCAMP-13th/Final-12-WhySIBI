@@ -37,9 +37,9 @@ export default function Footer() {
           <Image
             src={'/image/footer_cat.svg'}
             alt="나혼산 고양이 이미지"
-            width={17}
-            height={60}
-            className="xl:w-[17px] xl:h-[60px] lg:w-[15px] lg:h-[52px] md:w-[13px] md:h-[45px]"
+            width={0}
+            height={0}
+            className="h-[20%] max-h-[140px] w-auto object-contain"
           />
         </section>
 
