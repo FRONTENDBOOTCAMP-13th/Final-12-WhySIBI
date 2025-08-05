@@ -39,6 +39,7 @@ export default function PostCardList({
     boardType === 'showRoom' ? '우리집에 왜 왔니' : '우리집 구해줘 홈즈';
 
   return (
+    <>
     <div className="post-list-wrapper bg-white p-20">
       <div className="post-header flex justify-between pl-5 mb-10">
         <div className="title-wrapper flex items-center">
@@ -64,5 +65,6 @@ export default function PostCardList({
         ))}
       </div>
     </div>
+    </>
   );
 }

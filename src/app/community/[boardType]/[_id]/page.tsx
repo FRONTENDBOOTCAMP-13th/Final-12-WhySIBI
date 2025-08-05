@@ -5,6 +5,7 @@ import DetailSimilar from '@/components/Detail_posts/Detail_similar';
 import DetailOther from '@/components/Detail_posts/Detail_other';
 import TalkDetail from '@/components/talk_detail/talk_detail';
 import CommentSection from './CommentSection';
+import ToastDisplay from '../ToastDisplay';
 
 import { getPost } from '@/data/functions/post';
 import { ApiRes } from '@/types';
@@ -58,6 +59,8 @@ const productIds = Array.isArray(post.item.extra?.products)
   
   if (boardType === 'showRoom') {
     return (
+      <>
+      <ToastDisplay></ToastDisplay>
       <div className="wrapper flex flex-col justify-center items-center bg-white p-20 font-variable">
         <div className="button-wrapper w-[600px] flex justify-between items-center text-gray-icon text-md mb-6">
           <ButtonBack />
@@ -79,6 +82,7 @@ const productIds = Array.isArray(post.item.extra?.products)
         <DetailOther _id={_id}></DetailOther>
         <CommentSection _id={_id} initialReplies={initialReplies}></CommentSection>
       </div>
+      </>
     );
   }
   if (boardType === 'talk') {
