@@ -12,14 +12,17 @@ interface CommentNewProps {
   onAdd: (reply: PostReply) => void;
 }
 
-
-export default function CommentNew({ _id, repliesCount, onAdd }: CommentNewProps) {
+export default function CommentNew({
+  _id,
+  repliesCount,
+  onAdd,
+}: CommentNewProps) {
   const { user } = useUserStore();
   const [, formAction, isLoading] = useActionState< ApiRes<PostReply, never> | null, FormData >
   ( 
   async (
       prevState: ApiRes<PostReply, never> | null,
-      formData: FormData
+      formData: FormData,
     ): Promise<ApiRes<PostReply, never>> => {
       const res = await createReply(prevState, formData);
 
@@ -35,9 +38,9 @@ export default function CommentNew({ _id, repliesCount, onAdd }: CommentNewProps
 
       return res;
     },
-    null
+    null,
   );
-  
+
   const [inputValue, setInputValue] = useState('');
   const [localError, setLocalError] = useState<string | null>(null);
 
@@ -81,7 +84,7 @@ export default function CommentNew({ _id, repliesCount, onAdd }: CommentNewProps
   };
 
   return (
-    <div>
+    <div className="min-w-[15.625rem] max-w-[18.75rem] md:max-w-[600px] md:min-w-2xl">
       <h2 className="font-extrabold text-2xl mx-5 mt-10 mb-5">
         댓글{' '}
         <span className="text-livealone-cal-poly-green">{repliesCount}</span>
@@ -89,7 +92,7 @@ export default function CommentNew({ _id, repliesCount, onAdd }: CommentNewProps
       <div className="border-1 rounded-full h-14 p-4 flex items-center justify-between focus-within:outline-1">
         <form
           action={formAction}
-          className="flex w-[500px] items-center justify-between"
+          className="flex w-full items-center justify-between"
         >
           <input type="hidden" name="_id" value={_id}></input>
           <input
@@ -107,7 +110,7 @@ export default function CommentNew({ _id, repliesCount, onAdd }: CommentNewProps
               onKeyDown={handleKeyDown}
               onFocus={handleFocus}
               placeholder="댓글 달기..."
-              className="w-[420px] outline-0 text-sm ml-2"
+              className="w-full outline-0 text-sm ml-2"
             ></input>
             <p className="ml-2 mt-1 text-sm text-red-500">{localError}</p>
           </div>

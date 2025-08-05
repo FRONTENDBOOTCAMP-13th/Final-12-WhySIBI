@@ -40,7 +40,7 @@ export default function LoginForm() {
         },
       });
       alert('로그인이 완료되었습니다.');
-      navigation.replace('/');
+      navigation.back();
     }
   }, [userState, setUser, navigation]);
 
