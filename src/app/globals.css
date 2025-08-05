@@ -587,8 +587,15 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
   }
+
   .subcategory-container > li {
     text-align: center;
+  }
+
+  @media (max-width: 640px) {
+    .subcategory-container {
+      grid-template-columns: 1fr;
+    }
   }
 
   .subcategory {
