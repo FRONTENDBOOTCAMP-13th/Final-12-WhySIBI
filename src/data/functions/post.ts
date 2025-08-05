@@ -31,7 +31,7 @@ export async function getPosts(
     }
 
     const json = await res.json();
-    console.log('getPost 요청', json);
+    // console.log('getPost 요청', json);
     return json;
   } catch (error) {
     console.error(error);

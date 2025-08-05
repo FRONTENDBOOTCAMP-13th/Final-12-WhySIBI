@@ -65,7 +65,7 @@ export default function ProductReview({ stars, replies }: ProductReviewProps) {
   }
 
   const sortedByCount = Object.entries(starBoard).sort((a, b) => b[1] - a[1]);
-  console.log('정렬됐나?', sortedByCount);
+  // console.log('정렬됐나?', sortedByCount);
   const maxCount = sortedByCount[0][1];
 
   //필터된 리뷰들을 담을곳 정의

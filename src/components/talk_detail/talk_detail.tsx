@@ -43,8 +43,8 @@ export default function TalkDetail({ post, posts, token }: TalkCardItemProps) {
     );
   });
 
-  console.log(posts);
-  console.log(filteredData);
+  // console.log(posts);
+  // console.log(filteredData);
 
   const handleDeleteBookmark = async () => {
     const result = await DeleteBookMark(
