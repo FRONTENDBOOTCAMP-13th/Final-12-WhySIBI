@@ -62,7 +62,7 @@ export default async function ProductDetail({
   let item;
   try {
     item = await Product_Detail(id);
-    if (!item || !item.id) {
+    if (!item) {
       notFound();
     }
   } catch (err) {

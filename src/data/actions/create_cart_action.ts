@@ -9,9 +9,6 @@ export async function createCartAction(
   const quantity = Number(formData.get('quantity'));
   const id = Number(formData.get('id'));
   const token = formData.get('token')?.toString();
-  console.log('이게 토큰이라고?', token);
-
-  console.log('안녕안녕', size, color, quantity);
 
   //로그인 안했을때 예외처리
   if (!token) {
