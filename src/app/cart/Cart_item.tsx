@@ -4,6 +4,7 @@ import Image from 'next/image';
 import CartDeleteButton from './Cart_delete_button';
 import { CartListProps } from '@/types/cart';
 import { useEffect } from 'react';
+import Link from 'next/link';
 
 export default function CartItem({
   id,
@@ -15,6 +16,7 @@ export default function CartItem({
   quantity,
   token,
   isChecked,
+  productId,
   handleItemCheck,
   handleQuantity,
 }: CartListProps) {
@@ -77,14 +79,16 @@ export default function CartItem({
         선택
       </label>
       <Image
-        src={`/${img}`}
-        className="w-30 h-33 rounded-md"
+        src={img}
+        className="max-w-30 max-h-33 rounded-md"
         width={80}
         height={80}
         alt="상품사진"
       ></Image>
       <div className="flex-1">
-        <h3 className="text-xl font-bold pb-2">{name}</h3>
+        <Link href={`/products/${productId}`}>
+          <h3 className="text-xl font-bold pb-2">{name}</h3>
+        </Link>
         <p className="text-gray-550 text-sm pb-1">
           옵션 | {size} / {color}
         </p>

@@ -21,6 +21,12 @@ export async function createCartAction(
     };
   }
 
+  if (!size || !color) {
+    return {
+      status: false,
+      error: '옵션을 선택해주세요.',
+    };
+  }
   try {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/carts/`, {
       method: 'POST',
