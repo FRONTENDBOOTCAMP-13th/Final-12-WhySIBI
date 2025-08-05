@@ -54,7 +54,10 @@ export default function PostCardList({
   return (
     <>
     <div className="post-list-wrapper bg-white p-20">
-      <div className="post-header flex justify-between pl-5 mb-5">
+      <div className="search-wrapper flex justify-end mb-3">
+        <RoomPostSearch></RoomPostSearch>
+      </div>
+      <div className="post-header flex justify-between pl-5 mb-10">
         <div className="title-wrapper flex items-center">
           <Title title={boardTitle} subTitle={boardSub} />
         </div>
@@ -62,9 +65,6 @@ export default function PostCardList({
           <DropdownRoom value={sortType} onDropChange={setSortType} />
           <ButtonNew boardType={boardType} />
         </div>
-      </div>
-      <div className="flex justify-end">
-        <RoomPostSearch></RoomPostSearch>
       </div>
       <div className="grid grid-flow-row grid-cols-[repeat(auto-fill,_300px)] gap-x-10 lg:gap-x-20 gap-y-8 font-variable justify-center items-center">
         {posts.length > 0 ? (
@@ -77,6 +77,7 @@ export default function PostCardList({
                 token={token}
                 bookmarkID={post?.myBookmarkId}
                 isHot={sortType === 'high-view' && index < 3}
+                isNew={sortType === 'latest' && index < 3}
               />
             ))
           ) : (

@@ -15,14 +15,14 @@ export default function RoomPostSearch() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   return (
-    <div className="flex items-center mb-8">
+    <div className="flex items-center text-sm font-variable">
       <input
         type="search"
         name="search_post"
         id="search_post"
         ref={searchText}
         placeholder="제목이나 내용을 입력해주세요"
-        className="max-w-[280px] w-64 hidden md:block"
+        className="max-w-[280px] w-64 hidden md:block px-2 py-1 border-b"
         onKeyDown={e => {
           if (e.key === 'Enter') {
             handleClick();
@@ -64,13 +64,13 @@ export default function RoomPostSearch() {
             resetSubject();
           }
         }}
-        className="flex items-center justify-center"
+        className="flex items-center justify-center pr-1"
       >
         <Image
           src={'/image/community_icon/search_icon.svg'}
           alt="검색 아이콘"
-          width={20}
-          height={20}
+          width={15}
+          height={15}
         />
       </button>
     </div>

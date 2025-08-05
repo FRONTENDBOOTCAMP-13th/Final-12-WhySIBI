@@ -7,7 +7,6 @@ import TalkList from '@/components/talk_list/talk_list';
 import TalkPostSearch from '@/components/talk_list/talk_post_search';
 import PostCardList from '@/app/community/[boardType]/PostCardList';
 import ToastDisplay from './ToastDisplay';
-import RoomPostSearch from '@/components/Detail_posts/room_post_search';
 import { cookies } from 'next/headers';
 
 interface ListPageProps {
