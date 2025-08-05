@@ -3,7 +3,7 @@ import LikeButton from './Like_button';
 import { ShoppingFormType } from '@/types/shopping_detail';
 import ShoppingFormTag from './Shopping_form_tag';
 import { AddBookMark, DeleteBookMark } from '@/data/actions/bookmark';
-import { redirect } from 'next/navigation';
+// import { redirect } from 'next/navigation';
 import toast from 'react-hot-toast';
 import { useCallback } from 'react';
 
@@ -79,7 +79,7 @@ export default function ShoppingForm({
       myBookmarkId as number,
     );
     if (result.ok === 1) {
-      redirect(`/products/${id}`);
+      // redirect(`/products/${id}`);
     }
   };
 
@@ -87,7 +87,7 @@ export default function ShoppingForm({
     const result = await AddBookMark('product', token as string, Number(id));
 
     if (result.ok === 1) {
-      redirect(`/products/${id}`);
+      // redirect(`/products/${id}`);
     } else {
       showErrorToast();
     }
