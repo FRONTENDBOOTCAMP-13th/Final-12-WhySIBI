@@ -27,6 +27,7 @@ export default function BestTalkList({ item, boardType }: TalkListProps) {
     <Swiper
       loop={false}
       modules={[Navigation, Pagination, Scrollbar, A11y]}
+      autoplay={{ delay: 5000 }}
       breakpoints={{
         320: {
           slidesPerView: 1,

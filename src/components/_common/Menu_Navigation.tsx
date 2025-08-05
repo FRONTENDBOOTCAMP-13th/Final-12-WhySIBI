@@ -20,6 +20,7 @@ function MenuNavigation() {
   // Zustand store에서 필요한 상태와 함수들 가져오기
   const { activeMenu, subMenuData, handleMenuClick, mainCategoryId } =
     useMenuStore();
+  const [expandedMenu, setExpandedMenu] = useState<string | null>(null);
 
   const currentSubMenuItems: SubMenuItem[] =
     activeMenu === 'community'
@@ -167,33 +168,148 @@ function MenuNavigation() {
         <div className="md:hidden font-logo text-lg bg-[#D4E8F8] border-t border-gray-200 shadow-lg">
           <ul className="py-2">
             <li>
-              <Link
-                href={`/community/showRoom`}
-                className={`block px-4 py-3 text-gray-800 hover:bg-gray-100 border-b border-gray-100 ${isAnchorMenuActive('/community')}`}
-                onClick={e => {
-                  e.preventDefault();
-                  handleMenuClick('community');
-                  router.push('/community');
-                  setIsMobileMenuOpen(false);
-                }}
-              >
-                커뮤니티
-              </Link>
+              <div>
+                <button
+                  className={`flex justify-between items-center w-full px-4 py-3 text-gray-800 hover:bg-gray-100 border-b border-gray-100 ${isAnchorMenuActive('/community')}`}
+                  onClick={() => {
+                    if (expandedMenu === 'community') {
+                      setExpandedMenu(null);
+                    } else {
+                      setExpandedMenu('community');
+                      handleMenuClick('community');
+                    }
+                  }}
+                >
+                  <span>커뮤니티</span>
+                  <svg
+                    className={`w-4 h-4 transition-transform duration-200 ${expandedMenu === 'community' ? 'rotate-180' : ''}`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </button>
+
+                {/* 커뮤니티 서브메뉴 */}
+                {expandedMenu === 'community' && (
+                  <div className="bg-gray-50 border-l-4 border-blue-300">
+                    <ul className="py-1">
+                      <li>
+                        <Link
+                          href="/community/showRoom"
+                          className="block px-8 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                          onClick={() => {
+                            router.push('/community/showRoom');
+                            setIsMobileMenuOpen(false);
+                            setExpandedMenu(null);
+                          }}
+                        >
+                          집들이
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/community/talk"
+                          className="block px-8 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                          onClick={() => {
+                            router.push('/community/talk');
+                            setIsMobileMenuOpen(false);
+                            setExpandedMenu(null);
+                          }}
+                        >
+                          자취 상담소
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+                )}
+              </div>
             </li>
+
             <li>
-              <Link
-                href={'/shopping/category'}
-                className={`block px-4 py-3 text-gray-800 hover:bg-gray-100 border-b border-gray-100 ${isAnchorMenuActive('/shopping')}`}
-                onClick={e => {
-                  e.preventDefault();
-                  handleMenuClick('shopping', mainCategoryId);
-                  router.push('/shopping/category');
-                  setIsMobileMenuOpen(false);
-                }}
-              >
-                쇼핑
-              </Link>
+              <div>
+                <button
+                  className={`flex justify-between items-center w-full px-4 py-3 text-gray-800 hover:bg-gray-100 border-b border-gray-100 ${isAnchorMenuActive('/shopping')}`}
+                  onClick={() => {
+                    if (expandedMenu === 'shopping') {
+                      setExpandedMenu(null);
+                    } else {
+                      setExpandedMenu('shopping');
+                      handleMenuClick('shopping', mainCategoryId);
+                    }
+                  }}
+                >
+                  <span>쇼핑</span>
+                  <svg
+                    className={`w-4 h-4 transition-transform duration-200 ${expandedMenu === 'shopping' ? 'rotate-180' : ''}`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </button>
+
+                {/* 쇼핑 서브메뉴 */}
+                {expandedMenu === 'shopping' && (
+                  <div className="bg-gray-50 border-l-4 border-green-300">
+                    <ul className="py-1">
+                      <li>
+                        <Link
+                          href="/shopping/recommend"
+                          className="block px-8 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                          onClick={() => {
+                            router.push('/shopping/recommend');
+                            setIsMobileMenuOpen(false);
+                            setExpandedMenu(null);
+                          }}
+                        >
+                          추천 상품
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/shopping/best"
+                          className="block px-8 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                          onClick={() => {
+                            router.push('/shopping/best');
+                            setIsMobileMenuOpen(false);
+                            setExpandedMenu(null);
+                          }}
+                        >
+                          인기 상품
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/shopping/category"
+                          className="block px-8 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                          onClick={() => {
+                            router.push('/shopping/category');
+                            setIsMobileMenuOpen(false);
+                            setExpandedMenu(null);
+                          }}
+                        >
+                          카테고리별 상품
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+                )}
+              </div>
             </li>
+
             <li>
               <Link
                 href={'/service'}
@@ -201,11 +317,13 @@ function MenuNavigation() {
                 onClick={() => {
                   handleMenuClick('service');
                   setIsMobileMenuOpen(false);
+                  setExpandedMenu(null);
                 }}
               >
                 고객센터
               </Link>
             </li>
+
             {token && (
               <li>
                 <Link
@@ -214,6 +332,7 @@ function MenuNavigation() {
                   onClick={() => {
                     handleMenuClick('myPage');
                     setIsMobileMenuOpen(false);
+                    setExpandedMenu(null);
                   }}
                 >
                   마이페이지

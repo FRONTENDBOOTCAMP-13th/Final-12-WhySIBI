@@ -4,13 +4,13 @@ import { logoutAction } from '@/data/actions/user';
 import useUserStore from '@/zustand/useUserStore';
 import Image from 'next/image';
 import Link from 'next/link';
-import { redirect } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useCallback } from 'react';
 import toast from 'react-hot-toast';
 
 export default function Header() {
   const { user, resetUser } = useUserStore();
-
+  const router = useRouter();
   const showSuccessToast = useCallback(() => {
     toast.custom(
       t => (
@@ -54,13 +54,15 @@ export default function Header() {
       },
     );
   }, []);
+
   const handleLogout = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     resetUser();
     logoutAction();
     showSuccessToast();
-    redirect('/');
+    router.refresh();
   };
+  
   return (
     <header className="pt-16 w-full">
       <section className="header_top xl:min-w-[1280px] lg:w-[95%] md:w-[95%] sm:w-[92%] w-[90%] grid grid-cols-3 items-center mx-auto my-0 px-2 sm:px-0">
