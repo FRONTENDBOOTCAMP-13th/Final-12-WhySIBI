@@ -17,7 +17,7 @@ function MainBottomSlider() {
   return (
     <>
       <div
-        className="swiper-bottom font-logo text-[var(--color-livealone-cal-poly-green)] overflow-hidden
+        className="w-full swiper-bottom font-logo text-[var(--color-livealone-cal-poly-green)] overflow-hidden
         font-bold bg-[var(--color-livealone-columbia-blue)]  h-30 text-4xl flex items-center
         "
         aria-label="livealone"

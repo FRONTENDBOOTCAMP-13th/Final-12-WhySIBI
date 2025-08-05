@@ -5,9 +5,11 @@ export default async function ShoppingRecommend() {
   const token = (await cookies()).get('accessToken');
   return (
     <>
-      <main className="bg-white p-20">
-        <ShoppingRecommendSection token={token?.value} />
-      </main>
+      <div className="max-w-[1280px]  mx-auto my-0 ">
+        <main className="bg-white p-20">
+          <ShoppingRecommendSection token={token?.value} />
+        </main>
+      </div>
     </>
   );
 }

@@ -8,7 +8,7 @@ export default function Categroy() {
   return (
     <>
       <section className="categroy block w-full bg-white">
-        <ul className="flex text-2xl justify-center gap-20 font-logo font-bold text-button-color text-center">
+        <ul className="flex text-2xl justify-center gap-20 py-5 font-logo font-bold text-button-color text-center">
           <li>
             <figure>
               <Link href="/shopping/category/PC0301">
