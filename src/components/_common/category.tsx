@@ -122,7 +122,10 @@ export default function Categroy() {
       </section>
 
       {/* 모바일 버전 Swiper */}
-      <section className="categroy block w-full bg-white">
+      <section
+        className="categroy 
+  category-swiper  block w-full bg-white"
+      >
         <div className="block md:hidden px-4 text-2xl justify-center  py-5 font-logo font-bold text-button-color text-center">
           <Swiper
             modules={[Scrollbar]}

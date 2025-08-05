@@ -582,6 +582,14 @@
     font-size: 20px !important;
   }
 
+  .category-swiper .swiper-scrollbar {
+    position: relative !important;
+    height: 6px !important;
+    background: #e0e0e0 !important;
+    margin-top: 12px;
+    border-radius: 9999px;
+  }
+
   /* subcategory menu */
   .subcategory-container {
     display: grid;
