@@ -5,6 +5,8 @@ import PostCardItem from '@/app/community/[boardType]/PostCard_Item';
 import Title from '@/components/Title';
 import ButtonNew from '@/components/Button_new';
 import DropdownRoom from '@/components/Dropdown/Dropdown_room';
+import RoomPostSearch from '@/components/Detail_posts/room_post_search';
+import useSearchStore from '@/zustand/searchStore';
 
 interface PostCardPageProps {
   boardType: string;
@@ -19,10 +21,21 @@ export default function PostCardList({
 }: PostCardPageProps) {
   const [posts, setPosts] = useState<Post[]>([]);
   const [sortType, setSortType] = useState('high-view');
+  const { searchText } = useSearchStore();
 
   // 필터링
   useEffect(() => {
-    const sorted = [...initialPosts];
+    let sorted = [...initialPosts];
+
+    if (searchText.trim() !== '') {
+      const lowerSearch = searchText.toLowerCase();
+      sorted = sorted.filter(
+        post =>
+          post.title.toLowerCase().includes(lowerSearch) ||
+          post.content.toLowerCase().includes(lowerSearch)
+      );
+    }
+
     if (sortType === 'high-view') {
       sorted.sort((a, b) => (b.views ?? 0) - (a.views ?? 0));
     } else {
@@ -32,7 +45,7 @@ export default function PostCardList({
       );
     }
     setPosts(sorted);
-  }, [sortType, initialPosts]);
+  }, [sortType, initialPosts, searchText]);
 
   const boardTitle = boardType === 'showRoom' ? '집들이🏠' : '자취 상담소💬';
   const boardSub =
@@ -41,7 +54,7 @@ export default function PostCardList({
   return (
     <>
     <div className="post-list-wrapper bg-white p-20">
-      <div className="post-header flex justify-between pl-5 mb-10">
+      <div className="post-header flex justify-between pl-5 mb-5">
         <div className="title-wrapper flex items-center">
           <Title title={boardTitle} subTitle={boardSub} />
         </div>
@@ -50,19 +63,27 @@ export default function PostCardList({
           <ButtonNew boardType={boardType} />
         </div>
       </div>
-
+      <div className="flex justify-end">
+        <RoomPostSearch></RoomPostSearch>
+      </div>
       <div className="grid grid-flow-row grid-cols-[repeat(auto-fill,_300px)] gap-x-10 lg:gap-x-20 gap-y-8 font-variable justify-center items-center">
-        {posts.map((post, index) => (
-          <PostCardItem
-            key={post._id}
-            post={post}
-            index={index}
-            boardType={boardType}
-            token={token}
-            bookmarkID={post?.myBookmarkId}
-            isHot={sortType === 'high-view' && index < 3}
-          />
-        ))}
+        {posts.length > 0 ? (
+            posts.map((post, index) => (
+              <PostCardItem
+                key={post._id}
+                post={post}
+                index={index}
+                boardType={boardType}
+                token={token}
+                bookmarkID={post?.myBookmarkId}
+                isHot={sortType === 'high-view' && index < 3}
+              />
+            ))
+          ) : (
+            <p className="text-gray-500 text-center col-span-3 py-10">
+              검색 결과가 없습니다.
+            </p>
+          )}
       </div>
     </div>
     </>
