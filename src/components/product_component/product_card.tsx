@@ -6,7 +6,6 @@ import { AddBookMark, DeleteBookMark } from '@/data/actions/bookmark';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import React from 'react';
 
 type ProductCardProps = {
   id: number;
@@ -22,6 +21,7 @@ type ProductCardProps = {
   type?: string;
   token?: string | undefined;
   onClick: () => void;
+  UpdateProductState?: () => void;
 };
 
 function ProductCard({
@@ -38,14 +38,18 @@ function ProductCard({
   type,
   token,
   onClick,
+  UpdateProductState,
 }: ProductCardProps) {
+  // const pathName = usePathname();
   const router = useRouter();
+
   const handleDeleteBookmark = async () => {
     const result = await DeleteBookMark(
       token as string,
       myBookmarkId as number,
     );
     if (result.ok === 1) {
+      await UpdateProductState?.(); 
       router.refresh();
     }
   };
@@ -58,7 +62,7 @@ function ProductCard({
     );
 
     if (result.ok === 1) {
-      console.log('추가됨?');
+      await UpdateProductState?.();
       router.refresh();
     }
   };

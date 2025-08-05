@@ -1,5 +1,6 @@
 'use client';
 import Pagenation from '@/components/basic_component/Pagenation';
+import SkeletonUI from '@/components/product_component/skeleton_ui';
 import ReviewInfo from '@/components/reviews/review_info/review_info';
 import { ReviewItem } from '@/types/replies';
 import { useEffect, useState } from 'react';
@@ -11,8 +12,9 @@ export default function ReviewLists({ reviewItem }: reviewListProp) {
   const [reviewList, setReviewList] = useState<ReviewItem[] | null>(null);
   //페이지 네이션
   const [page, setPage] = useState(1);
-  
+  const [isLoading, setLoading] = useState(true);
   useEffect(() => {
+    setLoading(true);
     const reviewListData = async () => {
       try {
         if (reviewItem) {
@@ -22,9 +24,10 @@ export default function ReviewLists({ reviewItem }: reviewListProp) {
         }
       } catch (error) {
         console.error('상품 정보 로딩 실패:', error);
+      } finally {
+        setLoading(false);
       }
     };
-
     reviewListData();
   }, [reviewItem]);
 
@@ -38,25 +41,35 @@ export default function ReviewLists({ reviewItem }: reviewListProp) {
   };
 
   return (
-    <nav className="mt-20">
-      <ul className="flex flex-col flex-wrap gap-16">
-        {sliceData?.map((review, i) => (
-          <ReviewInfo
-            content={review.content}
-            productName={review.product.name}
-            productImage={review.product.image}
-            productId={review.product._id}
-            star={review.extra.star}
-            _id={review._id}
-            key={i}
-          />
-        ))}
-      </ul>
-      <Pagenation
-        page={page}
-        totalPage={totalPage}
-        onPageTurner={handlePagenation}
-      />
-    </nav>
+    <>
+      {isLoading ? (
+        <div className="flex justify-center items-center mt-20">
+          <SkeletonUI count={10} />
+        </div>
+      ) : (
+        <nav className="mt-20">
+          <ul className="flex flex-col flex-wrap gap-16">
+            {sliceData?.map((review, i) => (
+              <ReviewInfo
+                content={review.content}
+                productName={review.product.name}
+                productImage={review.product.image}
+                productId={review.product._id}
+                star={review.extra.star}
+                _id={review._id}
+                key={i}
+              />
+            ))}
+          </ul>
+          <div className="w-4/5 mt-5">
+            <Pagenation
+              page={page}
+              totalPage={totalPage}
+              onPageTurner={handlePagenation}
+            />
+          </div>
+        </nav>
+      )}
+    </>
   );
 }

@@ -33,8 +33,6 @@ export default async function DetailPage({ params }: InfoPageProps) {
   const post = await getPost(Number(_id), token?.value as string);
   const posts = await getPosts(String(_id));
   const allProducts = await getProductList();
-  const res = await getReplies(_id);
-  const initialReplies = res.ok ? res.item : [];
 
   if (isError(post)) {
     return <div>{post.message || '게시글을 불러올 수 없습니다.'}</div>;

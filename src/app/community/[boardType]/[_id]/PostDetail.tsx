@@ -36,7 +36,7 @@ export default function PostDetail({ post, token }: PostDetailProps) {
       post.myBookmarkId as number,
     );
     if (result.ok === 1) {
-      redirect(`/community/talk/${_id}`);
+      redirect(`/community/showRoom/${_id}`);
     }
   };
 

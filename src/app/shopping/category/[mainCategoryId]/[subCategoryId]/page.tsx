@@ -11,7 +11,7 @@ export default async function ShoppingCategory() {
       <ShoppingBannerSlider />
       <main className="bg-white p-20">
         <ShoppingSubcategory />
-        <ShoppingSelling />
+        <ShoppingSelling token={token?.value} />
         <ShoppingProductsList token={token?.value} />
       </main>
     </>

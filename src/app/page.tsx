@@ -14,7 +14,7 @@ export default function Home() {
         <MainCategorySection />
         <MainBestProductSection />
         <MainRecommendProductSection />
-        <div className="community-wrapper flex flex-row gap-15 mt-10 justify-center items-center">
+        <div className="community-wrapper flex lg:flex-row flex-col gap-15 mt-10 justify-center items-center">
           <MainShowRoom></MainShowRoom>
           <MainTalk></MainTalk>
         </div>

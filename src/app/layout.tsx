@@ -32,7 +32,7 @@ export default function RootLayout({
     <html lang="ko">
       <body className="vertical-stripes">
         <Header></Header>
-        <main>{children}</main>
+        <main className="w-full">{children}</main>
         <Footer></Footer>
         <Toaster
           position="bottom-center"

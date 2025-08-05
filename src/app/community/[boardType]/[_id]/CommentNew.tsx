@@ -7,14 +7,15 @@ import { PostReply } from '@/types';
 import { ApiRes } from '@/types';
 
 interface CommentNewProps {
-    _id: number;
+  _id: number;
   repliesCount: number;
   onAdd: (reply: PostReply) => void;
 }
 
+
 export default function CommentNew({ _id, repliesCount, onAdd }: CommentNewProps) {
   const { user } = useUserStore();
-  const [, formAction, isLoading] = useActionState(
+  const [formAction, isLoading] = useActionState(
     async (
       prevState: ApiRes<PostReply, never> | null,
       formData: FormData
@@ -53,7 +54,7 @@ export default function CommentNew({ _id, repliesCount, onAdd }: CommentNewProps
     window.addEventListener('mention-user', handler);
     return () => window.removeEventListener('mention-user', handler);
   }, [user, inputValue]);
-  
+
   // 태그 한번에 지우기
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     const mentionRegex = /^@\S+\s/;
@@ -65,15 +66,17 @@ export default function CommentNew({ _id, repliesCount, onAdd }: CommentNewProps
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
-  
+
   const handleFocus = () => {
     if (!user) {
-      alert("로그인이 필요합니다.");
-      const input = document.getElementById('comment-input') as HTMLInputElement;
+      alert('로그인이 필요합니다.');
+      const input = document.getElementById(
+        'comment-input',
+      ) as HTMLInputElement;
       input?.blur();
       return;
     }
-      setLocalError(null);
+    setLocalError(null);
   };
 
   return (
@@ -95,7 +98,7 @@ export default function CommentNew({ _id, repliesCount, onAdd }: CommentNewProps
           />
           <div>
             <input
-              id="comment-input"  
+              id="comment-input"
               type="text"
               name="content"
               value={inputValue}
@@ -105,9 +108,7 @@ export default function CommentNew({ _id, repliesCount, onAdd }: CommentNewProps
               placeholder="댓글 달기..."
               className="w-[420px] outline-0 text-sm ml-2"
             ></input>
-            <p className="ml-2 mt-1 text-sm text-red-500">
-              {localError}
-            </p>
+            <p className="ml-2 mt-1 text-sm text-red-500">{localError}</p>
           </div>
           <button
             disabled={isLoading}

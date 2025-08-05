@@ -153,7 +153,7 @@ function ShoppingBestSection({ token }: { token: string | undefined }) {
                   id={product._id}
                   key={product._id}
                   name={product.name}
-                  imageUrl={'/product.mainImages[0]?.path'}
+                  imageUrl={'product.mainImages[0]?.path'}
                   price={`${product.price.toLocaleString()}원ㅌ`}
                   discount={discount}
                   rank={index + 1}
@@ -164,6 +164,7 @@ function ShoppingBestSection({ token }: { token: string | undefined }) {
                   myBookmarkId={product.myBookmarkId}
                   token={token}
                   type={'product'}
+                  UpdateProductState={fetchProducts}
                 />
               );
             })

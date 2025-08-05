@@ -53,7 +53,7 @@ export default function LoginForm() {
         height={120}
         className="my-0 mx-auto"
       />
-      <form action={formAction} className="w-3/4 my-0 mx-auto">
+      <form action={formAction} className="w-[95%] md:w-3/4 my-0 mx-auto">
         <InputId
           text={''}
           placeholder={'아이디를 입력해주세요'}

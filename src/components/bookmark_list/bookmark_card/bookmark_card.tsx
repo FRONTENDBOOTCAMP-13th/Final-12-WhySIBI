@@ -12,7 +12,7 @@ function BookMarkCard({ title, _id, type, productImage }: BookMarkInfoProps) {
             src={
               productImage
                 ? `${productImage}`
-                : `/image/theme_image/desk_decor.png`
+                : `/image/room_photo/postThumbnail.svg`
             }
             // src={`/image/theme_image/desk_decor.png`}
             alt={`${_id}번째 게시물 사진`}
