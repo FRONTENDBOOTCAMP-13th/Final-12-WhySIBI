@@ -60,61 +60,52 @@ function MainRecommendBox() {
           modules={[Scrollbar]}
           loop={false} // 슬라이드 루프
           spaceBetween={16} // 슬라이스 사이 간격
-          slidesPerView="auto" // 보여질 슬라이스 수
+          slidesPerView={2}
+          slidesPerGroup={2}
           grabCursor={true} //마우스 선택
           scrollbar={{
             //스크롤바
             el: '.swiper-scrollbar',
             draggable: true,
           }}
+          breakpoints={{
+            0: { slidesPerView: 1, slidesPerGroup: 1 },
+            768: { slidesPerView: 2, slidesPerGroup: 2 },
+          }}
         >
           {user.extra.preference?.map((tag, index) => {
-            //상품 Tag 와 회원 preference 같은 값을 4개까지 필터
             const tagProduct = productData
               .filter(product => product.extra?.tag?.includes(tag))
               .slice(0, 2);
 
             return (
-              <SwiperSlide key={index} className="!w-[80%] md:!w-[48%]">
-                <div className="bg-gradient-to-b w-full  from-vanilla-300 to-columbia-blue-300 mb-10 rounded-2xl">
-                  <div className="flex justify-between p-5">
-                    <p className="text-lg font-bold text-livealone-cal-poly-green">
-                      {PreferenceTagMap[tag]} 인기 상품 추천 ✨
-                    </p>
-                    {/* <Link href="/shopping/best">
-                      <span className="text-gray-400">{`더보기 >`}</span>
-                    </Link> */}
-                  </div>
-                  <div
-                    className="grid sm:grid-cols-2 md:grid-cols-2
-                  lg:grid-cols-2 gap-4 items-center"
-                  >
-                    {/* 상품 로딩중일때 스켈레톤 UI 불러옴 */}
+              <SwiperSlide key={index}>
+                <div className="bg-gradient-to-b from-vanilla-300 to-columbia-blue-300 mb-6 md:mb-10 rounded-xl md:rounded-2xl p-4 md:p-6">
+                  <p className="text-lg md:text-xl font-bold text-livealone-cal-poly-green mb-4">
+                    {PreferenceTagMap[tag]} 인기 상품 추천 ✨
+                  </p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {loading ? (
                       <SkeletonUI count={2} />
                     ) : (
-                      // 로딩중이 아니면 프로덕트 카드로 대체
-                      tagProduct.map(product => {
-                        const discount = product?.extra?.originalPrice
-                          ? `${Math.round(100 - (product.price * 100) / product.extra.originalPrice)}%`
-                          : ''; //할인율
-                        return (
-                          <ProductCard
-                            key={product._id}
-                            id={product._id}
-                            name={product.name}
-                            imageUrl={`/${product.mainImages[0]?.path}`}
-                            price={`${product.price.toLocaleString()}원`}
-                            discount={discount}
-                            rating={
-                              product.extra?.star ? product.extra?.star : 0
-                            }
-                            reviewCount={product.replies}
-                            isLiked={product.extra?.isLike ? true : false}
-                            onClick={() => {}}
-                          />
-                        );
-                      })
+                      tagProduct.map(product => (
+                        <ProductCard
+                          key={product._id}
+                          id={product._id}
+                          name={product.name}
+                          imageUrl={product.mainImages[0]?.path}
+                          price={`${product.price.toLocaleString()}원`}
+                          discount={
+                            product.extra?.originalPrice
+                              ? `${Math.round(100 - (product.price * 100) / product.extra.originalPrice)}%`
+                              : ''
+                          }
+                          rating={product.extra?.star || 0}
+                          reviewCount={product.replies}
+                          isLiked={!!product.extra?.isLike}
+                          onClick={() => {}}
+                        />
+                      ))
                     )}
                   </div>
                 </div>
@@ -212,7 +203,7 @@ function MainRecommendBox() {
                 </div>
               </SwiperSlide>
               <SwiperSlide>
-                <div className="min-w-[120px]  ">
+                <div className="min-w-[120px]">
                   <InputCheckBox
                     text={'📚 책상꾸미기'}
                     idValue={'desk_decor'}
@@ -294,74 +285,52 @@ function MainRecommendBox() {
               modules={[Scrollbar]}
               loop={false}
               spaceBetween={16}
-              slidesPerView={1} // 한 번에 하나씩만 보이게
+              slidesPerView={2}
+              slidesPerGroup={2}
               grabCursor={true}
               scrollbar={{
                 el: '.swiper-scrollbar',
                 draggable: true,
               }}
               breakpoints={{
-                // 모든 화면 크기에서 하나씩만
-                0: { slidesPerView: 1, spaceBetween: 12 },
-                640: { slidesPerView: 1, spaceBetween: 14 },
-                1024: { slidesPerView: 1, spaceBetween: 16 },
-                1280: { slidesPerView: 1, spaceBetween: 16 },
+                0: { slidesPerView: 1, slidesPerGroup: 1 },
+                768: { slidesPerView: 2, slidesPerGroup: 2 },
               }}
             >
+              {' '}
               {checkTag.map((tag, index) => {
-                // 화면 크기별 상품 개수 계산 (JavaScript로는 정확한 breakpoint 감지가 어려우므로 최대값 사용)
-                const getProductCount = () => {
-                  if (typeof window !== 'undefined') {
-                    const width = window.innerWidth;
-                    if (width >= 1280) return 4; // xl
-                    if (width >= 1024) return 3; // lg
-                    if (width >= 768) return 2; // md
-                    return 1; // md 미만
-                  }
-                  return 4; // 서버사이드에서는 최대값
-                };
                 const tagProduct = productData
                   .filter(product => product.extra?.tag?.includes(tag))
-                  .slice(0, getProductCount());
+                  .slice(0, 2);
 
                 return (
-                  <SwiperSlide key={index} className="!w-full">
-                    <div className="bg-gradient-to-b w-full from-vanilla-300 to-columbia-blue-300 mb-6 md:mb-10 rounded-xl md:rounded-2xl shadow-sm">
-                      <div className="flex justify-between items-center p-3 md:p-5">
-                        <p className="text-sm md:text-lg font-bold text-livealone-cal-poly-green leading-tight">
-                          {PreferenceTagMap[tag]} 인기 상품 추천 ✨
-                        </p>
-                        <span className="text-xs text-gray-500 bg-white/70 px-2 py-1 rounded-full">
-                          {index + 1} / {checkTag.length}
-                        </span>
-                      </div>
-
-                      {/* 반응형 그리드 */}
-                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-4 items-center px-3 md:px-5 pb-3 md:pb-5">
+                  <SwiperSlide key={index}>
+                    <div className="bg-gradient-to-b from-vanilla-300 to-columbia-blue-300 rounded-xl md:rounded-2xl p-4 md:p-6 mb-6">
+                      <p className="text-sm text-left md:text-lg font-bold text-livealone-cal-poly-green mb-3">
+                        {PreferenceTagMap[tag]} 인기 상품 추천 ✨
+                      </p>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         {loading ? (
-                          <SkeletonUI count={getProductCount()} />
+                          <SkeletonUI count={2} />
                         ) : (
-                          tagProduct.map(product => {
-                            const discount = product?.extra?.originalPrice
-                              ? `${Math.round(100 - (product.price * 100) / product.extra.originalPrice)}%`
-                              : '';
-                            return (
-                              <ProductCard
-                                key={product._id}
-                                id={product._id}
-                                name={product.name}
-                                imageUrl={`/${product.mainImages[0]?.path}`}
-                                price={`${product.price.toLocaleString()}원`}
-                                discount={discount}
-                                rating={
-                                  product.extra?.star ? product.extra?.star : 0
-                                }
-                                reviewCount={product.replies}
-                                isLiked={product.extra?.isLike ? true : false}
-                                onClick={() => {}}
-                              />
-                            );
-                          })
+                          tagProduct.map(product => (
+                            <ProductCard
+                              key={product._id}
+                              id={product._id}
+                              name={product.name}
+                              imageUrl={product.mainImages[0]?.path}
+                              price={`${product.price.toLocaleString()}원`}
+                              discount={
+                                product.extra?.originalPrice
+                                  ? `${Math.round(100 - (product.price * 100) / product.extra.originalPrice)}%`
+                                  : ''
+                              }
+                              rating={product.extra?.star || 0}
+                              reviewCount={product.replies}
+                              isLiked={!!product.extra?.isLike}
+                              onClick={() => {}}
+                            />
+                          ))
                         )}
                       </div>
                     </div>
@@ -372,7 +341,7 @@ function MainRecommendBox() {
             </Swiper>
           ) : (
             /* 미선택 시 기본 화면 */
-            <div className="bg-gradient-to-b border-2 border-gray-200 rounded-xl md:rounded-2xl flex items-center justify-center flex-col py-8 md:py-12 mx-2 md:mx-0">
+            <div className="bg-gradient-to-b border-2 border-gray-200 rounded-xl md:rounded-2xl flex flex-col items-center justify-center py-8 md:py-12 mx-2 md:mx-0">
               <Image
                 src="/image/category_icon/furniture.svg"
                 alt="관심사 미선택"
