@@ -25,7 +25,7 @@ function LikeBadge({ myBookmarkId, handleBookmark }: LikeBadgeProps) {
         w-8 h-8
         flex items-center justify-center
         rounded-[var(--radius-radius-full)]
-        ${'bg-gray-300'}`}
+        ${'bg-white'}`}
       >
         <Image
           src={
