@@ -1,5 +1,6 @@
 'use client';
 
+import { Scrollbar } from 'swiper/modules';
 import { upLoadFile } from '@/data/actions/file';
 import { useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -101,7 +102,7 @@ export default function ImageUploader({ image, setImage }: ImageUploaderProps) {
               />
             </button>
         </div>
-        <Swiper slidesPerView="auto" spaceBetween={12} className="w-[450px] overflow-hidden py-3">
+        <Swiper slidesPerView="auto" spaceBetween={12} modules={[Scrollbar]} scrollbar={{ draggable: true }} className="w-[450px] overflow-hidden pt-3 pb-10">
           {image.map((src, i) => (
             <SwiperSlide
               key={i}
@@ -114,6 +115,19 @@ export default function ImageUploader({ image, setImage }: ImageUploaderProps) {
                 height={140}
                 className="object-cover w-full h-full"
               />
+              {/* 첫번째 슬라이드 -> 커버이미지 표시 */}
+              {i === 0 && (
+                <>
+                  <div className="absolute top-0 w-full h-full bg-livealone-cal-poly-green/50 z-10"></div>
+                  <Image
+                    src="/image/community_icon/coverIcon.svg"
+                    alt="게시글 커버"
+                    width={60}
+                    height={60}
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20"
+                  />
+                </>
+              )}
               <Image
                 src="/image/community_icon/closeIcon.svg"
                 alt={`삭제 버튼`}
