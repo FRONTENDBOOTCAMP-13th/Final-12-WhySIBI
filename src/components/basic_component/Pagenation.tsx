@@ -6,7 +6,7 @@ type PagenationProps = {
 
 function Pagenation({ page, totalPage, onPageTurner }: PagenationProps) {
   return (
-    <div className="flex items-center justify-center gap-3">
+    <div className="flex items-center justify-center gap-3 mt-10">
       {/* 맨 처음 << 버튼 */}
       <button
         className="w-7 h-7"

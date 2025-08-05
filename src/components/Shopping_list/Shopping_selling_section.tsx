@@ -13,14 +13,17 @@ function ShoppingSelling({ token }: { token?: string | undefined }) {
 
   return (
     <div className="pb-10">
-      <div className="flex justify-between mb-10">
-        <h1 className="font-logo text-size-4xl font-bold leading-10">
+      <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between mb-10">
+        <h1
+          className="font-logo text-size-4xl font-bold leading-10
+         text-xl sm:text-2xl md:text-3xl lg:text-4xl"
+        >
           <span className="text-livealone-flame">{categoryName}</span>{' '}
           <span className="text-livealone-cal-poly-green">
             가장 많이 팔린 5가지
           </span>
         </h1>
-        <h2 className="font-variable text-size-md text-gray-500">
+        <h2 className="font-variable text-sm sm:text-xs md:text-lg text-right text-gray-500">
           현재시각 <TimeStamp /> 기준
         </h2>
       </div>

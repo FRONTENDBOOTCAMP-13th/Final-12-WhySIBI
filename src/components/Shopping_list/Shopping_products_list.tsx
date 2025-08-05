@@ -9,8 +9,6 @@ import useMenuStore from '@/zustand/menuStore';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
 function ShoppingProductsList({ token }: { token?: string | undefined }) {
   const [productData, setProductData] = useState<ProductListProps[]>([]);
   const [page, setPage] = useState(1);
@@ -86,9 +84,7 @@ function ShoppingProductsList({ token }: { token?: string | undefined }) {
         <span className="text-sm text-gray-500">전체 {totalItems}개</span>
         <DropdownShoppingList value={sort} onDropChange={setSort} />
       </div>
-      <div
-        className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 items-center"
-      >
+      <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 items-center">
         {loading ? (
           <SkeletonUI count={12} />
         ) : (
@@ -101,7 +97,7 @@ function ShoppingProductsList({ token }: { token?: string | undefined }) {
                 id={product._id}
                 key={product._id}
                 name={product.name}
-                imageUrl={`${API_URL}/${product.mainImages[0]?.path}`}
+                imageUrl={'/product.mainImages[0]?.path'}
                 price={`${product.price.toLocaleString()}원`}
                 discount={discount}
                 rating={product.extra?.star ? product.extra?.star : 0}
