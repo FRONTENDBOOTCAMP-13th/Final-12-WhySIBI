@@ -3,6 +3,7 @@
 import { upLoadFile } from '@/data/actions/file';
 import { useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import SearchingUI from '../product_search/searching_ui';
 import 'swiper/css';
 import Image from 'next/image';
 
@@ -14,10 +15,13 @@ interface ImageUploaderProps {
 export default function ImageUploader({ image, setImage }: ImageUploaderProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [preview, setPreview] = useState<string[]>([]);
+  const [isUploading, setIsUploading] = useState(false);
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (!files) return;
+
+    setIsUploading(true);
 
     const uploadedUrls: string[] = [];
     const previewUrls: string[] = [];
@@ -32,10 +36,8 @@ export default function ImageUploader({ image, setImage }: ImageUploaderProps) {
         const res = await upLoadFile(formData);
           console.log('업로드 응답:', res);
         if (res.ok && res.item.length > 0) {
-          const API_BASE = 'https://fesp-api.koyeb.app';
-          const cleanPath = res.item[0].path.replace(/^\/+/, '');
-          uploadedUrls.push(`${API_BASE}/market/${cleanPath}`);
-            console.log('업로드 응답:', res);
+          uploadedUrls.push(res.item[0].path); // Cloudinary URL 직접 사용
+          console.log('업로드 응답:', res);
         } else {
           alert(`이미지 업로드 실패`);
         }
@@ -47,6 +49,7 @@ export default function ImageUploader({ image, setImage }: ImageUploaderProps) {
 
     setPreview([...preview, ...previewUrls]);
     setImage([...image, ...uploadedUrls]);
+    setIsUploading(false);
   };
 
   const handleClickUpload = () => {
@@ -66,27 +69,37 @@ export default function ImageUploader({ image, setImage }: ImageUploaderProps) {
       <p className="mb-4 ml-12 text-lg font-bold font-variable">방을 자랑할 사진을 넣어주세요.</p>
       <div className="flex pb-10 border-b">
         <div className="button-wrapper pr-3">
-          <button
-            className="!w-[140px] !h-[140px] rounded-4xl bg-gradient-to-b from-vanilla-200 to-columbia-blue-200 cursor-pointer group"
-            onClick={handleClickUpload} type="button">
-            <div className="flex items-center justify-center w-full h-full">
-              <Image
-                src="/image/community_icon/plusIcon.svg"
-                alt="이미지 업로드"
-                width={50}
-                height={50}
-                className="object-contain priority hover-lift group-hover:drop-shadow-lg"
+            <button
+              className="!w-[140px] !h-[140px] rounded-4xl bg-gradient-to-b from-vanilla-200 to-columbia-blue-200 cursor-pointer group"
+              onClick={handleClickUpload}
+              type="button"
+              >
+              {isUploading ? (
+                <div className="w-full h-full flex items-center justify-center rounded-4xl bg-white/50">
+                  <div className="scale-90 mt-5 font-variable">
+                    <SearchingUI text="업로드 중.." />
+                  </div>
+                </div>
+              ) : (
+              <div className="flex items-center justify-center w-full h-full">
+                <Image
+                  src="/image/community_icon/plusIcon.svg"
+                  alt="이미지 업로드"
+                  width={50}
+                  height={50}
+                  className="object-contain priority hover-lift group-hover:drop-shadow-lg"
+                />
+              </div>
+            )}
+              <input
+                type="file"
+                accept="image/*"
+                multiple
+                ref={fileInputRef}
+                className="hidden"
+                onChange={handleFileChange}
               />
-            </div>
-            <input
-              type="file"
-              accept="image/*"
-              multiple
-              ref={fileInputRef}
-              className="hidden"
-              onChange={handleFileChange}
-            />
-          </button>
+            </button>
         </div>
         <Swiper slidesPerView="auto" spaceBetween={12} className="w-[450px] overflow-hidden py-3">
           {image.map((src, i) => (

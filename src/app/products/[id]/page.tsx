@@ -63,14 +63,14 @@ export default async function ProductDetail({
   console.log(item);
   return (
     <>
-      <div className="bg-white min-w-[1280px] ">
+      <div className="bg-white xl:min-w-[1280px]">
         <ShoppingDetail
           stars={stars}
           id={id}
           token={token?.value}
         ></ShoppingDetail>
 
-        <nav className="bg-[#d9d9d9] text-xl font-bold flex gap-8 pl-24">
+        <nav className="bg-[#d9d9d9] text-xl font-bold flex xl:gap-8 xl:pl-24">
           <Link
             href={'?tab=info'}
             scroll={false} // 이거 쓰면 링크 클릭할때마다 맨위로 안감

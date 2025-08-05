@@ -9,7 +9,6 @@ import useMenuStore from '@/zustand/menuStore';
 import { useParams } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 
-
 function ShoppingProductsList({ token }: { token?: string | undefined }) {
   const [productData, setProductData] = useState<ProductListProps[]>([]);
   const [page, setPage] = useState(1);
@@ -132,7 +131,7 @@ useEffect(() => {
                 id={product._id}
                 key={product._id}
                 name={product.name}
-                imageUrl={`/${product.mainImages[0]?.path}`}
+                imageUrl={product.mainImages[0]?.path}
                 price={`${product.price.toLocaleString()}원`}
                 discount={discount}
                 rating={product.extra?.star ? product.extra?.star : 0}

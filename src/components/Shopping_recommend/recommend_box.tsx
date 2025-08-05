@@ -22,7 +22,6 @@ function RecommendBox({ token }: { token?: string | undefined }) {
   const [loading, setLoading] = useState(true);
   const { user } = useUserStore();
 
-
   //비회원 - 태그 값 불러옴
   const handleTag = () => {
     const checkedInputs = document.querySelectorAll(
@@ -116,7 +115,7 @@ function RecommendBox({ token }: { token?: string | undefined }) {
                         key={product._id}
                         id={product._id}
                         name={product.name}
-                        imageUrl={`/${product.mainImages[0]?.path}`}
+                        imageUrl={product.mainImages[0]?.path}
                         price={`${product.price.toLocaleString()}원`}
                         discount={discount}
                         rating={product.extra?.star ? product.extra?.star : 0}
@@ -344,7 +343,7 @@ function RecommendBox({ token }: { token?: string | undefined }) {
                             key={product._id}
                             id={product._id}
                             name={product.name}
-                            imageUrl={`/${product.mainImages[0]?.path}`}
+                            imageUrl={product.mainImages[0]?.path}
                             price={`${product.price.toLocaleString()}원`}
                             discount={discount}
                             rating={

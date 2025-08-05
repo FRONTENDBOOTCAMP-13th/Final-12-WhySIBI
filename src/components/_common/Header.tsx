@@ -33,7 +33,9 @@ export default function Header() {
             <div className="col-start-3 logout_button_area flex flex-wrap items-center justify-end gap-1 sm:gap-2 md:gap-3 xl:mr-13 lg:mr-8 md:mr-4 sm:mr-3 mr-2">
               <Image
                 src={
-                  user.image ? `/${user?.image}` : '/image/image/profile.png'
+                  user.image
+                    ? user?.image
+                    : '/image/image/profile.png'
                 }
                 width="60"
                 height="60"

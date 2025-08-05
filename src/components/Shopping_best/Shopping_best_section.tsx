@@ -11,8 +11,6 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 
-
-
 function ShoppingBestSection({ token }: { token: string | undefined }) {
   const { mainCategoryId, subMenuData, handleMenuClick } = useMenuStore();
   const [productData, setProductData] = useState<ProductListProps[]>([]);
@@ -155,8 +153,8 @@ function ShoppingBestSection({ token }: { token: string | undefined }) {
                   id={product._id}
                   key={product._id}
                   name={product.name}
-                  imageUrl={`/${product.mainImages[0]?.path}`}
-                  price={`${product.price.toLocaleString()}원`}
+                  imageUrl={'product.mainImages[0]?.path'}
+                  price={`${product.price.toLocaleString()}원ㅌ`}
                   discount={discount}
                   rank={index + 1}
                   rating={product.extra?.star ? product.extra?.star : 0}

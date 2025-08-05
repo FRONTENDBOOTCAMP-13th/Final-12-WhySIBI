@@ -1,17 +1,19 @@
+import Link from 'next/link';
+import DeleteForm from './DeleteForm';
 import PostDetail from '@/app/community/[boardType]/[_id]/PostDetail';
+import DetailSimilar from '@/components/Detail_posts/Detail_similar';
+import DetailOther from '@/components/Detail_posts/Detail_other';
+import TalkDetail from '@/components/talk_detail/talk_detail';
+import CommentSection from './CommentSection';
+
 import { getPost } from '@/data/functions/post';
 import { ApiRes } from '@/types';
 import { getPosts } from '@/data/actions/inqury';
-import DetailSimilar from '@/components/Detail_posts/Detail_similar';
-import DetailOther from '@/components/Detail_posts/Detail_other';
 import { ButtonBack } from '@/components/Button_back';
-import Link from 'next/link';
-import DeleteForm from './DeleteForm';
 import { ButtonNostyle } from '@/components/Buttons/Button_nostyle';
-import TalkDetail from '@/components/talk_detail/talk_detail';
 import { cookies } from 'next/headers';
 import { getProductList } from '@/data/actions/products.fetch';
-import CommentSection from './CommentSection';
+import { getReplies } from '@/data/functions/post';
 
 function isError<T>(res: ApiRes<T>): res is { ok: 0; message: string } {
   return res.ok === 0;
@@ -31,7 +33,6 @@ export default async function DetailPage({ params }: InfoPageProps) {
   const post = await getPost(Number(_id), token?.value as string);
   const posts = await getPosts(String(_id));
   const allProducts = await getProductList();
-
 
   if (isError(post)) {
     return <div>{post.message || '게시글을 불러올 수 없습니다.'}</div>;
@@ -74,7 +75,7 @@ const productIds = Array.isArray(post.item.extra?.products)
         <PostDetail post={post.item} token={token?.value as string} />
         <DetailSimilar products={filteredProducts}></DetailSimilar>
         <DetailOther _id={_id}></DetailOther>
-        <CommentSection _id={_id}></CommentSection>
+        <CommentSection _id={_id} initialReplies={initialReplies}></CommentSection>
       </div>
     );
   }
@@ -106,7 +107,7 @@ const productIds = Array.isArray(post.item.extra?.products)
           ) : (
             <TalkDetail post={post.item} />
           )}
-          <CommentSection _id={_id}></CommentSection>
+          <CommentSection _id={_id} initialReplies={initialReplies}></CommentSection>
         </section>
       </div>
     );
