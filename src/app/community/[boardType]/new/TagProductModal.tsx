@@ -55,14 +55,14 @@ export default function TagProductModal({ productList, selected, setSelected, on
                 onClick={() => toggleSelect(product)}
               >
                 <Image
-                // src={`/${product.mainImages[0].path}` || '/image/room_photo/postThumbnail.svg'}
-                src={'/image/room_photo/postThumbnail.svg'}
+                src={product.mainImages[0].path}
                 alt={product.name}
                 width={80}
                 height={80}
                 className="rounded-xl object-cover w-25 h-25"
               />
-              <div className="absolute z-10 bottom-0 w-full text-white bg-opacity-80 text-center text-xs font-light">
+              <div className="w-full h-full absolute bottom-0 bg-gradient-to-b from-transparent to-livealone-vanilla"></div>
+              <div className="absolute z-10 bottom-0 w-full p-1 text-livealone-cal-poly-green bg-opacity-80 text-center text-xs">
                 {product.name}
               </div>
                 {isSelected && (
@@ -82,13 +82,13 @@ export default function TagProductModal({ productList, selected, setSelected, on
             return (
               <SwiperSlide key={product._id} className="group relative !w-25 !h-25 rounded-2xl overflow-hidden border">
               <Image
-                // src={`/${product.mainImages[0].path}` || '/image/room_photo/postThumbnail.svg'}
-                src={'/image/room_photo/postThumbnail.svg'}
+                src={product.mainImages[0].path}
                 alt={product.name}
                 fill
                 className="object-cover rounded-2xl"
               />
-              <div className="absolute bottom-0 w-full bg-opacity-80 text-center text-white text-xs font-light">
+              <div className="w-full h-full absolute bottom-0 bg-gradient-to-b from-transparent to-livealone-cal-poly-green"></div>
+              <div className="absolute bottom-0 w-full p-1 bg-opacity-80 text-center text-white text-xs font-light">
                 {product.name}
               </div>
               <Image

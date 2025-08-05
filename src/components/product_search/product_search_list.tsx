@@ -118,7 +118,7 @@ function ProductSearchList() {
                     id={product._id}
                     key={product._id}
                     name={product.name}
-                    imageUrl={`/${product.mainImages[0]?.path}`}
+                    imageUrl={product.mainImages[0]?.path}
                     price={`${product.price.toLocaleString()}원`}
                     discount={discount}
                     rating={product.extra?.star ? product.extra?.star : 0}

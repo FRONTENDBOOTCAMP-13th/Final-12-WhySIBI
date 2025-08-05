@@ -4,15 +4,16 @@ import { logoutAction } from '@/data/actions/user';
 import useUserStore from '@/zustand/useUserStore';
 import Image from 'next/image';
 import Link from 'next/link';
-import { redirect } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 export default function Header() {
   const { user, resetUser } = useUserStore();
+  const router = useRouter();
   const handleLogout = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     resetUser();
     logoutAction();
-    redirect('/');
+    router.refresh();
   };
   return (
     <header className="pt-16 w-full vertical-stripes">

@@ -24,14 +24,7 @@ export default function RegistForm({ boardType, productList }: RegistFormProps) 
   const [state, formAction, isLoading] = useActionState(createPost, null);
   const router = useRouter();
   const { user } = useUserStore();
-
-  useEffect(() => {
-    if (!user) {
-      // 렌더링 중에 페이지를 이동하면 에러가 발생하므로 렌더링 완료 후 이동한다.
-      router.replace(`/login?redirect=${boardType}/new`);
-    }
-  }, [user, router, boardType]);
-
+  
   // 로컬 상태값
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
@@ -45,6 +38,13 @@ export default function RegistForm({ boardType, productList }: RegistFormProps) 
 
   const formRef = useRef<HTMLFormElement>(null);
 
+  useEffect(() => {
+    if (!user) {
+      // 렌더링 중에 페이지를 이동하면 에러가 발생하므로 렌더링 완료 후 이동한다.
+      router.replace(`/login?redirect=${boardType}/new`);
+    }
+  }, [user, router, boardType]);
+
   if (boardType === 'showRoom') {
     const postPublish = () => {
       if (!title || !content) {
@@ -54,6 +54,7 @@ export default function RegistForm({ boardType, productList }: RegistFormProps) 
 
       const isConfirmed = confirm('게시글을 등록하시겠습니까?');
       if (isConfirmed && formRef.current) {
+        sessionStorage.setItem('post_success_toast', '게시글이 등록되었어요!');
         formRef.current.requestSubmit(); // 서버 액션과 함께 submit
         router.back();
       }

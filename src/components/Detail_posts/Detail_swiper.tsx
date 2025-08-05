@@ -13,7 +13,7 @@ export default function DetailSwiper({ images }: RoomSwiperProps) {
   const isSingle = images.length === 1;
 
   return (
-    <div className="w-[600px] flex justify-center mt-5">
+    <div className="min-w-[15.625rem] max-w-[18.75rem] md:max-w-[600px] md:min-w-2xl flex justify-center mt-5">
       {images.length === 0 ? (
         <div className="w-[350px] h-[450px] relative overflow-hidden">
           <Image
@@ -23,8 +23,8 @@ export default function DetailSwiper({ images }: RoomSwiperProps) {
             sizes="350px"
             className="object-cover w-full mt-5"
           />
-          </div>
-        ) : (
+        </div>
+      ) : (
         <Swiper
           slidesPerView={'auto'}
           centeredSlides={true}
@@ -49,7 +49,8 @@ export default function DetailSwiper({ images }: RoomSwiperProps) {
               <div className="absolute inset-0 bg-black transition-all duration-300 opacity-60 group-[.swiper-slide-active]:opacity-0" />
             </SwiperSlide>
           ))}
-        </Swiper>)}
+        </Swiper>
+      )}
     </div>
   );
 }

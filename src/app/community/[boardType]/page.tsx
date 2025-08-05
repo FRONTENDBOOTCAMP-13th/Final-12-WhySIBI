@@ -6,6 +6,7 @@ import BestTalkList from '@/components/best_talk_list/best_talk_list';
 import TalkList from '@/components/talk_list/talk_list';
 import TalkPostSearch from '@/components/talk_list/talk_post_search';
 import PostCardList from '@/app/community/[boardType]/PostCardList';
+import ToastDisplay from './ToastDisplay';
 import { cookies } from 'next/headers';
 
 interface ListPageProps {
@@ -38,13 +39,16 @@ export default async function PostCardPage({ params }: ListPageProps) {
 
   if (boardType === 'showRoom') {
     return (
-      <div className="max-w-[1280px]  mx-auto my-0 ">
-        <PostCardList
-          boardType={boardType}
-          posts={res.ok ? res.item : []}
-          token={token?.value as string}
-        />
-      </div>
+      <>
+        <div>
+          <ToastDisplay></ToastDisplay>
+          <PostCardList
+            boardType={boardType}
+            posts={res.ok ? res.item : []}
+            token={token?.value as string}
+          />
+        </div>
+      </>
     );
   }
   if (boardType === 'talk') {
