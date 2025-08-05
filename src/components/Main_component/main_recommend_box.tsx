@@ -20,7 +20,6 @@ function MainRecommendBox() {
   const [productData, setProductData] = useState<ProductListProps[]>([]);
   const [loading, setLoading] = useState(true);
   const { user } = useUserStore();
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
   //비회원 - 태그 값 불러옴
   const handleTag = () => {
@@ -32,7 +31,6 @@ function MainRecommendBox() {
       .filter(Boolean) as string[];
 
     setCheckTag([...new Set(selectedTags)]);
-    // console.log(selectedTags);
   };
 
   //상품 불러오기
@@ -41,7 +39,6 @@ function MainRecommendBox() {
       try {
         const res = await getProductList();
         if (res.ok === 1) {
-          // console.log(res.item);
           setProductData(res.item);
         } else {
           console.error(res.message);
@@ -63,36 +60,31 @@ function MainRecommendBox() {
           modules={[Scrollbar]}
           loop={false} // 슬라이드 루프
           spaceBetween={16} // 슬라이스 사이 간격
-          slidesPerView="auto" // 보여질 슬라이스 수
+          slidesPerView={2}
+          slidesPerGroup={2}
           grabCursor={true} //마우스 선택
           scrollbar={{
             //스크롤바
             el: '.swiper-scrollbar',
             draggable: true,
           }}
+          breakpoints={{
+            0: { slidesPerView: 1, slidesPerGroup: 1 },
+            768: { slidesPerView: 2, slidesPerGroup: 2 },
+          }}
         >
           {user.extra.preference?.map((tag, index) => {
-            //상품 Tag 와 회원 preference 같은 값을 4개까지 필터
             const tagProduct = productData
               .filter(product => product.extra?.tag?.includes(tag))
               .slice(0, 2);
 
             return (
-              <SwiperSlide key={index} className="!w-[80%] md:!w-[48%]">
-                <div className="bg-gradient-to-b w-full  from-vanilla-300 to-columbia-blue-300 mb-10 rounded-2xl">
-                  <div className="flex justify-between p-5">
-                    <p className="text-lg font-bold text-livealone-cal-poly-green">
-                      {PreferenceTagMap[tag]} 인기 상품 추천 ✨
-                    </p>
-                    {/* <Link href="/shopping/best">
-                      <span className="text-gray-400">{`더보기 >`}</span>
-                    </Link> */}
-                  </div>
-                  <div
-                    className="grid sm:grid-cols-2 md:grid-cols-2
-                  lg:grid-cols-2 gap-4 items-center"
-                  >
-                    {/* 상품 로딩중일때 스켈레톤 UI 불러옴 */}
+              <SwiperSlide key={index}>
+                <div className="bg-gradient-to-b from-vanilla-300 to-columbia-blue-300 mb-6 md:mb-10 rounded-xl md:rounded-2xl p-4 md:p-6">
+                  <p className="text-lg md:text-xl font-bold text-livealone-cal-poly-green mb-4">
+                    {PreferenceTagMap[tag]} 인기 상품 추천 ✨
+                  </p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {loading ? (
                       <SkeletonUI count={2} />
                     ) : (
@@ -106,7 +98,7 @@ function MainRecommendBox() {
                             key={product._id}
                             id={product._id}
                             name={product.name}
-                            imageUrl={`${API_URL}/${product.mainImages[0]?.path}`}
+                            imageUrl={product.mainImages[0]?.path}
                             price={`${product.price.toLocaleString()}원`}
                             discount={discount}
                             rating={
@@ -140,7 +132,7 @@ function MainRecommendBox() {
               spaceBetween={16} // 슬라이스 사이 간격
               slidesPerView="auto" // 보여질 슬라이스 수
               grabCursor={true} //마우스 선택
-              navigation={true} // prev, next button
+              // navigation={true} // prev, next button
             >
               <SwiperSlide>
                 <div className="min-w-[120px]">
@@ -215,7 +207,7 @@ function MainRecommendBox() {
                 </div>
               </SwiperSlide>
               <SwiperSlide>
-                <div className="min-w-[120px]  ">
+                <div className="min-w-[120px]">
                   <InputCheckBox
                     text={'📚 책상꾸미기'}
                     idValue={'desk_decor'}
@@ -292,56 +284,49 @@ function MainRecommendBox() {
           </div>
 
           {/* 비회원 선택 기반 추천 상품 */}
-          {/* checkTag 배열이 0 보다 크면 - 선택 시 */}
           {checkTag.length > 0 ? (
             <Swiper
               modules={[Scrollbar]}
-              loop={false} // 슬라이드 루프
-              spaceBetween={16} // 슬라이스 사이 간격
-              slidesPerView="auto" // 보여질 슬라이스 수
-              grabCursor={true} //마우스 선택
+              loop={false}
+              spaceBetween={16}
+              slidesPerView={2}
+              slidesPerGroup={2}
+              grabCursor={true}
               scrollbar={{
-                //스크롤바
                 el: '.swiper-scrollbar',
                 draggable: true,
               }}
+              breakpoints={{
+                0: { slidesPerView: 1, slidesPerGroup: 1 },
+                768: { slidesPerView: 2, slidesPerGroup: 2 },
+              }}
             >
+              {' '}
               {checkTag.map((tag, index) => {
-                //checkTag 배열을 돌면서 태그 필터 -> 상품 4개 가져옴
                 const tagProduct = productData
                   .filter(product => product.extra?.tag?.includes(tag))
                   .slice(0, 2);
 
                 return (
-                  <SwiperSlide key={index} className="!w-[80%] md:!w-[48%]">
-                    <div className="bg-gradient-to-b w-full from-vanilla-300 to-columbia-blue-300 mb-10 rounded-2xl">
-                      <div className="flex justify-between p-5">
-                        <p className="text-lg font-bold text-livealone-cal-poly-green">
-                          {PreferenceTagMap[tag]} 인기 상품 추천 ✨
-                        </p>
-                        {/* <Link href="/shopping/best">
-                          <span className="text-gray-400">{`더보기 >`}</span>
-                        </Link> */}
-                      </div>
-                      <div
-                        className="grid sm:grid-cols-2 md:grid-cols-2 
-                lg:grid-cols-2 gap-4 items-center"
-                      >
-                        {/* 상품 로딩중일때 스켈레톤 UI 불러옴 */}
+                  <SwiperSlide key={index}>
+                    <div className="bg-gradient-to-b from-vanilla-300 to-columbia-blue-300 rounded-xl md:rounded-2xl p-4 md:p-6 mb-6">
+                      <p className="text-sm text-left md:text-lg font-bold text-livealone-cal-poly-green mb-3">
+                        {PreferenceTagMap[tag]} 인기 상품 추천 ✨
+                      </p>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         {loading ? (
                           <SkeletonUI count={2} />
                         ) : (
-                          // 로딩중이 아니면 프로덕트 카드로 대체
                           tagProduct.map(product => {
                             const discount = product?.extra?.originalPrice
                               ? `${Math.round(100 - (product.price * 100) / product.extra.originalPrice)}%`
-                              : ''; //할인율
+                              : '';
                             return (
                               <ProductCard
                                 key={product._id}
                                 id={product._id}
                                 name={product.name}
-                                imageUrl={`${API_URL}/${product.mainImages[0]?.path}`}
+                                imageUrl={product.mainImages[0]?.path}
                                 price={`${product.price.toLocaleString()}원`}
                                 discount={discount}
                                 rating={
@@ -362,16 +347,16 @@ function MainRecommendBox() {
               <div className="swiper-scrollbar"></div>
             </Swiper>
           ) : (
-            /* checkTag 배열이 0 보다 작을때 - 선택 안했을 시 */
-            <div className="bg-gradient-to-b border-2 border-gray-200 rounded-2xl flex items-center justify-center flex-col">
+            /* 미선택 시 기본 화면 */
+            <div className="bg-gradient-to-b border-2 border-gray-200 rounded-xl md:rounded-2xl flex flex-col items-center justify-center py-8 md:py-12 mx-2 md:mx-0">
               <Image
                 src="/image/category_icon/furniture.svg"
                 alt="관심사 미선택"
                 width="200"
                 height="200"
-                className="w-[100px] opacity-20 mt-5 mb-2.5"
+                className="w-16 md:w-[100px] opacity-20 mb-3 md:mb-2.5"
               />
-              <p className="text-center text-gray-500 text-base mb-5">
+              <p className="text-center text-gray-500 text-sm md:text-base px-4">
                 관심사를 골라보세요 <br /> 취향저격 상품을 소개할게요
               </p>
             </div>

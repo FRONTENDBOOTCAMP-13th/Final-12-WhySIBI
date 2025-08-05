@@ -1,4 +1,5 @@
 'use client';
+
 import { useState } from 'react';
 import { getReplies } from '@/data/functions/post';
 import CommentNew from './CommentNew';
@@ -18,6 +19,7 @@ export default function CommentSection({ _id, initialReplies }: CommentSectionPr
     setReplies((prev) => [...prev, reply]);
   };
 
+
   // 댓글 삭제
   const removeReply = (replyId: number) => {
     setReplies((prev) => prev.filter((reply) => reply._id !== replyId));
@@ -25,9 +27,11 @@ export default function CommentSection({ _id, initialReplies }: CommentSectionPr
 
     // 서버 재동기화 (fetchReplies)
   const fetchReplies = async () => {
+
     const res = await getReplies(_id);
     if (res.ok) setReplies(res.item);
-  };
+  }
+
 
   return (
     <>

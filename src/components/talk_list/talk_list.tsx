@@ -64,7 +64,7 @@ export default function TalkList({ item, boardType }: TalkListProps) {
   const startPage = (page - 1) * onePage; //(1-1) * 12 = 0 , (2-1) * 12 = 12
   const endPage = page * onePage; //1 * 12 = 12 , 2 * 12 = 24
   const sliceData = filteredData.slice(startPage, endPage); //12 , 24 ... 개씩 잘라서 보여주기
-
+  console.log(sortedData);
   return (
     <>
       <section className="w-full block pr-14">
@@ -84,11 +84,13 @@ export default function TalkList({ item, boardType }: TalkListProps) {
           boardType={boardType}
         />
       ))}
-      <Pagenation
-        page={page}
-        totalPage={totalPage}
-        onPageTurner={handlePagenation}
-      />
+      <div className="w-4/5  mt-5">
+        <Pagenation
+          page={page}
+          totalPage={totalPage}
+          onPageTurner={handlePagenation}
+        />
+      </div>
     </>
   );
 }

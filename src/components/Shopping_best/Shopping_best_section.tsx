@@ -11,8 +11,6 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
 function ShoppingBestSection({ token }: { token: string | undefined }) {
   const { mainCategoryId, subMenuData, handleMenuClick } = useMenuStore();
   const [productData, setProductData] = useState<ProductListProps[]>([]);
@@ -139,8 +137,7 @@ function ShoppingBestSection({ token }: { token: string | undefined }) {
           <DropdownShoppingList value={sort} onDropChange={setSort} />
         </div>
         <div
-          className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4
-       items-center"
+          className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 items-center"
         >
           {/* 상품 로딩중일때 스켈레톤 UI 불러옴 */}
           {loading ? (
@@ -155,8 +152,8 @@ function ShoppingBestSection({ token }: { token: string | undefined }) {
                   id={product._id}
                   key={product._id}
                   name={product.name}
-                  imageUrl={`${API_URL}/${product.mainImages[0]?.path}`}
-                  price={`${product.price.toLocaleString()}원`}
+                  imageUrl={product.mainImages[0]?.path}
+                  price={`${product.price.toLocaleString()}원ㅌ`}
                   discount={discount}
                   rank={index + 1}
                   rating={product.extra?.star ? product.extra?.star : 0}
@@ -166,6 +163,7 @@ function ShoppingBestSection({ token }: { token: string | undefined }) {
                   myBookmarkId={product.myBookmarkId}
                   token={token}
                   type={'product'}
+                  UpdateProductState={fetchProducts}
                 />
               );
             })

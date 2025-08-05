@@ -30,10 +30,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className="vertical-stripes">
+      <body className="bg-white">
         <Header></Header>
-        <main>{children}</main>
-        <Footer></Footer>
+        <main className="w-full bg-white">{children}</main>
         <Toaster
           position="bottom-center"
           toastOptions={{
@@ -59,6 +58,9 @@ export default function RootLayout({
             },
           }}
         />
+        <div className="vertical-stripes">
+          <Footer></Footer>
+        </div>
       </body>
     </html>
   );

@@ -5,8 +5,8 @@ import RankBadge from '@/components/product_component/rank_badge';
 import { AddBookMark, DeleteBookMark } from '@/data/actions/bookmark';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import React from 'react';
+import { useCallback } from 'react';
+import toast from 'react-hot-toast';
 
 type ProductCardProps = {
   id: number;
@@ -22,6 +22,7 @@ type ProductCardProps = {
   type?: string;
   token?: string | undefined;
   onClick: () => void;
+  UpdateProductState?: () => void;
 };
 
 function ProductCard({
@@ -38,24 +39,80 @@ function ProductCard({
   type,
   token,
   onClick,
+  UpdateProductState,
 }: ProductCardProps) {
-  const router = useRouter();
+  // const pathName = usePathname();
+  // const router = useRouter();
+
+  const showErrorToast = useCallback(() => {
+    toast.custom(
+      t => (
+        <div
+          className={`
+          ${t.visible ? 'animate-in slide-in-from-bottom-full' : 'animate-out slide-out-to-bottom-full'}
+          max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-red-200 p-4 border-l-4 border-red-500
+        `}
+          role="alert"
+          aria-live="assertive"
+          aria-label="찜하기 실패알림"
+        >
+          <div className="flex items-center">
+            {/* 에러 아이콘 */}
+            <div className="flex-shrink-0">
+              <div className="flex items-center justify-center h-8 w-8 rounded-full bg-red-100">
+                <svg
+                  className="h-5 w-5 text-red-500"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </div>
+            </div>
+
+            <div className="ml-3 flex-1">
+              <p className="text-sm font-medium text-red-800 mb-1">
+                로그인이 필요합니다.
+              </p>
+            </div>
+          </div>
+        </div>
+      ),
+      {
+        duration: 5000,
+        position: 'top-center',
+      },
+    );
+  }, []);
+
   const handleDeleteBookmark = async () => {
     const result = await DeleteBookMark(
       token as string,
       myBookmarkId as number,
     );
     if (result.ok === 1) {
-      router.refresh();
+      await UpdateProductState?.();
     }
   };
 
   const handleAddBookmark = async () => {
-    const result = await AddBookMark(type as unknown as string, token as string, id);
+    const result = await AddBookMark(
+      type as unknown as string,
+      token as string,
+      id,
+    );
 
     if (result.ok === 1) {
-      console.log('추가됨?');
-      router.refresh();
+      await UpdateProductState?.();
+    } else {
+      showErrorToast();
     }
   };
 

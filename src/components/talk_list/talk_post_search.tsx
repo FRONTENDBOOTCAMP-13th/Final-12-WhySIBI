@@ -2,7 +2,7 @@
 import useSearchStore from '@/zustand/searchStore';
 import useSubjectStore from '@/zustand/subjectStore';
 import Image from 'next/image';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 export default function TalkPostSearch() {
   const { handleSearchClick } = useSearchStore();
@@ -12,6 +12,8 @@ export default function TalkPostSearch() {
     const searchValue = String(searchText.current?.value);
     handleSearchClick(searchValue);
   };
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+
   return (
     <div className="flex items-center mb-8">
       <input
@@ -20,7 +22,7 @@ export default function TalkPostSearch() {
         id="search_post"
         ref={searchText}
         placeholder="제목이나 내용을 입력해주세요"
-        className="max-w-[280px] w-64"
+        className="max-w-[280px] w-64 hidden md:block"
         onKeyDown={e => {
           if (e.key === 'Enter') {
             handleClick();
@@ -28,16 +30,47 @@ export default function TalkPostSearch() {
           }
         }}
       />
-      <button type="submit" onClick={handleClick}>
+
+      {isSearchOpen && (
+        <input
+          type="search"
+          name="search_post_mobile"
+          id="search_post_mobile"
+          ref={searchText}
+          placeholder="제목이나 내용을 입력해주세요"
+          className="md:hidden w-64 max-w-[calc(100vw-80px)] mr-2"
+          onKeyDown={e => {
+            if (e.key === 'Enter') {
+              handleClick();
+              resetSubject();
+              setIsSearchOpen(false);
+            }
+          }}
+          autoFocus
+        />
+      )}
+
+      <button
+        type="button"
+        onClick={() => {
+          if (window.innerWidth < 768) {
+            if (isSearchOpen) {
+              handleClick();
+              resetSubject();
+            }
+            setIsSearchOpen(!isSearchOpen);
+          } else {
+            handleClick();
+            resetSubject();
+          }
+        }}
+        className="flex items-center justify-center"
+      >
         <Image
           src={'/image/community_icon/search_icon.svg'}
           alt="검색 아이콘"
           width={20}
           height={20}
-          onClick={() => {
-            handleClick();
-            resetSubject();
-          }}
         />
       </button>
     </div>

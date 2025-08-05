@@ -7,9 +7,7 @@ import { getProductList } from '@/data/actions/products.fetch';
 import { ProductListProps } from '@/types';
 import useMenuStore from '@/zustand/menuStore';
 import { useParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+import { useCallback, useEffect, useState } from 'react';
 
 function ShoppingProductsList({ token }: { token?: string | undefined }) {
   const [productData, setProductData] = useState<ProductListProps[]>([]);
@@ -40,39 +38,73 @@ function ShoppingProductsList({ token }: { token?: string | undefined }) {
   }, [params.mainCategoryId, params.subCategoryId, handleMenuClick]);
 
   //상품 불러오기
-  useEffect(() => {
-    const productsList = async () => {
-      try {
-        const res = await getProductList(
-          {
-            sort, //상품 정렬하기
-            page, ////상품 slice해서 보여주기
-            limit: 12,
-            custom: {
-              //상품 카테고리별로 필터
-              ...(mainCategoryId ? { 'extra.category': mainCategoryId } : {}),
-              ...(subCategoryId ? { 'extra.category': subCategoryId } : {}),
-            },
-          },
-          token,
-        );
-        if (res.ok === 1) {
-          console.log(res.item);
-          setProductData(res.item);
-          setTotalPage(res.pagination.totalPages);
-          setTotalItems(res.pagination.total);
-        } else {
-          console.error(res.message);
-        }
-      } catch (err) {
-        console.error('상품을 불러오지 못했습니다.', err);
-      } finally {
-        setLoading(false);
-      }
-    };
+  // useEffect(() => {
+  //   const productsList = async () => {
+  //     try {
+  //       const res = await getProductList(
+  //         {
+  //           sort, //상품 정렬하기
+  //           page, ////상품 slice해서 보여주기
+  //           limit: 12,
+  //           custom: {
+  //             //상품 카테고리별로 필터
+  //             ...(mainCategoryId ? { 'extra.category': mainCategoryId } : {}),
+  //             ...(subCategoryId ? { 'extra.category': subCategoryId } : {}),
+  //           },
+  //         },
+  //         token,
+  //       );
+  //       if (res.ok === 1) {
+  //         console.log(res.item);
+  //         setProductData(res.item);
+  //         setTotalPage(res.pagination.totalPages);
+  //         setTotalItems(res.pagination.total);
+  //       } else {
+  //         console.error(res.message);
+  //       }
+  //     } catch (err) {
+  //       console.error('상품을 불러오지 못했습니다.', err);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
 
-    productsList();
-  }, [sort, page, mainCategoryId, subCategoryId, token]);
+  //   productsList();
+  // }, [sort, page, mainCategoryId, subCategoryId, token]);
+
+const productsList = useCallback(async () => {
+  try {
+    setLoading(true); // 로딩 상태 추가
+    const res = await getProductList(
+      {
+        sort,
+        page,
+        limit: 12,
+        custom: {
+          ...(mainCategoryId ? { 'extra.category': mainCategoryId } : {}),
+          ...(subCategoryId ? { 'extra.category': subCategoryId } : {}),
+        },
+      },
+      token,
+    );
+    if (res.ok === 1) {
+      console.log(res.item);
+      setProductData(res.item);
+      setTotalPage(res.pagination.totalPages);
+      setTotalItems(res.pagination.total);
+    } else {
+      console.error(res.message);
+    }
+  } catch (err) {
+    console.error('상품을 불러오지 못했습니다.', err);
+  } finally {
+    setLoading(false);
+  }
+}, [sort, page, mainCategoryId, subCategoryId, token]);
+
+useEffect(() => {
+  productsList();
+}, [productsList]);
 
   console.log(productData);
   //상품 페이지네이션 핸들러
@@ -86,9 +118,7 @@ function ShoppingProductsList({ token }: { token?: string | undefined }) {
         <span className="text-sm text-gray-500">전체 {totalItems}개</span>
         <DropdownShoppingList value={sort} onDropChange={setSort} />
       </div>
-      <div
-        className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 items-center"
-      >
+      <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 items-center">
         {loading ? (
           <SkeletonUI count={12} />
         ) : (
@@ -101,7 +131,7 @@ function ShoppingProductsList({ token }: { token?: string | undefined }) {
                 id={product._id}
                 key={product._id}
                 name={product.name}
-                imageUrl={`${API_URL}/${product.mainImages[0]?.path}`}
+                imageUrl={product.mainImages[0]?.path}
                 price={`${product.price.toLocaleString()}원`}
                 discount={discount}
                 rating={product.extra?.star ? product.extra?.star : 0}
@@ -111,6 +141,7 @@ function ShoppingProductsList({ token }: { token?: string | undefined }) {
                 myBookmarkId={product.myBookmarkId}
                 token={token}
                 type={'product'}
+                UpdateProductState={productsList}
               />
             );
           })

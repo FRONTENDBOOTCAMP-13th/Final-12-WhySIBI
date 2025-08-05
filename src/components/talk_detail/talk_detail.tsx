@@ -43,6 +43,9 @@ export default function TalkDetail({ post, posts, token }: TalkCardItemProps) {
     );
   });
 
+  console.log(posts);
+  console.log(filteredData);
+
   const handleDeleteBookmark = async () => {
     const result = await DeleteBookMark(
       token as string,
@@ -107,7 +110,7 @@ export default function TalkDetail({ post, posts, token }: TalkCardItemProps) {
           {post.image?.map((image, i) => (
             <Image
               key={i}
-              src={`${image}`}
+              src={image}
               alt={`게시글 이미지`}
               width={500}
               height={500}
@@ -116,15 +119,6 @@ export default function TalkDetail({ post, posts, token }: TalkCardItemProps) {
             />
           ))}
         </div>
-
-        <div className="mt-6 flex gap-5 font-bold">
-          <ul className="flex gap-4">
-            <li>#테그</li>
-            <li>#테그</li>
-            <li>#테그</li>
-            <li>#테그</li>
-          </ul>
-        </div>
       </section>
 
       <section className="border-b-2 border-t-2 py-14 my-10 border-button-color-opaque-25">
@@ -132,26 +126,6 @@ export default function TalkDetail({ post, posts, token }: TalkCardItemProps) {
           <p className="font-bold font-basic text-lg md:text-2xl">
             비슷한 고민을 찾아봐요
           </p>
-          {limitData?.map(post => (
-            <Link
-              key={post._id}
-              href={`/community/talk/${post._id}`}
-              className="block font-basic text-center border-[1px] rounded-full mt-4 py-3 bg-custom-gradient"
-            >
-              {post.title}
-            </Link>
-          ))}
-
-          {moreData && (
-            <button
-              onClick={() => setShowAll(!showAll)}
-              className="mt-6 px-6 py-2 border border-gray-300 rounded-full hover:bg-gray-50 transition-colors font-basic"
-            >
-              {showAll
-                ? '접기'
-                : `더보기 (+${(filteredData?.length || 1) - 3}개)`}
-            </button>
-          )}
           {limitData?.map(post => (
             <Link
               key={post._id}

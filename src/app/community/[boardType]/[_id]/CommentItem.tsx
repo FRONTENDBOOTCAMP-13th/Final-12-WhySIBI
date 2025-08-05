@@ -11,13 +11,18 @@ interface CommentProps {
   mentionUser: (name: string) => void;
 }
 
-export default function CommentItem({ reply, onDeleteSuccess, onDelete, mentionUser }: CommentProps) {
+export default function CommentItem({
+  reply,
+  onDeleteSuccess,
+  onDelete,
+  mentionUser,
+}: CommentProps) {
   const profileImage = reply.user.image
-    ? `/${reply.user.image}`
+    ? reply.user.image
     : '/image/community_icon/profile_sample.png';
 
   return (
-    <div className="w-[600px] flex py-5 text-[14px] text-black gap-3 px-3">
+    <div className="min-w-[15.625rem] max-w-[18.75rem] md:max-w-[37.5rem] md:min-w-2xl flex py-5 text-[14px] text-black gap-3 px-3">
       <div>
         <Image
           src={profileImage}
@@ -28,7 +33,7 @@ export default function CommentItem({ reply, onDeleteSuccess, onDelete, mentionU
         />
       </div>
       <div>
-       <span
+        <span
           className="font-bold leading-xl cursor-pointer hover:underline"
           onClick={() => mentionUser(reply.user.name)}
         >
@@ -37,7 +42,9 @@ export default function CommentItem({ reply, onDeleteSuccess, onDelete, mentionU
         <p className="mb-3 mt-1">
           {reply.content.split(/(@\S+)/g).map((part, idx) => {
             return part.startsWith('@') ? (
-              <span key={idx} className="text-livealone-flame">{part}</span>
+              <span key={idx} className="text-livealone-flame">
+                {part}
+              </span>
             ) : (
               <span key={idx}>{part}</span>
             );
@@ -45,7 +52,11 @@ export default function CommentItem({ reply, onDeleteSuccess, onDelete, mentionU
         </p>
         <div className="flex items-center text-gray-400 text-[12px] space-x-2">
           <time dateTime={reply.createdAt}>{getTimeAgo(reply.createdAt)}</time>
-          <CommentDeleteForm reply={reply} onSuccess={onDeleteSuccess} onDelete={onDelete} />
+          <CommentDeleteForm
+            reply={reply}
+            onSuccess={onDeleteSuccess}
+            onDelete={onDelete}
+          />
         </div>
       </div>
     </div>

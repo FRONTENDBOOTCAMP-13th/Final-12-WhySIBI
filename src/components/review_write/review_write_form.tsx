@@ -7,7 +7,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useActionState, useEffect, useState } from 'react';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
 
 interface ReviewWriteFormProps {
   productData: Product;
@@ -56,7 +56,7 @@ export default function ReviewWriteForm({
         <section className="flex pb-9 border-b-2 border-button-color-opaque-25">
           {productData?.mainImages?.[0] ? (
             <Image
-              src={`${API_URL}/${productData.mainImages[0].path}`}
+              src={productData.mainImages[0].path}
               alt={`${productId}상품 이미지`}
               width={200}
               height={200}

@@ -18,7 +18,7 @@ export default function ReviewList({
       <div className="flex gap-6 basis-[230px]">
         <Image
           className="w-10 h-10 rounded-full border-1 border-black "
-          src={`/${profile}`}
+          src={profile}
           alt="프로필 이미지"
           width={60}
           height={60}
@@ -35,7 +35,7 @@ export default function ReviewList({
         {content}
         {image ? (
           <Image
-            src={`/${image}`}
+            src={image}
             alt="리뷰사진"
             className="w-30 h-30 rounded-xl mt-5"
             width={60}

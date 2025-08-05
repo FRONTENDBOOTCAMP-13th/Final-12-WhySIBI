@@ -6,6 +6,7 @@ import BestTalkList from '@/components/best_talk_list/best_talk_list';
 import TalkList from '@/components/talk_list/talk_list';
 import TalkPostSearch from '@/components/talk_list/talk_post_search';
 import PostCardList from '@/app/community/[boardType]/PostCardList';
+import ToastDisplay from './ToastDisplay';
 import { cookies } from 'next/headers';
 
 interface ListPageProps {
@@ -38,50 +39,67 @@ export default async function PostCardPage({ params }: ListPageProps) {
 
   if (boardType === 'showRoom') {
     return (
-      <PostCardList
-        boardType={boardType}
-        posts={res.ok ? res.item : []}
-        token={token?.value as string}
-      />
+      <>
+        <div>
+          <ToastDisplay></ToastDisplay>
+          <PostCardList
+            boardType={boardType}
+            posts={res.ok ? res.item : []}
+            token={token?.value as string}
+          />
+        </div>
+      </>
     );
   }
   if (boardType === 'talk') {
     return (
-      <div className="relative post-list-wrapper bg-white p-20">
-        <div className="post-header flex justify-between pl-5 mb-10">
-          <div className="flex flex-col">
-            <div>
-              <Title title={boardTitle} subTitle={boardSub} />
+      <div className="max-w-[1280px]  mx-auto my-0 ">
+        <div className="relative post-list-wrapper bg-white p-3 xs:p-4 sm:p-6 md:p-12 lg:p-16 xl:p-20">
+          <div className="post-header flex flex-col lg:flex-row justify-between gap-4 lg:gap-0 pl-1 sm:pl-2 md:pl-5 ">
+            <div className="">
+              <div className="w-fit">
+                <Title title={boardTitle} subTitle={boardSub} />
+              </div>
             </div>
+            <div className="button-wrapper flex flex-row lg:flex-col xs:flex-row items-start xs:items-center lg:items-end gap-2 xs:gap-3 lg:gap-2 mt-2 lg:mt-0">
+              <div className="w-full xs:w-auto">
+                <TalkPostSearch />
+              </div>
+              <ButtonNew boardType={boardType} />
+            </div>
+          </div>
+
+          <div className="mt-2 sm:mt-3 md:mt-0 mb-4 sm:mb-6 md:mb-10">
             <TalkCategory />
           </div>
 
-          <div className="button-wrapper flex flex-col items-end">
-            <TalkPostSearch />
-            <ButtonNew boardType={boardType} />
+          <div className="text-base xs:text-lg sm:text-xl md:text-2xl lg:text-3xl mb-4 sm:mb-6 md:mb-8 font-basic font-bold px-1 sm:px-2 md:px-0">
+            <span className="block xs:inline">베스트 고민 Awards</span>
+            <span className="ml-1">🏆</span>
           </div>
-        </div>
 
-        <div className="text-xl md:text-3xl mb-8 font-basic font-bold">
-          베스트 고민 Awards 🏆
-        </div>
-        {res.ok ? (
-          <div className="bookmark-swiper text-left pb-10">
-            <BestTalkList item={res.item} boardType={boardType} />
-          </div>
-        ) : (
-          <p className="text-center text-gray-500">{res.message}</p>
-        )}
-
-        <section className="mt-14">
           {res.ok ? (
-            <div className="">
-              <TalkList item={res.item} boardType={boardType} />
+            <div className="bookmark-swiper text-left pb-4 sm:pb-6 md:pb-10 px-1 sm:px-2 md:px-0">
+              <BestTalkList item={res.item} boardType={boardType} />
             </div>
           ) : (
-            <p className="text-center text-gray-500">{res.message}</p>
+            <p className="text-center text-gray-500 py-6 sm:py-8 md:py-12 text-sm sm:text-base">
+              {res.message}
+            </p>
           )}
-        </section>
+
+          <section className="mt-6 sm:mt-8 md:mt-14 px-1 sm:px-2 md:px-0">
+            {res.ok ? (
+              <div className="">
+                <TalkList item={res.item} boardType={boardType} />
+              </div>
+            ) : (
+              <p className="text-center text-gray-500 py-6 sm:py-8 md:py-12 text-sm sm:text-base">
+                {res.message}
+              </p>
+            )}
+          </section>
+        </div>
       </div>
     );
   }

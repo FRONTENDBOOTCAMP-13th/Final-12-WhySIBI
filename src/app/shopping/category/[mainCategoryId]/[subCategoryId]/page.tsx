@@ -8,12 +8,14 @@ export default async function ShoppingCategory() {
   const token = (await cookies()).get('accessToken');
   return (
     <>
-      <ShoppingBannerSlider />
-      <main className="bg-white p-20">
-        <ShoppingSubcategory />
-        <ShoppingSelling />
-        <ShoppingProductsList token={token?.value} />
-      </main>
+      <div className="max-w-[1280px]  mx-auto my-0 ">
+        <ShoppingBannerSlider />
+        <main className="bg-white p-20">
+          <ShoppingSubcategory />
+          <ShoppingSelling token={token?.value} />
+          <ShoppingProductsList token={token?.value} />
+        </main>
+      </div>
     </>
   );
 }

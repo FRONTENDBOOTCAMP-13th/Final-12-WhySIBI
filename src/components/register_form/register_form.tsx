@@ -4,7 +4,8 @@ import InputId from '@/components/Input/Input_id';
 import { createUser } from '@/data/actions/user';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { useActionState, useEffect, useState } from 'react';
+import { useActionState, useCallback, useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 
 export default function RegisterForm() {
   // 이미지 주소 추출
@@ -24,12 +25,56 @@ export default function RegisterForm() {
   const [state, formAction, isLoading] = useActionState(createUser, null);
   const navigation = useRouter();
 
+  const showSuccessToast = useCallback(() => {
+    toast.custom(
+      t => (
+        <div
+          className={`
+          ${t.visible ? 'animate-in slide-in-from-bottom-full' : 'animate-out slide-out-to-bottom-full'}
+          max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-gray-200 p-4
+        `}
+        >
+          <div className="flex">
+            {/* 체크 아이콘 */}
+            <div className="flex-shrink-0">
+              <div className="flex items-center justify-center h-8 w-8 rounded-full bg-cal-poly-green-100">
+                <svg
+                  className="h-5 w-5 text-green-500"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+              </div>
+            </div>
+
+            <div className="ml-3 flex-1 flex items-center justify-between">
+              <p className="text-sm font-medium text-gray-900 mb-1">
+                회원가입 되었습니다.
+              </p>
+            </div>
+          </div>
+        </div>
+      ),
+      {
+        duration: 5000,
+        position: 'top-center',
+      },
+    );
+  }, []);
+
   useEffect(() => {
     if (state?.ok) {
-      alert('회원 가입이 완료되었습니다. 로그인 페이지로 이동합니다.');
-      navigation.replace('/login');
+      showSuccessToast();
+      navigation.push('/login');
     }
-  }, [state, navigation]);
+  }, [state, navigation, showSuccessToast]);
 
   // 생년월일 옵션 생성
   const currentYear = new Date().getFullYear();
@@ -124,7 +169,7 @@ export default function RegisterForm() {
         {/* 생년월일 선택 */}
         <div className="w-full font-basic mt-9">
           <p className="font-bold pl-4">생년월일</p>
-          <div className="flex gap-4 h-10">
+          <div className="flex flex-col md:flex-row gap-4 h-10">
             <select
               name="birth_year"
               id="birth_year"
@@ -171,7 +216,7 @@ export default function RegisterForm() {
         <select
           name="address_name"
           id="address_name"
-          className="mt-9 mb-[-30px] font-basic block w-28 pl-4 border-2 outline-0 border-button-color-opaque-25 rounded-3xl py-1 focus:border-button-color transition-all duration-200 ease-in"
+          className="mt-28 md:mt-9 mb-[-30px] font-basic block w-28 pl-4 border-2 outline-0 border-button-color-opaque-25 rounded-3xl py-1 focus:border-button-color transition-all duration-200 ease-in"
           defaultValue="집"
           required
         >

@@ -1,6 +1,7 @@
 'use client';
 import Pagenation from '@/components/basic_component/Pagenation';
 import InquryInfo from '@/components/my_inqury_list/my_inqury_info/my_inqury_info';
+import SkeletonUI from '@/components/product_component/skeleton_ui';
 import { Inqury } from '@/types';
 import { useEffect, useState } from 'react';
 
@@ -13,8 +14,9 @@ export default function MyInquryList({ MyInqury }: MyInQuryListProp) {
   const [inquryList, setInqury] = useState<Inqury[] | null>(null);
   //페이지 네이션
   const [page, setPage] = useState(1);
-
+  const [isLoading, setLoading] = useState(true);
   useEffect(() => {
+    setLoading(true);
     const InquryListData = async () => {
       try {
         if (MyInqury) {
@@ -24,6 +26,8 @@ export default function MyInquryList({ MyInqury }: MyInQuryListProp) {
         }
       } catch (error) {
         console.error('상품 정보 로딩 실패:', error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -40,26 +44,34 @@ export default function MyInquryList({ MyInqury }: MyInQuryListProp) {
   };
 
   return (
-    <nav className="mt-20">
-      <ul className="flex flex-col flex-wrap gap-16">
-        {sliceData?.map((inqury, i) => (
-          <InquryInfo
-            title={inqury.title}
-            content={inqury.content}
-            productImage={inqury.product?.image}
-            _id={inqury._id}
-            createdAt={inqury.createdAt}
-            key={i}
-          />
-        ))}
-      </ul>
-      <div className="w-4/5">
-        <Pagenation
-          page={page}
-          totalPage={totalPage}
-          onPageTurner={handlePagenation}
-        />
-      </div>
-    </nav>
+    <>
+      {isLoading ? (
+        <div className="flex justify-center items-center mt-20">
+          <SkeletonUI count={10} />
+        </div>
+      ) : (
+        <nav className="mt-20">
+          <ul className="flex flex-col flex-wrap gap-16">
+            {sliceData?.map((inqury, i) => (
+              <InquryInfo
+                title={inqury.title}
+                content={inqury.content}
+                productImage={inqury.product?.image}
+                _id={inqury._id}
+                createdAt={inqury.createdAt}
+                key={i}
+              />
+            ))}
+          </ul>
+          <div className="w-4/5 mt-5">
+            <Pagenation
+              page={page}
+              totalPage={totalPage}
+              onPageTurner={handlePagenation}
+            />
+          </div>
+        </nav>
+      )}
+    </>
   );
 }

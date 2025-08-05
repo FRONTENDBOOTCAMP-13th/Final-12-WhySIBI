@@ -28,7 +28,7 @@ export default async function ShoppingDetail({
       {/* 상품 사진 영역 */}
       <figure className="bg-white max-w-[600px] max-h-[600px] overflow-hidden flex justify-center items-center rounded-sm shadow-md">
         <Image
-          src={`/${item.mainImages[0].path}`}
+          src={item.mainImages[0].path}
           width={590}
           height={590}
           className="object-cover"

@@ -9,6 +9,7 @@ import useCartRefreshStore from '@/zustand/useCartRefreshStore';
 import CartAddressInput from './Cart_address_input';
 import CartListSkeleton from './skeleton/Cart_list_skeleton';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function CartMain() {
   const { user } = useUserStore();
@@ -18,8 +19,6 @@ export default function CartMain() {
 
   const [allcheck, setAllcheck] = useState(false);
   const [checkedItems, setCheckedItems] = useState<number[]>([]);
-
-  console.log(' 체크드 아이템', checkedItems);
 
   const [cartData, setCartData] = useState<CartData | null>(null);
   // 로그인한 유저의 장바구니를 불러옴
@@ -99,8 +98,30 @@ export default function CartMain() {
     });
   }
 
-  //장바구니가 비어있을때 보여줄 화면
+  if (!token) {
+    return (
+      <section className="h-72 flex flex-col justify-center items-center gap-3">
+        <h3 className="font-bold text-2xl">로그인이 필요하다냥</h3>
+        <Image
+          src="/image/category_icon/furniture.svg"
+          alt="로그인이 필요하다냥"
+          width="150"
+          height="150"
+          className="opacity-20 mt-5 mb-2.5"
+          aria-hidden="true"
+        />
+        <Link
+          href="login"
+          className={`box-border cursor-pointer bg-flame-250 w-[300px] h-[48px] text-white border-2 border-flame-250 rounded-sm font-bold flex items-center justify-center`}
+        >
+          <span>로그인 하러 가기</span>
+        </Link>
+      </section>
+    );
+  }
+
   if (cartData?.item.length === 0) {
+    //장바구니가 비어있을때 보여줄 화면
     return (
       <section className="h-72 flex flex-col justify-center items-center gap-3">
         <h3 className="font-bold text-2xl">장바구니에 담긴 상품이 없어요</h3>
@@ -116,9 +137,9 @@ export default function CartMain() {
   }
 
   return (
-    <section className="flex justify-center gap-5 flex-col md:flex-row items-center">
-      <div className="w-[480px] md:w-[630px] flex flex-col gap-6">
-        <div className="border-1 px-5 py-3 rounded-2xl flex justify-between items-center">
+    <section className="flex justify-center gap-5 flex-col md:flex-row">
+      <div className="w-[480px] md:w-[630px] flex flex-col gap-6 ">
+        <div className="border-1 px-5 py-3 rounded-2xl flex justify-between items-center border-gray-550">
           <div className="flex items-center gap-3">
             <input
               type="checkbox"
@@ -148,6 +169,7 @@ export default function CartMain() {
                   img={item.product.image.path}
                   price={item.product.price}
                   quantity={item.quantity}
+                  productId={item.product_id}
                   token={token}
                   // checkedItem배열에 포함되어 있냐 없냐로checked설정
                   isChecked={checkedItems?.includes(item._id)}

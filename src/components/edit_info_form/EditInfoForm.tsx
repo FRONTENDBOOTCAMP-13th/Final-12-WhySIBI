@@ -11,7 +11,7 @@ interface EditInfoFormProp {
   token: string;
   MyInfo: User;
 }
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
 export default function EditInfoForm({
   user_id,
   token,
@@ -77,7 +77,7 @@ export default function EditInfoForm({
             src={
               imageSrc ||
               (userInfo?.image
-                ? `${API_URL}/${userInfo.image}`
+                ? `/${userInfo.image}`
                 : '/default-profile.png')
             }
             alt="프로필 사진"

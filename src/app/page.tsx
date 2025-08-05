@@ -9,14 +9,16 @@ import MainTalk from '@/components/Main_component/main_talk';
 export default function Home() {
   return (
     <>
-      <MainBannerSlider />
-      <div className="bg-white p-20">
-        <MainCategorySection />
-        <MainBestProductSection />
-        <MainRecommendProductSection />
-        <div className="community-wrapper flex flex-row gap-15 mt-10 justify-center items-center">
-          <MainShowRoom></MainShowRoom>
-          <MainTalk></MainTalk>
+      <div className="max-w-[1280px]  mx-auto my-0 ">
+        <MainBannerSlider />
+        <div className="bg-white p-20">
+          <MainCategorySection />
+          <MainBestProductSection />
+          <MainRecommendProductSection />
+          <div className="community-wrapper flex lg:flex-row flex-col gap-15 mt-10 justify-center items-center">
+            <MainShowRoom></MainShowRoom>
+            <MainTalk></MainTalk>
+          </div>
         </div>
       </div>
       <MainBottomSlider />

@@ -2,7 +2,7 @@
 import { Product } from '@/types';
 import useUserStore from '@/zustand/useUserStore';
 import Image from 'next/image';
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
 interface DeliveryStateClientProps {
   productID: string;
   productData: Product;
@@ -83,7 +83,7 @@ export default function DeliveryState({
         <div className="flex border-r-[1px] border-button-color-opaque-25">
           {productData.mainImages[0] && (
             <Image
-              src={`${API_URL}/${productData.mainImages[0].path}`}
+              src={productData.mainImages[0].path}
               alt={`${productID}상품 이미지`}
               width={200}
               height={200}

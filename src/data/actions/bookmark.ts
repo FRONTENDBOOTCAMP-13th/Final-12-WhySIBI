@@ -1,5 +1,8 @@
+'use server';
+
 import { ApiResPromise } from '@/types';
 import { BookMarkItem } from '@/types/bookmark';
+import { revalidatePath } from 'next/cache';
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID || '';
 export async function GetBookMarkList(
@@ -65,9 +68,11 @@ export async function AddBookMark(
         'Content-Type': 'application/json',
         'Client-Id': CLIENT_ID,
       },
+      cache: 'no-cache',
       body: JSON.stringify(body),
     });
     const data = await res.json();
+    revalidatePath(`/products/${_id}`);
     return data;
   } catch (error) {
     console.log('error', error);
@@ -88,11 +93,13 @@ export async function DeleteBookMark(
         'Content-Type': 'application/json',
         'Client-Id': CLIENT_ID,
       },
+      cache: 'no-cache',
       body: JSON.stringify({
-        target_id: _id, // 또는 다른 값이 필요할 수도
+        target_id: _id,
       }),
     });
     const data = await res.json();
+    revalidatePath(`/products/${_id}`);
     return data;
   } catch (error) {
     console.log('error', error);

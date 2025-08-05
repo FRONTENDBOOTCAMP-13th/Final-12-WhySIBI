@@ -6,9 +6,11 @@ export default async function ShoppingBest() {
 
   return (
     <>
-      <main className="bg-white p-20">
-        <ShoppingBestSection token={token?.value} />
-      </main>
+      <div className="max-w-[1280px]  mx-auto my-0 ">
+        <main className="bg-white p-20">
+          <ShoppingBestSection token={token?.value} />
+        </main>
+      </div>
     </>
   );
 }

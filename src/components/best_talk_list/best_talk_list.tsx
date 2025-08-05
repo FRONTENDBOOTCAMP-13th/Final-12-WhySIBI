@@ -27,22 +27,23 @@ export default function BestTalkList({ item, boardType }: TalkListProps) {
     <Swiper
       loop={false}
       modules={[Navigation, Pagination, Scrollbar, A11y]}
+      autoplay={{ delay: 5000 }}
       breakpoints={{
         320: {
           slidesPerView: 1,
-          spaceBetween: 20,
+          spaceBetween: 16,
         },
         768: {
           slidesPerView: 2,
-          spaceBetween: 40,
+          spaceBetween: 20,
         },
         1024: {
-          slidesPerView: 3,
-          spaceBetween: 60,
+          slidesPerView: 2,
+          spaceBetween: 24,
         },
         1280: {
           slidesPerView: 3,
-          spaceBetween: 80,
+          spaceBetween: 52,
         },
       }}
       navigation={true}
