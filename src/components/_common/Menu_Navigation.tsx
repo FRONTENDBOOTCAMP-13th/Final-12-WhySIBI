@@ -324,7 +324,6 @@ function MenuNavigation() {
               </Link>
             </li>
 
-            {token && (
               <li>
                 <Link
                   href={`/community/showRoom`}

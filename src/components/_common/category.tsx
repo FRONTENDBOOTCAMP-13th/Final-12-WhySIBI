@@ -270,7 +270,6 @@ export default function Categroy() {
       >
         <div className="block md:hidden px-4 text-2xl justify-center  py-5 font-logo font-bold text-button-color text-center">
           <Swiper
-            modules={[Scrollbar]}
             spaceBetween={2}
             slidesPerView={2.5}
             scrollbar={{ draggable: true }}
