@@ -122,7 +122,7 @@ export default function RegisterForm() {
           idValue={'email'}
           inputType={'text'}
         />
-        <p className="ml-2 mt-1 text-sm text-red-500 dark:text-red-400">
+        <p className="font-basic ml-2 mt-1 text-sm text-red-500 dark:text-red-400">
           {state?.ok === 0 && state.errors?.email?.msg}
         </p>
 
@@ -132,7 +132,7 @@ export default function RegisterForm() {
           idValue={'nickname'}
           inputType={'text'}
         />
-        <p className="ml-2 mt-1 text-sm text-red-500 dark:text-red-400">
+        <p className="font-basic ml-2 mt-1 text-sm text-red-500 dark:text-red-400">
           {state?.ok === 0 && state.errors?.nickname?.msg}
         </p>
 
@@ -142,7 +142,7 @@ export default function RegisterForm() {
           idValue={'name'}
           inputType={'text'}
         />
-        <p className="ml-2 mt-1 text-sm text-red-500 dark:text-red-400">
+        <p className="font-basic ml-2 mt-1 text-sm text-red-500 dark:text-red-400">
           {state?.ok === 0 && state.errors?.name?.msg}
         </p>
 
@@ -152,7 +152,7 @@ export default function RegisterForm() {
           idValue={'password'}
           inputType={'password'}
         />
-        <p className="ml-2 mt-1 text-sm text-red-500 dark:text-red-400">
+        <p className="font-basic ml-2 mt-1 text-sm text-red-500 dark:text-red-400">
           {state?.ok === 0 && state.errors?.password?.msg}
         </p>
 
@@ -162,7 +162,7 @@ export default function RegisterForm() {
           idValue={'phone_number'}
           inputType={'text'}
         />
-        <p className="ml-2 mt-1 text-sm text-red-500 dark:text-red-400">
+        <p className="font-basic ml-2 mt-1 text-sm text-red-500 dark:text-red-400">
           {state?.ok === 0 && state.errors?.phone?.msg}
         </p>
 
