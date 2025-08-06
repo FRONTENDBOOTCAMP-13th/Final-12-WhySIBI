@@ -518,7 +518,7 @@
     position: absolute;
     left: auto !important;
     right: 30 !important;
-    bottom: 20 !important;
+    bottom: 40 !important;
     display: flex;
     text-align: right;
     justify-content: right;
@@ -689,6 +689,18 @@
   .bookmark-swiper {
     position: relative;
     padding: 0 60px; /* 네비게이션 버튼 공간 확보 */
+  }
+
+  .swiper-wrapper {
+    margin-bottom: 20px;
+  }
+
+  .swiper-scrollbar {
+    border-radius: 4px;
+    margin-top: 16px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
   }
 }
 @layer components {

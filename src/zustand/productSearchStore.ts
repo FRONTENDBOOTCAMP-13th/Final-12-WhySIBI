@@ -17,7 +17,7 @@ const useProductSearchStore = create<ProductSearchState>(set => ({
   isOpen: false,
 
   handleSearchClick: (text: string) => {
-    console.log(text);
+    // console.log(text);
     set({ searchText: text });
   },
 

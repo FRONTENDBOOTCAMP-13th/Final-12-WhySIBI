@@ -11,12 +11,12 @@ function ShoppingSubcategory() {
     subMenuData.shopping.items['카테고리'].items[mainCategoryId];
 
   if (!categoryData) {
-    console.log('카테고리 데이터 없음', mainCategoryId);
+    // console.log('카테고리 데이터 없음', mainCategoryId);
     return <div>메인 카테고리에 데이터가 없습니다.</div>;
   }
 
   if (!categoryData.subCategory?.length) {
-    console.log('서브카테고리 없음', categoryData);
+    // console.log('서브카테고리 없음', categoryData);
     return <div>서브 카테고리가 없습니다.</div>;
   }
   return (

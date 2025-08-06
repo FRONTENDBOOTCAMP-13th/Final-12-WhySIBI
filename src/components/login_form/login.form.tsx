@@ -1,6 +1,6 @@
 // components/LoginForm.tsx
 'use client';
-import InputId from '@/components/Input/Input_id';
+import LoginInput from '@/components/Input/Login_input';
 import { login } from '@/data/actions/user';
 import useUserStore from '@/zustand/useUserStore';
 import Image from 'next/image';
@@ -111,34 +111,39 @@ export default function LoginForm() {
     );
   }, []);
 
+  console.log(userState);
   useEffect(() => {
-    if (userState?.ok) {
-      setUser({
-        _id: userState.item._id,
-        email: userState.item.email,
-        name: userState.item.name,
-        nickname: userState.item.nickname,
-        type: userState.item.type,
-        image: userState.item.image,
-        phone: userState.item.phone,
-        token: {
-          accessToken: userState.item.token?.accessToken || '',
-          refreshToken: userState.item.token?.refreshToken || '',
-        },
-        extra: {
-          addressBook: [
-            {
-              id: userState.item.extra.addressBook[0].id,
-              name: userState.item.extra.addressBook[0].name,
-              value: userState.item.extra.addressBook[0].value,
-            },
-          ],
-          preference: userState.item.extra.preference || [],
-          birthday: userState.item.extra.birthday,
-        },
-      });
-      alert('로그인이 완료되었습니다.');
-      navigation.back();
+    if (userState) {
+      if (userState?.ok) {
+        setUser({
+          _id: userState.item._id,
+          email: userState.item.email,
+          name: userState.item.name,
+          nickname: userState.item.nickname,
+          type: userState.item.type,
+          image: userState.item.image,
+          phone: userState.item.phone,
+          token: {
+            accessToken: userState.item.token?.accessToken || '',
+            refreshToken: userState.item.token?.refreshToken || '',
+          },
+          extra: {
+            addressBook: [
+              {
+                id: userState.item.extra.addressBook[0].id,
+                name: userState.item.extra.addressBook[0].name,
+                value: userState.item.extra.addressBook[0].value,
+              },
+            ],
+            preference: userState.item.extra.preference || [],
+            birthday: userState.item.extra.birthday,
+          },
+        });
+        showSuccessToast(userState.item.name || '사용자');
+        navigation.back();
+      } else {
+        showErrorToast('아이디, 비밀번호를 다시 확인해주세요.');
+      }
     }
   }, [userState, setUser, navigation, showSuccessToast, showErrorToast]);
 
@@ -152,17 +157,19 @@ export default function LoginForm() {
         className="my-0 mx-auto"
       />
       <form action={formAction} className="w-[95%] md:w-3/4 my-0 mx-auto">
-        <InputId
+        <LoginInput
           text={''}
           placeholder={'아이디를 입력해주세요'}
           idValue={'email'}
           inputType={'text'}
+          defaultValue={'johyunsoo123@market.com'}
         />
-        <InputId
+        <LoginInput
           text={''}
           placeholder={'비밀번호를 입력해주세요'}
           idValue={'password'}
           inputType={'password'}
+          defaultValue={'11111111'}
         />
         <button
           type="submit"

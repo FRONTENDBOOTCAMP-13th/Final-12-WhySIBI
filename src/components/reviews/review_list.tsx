@@ -3,6 +3,7 @@ import Pagenation from '@/components/basic_component/Pagenation';
 import SkeletonUI from '@/components/product_component/skeleton_ui';
 import ReviewInfo from '@/components/reviews/review_info/review_info';
 import { ReviewItem } from '@/types/replies';
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 interface reviewListProp {
   reviewItem: ReviewItem[];
@@ -42,33 +43,51 @@ export default function ReviewLists({ reviewItem }: reviewListProp) {
 
   return (
     <>
-      {isLoading ? (
-        <div className="flex justify-center items-center mt-20">
-          <SkeletonUI count={10} />
-        </div>
-      ) : (
-        <nav className="mt-20">
-          <ul className="flex flex-col flex-wrap gap-16">
-            {sliceData?.map((review, i) => (
-              <ReviewInfo
-                content={review.content}
-                productName={review.product.name}
-                productImage={review.product.image}
-                productId={review.product._id}
-                star={review.extra.star}
-                _id={review._id}
-                key={i}
-              />
-            ))}
-          </ul>
-          <div className="w-4/5 mt-5">
-            <Pagenation
-              page={page}
-              totalPage={totalPage}
-              onPageTurner={handlePagenation}
-            />
+      {' '}
+      {reviewList && reviewList?.length > 0 ? (
+        isLoading ? (
+          <div className="flex justify-center items-center mt-20">
+            <SkeletonUI count={10} />
           </div>
-        </nav>
+        ) : (
+          <nav className="mt-20">
+            <ul className="flex flex-col flex-wrap gap-16">
+              {sliceData?.map(review => (
+                <ReviewInfo
+                  content={review.content}
+                  productName={review.product.name}
+                  productImage={review.product.image}
+                  productId={review.product._id}
+                  star={review.extra.star}
+                  _id={review._id}
+                  key={review._id}
+                />
+              ))}
+            </ul>
+            <div className="w-4/5 mt-5">
+              <Pagenation
+                page={page}
+                totalPage={totalPage}
+                onPageTurner={handlePagenation}
+              />
+            </div>
+          </nav>
+        )
+      ) : (
+        <div>
+          {' '}
+          <section className="h-72 flex flex-col justify-center items-center gap-3">
+            <h3 className="font-bold text-2xl">상품에 대한 리뷰가 없다냥</h3>
+            <Image
+              src="/image/category_icon/furniture.svg"
+              alt="리뷰가 필요하다냥"
+              width="150"
+              height="150"
+              className="opacity-20 mt-5 mb-2.5"
+              aria-hidden="true"
+            />
+          </section>
+        </div>
       )}
     </>
   );

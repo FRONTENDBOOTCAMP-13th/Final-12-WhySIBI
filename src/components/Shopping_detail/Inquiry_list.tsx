@@ -29,7 +29,7 @@ export default function InquiryList({ item }: InquiryListProps) {
         }}
         className="flex p-5 border-b-1 border-gray-150 text-gray-550 font-bold items-center cursor-pointer"
       >
-        <h4 className=" flex-1 text-center">{item.title}</h4>
+        <h4 className=" flex-1 text-center truncate">{item.title}</h4>
         <span className="w-[150px] text-center">{item.user.name}</span>
         <time className="w-[150px] text-center" dateTime={item.createdAt}>
           {item.createdAt.split(' ')[0]}
@@ -57,7 +57,7 @@ export default function InquiryList({ item }: InquiryListProps) {
         </div>
       </li>
       <article
-        className={`flex flex-col gap-6 bg-vanilla-opaque-50 p-6 w-[1028px] ${active ? '' : 'max-h-0 hidden'}`}
+        className={`flex flex-col gap-6 bg-vanilla-opaque-50 p-6 max-w-[1028px] ${active ? '' : 'max-h-0 hidden'}`}
       >
         <div className="flex gap-12 ">
           <span className="text-flame-250 text-3xl font-bold">Q.</span>

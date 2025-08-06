@@ -122,8 +122,15 @@ export default function RegisterForm() {
           idValue={'email'}
           inputType={'text'}
         />
-        <p className="ml-2 mt-1 text-sm text-red-500 dark:text-red-400">
-          {state?.ok === 0 && state.errors?.email?.msg}
+        <p
+          className={`font-basic ml-2 mt-1 text-sm ${
+            state?.ok === 0 && state.errors?.email?.msg
+              ? 'text-red-500 dark:text-red-400'
+              : 'text-gray-500'
+          }`}
+        >
+          {(state?.ok === 0 && state.errors?.email?.msg) ||
+            '이메일을 형식에 맞게 입력해주세요'}
         </p>
 
         <InputId
@@ -132,8 +139,15 @@ export default function RegisterForm() {
           idValue={'nickname'}
           inputType={'text'}
         />
-        <p className="ml-2 mt-1 text-sm text-red-500 dark:text-red-400">
-          {state?.ok === 0 && state.errors?.nickname?.msg}
+        <p
+          className={`font-basic ml-2 mt-1 text-sm ${
+            state?.ok === 0 && state.errors?.nickname?.msg
+              ? 'text-red-500 dark:text-red-400'
+              : 'text-gray-500'
+          }`}
+        >
+          {(state?.ok === 0 && state.errors?.nickname?.msg) ||
+            '첫 공백을 제외하고 입력해주세요'}
         </p>
 
         <InputId
@@ -142,18 +156,31 @@ export default function RegisterForm() {
           idValue={'name'}
           inputType={'text'}
         />
-        <p className="ml-2 mt-1 text-sm text-red-500 dark:text-red-400">
-          {state?.ok === 0 && state.errors?.name?.msg}
+        <p
+          className={`font-basic ml-2 mt-1 text-sm ${
+            state?.ok === 0 && state.errors?.name?.msg
+              ? 'text-red-500 dark:text-red-400'
+              : 'text-gray-500'
+          }`}
+        >
+          {(state?.ok === 0 && state.errors?.email?.msg) ||
+            '공백없이 입력해주세요'}
         </p>
-
         <InputId
           text={'비밀번호'}
           placeholder={'비밀번호를 입력해주세요'}
           idValue={'password'}
           inputType={'password'}
         />
-        <p className="ml-2 mt-1 text-sm text-red-500 dark:text-red-400">
-          {state?.ok === 0 && state.errors?.password?.msg}
+        <p
+          className={`font-basic ml-2 mt-1 text-sm ${
+            state?.ok === 0 && state.errors?.password?.msg
+              ? 'text-red-500 dark:text-red-400'
+              : 'text-gray-500'
+          }`}
+        >
+          {(state?.ok === 0 && state.errors?.password?.msg) ||
+            '비밀번호는 최소 4자리 이상이여야합니다'}
         </p>
 
         <InputId
@@ -162,10 +189,16 @@ export default function RegisterForm() {
           idValue={'phone_number'}
           inputType={'text'}
         />
-        <p className="ml-2 mt-1 text-sm text-red-500 dark:text-red-400">
-          {state?.ok === 0 && state.errors?.phone?.msg}
+        <p
+          className={`font-basic ml-2 mt-1 text-sm ${
+            state?.ok === 0 && state.errors?.phone?.msg
+              ? 'text-red-500 dark:text-red-400'
+              : 'text-gray-500'
+          }`}
+        >
+          {(state?.ok === 0 && state.errors?.phone?.msg) ||
+            '010-xxxx-xxxx가 아닌 -를 제외한 숫자를 입력해주세요'}
         </p>
-
         {/* 생년월일 선택 */}
         <div className="w-full font-basic mt-9">
           <p className="font-bold pl-4">생년월일</p>

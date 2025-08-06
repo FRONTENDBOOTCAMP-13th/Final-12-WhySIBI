@@ -9,7 +9,7 @@ export default function DropdownRoom({
 }: DropdownShoppingProps) {
   return (
     <>
-      <div className="font-variable text-livealone-cal-poly-green bg-columbia-blue-300 flex h-[30px] w-[90px] rounded-sm text-size-xs focus-within:outline-1 cursor-pointer relative items-center m-5 active:translate-y-0.5">
+      <div className="font-variable text-livealone-cal-poly-green bg-columbia-blue-300 flex h-[30px] w-[70px] md:w-[90px] rounded-sm text-size-xxs md:text-size-xs focus-within:outline-1 cursor-pointer relative items-center m-5 active:translate-y-0.5">
         <select
           name="sort"
           id="sort"
@@ -22,7 +22,7 @@ export default function DropdownRoom({
           <option value="latest">최신순</option>
           <option value="high-view">인기순</option>
         </select>
-        <div className="absolute right-4 pointer-events-none">▼</div>
+        <div className="absolute right-3 md:right-4 pointer-events-none">▼</div>
       </div>
     </>
   );

@@ -70,7 +70,7 @@ export default function RegistForm({ boardType, productList }: RegistFormProps) 
           </div>
         ) : (
           <form ref={formRef} action={formAction}>
-            <div className="w-[600px] px-12 py-8 rounded-3xl shadow outline-1 bg-linear-to-b from-vanilla-100 to-columbia-blue-100">
+            <div className="w-[400px] md:w-[600px] px-12 py-8 rounded-3xl shadow outline-1 bg-linear-to-b from-vanilla-100 to-columbia-blue-100">
               <p className="font-variable text-lg font-bold mb-2">
                 집들이에 초대해주셔서 감사해요.
               </p>
@@ -80,8 +80,7 @@ export default function RegistForm({ boardType, productList }: RegistFormProps) 
                   글을 작성할 시 반려될 수 있습니다.
                 </li>
                 <li>
-                  † 관리자가 승인한 글만 피드나 홈을 통해 노출되며, 선정 여부는
-                  알림을 통해 알려드립니다.
+                  † 관리자가 승인한 글만 피드나 홈을 통해 노출됩니다.
                 </li>
                 <li>
                   † 불건전한 콘텐츠 작성이 확인될 경우, 즉시 삭제될 수 있습니다.
@@ -91,7 +90,7 @@ export default function RegistForm({ boardType, productList }: RegistFormProps) 
             <TitleInput value={title} onChange={setTitle} />
             <CategorySelect value={tag} onChange={setTag} />
             <ContentInput value={content} onChange={setContent} />
-            <ImageUploader image={image} setImage={setImage} />
+            <ImageUploader image={image} setImage={setImage} title={'집을 자랑할 사진을 넣어주세요.'}/>
             {/* 서버에 넘길 hidden input들 */}
             <input type="hidden" name="title" value={title} />
             <input type="hidden" name="content" value={content} />
@@ -149,7 +148,7 @@ export default function RegistForm({ boardType, productList }: RegistFormProps) 
 
     return (
       <form ref={formRef} action={formAction}>
-        <div className="w-[600px] px-12 py-8 rounded-3xl shadow outline-1 bg-linear-to-b from-vanilla-100 to-columbia-blue-100">
+        <div className="w-[500px] md:w-[600px] px-12 py-8 rounded-3xl shadow outline-1 bg-linear-to-b from-vanilla-100 to-columbia-blue-100">
           <p className="font-variable text-lg font-bold mb-2">
             자취하면서 생긴 고민이나 궁금한점 혹은 좋은 제품을 공유해주세요
           </p>
@@ -160,8 +159,7 @@ export default function RegistForm({ boardType, productList }: RegistFormProps) 
               작성할 시 반려될 수 있습니다.
             </li>
             <li>
-              † 관리자가 승인한 글만 피드나 홈을 통해 노출되며, 선정 여부는
-              알림을 통해 알려드립니다.
+              † 관리자가 승인한 글만 피드나 홈을 통해 노출됩니다.
             </li>
             <li>
               † 불건전한 콘텐츠 작성이 확인될 경우, 즉시 삭제될 수 있습니다.
@@ -172,7 +170,7 @@ export default function RegistForm({ boardType, productList }: RegistFormProps) 
         <SubjectCategorySelect value={subjectTag} onChange={setSubjectTag} />
         <CategorySelect value={tag} onChange={setTag} />
         <ContentInput value={content} onChange={setContent} />
-        <ImageUploader image={image} setImage={setImage} />
+        <ImageUploader image={image} setImage={setImage} title={'나의 고민을 잘 나타낼 수 있는 사진을 골라주세요.'}/>
         {/* 서버에 넘길 hidden input들 */}
         <input type="hidden" name="title" value={title} />
         <input type="hidden" name="content" value={content} />

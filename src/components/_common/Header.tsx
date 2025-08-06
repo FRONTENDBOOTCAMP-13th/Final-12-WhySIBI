@@ -62,7 +62,7 @@ export default function Header() {
     showSuccessToast();
     router.refresh();
   };
-  
+
   return (
     <header className="pt-16 w-full vertical-stripes">
       <div className="max-w-[1280px] mx-auto">
@@ -80,23 +80,25 @@ export default function Header() {
           </h1>
           {user ? (
             <form onSubmit={handleLogout}>
-              <div className="col-start-3 logout_button_area flex flex-wrap items-center justify-end gap-1 sm:gap-2 md:gap-3 xl:mr-13 lg:mr-8 md:mr-4 sm:mr-3 mr-2">
-                <Image
-                  src={user.image ? user?.image : '/image/image/profile.png'}
-                  width="60"
-                  height="60"
-                  alt={`${user.name} 프로필 이미지`}
-                  className="xl:w-[60px] xl:h-[60px] lg:w-[50px] lg:h-[50px] md:w-[45px] md:h-[45px] sm:w-[38px] sm:h-[38px] w-[32px] h-[32px] object-cover rounded-full sm:mr-2 mr-1"
-                />
-                <span className="xl:text-base lg:text-sm md:text-sm sm:text-xs text-[10px] whitespace-nowrap hidden sm:inline">
-                  {user.name}님 :)
-                </span>
+              <div className="col-start-3 logout_button_area flex items-center justify-end gap-1 sm:gap-2 md:gap-3 xl:mr-13 lg:mr-8 md:mr-4 sm:mr-3 mr-1">
+                <Link href={'/my_page'} className="flex items-center">
+                  <Image
+                    src={user.image ? user?.image : '/image/profile.png'}
+                    width="60"
+                    height="60"
+                    alt={`${user.name} 프로필 이미지`}
+                    className="xl:w-[60px] xl:h-[60px] lg:w-[50px] lg:h-[50px] md:w-[40px] md:h-[40px] sm:w-[32px] sm:h-[32px] w-[28px] h-[28px] object-cover rounded-full"
+                  />
+                  <span className="xl:text-base lg:text-sm md:text-sm text-xs whitespace-nowrap hidden md:inline max-w-[80px] lg:max-w-none truncate">
+                    {user.nickname}님
+                  </span>
+                </Link>
                 <button
                   type="submit"
-                  className="font-basic nahonsan-btn-3d-vanilla xl:p-2 xl:pl-5 xl:pr-5 lg:p-2 lg:pl-4 lg:pr-4 md:p-1.5 md:pl-3 md:pr-3 sm:p-1.5 sm:pl-2 sm:pr-2 p-1 pl-2 pr-2 rounded-radius-md xl:text-size-sm lg:text-sm md:text-xs sm:text-xs text-[10px] whitespace-nowrap"
+                  className="font-basic nahonsan-btn-3d-vanilla xl:p-2 xl:pl-5 xl:pr-5 lg:p-2 lg:pl-4 lg:pr-4 md:p-1.5 md:pl-3 md:pr-3 p-1 pl-2 pr-2 rounded-radius-md xl:text-size-sm lg:text-sm md:text-xs text-[9px] whitespace-nowrap min-w-0"
                 >
-                  <span className="hidden sm:inline">로그아웃</span>
-                  <span className="sm:hidden">로그아웃</span>
+                  <span className="hidden md:inline">로그아웃</span>
+                  <span className="md:hidden">로그아웃</span>
                 </button>
               </div>
             </form>
@@ -113,7 +115,7 @@ export default function Header() {
                 className="font-basic nahonsan-btn-3d-vanilla xl:p-2 xl:pl-5 xl:pr-5 lg:p-2 lg:pl-4 lg:pr-4 md:p-1.5 md:pl-3 md:pr-3 sm:p-1.5 sm:pl-2 sm:pr-2 p-1 pl-1.5 pr-1.5 rounded-radius-md xl:text-size-sm lg:text-sm md:text-xs sm:text-xs text-[10px] whitespace-nowrap"
               >
                 <span className="hidden xs:inline">회원가입</span>
-                <span className="xs:hidden">가입</span>
+                <span className="xs:hidden">회원가입</span>
               </Link>
             </div>
           )}

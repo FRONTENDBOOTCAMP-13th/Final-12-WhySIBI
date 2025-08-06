@@ -63,7 +63,7 @@ const useMenuStore = create<MenuState>(set => ({
     community: {
       type: 'community',
       items: {
-        '집들이': {
+        집들이: {
           type: 'showRoom',
         },
         '자취 상담소': {
@@ -158,7 +158,7 @@ const useMenuStore = create<MenuState>(set => ({
     },
   },
   handleMenuClick: (menuName, mainId, subId) => {
-    console.log(`${menuName},${mainId},${subId}이 클릭되었습니다.`);
+    // console.log(`${menuName},${mainId},${subId}이 클릭되었습니다.`);
     set({
       activeMenu: menuName,
       mainCategoryId: mainId,

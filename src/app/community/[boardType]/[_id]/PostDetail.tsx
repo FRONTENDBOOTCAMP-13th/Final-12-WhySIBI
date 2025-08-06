@@ -87,7 +87,7 @@ export default function PostDetail({ post, token }: PostDetailProps) {
           {/* 북마크 */}
           <button
             onClick={handleBookmark}
-            className="text-livealone-cal-poly-green flex-shrink-0 p-1"
+            className="text-livealone-cal-poly-green flex-shrink-0 p-1 cursor-pointer"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

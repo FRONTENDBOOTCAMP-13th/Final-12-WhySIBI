@@ -3,6 +3,7 @@ import Pagenation from '@/components/basic_component/Pagenation';
 import InquryInfo from '@/components/my_inqury_list/my_inqury_info/my_inqury_info';
 import SkeletonUI from '@/components/product_component/skeleton_ui';
 import { Inqury } from '@/types';
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 interface MyInQuryListProp {
@@ -45,32 +46,49 @@ export default function MyInquryList({ MyInqury }: MyInQuryListProp) {
 
   return (
     <>
-      {isLoading ? (
-        <div className="flex justify-center items-center mt-20">
-          <SkeletonUI count={10} />
-        </div>
-      ) : (
-        <nav className="mt-20">
-          <ul className="flex flex-col flex-wrap gap-16">
-            {sliceData?.map((inqury, i) => (
-              <InquryInfo
-                title={inqury.title}
-                content={inqury.content}
-                productImage={inqury.product?.image}
-                _id={inqury._id}
-                createdAt={inqury.createdAt}
-                key={i}
-              />
-            ))}
-          </ul>
-          <div className="w-4/5 mt-5">
-            <Pagenation
-              page={page}
-              totalPage={totalPage}
-              onPageTurner={handlePagenation}
-            />
+      {inquryList && inquryList.length > 0 ? (
+        isLoading ? (
+          <div className="flex justify-center items-center mt-20">
+            <SkeletonUI count={10} />
           </div>
-        </nav>
+        ) : (
+          <nav className="mt-20">
+            <ul className="flex flex-col flex-wrap gap-16">
+              {sliceData?.map(inqury => (
+                <InquryInfo
+                  title={inqury.title}
+                  content={inqury.content}
+                  productImage={inqury.product?.image}
+                  _id={inqury._id}
+                  createdAt={inqury.createdAt}
+                  key={inqury._id}
+                />
+              ))}
+            </ul>
+            <div className="w-4/5 mt-5">
+              <Pagenation
+                page={page}
+                totalPage={totalPage}
+                onPageTurner={handlePagenation}
+              />
+            </div>
+          </nav>
+        )
+      ) : (
+        <div>
+          {' '}
+          <section className="h-72 flex flex-col justify-center items-center gap-3">
+            <h3 className="font-bold text-2xl">작성한 문의가 없다냥</h3>
+            <Image
+              src="/image/category_icon/furniture.svg"
+              alt="문의가 필요하다냥"
+              width="150"
+              height="150"
+              className="opacity-20 mt-5 mb-2.5"
+              aria-hidden="true"
+            />
+          </section>
+        </div>
       )}
     </>
   );

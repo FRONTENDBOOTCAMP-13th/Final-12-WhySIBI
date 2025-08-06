@@ -8,7 +8,7 @@ interface PostCardItemProps {
 }
 export default function BestTalkCard({ post, boardType }: PostCardItemProps) {
   return (
-    <div className="relative w-full max-w-[6.25rem] sm:max-w-[12rem] md:max-w-[15.625rem] lg:max-w-[18.75rem] xl:max-w-[350px] h-[10.5rem] sm:h-[13.75rem] md:h-[16.25rem] lg:h-[21.25rem] xl:h-[22.5rem] p-2 sm:p-3 md:p-4 lg:p-6 xl:p-9 rounded-xl md:rounded-2xl border-2 border-button-color-opaque-25 mx-auto group overflow-hidden bg-gradient-to-b from-vanilla-300 to-columbia-blue-300">
+    <div className="relative w-[180px] sm:w-[222px] md:w-[15.625rem] lg:w-[280px] xl:w-[18.75rem] h-[10.5rem] sm:h-[13.75rem] md:h-[16.25rem] lg:h-[21.25rem] xl:h-[22.5rem] p-2 sm:p-3 md:p-4 lg:p-6 xl:p-9 rounded-xl md:rounded-2xl border-2 border-button-color-opaque-25 mx-auto group overflow-hidden bg-gradient-to-b from-vanilla-300 to-columbia-blue-300">
       <Link
         href={`/community/${boardType}/${post._id}`}
         className="block w-full h-full"
@@ -49,9 +49,7 @@ export default function BestTalkCard({ post, boardType }: PostCardItemProps) {
             </div>
             <div className="flex-shrink-0">
               <p className="text-gray-400 text-xs sm:text-sm">
-                <span className="hidden sm:inline">조회수 : </span>
-                <span className="sm:hidden">👁 </span>
-                {post.views}
+                <span>조회수 : {post.views}</span>
               </p>
             </div>
           </section>

@@ -103,6 +103,11 @@ function ProductCard({
   };
 
   const handleAddBookmark = async () => {
+    if (!token) {
+      showErrorToast();
+      return;
+    }
+
     const result = await AddBookMark(
       type as unknown as string,
       token as string,
@@ -112,7 +117,7 @@ function ProductCard({
     if (result.ok === 1) {
       await UpdateProductState?.();
     } else {
-      showErrorToast();
+      console.log('북마크 추가 실패:', result);
     }
   };
 
@@ -135,7 +140,6 @@ function ProductCard({
             {/* 찜상태 */}
             <LikeBadge
               isLiked={isLiked}
-              onClick={onClick}
               handleBookmark={handleBookmark}
               myBookmarkId={myBookmarkId}
             />
