@@ -107,6 +107,60 @@
           }
         ]
       }
+    },
+    {
+      "email": "moonsi@market.com",
+      "password": "$2b$10$S.8GNMDyvUF0xzujPtHBu.j5gtS19.OhRmYbpJBnCHg2S83WLx1T2",
+      "name": "문서인",
+      "phone": "01022223333",
+      "address": "대전 한화생명 볼파크",
+      "type": "user",
+      "loginType": "email",
+      "image": "/whiteDog.jpg",
+      "extra": {
+        "preference": "",
+        "birthday": "10-20",
+        "membershipClass": "MC02",
+        "addressBook": [
+          {
+            "id": 1,
+            "name": "회사",
+            "value": "부산 동래구 사직로 55-32(사직야구장)"
+          },
+          {
+            "id": 2,
+            "name": "학교",
+            "value": "서울시 강남구 역삼동 234"
+          }
+        ]
+      }
+    },
+    {
+      "email": "psy@market.com",
+      "password": "$2b$10$S.8GNMDyvUF0xzujPtHBu.j5gtS19.OhRmYbpJBnCHg2S83WLx1T2",
+      "name": "박선영",
+      "phone": "01022223333",
+      "address": "부산 개금 벚꽃길",
+      "type": "user",
+      "loginType": "email",
+      "image": "/monkey.jpg",
+      "extra": {
+        "preference": "",
+        "birthday": "10-20",
+        "membershipClass": "MC02",
+        "addressBook": [
+          {
+            "id": 1,
+            "name": "회사",
+            "value": "부산 동래구 사직로 55-32(사직야구장)"
+          },
+          {
+            "id": 2,
+            "name": "학교",
+            "value": "서울시 강남구 역삼동 234"
+          }
+        ]
+      }
     }
   ],
 
@@ -3282,29 +3336,142 @@
           "name": "uploadFiles/uki.webp",
           "originalname": "유키.png"
         },
-        "star": 5,
-        "date": "2020.02.01"
+        "star": 5
       }
     },
     {
       "user_id": 4,
       "user": {
         "_id": 4,
-        "name": "조현수",
-        "image": "uploadFiles/bodyfillow.png"
+        "name": "조현수영장",
+        "image": "uploadFiles/poshil.jpg"
       },
       "order_id": 2,
       "product_id": 1,
       "rating": 5,
-      "content": "배송이 너무 느려요.",
+      "content": "두번째 주문입니다~",
       "extra": {
-        "image": {
-          "path": "uploadFiles/bodyfillow.png",
-          "name": "bodyfillow.png",
-          "originalname": "청소키트.png"
-        },
-        "star": 4,
-        "date": "2020.02.10"
+        "star": 4
+      }
+    },
+    {
+      "user_id": 5,
+      "user": {
+        "_id": 4,
+        "name": "문서인",
+        "image": "uploadFiles/whiteDog.jpg"
+      },
+      "order_id": 1,
+      "product_id": 1,
+      "rating": 6,
+      "content": "시원하이 마 지기네요ㅋㅋ",
+      "extra": {
+        "star": 5
+      }
+    },
+    {
+      "user_id": 5,
+      "user": {
+        "_id": 5,
+        "name": "빡선영",
+        "image": "uploadFiles/monkey.jpg"
+      },
+      "order_id": 2,
+      "product_id": 1,
+      "rating": 5,
+      "content": "ㅋㅋ 와 대박임 님들 걍 이거는 안사면 손해인듯?",
+      "extra": {
+        "star": 5
+      }
+    },
+    {
+      "user_id": 5,
+      "user": {
+        "_id": 4,
+        "name": "문서인",
+        "image": "uploadFiles/whiteDog.jpg"
+      },
+      "order_id": 2,
+      "product_id": 2,
+      "rating": 5,
+      "content": "와 이걸로 맨날 야구 보는데 신세계임 진짜 ㄷㄷ",
+      "extra": {
+        "star": 5
+      }
+    },
+    {
+      "user_id": 3,
+      "user": {
+        "_id": 3,
+        "name": "김하영",
+        "image": "uploadFiles/gollia.jpg"
+      },
+      "order_id": 1,
+      "product_id": 2,
+      "rating": 5,
+      "content": "와 이가격에 이정도 퀄리티라고? 말도안됨 걍;",
+      "extra": {
+        "star": 5
+      }
+    },
+    {
+      "user_id": 5,
+      "user": {
+        "_id": 4,
+        "name": "문서인",
+        "image": "uploadFiles/whiteDog.jpg"
+      },
+      "order_id": 2,
+      "product_id": 49,
+      "rating": 6,
+      "content": "이번에 이거 하나 들였는데 괜히 화장 잘먹는느낌?",
+      "extra": {
+        "star": 5
+      }
+    },
+    {
+      "user_id": 4,
+      "user": {
+        "_id": 4,
+        "name": "조현수영장",
+        "image": "uploadFiles/poshil.jpg"
+      },
+      "order_id": 2,
+      "product_id": 47,
+      "rating": 5,
+      "content": "ㄷㄷ아침에 일어났는데 바다인줄알고 머리박음",
+      "extra": {
+        "star": 4
+      }
+    },
+    {
+      "user_id": 5,
+      "user": {
+        "_id": 5,
+        "name": "빡선영",
+        "image": "uploadFiles/monkey.jpg"
+      },
+      "order_id": 2,
+      "product_id": 97,
+      "rating": 5,
+      "content": "이거입고 서면 나들이 가능~",
+      "extra": {
+        "star": 5
+      }
+    },
+    {
+      "user_id": 3,
+      "user": {
+        "_id": 3,
+        "name": "김하영",
+        "image": "uploadFiles/gollia.jpg"
+      },
+      "order_id": 1,
+      "product_id": 90,
+      "rating": 5,
+      "content": "이거 뿌렷는데 두드러기남 절대사지마셈 ㅡㅡ",
+      "extra": {
+        "star": 1
       }
     }
   ],
@@ -3569,33 +3736,6 @@
         "image": "user-neo.png"
       },
       "title": "마 니들 목포 김하영 아나?",
-      "content": "예시123123 나 김하영임"
-    },
-
-    {
-      "type": "showRoom",
-      "product_id": 4,
-      "seller_id": 2,
-      "views": 0,
-      "user": {
-        "_id": 3,
-        "name": "김하영",
-        "image": "user-neo.png"
-      },
-      "title": "ㅎㅇㅎㅇ",
-      "content": "예시123123 나 김하영임"
-    },
-    {
-      "type": "showRoom",
-      "product_id": 4,
-      "seller_id": 2,
-      "views": 0,
-      "user": {
-        "_id": 3,
-        "name": "김하영",
-        "image": "user-neo.png"
-      },
-      "title": "ㅂㅇㅂㅇ",
       "content": "예시123123 나 김하영임"
     }
   ],
