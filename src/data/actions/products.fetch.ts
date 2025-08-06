@@ -80,7 +80,7 @@ export async function getProductList(
 
     if (options.sort) {
       const sortParam = JSON.stringify(sort[options.sort] || {});
-      console.log('sort 정렬 기준값:', sortParam);
+      // console.log('sort 정렬 기준값:', sortParam);
       query.append('sort', sortParam);
     }
 

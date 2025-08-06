@@ -72,41 +72,39 @@ function ShoppingProductsList({ token }: { token?: string | undefined }) {
   //   productsList();
   // }, [sort, page, mainCategoryId, subCategoryId, token]);
 
-const productsList = useCallback(async () => {
-  try {
-    setLoading(true); // 로딩 상태 추가
-    const res = await getProductList(
-      {
-        sort,
-        page,
-        limit: 12,
-        custom: {
-          ...(mainCategoryId ? { 'extra.category': mainCategoryId } : {}),
-          ...(subCategoryId ? { 'extra.category': subCategoryId } : {}),
+  const productsList = useCallback(async () => {
+    try {
+      setLoading(true); // 로딩 상태 추가
+      const res = await getProductList(
+        {
+          sort,
+          page,
+          limit: 12,
+          custom: {
+            ...(mainCategoryId ? { 'extra.category': mainCategoryId } : {}),
+            ...(subCategoryId ? { 'extra.category': subCategoryId } : {}),
+          },
         },
-      },
-      token,
-    );
-    if (res.ok === 1) {
-      console.log(res.item);
-      setProductData(res.item);
-      setTotalPage(res.pagination.totalPages);
-      setTotalItems(res.pagination.total);
-    } else {
-      console.error(res.message);
+        token,
+      );
+      if (res.ok === 1) {
+        setProductData(res.item);
+        setTotalPage(res.pagination.totalPages);
+        setTotalItems(res.pagination.total);
+      } else {
+        console.error(res.message);
+      }
+    } catch (err) {
+      console.error('상품을 불러오지 못했습니다.', err);
+    } finally {
+      setLoading(false);
     }
-  } catch (err) {
-    console.error('상품을 불러오지 못했습니다.', err);
-  } finally {
-    setLoading(false);
-  }
-}, [sort, page, mainCategoryId, subCategoryId, token]);
+  }, [sort, page, mainCategoryId, subCategoryId, token]);
 
-useEffect(() => {
-  productsList();
-}, [productsList]);
+  useEffect(() => {
+    productsList();
+  }, [productsList]);
 
-  console.log(productData);
   //상품 페이지네이션 핸들러
   const handlePagenation = (page: number) => {
     setPage(page);
