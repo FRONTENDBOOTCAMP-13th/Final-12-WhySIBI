@@ -91,7 +91,7 @@
       "loginType": "email",
       "image": "uploadFiles/uki.webp",
       "extra": {
-        "preference": "",
+        "preference": ["TAG6", "TAG8", "TAG9", "TAG11"],
         "birthday": "11-23",
         "membershipClass": "MC02",
         "addressBook": [
@@ -3722,7 +3722,10 @@
         "image": "user-neo.png"
       },
       "title": "바퀴벌레 어떻게 잡나요 ㅠㅠ",
-      "content": "너무 징그러움 진짜 일단 밥그릇으로 가둬놨는데 이거 어케요 ㅠ"
+      "content": "너무 징그러움 진짜 일단 밥그릇으로 가둬놨는데 이거 어케요 ㅠ",
+      "extra": {
+        "subject": ["집안일"]
+      }
     },
 
     {
@@ -3736,7 +3739,10 @@
         "image": "user-neo.png"
       },
       "title": "층간소음 고민",
-      "content": "윗집 진짜 개빡치네 아놔 문앞에 똥싸고 튈까요?"
+      "content": "윗집 진짜 개빡치네 아놔 문앞에 똥싸고 튈까요?",
+      "extra": {
+        "subject": ["기타"]
+      }
     },
 
     {
@@ -3750,7 +3756,10 @@
         "image": "user-neo.png"
       },
       "title": "양파를 샀는데",
-      "content": "너무 많은데 나눠드실분 ㅋㅋ ㅠㅠ"
+      "content": "너무 많은데 나눠드실분 ㅋㅋ ㅠㅠ",
+      "extra": {
+        "subject": ["기타"]
+      }
     },
     {
       "type": "talk",
@@ -3763,7 +3772,10 @@
         "image": "user-neo.png"
       },
       "title": "첫 자취 시작입니다.",
-      "content": "자취꿀팁 많이 공유해주세요~"
+      "content": "자취꿀팁 많이 공유해주세요~",
+      "extra": {
+        "subject": ["상품 추천"]
+      }
     },
     {
       "type": "talk",
@@ -3776,7 +3788,10 @@
         "image": "user-neo.png"
       },
       "title": "백종원 유튜브보고 닭도리탕 따라했는데 망했음",
-      "content": "ㅅㄱ 구독취소 갑니다"
+      "content": "ㅅㄱ 구독취소 갑니다",
+      "extra": {
+        "subject": ["기타"]
+      }
     },
     {
       "type": "talk",
@@ -3789,7 +3804,10 @@
         "image": "user-neo.png"
       },
       "title": "엄마보고싶다",
-      "content": "엄마보고싶다"
+      "content": "엄마보고싶다",
+      "extra": {
+        "subject": ["기타"]
+      }
     },
     {
       "type": "talk",
@@ -3802,7 +3820,74 @@
         "image": "user-neo.png"
       },
       "title": "부산에서 자취 시작했는데",
-      "content": "놀곳 추천좀 해주세요"
+      "content": "놀곳 추천좀 해주세요",
+      "extra": {
+        "subject": ["기타"]
+      }
+    },
+    {
+      "type": "talk",
+      "product_id": 4,
+      "seller_id": 2,
+      "views": 0,
+      "user": {
+        "_id": 3,
+        "name": "김하영",
+        "image": "user-neo.png"
+      },
+      "title": "청소 하려는데",
+      "content": "잘하는 비법좀",
+      "extra": {
+        "subject": ["집안일"]
+      }
+    },
+    {
+      "type": "talk",
+      "product_id": 4,
+      "seller_id": 2,
+      "views": 0,
+      "user": {
+        "_id": 3,
+        "name": "김하영",
+        "image": "user-neo.png"
+      },
+      "title": "대나무 행주",
+      "content": "대나무 행주 대나무행주 기름이 묻지 않아요~",
+      "extra": {
+        "subject": ["상품 추천"]
+      }
+    },
+    {
+      "type": "talk",
+      "product_id": 4,
+      "seller_id": 2,
+      "views": 0,
+      "user": {
+        "_id": 3,
+        "name": "김하영",
+        "image": "user-neo.png"
+      },
+      "title": "인테리어 고민",
+      "content": "인테리어 잘하시는분~",
+      "extra": {
+        "subject": ["홈 스타일링"]
+      }
+    },
+    {
+      "type": "talk",
+      "product_id": 4,
+      "seller_id": 2,
+      "views": 0,
+      "user": {
+        "_id": 3,
+        "name": "김하영",
+        "image": "user-neo.png"
+      },
+      "title": "전세 계약하러 가는데",
+      "content": "꿀팁좀요",
+      "extra": {
+        "subject": ["계약"]
+      }
     }
   ],
 
