@@ -9,7 +9,7 @@ export default async function MainShowRoom() {
 
   return (
     <>
-      <div className="md:p-4  community-wrapper w-full md:w-3xl">
+      <div className="md:p-4  community-wrapper w-full md:w-2xl">
         <div className="md:p-10 hidden md:contents">
           <div className="title-wrapper flex flex-row justify-between">
             <Title title={'집들이🏠'} subTitle={'우리집에 왜 왔니'}></Title>
