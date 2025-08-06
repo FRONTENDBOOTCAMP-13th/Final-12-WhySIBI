@@ -1,6 +1,5 @@
 // components/LoginForm.tsx
 'use client';
-import InputId from '@/components/Input/Input_id';
 import LoginInput from '@/components/Input/Login_input';
 import { login } from '@/data/actions/user';
 import useUserStore from '@/zustand/useUserStore';
