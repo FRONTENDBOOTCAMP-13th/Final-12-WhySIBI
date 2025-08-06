@@ -57,6 +57,7 @@ export default function OrderList({ orderItem }: OrderListProp) {
               order.products.map((product, i) => (
                 <OrderProductInfo
                   key={i}
+                  orderId={String(order._id)}
                   _id={product._id}
                   price={product.price}
                   name={product.name}
