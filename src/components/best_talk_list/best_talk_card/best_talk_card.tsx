@@ -49,9 +49,7 @@ export default function BestTalkCard({ post, boardType }: PostCardItemProps) {
             </div>
             <div className="flex-shrink-0">
               <p className="text-gray-400 text-xs sm:text-sm">
-                <span className="hidden sm:inline">조회수 : </span>
-                <span className="sm:hidden">👁 </span>
-                {post.views}
+                <span>조회수 : {post.views}</span>
               </p>
             </div>
           </section>
