@@ -13,6 +13,7 @@ interface PostCardItemProps {
   token?: string;
   bookmarkID?: number | undefined;
   isHot?: boolean;
+  isNew?: boolean;
 }
 
 export default function PostCardItem({
@@ -21,7 +22,8 @@ export default function PostCardItem({
   index,
   token,
   bookmarkID,
-  isHot = false
+  isHot = false,
+  isNew = false,
 }: PostCardItemProps) {
   // const toggleBookmark = useBookmarkStore(state => state.toggleBookmark);
   // const isBookmarked = useBookmarkStore(state => state.isBookmarked(post._id));
@@ -82,6 +84,12 @@ export default function PostCardItem({
           <>
             <div className="w-[200px] h-[120px] absolute z-10 top-0 right-0 bg-gradient-to-tr from-transparent via-transparent to-livealone-cal-poly-green rounded-md"></div>
             <Image src='/image/community_icon/hotIcon.svg' alt="인기게시글" width={40} height={40} className="absolute top-3 right-4 z-10"></Image>
+            </>
+        )}
+        {isNew && (
+          <>
+            <div className="w-[200px] h-[120px] absolute z-10 top-0 right-0 bg-gradient-to-tr from-transparent via-transparent to-livealone-cal-poly-green rounded-md"></div>
+            <Image src='/image/community_icon/newIcon.svg' alt="최근게시글" width={40} height={40} className="absolute top-3 right-4 z-10"></Image>
             </>
         )}
         <div className="relative w-[300px] h-[190px] mb-3">
