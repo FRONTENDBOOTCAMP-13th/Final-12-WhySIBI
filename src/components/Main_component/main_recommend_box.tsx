@@ -7,7 +7,7 @@ import { ProductListProps } from '@/types';
 import PreferenceTagMap from '@/utils/preferenceTagMap';
 import useUserStore from '@/zustand/useUserStore';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Scrollbar } from 'swiper/modules';
 import 'swiper/css';
@@ -20,7 +20,7 @@ function MainRecommendBox() {
   const [productData, setProductData] = useState<ProductListProps[]>([]);
   const [loading, setLoading] = useState(true);
   const { user } = useUserStore();
-
+  const token = user?.token?.accessToken;
   //비회원 - 태그 값 불러옴
   const handleTag = () => {
     const checkedInputs = document.querySelectorAll(
@@ -33,25 +33,25 @@ function MainRecommendBox() {
     setCheckTag([...new Set(selectedTags)]);
   };
 
+  const productsList = useCallback(async () => {
+    try {
+      const res = await getProductList();
+      if (res.ok === 1) {
+        setProductData(res.item);
+      } else {
+        console.error(res.message);
+      }
+    } catch (err) {
+      console.error('상품을 불러오지 못했습니다.', err);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
   //상품 불러오기
   useEffect(() => {
-    const productsList = async () => {
-      try {
-        const res = await getProductList();
-        if (res.ok === 1) {
-          setProductData(res.item);
-        } else {
-          console.error(res.message);
-        }
-      } catch (err) {
-        console.error('상품을 불러오지 못했습니다.', err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     productsList();
-  }, []);
+  }, [productsList]);
 
   return (
     <>
@@ -81,7 +81,7 @@ function MainRecommendBox() {
             return (
               <SwiperSlide key={index}>
                 <div className="bg-gradient-to-b from-vanilla-300 to-columbia-blue-300 mb-6 md:mb-10 rounded-xl md:rounded-2xl p-4 md:p-6">
-                  <p className="text-lg md:text-xl font-bold text-livealone-cal-poly-green mb-4">
+                  <p className="text-sm text-left md:text-lg  font-bold text-livealone-cal-poly-green mb-4">
                     {PreferenceTagMap[tag]} 인기 상품 추천 ✨
                   </p>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -105,6 +105,7 @@ function MainRecommendBox() {
                               product.extra?.star ? product.extra?.star : 0
                             }
                             reviewCount={product.replies}
+                            token={token}
                             isLiked={product.extra?.isLike ? true : false}
                             onClick={() => {}}
                           />
