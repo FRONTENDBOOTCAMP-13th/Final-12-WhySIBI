@@ -76,9 +76,7 @@ export default function EditInfoForm({
           <Image
             src={
               imageSrc ||
-              (userInfo?.image
-                ? `/${userInfo.image}`
-                : '/default-profile.png')
+              (userInfo?.image ? userInfo.image : '/default-profile.png')
             }
             alt="프로필 사진"
             width={112}
