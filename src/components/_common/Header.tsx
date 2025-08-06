@@ -90,7 +90,7 @@ export default function Header() {
                     className="xl:w-[60px] xl:h-[60px] lg:w-[50px] lg:h-[50px] md:w-[40px] md:h-[40px] sm:w-[32px] sm:h-[32px] w-[28px] h-[28px] object-cover rounded-full"
                   />
                   <span className="xl:text-base lg:text-sm md:text-sm text-xs whitespace-nowrap hidden md:inline max-w-[80px] lg:max-w-none truncate">
-                    {user.nickname}님
+                    {user.name}님
                   </span>
                 </Link>
                 <button
