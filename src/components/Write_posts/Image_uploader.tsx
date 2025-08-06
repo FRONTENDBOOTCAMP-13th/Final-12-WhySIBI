@@ -70,7 +70,6 @@ export default function ImageUploader({ image, setImage, title }: ImageUploaderP
     setPreview(newPreview);
   };
 
-
   return (
     <div className="w-[400px] md:w-[600px] mt-6">
       <p className="mb-4 ml-5 text-lg font-bold font-variable">
@@ -82,21 +81,20 @@ export default function ImageUploader({ image, setImage, title }: ImageUploaderP
       <div className="absolute top-2 right-0 text-sm text-gray-400 z-10">
         {image.length}/{MAX_IMAGES}
       </div>
-
       <div className="flex pb-10 border-b">
         <div className="button-wrapper pr-3">
-            <button
-              className="!w-[140px] !h-[140px] rounded-4xl bg-gradient-to-b from-vanilla-200 to-columbia-blue-200 cursor-pointer group"
-              onClick={handleClickUpload}
-              type="button"
-              >
-              {isUploading ? (
-                <div className="w-full h-full flex items-center justify-center rounded-4xl bg-white/50">
-                  <div className="scale-90 mt-5 font-variable">
-                    <SearchingUI text="업로드 중.." />
-                  </div>
+          <button
+            className="!w-[140px] !h-[140px] rounded-4xl bg-gradient-to-b from-vanilla-200 to-columbia-blue-200 cursor-pointer group"
+            onClick={handleClickUpload}
+            type="button"
+          >
+            {isUploading ? (
+              <div className="w-full h-full flex items-center justify-center rounded-4xl bg-white/50">
+                <div className="scale-90 mt-5 font-variable">
+                  <SearchingUI text="업로드 중.." />
                 </div>
-              ) : (
+              </div>
+            ) : (
               <div className="flex items-center justify-center w-full h-full">
                 <Image
                   src="/image/community_icon/plusIcon.svg"
@@ -107,17 +105,16 @@ export default function ImageUploader({ image, setImage, title }: ImageUploaderP
                 />
               </div>
             )}
-              <input
-                type="file"
-                accept="image/*"
-                multiple
-                ref={fileInputRef}
-                className="hidden"
-                onChange={handleFileChange}
-              />
-            </button>
+            <input
+              type="file"
+              accept="image/*"
+              multiple
+              ref={fileInputRef}
+              className="hidden"
+              onChange={handleFileChange}
+            />
+          </button>
         </div>
-
         <Swiper slidesPerView="auto" spaceBetween={12} modules={[Scrollbar]} scrollbar={{ draggable: true }} className="w-[450px] overflow-hidden pt-3 pb-10">
           {image.map((src, i) => (
             <SwiperSlide
