@@ -16,9 +16,10 @@ export interface OrderProductExtra {
 
 // 주문 내 개별 상품 타입
 export interface OrderProduct {
-  _id: number;
-  name: string;
-  price: number;
+  _id?: number;
+  name?: string;
+  price?: number;
+  orderId?: string; // 주문 ID 추가
   image: OrderProductImage;
   extra?: OrderProductExtra;
   state?: string;

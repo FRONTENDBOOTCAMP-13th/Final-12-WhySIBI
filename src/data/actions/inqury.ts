@@ -29,7 +29,6 @@ export async function getPosts(boardType: string): ApiResPromise<Post[]> {
  * @returns {Promise<ApiRes<Post[]>>} - 게시글 목록 응답 객체
  */
 export async function GetMyInqury(token: string): ApiResPromise<Post[]> {
-  console.log(CLIENT_ID);
   try {
     const res = await fetch(`${API_URL}/posts/users?type=qna`, {
       headers: {
@@ -40,7 +39,6 @@ export async function GetMyInqury(token: string): ApiResPromise<Post[]> {
       cache: 'no-cache',
     });
     const data = res.json();
-    console.log(data);
     return data;
   } catch (error) {
     // 네트워크 오류 처리

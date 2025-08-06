@@ -3,7 +3,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { memo } from 'react';
 
-function OrderProductInfo({ _id, price, name, image, state }: OrderProduct) {
+function OrderProductInfo({
+  _id,
+  price,
+  name,
+  image,
+  state,
+  orderId,
+}: OrderProduct) {
   let deliveryState = '';
   if (state === 'OS010') {
     deliveryState = '상품준비중';
@@ -46,17 +53,17 @@ function OrderProductInfo({ _id, price, name, image, state }: OrderProduct) {
 
         <div className="font-basic xl:pl-6 lg:pl-5 md:pl-4 font-bold text-center border-l-2 border-button-color-opaque-25 flex-shrink-0">
           <Link
-            href={`/my_page/delivery/${_id}`}
+            href={`/my_page/delivery/${orderId}`}
             className="block rounded-radius-full xl:px-16 xl:py-3 lg:px-12 lg:py-2.5 md:px-8 md:py-2 border-2 text-button-color bg-vanilla-300 mb-5 xl:text-base lg:text-sm md:text-xs whitespace-nowrap"
           >
             배송 조회
           </Link>
-          <Link
+          {/* <Link
             href={`/my_page/order/cancel/${_id}`}
             className="block rounded-radius-full xl:px-16 xl:py-3 lg:px-12 lg:py-2.5 md:px-8 md:py-2 border-2 border-columbia-blue-300 text-button-color mb-5 xl:text-base lg:text-sm md:text-xs whitespace-nowrap"
           >
             주문 &middot; 배송 취소
-          </Link>
+          </Link> */}
           <Link
             href={`/my_page/reviews/write/${_id}`}
             className="block rounded-radius-full xl:px-16 xl:py-3 lg:px-12 lg:py-2.5 md:px-8 md:py-2 border-2 text-button-color bg-columbia-blue-300 xl:text-base lg:text-sm md:text-xs whitespace-nowrap"
@@ -88,17 +95,17 @@ function OrderProductInfo({ _id, price, name, image, state }: OrderProduct) {
 
         <div className="font-basic font-bold text-center space-y-2 border-t-2 border-button-color-opaque-25 pt-3">
           <Link
-            href={`/my_page/delivery/${_id}`}
+            href={`/my_page/delivery/${orderId}`}
             className="block rounded-radius-full px-4 py-2 border-2 text-button-color bg-vanilla-300 text-xs"
           >
             배송 조회
           </Link>
-          <Link
+          {/* <Link
             href={`/my_page/order/cancel/${_id}`}
             className="block rounded-radius-full px-4 py-2 border-2 border-columbia-blue-300 text-button-color text-xs"
           >
             주문 &middot; 배송 취소
-          </Link>
+          </Link> */}
           <Link
             href={`/my_page/reviews/write/${_id}`}
             className="block rounded-radius-full px-4 py-2 border-2 text-button-color bg-columbia-blue-300 text-xs"

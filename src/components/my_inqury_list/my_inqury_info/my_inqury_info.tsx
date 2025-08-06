@@ -1,7 +1,8 @@
 import { InquryProductProps } from '@/types';
 import Image from 'next/image';
+import { memo } from 'react';
 
-export default function InquryInfo({
+function InquryInfo({
   content,
   title,
   createdAt,
@@ -29,3 +30,4 @@ export default function InquryInfo({
     </li>
   );
 }
+export default memo(InquryInfo);

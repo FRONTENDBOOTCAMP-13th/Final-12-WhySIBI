@@ -91,7 +91,11 @@ export default function TalkDetail({ post, posts, token }: TalkCardItemProps) {
           <p className="font-light text-size-md text-gray-400">
             {getTimeAgo(post.createdAt)}
           </p>
-          <button type="button" className="ml-auto " onClick={handleBookmark}>
+          <button
+            type="button"
+            className="ml-auto cursor-pointer"
+            onClick={handleBookmark}
+          >
             <Image
               src={
                 post.myBookmarkId !== undefined
