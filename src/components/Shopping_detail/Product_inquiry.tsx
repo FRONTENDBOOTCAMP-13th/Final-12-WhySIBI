@@ -22,7 +22,7 @@ export default async function ProductInquiry({ id }: { id: string }) {
         className="flex justify-between border-b-2 pb-3 border-gray-450
       "
       >
-        <h3 className="text-xl font-semibold text-gray-550">
+        <h3 className="text-xl font-semibold text-gray-550 pl-3 lg:pl-0">
           문의 {itemList.length}
         </h3>
         <div className=" w-[140px] text-center">

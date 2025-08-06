@@ -24,7 +24,7 @@ export default async function ShoppingDetail({
   const avg = sum / repliesStars.length;
 
   return (
-    <section className="bg-white flex flex-col md:flex-row lg:gap-24 justify-center py-4">
+    <section className="bg-white flex flex-col md:flex-row lg:gap-8 xl:gap-24 justify-center py-4">
       {/* 상품 사진 영역 */}
       <figure className="bg-white max-w-[600px] max-h-[600px] overflow-hidden flex justify-center items-center rounded-sm shadow-md">
         <Image

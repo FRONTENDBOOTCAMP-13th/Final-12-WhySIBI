@@ -15,7 +15,7 @@ export default function ReviewList({
 }: ReviewListProps) {
   return (
     <li className="flex md:gap-16 border-t-1 border-gray-150 py-3 md:py-6 px-4 lg:px-0">
-      <div className="flex gap-6 basis-[230px]">
+      <div className="flex gap-6 md:basis-[230px] basis-[200px]">
         <Image
           className="w-10 h-10 rounded-full border-1 border-black "
           src={profile}
