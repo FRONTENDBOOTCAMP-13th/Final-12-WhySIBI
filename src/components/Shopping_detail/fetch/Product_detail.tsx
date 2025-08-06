@@ -14,6 +14,6 @@ export async function Product_Detail(pageNum: string, token?: string) {
     <div>오류가 발생했습니다.</div>;
   }
   const detail = await response.json();
-  console.log('데이터 확인', detail.item);
+  // console.log('데이터 확인', detail.item);
   return detail.item;
 }

@@ -1,5 +1,8 @@
+'use server';
+
 import { ApiResPromise } from '@/types';
 import { BookMarkItem } from '@/types/bookmark';
+import { revalidatePath } from 'next/cache';
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID || '';
 export async function GetBookMarkList(
@@ -69,6 +72,7 @@ export async function AddBookMark(
       body: JSON.stringify(body),
     });
     const data = await res.json();
+    revalidatePath(`/products/${_id}`);
     return data;
   } catch (error) {
     console.log('error', error);
@@ -95,6 +99,7 @@ export async function DeleteBookMark(
       }),
     });
     const data = await res.json();
+    revalidatePath(`/products/${_id}`);
     return data;
   } catch (error) {
     console.log('error', error);

@@ -17,7 +17,6 @@ export default function CartPurchaseButton({
 }) {
   const { user } = useUserStore();
   const token = user?.token?.accessToken;
-  console.log('이게 카트데이터야', cartData);
   const { triggerRefresh } = useCartRefreshStore();
   // 구매 서버액션에 넘겨줄 상품 목록배열
   const products =

@@ -14,7 +14,7 @@ export default function DeliveryState({
   const { user } = useUserStore();
   return (
     <>
-      <h2 className="font-logo text-5xl ml-9 my-9">배송조희</h2>
+      <h2 className="font-logo text-5xl ml-9 my-9">배송조회</h2>
       <section className="w-3/4 mx-auto p-7 bg-[#F8F8F8] text-center">
         <p className="font-logo text-5xl pt-14">
           주문하신 상품은 내일 도착 예정입니다
