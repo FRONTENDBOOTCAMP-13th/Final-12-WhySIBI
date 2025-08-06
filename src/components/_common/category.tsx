@@ -151,6 +151,7 @@ export default function Categroy() {
           </Swiper>
         </div>
 
+
         {/* 데스크톱: 기존 레이아웃 */}
         <ul className="hidden md:flex xl:text-2xl lg:text-xl md:text-lg justify-center xl:gap-20 lg:gap-14 md:gap-10 text-size-md font-logo font-bold text-button-color text-center">
           <li>

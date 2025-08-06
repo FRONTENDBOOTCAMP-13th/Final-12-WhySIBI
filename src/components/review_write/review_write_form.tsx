@@ -7,8 +7,6 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useActionState, useEffect, useState } from 'react';
 
-
-
 interface ReviewWriteFormProps {
   productData: Product;
   productId: string;
@@ -45,7 +43,7 @@ export default function ReviewWriteForm({
   }, [state, router]);
 
   return (
-    <div className="w-2/4 mx-auto p-10 border-2 rounded-3xl">
+    <div className="w-3/4 mx-auto p-10 border-2 rounded-3xl">
       <form action={formAction}>
         <input
           type="hidden"
@@ -53,31 +51,32 @@ export default function ReviewWriteForm({
           value={user?.token?.accessToken || ''}
         />
         <input type="hidden" name="user_id" value={user?._id} />
-        <section className="flex pb-9 border-b-2 border-button-color-opaque-25">
+        <section className="flex flex-col  md:flex-row pb-9 border-b-2 border-button-color-opaque-25">
           {productData?.mainImages?.[0] ? (
             <Image
               src={productData.mainImages[0].path}
               alt={`${productId}상품 이미지`}
-              width={200}
-              height={200}
+              width={150}
+              height={150}
+              className="xl:w-[140px] xl:h-[140px] lg:w-[120px] lg:h-[120px] md:w-[100px] md:h-[100px] rounded-radius-lg object-cover"
             />
           ) : (
-            <Image src={``} alt="이미지 오류" width={200} height={200} />
+            <Image src={``} alt="이미지 오류" width={150} height={150} />
           )}
-          <div className="font-basic">
+          <div className="font-basic ml-4 mt-6 md:mt-0">
             <input type="hidden" name="product_id" value={productData._id} />
             <p className="text-size-md">상품명: {productData.name}</p>
             <ReviewStar />
           </div>
         </section>
-        <section className="flex gap-3 mt-9">
+        <section className="flex flex-col md:flex-row gap-3 mt-9">
           <label htmlFor="review_text_area" className="font-basic">
             상세리뷰
           </label>
           <textarea
             name="content"
             id="review_text_area"
-            className="border-1 min-w-3/5 min-h-64 border-black resize-none"
+            className="border-1 min-w-4/5 min-h-64 border-button-color-opaque-25 rounded-2xl resize-none"
           ></textarea>
         </section>
         <section className="mt-16 border-t-2 border-button-color-opaque-25">
@@ -100,7 +99,6 @@ export default function ReviewWriteForm({
           <div className="mt-12 flex gap-4">
             {imageSrc && (
               <Image
-                key={'1'}
                 src={imageSrc}
                 alt="리뷰 등록 이미지"
                 width={100}

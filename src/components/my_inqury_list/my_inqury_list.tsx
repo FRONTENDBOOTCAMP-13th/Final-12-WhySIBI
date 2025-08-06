@@ -52,14 +52,14 @@ export default function MyInquryList({ MyInqury }: MyInQuryListProp) {
       ) : (
         <nav className="mt-20">
           <ul className="flex flex-col flex-wrap gap-16">
-            {sliceData?.map((inqury, i) => (
+            {sliceData?.map((inqury) => (
               <InquryInfo
                 title={inqury.title}
                 content={inqury.content}
                 productImage={inqury.product?.image}
                 _id={inqury._id}
                 createdAt={inqury.createdAt}
-                key={i}
+                key={inqury._id}
               />
             ))}
           </ul>

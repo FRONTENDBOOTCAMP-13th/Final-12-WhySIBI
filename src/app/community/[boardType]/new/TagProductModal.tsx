@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import { Product } from '@/types';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Scrollbar } from 'swiper/modules';
 import 'swiper/css';
 
 interface Props {
@@ -77,7 +78,7 @@ export default function TagProductModal({ productList, selected, setSelected, on
 
         {/* 선택된 상품 */}
         <h3 className="text-lg font-bold mb-4 ml-4">태그된 상품</h3>
-        <Swiper slidesPerView="auto" spaceBetween={12}  className="flex w-[436px] relative h-35 items-center gap-4 mb-6 rounded-xl">
+        <Swiper slidesPerView="auto" spaceBetween={12} modules={[Scrollbar]} scrollbar={{ draggable: true }} className="flex w-[436px] relative h-30 items-center gap-4 mb-6 rounded-xl">
           {selected.map((product) => {
             return (
               <SwiperSlide key={product._id} className="group relative !w-25 !h-25 rounded-2xl overflow-hidden border">

@@ -33,27 +33,19 @@ export default function CustomerServicePage() {
   };
 
   return (
-    <div className="max-w-[1280px]  mx-auto my-0 ">
-      <div className="flex justify-center p-20 font-variable bg-white">
-        <div className="w-[600px]">
-          {/* 헤더 */}
-          <div className="text-center mb-15">
-            <h1 className="text-3xl font-extrabold mb-2 text-livealone-cal-poly-green">
-              고객센터
-            </h1>
-            <p className="text-2xl text-stroke font-extrabold text-livealone-vanilla">
-              09:00~18:00
-            </p>
-            <p className="text-size-sm text-gray-icon mt-5">
-              평일: 전체 문의 상담
-              <br />
-              토요일, 일요일, 공휴일: 휴무
-            </p>
-            <div className="flex justify-center gap-4 mt-10">
-              <a
-                href="tel:1234-5678"
-                className="rounded-full text-xl text-stroke text-white bg-livealone-columbia-blue border font-extrabold border-cal-poly-green-600 py-[10px] px-[25px] cursor-pointer hover:opacity-80"
-              >
+  <div className="max-w-[1280px]  mx-auto my-0 ">
+    <div className="flex justify-center px-20 py-30 font-variable bg-white">
+      <div className="w-[600px]">
+        {/* 헤더 */}
+        <div className="text-center mb-15">
+          <h1 className="text-3xl font-extrabold mb-2 text-livealone-cal-poly-green">고객센터</h1>
+          <p className="text-2xl text-stroke font-extrabold text-livealone-vanilla">09:00~18:00</p>
+          <p className="text-size-sm text-gray-icon mt-5">
+            평일: 전체 문의 상담<br />
+            토요일, 일요일, 공휴일: 휴무
+          </p>
+          <div className="flex justify-center gap-4 mt-10">
+            <a href="tel:1234-5678" className="rounded-full text-xl text-stroke text-white bg-livealone-columbia-blue border font-extrabold border-cal-poly-green-600 py-[10px] px-[25px] cursor-pointer hover:opacity-80">
                 1234-5678
               </a>
               <a

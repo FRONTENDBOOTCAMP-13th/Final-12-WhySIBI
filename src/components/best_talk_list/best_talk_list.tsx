@@ -43,7 +43,7 @@ export default function BestTalkList({ item, boardType }: TalkListProps) {
         },
         1280: {
           slidesPerView: 3,
-          spaceBetween: 52,
+          spaceBetween: 82,
         },
       }}
       navigation={true}
