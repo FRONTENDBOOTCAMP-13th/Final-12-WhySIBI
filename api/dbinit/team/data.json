@@ -1,8 +1,8 @@
 {
   "user": [
     {
-      "email": "admin@market.com",
-      "password": "3333",
+      "email": "yeono@market.com",
+      "password": "$2b$10$S.8GNMDyvUF0xzujPtHBu.j5gtS19.OhRmYbpJBnCHg2S83WLx1T2",
       "name": "김연호",
       "phone": "01011112222",
       "address": "부산시 연제구",
@@ -28,8 +28,8 @@
       }
     },
     {
-      "email": "s1@market.com",
-      "password": "1234",
+      "email": "youjeans@market.com",
+      "password": "$2b$10$S.8GNMDyvUF0xzujPtHBu.j5gtS19.OhRmYbpJBnCHg2S83WLx1T2",
       "name": "정유진",
       "phone": "01022223333",
       "address": "부산시 연제구",
@@ -55,14 +55,14 @@
       }
     },
     {
-      "email": "s1@market.com",
-      "password": "5678",
+      "email": "hayoung@market.com",
+      "password": "$2b$10$S.8GNMDyvUF0xzujPtHBu.j5gtS19.OhRmYbpJBnCHg2S83WLx1T2",
       "name": "김하영",
       "phone": "01022223333",
       "address": "전라남도 목포",
       "type": "user",
       "loginType": "email",
-      "image": "/gollia.jpg",
+      "image": "uploadFiles/gollia.jpg",
       "extra": {
         "preference": "",
         "birthday": "11-23",
@@ -89,7 +89,7 @@
       "address": "부산 동래구 사직로 55-32(사직야구장)",
       "type": "user",
       "loginType": "email",
-      "image": "/uki.webp",
+      "image": "uploadFiles/uki.webp",
       "extra": {
         "preference": "",
         "birthday": "11-23",
@@ -116,7 +116,7 @@
       "address": "대전 한화생명 볼파크",
       "type": "user",
       "loginType": "email",
-      "image": "/whiteDog.jpg",
+      "image": "uploadFiles/whiteDog.jpg",
       "extra": {
         "preference": "",
         "birthday": "10-20",
@@ -143,7 +143,7 @@
       "address": "부산 개금 벚꽃길",
       "type": "user",
       "loginType": "email",
-      "image": "/monkey.jpg",
+      "image": "uploadFiles/monkey.jpg",
       "extra": {
         "preference": "",
         "birthday": "10-20",
