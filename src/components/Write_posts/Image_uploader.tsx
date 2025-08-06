@@ -34,7 +34,7 @@ export default function ImageUploader({ image, setImage }: ImageUploaderProps) {
 
       try {
         const res = await upLoadFile(formData);
-          console.log('업로드 응답:', res);
+        console.log('업로드 응답:', res);
         if (res.ok && res.item.length > 0) {
           uploadedUrls.push(res.item[0].path); // Cloudinary URL 직접 사용
           console.log('업로드 응답:', res);
@@ -63,24 +63,25 @@ export default function ImageUploader({ image, setImage }: ImageUploaderProps) {
     setPreview(newPreview);
   };
 
-
   return (
     <div className="w-[600px] mt-6">
-      <p className="mb-4 ml-12 text-lg font-bold font-variable">방을 자랑할 사진을 넣어주세요.</p>
+      <p className="mb-4 ml-12 text-lg font-bold font-variable">
+        나의 고민을 잘 나타낼 수 있는 사진을 골라주세요.
+      </p>
       <div className="flex pb-10 border-b">
         <div className="button-wrapper pr-3">
-            <button
-              className="!w-[140px] !h-[140px] rounded-4xl bg-gradient-to-b from-vanilla-200 to-columbia-blue-200 cursor-pointer group"
-              onClick={handleClickUpload}
-              type="button"
-              >
-              {isUploading ? (
-                <div className="w-full h-full flex items-center justify-center rounded-4xl bg-white/50">
-                  <div className="scale-90 mt-5 font-variable">
-                    <SearchingUI text="업로드 중.." />
-                  </div>
+          <button
+            className="!w-[140px] !h-[140px] rounded-4xl bg-gradient-to-b from-vanilla-200 to-columbia-blue-200 cursor-pointer group"
+            onClick={handleClickUpload}
+            type="button"
+          >
+            {isUploading ? (
+              <div className="w-full h-full flex items-center justify-center rounded-4xl bg-white/50">
+                <div className="scale-90 mt-5 font-variable">
+                  <SearchingUI text="업로드 중.." />
                 </div>
-              ) : (
+              </div>
+            ) : (
               <div className="flex items-center justify-center w-full h-full">
                 <Image
                   src="/image/community_icon/plusIcon.svg"
@@ -91,17 +92,21 @@ export default function ImageUploader({ image, setImage }: ImageUploaderProps) {
                 />
               </div>
             )}
-              <input
-                type="file"
-                accept="image/*"
-                multiple
-                ref={fileInputRef}
-                className="hidden"
-                onChange={handleFileChange}
-              />
-            </button>
+            <input
+              type="file"
+              accept="image/*"
+              multiple
+              ref={fileInputRef}
+              className="hidden"
+              onChange={handleFileChange}
+            />
+          </button>
         </div>
-        <Swiper slidesPerView="auto" spaceBetween={12} className="w-[450px] overflow-hidden py-3">
+        <Swiper
+          slidesPerView="auto"
+          spaceBetween={12}
+          className="w-[450px] overflow-hidden py-3"
+        >
           {image.map((src, i) => (
             <SwiperSlide
               key={i}
