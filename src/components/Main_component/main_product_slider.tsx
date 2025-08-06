@@ -71,8 +71,11 @@ function MainProductSlider() {
           >
             {slideData.map((product, index) => {
               const discount = product?.extra?.originalPrice
-                ? `${Math.round(100 - (product.price * 100) / product.extra.originalPrice)}%`
-                : ''; //할인율
+                ? Math.round(
+                    100 - (product.price * 100) / product.extra.originalPrice,
+                  )
+                : 0; //할인율
+              const discountVal = discount > 0 ? `${discount}%` : undefined;
 
               return (
                 <SwiperSlide key={product._id}>
@@ -81,7 +84,7 @@ function MainProductSlider() {
                     name={product.name}
                     imageUrl={product.mainImages[0]?.path}
                     price={`${product.price.toLocaleString()}원`}
-                    discount={discount}
+                    discount={discountVal}
                     rank={index + 1}
                     rating={product.extra?.star ? product.extra?.star : 0}
                     reviewCount={product.replies}
@@ -96,11 +99,10 @@ function MainProductSlider() {
         )}
         <Link
           href={'/shopping/best'}
-          className="btn-gradient-animate block w-full py-3 text-center font-variable font-semibold  text-livealone-cal-poly-green bg-livealone-columbia-blue rounded-md cursor-pointer hover:text-cal-poly-green-100"
+          className="btn-gradient-animate block w-full py-3 text-center font-variable font-semibold  text-livealone-cal-poly-green bg-livealone-columbia-blue rounded-md cursor-pointer hover:text-cal-poly-green-100 mb-30"
         >
           BEST 상품 더보기
         </Link>
-        <hr className="h-0.25 border-0 bg-gray-300 my-10" />
       </div>
     </>
   );

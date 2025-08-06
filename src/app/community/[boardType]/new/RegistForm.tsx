@@ -168,7 +168,6 @@ export default function RegistForm({ boardType, productList }: RegistFormProps) 
         </div>
         <TitleInput value={title} onChange={setTitle} />
         <SubjectCategorySelect value={subjectTag} onChange={setSubjectTag} />
-        <CategorySelect value={tag} onChange={setTag} />
         <ContentInput value={content} onChange={setContent} />
         <ImageUploader image={image} setImage={setImage} title={'나의 고민을 잘 나타낼 수 있는 사진을 골라주세요.'}/>
         {/* 서버에 넘길 hidden input들 */}

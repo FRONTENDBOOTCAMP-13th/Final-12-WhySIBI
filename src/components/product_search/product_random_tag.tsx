@@ -50,7 +50,7 @@ export default function ProductRandomTag() {
 
   return (
     <>
-      <div className="grid grid-cols-4 gap-3 w-full max-w-lg text-livealone-cal-poly-green font-bold text-xs">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-3 w-full max-w-lg text-livealone-cal-poly-green font-bold text-xs">
         {keyword.map((tag, index) => (
           <button
             key={index}
