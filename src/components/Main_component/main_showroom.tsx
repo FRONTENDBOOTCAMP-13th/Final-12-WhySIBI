@@ -9,8 +9,8 @@ export default async function MainShowRoom() {
 
   return (
     <>
-      <div className="md:p-4  community-wrapper w-full md:w-3xl">
-        <div className="md:p-10 hidden md:contents">
+      <div className="md:p-4 community-wrapper w-full md:w-2xl">
+        <div className="px-4 py-6 md:px-10 md:pt-10 md:pb-7 hidden md:contents">
           <div className="title-wrapper flex flex-row justify-between">
             <Title title={'집들이🏠'} subTitle={'우리집에 왜 왔니'}></Title>
             <ButtonBlue value="더보기 +" to="/community/showRoom"></ButtonBlue>

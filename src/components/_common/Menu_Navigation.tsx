@@ -7,7 +7,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 type SubMenuItem = {
   label: string;
@@ -16,10 +16,10 @@ type SubMenuItem = {
 
 function MenuNavigation() {
   const router = useRouter();
+  const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   // Zustand store에서 필요한 상태와 함수들 가져오기
-  const { activeMenu, subMenuData, handleMenuClick, mainCategoryId } =
-    useMenuStore();
+  const { activeMenu, subMenuData, handleMenuClick, mainCategoryId } = useMenuStore();
   const [expandedMenu, setExpandedMenu] = useState<string | null>(null);
 
   const currentSubMenuItems: SubMenuItem[] =
@@ -50,6 +50,12 @@ function MenuNavigation() {
 
   const { user } = useUserStore();
   const token = user?.token?.accessToken;
+
+  useEffect(() => {
+    if (pathname === '/' || (!pathname.startsWith('/community') && !pathname.startsWith('/shopping'))) {
+      handleMenuClick('');
+    }
+  }, [pathname]);
 
   return (
     <>
@@ -366,7 +372,7 @@ function MenuNavigation() {
         </div>
       </div>
 
-      {sub_pathName === '/shopping/category' && <Categroy />}
+      {pathname === '/shopping/category' && <Categroy />}
     </>
   );
 }

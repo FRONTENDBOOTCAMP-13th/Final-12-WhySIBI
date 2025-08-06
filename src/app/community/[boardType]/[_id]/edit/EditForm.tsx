@@ -25,6 +25,12 @@ export default function EditForm({ post }: { post: Post }) {
   const [tag, setTag] = useState<{ [key: string]: string }>({});
   const [image, setImage] = useState<string[]>([]);
 
+  const imageTitle = post.type === 'showRoom'
+  ? '집을 자랑할 사진을 넣어주세요.'
+  : post.type === 'talk'
+  ? '나의 고민을 잘 나타낼 수 있는 사진을 골라주세요.'
+  : '이미지를 업로드해주세요.';
+
   // 로그인 여부
   useEffect(() => {
     if (!user || !user.token?.accessToken) {
@@ -94,7 +100,7 @@ export default function EditForm({ post }: { post: Post }) {
       <TitleInput value={title} onChange={setTitle} />
       <CategorySelect value={tag} onChange={setTag} />
       <ContentInput value={content} onChange={setContent} />
-      <ImageUploader image={image} setImage={setImage} />
+      <ImageUploader image={image} setImage={setImage} title={imageTitle}/>
 
       {/* Hidden Inputs */}
       <input type="hidden" name="_id" value={String(post._id)} />

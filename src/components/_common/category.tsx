@@ -7,7 +7,7 @@ export default function Categroy() {
 
   return (
     <>
-      <section className="categroy  category-swiper  block w-full bg-white py-10">
+      <section className="categroy category-swiper block w-full bg-white py-10 md:py-15 px-5">
         {/* 모바일: 스와이퍼 */}
         <div className="md:hidden">
           <Swiper
@@ -153,7 +153,7 @@ export default function Categroy() {
 
 
         {/* 데스크톱: 기존 레이아웃 */}
-        <ul className="hidden md:flex xl:text-2xl lg:text-xl md:text-lg justify-center xl:gap-20 lg:gap-14 md:gap-10 text-size-md font-logo font-bold text-button-color text-center">
+        <ul className="hidden md:flex xl:text-2xl lg:text-lg md:text-md justify-center xl:gap-16 lg:gap-14 md:gap-6 gap-4 text-size-md font-logo font-bold text-button-color text-center">
           <li>
             <figure>
               <Link href="/shopping/category/PC0301">
