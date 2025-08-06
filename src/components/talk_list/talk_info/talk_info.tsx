@@ -25,7 +25,7 @@ export default function TalkInfo({ post, boardType }: PostCardItemProps) {
             Q {post.title}
           </p>
 
-          <p className="mt-7 flex justify-between">
+          <p className="mt-7 flex flex-col md:flex-row justify-between">
             {post.content}
             {post?.image?.[0] ? (
               <Image
@@ -33,6 +33,7 @@ export default function TalkInfo({ post, boardType }: PostCardItemProps) {
                 alt={`${post._id}번째 게시물 첫번째 이미지`}
                 width={150}
                 height={150}
+                className="mt-5 md:mt-0"
               />
             ) : (
               <Image
@@ -40,6 +41,7 @@ export default function TalkInfo({ post, boardType }: PostCardItemProps) {
                 alt={`게시물  이미지 없음`}
                 width={150}
                 height={150}
+                className="mt-5 md:mt-0"
               />
             )}
           </p>

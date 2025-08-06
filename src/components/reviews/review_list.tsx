@@ -49,7 +49,7 @@ export default function ReviewLists({ reviewItem }: reviewListProp) {
       ) : (
         <nav className="mt-20">
           <ul className="flex flex-col flex-wrap gap-16">
-            {sliceData?.map((review, i) => (
+            {sliceData?.map(review => (
               <ReviewInfo
                 content={review.content}
                 productName={review.product.name}
@@ -57,7 +57,7 @@ export default function ReviewLists({ reviewItem }: reviewListProp) {
                 productId={review.product._id}
                 star={review.extra.star}
                 _id={review._id}
-                key={i}
+                key={review._id}
               />
             ))}
           </ul>
