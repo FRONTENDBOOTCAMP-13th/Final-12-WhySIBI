@@ -518,7 +518,7 @@
     position: absolute;
     left: auto !important;
     right: 30 !important;
-    bottom: 20 !important;
+    bottom: 40 !important;
     display: flex;
     text-align: right;
     justify-content: right;
@@ -692,7 +692,7 @@
   }
 
   .swiper-wrapper {
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
   }
 
   .swiper-scrollbar {

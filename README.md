@@ -43,7 +43,7 @@ $ npm start
 # 2. Team Members (팀원 및 팀 소개)
 | 조현수 | 김연호 | 정유진 | 김하영 |
 |:------:|:------:|:------:|:------:|
-| <img width="150" alt="조현수" src="https://github.com/user-attachments/assets/15fb7955-7aed-409c-90bf-210196361473" /> | <img width="150" alt="김연호" src="https://github.com/user-attachments/assets/2c5de6c7-f5ca-4d0c-b33b-1912137e7cb7" /> | <img width="150" alt="정유진" src="https://github.com/user-attachments/assets/bbd9517b-3dd5-46e8-96ad-73e4bd29c88b" /> | <img width="150" alt="김하영" src="https://github.com/user-attachments/assets/65b89f91-c9bc-4804-ba84-43d3adcc8608" /> |
+| <img width="150" alt="조현수" src="https://github.com/user-attachments/assets/15fb7955-7aed-409c-90bf-210196361473" /> | <img width="150" alt="김연호" src="https://github.com/user-attachments/assets/2c5de6c7-f5ca-4d0c-b33b-1912137e7cb7" /> | <img width="150" alt="정유진" src="https://github.com/user-attachments/assets/bbd9517b-3dd5-46e8-96ad-73e4bd29c88b" /> | <img width="150" alt="김하영" src="https://github.com/user-attachments/assets/3c6b86f1-c839-4af2-a125-7b483c8f6230" /> |
 | PL | PM | FE | FE |
 | [GitHub](https://github.com/johyunsoo33) | [GitHub](https://github.com/KYDDD) |  [GitHub](https://github.com/Yujin0528) |[GitHub](https://github.com/hayeonggim1) |
 
@@ -152,7 +152,6 @@ project/
 
 |                                           🛍️ 쇼핑 페이지 - 추천상품 (Shopping/Recommend)    |
 | :---------------------------------------------------------------------------------------: |
-| ![Image](https://github.com/user-attachments/assets/f37ac5a6-5523-46e6-b250-8aa5c1a974c2) |
 | ![Image](https://github.com/user-attachments/assets/b2369e8c-43da-4cc5-8191-a35791930da0) |
 
 - 로그인한 사용자의 취향 기반 추천 상품을 표시합니다.
@@ -205,7 +204,6 @@ project/
 |                                           💬  커뮤니티 페이지 - 집들이 (Community/ShowRoom)     |
 | :---------------------------------------------------------------------------------------: |
 | ![Image](https://github.com/user-attachments/assets/96ba24e7-ccd3-4af7-a40d-2cedf2e11e7c) |
-| ![Image](https://github.com/user-attachments/assets/cfbda7ca-a743-49bb-b9bb-be80b50637c4) |
 
 - 사용자들이 자신의 집꾸미기 콘텐츠를 공유하고 피드백을 받을 수 있는 공간입니다.
 - 사진 업로드, 댓글 작성 등 커뮤니티 활동이 가능합니다.
@@ -225,7 +223,7 @@ project/
 
 |                                           🧑‍💻   회원 페이지 (User/My Page)     |
 | :---------------------------------------------------------------------------------------: |
-| ![Image](https://github.com/user-attachments/assets/49678794-7966-4347-b4fa-6e28e6af6438) |
+| ![Image](https://github.com/user-attachments/assets/7510642d-f97f-46cd-9184-74a8de3f1f3a) |
 
 - 로그인한 사용자가 자신의 정보를 확인하고 관리할 수 있는 페이지입니다.
 - 주문내역, 배송현황, 찜/북마크 목록을 확인할 수 있습니다.
@@ -244,7 +242,7 @@ project/
 
 |                                           ✨ 반응형 UI (Responsive UI )     |
 | :---------------------------------------------------------------------------------------: |
-| ![Image](https://github.com/user-attachments/assets/c041209b-12f5-4041-be61-0ae098f36dfb) |
+| ![Image](https://github.com/user-attachments/assets/81cb365c-6e5e-4244-9546-ab0d57cd0958) |
 
 - 모바일, 태블릿, PC 환경에서 반응형 UI를 지원합니다.
 
