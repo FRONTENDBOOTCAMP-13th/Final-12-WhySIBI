@@ -22,12 +22,6 @@ function MenuNavigation() {
   const { activeMenu, subMenuData, handleMenuClick, mainCategoryId } = useMenuStore();
   const [expandedMenu, setExpandedMenu] = useState<string | null>(null);
 
-    useEffect(() => {
-    if (pathname === '/' || (!pathname.startsWith('/community') && !pathname.startsWith('/shopping'))) {
-      handleMenuClick('');
-    }
-  }, [pathname]);
-
   const currentSubMenuItems: SubMenuItem[] =
     activeMenu === 'community'
       ? Object.entries(subMenuData.community.items).map(([label, item]) => ({
@@ -56,6 +50,12 @@ function MenuNavigation() {
 
   const { user } = useUserStore();
   const token = user?.token?.accessToken;
+
+  useEffect(() => {
+    if (pathname === '/' || (!pathname.startsWith('/community') && !pathname.startsWith('/shopping'))) {
+      handleMenuClick('');
+    }
+  }, [pathname]);
 
   return (
     <>
