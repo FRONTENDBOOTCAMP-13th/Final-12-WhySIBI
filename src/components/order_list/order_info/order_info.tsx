@@ -51,12 +51,12 @@ function OrderProductInfo({ _id, price, name, image, state }: OrderProduct) {
           >
             배송 조회
           </Link>
-          <Link
+          {/* <Link
             href={`/my_page/order/cancel/${_id}`}
             className="block rounded-radius-full xl:px-16 xl:py-3 lg:px-12 lg:py-2.5 md:px-8 md:py-2 border-2 border-columbia-blue-300 text-button-color mb-5 xl:text-base lg:text-sm md:text-xs whitespace-nowrap"
           >
             주문 &middot; 배송 취소
-          </Link>
+          </Link> */}
           <Link
             href={`/my_page/reviews/write/${_id}`}
             className="block rounded-radius-full xl:px-16 xl:py-3 lg:px-12 lg:py-2.5 md:px-8 md:py-2 border-2 text-button-color bg-columbia-blue-300 xl:text-base lg:text-sm md:text-xs whitespace-nowrap"
