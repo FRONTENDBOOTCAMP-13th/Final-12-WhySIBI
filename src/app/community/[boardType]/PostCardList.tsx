@@ -57,7 +57,7 @@ export default function PostCardList({
       <div className="search-wrapper flex justify-end mb-3">
         <RoomPostSearch></RoomPostSearch>
       </div>
-      <div className="post-header flex flex-col md:flex-row justify-between gap-4 lg:gap-0 pl-1 sm:pl-2 md:pl-5 ">
+      <div className="post-header flex md:flex-row justify-between gap-4 lg:gap-0 pl-1 sm:pl-2 md:pl-5 ">
         <div>
           <div className="w-fit">
             <Title title={boardTitle} subTitle={boardSub} />

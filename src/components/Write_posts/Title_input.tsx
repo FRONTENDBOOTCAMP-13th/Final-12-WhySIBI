@@ -7,7 +7,7 @@ interface TitleInputProps {
 
 export default function TitleInput({ value, onChange }: TitleInputProps) {
   return (
-    <div className="mt-6 w-[600px] font-variable flex border-b">
+    <div className="mt-6 w-[400px] md:w-[600px] font-variable flex border-b">
       <input
         type="text"
         value={value}
