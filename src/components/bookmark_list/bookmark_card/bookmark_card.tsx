@@ -10,9 +10,10 @@ function BookMarkCard({ title, _id, type, productImage }: BookMarkInfoProps) {
         <div className="relative w-full aspect-square rounded-radius-lg overflow-hidden mb-3">
           <Image
             src={
-              productImage ? productImage.path : `/image/room_photo/postThumbnail.svg`
+              productImage
+                ? String(productImage)
+                : `/image/room_photo/postThumbnail.svg`
             }
-            
             alt={`${_id}번째 게시물 사진`}
             fill
             className="object-cover"
