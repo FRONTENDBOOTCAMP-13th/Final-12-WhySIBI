@@ -30,14 +30,12 @@ export default function SubjectCategorySelect({
   return (
     <div className="flex flex-wrap gap-2 mt-5">
       {options.map(item => (
-        <>
           <SubjectDropdownCustom
             key={item.title}
             title={item.title}
             category={item.tag}
             onSelect={selected => handleSelect(item.title, selected)}
-          />
-        </>
+            ></SubjectDropdownCustom>
       ))}
     </div>
   );

@@ -29,8 +29,8 @@ export default async function MainShowRoom() {
                     }
                     alt="썸네일"
                     className="w-full h-30 object-cover mb-3 bg-livealone-columbia-blue"
-                    width={30}
-                    height={30}
+                    width={300}
+                    height={300}
                   />
                   <p className="text-xs font-variable font-bold text-gray-800">
                     {post.title}
@@ -64,8 +64,8 @@ export default async function MainShowRoom() {
                     }
                     alt="썸네일"
                     className="w-full h-30 object-cover mb-3 bg-livealone-columbia-blue"
-                    width={30}
-                    height={30}
+                    width={300}
+                    height={300}
                   />
                   <p className="text-xs font-variable font-bold text-gray-800">
                     {post.title}
