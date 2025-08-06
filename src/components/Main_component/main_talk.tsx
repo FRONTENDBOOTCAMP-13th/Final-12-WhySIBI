@@ -26,7 +26,7 @@ export default function MainTalk() {
 
   return (
     <>
-      <div className="md:p-4  community-wrapper w-full md:w-3xl">
+      <div className="md:p-4 community-wrapper w-full md:w-2xl">
         <div className="community bg-linear-to-b from-livealone-vanilla to-columbia-blue-100 rounded-t-4xl px-4 py-6 md:px-10 md:pt-10 md:pb-7">
           <Title title={'자취상담소🏠'} subTitle={'우리집 구해줘 홈즈'}></Title>
           <div className="list-wrapper font-variable mt-5">

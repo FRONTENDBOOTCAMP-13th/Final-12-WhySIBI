@@ -9,7 +9,7 @@ import MainTalk from '@/components/Main_component/main_talk';
 export default function Home() {
   return (
     <>
-      <div className="max-w-[1280px]  mx-auto my-0 ">
+      <div className="max-w-[1280px] mx-auto my-0 ">
         <MainBannerSlider />
         <div className="bg-white p-20">
           <MainCategorySection />
