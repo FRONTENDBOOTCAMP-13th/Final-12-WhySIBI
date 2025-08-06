@@ -32,11 +32,11 @@ function ProductSearchList() {
         sort,
       });
       if (res.ok === 1) {
-          const text = searchText.trim().toLowerCase().replace(/\s+/g, '');
-          const keywords = searchKeywords.map(k =>
-            k.trim().toLowerCase().replace(/\s+/g, ''),
-          ); // 비슷한 상품 찾기 (키워드 병렬로 받음)
-          const filter = res.item.filter((product: ProductListProps) => {
+        const text = searchText.trim().toLowerCase().replace(/\s+/g, '');
+        const keywords = searchKeywords.map(k =>
+          k.trim().toLowerCase().replace(/\s+/g, ''),
+        ); // 비슷한 상품 찾기 (키워드 병렬로 받음)
+        const filter = res.item.filter((product: ProductListProps) => {
           const name = product.name.toLowerCase().replace(/\s+/g, '');
           const productKeywords = product.keyword.map(k =>
             k.toLowerCase().replace(/\s+/g, ''),
@@ -44,8 +44,7 @@ function ProductSearchList() {
 
           const nameMatch = text && name.includes(text);
           const keywordMatch =
-            text &&
-            productKeywords.some(keyword => keyword.includes(text));
+            text && productKeywords.some(keyword => keyword.includes(text));
 
           const multiKeywordMatch =
             keywords.length > 0 &&
@@ -71,7 +70,7 @@ function ProductSearchList() {
 
   //상품 불러오기
   useEffect(() => {
-      if (searchKeywords.length > 0) {
+    if (searchKeywords.length > 0) {
       fetchProducts(); // 병렬 키워드 검색 우선
     } else if (searchText) {
       fetchProducts(); // 일반 검색
@@ -111,8 +110,11 @@ function ProductSearchList() {
               // 상품 배열이 1개부터는 상품 보여줌
               productData.map(product => {
                 const discount = product?.extra?.originalPrice
-                  ? `${Math.round(100 - (product.price * 100) / product.extra.originalPrice)}%`
-                  : ''; //할인율
+                  ? Math.round(
+                      100 - (product.price * 100) / product.extra.originalPrice,
+                    )
+                  : 0; //할인율
+                const discountVal = discount > 0 ? `${discount}%` : undefined;
                 return (
                   <ProductCard
                     id={product._id}
@@ -120,7 +122,7 @@ function ProductSearchList() {
                     name={product.name}
                     imageUrl={product.mainImages[0]?.path}
                     price={`${product.price.toLocaleString()}원`}
-                    discount={discount}
+                    discount={discountVal}
                     rating={product.extra?.star ? product.extra?.star : 0}
                     reviewCount={product?.replies}
                     isLiked={product.extra?.isLike ? true : false}

@@ -143,8 +143,11 @@ function ShoppingBestSection({ token }: { token: string | undefined }) {
           ) : (
             productData.map((product, index) => {
               const discount = product?.extra?.originalPrice
-                ? `${Math.round(100 - (product.price * 100) / product.extra.originalPrice)}%`
-                : ''; //할인율
+                ? Math.round(
+                    100 - (product.price * 100) / product.extra.originalPrice,
+                  )
+                : 0; //할인율
+              const discountVal = discount > 0 ? `${discount}%` : undefined;
               return (
                 <ProductCard
                   id={product._id}
@@ -152,7 +155,7 @@ function ShoppingBestSection({ token }: { token: string | undefined }) {
                   name={product.name}
                   imageUrl={product.mainImages[0]?.path}
                   price={`${product.price.toLocaleString()}원`}
-                  discount={discount}
+                  discount={discountVal}
                   rank={index + 1}
                   rating={product.extra?.star ? product.extra?.star : 0}
                   reviewCount={product?.replies}

@@ -21,9 +21,10 @@ export default function ShoppingForm({
   token,
 }: ShoppingFormType) {
   //할인율
-  const discountRate = Math.round(
-    ((originalPrice - price) / originalPrice) * 100,
-  );
+  const discountRate =
+    originalPrice > 0
+      ? Math.round(((originalPrice - price) / originalPrice) * 100)
+      : 0;
 
   const showErrorToast = useCallback(() => {
     toast.custom(
@@ -157,12 +158,17 @@ export default function ShoppingForm({
         <section>
           <h3 className="sr-only">가격정보</h3>
           <p className="pt-1">
-            <strong className="text-flame-250 text-2xl" aria-label="할인율">
-              {discountRate}%
-            </strong>
-            <s className="text-[#a7a7a7] text-xl ml-3" aria-label="정가">
-              {originalPrice.toLocaleString()}원
-            </s>
+            {/* 할인률이 0%이상일때만 */}
+            {discountRate > 0 && (
+              <>
+                <strong className="text-flame-250 text-2xl" aria-label="할인율">
+                  {discountRate}%
+                </strong>
+                <s className="text-[#a7a7a7] text-xl ml-3" aria-label="정가">
+                  {originalPrice.toLocaleString()}원
+                </s>
+              </>
+            )}
           </p>
           <p className="text-3xl font-black pt-2" aria-label="할인가">
             {price.toLocaleString()}
