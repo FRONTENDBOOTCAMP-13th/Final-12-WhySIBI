@@ -55,7 +55,7 @@ function MenuNavigation() {
     if (pathname === '/' || (!pathname.startsWith('/community') && !pathname.startsWith('/shopping'))) {
       handleMenuClick('');
     }
-  }, [pathname]);
+  }, [pathname, handleMenuClick]);
 
   return (
     <>

@@ -294,7 +294,7 @@ function MainCategorySection() {
           </li>
         </ul>
       </section>
-      <hr className="h-0.25 border-0 bg-gray-300 my-10" />
+      <hr className="h-0.25 border-0 bg-gray-300 my-20" />
     </>
   );
 }
