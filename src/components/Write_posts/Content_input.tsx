@@ -5,7 +5,7 @@ interface ContentInputProps {
 
 export default function ContentInput({ value, onChange }: ContentInputProps) {
   return (
-    <div className="mt-5 w-[600px] font-variable flex">
+    <div className="mt-5 w-[400px] md:w-[600px] font-variable flex">
       <textarea
         placeholder="내용을 입력해주세요."
         value={value}

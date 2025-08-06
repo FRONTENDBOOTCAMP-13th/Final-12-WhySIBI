@@ -10,9 +10,10 @@ import Image from 'next/image';
 interface ImageUploaderProps {
   image: string[];
   setImage: (image: string[]) => void;
+  title: string;
 }
 
-export default function ImageUploader({ image, setImage }: ImageUploaderProps) {
+export default function ImageUploader({ image, setImage, title }: ImageUploaderProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [preview, setPreview] = useState<string[]>([]);
   const [isUploading, setIsUploading] = useState(false);
@@ -71,9 +72,9 @@ export default function ImageUploader({ image, setImage }: ImageUploaderProps) {
 
 
   return (
-    <div className="w-[600px] mt-6">
+    <div className="w-[400px] md:w-[600px] mt-6">
       <p className="mb-4 ml-5 text-lg font-bold font-variable">
-        방을 자랑할 사진을 넣어주세요
+        {title}
         <span className="ml-3 text-gray-icon/50">{image.length}/{MAX_IMAGES}</span>
       </p>
 
