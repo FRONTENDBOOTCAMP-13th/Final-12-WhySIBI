@@ -22,7 +22,7 @@ export default function RecommendButton({
   return (
     <form action={handleRecommend}>
       <button
-        className={`cursor-pointer flex border-1 border-gray-350 h-7 w-31 gap-1  rounded-2xl items-center justify-center absolute bottom-0 right-0  text-sm  ${
+        className={`cursor-pointer flex border-1 border-gray-350 h-7 w-25 md:w-31 gap-1  rounded-2xl items-center justify-center absolute bottom-0 right-0  text-sm  ${
           isRecommended
             ? 'bg-flame-250 text-white'
             : 'text-gray-550 hover:bg-gray-50'
