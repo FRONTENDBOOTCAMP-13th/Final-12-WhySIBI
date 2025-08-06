@@ -80,7 +80,7 @@ export default async function ProductDetail({
             token={token?.value}
           ></ShoppingDetail>
 
-          <nav className="bg-[#d9d9d9] text-xl font-bold flex xl:gap-8 xl:pl-24">
+          <nav className="bg-[#d9d9d9] text-size-md md:text-xl font-bold flex pl-6  xl:gap-8 xl:pl-24">
             <Link
               href={'?tab=info'}
               scroll={false} // 이거 쓰면 링크 클릭할때마다 맨위로 안감
