@@ -13,13 +13,15 @@ import { getProductList } from '@/data/actions/products.fetch';
 import { ProductListProps } from '@/types';
 import SkeletonUI from '@/components/product_component/skeleton_ui';
 import Link from 'next/link';
+import useUserStore from '@/zustand/useUserStore';
 
 function MainProductSlider() {
   SwiperCore.use([Navigation, Scrollbar]);
 
   const [slideData, setSlideData] = useState<ProductListProps[]>([]);
   const [loading, setLoading] = useState(true);
-
+  const { user } = useUserStore();
+  const token = user?.token?.accessToken;
   useEffect(() => {
     const sliceProducts = async () => {
       try {
@@ -84,6 +86,7 @@ function MainProductSlider() {
                     rating={product.extra?.star ? product.extra?.star : 0}
                     reviewCount={product.replies}
                     isLiked={product.extra?.isLike ? true : false}
+                    token={token}
                     onClick={() => {}}
                   />
                 </SwiperSlide>

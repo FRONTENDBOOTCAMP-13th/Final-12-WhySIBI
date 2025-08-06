@@ -1,8 +1,8 @@
 {
   "user": [
     {
-      "email": "admin@market.com",
-      "password": "3333",
+      "email": "yeono@market.com",
+      "password": "$2b$10$S.8GNMDyvUF0xzujPtHBu.j5gtS19.OhRmYbpJBnCHg2S83WLx1T2",
       "name": "김연호",
       "phone": "01011112222",
       "address": "부산시 연제구",
@@ -28,8 +28,8 @@
       }
     },
     {
-      "email": "s1@market.com",
-      "password": "1234",
+      "email": "youjeans@market.com",
+      "password": "$2b$10$S.8GNMDyvUF0xzujPtHBu.j5gtS19.OhRmYbpJBnCHg2S83WLx1T2",
       "name": "정유진",
       "phone": "01022223333",
       "address": "부산시 연제구",
@@ -55,14 +55,14 @@
       }
     },
     {
-      "email": "s1@market.com",
-      "password": "5678",
+      "email": "hayoung@market.com",
+      "password": "$2b$10$S.8GNMDyvUF0xzujPtHBu.j5gtS19.OhRmYbpJBnCHg2S83WLx1T2",
       "name": "김하영",
       "phone": "01022223333",
       "address": "전라남도 목포",
       "type": "user",
       "loginType": "email",
-      "image": "/gollia.jpg",
+      "image": "uploadFiles/gollia.jpg",
       "extra": {
         "preference": "",
         "birthday": "11-23",
@@ -89,7 +89,7 @@
       "address": "부산 동래구 사직로 55-32(사직야구장)",
       "type": "user",
       "loginType": "email",
-      "image": "/uki.webp",
+      "image": "uploadFiles/uki.webp",
       "extra": {
         "preference": "",
         "birthday": "11-23",
@@ -116,7 +116,7 @@
       "address": "대전 한화생명 볼파크",
       "type": "user",
       "loginType": "email",
-      "image": "/whiteDog.jpg",
+      "image": "uploadFiles/whiteDog.jpg",
       "extra": {
         "preference": "",
         "birthday": "10-20",
@@ -143,7 +143,7 @@
       "address": "부산 개금 벚꽃길",
       "type": "user",
       "loginType": "email",
-      "image": "/monkey.jpg",
+      "image": "uploadFiles/monkey.jpg",
       "extra": {
         "preference": "",
         "birthday": "10-20",
@@ -3492,7 +3492,7 @@
         "image": "user-jayg.webp"
       },
       "title": "크기가 얼마만한가요?",
-      "content": "아이가 6살인데 가지고 놀기 적당한 크기인가요?",
+      "content": "아이가 6살인데 적당할까요?",
       "replies": [
         {
           "user": {
@@ -3500,7 +3500,7 @@
             "name": "정유진",
             "image": "user-neo.png"
           },
-          "content": "크기는 상품 상세정보에 나와 있습니다.",
+          "content": "네 충분할거같습니다.",
           "like": 5
         }
       ]
@@ -3721,8 +3721,8 @@
         "name": "김하영",
         "image": "user-neo.png"
       },
-      "title": "하영님 상담소 예시",
-      "content": "예시123123 나 김하영임"
+      "title": "바퀴벌레 어떻게 잡나요 ㅠㅠ",
+      "content": "너무 징그러움 진짜 일단 밥그릇으로 가둬놨는데 이거 어케요 ㅠ"
     },
 
     {
@@ -3735,8 +3735,74 @@
         "name": "김하영",
         "image": "user-neo.png"
       },
-      "title": "마 니들 목포 김하영 아나?",
-      "content": "예시123123 나 김하영임"
+      "title": "층간소음 고민",
+      "content": "윗집 진짜 개빡치네 아놔 문앞에 똥싸고 튈까요?"
+    },
+
+    {
+      "type": "talk",
+      "product_id": 4,
+      "seller_id": 2,
+      "views": 0,
+      "user": {
+        "_id": 3,
+        "name": "김하영",
+        "image": "user-neo.png"
+      },
+      "title": "양파를 샀는데",
+      "content": "너무 많은데 나눠드실분 ㅋㅋ ㅠㅠ"
+    },
+    {
+      "type": "talk",
+      "product_id": 4,
+      "seller_id": 2,
+      "views": 0,
+      "user": {
+        "_id": 3,
+        "name": "김하영",
+        "image": "user-neo.png"
+      },
+      "title": "첫 자취 시작입니다.",
+      "content": "자취꿀팁 많이 공유해주세요~"
+    },
+    {
+      "type": "talk",
+      "product_id": 4,
+      "seller_id": 2,
+      "views": 0,
+      "user": {
+        "_id": 3,
+        "name": "김하영",
+        "image": "user-neo.png"
+      },
+      "title": "백종원 유튜브보고 닭도리탕 따라했는데 망했음",
+      "content": "ㅅㄱ 구독취소 갑니다"
+    },
+    {
+      "type": "talk",
+      "product_id": 4,
+      "seller_id": 2,
+      "views": 0,
+      "user": {
+        "_id": 3,
+        "name": "김하영",
+        "image": "user-neo.png"
+      },
+      "title": "엄마보고싶다",
+      "content": "엄마보고싶다"
+    },
+    {
+      "type": "talk",
+      "product_id": 4,
+      "seller_id": 2,
+      "views": 0,
+      "user": {
+        "_id": 3,
+        "name": "김하영",
+        "image": "user-neo.png"
+      },
+      "title": "부산에서 자취 시작했는데",
+      "content": "놀곳 추천좀 해주세요"
     }
   ],
 
