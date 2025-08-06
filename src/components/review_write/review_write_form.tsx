@@ -99,7 +99,6 @@ export default function ReviewWriteForm({
           <div className="mt-12 flex gap-4">
             {imageSrc && (
               <Image
-                key={'1'}
                 src={imageSrc}
                 alt="리뷰 등록 이미지"
                 width={100}

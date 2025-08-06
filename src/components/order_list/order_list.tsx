@@ -54,9 +54,9 @@ export default function OrderList({ orderItem }: OrderListProp) {
         <nav className="xl:mt-20 lg:mt-16 md:mt-12 mt-8">
           <ul className="flex flex-col flex-wrap xl:gap-16 lg:gap-12 md:gap-10 gap-8">
             {sliceData?.map(order =>
-              order.products.map((product, i) => (
+              order.products.map(product => (
                 <OrderProductInfo
-                  key={i}
+                  key={order._id}
                   orderId={String(order._id)}
                   _id={product._id}
                   price={product.price}
