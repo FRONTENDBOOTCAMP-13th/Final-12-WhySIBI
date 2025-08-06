@@ -40,14 +40,20 @@ export default async function PostCardPage({ params }: ListPageProps) {
   if (boardType === 'showRoom') {
     return (
       <>
-        <div>
-          <ToastDisplay></ToastDisplay>
+      <div className="max-w-[1280px]  mx-auto my-0 ">
+        <ToastDisplay></ToastDisplay>
+        {res.ok ? (
           <PostCardList
             boardType={boardType}
             posts={res.ok ? res.item : []}
             token={token?.value as string}
           />
-        </div>
+        ) : (
+          <p className="text-center text-gray-500 py-6 sm:py-8 md:py-12 text-sm sm:text-base">
+            {res.message}
+          </p>
+        )}
+      </div> 
       </>
     );
   }

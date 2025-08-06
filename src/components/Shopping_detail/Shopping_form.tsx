@@ -100,7 +100,7 @@ export default function ShoppingForm({
       handleAddBookmark();
     }
   };
-  console.log(myBookmarkId);
+  // console.log(myBookmarkId);
   return (
     <section className="min-w-[500] flex flex-col items-center relative">
       <div>
