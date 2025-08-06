@@ -6,19 +6,19 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useActionState, useEffect, useState } from 'react';
 import { User } from '@/types';
+import useUserStore from '@/zustand/useUserStore';
 interface EditInfoFormProp {
   user_id: string;
-  token: string;
   MyInfo: User;
 }
 
 export default function EditInfoForm({
   user_id,
-  token,
   MyInfo,
 }: EditInfoFormProp) {
   //이미지 주소 추출
   const [imageSrc, setImageSrc] = useState('');
+  const { setUser, user } = useUserStore(state => state);
   const handleFilePath = (e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement;
     const file = target.files?.[0];
@@ -53,23 +53,63 @@ export default function EditInfoForm({
     };
     userData();
   }, [MyInfo]);
-
+  console.log(userInfo);
   //회원정보 수정
   const [state, formAction, isLoading] = useActionState(EditUserInfo, null);
   const navigation = useRouter();
   useEffect(() => {
     if (state?.ok) {
       alert('회원 정보 수정이 완료되었습니다. 메인 페이지로 이동합니다.');
-      navigation.replace('/');
+      setUser({
+        _id: state.item._id,
+        email: state.item.email,
+        name: state.item.name,
+        nickname: state.item.nickname,
+        type: state.item.type,
+        image: state.item.image || userInfo?.image,
+        phone: state.item.phone,
+        token: {
+          accessToken:
+            state.item.token?.accessToken ||
+            (user?.token?.accessToken as string),
+          refreshToken:
+            state.item.token?.refreshToken ||
+            (user?.token?.accessToken as string),
+        },
+        extra: {
+          addressBook: [
+            {
+              id: state.item.extra.addressBook[0].id,
+              name: state.item.extra.addressBook[0].name,
+              value: state.item.extra.addressBook[0].value,
+            },
+          ],
+          preference: state.item.extra.preference || [],
+          birthday: state.item.extra.birthday,
+        },
+      });
+      navigation.push('/');
+      // redirect('/');
     }
-  }, [state, navigation]);
+  }, [
+    navigation,
+    setUser,
+    state,
+    user?.token?.accessToken,
+    user?.token?.refreshToken,
+    userInfo?.image,
+  ]);
 
   return (
     <form
       action={formAction}
       className="col-start-2 col-end-4 mt-20 max-w-[46.25rem]"
     >
-      <input type="hidden" name="token" value={token || ''} />
+      <input
+        type="hidden"
+        name="token"
+        value={user?.token?.accessToken || ''}
+      />
       <input type="hidden" name="user_id" value={user_id} />
       <div className={isClick ? 'hidden' : 'block'}>
         <div className="flex items-center gap-10">

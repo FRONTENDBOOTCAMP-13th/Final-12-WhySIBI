@@ -145,7 +145,6 @@ export async function EditUserInfo(
         'Client-Id': CLIENT_ID,
       },
     });
-
     return { ok: 1, item: res.data.item };
   } catch (error) {
     // 네트워크 오류 처리

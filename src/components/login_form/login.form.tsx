@@ -111,6 +111,7 @@ export default function LoginForm() {
     );
   }, []);
 
+  console.log(userState);
   useEffect(() => {
     if (userState) {
       if (userState?.ok) {

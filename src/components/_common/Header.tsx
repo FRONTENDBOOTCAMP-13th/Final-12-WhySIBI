@@ -62,7 +62,7 @@ export default function Header() {
     showSuccessToast();
     router.refresh();
   };
-  
+
   return (
     <header className="pt-16 w-full vertical-stripes">
       <div className="max-w-[1280px] mx-auto">
@@ -82,14 +82,14 @@ export default function Header() {
             <form onSubmit={handleLogout}>
               <div className="col-start-3 logout_button_area flex flex-wrap items-center justify-end gap-1 sm:gap-2 md:gap-3 xl:mr-13 lg:mr-8 md:mr-4 sm:mr-3 mr-2">
                 <Image
-                  src={user.image ? user?.image : '/image/image/profile.png'}
+                  src={user.image ? user?.image : '/image/profile.png'}
                   width="60"
                   height="60"
                   alt={`${user.name} 프로필 이미지`}
                   className="xl:w-[60px] xl:h-[60px] lg:w-[50px] lg:h-[50px] md:w-[45px] md:h-[45px] sm:w-[38px] sm:h-[38px] w-[32px] h-[32px] object-cover rounded-full sm:mr-2 mr-1"
                 />
                 <span className="xl:text-base lg:text-sm md:text-sm sm:text-xs text-[10px] whitespace-nowrap hidden sm:inline">
-                  {user.name}님 :)
+                  {user.nickname}님 :)
                 </span>
                 <button
                   type="submit"
