@@ -89,5 +89,6 @@ export default function PostCardList({
           )}
       </div>
     </div>
+    </>
   );
 }

@@ -51,7 +51,6 @@ export default function DetailSimilar({ products }: ProductProps) {
   };
 
   return (
-    <div className="w-[600px] mt-20 text-center">
      <div className="min-w-[15.625rem] max-w-[18.75rem] md:max-w-[600px] md:min-w-2xl mt-20 text-center">
       <h2 className="font-bold w-full text-xl">같은 상품으로 집을 꾸며봐요</h2>
       <div className="mt-8 flex font-variable justify-center">
@@ -114,8 +113,7 @@ export default function DetailSimilar({ products }: ProductProps) {
         }}
           modules={[Navigation]}
           onSwiper={setSwiperInstance}
-          className="min-w-[15.625rem] max-w-[18.75rem] md:max-w-[600px] md:min-w-2xl overflow-hidden h-40 gap-4 mb-6 bg-gray-300 rounded-xl">
-        >
+          className="min-w-[15.625rem] max-w-[18.75rem] md:max-w-[504px] md:min-w-[504px] overflow-hidden h-40 gap-4 mb-6 bg-gray-300 rounded-xl">
           {products.map(product => (
             <SwiperSlide
               key={product._id}
