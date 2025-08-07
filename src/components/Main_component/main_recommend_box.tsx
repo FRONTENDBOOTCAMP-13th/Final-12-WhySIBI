@@ -23,14 +23,16 @@ function MainRecommendBox() {
   const token = user?.token?.accessToken;
   //비회원 - 태그 값 불러옴
   const handleTag = () => {
-    const checkedInputs = document.querySelectorAll(
-      'input[name="preference"]:checked',
-    );
-    const selectedTags = Array.from(checkedInputs)
-      .map(input => (input as HTMLInputElement).dataset.valueText || '')
-      .filter(Boolean) as string[];
+    setTimeout(() => {
+      const checkedInputs = document.querySelectorAll(
+        'input[name="preference"]:checked',
+      );
+      const selectedTags = Array.from(checkedInputs)
+        .map(input => (input as HTMLInputElement).dataset.valueText || '')
+        .filter(Boolean) as string[];
 
-    setCheckTag([...new Set(selectedTags)]);
+      setCheckTag([...new Set(selectedTags)]);
+    }, 100); // 딜레이 추가 - 토글 값이 씹히는 문제 해결
   };
 
   const productsList = useCallback(async () => {
