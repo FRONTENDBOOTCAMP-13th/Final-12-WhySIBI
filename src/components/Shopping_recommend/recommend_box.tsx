@@ -57,7 +57,7 @@ function RecommendBox({ token }: { token?: string | undefined }) {
   // }, [token]);
   const productsList = useCallback(async () => {
     try {
-      setLoading(true); // 로딩 상태 추가
+      // setLoading(true); // 로딩 상태 추가
       const res = await getProductList({}, token);
       if (res.ok === 1) {
         // console.log(res.item);

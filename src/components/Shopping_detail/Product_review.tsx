@@ -140,8 +140,8 @@ export default function ProductReview({ stars, replies }: ProductReviewProps) {
 
   return (
     <section className="max-w-[1028px] mx-auto mt-12">
-      <div className="flex justify-between border-b-2 pb-3 px-2 lg:px-0 border-[#a5a5a5]">
-        <h3 className="text-xl font-semibold text-gray-550">
+      <div className="flex justify-between items-center border-b-2 pb-3 px-2 lg:px-0 border-[#a5a5a5] text-xs md:text-size-md">
+        <h3 className="text-size-md md:text-xl font-semibold text-gray-550">
           리뷰 {replies.length}
         </h3>
         <div className="flex  items-center gap-8">

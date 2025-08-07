@@ -27,7 +27,7 @@ export default function InquiryList({ item }: InquiryListProps) {
         onClick={() => {
           setActive(!active);
         }}
-        className="flex p-5 border-b-1 border-gray-150 text-gray-550 font-bold items-center cursor-pointer"
+        className="flex p-5 border-b-1 border-gray-150 text-gray-550 font-bold items-center cursor-pointer text-size-sm md:text-size-md"
       >
         <h4 className=" flex-1 text-center truncate">{item.title}</h4>
         <span className="w-[150px] text-center">{item.user.name}</span>

@@ -62,8 +62,8 @@ export default function PostDetail({ post, token }: PostDetailProps) {
   };
 
   return (
-    <div className="text-center px-4 sm:px-0">
-      <div className="title-wrapper min-w-[15.625rem] max-w-[18.75rem] md:max-w-[600px] md:min-w-2xl text-center overflow-hidden mx-auto">
+    <div className="text-center w-full px-4 sm:px-0">
+      <div className="title-wrapper w-[80%]  min-w-[250px] md:max-w-[700px] md:min-w-2xl text-center overflow-hidden mx-auto">
         <Image
           src={post.image?.[0] || '/image/room_photo/postThumbnail.svg'}
           alt="썸네일"
@@ -117,7 +117,7 @@ export default function PostDetail({ post, token }: PostDetailProps) {
         님의 집
       </span>
 
-      <div className="mt-4 sm:mt-6 md:mt-8">
+      <div className="mt-4 mx-auto sm:mt-6 md:mt-8">
         <DetailSwiper images={post.image?.slice(1) ?? []}></DetailSwiper>
       </div>
 

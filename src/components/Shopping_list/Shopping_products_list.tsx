@@ -7,7 +7,7 @@ import { getProductList } from '@/data/actions/products.fetch';
 import { ProductListProps } from '@/types';
 import useMenuStore from '@/zustand/menuStore';
 import { useParams } from 'next/navigation';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 function ShoppingProductsList({ token }: { token?: string | undefined }) {
   const [productData, setProductData] = useState<ProductListProps[]>([]);
@@ -22,59 +22,34 @@ function ShoppingProductsList({ token }: { token?: string | undefined }) {
     | 'high-review'
     | 'best-selling'
   >('latest'); //신상품 기본필터
-  const { mainCategoryId, subCategoryId, handleMenuClick } = useMenuStore(); //zustand 에서 카테고리 상태 가져옴
+  const { mainCategoryId, subCategoryId, handleMenuClick, resetMenu } =
+    useMenuStore(); //zustand 에서 카테고리 상태 가져옴
   const params = useParams();
   const [loading, setLoading] = useState(true);
 
+  //현재 카테고리 값 확인
+  const currentRef = useRef<{ mainId: string; subId: string | null }>({
+    mainId: 'PC0301', //기본값
+    subId: null,
+  });
+
   //주소에서 카테고리 값 가져오기
   useEffect(() => {
-    if (params.mainCategoryId) {
-      handleMenuClick(
-        'shopping',
-        params.mainCategoryId as string,
-        params.subCategoryId as string,
-      );
+    const mainId = params.mainCategoryId as string;
+    const subId = params.subCategoryId as string;
+    if (mainId) {
+      handleMenuClick('shopping', mainId, subId || undefined);
+      currentRef.current = { mainId, subId: subId || null };
+    } else {
+      resetMenu('shopping', 'PC0301', null);
+      currentRef.current = { mainId: 'PC0301', subId: null };
     }
-  }, [params.mainCategoryId, params.subCategoryId, handleMenuClick]);
-
-  //상품 불러오기
-  // useEffect(() => {
-  //   const productsList = async () => {
-  //     try {
-  //       const res = await getProductList(
-  //         {
-  //           sort, //상품 정렬하기
-  //           page, ////상품 slice해서 보여주기
-  //           limit: 12,
-  //           custom: {
-  //             //상품 카테고리별로 필터
-  //             ...(mainCategoryId ? { 'extra.category': mainCategoryId } : {}),
-  //             ...(subCategoryId ? { 'extra.category': subCategoryId } : {}),
-  //           },
-  //         },
-  //         token,
-  //       );
-  //       if (res.ok === 1) {
-  //         console.log(res.item);
-  //         setProductData(res.item);
-  //         setTotalPage(res.pagination.totalPages);
-  //         setTotalItems(res.pagination.total);
-  //       } else {
-  //         console.error(res.message);
-  //       }
-  //     } catch (err) {
-  //       console.error('상품을 불러오지 못했습니다.', err);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-
-  //   productsList();
-  // }, [sort, page, mainCategoryId, subCategoryId, token]);
+    setPage(1);
+  }, [params.mainCategoryId, params.subCategoryId, handleMenuClick, resetMenu]);
 
   const productsList = useCallback(async () => {
     try {
-      setLoading(true); // 로딩 상태 추가
+      // setLoading(true); // 로딩 상태 추가
       const res = await getProductList(
         {
           sort,
@@ -101,8 +76,12 @@ function ShoppingProductsList({ token }: { token?: string | undefined }) {
     }
   }, [sort, page, mainCategoryId, subCategoryId, token]);
 
+  //딜레이 - 주스탄드 상태랑 충돌하는거 임시 해결
   useEffect(() => {
-    productsList();
+    const timer = setTimeout(() => {
+      productsList();
+    }, 100);
+    return () => clearTimeout(timer);
   }, [productsList]);
 
   //상품 페이지네이션 핸들러

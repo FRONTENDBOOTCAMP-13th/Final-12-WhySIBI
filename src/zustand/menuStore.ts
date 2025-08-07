@@ -52,6 +52,7 @@ interface MenuState {
   subCategoryId: string | null;
   subMenuData: SubMenuData;
   handleMenuClick: (menuName: string, mainId?: string, subId?: string) => void;
+  resetMenu: (menuName: string, mainId?: string, subId?: string | null) => void;
 }
 
 const useMenuStore = create<MenuState>(set => ({
@@ -165,6 +166,12 @@ const useMenuStore = create<MenuState>(set => ({
       subCategoryId: subId || null,
     });
   },
+  resetMenu: (menuName, mainId, subId) =>
+    set({
+      activeMenu: menuName || 'shopping',
+      mainCategoryId: mainId || 'PC0301',
+      subCategoryId: subId || null,
+    }),
 }));
 
 export default useMenuStore;

@@ -17,10 +17,10 @@ function MainCategorySection() {
           <Swiper
             modules={[Scrollbar]}
             spaceBetween={16}
-            slidesPerView={2.5}
+            slidesPerView={4}
             centeredSlides={false}
             breakpoints={{
-              480: { slidesPerView: 2 },
+              480: { slidesPerView: 4 },
               640: { slidesPerView: 4 },
             }}
             grabCursor={true} //마우스 선택

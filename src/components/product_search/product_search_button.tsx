@@ -23,7 +23,15 @@ function ProductSearchButton() {
 
   //검색창 뒤 백그라운드 제어
   useEffect(() => {
-    document.body.style.overflow = isOpen ? 'hidden' : '';
+    const prev = document.body.style.overflow;
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+    return () => {
+      document.body.style.overflow = prev;
+    };
   }, [isOpen]);
 
   return (
@@ -52,7 +60,7 @@ function ProductSearchButton() {
 
       {/* 검색 슬라이드 모달 */}
       <div
-        className={`w-[100vw] sm:w-[500px] h-full fixed top-0 right-0 z-20 p-10  bg-white transition-transform duration-500 ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
+        className={`w-[100vw] sm:w-[500px] overflow-y-auto h-full fixed top-0 right-0 z-20 p-10  bg-white transition-transform duration-500 ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
       >
         <button
           className="absolute right-10 text-gray-500 cursor-pointer"

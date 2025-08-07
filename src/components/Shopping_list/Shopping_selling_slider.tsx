@@ -22,27 +22,9 @@ function ShoppingSellingSlider({ token }: { token?: string | undefined }) {
   const [slideData, setSlideData] = useState<ProductListProps[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // useEffect(() => {
-  //   const sliceProducts = async () => {
-  //     try {
-  //       const res = await getProductList({}, token);
-  //       if (res.ok === 1) {
-  //         setSlideData(res.item.slice(0, 5)); //5개만 가져오기
-  //       } else {
-  //         console.error(res.message);
-  //       }
-  //     } catch (err) {
-  //       console.error('상품을 불러오지 못했습니다.', err);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-
-  //   sliceProducts();
-  // }, [token]);
   const sliceProducts = useCallback(async () => {
     try {
-      setLoading(true); // 로딩 상태 추가
+      // setLoading(true); // 로딩 상태 추가
       const res = await getProductList(
         {
           sort: 'best-selling',
@@ -63,8 +45,13 @@ function ShoppingSellingSlider({ token }: { token?: string | undefined }) {
     }
   }, [token, mainCategoryId]);
 
+  // 딜레이 - (임시) 상품리스트가 먼저 로드된 후에 실행
   useEffect(() => {
-    sliceProducts();
+    const timer = setTimeout(() => {
+      sliceProducts();
+    }, 500);
+
+    return () => clearTimeout(timer);
   }, [sliceProducts]);
   return (
     <>
