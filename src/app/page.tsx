@@ -11,7 +11,7 @@ export default function Home() {
     <>
       <div className="max-w-[1280px]  mx-auto my-0 ">
         <MainBannerSlider />
-        <div className="bg-white p-20">
+        <div className="bg-white p-5 sm:p-20">
           <MainCategorySection />
           <MainBestProductSection />
           <MainRecommendProductSection />

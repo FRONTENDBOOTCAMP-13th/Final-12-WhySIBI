@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 export default function ProductInfo() {
   return (
-    <section className="py-24">
+    <section className="py-24 px-5 sm:px-10">
       <h3 className="sr-only">상품정보</h3>
       <Image
         className="my-0 mx-auto"

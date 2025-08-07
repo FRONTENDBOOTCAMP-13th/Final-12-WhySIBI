@@ -216,7 +216,7 @@ export default function BookMarkList({
                         />
                       ))}
                     </div>
-                    <div className="w-4/5  mt-5">
+                    <div className="w-full xl:mt-5 lg:mt-4 md:mt-3 mt-2">
                       <Pagenation
                         page={page}
                         totalPage={totalPage}
