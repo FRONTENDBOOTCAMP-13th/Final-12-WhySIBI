@@ -30,7 +30,7 @@ export default async function ProductInquiry({ id }: { id: string }) {
         </div>
       </div>
 
-      <div className="flex border-b-2 p-5 border-gray-450 text-gray-550 font-bold">
+      <div className="flex border-b-2 p-5 border-gray-450 text-gray-550 font-bold text-size-sm md:text-size-md">
         <div className="flex-1 text-center">제목</div>
         <div className="w-[150px] text-center">작성자</div>
         <div className=" w-[150px] text-center">작성일</div>

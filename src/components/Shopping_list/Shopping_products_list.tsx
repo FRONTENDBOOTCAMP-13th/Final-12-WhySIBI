@@ -49,7 +49,7 @@ function ShoppingProductsList({ token }: { token?: string | undefined }) {
 
   const productsList = useCallback(async () => {
     try {
-      setLoading(true); // 로딩 상태 추가
+      // setLoading(true); // 로딩 상태 추가
       const res = await getProductList(
         {
           sort,

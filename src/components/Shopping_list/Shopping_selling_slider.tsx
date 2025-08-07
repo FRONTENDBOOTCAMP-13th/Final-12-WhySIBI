@@ -24,7 +24,7 @@ function ShoppingSellingSlider({ token }: { token?: string | undefined }) {
 
   const sliceProducts = useCallback(async () => {
     try {
-      setLoading(true); // 로딩 상태 추가
+      // setLoading(true); // 로딩 상태 추가
       const res = await getProductList(
         {
           sort: 'best-selling',
