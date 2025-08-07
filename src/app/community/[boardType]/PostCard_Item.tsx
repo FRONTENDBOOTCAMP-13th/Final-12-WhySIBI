@@ -4,7 +4,10 @@ import Image from 'next/image';
 import { Post } from '@/types';
 // import { useBookmarkStore } from '@/zustand/bookMarkStore';
 import { AddBookMark, DeleteBookMark } from '@/data/actions/bookmark';
-import { redirect } from 'next/navigation';
+// import { redirect } from 'next/navigation';
+import toast from 'react-hot-toast';
+import { useCallback } from 'react';
+import { useRouter } from 'next/navigation';
 
 interface PostCardItemProps {
   post: Post;
@@ -29,6 +32,57 @@ export default function PostCardItem({
   // const isBookmarked = useBookmarkStore(state => state.isBookmarked(post._id));
   const _id = Number(post._id);
   const type = post.type;
+
+  const router = useRouter();
+
+  const showErrorToast = useCallback(() => {
+    toast.custom(
+      t => (
+        <div
+          className={`
+          ${t.visible ? 'animate-in slide-in-from-bottom-full' : 'animate-out slide-out-to-bottom-full'}
+          max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-red-200 p-4 border-l-4 border-red-500
+        `}
+          role="alert"
+          aria-live="assertive"
+          aria-label="찜하기 실패알림"
+        >
+          <div className="flex items-center">
+            {/* 에러 아이콘 */}
+            <div className="flex-shrink-0">
+              <div className="flex items-center justify-center h-8 w-8 rounded-full bg-red-100">
+                <svg
+                  className="h-5 w-5 text-red-500"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </div>
+            </div>
+
+            <div className="ml-3 flex-1">
+              <p className="text-sm font-medium text-red-800 mb-1">
+                로그인이 필요합니다.
+              </p>
+            </div>
+          </div>
+        </div>
+      ),
+      {
+        duration: 5000,
+        position: 'top-center',
+      },
+    );
+  }, []);
+
   const getBookmarkType = (postType: string) => {
     switch (postType) {
       case 'talk':
@@ -49,7 +103,7 @@ export default function PostCardItem({
       post.myBookmarkId as number,
     );
     if (result.ok === 1) {
-      redirect(`/community/talk/${_id}`);
+      router.refresh();
     }
   };
 
@@ -62,11 +116,17 @@ export default function PostCardItem({
     );
 
     if (result.ok === 1) {
-      redirect(`/community/showRoom`);
+      router.refresh();
     }
   };
 
-  const handleBookmark = () => {
+  const handleBookmark = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    if (!token) {
+      showErrorToast();
+      return;
+    }
+
     if (post.myBookmarkId !== undefined) {
       handleDeleteBookmark();
     } else {
