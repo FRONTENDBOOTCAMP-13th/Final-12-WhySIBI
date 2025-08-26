@@ -154,16 +154,27 @@ export default function ProductPurchaseButton({
     }
   }, [state, showSuccessToast, showErrorToast, token]);
 
+  const productQuery = encodeURIComponent(JSON.stringify(product));
+
   return (
-    <form action={formAction}>
-      <input name="product" value={JSON.stringify(product)} hidden readOnly />
-      <input name="token" value={token} hidden readOnly />
-      <button
-        disabled={isPending}
-        className={`box-border cursor-pointer bg-flame-250 w-[196px] h-[48px] text-white border-2 border-flame-250 rounded-sm font-bold`}
-      >
-        바로구매
-      </button>
-    </form>
+    // <form action={formAction}>
+    //   <input name="product" value={JSON.stringify(product)} hidden readOnly />
+    //   <input name="token" value={token} hidden readOnly />
+    //   <button
+    //     disabled={isPending}
+    //     className={`box-border cursor-pointer bg-flame-250 w-[196px] h-[48px] text-white border-2 border-flame-250 rounded-sm font-bold`}
+    //   >
+    //     바로구매
+    //   </button>
+    // </form>
+    <button
+      disabled={isPending}
+      className={`box-border cursor-pointer bg-flame-250 w-[196px] h-[48px] text-white border-2 border-flame-250 rounded-sm font-bold`}
+      onClick={() => {
+        router.push(`/order?product=${productQuery}`);
+      }}
+    >
+      바로구매
+    </button>
   );
 }
