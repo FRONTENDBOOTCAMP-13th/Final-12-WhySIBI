@@ -2,7 +2,10 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
-export default function MyPageMenuList() {
+interface MyPageMenuListProps {
+  userType: string;
+}
+export default function MyPageMenuList({ userType }: MyPageMenuListProps) {
   const anchorPathName = usePathname();
   const isAnchorMenuActive = (path: string) =>
     anchorPathName === path ? 'text-menu-text' : '';
@@ -51,6 +54,28 @@ export default function MyPageMenuList() {
               북마크&찜
             </Link>
           </li>
+          {userType === 'seller' ? (
+            <>
+              <li>
+                <Link
+                  href="/my_page/product_registration"
+                  className={`active:text-menu-text ${isAnchorMenuActive('/my_page/product_registration')}`}
+                >
+                  상품 등록
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/my_page/product_registration"
+                  className={`active:text-menu-text ${isAnchorMenuActive('')}`}
+                >
+                  등록한 상품 조회
+                </Link>
+              </li>
+            </>
+          ) : (
+            <></>
+          )}
         </ul>
       </nav>
 
