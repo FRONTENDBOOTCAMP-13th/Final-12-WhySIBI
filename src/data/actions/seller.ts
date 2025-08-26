@@ -48,11 +48,13 @@ export async function ProductRegistration(
       }
     }
     const body = {
+      mainImages: formData.get('mainImages'),
       name: formData.get('name'),
       sale: formData.get('sale'),
       price: formData.get('price'),
       salePrice: formData.get('salePrice'),
       Detailed: formData.get('Detailed'),
+      quantity: formData.get('quantity'),
       extra: {
         tag: formData.getAll('preference'),
         color: [
