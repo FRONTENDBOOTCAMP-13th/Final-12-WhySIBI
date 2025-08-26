@@ -54,19 +54,20 @@ export async function ProductRegistration(
       salePrice: formData.get('salePrice'),
       Detailed: formData.get('Detailed'),
       extra: {
-        birthday:
-          formData.get('birth_year') +
-          '-' +
-          formData.get('birth_month') +
-          '-' +
-          formData.get('birth_day'),
-        preference: formData.getAll('preference'),
-        addressBook: [
+        tag: formData.getAll('preference'),
+        color: [
           {
             name: formData.get('address_name'),
             value: formData.get('address_value'),
           },
         ],
+        size: [
+          {
+            name: formData.get('address_name'),
+            value: formData.get('address_value'),
+          },
+        ],
+        category: [formData.get('address_value')],
       },
       ...(image ? { image } : {}),
     };
