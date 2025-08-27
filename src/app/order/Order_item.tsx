@@ -3,7 +3,7 @@
 import useUserStore from '@/zustand/useUserStore';
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 interface ProductData {
   _id: number;
@@ -29,7 +29,9 @@ interface ProductResponse {
 export default function OrderItem() {
   const searchParams = useSearchParams();
   const [productData, setProductData] = useState<ProductData | null>(null);
-  const [productImg, setProductImg] = useState<ProductResponse | null>(null);
+  const [productDetail, setProductDetail] = useState<ProductResponse | null>(
+    null,
+  );
   const { user } = useUserStore();
   const token = user?.token?.accessToken;
 
@@ -41,7 +43,7 @@ export default function OrderItem() {
     }
   }, [searchParams]);
 
-  useEffect(() => {
+  const fetchProduct = useCallback(
     async function fetchProduct() {
       if (productData && token) {
         const response = await fetch(
@@ -55,33 +57,50 @@ export default function OrderItem() {
           },
         );
         const data = await response.json();
-        setProductImg(data);
+        setProductDetail(data);
       }
-    }
+    },
+    [productData, token],
+  );
+
+  useEffect(() => {
     fetchProduct();
-  }, [productData, token]);
+  }, [fetchProduct]);
 
-  const productImage = productImg?.item?.mainImages[0].path;
-  const productAlt = productImg?.item?.mainImages[0].originalname;
-  const validImage = productImage && productAlt;
+  const productImage = productDetail?.item?.mainImages[0]?.path;
+  const productAlt = productDetail?.item?.mainImages[0]?.originalname;
 
-  console.log('이미지 불러오기', productImg);
+  console.log('이미지 불러오기', productDetail);
   console.log('이게된다고?', productData);
 
   return (
-    <li className="px-5 pt-6 pb-6">
-      주문 아이템
-      {validImage ? (
+    <li className="px-5 pt-6 pb-6 flex">
+      {productImage && productAlt ? (
         <Image
           src={productImage}
-          className="max-w-30 max-h-33 rounded-md"
+          className="w-40 h-40 rounded-md"
           width={80}
           height={80}
           alt={productAlt}
         ></Image>
       ) : (
-        <div>이미지 없음</div>
+        <div>이미지 불러오는중...</div>
       )}
+      <section>
+        <h3>{productDetail?.item?.name}</h3>
+        <p>
+          옵션 | [color] {productData?.color} / [size] {productData?.size}
+        </p>
+        <p>수량 | {productData?.quantity}</p>
+        <p>배송 | 무료</p>
+        {productDetail?.item?.price && productData?.quantity ? (
+          <p>
+            총 상품금액 | {productDetail?.item?.price * productData?.quantity}
+          </p>
+        ) : (
+          <div> 총 상품금액 | 계산중...</div>
+        )}
+      </section>
     </li>
   );
 }
