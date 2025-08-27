@@ -1,20 +1,14 @@
-'use client';
-
-import { useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import OrderMain from './Order_main';
 
 export default function Order() {
-  const searchParams = useSearchParams();
-  const [productData, setProductData] = useState(null);
-
-  useEffect(() => {
-    const productParam = searchParams.get('product');
-
-    const decodedProduct = JSON.parse(decodeURIComponent(productParam));
-    setProductData(decodedProduct);
-  }, [searchParams]);
-
-  console.log('이게된다고?', productData);
-
-  return <div>주문 목록 페이지 입니다.</div>;
+  return (
+    <div>
+      <section className="bg-white md:min-w-[640px] lg:min-w-[1024px] xl:min-w-[1280px] pb-24">
+        <div className="max-w-[1280px] mx-auto pt-12 pb-6">
+          <h2 className="text-3xl font-bold mb-2">주문서 🧾</h2>
+        </div>
+        <OrderMain />
+      </section>
+    </div>
+  );
 }
