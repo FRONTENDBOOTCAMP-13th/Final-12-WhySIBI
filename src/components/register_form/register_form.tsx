@@ -1,5 +1,5 @@
 'use client';
-import MyTheme from '@/components/my_theme/page';
+import MyTheme from '@/components/my_theme/my_theme';
 import InputId from '@/components/Input/Input_id';
 import { createUser } from '@/data/actions/user';
 import Image from 'next/image';

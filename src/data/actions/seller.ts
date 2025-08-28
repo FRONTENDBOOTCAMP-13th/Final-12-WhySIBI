@@ -52,24 +52,16 @@ export async function ProductRegistration(
       name: formData.get('name'),
       sale: formData.get('sale'),
       price: formData.get('price'),
+      shippingFees: formData.get('shippingFees:'),
       salePrice: formData.get('salePrice'),
       Detailed: formData.get('Detailed'),
       quantity: formData.get('quantity'),
+      keyword: formData.getAll('keyword'),
       extra: {
-        tag: formData.getAll('preference'),
-        color: [
-          {
-            name: formData.get('address_name'),
-            value: formData.get('address_value'),
-          },
-        ],
-        size: [
-          {
-            name: formData.get('address_name'),
-            value: formData.get('address_value'),
-          },
-        ],
-        category: [formData.get('address_value')],
+        category: formData.getAll('category'),
+        color: formData.getAll('color'),
+        size: formData.getAll('size'),
+        tag: formData.get('tag'),
       },
       ...(image ? { image } : {}),
     };

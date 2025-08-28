@@ -1,5 +1,5 @@
 'use client';
-import MyTheme from '@/components/my_theme/page';
+import MyTheme from '@/components/my_theme/my_theme';
 import InputEdit from '@/components/Input/Input_edit';
 import { EditUserInfo } from '@/data/actions/user';
 import Image from 'next/image';
@@ -12,10 +12,7 @@ interface EditInfoFormProp {
   MyInfo: User;
 }
 
-export default function EditInfoForm({
-  user_id,
-  MyInfo,
-}: EditInfoFormProp) {
+export default function EditInfoForm({ user_id, MyInfo }: EditInfoFormProp) {
   //이미지 주소 추출
   const [imageSrc, setImageSrc] = useState('');
   const { setUser, user } = useUserStore(state => state);
