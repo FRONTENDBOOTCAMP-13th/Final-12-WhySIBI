@@ -1,25 +1,14 @@
 'use client';
 import Title from '@/components/Title';
 import useMenuStore from '@/zustand/menuStore';
-import { useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Scrollbar } from 'swiper/modules';
+import CategoryItem from '@/utils/categoryItem';
+
 function MainCategorySection() {
   const { handleMenuClick } = useMenuStore();
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  const handleMouseEnter = () => {
-    videoRef.current?.play();
-  };
-
-  const handleMouseLeave = () => {
-    if (videoRef.current) {
-      videoRef.current.currentTime = 0;
-      videoRef.current.pause();
-    }
-  };
 
   return (
     <>
@@ -187,151 +176,60 @@ function MainCategorySection() {
 
         <ul className="hidden md:flex xl:text-2xl lg:text-lg md:text-md justify-center xl:gap-16 lg:gap-14 md:gap-6 gap-4 text-size-md font-logo font-bold text-button-color text-center">
           <li>
-            <figure>
-              <Link
-                href="/shopping/category/PC0301"
-                onClick={() => handleMenuClick('shopping', 'PC0301')}
-                className="group flex flex-col items-center"
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-              >
-                <Image
-                  src={'/image/category_icon/summer_product.svg'}
-                  alt=""
-                  width={100}
-                  height={100}
-                  className="block group-hover:hidden"
-                />
-                <video ref={videoRef} src="/image/category_icon/summer.mp4" width={100} height={100} className="hidden group-hover:block object-cover" muted playsInline autoPlay loop></video>
-                <figcaption className="mt-5">여름나기 용품</figcaption>
-              </Link>
-            </figure>
+          <CategoryItem
+            href="/shopping/category/PC0301"
+            img="/image/category_icon/summer_product.svg"
+            video="/image/category_icon/summer.mp4"
+            label="여름나기 용품"
+          />
           </li>
           <li>
-            <figure>
-              <Link
-                href="/shopping/category/PC0302"
-                onClick={() => handleMenuClick('shopping', 'PC0302')}
-                className="group flex flex-col items-center"
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-              >
-                <Image
-                  src={'/image/category_icon/furniture.svg'}
-                  alt=""
-                  width={100}
-                  height={100}
-                  className="block group-hover:hidden"
-                />
-                <video ref={videoRef} src="/image/category_icon/furniture.mp4" width={100} height={100} className="hidden group-hover:block object-cover" muted playsInline autoPlay loop></video>
-                <figcaption className="mt-5">가구</figcaption>
-              </Link>
-            </figure>
+          <CategoryItem
+            href="/shopping/category/PC0301"
+            img="/image/category_icon/furniture.svg"
+            video="/image/category_icon/furniture.mp4"
+            label="가구"
+          />
           </li>
           <li>
-            <figure>
-              <Link
-                href="/shopping/category/PC0303"
-                onClick={() => handleMenuClick('shopping', 'PC0303')}
-                className="group flex flex-col items-center"
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-              >
-                <Image
-                  src={'/image/category_icon/household_item.svg'}
-                  alt=""
-                  width={100}
-                  height={100}
-                  className="block group-hover:hidden"
-                />                
-                <video ref={videoRef} src="/image/category_icon/household.mp4" width={100} height={100} className="hidden group-hover:block object-cover" muted playsInline autoPlay loop></video>
-                <figcaption className="mt-5">생활 용품</figcaption>
-              </Link>
-            </figure>
+          <CategoryItem
+            href="/shopping/category/PC0301"
+            img="/image/category_icon/household_item.svg"
+            video="/image/category_icon/household.mp4"
+            label="생활 용품"
+          />
           </li>
           <li>
-            <figure>
-              <Link
-                href="/shopping/category/PC0304"
-                onClick={() => handleMenuClick('shopping', 'PC0304')}
-                className="group flex flex-col items-center"
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-              >
-                <Image
-                  src={'/image/category_icon/decoration_product.svg'}
-                  alt=""
-                  width={100}
-                  height={100}
-                  className="block group-hover:hidden"
-                />
-                <video ref={videoRef} src="/image/category_icon/decoration.mp4" width={100} height={100} className="hidden group-hover:block object-cover" muted playsInline autoPlay loop></video>
-                <figcaption className="mt-5">소품 &middot; 데코</figcaption>
-              </Link>
-            </figure>
+          <CategoryItem
+            href="/shopping/category/PC0301"
+            img="/image/category_icon/decoration_product.svg"
+            video="/image/category_icon/decoration.mp4"
+            label="소품 · 데코"
+          />
           </li>
           <li>
-            <figure>
-              <Link
-                href="/shopping/category/PC0305"
-                onClick={() => handleMenuClick('shopping', 'PC0305')}
-                className="group flex flex-col items-center"
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-              >
-                <Image
-                  src={'/image/category_icon/digital_product.svg'}
-                  alt=""
-                  width={100}
-                  height={100}
-                  className="block group-hover:hidden"
-                />
-                <video ref={videoRef} src="/image/category_icon/digital.mp4" width={100} height={100} className="hidden group-hover:block object-cover" muted playsInline autoPlay loop></video>
-                <figcaption className="mt-5">가전 &middot; 디지털</figcaption>
-              </Link>
-            </figure>
+          <CategoryItem
+            href="/shopping/category/PC0301"
+            img="/image/category_icon/digital_product.svg"
+            video="/image/category_icon/digital.mp4"
+            label="가전 · 디지털"
+          />
           </li>
           <li>
-            <figure>
-              <Link
-                href="/shopping/category/PC0306"
-                onClick={() => handleMenuClick('shopping', 'PC0306')}
-                className="group flex flex-col items-center"
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-              >
-                <Image
-                  src={'/image/category_icon/diy_product.svg'}
-                  alt=""
-                  width={100}
-                  height={100}
-                  className="block group-hover:hidden"
-                />
-                <video ref={videoRef} src="/image/category_icon/diy.mp4" width={100} height={100} className="hidden group-hover:block object-cover" muted playsInline autoPlay loop></video>
-                <figcaption className="mt-5">공구 &middot; DIY</figcaption>
-              </Link>
-            </figure>
+          <CategoryItem
+            href="/shopping/category/PC0301"
+            img="/image/category_icon/diy_product.svg"
+            video="/image/category_icon/diy.mp4"
+            label="공구 · DIY"
+          />
           </li>
           <li>
-            <figure>
-              <Link
-                href="/shopping/category/PC0307"
-                onClick={() => handleMenuClick('shopping', 'PC0307')}
-                className="group flex flex-col items-center"
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-              >
-                <Image
-                  src={'/image/category_icon/acceptance_product.svg'}
-                  alt=""
-                  width={100}
-                  height={100}
-                  className="block group-hover:hidden"
-                />
-                <video ref={videoRef} src="/image/category_icon/acceptance.mp4" width={100} height={100} className="hidden group-hover:block object-cover" muted playsInline autoPlay loop></video>
-                <figcaption className="mt-5">수납 &middot; 정리</figcaption>
-              </Link>
-            </figure>
+          <CategoryItem
+            href="/shopping/category/PC0301"
+            img="/image/category_icon/acceptance_product.svg"
+            video="/image/category_icon/acceptance.mp4"
+            label="수납 · 정리"
+          />
           </li>
         </ul>
       </section>
