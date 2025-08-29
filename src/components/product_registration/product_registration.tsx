@@ -1,35 +1,71 @@
 'use client';
-import { MyPageMenuListProps } from '@/components/my_page_menu_list/my_page_menu_list';
-import MyTheme from '@/components/my_theme/my_theme';
+import ProductCategories, {
+  ThemeOptions,
+} from '@/components/optionArray/optionArray';
+import { ProductRegistration } from '@/data/actions/seller';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useActionState, useEffect, useState } from 'react';
 
-export default function ProductRegistrationForm({
-  userType,
-}: MyPageMenuListProps) {
+export default function ProductRegistrationForm() {
   //이미지 미리보기
   const [imageSrc, setImageSrc] = useState('');
-  const handleFilePath = (e: React.ChangeEvent<HTMLInputElement>) => {
+  // 상세이미지 미리보기
+  const [detailImageSrc, setDetailImageSrc] = useState('');
+  const imageSrchandleFilePath = (e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement;
     const file = target.files?.[0];
     if (file) {
       setImageSrc(URL.createObjectURL(file));
     }
   };
+  const detailImageSrchandleFilePath = (
+    e: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    const target = e.target as HTMLInputElement;
+    const file = target.files?.[0];
+    if (file) {
+      setDetailImageSrc(URL.createObjectURL(file));
+    }
+  };
   // 옵션 갯수 선택
   const [sizeOptionQuantity, setSizeOptionQuantity] = useState(0);
   const [colorOptionQuantity, setColorOptionQuantity] = useState(0);
-  // 취향 선택 컴포넌트 렌더링
-  const [isClick, setIsClick] = useState(false);
+
+  const [state, formAction] = useActionState(ProductRegistration, null);
+  const router = useRouter();
+  useEffect(() => {
+    if (state?.ok) {
+      const navigateAndRefresh = async () => {
+        alert('상품 등록이 완료되었습니다. 등록 리스트 페이지로 이동합니다.');
+        await router.push('/my_page'); // 이동 완료 기다림
+        router.refresh(); // 새로고침
+      };
+      navigateAndRefresh();
+    } else {
+      console.log(state?.message);
+      console.log(state?.errors);
+    }
+  }, [state, router]);
+
   return (
     <>
-      <h2>테스트</h2>
       <form
-        action=""
+        action={formAction}
         className="flex flex-col gap-10 border-2 mt-6 md:mt-8 mx-4 md:mx-auto max-w-[46.25rem] rounded-2xl md:rounded-4xl border-button-color-opaque-25 px-6 py-12 md:px-12 lg:px-20 md:py-16 lg:py-24"
       >
-        <div>
-          <label htmlFor="mainImages">
+        <div className="flex items-center gap-10">
+          <Image
+            src={imageSrc || ''}
+            alt="상품 사진"
+            width={112}
+            height={112}
+            className=" border-2 border-black w-28 h-28 mask-radial-at-center object-cover bg-gray-200"
+          />
+          <label
+            htmlFor="mainImages"
+            className="nahonsan-btn-3d-vanilla rounded-full font-basic font-bold bg-vanilla-300 p-2.5 cursor-pointer"
+          >
             <strong>상품이미지</strong>
           </label>
           <input
@@ -37,6 +73,9 @@ export default function ProductRegistrationForm({
             placeholder="상품사진"
             name="mainImages"
             id="mainImages"
+            className="hidden"
+            accept="image/*"
+            onChange={imageSrchandleFilePath}
           />
         </div>
         <div>
@@ -84,6 +123,7 @@ export default function ProductRegistrationForm({
             placeholder="할인 가격"
             name="salePrice"
             id="salePrice"
+            value={10000}
             className="font-basic block w-full pl-4 border-2 outline-0  border-button-color-opaque-25 rounded-full h-16 py-4  focus:border-button-color transition-all duration-200 ease-in"
             readOnly
           />
@@ -116,26 +156,24 @@ export default function ProductRegistrationForm({
 
         <div>
           <p>제품 테그를 선택해주세요</p>
-          <select name="tag" id="tag">
-            <option value="">1</option>
+          <select name="category" id="category">
+            {ProductCategories.map((category, i) => (
+              <option key={i} value={category.code}>
+                {category.value}
+              </option>
+            ))}
           </select>
         </div>
 
         <div>
-          <button
-            type="button"
-            className="block nahonsan-btn-3d-white border-button-color mx-auto rounded-radius-full mt-16 py-4 px-8 font-basic tracking-paragraph-default font-bold text-size-md"
-            onClick={() => setIsClick(!isClick)}
-          >
-            상품의 취향 선택하기
-          </button>
-          <div className={isClick ? 'block' : 'hidden'}>
-            <MyTheme
-              state={isClick}
-              onClose={() => setIsClick(false)}
-              userType={userType}
-            />
-          </div>
+          <p>제품의 취향을 선택해주세요</p>
+          <select name="tag" id="tag">
+            {ThemeOptions.map((tag, i) => (
+              <option key={i} value={tag.value}>
+                {tag.text}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div>
@@ -179,7 +217,7 @@ export default function ProductRegistrationForm({
             {sizeOptionQuantity > 0 ? (
               <div id="size-inputs" className="option-inputs">
                 {Array.from({ length: sizeOptionQuantity }, (_, i) => (
-                  <div key={i} className="size-group flex">
+                  <div key={i} className="size-group flex flex-col ">
                     <div className="option-number">{i + 1}</div>
                     <input
                       type="text"
@@ -204,11 +242,11 @@ export default function ProductRegistrationForm({
             {colorOptionQuantity > 0 ? (
               <div id="color-inputs" className="option-inputs">
                 {Array.from({ length: colorOptionQuantity }, (_, i) => (
-                  <div key={i} className="color-group flex">
+                  <div key={i} className="color-group flex flex-col ">
                     <div className="option-number">{i + 1}</div>
                     <input
                       type="text"
-                      name="size"
+                      name="color"
                       placeholder={`컬러 ${i + 1} (예: 빨강, 파랑, 검정)`}
                       className="font-basic block w-4/5 pl-4 border-2 outline-0  border-button-color-opaque-25 rounded-full h-16 py-4  focus:border-button-color transition-all duration-200 ease-in"
                     ></input>
@@ -225,8 +263,8 @@ export default function ProductRegistrationForm({
 
         <div className="flex items-center gap-10 mb-8">
           <Image
-            src={imageSrc || ''}
-            alt="프로필 사진"
+            src={detailImageSrc || ''}
+            alt="상품 상세 사진"
             width={112}
             height={112}
             className=" border-2 border-black w-28 h-28 mask-radial-at-center object-cover bg-gray-200"
@@ -244,7 +282,7 @@ export default function ProductRegistrationForm({
             name="contentImage"
             className="hidden"
             accept="image/*"
-            onChange={handleFilePath}
+            onChange={detailImageSrchandleFilePath}
           />
         </div>
         <div className="flex flex-col md:flex-row gap-3 mt-9">
