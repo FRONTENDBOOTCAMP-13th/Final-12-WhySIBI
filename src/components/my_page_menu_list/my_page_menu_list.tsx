@@ -58,16 +58,16 @@ export default function MyPageMenuList({ userType }: MyPageMenuListProps) {
             <>
               <li>
                 <Link
-                  href="/my_page/product_registration"
-                  className={`active:text-menu-text ${isAnchorMenuActive('/my_page/product_registration')}`}
+                  href="/my_page/registration"
+                  className={`active:text-menu-text ${isAnchorMenuActive('/my_page/registration')}`}
                 >
                   상품 등록
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/my_page/product_registration"
-                  className={`active:text-menu-text ${isAnchorMenuActive('')}`}
+                  href="/my_page/registration_list"
+                  className={`active:text-menu-text ${isAnchorMenuActive('/my_page/registration_list')}`}
                 >
                   등록한 상품 조회
                 </Link>

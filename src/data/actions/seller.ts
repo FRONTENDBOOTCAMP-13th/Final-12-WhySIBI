@@ -1,6 +1,7 @@
 'use server';
 import { upLoadFile } from '@/data/actions/file';
-import { ApiRes, ApiResPromise, Product, ProductList } from '@/types';
+import { ApiRes, ApiResPromise, Product, ProductListProps } from '@/types';
+import { cookies } from 'next/headers';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID || '';
@@ -9,11 +10,14 @@ const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID || '';
  * 등록된 상품 리스트를 가져옵니다.
  * @returns {Promise<ApiRes<ProductList>>} - 상품 목록 응답 객체
  */
-export async function getProductList(): ApiResPromise<ProductList> {
+export async function getProductRegistrationList(
+  token: string,
+): ApiResPromise<ProductListProps[]> {
   try {
     const res = await fetch(`${API_URL}/seller/products`, {
       method: 'GET',
       headers: {
+        Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
         'Client-Id': CLIENT_ID,
       },
@@ -36,25 +40,28 @@ export async function ProductRegistration(
 ): ApiResPromise<Product> {
   let res: Response;
   let data: ApiRes<Product>;
+  const token = (await cookies()).get('accessToken');
   try {
-    const attach = formData.get('attach') as File;
-    let image;
-    if (attach.size > 0) {
+    const mainImage = formData.get('mainImages') as File;
+    const contentImage = formData.get('contentImage') as File;
+    let mainImagePath = null;
+    let contentImagePath = null;
+    if (mainImage.size > 0 || contentImage.size > 0) {
       const fileRes = await upLoadFile(formData);
       if (fileRes.ok) {
-        image = fileRes.item[0].path;
+        if (mainImage.size > 0) mainImagePath = fileRes.item[0]?.path;
+        if (contentImage.size > 0) contentImagePath = fileRes.item[1]?.path;
       } else {
         return fileRes;
       }
     }
     const body = {
-      mainImages: formData.get('mainImages'),
       name: formData.get('name'),
       sale: formData.get('sale'),
       price: formData.get('price'),
-      shippingFees: formData.get('shippingFees:'),
+      shippingFees: formData.get('shippingFees'),
       salePrice: formData.get('salePrice'),
-      Detailed: formData.get('Detailed'),
+      content: formData.get('content'),
       quantity: formData.get('quantity'),
       keyword: formData.getAll('keyword'),
       extra: {
@@ -63,11 +70,13 @@ export async function ProductRegistration(
         size: formData.getAll('size'),
         tag: formData.get('tag'),
       },
-      ...(image ? { image } : {}),
+      ...(mainImagePath ? { mainImagePath } : {}),
+      ...(contentImagePath ? { contentImagePath } : {}),
     };
     res = await fetch(`${API_URL}/seller/products`, {
       method: 'POST',
       headers: {
+        Authorization: `Bearer ${token?.value}`,
         'Content-Type': 'application/json',
         'Client-Id': CLIENT_ID,
       },
