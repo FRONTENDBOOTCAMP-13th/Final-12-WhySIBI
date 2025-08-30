@@ -63,7 +63,7 @@ export default function ProductRegistrationForm() {
             className=" border-2 border-black w-28 h-28 mask-radial-at-center object-cover bg-gray-200"
           />
           <label
-            htmlFor="mainImages"
+            htmlFor="attach"
             className="nahonsan-btn-3d-vanilla rounded-full font-basic font-bold bg-vanilla-300 p-2.5 cursor-pointer"
           >
             <strong>상품이미지</strong>
@@ -71,8 +71,8 @@ export default function ProductRegistrationForm() {
           <input
             type="file"
             placeholder="상품사진"
-            name="mainImages"
-            id="mainImages"
+            name="attach"
+            id="attach"
             className="hidden"
             accept="image/*"
             onChange={imageSrchandleFilePath}
