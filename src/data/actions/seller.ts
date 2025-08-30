@@ -42,17 +42,27 @@ export async function ProductRegistration(
   let data: ApiRes<Product>;
   const token = (await cookies()).get('accessToken');
   try {
-    const mainImage = formData.get('mainImages') as File;
+    const attach = formData.get('attach') as File;
     const contentImage = formData.get('contentImage') as File;
+
     let mainImagePath = null;
     let contentImagePath = null;
-    if (mainImage.size > 0 || contentImage.size > 0) {
-      const fileRes = await upLoadFile(formData);
+
+    if (attach && attach.size > 0) {
+      const mainFormData = new FormData();
+      mainFormData.append('attach', attach);
+      const fileRes = await upLoadFile(mainFormData);
       if (fileRes.ok) {
-        if (mainImage.size > 0) mainImagePath = fileRes.item[0]?.path;
-        if (contentImage.size > 0) contentImagePath = fileRes.item[1]?.path;
-      } else {
-        return fileRes;
+        mainImagePath = fileRes.item[0]?.path;
+      }
+    }
+
+    if (contentImage && contentImage.size > 0) {
+      const contentFormData = new FormData();
+      contentFormData.append('attach', contentImage);
+      const fileRes = await upLoadFile(contentFormData);
+      if (fileRes.ok) {
+        contentImagePath = fileRes.item[0]?.path;
       }
     }
     const body = {
@@ -69,9 +79,23 @@ export async function ProductRegistration(
         color: formData.getAll('color'),
         size: formData.getAll('size'),
         tag: formData.get('tag'),
+        contentImage: contentImagePath
+          ? [
+              {
+                path: contentImagePath,
+                name: contentImage.name,
+              },
+            ]
+          : [],
       },
-      ...(mainImagePath ? { mainImagePath } : {}),
-      ...(contentImagePath ? { contentImagePath } : {}),
+      mainImages: mainImagePath
+        ? [
+            {
+              path: mainImagePath,
+              name: attach.name,
+            },
+          ]
+        : [],
     };
     res = await fetch(`${API_URL}/seller/products`, {
       method: 'POST',
@@ -83,6 +107,7 @@ export async function ProductRegistration(
       body: JSON.stringify(body),
     });
     data = await res.json();
+    console.log('8. 서버 응답:', data);
   } catch (error) {
     // 네트워크 오류 처리
     console.error('상품 등록 실패:', error);

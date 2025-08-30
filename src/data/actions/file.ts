@@ -16,7 +16,18 @@ export async function upLoadFile(
   formData: FormData,
 ): ApiResPromise<FileUpload[]> {
   const fileForm = new FormData();
-  fileForm.append('attach', formData.get('attach') as File);
+  const attach = formData.get('attach') as File;
+  const contentImage = formData.get('contentImage') as File;
+
+  // attach 파일이 있으면 추가
+  if (attach && attach.size > 0) {
+    fileForm.append('attach', attach);
+  }
+
+  // contentImage 파일이 있으면 attach로 추가
+  if (contentImage && contentImage.size > 0) {
+    fileForm.append('attach', contentImage);
+  }
   // API 서버에 파일 업로드 요청
   // const res = await fetch(`${API_URL}/files`, {
   //   method: 'POST',
