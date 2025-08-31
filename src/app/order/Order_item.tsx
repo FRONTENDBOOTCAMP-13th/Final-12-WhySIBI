@@ -1,30 +1,10 @@
 'use client';
 
+import { ProductData, ProductResponse } from '@/types/puchase';
 import useUserStore from '@/zustand/useUserStore';
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
-
-interface ProductData {
-  _id: number;
-  quantity: number;
-  color: string;
-  size: string;
-  name?: string;
-}
-
-interface ImageData {
-  path: string;
-  originalname: string;
-}
-
-interface ProductResponse {
-  item: {
-    mainImages: ImageData[];
-    name?: string;
-    price?: number;
-  };
-}
 
 export default function OrderItem() {
   const searchParams = useSearchParams();
@@ -74,7 +54,7 @@ export default function OrderItem() {
   console.log('이게된다고?', productData);
 
   return (
-    <li className="px-5 pt-6 pb-6 flex">
+    <li className="px-1 py-6 flex gap-6">
       {productImage && productAlt ? (
         <Image
           src={productImage}
@@ -86,16 +66,28 @@ export default function OrderItem() {
       ) : (
         <div>이미지 불러오는중...</div>
       )}
-      <section>
-        <h3>{productDetail?.item?.name}</h3>
+      <section className="flex flex-col gap-1.5">
+        <h3 className="font-bold text-size-lg">{productDetail?.item?.name}</h3>
         <p>
-          옵션 | [color] {productData?.color} / [size] {productData?.size}
+          옵션 |{' '}
+          <strong>
+            [color] {productData?.color} / [size] {productData?.size}
+          </strong>
         </p>
-        <p>수량 | {productData?.quantity}</p>
-        <p>배송 | 무료</p>
+        <p>
+          수량 | <strong>{productData?.quantity}</strong>
+        </p>
+        <p>
+          배송 | <strong>무료</strong>
+        </p>
         {productDetail?.item?.price && productData?.quantity ? (
           <p>
-            총 상품금액 | {productDetail?.item?.price * productData?.quantity}
+            총 상품금액 |{' '}
+            <strong>
+              {(
+                productDetail?.item?.extra.originalPrice * productData?.quantity
+              ).toLocaleString()}
+            </strong>
           </p>
         ) : (
           <div> 총 상품금액 | 계산중...</div>
