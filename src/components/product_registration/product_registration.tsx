@@ -31,6 +31,22 @@ export default function ProductRegistrationForm() {
   // 옵션 갯수 선택
   const [sizeOptionQuantity, setSizeOptionQuantity] = useState(0);
   const [colorOptionQuantity, setColorOptionQuantity] = useState(0);
+  const [keywordCount, setKeywordCount] = useState(0);
+  //가격과 할인율 상태 변화
+  const [price, setPrice] = useState('');
+  const [saleValue, setSaleValue] = useState('');
+
+  const calculateDiscountedPrice = () => {
+    const numPrice = parseFloat(price) || 0;
+    const numSaleValue = parseFloat(saleValue) || 0;
+
+    if (numPrice > 0 && numSaleValue >= 0 && numSaleValue <= 100) {
+      const discount = (numPrice * numSaleValue) / 100;
+      return numPrice - discount;
+    }
+    return 0;
+  };
+  const discountedPrice = calculateDiscountedPrice();
 
   const [state, formAction] = useActionState(ProductRegistration, null);
   const router = useRouter();
@@ -99,6 +115,8 @@ export default function ProductRegistrationForm() {
             placeholder="상품가격"
             name="price"
             id="price"
+            value={price}
+            onChange={e => setPrice(e.target.value)}
             className="font-basic block w-full pl-4 border-2 outline-0  border-button-color-opaque-25 rounded-full h-16 py-4  focus:border-button-color transition-all duration-200 ease-in"
           />
         </div>
@@ -111,6 +129,8 @@ export default function ProductRegistrationForm() {
             placeholder="할인율"
             name="sale"
             id="sale"
+            value={saleValue}
+            onChange={e => setSaleValue(e.target.value)}
             className="font-basic block w-full pl-4 border-2 outline-0  border-button-color-opaque-25 rounded-full h-16 py-4  focus:border-button-color transition-all duration-200 ease-in"
           />
         </div>
@@ -123,7 +143,7 @@ export default function ProductRegistrationForm() {
             placeholder="할인 가격"
             name="salePrice"
             id="salePrice"
-            value={10000}
+            value={discountedPrice.toLocaleString()}
             className="font-basic block w-full pl-4 border-2 outline-0  border-button-color-opaque-25 rounded-full h-16 py-4  focus:border-button-color transition-all duration-200 ease-in"
             readOnly
           />
@@ -153,7 +173,29 @@ export default function ProductRegistrationForm() {
             className="font-basic block w-full pl-4 border-2 outline-0  border-button-color-opaque-25 rounded-full h-16 py-4  focus:border-button-color transition-all duration-200 ease-in"
           />
         </div>
-
+        <div>
+          <div className="w-full flex flex-col gap-4">
+            <label htmlFor="keyword">
+              <strong>제품 키워드</strong>
+            </label>
+            <button
+              type="button"
+              onClick={() => setKeywordCount(keywordCount + 1)}
+              className="text-gray-400"
+            >
+              키워드 추가
+            </button>
+            {Array.from({ length: keywordCount }, (_, i) => (
+              <input
+                key={i}
+                type="text"
+                name="keyword"
+                id="keyword"
+                className="font-basic block w-4/5 pl-4 border-2 outline-0  border-button-color-opaque-25 rounded-full h-16 py-4  focus:border-button-color transition-all duration-200 ease-in"
+              />
+            ))}
+          </div>
+        </div>
         <div>
           <p>제품 테그를 선택해주세요</p>
           <select name="category" id="category">
