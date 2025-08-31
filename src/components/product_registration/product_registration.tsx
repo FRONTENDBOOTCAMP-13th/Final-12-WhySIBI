@@ -181,7 +181,7 @@ export default function ProductRegistrationForm() {
             <button
               type="button"
               onClick={() => setKeywordCount(keywordCount + 1)}
-              className="text-gray-400"
+              className="text-gray-400 w-fit ml-auto"
             >
               키워드 추가
             </button>
@@ -191,20 +191,38 @@ export default function ProductRegistrationForm() {
                 type="text"
                 name="keyword"
                 id="keyword"
-                className="font-basic block w-4/5 pl-4 border-2 outline-0  border-button-color-opaque-25 rounded-full h-16 py-4  focus:border-button-color transition-all duration-200 ease-in"
+                className="font-basic block w-full pl-4 border-2 outline-0  border-button-color-opaque-25 rounded-full h-16 py-4  focus:border-button-color transition-all duration-200 ease-in"
+                placeholder="제품에 어울리는 키워드를 작성해주세요 (검색시 제품을 노출하려는 용도입니다.)"
               />
             ))}
           </div>
         </div>
         <div>
-          <p>제품 테그를 선택해주세요</p>
-          <select name="category" id="category">
+          <p>제품 카테고리를 선택해주세요</p>
+          {/* <select name="category" id="category">
             {ProductCategories.map((category, i) => (
               <option key={i} value={category.code}>
                 {category.value}
               </option>
             ))}
-          </select>
+          </select> */}
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 max-h-60 overflow-y-scroll p-4 border border-gray-200 rounded-lg">
+            {ProductCategories.map((category, i) => (
+              <div key={i}>
+                <label
+                  htmlFor="category"
+                  className=" items-center space-x-2 cursor-pointer hover:bg-gray-50 p-2 rounded hidden"
+                ></label>
+                <input
+                  type="checkbox"
+                  name="category"
+                  value={category.code}
+                  className="w-4 h-4 text-blue-600 rounded focus:ring-blue-500"
+                />
+                <span className="text-sm text-gray-700">{category.value}</span>
+              </div>
+            ))}
+          </div>
         </div>
 
         <div>
@@ -227,6 +245,7 @@ export default function ProductRegistrationForm() {
               setSizeOptionQuantity(parseInt(e.target.value));
             }}
           >
+            <option value="1">0</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -243,6 +262,7 @@ export default function ProductRegistrationForm() {
               setColorOptionQuantity(parseInt(e.target.value));
             }}
           >
+            <option value="1">0</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
