@@ -43,12 +43,14 @@ function ProductSearchButton() {
           onClick={() => toggleModal(true)}
           className="cursor-pointer"
         >
-          <Image
-            src={'/image/header_icon/search_icon.svg'}
-            alt="검색하기"
-            width={'30'}
-            height={'30'}
-          ></Image>
+          <div className="no-invert">
+            <Image
+              src={'/image/header_icon/search_icon.svg'}
+              alt="검색하기"
+              width={'30'}
+              height={'30'}
+            ></Image>
+          </div>
         </button>
       </div>
 
@@ -60,7 +62,7 @@ function ProductSearchButton() {
 
       {/* 검색 슬라이드 모달 */}
       <div
-        className={`w-[100vw] sm:w-[500px] overflow-y-auto h-full fixed top-0 right-0 z-20 p-10  bg-white transition-transform duration-500 ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
+        className={`w-[100vw] sm:w-[500px] overflow-y-auto h-full fixed top-0 right-0 z-60 p-10  bg-white transition-transform duration-500 ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
       >
         <button
           className="absolute right-10 text-gray-500 cursor-pointer"
@@ -103,12 +105,12 @@ function ProductSearchButton() {
 
         <hr className="h-0.25 border-0 bg-gray-300 my-5" />
         <h2 className="font-bold text-livealone-cal-poly-green text-lg sm:text-xl text-left mb-5">
-          나혼산 추천검색어🏠
+          나혼산 추천검색어 <span className="no-invert">🏠</span>
         </h2>
         <ProductRandomTag />
         <div className="flex justify-between mt-10 mb-5">
           <h2 className="font-bold text-livealone-cal-poly-green text-lg sm:text-xl text-left">
-            실시간 인기검색어🔥
+            실시간 인기검색어 <span className="no-invert">🔥</span>
           </h2>
           <p className="text-gray-500 text-sm">
             <TimeStamp /> 기준
