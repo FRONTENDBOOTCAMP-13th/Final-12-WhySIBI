@@ -3,6 +3,7 @@ import './globals.css';
 import Footer from '@/components/_common/Footer';
 import { Toaster } from 'react-hot-toast';
 import { Metadata } from 'next';
+import PageScrollButtons from '@/components/_common/button_pagescroll';
 import { ThemeProvider } from '@/components/theme-provider';
 
 export const metadata: Metadata = {
@@ -65,6 +66,7 @@ export default function RootLayout({
             <Footer></Footer>
           </div>
         </ThemeProvider>
+        <PageScrollButtons />
       </body>
     </html>
   );

@@ -85,7 +85,14 @@ export default function Header() {
                   alt="나혼산 로고"
                   width="270"
                   height="234"
-                  className="xl:w-[270px] xl:h-[234px] lg:w-[220px] lg:h-auto md:w-[180px] md:h-auto sm:w-[150px] w-[120px] h-auto"
+                  className="xl:w-[270px] xl:h-[234px] lg:w-[220px] lg:h-auto md:w-[180px] md:h-auto sm:w-[150px] w-[120px] h-auto dark:hidden"
+                />
+                <Image
+                  src={'/image/logo/whysibi_logo(dark).svg'}
+                  alt="나혼산 로고"
+                  width="270"
+                  height="234"
+                  className="xl:w-[270px] xl:h-[234px] lg:w-[220px] lg:h-auto md:w-[180px] md:h-auto sm:w-[150px] w-[120px] h-auto hidden dark:block"
                 />
               </div>
             </Link>
