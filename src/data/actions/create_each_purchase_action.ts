@@ -23,6 +23,8 @@ export async function createEachPurchaseAction(
   }
   const product = JSON.parse(stringProduct);
 
+  console.log('보자보자어디보자', product);
+
   if (!product.size || !product.color) {
     return {
       status: false,
