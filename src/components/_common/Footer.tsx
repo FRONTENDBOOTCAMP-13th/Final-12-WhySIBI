@@ -11,13 +11,15 @@ export default function Footer() {
       <div className="max-w-[1280px] mx-auto">
         <div className="info_footer xl:min-w-[1280px] lg:w-[95%] md:w-[95%] w-[90%] px-10 mx-auto xl:py-14 lg:py-12 md:py-10 py-8 md:grid md:grid-cols-3 md:items-end hidden">
           <section className="footer_left">
-            <Image
-              src={'/image/logo/footer_logo.svg'}
-              alt="나혼산 로고"
-              width={150}
-              height={110}
-              className="xl:w-[150px] xl:h-[110px] lg:w-[130px] lg:h-auto md:w-[120px] md:h-auto"
-            />
+            <div className=" no-invert">
+              <Image
+                src={'/image/logo/footer_logo.svg'}
+                alt="나혼산 로고"
+                width={150}
+                height={110}
+                className="xl:w-[150px] xl:h-[110px] lg:w-[130px] lg:h-auto md:w-[120px] md:h-auto"
+              />
+            </div>
             <p className="text-[#767676] xl:text-[14px] lg:text-[13px] md:text-[12px] xl:mt-4 lg:mt-3 md:mt-2">
               팀명: 왜 시비조 | 팀원: 김연호 김하영 정유진 조현수
             </p>
@@ -36,7 +38,7 @@ export default function Footer() {
             </p>
           </section>
 
-          <section className="footer_middle flex justify-center">
+          <section className="footer_middle flex justify-center no-invert">
             <Image
               src={'/image/footer_cat.svg'}
               alt="나혼산 고양이 이미지"
@@ -66,7 +68,7 @@ export default function Footer() {
         {/* 모바일 레이아웃 (768px 미만) */}
         <div className="info_footer w-[90%] mx-auto py-8 md:hidden block">
           {/* 모바일에서는 세로 배치 */}
-          <div className="text-center mb-6">
+          <div className="text-center mb-6 no-invert">
             <Image
               src={'/image/logo/footer_logo.svg'}
               alt="나혼산 로고"

@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 
 interface TitleProps {
-  title: string;
+  title: string | ReactNode;
   subTitle: string | ReactNode;
 }
 

@@ -28,7 +28,16 @@ export default function MainTalk() {
     <>
       <div className="md:p-4 community-wrapper w-full md:w-2xl">
         <div className="community bg-linear-to-b from-livealone-vanilla to-columbia-blue-100 rounded-t-4xl px-4 py-6 md:px-10 md:pt-10 md:pb-7">
-          <Title title={'자취상담소🏠'} subTitle={'우리집 구해줘 홈즈'}></Title>
+          <Title
+            title={
+              <>
+                자취상담소
+                <span className="no-invert">🏠</span>
+              </>
+            }
+            subTitle={'우리집 구해줘 홈즈'}
+          ></Title>
+
           <div className="list-wrapper font-variable mt-5">
             <ul className="space-y-3 md:space-y-4 divide-y divide-gray-300">
               {talkPost &&

@@ -87,7 +87,7 @@ function RecommendBox({ token }: { token?: string | undefined }) {
           return (
             <div
               key={index}
-              className="bg-gradient-to-b  from-vanilla-300 to-columbia-blue-300 mb-10 rounded-2xl"
+              className="bg-gradient-to-b from-vanilla-300 to-columbia-blue-300 mb-10 rounded-2xl"
             >
               <div className="flex justify-between p-5">
                 <p className="text-lg font-bold text-livealone-cal-poly-green">
@@ -147,7 +147,7 @@ function RecommendBox({ token }: { token?: string | undefined }) {
             요즘 자취 관심사를 선택해주세요
           </p>
 
-          <div className="recommend-swiper mb-10">
+          <div className="recommend-swiper mb-10 no-invert">
             <Swiper
               modules={[Scrollbar]}
               loop={false} // 슬라이드 루프
@@ -374,13 +374,15 @@ function RecommendBox({ token }: { token?: string | undefined }) {
           ) : (
             /* checkTag 배열이 0 보다 작을때 - 선택 안했을 시 */
             <div className="bg-gradient-to-b border-2 border-gray-200 rounded-2xl flex items-center justify-center flex-col">
-              <Image
-                src="/image/category_icon/furniture.svg"
-                alt="관심사 미선택"
-                width="200"
-                height="200"
-                className="w-[100px] opacity-20 mt-5 mb-2.5"
-              />
+              <div className="no-invert">
+                <Image
+                  src="/image/category_icon/furniture.svg"
+                  alt="관심사 미선택"
+                  width="200"
+                  height="200"
+                  className="w-[100px] opacity-20 mt-5 mb-2.5"
+                />
+              </div>
               <p className="text-center text-gray-500 text-base mb-5">
                 관심사를 골라보세요 <br /> 취향저격 상품을 소개할게요
               </p>

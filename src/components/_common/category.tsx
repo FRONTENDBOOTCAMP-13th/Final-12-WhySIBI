@@ -28,20 +28,22 @@ export default function Categroy() {
                   href="/shopping/category/PC0301"
                   onClick={() => handleMenuClick('shopping', 'PC0301')}
                 >
-                  <Image
-                    src={'/image/category_icon/summer_product.svg'}
-                    alt=""
-                    width={80}
-                    height={80}
-                    className="w-16 sm:w-20 h-auto mx-auto hover:animate-wobble-hor-bottom dark:hidden"
-                  />                  
-                  <Image
-                    src={'/image/category_icon/dark/summer(dark).svg'}
-                    alt=""
-                    width={80}
-                    height={80}
-                    className="w-16 sm:w-20 h-auto mx-auto hover:animate-wobble-hor-bottom hidden dark:block"
-                  />
+                  <div className=" no-invert">
+                    <Image
+                      src={'/image/category_icon/summer_product.svg'}
+                      alt=""
+                      width={80}
+                      height={80}
+                      className="w-16 sm:w-20 h-auto mx-auto hover:animate-wobble-hor-bottom dark:hidden"
+                    />                  
+                    <Image
+                      src={'/image/category_icon/dark/summer(dark).svg'}
+                      alt=""
+                      width={80}
+                      height={80}
+                      className="w-16 sm:w-20 h-auto mx-auto hover:animate-wobble-hor-bottom hidden dark:block"
+                    />
+                  </div>
                   <figcaption className="mt-3 text-xs sm:text-sm font-logo font-bold text-button-color dark:text-livealone-vanilla">
                     여름나기 용품
                   </figcaption>
@@ -55,6 +57,7 @@ export default function Categroy() {
                   href="/shopping/category/PC0302"
                   onClick={() => handleMenuClick('shopping', 'PC0302')}
                 >
+                  <div className=" no-invert">
                   <Image
                     src={'/image/category_icon/furniture.svg'}
                     alt=""
@@ -69,6 +72,7 @@ export default function Categroy() {
                     height={80}
                     className="w-16 sm:w-20 h-auto mx-auto hover:animate-wobble-hor-bottom hidden dark:block"
                   />
+                  </div>
                   <figcaption className="mt-3 text-xs sm:text-sm font-logo font-bold text-button-color dark:text-livealone-vanilla">
                     가구
                   </figcaption>
@@ -82,20 +86,22 @@ export default function Categroy() {
                   href="/shopping/category/PC0303"
                   onClick={() => handleMenuClick('shopping', 'PC0303')}
                 >
-                  <Image
-                    src={'/image/category_icon/household_item.svg'}
-                    alt=""
-                    width={80}
-                    height={80}
-                    className="w-16 sm:w-20 h-auto mx-auto hover:animate-wobble-hor-bottom dark:hidden"
-                  />                  
-                  <Image
-                    src={'/image/category_icon/dark/household(dark).svg'}
-                    alt=""
-                    width={80}
-                    height={80}
-                    className="w-16 sm:w-20 h-auto mx-auto hover:animate-wobble-hor-bottom hidden dark:block"
-                  />
+                  <div className=" no-invert">
+                    <Image
+                      src={'/image/category_icon/household_item.svg'}
+                      alt=""
+                      width={80}
+                      height={80}
+                      className="w-16 sm:w-20 h-auto mx-auto hover:animate-wobble-hor-bottom dark:hidden"
+                    />                  
+                    <Image
+                      src={'/image/category_icon/dark/household(dark).svg'}
+                      alt=""
+                      width={80}
+                      height={80}
+                      className="w-16 sm:w-20 h-auto mx-auto hover:animate-wobble-hor-bottom hidden dark:block"
+                    />
+                  </div>
                   <figcaption className="mt-3 text-xs sm:text-sm font-logo font-bold text-button-color dark:text-livealone-vanilla">
                     생활 용품
                   </figcaption>
@@ -109,20 +115,22 @@ export default function Categroy() {
                   href="/shopping/category/PC0304"
                   onClick={() => handleMenuClick('shopping', 'PC0304')}
                 >
-                  <Image
-                    src={'/image/category_icon/decoration_product.svg'}
-                    alt=""
-                    width={80}
-                    height={80}
-                    className="w-16 sm:w-20 h-auto mx-auto hover:animate-wobble-hor-bottom dark:hidden"
-                  />                  
-                  <Image
-                    src={'/image/category_icon/dark/decoration(dark).svg'}
-                    alt=""
-                    width={80}
-                    height={80}
-                    className="w-16 sm:w-20 h-auto mx-auto hover:animate-wobble-hor-bottom hidden dark:block"
-                  />
+                  <div className=" no-invert">
+                    <Image
+                      src={'/image/category_icon/decoration_product.svg'}
+                      alt=""
+                      width={80}
+                      height={80}
+                      className="w-16 sm:w-20 h-auto mx-auto hover:animate-wobble-hor-bottom dark:hidden"
+                    />                  
+                    <Image
+                      src={'/image/category_icon/dark/decoration(dark).svg'}
+                      alt=""
+                      width={80}
+                      height={80}
+                      className="w-16 sm:w-20 h-auto mx-auto hover:animate-wobble-hor-bottom hidden dark:block"
+                    />
+                  </div>
                   <figcaption className="mt-3 text-xs sm:text-sm font-logo font-bold text-button-color dark:text-livealone-vanilla">
                     소품 &middot; 데코
                   </figcaption>
@@ -136,20 +144,22 @@ export default function Categroy() {
                   href="/shopping/category/PC0305"
                   onClick={() => handleMenuClick('shopping', 'PC0305')}
                 >
-                  <Image
-                    src={'/image/category_icon/digital_product.svg'}
-                    alt=""
-                    width={80}
-                    height={80}
-                    className="w-16 sm:w-20 h-auto mx-auto hover:animate-wobble-hor-bottom dark:hidden"
-                  />                  
-                  <Image
-                    src={'/image/category_icon/dark/digital(dark).svg'}
-                    alt=""
-                    width={80}
-                    height={80}
-                    className="w-16 sm:w-20 h-auto mx-auto hover:animate-wobble-hor-bottom hidden dark:block"
-                  />
+                  <div className=" no-invert">
+                    <Image
+                      src={'/image/category_icon/digital_product.svg'}
+                      alt=""
+                      width={80}
+                      height={80}
+                      className="w-16 sm:w-20 h-auto mx-auto hover:animate-wobble-hor-bottom dark:hidden"
+                    />                  
+                    <Image
+                      src={'/image/category_icon/dark/digital(dark).svg'}
+                      alt=""
+                      width={80}
+                      height={80}
+                      className="w-16 sm:w-20 h-auto mx-auto hover:animate-wobble-hor-bottom hidden dark:block"
+                    />
+                  </div>
                   <figcaption className="mt-3 text-xs sm:text-sm font-logo font-bold text-button-color dark:text-livealone-vanilla">
                     가전 &middot; 디지털
                   </figcaption>
@@ -163,20 +173,22 @@ export default function Categroy() {
                   href="/shopping/category/PC0306"
                   onClick={() => handleMenuClick('shopping', 'PC0306')}
                 >
-                  <Image
-                    src={'/image/category_icon/diy_product.svg'}
-                    alt=""
-                    width={80}
-                    height={80}
-                    className="w-16 sm:w-20 h-auto mx-auto hover:animate-wobble-hor-bottom dark:hidden"
-                  />                  
-                  <Image
-                    src={'/image/category_icon/dark/diy(dark).svg'}
-                    alt=""
-                    width={80}
-                    height={80}
-                    className="w-16 sm:w-20 h-auto mx-auto hover:animate-wobble-hor-bottom hidden dark:block"
-                  />
+                  <div className=" no-invert">
+                    <Image
+                      src={'/image/category_icon/diy_product.svg'}
+                      alt=""
+                      width={80}
+                      height={80}
+                      className="w-16 sm:w-20 h-auto mx-auto hover:animate-wobble-hor-bottom dark:hidden"
+                    />                  
+                    <Image
+                      src={'/image/category_icon/dark/diy(dark).svg'}
+                      alt=""
+                      width={80}
+                      height={80}
+                      className="w-16 sm:w-20 h-auto mx-auto hover:animate-wobble-hor-bottom hidden dark:block"
+                    />
+                  </div>
                   <figcaption className="mt-3 text-xs sm:text-sm font-logo font-bold text-button-color dark:text-livealone-vanilla">
                     공구 &middot; DIY
                   </figcaption>
@@ -190,20 +202,22 @@ export default function Categroy() {
                   href="/shopping/category/PC0307"
                   onClick={() => handleMenuClick('shopping', 'PC0307')}
                 >
-                  <Image
-                    src={'/image/category_icon/acceptance_product.svg'}
-                    alt=""
-                    width={80}
-                    height={80}
-                    className="w-16 sm:w-20 h-auto mx-auto hover:animate-wobble-hor-bottom dark:hidden"
-                  />                  
-                  <Image
-                    src={'/image/category_icon/dark/acceptance(dark).svg'}
-                    alt=""
-                    width={80}
-                    height={80}
-                    className="w-16 sm:w-20 h-auto mx-auto hover:animate-wobble-hor-bottom hidden dark:block"
-                  />
+                  <div className="no-invert">
+                    <Image
+                      src={'/image/category_icon/acceptance_product.svg'}
+                      alt=""
+                      width={80}
+                      height={80}
+                      className="w-16 sm:w-20 h-auto mx-auto hover:animate-wobble-hor-bottom dark:hidden"
+                    />                  
+                    <Image
+                      src={'/image/category_icon/dark/acceptance(dark).svg'}
+                      alt=""
+                      width={80}
+                      height={80}
+                      className="w-16 sm:w-20 h-auto mx-auto hover:animate-wobble-hor-bottom hidden dark:block"
+                    />
+                  </div>
                   <figcaption className="mt-3 text-xs sm:text-sm font-logo font-bold text-button-color dark:text-livealone-vanilla">
                     수납 &middot; 정리
                   </figcaption>
@@ -213,7 +227,6 @@ export default function Categroy() {
             <div className="swiper-scrollbar"></div>
           </Swiper>
         </div>
-
 
         {/* 데스크톱: 기존 레이아웃 */}
         <ul className="hidden md:flex xl:text-2xl lg:text-lg md:text-md justify-center xl:gap-16 lg:gap-14 md:gap-6 gap-4 text-size-md font-logo font-bold text-button-color dark:text-livealone-vanilla text-center">
