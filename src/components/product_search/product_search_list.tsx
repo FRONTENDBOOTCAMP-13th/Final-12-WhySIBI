@@ -136,13 +136,15 @@ function ProductSearchList() {
       ) : (
         // 검색된 상품이 없을 시
         <div className="flex items-center justify-center flex-col mt-10">
-          <Image
-            src="/image/category_icon/furniture.svg"
-            alt="검색된 상품이 없습니다."
-            width="150"
-            height="150"
-            className="opacity-20 mt-5 mb-2.5"
-          />
+          <div className="no-invert">
+            <Image
+              src="/image/category_icon/furniture.svg"
+              alt="검색된 상품이 없습니다."
+              width="150"
+              height="150"
+              className="opacity-20 mt-5 mb-2.5"
+            />
+          </div>
           <p className="text-center mt-3 font-bold text-gray-500 text-xl">
             앗! 검색된 상품이 없어요
           </p>

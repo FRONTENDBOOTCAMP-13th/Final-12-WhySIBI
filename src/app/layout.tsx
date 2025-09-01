@@ -3,6 +3,7 @@ import './globals.css';
 import Footer from '@/components/_common/Footer';
 import { Toaster } from 'react-hot-toast';
 import { Metadata } from 'next';
+import { ThemeProvider } from '@/components/theme-provider';
 
 export const metadata: Metadata = {
   title: '나혼자산다',
@@ -29,38 +30,41 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
-      <body className="bg-white">
-        <Header></Header>
-        <main className="w-full bg-white">{children}</main>
-        <Toaster
-          position="bottom-center"
-          toastOptions={{
-            duration: 5000,
-            style: {
-              background: '#fff',
-              color: '#333',
-              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
-              borderRadius: '8px',
-              padding: '16px',
-            },
-            success: {
-              iconTheme: {
-                primary: '#10b981', // 초록색
-                secondary: '#fff',
+    // 다크모드 테마 초기 셋팅 시 깜빡임 방지
+    <html lang="ko" suppressHydrationWarning>
+      <body className="bg-white text-gray-900">
+        <ThemeProvider>
+          <Header></Header>
+          <main className="w-full bg-white">{children}</main>
+          <Toaster
+            position="bottom-center"
+            toastOptions={{
+              duration: 5000,
+              style: {
+                background: '#fff',
+                color: '#333',
+                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+                borderRadius: '8px',
+                padding: '16px',
               },
-            },
-            error: {
-              iconTheme: {
-                primary: '#ef4444', // 빨간색
-                secondary: '#fff',
+              success: {
+                iconTheme: {
+                  primary: '#10b981', // 초록색
+                  secondary: '#fff',
+                },
               },
-            },
-          }}
-        />
-        <div className="vertical-stripes">
-          <Footer></Footer>
-        </div>
+              error: {
+                iconTheme: {
+                  primary: '#ef4444', // 빨간색
+                  secondary: '#fff',
+                },
+              },
+            }}
+          />
+          <div className="vertical-stripes">
+            <Footer></Footer>
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );

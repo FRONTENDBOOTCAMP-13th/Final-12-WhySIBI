@@ -149,13 +149,15 @@ export default function LoginForm() {
 
   return (
     <>
-      <Image
-        src="/image/logo/footer_logo.svg"
-        alt="나혼산 로고"
-        width={150}
-        height={120}
-        className="my-0 mx-auto"
-      />
+      <div className="no-invert">
+        <Image
+          src="/image/logo/footer_logo.svg"
+          alt="나혼산 로고"
+          width={150}
+          height={120}
+          className="my-0 mx-auto"
+        />
+      </div>
       <form action={formAction} className="w-[95%] md:w-3/4 my-0 mx-auto">
         <LoginInput
           text={''}

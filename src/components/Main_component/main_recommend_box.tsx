@@ -82,9 +82,10 @@ function MainRecommendBox() {
 
             return (
               <SwiperSlide key={index}>
-                <div className="bg-gradient-to-b from-vanilla-300 to-columbia-blue-300 mb-6 md:mb-10 rounded-xl md:rounded-2xl p-4 md:p-6">
+                <div className=" bg-gradient-to-b from-vanilla-300 to-columbia-blue-300 mb-6 md:mb-10 rounded-xl md:rounded-2xl p-4 md:p-6">
                   <p className="text-sm text-left md:text-lg  font-bold text-livealone-cal-poly-green mb-4">
-                    {PreferenceTagMap[tag]} 인기 상품 추천 ✨
+                    {PreferenceTagMap[tag]} 인기 상품 추천{' '}
+                    <span className="no-invert">✨</span>
                   </p>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {loading ? (
@@ -135,7 +136,7 @@ function MainRecommendBox() {
             요즘 자취 관심사를 선택해주세요
           </p>
 
-          <div className="recommend-swiper mb-10">
+          <div className="recommend-swiper mb-10 no-invert">
             <Swiper
               loop={false} // 슬라이드 루프
               spaceBetween={16} // 슬라이스 사이 간격
@@ -320,7 +321,8 @@ function MainRecommendBox() {
                   <SwiperSlide key={index}>
                     <div className="bg-gradient-to-b from-vanilla-300 to-columbia-blue-300 rounded-xl md:rounded-2xl p-4 md:p-6 mb-6">
                       <p className="text-sm text-left md:text-lg font-bold text-livealone-cal-poly-green mb-3">
-                        {PreferenceTagMap[tag]} 인기 상품 추천 ✨
+                        {PreferenceTagMap[tag]} 인기 상품 추천{' '}
+                        <span className="no-invert">✨</span>
                       </p>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         {loading ? (
@@ -364,13 +366,15 @@ function MainRecommendBox() {
           ) : (
             /* 미선택 시 기본 화면 */
             <div className="bg-gradient-to-b border-2 border-gray-200 rounded-xl md:rounded-2xl flex flex-col items-center justify-center py-8 md:py-12 mx-2 md:mx-0">
-              <Image
-                src="/image/category_icon/furniture.svg"
-                alt="관심사 미선택"
-                width="200"
-                height="200"
-                className="w-16 md:w-[100px] opacity-20 mb-3 md:mb-2.5"
-              />
+              <div className="no-invert">
+                <Image
+                  src="/image/category_icon/furniture.svg"
+                  alt="관심사 미선택"
+                  width="200"
+                  height="200"
+                  className="w-16 md:w-[100px] opacity-20 mb-3 md:mb-2.5"
+                />
+              </div>
               <p className="text-center text-gray-500 text-sm md:text-base px-4">
                 관심사를 골라보세요 <br /> 취향저격 상품을 소개할게요
               </p>
