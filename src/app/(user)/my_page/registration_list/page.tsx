@@ -3,12 +3,15 @@ import { cookies } from 'next/headers';
 import Image from 'next/image';
 import Link from 'next/link';
 
-export default async function ProductRegistrationList() {
+import ProductRegistrationList from '@/components/product_registration_list/product_registration_list';
+
+export default async function RegistrationList() {
   const token = (await cookies()).get('accessToken');
   const res = await getProductRegistrationList(token?.value as string);
   return res.ok === 1 ? (
     <ProductRegistrationList registrationItem={res.item} />
   ) : (
+    // <ProductRegistrationList />
     <div className="font-logo text-3xl">
       {' '}
       <section className="h-72 flex flex-col justify-center items-center gap-3">
@@ -30,4 +33,5 @@ export default async function ProductRegistrationList() {
       </section>
     </div>
   );
+  // return <ProductRegistrationList />;
 }

@@ -107,14 +107,14 @@ export default function ProductRegistrationForm() {
           />
         </div>
         <div>
-          <label htmlFor="price">
+          <label htmlFor="originalPrice">
             <strong>상품 가격</strong>
           </label>
           <input
             type="text"
             placeholder="상품가격"
-            name="price"
-            id="price"
+            name="originalPrice"
+            id="originalPrice"
             value={price}
             onChange={e => setPrice(e.target.value)}
             className="font-basic block w-full pl-4 border-2 outline-0  border-button-color-opaque-25 rounded-full h-16 py-4  focus:border-button-color transition-all duration-200 ease-in"
@@ -141,9 +141,9 @@ export default function ProductRegistrationForm() {
           <input
             type="text"
             placeholder="할인 가격"
-            name="salePrice"
-            id="salePrice"
-            value={discountedPrice.toLocaleString()}
+            name="price"
+            id="price"
+            value={parseInt(discountedPrice)}
             className="font-basic block w-full pl-4 border-2 outline-0  border-button-color-opaque-25 rounded-full h-16 py-4  focus:border-button-color transition-all duration-200 ease-in"
             readOnly
           />

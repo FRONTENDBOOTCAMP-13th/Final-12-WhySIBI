@@ -1,20 +1,22 @@
+'use client';
 import Pagenation from '@/components/basic_component/Pagenation';
 import SkeletonUI from '@/components/product_component/skeleton_ui';
-import ProductRegistrationInfo from '@/components/product_registration_list/product_registration_Info/product_registration_Info';
-import { ProductList } from '@/types';
+import { ProductList, ProductListProps } from '@/types';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import ProductRegistrationInfo from './product_registration_Info/product_registration_Info';
 interface registrationListProp {
-  registrationItem: ProductList[];
+  registrationItem: ProductListProps[];
 }
 
 export default function ProductRegistrationList({
   registrationItem,
 }: registrationListProp) {
+  // export default function ProductRegistrationList() {
   //상품 리스트 불러오는 부분
   const [registrationList, setRegistrationList] = useState<
-    ProductList[] | null
+    ProductListProps[] | null
   >(null);
   //페이지 네이션
   const [page, setPage] = useState(1);
@@ -60,17 +62,20 @@ export default function ProductRegistrationList({
         ) : (
           <nav className="xl:mt-20 lg:mt-16 md:mt-12 mt-8">
             <ul className="flex flex-col flex-wrap xl:gap-16 lg:gap-12 md:gap-10 gap-8">
-              {sliceData?.map(registration =>
-                registration.list.map((product, i) => (
-                  <ProductRegistrationInfo
-                    key={i}
-                    _id={product._id}
-                    price={product.price}
-                    name={product.name}
-                    mainImages={product.mainImages}
-                  />
-                )),
-              )}
+              {sliceData?.map((product, i) => (
+                <ProductRegistrationInfo
+                  key={i}
+                  _id={product._id}
+                  price={product.price}
+                  name={product.name}
+                  mainImages={product.mainImages}
+                  replies={product.replies}
+                  buyQuantity={product.buyQuantity}
+                  extra={product.extra}
+                  createdAt={product.createdAt}
+                  keyword={product.keyword}
+                />
+              ))}
             </ul>
             <div className="w-full xl:mt-5 lg:mt-4 md:mt-3 mt-2">
               <Pagenation

@@ -1,6 +1,12 @@
 'use server';
 import { upLoadFile } from '@/data/actions/file';
-import { ApiRes, ApiResPromise, Product, ProductListProps } from '@/types';
+import {
+  ApiRes,
+  ApiResPromise,
+  Product,
+  ProductList,
+  ProductListProps,
+} from '@/types';
 import { cookies } from 'next/headers';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -8,7 +14,7 @@ const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID || '';
 
 /**
  * 등록된 상품 리스트를 가져옵니다.
- * @returns {Promise<ApiRes<ProductList>>} - 상품 목록 응답 객체
+ * @returns {Promise<ApiRes<ProductListProps>>} - 상품 목록 응답 객체
  */
 export async function getProductRegistrationList(
   token: string,
@@ -68,9 +74,8 @@ export async function ProductRegistration(
     const body = {
       name: formData.get('name'),
       sale: formData.get('sale'),
-      price: formData.get('price'),
+      price: Number(formData.get('price')),
       shippingFees: formData.get('shippingFees'),
-      salePrice: formData.get('salePrice'),
       content: formData.get('content'),
       quantity: formData.get('quantity'),
       keyword: formData.getAll('keyword'),
@@ -79,6 +84,7 @@ export async function ProductRegistration(
         color: formData.getAll('color'),
         size: formData.getAll('size'),
         tag: formData.get('tag'),
+        originalPrice: formData.get('originalPrice'),
         contentImage: contentImagePath
           ? [
               {
