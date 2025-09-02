@@ -1,7 +1,8 @@
 'use client';
 import { createEachPurchaseAction } from '@/data/actions/create_each_purchase_action';
 import useUserStore from '@/zustand/useUserStore';
-import { useActionState, useEffect } from 'react';
+import { useActionState, useCallback, useEffect } from 'react';
+import * as PortOne from '@portone/browser-sdk/v2';
 
 export default function OrderPurchaseButton({
   checkboxStates,
@@ -35,6 +36,45 @@ export default function OrderPurchaseButton({
     initialState,
   );
 
+  //결제 api호출
+  const fetchPayment = useCallback(
+    async function fetchPayment() {
+      const response = await PortOne.requestPayment({
+        storeId: `${process.env.NEXT_PUBLIC_PORTONE_STORE_ID}`,
+        channelKey: `${process.env.NEXT_PUBLIC_PORTONE_CHANNEL_KEY}`,
+        paymentId: `payment-${crypto.randomUUID()}`,
+        orderName: '상품임 아무튼',
+        totalAmount: 1000,
+        currency: 'CURRENCY_KRW',
+        payMethod: 'EASY_PAY',
+      });
+
+      if (response?.code !== undefined) {
+        return alert(response.message);
+      }
+
+      const notified = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/orders`,
+        {
+          method: 'POST',
+          body: JSON.stringify({ products: [productData] }),
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+            'Client-Id': 'febc13-final12-emjf',
+          },
+        },
+      );
+
+      console.log(response);
+    },
+    [productData, token],
+  );
+
+  useEffect(() => {
+    fetchPayment();
+  }, [fetchPayment]);
+
   useEffect(() => {
     if (state && !state.status) {
       alert(state.error);
@@ -52,6 +92,8 @@ export default function OrderPurchaseButton({
       <input name="token" value={token} hidden readOnly />
       <button
         disabled={!allChecked || isPending}
+        type="button"
+        onClick={fetchPayment}
         className={`box-border w-full h-[48px]  border-2 rounded-sm font-bold ${!allChecked ? 'bg-gray-150 text-gray-550 border-gray-150 cursor-not-allowed' : 'text-white bg-flame-250 border-flame-250 cursor-pointer'}`}
       >
         바로구매
