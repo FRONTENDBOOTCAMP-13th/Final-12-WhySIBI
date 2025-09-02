@@ -11,6 +11,7 @@
     "format:check": "prettier --check ."
   },
   "dependencies": {
+    "@portone/browser-sdk": "^0.1.0",
     "axios": "^1.10.0",
     "lucide": "^0.525.0",
     "lucide-react": "^0.525.0",
