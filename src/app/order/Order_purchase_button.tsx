@@ -67,6 +67,10 @@ export default function OrderPurchaseButton({
       );
 
       console.log(response);
+      console.log('노티파이드가뭔데', notified);
+      if (notified.ok) {
+        // true일때 결제가 완료 되었다 처리 해주면 될듯
+      }
     },
     [productData, token],
   );
