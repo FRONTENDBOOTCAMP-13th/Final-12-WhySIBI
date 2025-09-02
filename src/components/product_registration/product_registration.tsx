@@ -6,6 +6,7 @@ import { ProductRegistration } from '@/data/actions/seller';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useActionState, useEffect, useState } from 'react';
+import RegistrationPreview from '../preview_modal/preview_modal';
 
 export default function ProductRegistrationForm() {
   //이미지 미리보기
@@ -42,11 +43,13 @@ export default function ProductRegistrationForm() {
 
     if (numPrice > 0 && numSaleValue >= 0 && numSaleValue <= 100) {
       const discount = (numPrice * numSaleValue) / 100;
-      return numPrice - discount;
+      return Math.floor(numPrice - discount);
     }
     return 0;
   };
   const discountedPrice = calculateDiscountedPrice();
+
+  const [previewState, setPreviewState] = useState(false);
 
   const [state, formAction] = useActionState(ProductRegistration, null);
   const router = useRouter();
@@ -68,7 +71,7 @@ export default function ProductRegistrationForm() {
     <>
       <form
         action={formAction}
-        className="flex flex-col gap-10 border-2 mt-6 md:mt-8 mx-4 md:mx-auto max-w-[46.25rem] rounded-2xl md:rounded-4xl border-button-color-opaque-25 px-6 py-12 md:px-12 lg:px-20 md:py-16 lg:py-24"
+        className="relative flex flex-col gap-10 border-2 mt-6 md:mt-8 mx-4 md:mx-auto max-w-[46.25rem] rounded-2xl md:rounded-4xl border-button-color-opaque-25 px-6 py-12 md:px-12 lg:px-20 md:py-16 lg:py-24"
       >
         <div className="flex items-center gap-10">
           <Image
@@ -143,7 +146,7 @@ export default function ProductRegistrationForm() {
             placeholder="할인 가격"
             name="price"
             id="price"
-            value={parseInt(discountedPrice)}
+            value={discountedPrice.toString()}
             className="font-basic block w-full pl-4 border-2 outline-0  border-button-color-opaque-25 rounded-full h-16 py-4  focus:border-button-color transition-all duration-200 ease-in"
             readOnly
           />
@@ -197,27 +200,22 @@ export default function ProductRegistrationForm() {
             ))}
           </div>
         </div>
-        <div>
+        <div className="w-full">
           <p>제품 카테고리를 선택해주세요</p>
-          {/* <select name="category" id="category">
+          <div className=" grid grid-cols-2 md:grid-cols-3 gap-10 max-h-60 overflow-y-scroll p-4 border border-gray-200 rounded-lg">
             {ProductCategories.map((category, i) => (
-              <option key={i} value={category.code}>
-                {category.value}
-              </option>
-            ))}
-          </select> */}
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 max-h-60 overflow-y-scroll p-4 border border-gray-200 rounded-lg">
-            {ProductCategories.map((category, i) => (
-              <div key={i}>
+              <div key={i} className="w-full  flex items-center gap-3">
                 <label
-                  htmlFor="category"
-                  className=" items-center space-x-2 cursor-pointer hover:bg-gray-50 p-2 rounded hidden"
+                  htmlFor={`category-${category.code}`}
+                  className="flex items-center space-x-2 cursor-pointer hover:bg-gray-50 p-2 rounded"
                 ></label>
                 <input
                   type="checkbox"
+                  id={`category-${category.code}`}
                   name="category"
                   value={category.code}
-                  className="w-4 h-4 text-blue-600 rounded focus:ring-blue-500"
+                  aria-label={`${category.value} 카테고리 선택`}
+                  className="w-4 h-4 text-blue-600 rounded focus:ring-blue-500 text-size-sm"
                 />
                 <span className="text-sm text-gray-700">{category.value}</span>
               </div>
@@ -226,8 +224,8 @@ export default function ProductRegistrationForm() {
         </div>
 
         <div>
-          <p>제품의 취향을 선택해주세요</p>
-          <select name="tag" id="tag">
+          <label htmlFor="tag">제품의 취향을 선택해주세요</label>
+          <select name="tag" id="tag" aria-label="취향 선택">
             {ThemeOptions.map((tag, i) => (
               <option key={i} value={tag.value}>
                 {tag.text}
@@ -237,10 +235,9 @@ export default function ProductRegistrationForm() {
         </div>
 
         <div>
-          <p> 사이즈 옵션의 갯수는?</p>
+          <label htmlFor="size_option_count"> 사이즈 옵션의 갯수는?</label>
           <select
-            name=""
-            id=""
+            id="size_option_count"
             onChange={e => {
               setSizeOptionQuantity(parseInt(e.target.value));
             }}
@@ -254,10 +251,9 @@ export default function ProductRegistrationForm() {
           </select>
         </div>
         <div>
-          <p>컬러 옵션의 갯수는?</p>
+          <label htmlFor="color_option_count">컬러 옵션의 갯수는?</label>
           <select
-            name=""
-            id=""
+            id="color_option_count"
             onChange={e => {
               setColorOptionQuantity(parseInt(e.target.value));
             }}
@@ -364,6 +360,16 @@ export default function ProductRegistrationForm() {
         >
           상품 등록 완료
         </button>
+        <button
+          type="button"
+          className="ml-auto block nahonsan-btn-3d-white border-button-color rounded-radius-full mt-16 py-4 px-8 font-basic tracking-paragraph-default font-bold text-size-md"
+          onClick={() => setPreviewState(true)}
+        >
+          미리보기
+        </button>
+        {previewState === true && (
+          <RegistrationPreview onClose={() => setPreviewState(false)} />
+        )}
       </form>
     </>
   );
