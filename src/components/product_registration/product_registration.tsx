@@ -5,8 +5,9 @@ import ProductCategories, {
 import { ProductRegistration } from '@/data/actions/seller';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { useActionState, useEffect, useState } from 'react';
+import { useActionState, useEffect, useRef, useState } from 'react';
 import RegistrationPreview from '../preview_modal/preview_modal';
+import { upLoadFile } from '@/data/actions/file';
 
 export default function ProductRegistrationForm() {
   //이미지 미리보기
@@ -53,6 +54,7 @@ export default function ProductRegistrationForm() {
 
   const [state, formAction] = useActionState(ProductRegistration, null);
   const router = useRouter();
+
   useEffect(() => {
     if (state?.ok) {
       const navigateAndRefresh = async () => {
@@ -67,9 +69,76 @@ export default function ProductRegistrationForm() {
     }
   }, [state, router]);
 
+  const formRef = useRef<HTMLFormElement>(null);
+  const [productData, setProductData] = useState<any>(null);
+  const handlePreview = async () => {
+    if (!formRef.current) return;
+
+    const formData = new FormData(formRef.current);
+    const attach = formData.get('attach') as File;
+    const contentImage = formData.get('contentImage') as File;
+
+    let mainImagePath = null;
+    let contentImagePath = null;
+
+    if (attach && attach.size > 0) {
+      const mainFormData = new FormData();
+      mainFormData.append('attach', attach);
+      const fileRes = await upLoadFile(mainFormData);
+      if (fileRes.ok) {
+        mainImagePath = fileRes.item[0]?.path;
+      }
+    }
+
+    if (contentImage && contentImage.size > 0) {
+      const contentFormData = new FormData();
+      contentFormData.append('attach', contentImage);
+      const fileRes = await upLoadFile(contentFormData);
+      if (fileRes.ok) {
+        contentImagePath = fileRes.item[0]?.path;
+      }
+    }
+    const currentData = {
+      name: (formData.get('name') as string) || '',
+      sale: saleValue,
+      price: discountedPrice,
+      shippingFees: (formData.get('shippingFees') as string) || '0',
+      content: (formData.get('content') as string) || '',
+      quantity: (formData.get('quantity') as string) || '',
+      keyword: formData.getAll('keyword').filter(k => k.toString().trim()),
+      extra: {
+        category: formData.getAll('category'),
+        color: formData.getAll('color').filter(c => c.toString().trim()),
+        size: formData.getAll('size').filter(s => s.toString().trim()),
+        tag: (formData.get('tag') as string) || '',
+        originalPrice: price,
+        contentImage: contentImagePath
+          ? [
+              {
+                path: contentImagePath,
+                name: contentImage.name,
+              },
+            ]
+          : [],
+      },
+      mainImages: mainImagePath
+        ? [
+            {
+              path: mainImagePath,
+              name: attach.name,
+            },
+          ]
+        : [],
+    };
+    setProductData(currentData);
+    console.log('FormData 수집됨');
+    console.log(productData);
+    setPreviewState(true);
+  };
   return (
     <>
       <form
+        ref={formRef}
         action={formAction}
         className="relative flex flex-col gap-10 border-2 mt-6 md:mt-8 mx-4 md:mx-auto max-w-[46.25rem] rounded-2xl md:rounded-4xl border-button-color-opaque-25 px-6 py-12 md:px-12 lg:px-20 md:py-16 lg:py-24"
       >
@@ -363,12 +432,15 @@ export default function ProductRegistrationForm() {
         <button
           type="button"
           className="ml-auto block nahonsan-btn-3d-white border-button-color rounded-radius-full mt-16 py-4 px-8 font-basic tracking-paragraph-default font-bold text-size-md"
-          onClick={() => setPreviewState(true)}
+          onClick={() => handlePreview()}
         >
           미리보기
         </button>
         {previewState === true && (
-          <RegistrationPreview onClose={() => setPreviewState(false)} />
+          <RegistrationPreview
+            onClose={() => setPreviewState(false)}
+            productData={productData}
+          />
         )}
       </form>
     </>
