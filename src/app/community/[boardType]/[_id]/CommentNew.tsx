@@ -10,12 +10,14 @@ interface CommentNewProps {
   _id: number;
   repliesCount: number;
   onAdd: (reply: PostReply) => void;
+  boardType: string;
 }
 
 export default function CommentNew({
   _id,
   repliesCount,
   onAdd,
+  boardType,
 }: CommentNewProps) {
   const { user } = useUserStore();
   const [, formAction, isLoading] = useActionState< ApiRes<PostReply, never> | null, FormData >
@@ -116,6 +118,7 @@ export default function CommentNew({
             name="mentionIds"
             value={JSON.stringify(mentionIds)}
           />
+          <input type="hidden" name="type" value={boardType} />
           <div>
             <input
               id="comment-input"

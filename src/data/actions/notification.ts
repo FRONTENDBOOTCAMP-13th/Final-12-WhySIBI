@@ -1,6 +1,7 @@
 'use server';
 
 import { ApiRes, ApiResPromise } from '@/types';
+import { revalidatePath } from 'next/cache';
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID || '';
 
@@ -21,13 +22,19 @@ export async function createNotification(body: {
         'Client-Id': CLIENT_ID,
         Authorization: `Bearer ${body.accessToken}`,
       },
+      cache: 'no-cache',
       body: JSON.stringify(body),
+      next: { revalidate: 0 },
     });
-    
+
+    if (!res.ok) {
+      const text = await res.text();
+      return { ok: 0, message: `알림 조회 실패 (${res.status}) ${text}` };
+    }
     return res.json();
-  } catch (error) {
-    console.error(error);
-    return { ok: 0, message: '알림 등록에 실패했습니다.' };
+  } catch (e) {
+    console.error(e);
+    return { ok: 0, message: '알림 조회 중 네트워크 오류가 발생했습니다.' };
   }
 }
 
@@ -58,14 +65,19 @@ export async function readAllNotifications(token: string): ApiResPromise<{ ok: 1
     const res = await fetch(`${API_URL}/notifications/read`, {
       method: 'PATCH',
       headers: {
-        'Client-Id': CLIENT_ID,
         Authorization: `Bearer ${token}`,
+        'Client-Id': CLIENT_ID,
       },
     });
-    return res.json();
-  } catch (error) {
-    console.error(error);
-    return { ok: 0, message: '전체 읽음 처리 실패' };
+    const data = await res.json();
+
+    if (data.ok) {
+      revalidatePath('/notification'); // 페이지 갱신
+    }
+    return data;
+  } catch (e) {
+    console.error(e);
+    return { ok: 0, message: '전체 읽음 처리 중 네트워크 오류가 발생했습니다.' };
   }
 }
 
@@ -75,13 +87,18 @@ export async function readNotification(id: number, token: string): ApiResPromise
     const res = await fetch(`${API_URL}/notifications/${id}/read`, {
       method: 'PATCH',
       headers: {
-        'Client-Id': CLIENT_ID,
         Authorization: `Bearer ${token}`,
+        'Client-Id': CLIENT_ID,
       },
     });
-    return res.json();
-  } catch (error) {
-    console.error(error);
-    return { ok: 0, message: '개별 읽음 처리 실패' };
+    const data = await res.json();
+
+    if (data.ok) {
+      revalidatePath('/notification'); // 페이지 갱신
+    }
+    return data;
+  } catch (e) {
+    console.error(e);
+    return { ok: 0, message: '읽음 처리 중 네트워크 오류가 발생했습니다.' };
   }
 }

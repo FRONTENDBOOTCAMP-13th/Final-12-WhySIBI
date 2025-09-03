@@ -22,7 +22,7 @@ export default function CommentItem({
     : '/image/community_icon/profile_sample.png';
 
   return (
-    <div className="min-w-[15.625rem] max-w-[18.75rem] md:max-w-[37.5rem] md:min-w-2xl flex py-5 text-[14px] text-black gap-3 px-3">
+    <div className="min-w-[15.625rem] max-w-[18.75rem] md:max-w-[37.5rem] md:min-w-2xl flex py-4 text-[14px] text-black gap-3 px-3 rounded-2xl">
       <div>
         <Image
           src={profileImage}
@@ -39,7 +39,7 @@ export default function CommentItem({
         >
           {reply.user.name}
         </span>
-        <p className="mb-3 mt-1">
+        <p id={`reply-${reply._id}`} className="mb-3 mt-1">
           {reply.content.split(/(@\S+)/g).map((part, idx) => {
             return part.startsWith('@') ? (
               <span key={idx} className="text-livealone-flame">

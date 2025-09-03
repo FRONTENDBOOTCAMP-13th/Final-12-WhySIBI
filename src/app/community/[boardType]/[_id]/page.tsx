@@ -80,6 +80,7 @@ export default async function DetailPage({ params }: InfoPageProps) {
             <CommentSection
               _id={_id}
               initialReplies={initialReplies}
+              boardType={boardType}
             ></CommentSection>
           </div>
         </div>
@@ -118,6 +119,7 @@ export default async function DetailPage({ params }: InfoPageProps) {
             <CommentSection
               _id={_id}
               initialReplies={initialReplies}
+              boardType={boardType}
             ></CommentSection>
           </section>
         </div>
