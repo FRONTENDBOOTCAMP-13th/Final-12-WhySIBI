@@ -4,6 +4,7 @@ import { ApiRes, ApiResPromise, Post, PostReply } from '@/types';
 import { revalidatePath } from 'next/cache';
 import { revalidateTag } from 'next/cache';
 import { redirect } from 'next/navigation';
+import { createNotification } from './notification';
 // import { cookies } from 'next/headers';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -185,6 +186,17 @@ export async function deletePost(
   }
 }
 
+// 댓글 멘션 추출
+function extractMentions(content: string): string[] {
+  const regex = /@([a-zA-Z0-9가-힣_]+)/g;
+  const mentions: string[] = [];
+  let match;
+  while ((match = regex.exec(content)) !== null) {
+    mentions.push(match[1]); // @닉네임 → 닉네임
+  }
+  return mentions;
+}
+
 /**
  * 댓글을 생성하는 함수
  * @param {ApiRes<PostReply> | null} state - 이전 상태(사용하지 않음)
@@ -198,7 +210,7 @@ export async function createReply(
   formData: FormData,
 ): ApiResPromise<PostReply> {
   const body = Object.fromEntries(formData.entries());
-  const accessToken = formData.get('accessToken');
+  const accessToken = (formData.get('accessToken') as string) ?? '';
 
   let res: Response;
   let data: ApiRes<PostReply>;
@@ -221,9 +233,28 @@ export async function createReply(
     return { ok: 0, message: '일시적인 네트워크 문제로 등록에 실패했습니다.' };
   }
 
-  if (data.ok) {
+ if (data.ok && data.item) {
+    // ✅ mentionIds 처리
+    const mentionIdsRaw = formData.get('mentionIds') as string | null;
+    const mentionIds: number[] = mentionIdsRaw ? JSON.parse(mentionIdsRaw) : [];
+
+    for (const targetUserId of mentionIds) {
+      await createNotification({
+        type: 'mention',
+        target_id: targetUserId,
+        content: `${data.item.user?.name ?? '사용자'}님이 멘션되었습니다.`,
+        channel: 'toast',
+        extra: {
+          postId: body._id,
+          url: `/community/${body.type}/${body._id}`,
+        },
+        accessToken,
+      });
+    }
+
     revalidatePath(`/${body.type}/${body._id}/replies`);
   }
+
 
   return data;
 }

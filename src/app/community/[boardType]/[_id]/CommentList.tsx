@@ -18,11 +18,11 @@ export default function CommentList({ replies, onDeleteSuccess, onDelete }: Comm
           reply={reply}
           onDeleteSuccess={onDeleteSuccess}
           onDelete={onDelete}
-          mentionUser={(name) => {
+          mentionUser={(_id, name) => {
             const input = document.getElementById('comment-input') as HTMLInputElement;
             if (input) {
               input.focus();
-              const event = new CustomEvent('mention-user', { detail: name });
+              const event = new CustomEvent('mention-user', { detail: { _id, name }, });
               window.dispatchEvent(event);
             }
           }}

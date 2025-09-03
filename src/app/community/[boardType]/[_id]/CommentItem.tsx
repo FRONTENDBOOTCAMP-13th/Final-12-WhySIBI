@@ -8,7 +8,7 @@ interface CommentProps {
   reply: PostReply;
   onDeleteSuccess: () => void;
   onDelete: (replyId: number) => void;
-  mentionUser: (name: string) => void;
+  mentionUser: (_id: number, name: string) => void;
 }
 
 export default function CommentItem({
@@ -35,7 +35,7 @@ export default function CommentItem({
       <div>
         <span
           className="font-bold leading-xl cursor-pointer hover:underline"
-          onClick={() => mentionUser(reply.user.name)}
+          onClick={() => mentionUser(reply.user._id, reply.user.name)}
         >
           {reply.user.name}
         </span>

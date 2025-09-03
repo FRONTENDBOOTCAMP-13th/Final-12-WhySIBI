@@ -123,6 +123,17 @@ function MenuNavigation() {
             </ul>
 
             <div className="header_bottom_icons flex flex-wrap items-center xl:gap-11 lg:gap-8 md:gap-6 xl:mr-7 lg:mr-5 md:mr-4">
+              {user? (<Link href={'/notification'}>
+                <div className="no-invert">
+                  <Image
+                    src={'/image/header_icon/notification_icon.svg'}
+                    alt="알림아이콘"
+                    width={'35'}
+                    height={'35'}
+                    className="xl:w-[35px] xl:h-[35px] lg:w-[34px] lg:h-[34px] md:w-[32px] md:h-[32px]"
+                  />
+                </div>
+              </Link>) : ('')}
               <ProductSearchButton />
               <Link href={'/cart'}>
                 <Image
@@ -158,6 +169,16 @@ function MenuNavigation() {
 
           {/* 모바일 아이콘들 */}
           <div className="flex items-center gap-4">
+            {user? (<Link href={'/notification'}>
+              <div className="no-invert px-1">
+                <Image
+                  src={'/image/header_icon/notification_icon.svg'}
+                  alt="알림아이콘"
+                  width={'25'}
+                  height={'25'}
+                />
+              </div>
+            </Link>) : ('') }
             <ProductSearchButton />
             <Link href={'/cart'}>
               <Image

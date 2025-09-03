@@ -29,6 +29,7 @@ export default function CommentNew({
       if (res.ok === 1 && res.item) {
         onAdd(res.item);
         setInputValue('');
+        setMentionIds([]);
         setLocalError(null);
       }
 
@@ -43,15 +44,24 @@ export default function CommentNew({
 
   const [inputValue, setInputValue] = useState('');
   const [localError, setLocalError] = useState<string | null>(null);
+  const [mentionIds, setMentionIds] = useState<number[]>([]);
 
   useEffect(() => {
     const handler = (e: Event) => {
       if (!user) return;
-      const customEvent = e as CustomEvent<string>;
-      if (typeof customEvent.detail === 'string') {
-        const mentionTag = `@${customEvent.detail} `;
+      const customEvent = e as CustomEvent<{ _id: number; name: string }>;
+
+      if (customEvent.detail) {
+        const { _id, name } = customEvent.detail;
+
+        // @닉네임 입력값 적용
+        const nickname = name ?? '(알 수 없음)';
+        const mentionTag = `@${nickname} `;
         const withoutOldMention = inputValue.replace(/^@\S+\s/, '');
         setInputValue(mentionTag + withoutOldMention);
+
+        // mentionIds 상태 갱신
+        setMentionIds([_id]);
       }
     };
 
@@ -64,6 +74,7 @@ export default function CommentNew({
     const mentionRegex = /^@\S+\s/;
     if (e.key === 'Backspace' && mentionRegex.test(inputValue)) {
       setInputValue(inputValue.replace(mentionRegex, ''));
+      setMentionIds([]); // mention 제거
     }
   };
 
@@ -99,6 +110,11 @@ export default function CommentNew({
             type="hidden"
             name="accessToken"
             value={user?.token?.accessToken ?? ''}
+          />
+          <input
+            type="hidden"
+            name="mentionIds"
+            value={JSON.stringify(mentionIds)}
           />
           <div>
             <input
