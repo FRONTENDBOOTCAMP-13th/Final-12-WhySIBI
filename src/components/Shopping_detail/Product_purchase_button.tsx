@@ -4,21 +4,22 @@ import { ProductButtonProps } from '@/types/shopping_detail';
 import useUserStore from '@/zustand/useUserStore';
 // import useUserStore from '@/zustand/useUserStore';
 import { useRouter } from 'next/navigation';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useMemo } from 'react';
 import toast from 'react-hot-toast';
-// import { useCallback, useEffect } from 'react';
-// import toast from 'react-hot-toast';
 
 export default function ProductPurchaseButton({
   option,
   id,
 }: ProductButtonProps) {
-  const product = {
-    _id: Number(id ?? '0'),
-    quantity: option.quantity ?? 1,
-    color: option.color ?? '',
-    size: option.size ?? '',
-  };
+  const product = useMemo(
+    () => ({
+      _id: Number(id ?? '0'),
+      quantity: option.quantity ?? 1,
+      color: option.color ?? '',
+      size: option.size ?? '',
+    }),
+    [id, option.quantity, option.color, option.size],
+  );
 
   const { user } = useUserStore();
   const token = user?.token?.accessToken;

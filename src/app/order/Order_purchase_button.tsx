@@ -76,12 +76,12 @@ export default function OrderPurchaseButton({
   );
 
   useEffect(() => {
-    fetchPayment();
-  }, [fetchPayment]);
-
-  useEffect(() => {
-    if (state && !state.status) {
+    if (state && state.status === false) {
       alert(state.error);
+    } else if (state && state.status === true) {
+      alert('success!');
+      // showSuccessToast();
+      // triggerRefresh();
     }
   }, [state]);
 
