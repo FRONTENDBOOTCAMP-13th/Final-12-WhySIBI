@@ -164,6 +164,7 @@ export default function ProductRegistrationForm() {
             className="hidden"
             accept="image/*"
             onChange={imageSrchandleFilePath}
+            required
           />
         </div>
         <div>
@@ -176,6 +177,7 @@ export default function ProductRegistrationForm() {
             name="name"
             id="name"
             className="font-basic block w-full pl-4 border-2 outline-0  border-button-color-opaque-25 rounded-full h-16 py-4  focus:border-button-color transition-all duration-200 ease-in"
+            required
           />
         </div>
         <div>
@@ -190,6 +192,7 @@ export default function ProductRegistrationForm() {
             value={price}
             onChange={e => setPrice(e.target.value)}
             className="font-basic block w-full pl-4 border-2 outline-0  border-button-color-opaque-25 rounded-full h-16 py-4  focus:border-button-color transition-all duration-200 ease-in"
+            required
           />
         </div>
         <div>
@@ -204,6 +207,7 @@ export default function ProductRegistrationForm() {
             value={saleValue}
             onChange={e => setSaleValue(e.target.value)}
             className="font-basic block w-full pl-4 border-2 outline-0  border-button-color-opaque-25 rounded-full h-16 py-4  focus:border-button-color transition-all duration-200 ease-in"
+            required
           />
         </div>
         <div>
@@ -243,6 +247,7 @@ export default function ProductRegistrationForm() {
             name="quantity"
             id="quantity"
             className="font-basic block w-full pl-4 border-2 outline-0  border-button-color-opaque-25 rounded-full h-16 py-4  focus:border-button-color transition-all duration-200 ease-in"
+            required
           />
         </div>
         <div>
@@ -265,6 +270,7 @@ export default function ProductRegistrationForm() {
                 id="keyword"
                 className="font-basic block w-full pl-4 border-2 outline-0  border-button-color-opaque-25 rounded-full h-16 py-4  focus:border-button-color transition-all duration-200 ease-in"
                 placeholder="제품에 어울리는 키워드를 작성해주세요 (검색시 제품을 노출하려는 용도입니다.)"
+                required
               />
             ))}
           </div>

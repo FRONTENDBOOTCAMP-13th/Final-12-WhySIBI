@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import LikeButton from '../Shopping_detail/Like_button';
 import ShoppingFormTag from '../Shopping_detail/Shopping_form_tag';
+import Link from 'next/link';
 
 export default function RegistrationPreview({
   onClose,
@@ -32,7 +33,6 @@ export default function RegistrationPreview({
     }>;
   } | null;
 }) {
-  console.log();
   return (
     <div
       id="modalContainer"
@@ -40,7 +40,7 @@ export default function RegistrationPreview({
     >
       <div
         id="modalContent"
-        className="bg-white p-6 rounded-lg shadow-lg max-w-7xl w-full mx-4"
+        className="bg-white p-6 rounded-lg shadow-lg max-w-7xl w-full max-h-[90vh] overflow-y-auto mx-4"
         onClick={e => e.stopPropagation}
       >
         <div className="mt-5 flex justify-between">
@@ -55,7 +55,6 @@ export default function RegistrationPreview({
         </div>
         <div>
           <section className="bg-white w-full my-5 sm:my-10 flex flex-col md:flex-row lg:gap-8 xl:gap-24 justify-center py-4">
-            {/* 상품 사진 영역 */}
             <figure className="bg-white w-full  sm:max-w-[600px] sm:max-h-[600px] overflow-hidden flex justify-center items-center rounded-sm shadow-md">
               <Image
                 src={productData?.mainImages[0]?.path || ''}
@@ -80,7 +79,6 @@ export default function RegistrationPreview({
                   />
                 </header>
 
-                {/* 평점, 리뷰 */}
                 {/* <p className="flex gap-2 items-center mt-3 sm:mt-4">
                   {avg ? (
                     <>
@@ -172,6 +170,36 @@ export default function RegistrationPreview({
                 </div>
               </div>
             </section>
+          </section>
+
+          <nav className="bg-[#d9d9d9] text-size-md md:text-xl font-bold flex pl-6  xl:gap-8 xl:pl-24">
+            <Link
+              href={'?tab=info'}
+              scroll={false} // 이거 쓰면 링크 클릭할때마다 맨위로 안감
+              className={`p-4 text-flame-250 border-b-3 border-flame-250`}
+            >
+              상품정보
+            </Link>
+            <Link href={'?tab=review'} scroll={false} className="p-4">
+              리뷰
+            </Link>
+            <Link href={'?tab=inquiry'} scroll={false} className={`p-4 `}>
+              판매자문의
+            </Link>
+          </nav>
+          <section className="py-24 px-5 sm:px-10">
+            <h3 className="sr-only">상품정보</h3>
+            <Image
+              className="my-0 mx-auto"
+              src={
+                productData?.extra.contentImage[0].path ||
+                `/image/product_detail/detail_img.png`
+              }
+              width={800}
+              height={600}
+              alt="상품 상세 이미지 준비중 입니다."
+            ></Image>
+            <p>{productData?.content}</p>
           </section>
         </div>
       </div>
