@@ -42,15 +42,17 @@ export default function ProductRegistrationInfo({
               <p className="xl:mt-7 lg:mt-6 md:mt-5 text-menu-text xl:text-base lg:text-sm md:text-sm">
                 가격: {price}원
               </p>
+              <p>상품 등록일: {createdAt}</p>
+              <p>총 수량: {quantity}</p>
+              <p>판매 수량: {buyQuantity}</p>
+              <p>남은 수량: {quantity - buyQuantity}</p>
+              <p>리뷰 갯수: {replies}</p>
             </figcaption>
           </figure>
         </Link>
 
         <div className="font-basic xl:pl-6 lg:pl-5 md:pl-4 font-bold text-center border-l-2 border-button-color-opaque-25 flex-shrink-0">
-          <p>총 수량: {quantity}</p>
-          <p>판매 수량: {buyQuantity}</p>
-          <p>남은 수량: {quantity - buyQuantity}</p>
-          <p>리뷰 갯수: {replies}</p>
+          <button type="button">수정하기</button>
         </div>
       </div>
 
@@ -74,15 +76,17 @@ export default function ProductRegistrationInfo({
             <figcaption className="font-basic font-bold text-sm flex-1">
               <p>상품명: {name}</p>
               <p className="mt-3 text-menu-text">가격: {price}원</p>
+              <p>상품 등록일: {createdAt}</p>
+              <p>총 수량: {quantity}</p>
+              <p>판매 수량: {buyQuantity}</p>
+              <p>남은 수량: {quantity - buyQuantity}</p>
+              <p>리뷰 갯수: {replies}</p>
             </figcaption>
           </figure>
         </Link>
 
         <div className="font-basic font-bold text-center space-y-2 border-t-2 border-button-color-opaque-25 pt-3">
-          <p>총 수량: {quantity}</p>
-          <p>판매 수량: {buyQuantity}</p>
-          <p>남은 수량: {quantity - buyQuantity}</p>
-          <p>리뷰 갯수: {replies}</p>
+          <button type="button">수정하기</button>
         </div>
       </div>
     </li>
