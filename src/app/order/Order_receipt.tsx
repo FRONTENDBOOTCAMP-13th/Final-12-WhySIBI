@@ -74,16 +74,20 @@ export default function OrderReceipt() {
     fetchProduct();
   }, [fetchProduct]);
 
-  let totalQuantity;
+  let totalMoney;
   let discountMoney;
+  let finalPayment;
   if (productDetail?.item.price && productData) {
-    totalQuantity =
+    totalMoney =
       productDetail?.item.extra.originalPrice * productData?.quantity;
 
     discountMoney =
       (productDetail?.item.extra.originalPrice - productDetail?.item.price) *
       productData?.quantity;
+
+    finalPayment = totalMoney - discountMoney;
   }
+  console.log('여기는 무조건 있겠네', productDetail);
   return (
     <section className="border-2 px-5 py-6 ">
       <h3 className="font-semibold text-xl border-b-1 border-gray-150 pb-6">
@@ -94,7 +98,7 @@ export default function OrderReceipt() {
         <tbody>
           <tr>
             <th className="font-medium pt-5 pb-2">총 상품 금액</th>
-            <td className="pt-5 pb-2">{totalQuantity?.toLocaleString()}원</td>
+            <td className="pt-5 pb-2">{totalMoney?.toLocaleString()}원</td>
           </tr>
           <tr>
             <th className="font-medium pb-2">배송비</th>
@@ -107,12 +111,7 @@ export default function OrderReceipt() {
           <tr>
             <th className="pb-5 font-bold">총 결제 금액</th>
             <td className="pb-5 font-bold">
-              {totalQuantity && discountMoney ? (
-                (totalQuantity - discountMoney).toLocaleString()
-              ) : (
-                <div>불러오는중...</div>
-              )}
-              원
+              {finalPayment?.toLocaleString()}원
             </td>
           </tr>
         </tbody>
@@ -176,6 +175,8 @@ export default function OrderReceipt() {
       <OrderPurchaseButton
         checkboxStates={checkboxStates}
         productData={productData}
+        finalPayment={finalPayment}
+        productName={productDetail?.item.name}
       />
     </section>
   );
