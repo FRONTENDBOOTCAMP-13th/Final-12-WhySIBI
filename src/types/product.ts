@@ -38,6 +38,8 @@ export interface ProductListProps {
   replies: number;
   //상품 판매갯수
   buyQuantity: number;
+  //전체수량
+  quantity: number;
   //상품 메인 이미지
   mainImages: ProductImage[];
   //상품 엑스트라 정보

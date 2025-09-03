@@ -71,6 +71,7 @@ export default function ProductRegistrationList({
                   mainImages={product.mainImages}
                   replies={product.replies}
                   buyQuantity={product.buyQuantity}
+                  quantity={product.quantity}
                   extra={product.extra}
                   createdAt={product.createdAt}
                   keyword={product.keyword}

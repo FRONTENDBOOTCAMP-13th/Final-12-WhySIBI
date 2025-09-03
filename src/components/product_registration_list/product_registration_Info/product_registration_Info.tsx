@@ -9,6 +9,7 @@ export default function ProductRegistrationInfo({
   mainImages,
   replies,
   buyQuantity,
+  quantity,
   extra,
   createdAt,
   keyword,
@@ -45,7 +46,12 @@ export default function ProductRegistrationInfo({
           </figure>
         </Link>
 
-        <div className="font-basic xl:pl-6 lg:pl-5 md:pl-4 font-bold text-center border-l-2 border-button-color-opaque-25 flex-shrink-0"></div>
+        <div className="font-basic xl:pl-6 lg:pl-5 md:pl-4 font-bold text-center border-l-2 border-button-color-opaque-25 flex-shrink-0">
+          <p>총 수량: {quantity}</p>
+          <p>판매 수량: {buyQuantity}</p>
+          <p>남은 수량: {quantity - buyQuantity}</p>
+          <p>리뷰 갯수: {replies}</p>
+        </div>
       </div>
 
       {/* 모바일 레이아웃 (768px 미만) */}
@@ -73,12 +79,10 @@ export default function ProductRegistrationInfo({
         </Link>
 
         <div className="font-basic font-bold text-center space-y-2 border-t-2 border-button-color-opaque-25 pt-3">
-          {/* <Link
-            href={`/my_page/order/cancel/${_id}`}
-            className="block rounded-radius-full px-4 py-2 border-2 border-columbia-blue-300 text-button-color text-xs"
-          >
-            주문 &middot; 배송 취소
-          </Link> */}
+          <p>총 수량: {quantity}</p>
+          <p>판매 수량: {buyQuantity}</p>
+          <p>남은 수량: {quantity - buyQuantity}</p>
+          <p>리뷰 갯수: {replies}</p>
         </div>
       </div>
     </li>
