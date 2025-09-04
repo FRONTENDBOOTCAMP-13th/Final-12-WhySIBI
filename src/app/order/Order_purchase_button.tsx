@@ -144,6 +144,7 @@ export default function OrderPurchaseButton({
       },
     );
   }, []);
+
   //결제 api호출
   const fetchPayment = useCallback(
     async function fetchPayment() {

@@ -72,7 +72,9 @@ export default function OrderInfo() {
         배송정보
       </h3>
       <div className="flex items-center gap-4 mb-2 mt-3">
-        <label className="text-lg font-basic">수령인</label>
+        <label className="text-lg font-basic">
+          수령인<span className="text-red-500">*</span>
+        </label>
         <input
           ref={nameInput}
           value={name}
@@ -89,7 +91,9 @@ export default function OrderInfo() {
         </button>
       </div>
       <div className="flex items-center gap-4 mb-2">
-        <label className="text-lg font-basic">배송지</label>
+        <label className="text-lg font-basic">
+          배송지<span className="text-red-500">*</span>
+        </label>
         <input
           ref={addressInput}
           value={address}
