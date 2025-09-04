@@ -44,7 +44,7 @@ export default function CommentNew({
     null,
   );
 
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState<string>('');
   const [localError, setLocalError] = useState<string | null>(null);
   const [mentionIds, setMentionIds] = useState<number[]>([]);
 
@@ -60,7 +60,7 @@ export default function CommentNew({
         const nickname = name ?? '(알 수 없음)';
         const mentionTag = `@${nickname} `;
         const withoutOldMention = inputValue.replace(/^@\S+\s/, '');
-        setInputValue(mentionTag + withoutOldMention);
+        setInputValue(mentionTag + withoutOldMention || '');
 
         // mentionIds 상태 갱신
         setMentionIds([_id]);
@@ -69,7 +69,7 @@ export default function CommentNew({
 
     window.addEventListener('mention-user', handler);
     return () => window.removeEventListener('mention-user', handler);
-  }, [user, inputValue]);
+  }, [user]);
 
   // 태그 한번에 지우기
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -116,8 +116,9 @@ export default function CommentNew({
           <input
             type="hidden"
             name="mentionIds"
-            value={JSON.stringify(mentionIds)}
+            value={JSON.stringify(mentionIds || [])}
           />
+          <input type="hidden" name="mentionName" value={user?.name || ''} />
           <input type="hidden" name="type" value={boardType} />
           <div>
             <input

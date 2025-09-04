@@ -211,6 +211,7 @@ export async function createReply(
 ): ApiResPromise<PostReply> {
   const body = Object.fromEntries(formData.entries());
   const accessToken = (formData.get('accessToken') as string) ?? '';
+  const mentionName = (formData.get('mentionName') as string) ?? '';
 
   let res: Response;
   let data: ApiRes<PostReply>;
@@ -248,6 +249,7 @@ export async function createReply(
           postId: body._id,
           replyId: data.item._id,
           url: `/community/${body.type}/${body._id}`,
+          mentionName: mentionName,
         },
         accessToken,
       });
