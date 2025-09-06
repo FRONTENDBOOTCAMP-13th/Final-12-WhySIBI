@@ -1,12 +1,6 @@
 'use server';
 import { upLoadFile } from '@/data/actions/file';
-import {
-  ApiRes,
-  ApiResPromise,
-  Product,
-  ProductList,
-  ProductListProps,
-} from '@/types';
+import { ApiRes, ApiResPromise, Product, ProductListProps } from '@/types';
 import { cookies } from 'next/headers';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -140,5 +134,25 @@ export async function getProductInfo(path: string): ApiResPromise<Product> {
     // 네트워크 오류 처리
     console.error('상품 조회 실패:', error);
     return { ok: 0, message: '상품 정보를 불러오는데 실패했습니다.' };
+  }
+}
+export async function deleteProductRegistrationList(
+  token: string,
+  _id: number,
+): ApiResPromise<ProductListProps[]> {
+  try {
+    const res = await fetch(`${API_URL}/seller/products/${_id}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+        'Client-Id': CLIENT_ID,
+      },
+    });
+    return await res.json();
+  } catch (error) {
+    // 네트워크 오류 처리
+    console.error('상품 리스트 조회 실패:', error);
+    return { ok: 0, message: '상품을 삭제하는데 실패했습니다.' };
   }
 }

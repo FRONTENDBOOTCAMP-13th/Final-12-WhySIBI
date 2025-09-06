@@ -51,7 +51,7 @@ export interface ProductListProps {
   myBookmarkId?: number;
 
   //상품 검색 키워드
-  keyword: string[];
+  keyword?: string[];
 }
 export interface ProductList {
   // 상품 고유 ID

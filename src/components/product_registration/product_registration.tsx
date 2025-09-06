@@ -219,7 +219,7 @@ export default function ProductRegistrationForm() {
             placeholder="할인 가격"
             name="price"
             id="price"
-            value={discountedPrice.toString()}
+            value={discountedPrice.toLocaleString()}
             className="font-basic block w-full pl-4 border-2 outline-0  border-button-color-opaque-25 rounded-full h-16 py-4  focus:border-button-color transition-all duration-200 ease-in"
             readOnly
           />

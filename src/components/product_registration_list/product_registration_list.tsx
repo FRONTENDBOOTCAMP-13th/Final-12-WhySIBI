@@ -1,17 +1,19 @@
 'use client';
 import Pagenation from '@/components/basic_component/Pagenation';
 import SkeletonUI from '@/components/product_component/skeleton_ui';
-import { ProductList, ProductListProps } from '@/types';
+import { ProductListProps } from '@/types';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import ProductRegistrationInfo from './product_registration_Info/product_registration_Info';
 interface registrationListProp {
   registrationItem: ProductListProps[];
+  token: string;
 }
 
 export default function ProductRegistrationList({
   registrationItem,
+  token,
 }: registrationListProp) {
   // export default function ProductRegistrationList() {
   //상품 리스트 불러오는 부분
@@ -75,6 +77,7 @@ export default function ProductRegistrationList({
                   extra={product.extra}
                   createdAt={product.createdAt}
                   keyword={product.keyword}
+                  token={token}
                 />
               ))}
             </ul>

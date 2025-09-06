@@ -9,7 +9,10 @@ export default async function RegistrationList() {
   const token = (await cookies()).get('accessToken');
   const res = await getProductRegistrationList(token?.value as string);
   return res.ok === 1 ? (
-    <ProductRegistrationList registrationItem={res.item} />
+    <ProductRegistrationList
+      registrationItem={res.item}
+      token={token?.value as string}
+    />
   ) : (
     // <ProductRegistrationList />
     <div className="font-logo text-3xl">

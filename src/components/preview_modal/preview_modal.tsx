@@ -72,10 +72,11 @@ export default function RegistrationPreview({
                   <h2 className="text-lg sm:text-xl md:text-2xl font-semibold mt-2 sm:mt-3 md:mt-4 flex-1 pr-2 leading-tight">
                     {productData?.name}
                   </h2>
-                  <LikeButton
-                    isLiked={false}
-                    myBookmarkId={0}
-                    handleBookmark={() => {}}
+                  <Image
+                    src={'/image/community_icon/heartIcon.svg'}
+                    alt="찜하기"
+                    width={20}
+                    height={20}
                   />
                 </header>
 
