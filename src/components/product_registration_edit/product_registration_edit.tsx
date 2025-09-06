@@ -2,14 +2,20 @@
 import ProductCategories, {
   ThemeOptions,
 } from '@/components/optionArray/optionArray';
-import { ProductRegistration } from '@/data/actions/seller';
+import { ProductRegistrationEditFunction } from '@/data/actions/seller';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useActionState, useEffect, useRef, useState } from 'react';
 import RegistrationPreview from '../preview_modal/preview_modal';
 import { upLoadFile } from '@/data/actions/file';
+import { ProductListProps } from '@/types';
+interface ProductRegistrationProps {
+  res: ProductListProps;
+}
 
-export default function ProductRegistrationForm() {
+export default function ProductRegistrationEditForm({
+  res,
+}: ProductRegistrationProps) {
   //이미지 미리보기
   const [imageSrc, setImageSrc] = useState('');
   // 상세이미지 미리보기
@@ -33,10 +39,10 @@ export default function ProductRegistrationForm() {
   // 옵션 갯수 선택
   const [sizeOptionQuantity, setSizeOptionQuantity] = useState(0);
   const [colorOptionQuantity, setColorOptionQuantity] = useState(0);
-  const [keywordCount, setKeywordCount] = useState(0);
+  const [keywordCount, setKeywordCount] = useState(res.keyword?.length || 0);
   //가격과 할인율 상태 변화
-  const [price, setPrice] = useState('');
-  const [saleValue, setSaleValue] = useState('');
+  const [price, setPrice] = useState((res.price || 0).toString());
+  const [saleValue, setSaleValue] = useState((res.sale || 0).toString());
 
   const calculateDiscountedPrice = () => {
     const numPrice = parseFloat(price) || 0;
@@ -52,7 +58,10 @@ export default function ProductRegistrationForm() {
 
   const [previewState, setPreviewState] = useState(false);
 
-  const [state, formAction] = useActionState(ProductRegistration, null);
+  const [state, formAction] = useActionState(
+    ProductRegistrationEditFunction,
+    null,
+  );
   const router = useRouter();
 
   useEffect(() => {
@@ -131,8 +140,6 @@ export default function ProductRegistrationForm() {
         : [],
     };
     setProductData(currentData);
-    console.log('FormData 수집됨');
-    console.log(productData);
     setPreviewState(true);
   };
   return (
@@ -142,9 +149,10 @@ export default function ProductRegistrationForm() {
         action={formAction}
         className="relative flex flex-col gap-10 border-2 mt-6 md:mt-8 mx-4 md:mx-auto max-w-[46.25rem] rounded-2xl md:rounded-4xl border-button-color-opaque-25 px-6 py-12 md:px-12 lg:px-20 md:py-16 lg:py-24"
       >
+        <input type="hidden" name="_id" id="_id" value={res._id} />
         <div className="flex items-center gap-10">
           <Image
-            src={imageSrc || ''}
+            src={imageSrc || res.mainImages[0].path}
             alt="상품 사진"
             width={112}
             height={112}
@@ -176,6 +184,7 @@ export default function ProductRegistrationForm() {
             placeholder="상품제목"
             name="name"
             id="name"
+            value={res.name}
             className="font-basic block w-full pl-4 border-2 outline-0  border-button-color-opaque-25 rounded-full h-16 py-4  focus:border-button-color transition-all duration-200 ease-in"
             required
           />
@@ -189,7 +198,7 @@ export default function ProductRegistrationForm() {
             placeholder="상품가격"
             name="originalPrice"
             id="originalPrice"
-            value={price}
+            value={Number(price)}
             onChange={e => setPrice(e.target.value)}
             className="font-basic block w-full pl-4 border-2 outline-0  border-button-color-opaque-25 rounded-full h-16 py-4  focus:border-button-color transition-all duration-200 ease-in"
             required
@@ -204,7 +213,7 @@ export default function ProductRegistrationForm() {
             placeholder="할인율"
             name="sale"
             id="sale"
-            value={saleValue}
+            value={Number(saleValue)}
             onChange={e => setSaleValue(e.target.value)}
             className="font-basic block w-full pl-4 border-2 outline-0  border-button-color-opaque-25 rounded-full h-16 py-4  focus:border-button-color transition-all duration-200 ease-in"
             required
@@ -245,6 +254,7 @@ export default function ProductRegistrationForm() {
             placeholder="수량"
             name="quantity"
             id="quantity"
+            value={res.quantity}
             className="font-basic block w-full pl-4 border-2 outline-0  border-button-color-opaque-25 rounded-full h-16 py-4  focus:border-button-color transition-all duration-200 ease-in"
             required
           />
@@ -269,6 +279,7 @@ export default function ProductRegistrationForm() {
                 id="keyword"
                 className="font-basic block w-full pl-4 border-2 outline-0  border-button-color-opaque-25 rounded-full h-16 py-4  focus:border-button-color transition-all duration-200 ease-in"
                 placeholder="제품에 어울리는 키워드를 작성해주세요 (검색시 제품을 노출하려는 용도입니다.)"
+                value={res.keyword}
                 required
               />
             ))}

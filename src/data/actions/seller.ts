@@ -117,14 +117,18 @@ export async function ProductRegistration(
 }
 
 /**
- * 상품의 상세정보를 가져옵니다.
- * @returns {Promise<ApiRes<Product>>} - 상품 목록 응답 객체
+ * 등록 상품의 상세정보를 가져옵니다.
+ * @returns {Promise<ApiRes<ProductListProps>>} - 등록 상품 목록 응답 객체
  */
-export async function getProductInfo(path: string): ApiResPromise<Product> {
+export async function getProductRegistrationInfo(
+  id: number,
+  token: string,
+): ApiResPromise<ProductListProps> {
   try {
-    const res = await fetch(`${API_URL}/seller/products/${path}`, {
+    const res = await fetch(`${API_URL}/seller/products/${id}`, {
       method: 'GET',
       headers: {
+        Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
         'Client-Id': CLIENT_ID,
       },
@@ -155,4 +159,85 @@ export async function deleteProductRegistrationList(
     console.error('상품 리스트 조회 실패:', error);
     return { ok: 0, message: '상품을 삭제하는데 실패했습니다.' };
   }
+}
+
+export async function ProductRegistrationEditFunction(
+  state: ApiRes<Product> | null,
+  formData: FormData,
+): ApiResPromise<Product> {
+  let res: Response;
+  let data: ApiRes<Product>;
+  const token = (await cookies()).get('accessToken');
+  try {
+    const attach = formData.get('attach') as File;
+    const contentImage = formData.get('contentImage') as File;
+    const _id = formData.get('_id');
+    let mainImagePath = null;
+    let contentImagePath = null;
+
+    if (attach && attach.size > 0) {
+      const mainFormData = new FormData();
+      mainFormData.append('attach', attach);
+      const fileRes = await upLoadFile(mainFormData);
+      if (fileRes.ok) {
+        mainImagePath = fileRes.item[0]?.path;
+      }
+    }
+
+    if (contentImage && contentImage.size > 0) {
+      const contentFormData = new FormData();
+      contentFormData.append('attach', contentImage);
+      const fileRes = await upLoadFile(contentFormData);
+      if (fileRes.ok) {
+        contentImagePath = fileRes.item[0]?.path;
+      }
+    }
+    const body = {
+      name: formData.get('name'),
+      sale: formData.get('sale'),
+      price: Number(formData.get('price')),
+      shippingFees: formData.get('shippingFees'),
+      content: formData.get('content'),
+      quantity: formData.get('quantity'),
+      keyword: formData.getAll('keyword'),
+      extra: {
+        category: formData.getAll('category'),
+        color: formData.getAll('color'),
+        size: formData.getAll('size'),
+        tag: formData.get('tag'),
+        originalPrice: formData.get('originalPrice'),
+        contentImage: contentImagePath
+          ? [
+              {
+                path: contentImagePath,
+                name: contentImage.name,
+              },
+            ]
+          : [],
+      },
+      mainImages: mainImagePath
+        ? [
+            {
+              path: mainImagePath,
+              name: attach.name,
+            },
+          ]
+        : [],
+    };
+    res = await fetch(`${API_URL}/seller/products/${_id}`, {
+      method: 'PATCH',
+      headers: {
+        Authorization: `Bearer ${token?.value}`,
+        'Content-Type': 'application/json',
+        'Client-Id': CLIENT_ID,
+      },
+      body: JSON.stringify(body),
+    });
+    data = await res.json();
+  } catch (error) {
+    // 네트워크 오류 처리
+    console.error('상품 등록 실패:', error);
+    return { ok: 0, message: '상품을 등록하는데 실패했습니다' };
+  }
+  return data;
 }

@@ -79,7 +79,7 @@ function ProductRegistrationInfo({
           <Link
             type="button"
             className="nahonsan-btn-3d-sky border-button-color mx-auto rounded-radius-full py-3 px-5"
-            href={''}
+            href={`/my_page/registration_edit/${_id}`}
           >
             수정하기
           </Link>
@@ -135,7 +135,7 @@ function ProductRegistrationInfo({
           <Link
             type="button"
             className="nahonsan-btn-3d-sky border-button-color mx-auto rounded-radius-full py-2 px-3"
-            href={''}
+            href={'/my_page/registration_edit'}
           >
             수정하기
           </Link>

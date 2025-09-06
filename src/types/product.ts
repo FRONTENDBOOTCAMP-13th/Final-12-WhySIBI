@@ -46,7 +46,7 @@ export interface ProductListProps {
   extra?: ProductExtra;
   //상품 등록일
   createdAt: string;
-
+  sale?: number;
   //북마크 ID
   myBookmarkId?: number;
 
