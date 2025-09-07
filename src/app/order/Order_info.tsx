@@ -2,7 +2,7 @@
 
 import useUserStore from '@/zustand/useUserStore';
 import OrderAddressChangeButton from './Order_address_change_button';
-import { use, useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 // 배송지 정보의 타입
 export interface AddressItem {
@@ -34,7 +34,6 @@ export default function OrderInfo() {
           },
         );
         const data = await response.json();
-        console.log('sss', data);
         setUserAddressBook(data.item.extra.addressBook);
       }
     },
@@ -47,6 +46,10 @@ export default function OrderInfo() {
   }, [fetchUser]);
 
   const [delivery, setDelivery] = useState<AddressItem>();
+
+  function handleDelivery(number: number) {
+    setDelivery(userAddressBook[number - 1]);
+  }
 
   // delivery초기화
   useEffect(() => {
@@ -120,7 +123,11 @@ export default function OrderInfo() {
     <section className="border-1 px-5 py-6 rounded-2xl">
       <div className=" border-b-1 pb-3 border-gray-150 flex items-center justify-between">
         <h3 className="text-xl font-extrabold">배송정보</h3>
-        <OrderAddressChangeButton userAddressBook={userAddressBook} />
+        <OrderAddressChangeButton
+          userAddressBook={userAddressBook}
+          delivery={delivery}
+          handleDelivery={handleDelivery}
+        />
       </div>
       <tr className="flex items-center gap-4 mb-2 mt-3">
         <th className="text-lg font-basic">

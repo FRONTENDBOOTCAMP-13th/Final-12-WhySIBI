@@ -6,8 +6,12 @@ import { AddressItem } from './Order_info';
 
 export default function OrderAddressChangeButton({
   userAddressBook,
+  delivery,
+  handleDelivery,
 }: {
   userAddressBook: AddressItem[];
+  delivery: AddressItem | undefined;
+  handleDelivery: (number: number) => void;
 }) {
   const [modal, setModal] = useState(false);
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -67,9 +71,12 @@ export default function OrderAddressChangeButton({
                 return (
                   <OrderAddressItem
                     key={item.id}
+                    id={item.id}
                     name={item.name}
                     value={item.value}
                     phone={item.phone}
+                    delivery={delivery}
+                    handleDelivery={handleDelivery}
                   />
                 );
               })}
@@ -77,8 +84,11 @@ export default function OrderAddressChangeButton({
           ) : (
             ''
           )}
-          <button className="h-10 rounded-sm font-medium cursor-pointer bg-flame-250 text-white absolute bottom-4 left-8 right-8 hover:bg-flame-400">
-            변경하기
+          <button
+            className="h-10 rounded-sm font-medium cursor-pointer bg-flame-250 text-white absolute bottom-4 left-8 right-8 hover:bg-flame-400"
+            onClick={closeModal}
+          >
+            변경완료
           </button>
         </div>
       </dialog>
@@ -86,7 +96,7 @@ export default function OrderAddressChangeButton({
       <button
         onClick={openModal}
         type="submit"
-        className="border-2 rounded-3xl text-button-color w-24 h-9 font-bold hover:bg-black hover:text-white cursor-pointer"
+        className="border-2 border-gray-550 rounded-md text-button-color w-26 h-9 font-bold hover:bg-gray-150  cursor-pointer"
       >
         배송지 변경
       </button>
