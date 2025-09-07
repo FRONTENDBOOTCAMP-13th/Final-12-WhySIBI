@@ -7,6 +7,7 @@ export default function OrderAddressItem({
   id,
   delivery,
   handleDelivery,
+  formatPhone,
 }: {
   name: string;
   value: string;
@@ -14,6 +15,7 @@ export default function OrderAddressItem({
   id: number;
   delivery: AddressItem | undefined;
   handleDelivery: (number: number) => void;
+  formatPhone: (string: string | undefined) => string | undefined;
 }) {
   return (
     <li className="flex items-baseline gap-3 border-b-1 border-gray-350 py-3">
@@ -27,7 +29,7 @@ export default function OrderAddressItem({
       <label htmlFor={id.toString()}>
         <div className="font-bold">{name}</div>
         <div>{value}</div>
-        <div>{phone}</div>
+        <div>{formatPhone(phone)}</div>
       </label>
     </li>
   );

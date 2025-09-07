@@ -47,6 +47,7 @@ export default function OrderInfo() {
 
   const [delivery, setDelivery] = useState<AddressItem>();
 
+  // 배송정보 바꾸는 함수
   function handleDelivery(number: number) {
     setDelivery(userAddressBook[number - 1]);
   }
@@ -127,6 +128,7 @@ export default function OrderInfo() {
           userAddressBook={userAddressBook}
           delivery={delivery}
           handleDelivery={handleDelivery}
+          formatPhone={formatPhone}
         />
       </div>
       <tr className="flex items-center gap-4 mb-2 mt-3">

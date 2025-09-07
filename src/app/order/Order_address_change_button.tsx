@@ -8,13 +8,18 @@ export default function OrderAddressChangeButton({
   userAddressBook,
   delivery,
   handleDelivery,
+  formatPhone,
 }: {
   userAddressBook: AddressItem[];
   delivery: AddressItem | undefined;
   handleDelivery: (number: number) => void;
+  formatPhone: (string: string | undefined) => string | undefined;
 }) {
   const [modal, setModal] = useState(false);
   const dialogRef = useRef<HTMLDialogElement>(null);
+
+  //배송지 추가 화면보여주기 상태관리
+  const [addAddress, setAddAddress] = useState(false);
 
   const openModal = () => {
     if (dialogRef.current) {
@@ -58,39 +63,60 @@ export default function OrderAddressChangeButton({
         ref={dialogRef}
         className="backdrop:bg-black/50 p-0 m-0 border-0 bg-transparent max-w-none max-h-none w-full h-full open:flex justify-center items-center"
       >
-        <div className="bg-white w-120 h-165 p-10 rounded-md relative">
-          <h3 className="font-bold mb-2 text-lg border-b-1 border-gray-350 pb-2">
-            배송지 정보
-          </h3>
-          <button className="w-full h-10 rounded-sm font-medium cursor-pointer border-dashed border-2 border-gray-450 text-gray-450 hover:bg-gray-150">
-            + 배송지 추가하기
-          </button>
-          {userAddressBook ? (
-            <ul>
-              {userAddressBook.map(item => {
-                return (
-                  <OrderAddressItem
-                    key={item.id}
-                    id={item.id}
-                    name={item.name}
-                    value={item.value}
-                    phone={item.phone}
-                    delivery={delivery}
-                    handleDelivery={handleDelivery}
-                  />
-                );
-              })}
-            </ul>
-          ) : (
-            ''
-          )}
-          <button
-            className="h-10 rounded-sm font-medium cursor-pointer bg-flame-250 text-white absolute bottom-4 left-8 right-8 hover:bg-flame-400"
-            onClick={closeModal}
-          >
-            변경완료
-          </button>
-        </div>
+        {/* addAddress가 true일때는 배송지 추가 페이지 false일때는 배송지 정보 목록 */}
+        {addAddress ? (
+          <div className="bg-white w-120 h-165 p-10 rounded-md relative">
+            <h3 className="font-bold mb-2 text-lg border-b-1 border-gray-350 pb-2">
+              배송지 추가
+            </h3>
+            <form action="">
+              <button
+                className="h-10 rounded-sm font-medium cursor-pointer bg-flame-250 text-white absolute bottom-4 left-8 right-8 hover:bg-flame-400"
+                onClick={closeModal}
+              >
+                변경완료
+              </button>
+            </form>
+          </div>
+        ) : (
+          <div className="bg-white w-120 h-165 p-10 rounded-md relative">
+            <h3 className="font-bold mb-2 text-lg border-b-1 border-gray-350 pb-2">
+              배송지 정보
+            </h3>
+            <button
+              className="w-full h-10 rounded-sm font-medium cursor-pointer border-dashed border-2 border-gray-450 text-gray-450 hover:bg-gray-150"
+              onClick={() => setAddAddress(!addAddress)}
+            >
+              + 배송지 추가하기
+            </button>
+            {userAddressBook ? (
+              <ul>
+                {userAddressBook.map(item => {
+                  return (
+                    <OrderAddressItem
+                      key={item.id}
+                      id={item.id}
+                      name={item.name}
+                      value={item.value}
+                      phone={item.phone}
+                      delivery={delivery}
+                      handleDelivery={handleDelivery}
+                      formatPhone={formatPhone}
+                    />
+                  );
+                })}
+              </ul>
+            ) : (
+              ''
+            )}
+            <button
+              className="h-10 rounded-sm font-medium cursor-pointer bg-flame-250 text-white absolute bottom-4 left-8 right-8 hover:bg-flame-400"
+              onClick={closeModal}
+            >
+              변경완료
+            </button>
+          </div>
+        )}
       </dialog>
 
       <button
