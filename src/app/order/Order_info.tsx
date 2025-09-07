@@ -2,10 +2,60 @@
 
 import useUserStore from '@/zustand/useUserStore';
 import OrderAddressChangeButton from './Order_address_change_button';
+import { use, useCallback, useEffect, useState } from 'react';
+
+// 배송지 정보의 타입
+export interface AddressItem {
+  id: number;
+  name: string;
+  value: string;
+  phone: string;
+}
 
 export default function OrderInfo() {
   //변경하기 버튼을 눌렀을때 주소input에 포커스 주기
   const { user } = useUserStore();
+  const token = user?.token?.accessToken;
+
+  const [userAddressBook, setUserAddressBook] = useState<AddressItem[]>([]);
+
+  // 주소 정보들을 불러오기 위해 유저 정보 불러오기
+  const fetchUser = useCallback(
+    async function fetchProduct() {
+      if (user?._id) {
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/users/${user?._id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'application/json',
+              'Client-Id': 'febc13-final12-emjf',
+            },
+          },
+        );
+        const data = await response.json();
+        console.log('sss', data);
+        setUserAddressBook(data.item.extra.addressBook);
+      }
+    },
+    [token, user?._id],
+  );
+
+  console.log('두근두근 어떻게 나올까', userAddressBook);
+  useEffect(() => {
+    fetchUser();
+  }, [fetchUser]);
+
+  const [delivery, setDelivery] = useState<AddressItem>();
+
+  // delivery초기화
+  useEffect(() => {
+    if (userAddressBook.length > 0 && !delivery) {
+      setDelivery(userAddressBook[0]);
+    }
+  }, [delivery, userAddressBook]);
+
+  console.log('이게 딜리버리 라니까', delivery);
 
   // const [phoneNumber, setPhoneNumber] = useState({
   //   first: '',
@@ -55,7 +105,6 @@ export default function OrderInfo() {
     return phone?.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
   };
 
-  console.log('내 유전데', user);
   //랜더링 되고 난 후에 setAddress를 해줘야 input에 기본값이 설정되더라.. user데이터가 먼저 load되어야함
   // useEffect(() => {
   //   if (user?.extra.addressBook[0].value) {
@@ -71,25 +120,25 @@ export default function OrderInfo() {
     <section className="border-1 px-5 py-6 rounded-2xl">
       <div className=" border-b-1 pb-3 border-gray-150 flex items-center justify-between">
         <h3 className="text-xl font-extrabold">배송정보</h3>
-        <OrderAddressChangeButton />
+        <OrderAddressChangeButton userAddressBook={userAddressBook} />
       </div>
       <tr className="flex items-center gap-4 mb-2 mt-3">
         <th className="text-lg font-basic">
           수령인<span className="text-red-500">*</span>
         </th>
-        <td>{user?.name}</td>
+        <td>{delivery?.name}</td>
       </tr>
       <tr className="flex items-center gap-4 mb-2">
         <th className="text-lg font-basic">
           배송지<span className="text-red-500">*</span>
         </th>
-        <td>{user?.extra.addressBook[0].value}</td>
+        <td>{delivery?.value}</td>
       </tr>
       <tr className="flex items-center gap-4 mb-4">
         <th className="text-lg font-basic">
           연락처<span className="text-red-500">*</span>
         </th>
-        <td>{formatPhone(user?.phone)}</td>
+        <td>{formatPhone(delivery?.phone)}</td>
         {/* <input
           ref={firstInputRef}
           value={phoneNumber.first}

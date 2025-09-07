@@ -1,51 +1,16 @@
 'use client';
 
-import useUserStore from '@/zustand/useUserStore';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import OrderAddressItem from './Order_address_item';
+import { AddressItem } from './Order_info';
 
-// 타입 정의
-interface AddressItem {
-  id: number;
-  name: string;
-  value: string;
-  phone: string;
-}
-
-export default function OrderAddressChangeButton() {
-  const { user } = useUserStore();
-  const token = user?.token?.accessToken;
+export default function OrderAddressChangeButton({
+  userAddressBook,
+}: {
+  userAddressBook: AddressItem[];
+}) {
   const [modal, setModal] = useState(false);
   const dialogRef = useRef<HTMLDialogElement>(null);
-
-  const [userAddressBook, setUserAddressBook] = useState<AddressItem[]>([]);
-
-  // 주소 정보들을 불러오기 위해 유저 정보 불러오기
-  const fetchUser = useCallback(
-    async function fetchProduct() {
-      if (user?._id) {
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/users/${user?._id + 1}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-              'Content-Type': 'application/json',
-              'Client-Id': 'febc13-final12-emjf',
-            },
-          },
-        );
-        const data = await response.json();
-        console.log('sss', data);
-        setUserAddressBook(data.item.extra.addressBook);
-      }
-    },
-    [token, user?._id],
-  );
-
-  console.log('두근두근 어떻게 나올까', userAddressBook);
-  useEffect(() => {
-    fetchUser();
-  }, [fetchUser]);
 
   const openModal = () => {
     if (dialogRef.current) {
