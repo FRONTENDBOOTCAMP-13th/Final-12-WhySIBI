@@ -18,6 +18,11 @@ export default function OrderInfo() {
   const token = user?.token?.accessToken;
 
   const [userAddressBook, setUserAddressBook] = useState<AddressItem[]>([]);
+  console.log('이거우째', userAddressBook);
+
+  function addAddressBook(newAddress) {
+    setUserAddressBook(prev => [...prev, newAddress]);
+  }
 
   // 주소 정보들을 불러오기 위해 유저 정보 불러오기
   const fetchUser = useCallback(
@@ -129,6 +134,7 @@ export default function OrderInfo() {
           delivery={delivery}
           handleDelivery={handleDelivery}
           formatPhone={formatPhone}
+          addAddressBook={addAddressBook}
         />
       </div>
       <tr className="flex items-center gap-4 mb-2 mt-3">
