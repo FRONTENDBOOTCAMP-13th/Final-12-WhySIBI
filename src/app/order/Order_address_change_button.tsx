@@ -65,11 +65,52 @@ export default function OrderAddressChangeButton({
       >
         {/* addAddress가 true일때는 배송지 추가 페이지 false일때는 배송지 정보 목록 */}
         {addAddress ? (
-          <div className="bg-white w-120 h-165 p-10 rounded-md relative">
+          // 배송지 추가 페이지
+          <div className="bg-white w-120 h-165 p-10 rounded-md relative flex flex-col gap-4">
             <h3 className="font-bold mb-2 text-lg border-b-1 border-gray-350 pb-2">
               배송지 추가
             </h3>
-            <form action="">
+            <form action="/" className="flex flex-col gap-4">
+              <div className="flex flex-col gap-2">
+                <label htmlFor="">이름</label>
+                <input
+                  placeholder="받는 분의 이름을 입력해주세요."
+                  type="text"
+                  className="border-1 rounded-sm py-1 px-2 border-gray-150 placeholder:text-gray-350"
+                />
+              </div>
+              <div className="flex flex-col gap-2">
+                <label htmlFor="">휴대폰번호</label>
+                <input
+                  placeholder="휴대폰번호를 입력해주세요."
+                  type="text"
+                  className="border-1 rounded-sm py-1 px-2 border-gray-150 placeholder:text-gray-350"
+                />
+              </div>
+              <div className="flex flex-col gap-2">
+                <label htmlFor="">주소</label>
+                <div className="flex gap-1">
+                  <input
+                    placeholder="우편번호"
+                    type="text"
+                    className="border-1 flex-1 rounded-sm py-1 px-2 border-gray-150 placeholder:text-gray-350"
+                  />
+                  <button className="border-1 rounded-sm border-gray-150 py-1 px-2 text-sm cursor-pointer">
+                    주소 찾기
+                  </button>
+                </div>
+                <input
+                  placeholder="주소"
+                  type="text"
+                  className="border-1 rounded-sm py-1 px-2 border-gray-150 placeholder:text-gray-350"
+                />
+                <input
+                  placeholder="상세주소"
+                  type="text"
+                  className="border-1 rounded-sm py-1 px-2 border-gray-150 placeholder:text-gray-350"
+                />
+              </div>
+
               <button
                 className="h-10 rounded-sm font-medium cursor-pointer bg-flame-250 text-white absolute bottom-4 left-8 right-8 hover:bg-flame-400"
                 onClick={closeModal}
@@ -79,6 +120,7 @@ export default function OrderAddressChangeButton({
             </form>
           </div>
         ) : (
+          // 배송지 정보목록
           <div className="bg-white w-120 h-165 p-10 rounded-md relative">
             <h3 className="font-bold mb-2 text-lg border-b-1 border-gray-350 pb-2">
               배송지 정보
