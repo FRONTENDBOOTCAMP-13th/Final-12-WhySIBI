@@ -131,8 +131,6 @@ export default function ProductRegistrationForm() {
         : [],
     };
     setProductData(currentData);
-    console.log('FormData 수집됨');
-    console.log(productData);
     setPreviewState(true);
   };
   return (

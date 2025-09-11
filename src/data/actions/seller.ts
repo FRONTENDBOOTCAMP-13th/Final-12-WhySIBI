@@ -1,6 +1,12 @@
 'use server';
 import { upLoadFile } from '@/data/actions/file';
-import { ApiRes, ApiResPromise, Product, ProductListProps } from '@/types';
+import {
+  ApiRes,
+  ApiResPromise,
+  Product,
+  ProductList,
+  ProductListProps,
+} from '@/types';
 import { cookies } from 'next/headers';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -238,6 +244,57 @@ export async function ProductRegistrationEditFunction(
     // 네트워크 오류 처리
     console.error('상품 등록 실패:', error);
     return { ok: 0, message: '상품을 등록하는데 실패했습니다' };
+  }
+  return data;
+}
+
+// 판매자가 등록한 상품 주문 내역 리스트
+export async function getProductOrderList(
+  token: string,
+): ApiResPromise<ProductList[]> {
+  try {
+    const res = await fetch(`${API_URL}/seller/orders`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+        'Client-Id': CLIENT_ID,
+      },
+    });
+    return await res.json();
+  } catch (error) {
+    // 네트워크 오류 처리
+    console.error('상품 리스트 조회 실패:', error);
+    return { ok: 0, message: '상품 정보를 불러오는데 실패했습니다.' };
+  }
+}
+
+export async function patchDeliveryState(
+  token: string,
+  _id: string,
+  state: ApiRes<ProductListProps> | null,
+  formData: FormData,
+): ApiResPromise<ProductListProps> {
+  let res: Response;
+  let data: ApiRes<ProductListProps>;
+  const body = {
+    state: formData.get('DeliveryState'),
+  };
+  try {
+    res = await fetch(`${API_URL}/seller/orders/${_id}`, {
+      method: 'PATCH',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+        'Client-Id': CLIENT_ID,
+      },
+      body: JSON.stringify(body),
+    });
+    data = await res.json();
+  } catch (error) {
+    // 네트워크 오류 처리
+    console.error('상품 배송 상태 수정 실패:', error);
+    return { ok: 0, message: '상품의 배송 상태를 수정하는데 실패했습니다' };
   }
   return data;
 }

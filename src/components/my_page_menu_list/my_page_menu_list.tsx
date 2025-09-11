@@ -72,6 +72,14 @@ export default function MyPageMenuList({ userType }: MyPageMenuListProps) {
                   등록한 상품 조회
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="/my_page/seller_orderList"
+                  className={`active:text-menu-text ${isAnchorMenuActive('/my_page/seller_orderList')}`}
+                >
+                  주문된 상품 조회
+                </Link>
+              </li>
             </>
           ) : (
             <></>
