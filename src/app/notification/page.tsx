@@ -4,16 +4,36 @@ import NotificationList from './NotificationList';
 import NotificationEmpty from './NotificationEmpty';
 import useNoticeStore from '@/zustand/useNoticeStore';
 
-export default async function NotificationPage() {
-  const cookieStore = await cookies();
-  const token = cookieStore.get('accessToken')?.value || '';
-  const res = await getNotifications(token, 1, 10);
-
-  if (!res.ok) {
-    return <div>알림을 불러오지 못했습니다: {res.message}</div>;
+// 서버에서만 쓰는 간단한 JWT 디코더
+function decodeJwt(token?: string) {
+  try {
+    if (!token) return null;
+    const [, payload] = token.split('.');
+    // base64url → Buffer 디코드 (Node 18+는 'base64url' 지원)
+    const json = Buffer.from(payload, 'base64url').toString();
+    return JSON.parse(json);
+  } catch {
+    return null;
   }
+}
 
-  const items = res.item || [];
+export default async function NotificationPage() {
+
+    const cookieStore = await cookies();
+    const token = cookieStore.get('accessToken')?.value || '';
+
+    //  세션 사용자 id 디코드
+    const me = decodeJwt(token);
+    const sessionUserId: number | undefined = me?._id;
+
+    // (참고) 계정 전환/읽음 직후 최신 유지 → no-store 권장 (서버액션이 이미 정상이라면 유지해도 되고요)
+    const res = await getNotifications(1, 20);
+
+    if (!res.ok) {
+      return <div>알림을 불러오지 못했습니다: {res.message}</div>;
+    }
+
+    const items = res.item || [];
 
   return (
     <div className="max-w-[1280px] mx-auto my-0 flex px-3 justify-center">
@@ -32,7 +52,7 @@ export default async function NotificationPage() {
         {!res.item || res.item.length === 0 ? (
           <NotificationEmpty />
         ) : (
-          <NotificationList items={res.item} token={token} />
+          <NotificationList items={res.item} sessionUserId={sessionUserId} />
         )}
       </section>
     </div>

@@ -2,6 +2,17 @@
 
 import { ApiRes, ApiResPromise } from '@/types';
 import { revalidatePath } from 'next/cache';
+import { cookies } from 'next/headers';
+
+function decodeJwt(token?: string) {
+  try {
+    if (!token) return null;
+    const [, payload] = token.split('.');
+    return JSON.parse(Buffer.from(payload, 'base64url').toString());
+  } catch {
+    return null;
+  }
+}
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID || '';
@@ -13,9 +24,11 @@ export async function createNotification(body: {
   content: string;
   channel?: string;
   extra?: Record<string, any>;
-  accessToken: string;
+  accessToken?: string;
 }): ApiResPromise<any> {
   try {
+    const { accessToken, ...safeBody } = body;
+
     const res = await fetch(`${API_URL}/notifications`, {
       method: 'POST',
       headers: {
@@ -24,7 +37,7 @@ export async function createNotification(body: {
         Authorization: `Bearer ${body.accessToken}`,
       },
       cache: 'no-cache',
-      body: JSON.stringify(body),
+      body: JSON.stringify(safeBody),
       next: { revalidate: 0 },
     });
 
@@ -40,22 +53,22 @@ export async function createNotification(body: {
 }
 
 /** 내 알림 목록 가져오기 */
-export async function getNotifications(
-  token: string,
-  page = 1,
-  limit = 10,
-): ApiResPromise<any[]> {
+export async function getNotifications(page = 1, limit = 10) {
+  const cookieStore = await cookies();
+  const token = cookieStore.get('accessToken')?.value || '';
   try {
     const res = await fetch(`${API_URL}/notifications?page=${page}&limit=${limit}`, {
+      method: 'GET',
       headers: {
         'Client-Id': CLIENT_ID,
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,        // ✅ 수신자(현재 세션)의 토큰
       },
-      next: { tags: ['notifications'] },
+      cache: 'no-store',
+      next: { revalidate: 0, tags: ['notifications'] },
     });
     return res.json();
-  } catch (error) {
-    console.error(error);
+  } catch (e) {
+    console.error(e);
     return { ok: 0, message: '알림 목록 조회 실패' };
   }
 }
@@ -83,23 +96,28 @@ export async function readAllNotifications(token: string): ApiResPromise<{ ok: 1
 }
 
 /** 특정 알림 읽음 처리 */
-export async function readNotification(id: number, token: string): ApiResPromise<{ ok: 1 | 0 }> {
+export async function readNotification(id: number) {
+  const cookieStore = await cookies();
+  const token = cookieStore.get('accessToken')?.value || '';
+  const me = decodeJwt(token);
+  console.log('[READ] try', { notifId: id, asUser: me?._id }); // ← 여기서 asUser=8 확인
+
   try {
     const res = await fetch(`${API_URL}/notifications/${id}/read`, {
       method: 'PATCH',
       headers: {
-        Authorization: `Bearer ${token}`,
         'Client-Id': CLIENT_ID,
+        Authorization: `Bearer ${token}`,        // ✅ 수신자(현재 세션)의 토큰
       },
+      cache: 'no-store',
+      next: { revalidate: 0 },
     });
     const data = await res.json();
-
-    if (data.ok) {
-      revalidatePath('/notification'); // 페이지 갱신
-    }
+      console.log('[READ] result', { status: res.status, data }); // 404면 서버 검증 실패 확정
+    if (data.ok) revalidatePath('/notification');
     return data;
   } catch (e) {
     console.error(e);
-    return { ok: 0, message: '읽음 처리 중 네트워크 오류가 발생했습니다.' };
+    return { ok: 0, message: '읽음 처리 중 네트워크 오류' };
   }
 }

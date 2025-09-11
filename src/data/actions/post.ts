@@ -186,17 +186,6 @@ export async function deletePost(
   }
 }
 
-// 댓글 멘션 추출
-function extractMentions(content: string): string[] {
-  const regex = /@([a-zA-Z0-9가-힣_]+)/g;
-  const mentions: string[] = [];
-  let match;
-  while ((match = regex.exec(content)) !== null) {
-    mentions.push(match[1]); // @닉네임 → 닉네임
-  }
-  return mentions;
-}
-
 /**
  * 댓글을 생성하는 함수
  * @param {ApiRes<PostReply> | null} state - 이전 상태(사용하지 않음)
@@ -211,7 +200,6 @@ export async function createReply(
 ): ApiResPromise<PostReply> {
   const body = Object.fromEntries(formData.entries());
   const accessToken = (formData.get('accessToken') as string) ?? '';
-  const mentionName = (formData.get('mentionName') as string) ?? '';
 
   let res: Response;
   let data: ApiRes<PostReply>;
@@ -239,7 +227,13 @@ export async function createReply(
     const mentionIdsRaw = formData.get('mentionIds') as string | null;
     const mentionIds: number[] = mentionIdsRaw ? JSON.parse(mentionIdsRaw) : [];
 
-    for (const targetUserId of mentionIds) {
+    const mentionNamesRaw = formData.get('mentionNames') as string | null;
+    const mentionNames: string[] = mentionNamesRaw ? JSON.parse(mentionNamesRaw) : [];
+
+    for (let i = 0; i < mentionIds.length; i++) {
+      const targetUserId = mentionIds[i];
+      const targetName = mentionNames[i] ?? '';
+
       await createNotification({
         type: 'mention',
         target_id: targetUserId,
@@ -249,7 +243,7 @@ export async function createReply(
           postId: body._id,
           replyId: data.item._id,
           url: `/community/${body.type}/${body._id}`,
-          mentionName: mentionName,
+          mentionName: targetName,
         },
         accessToken,
       });
