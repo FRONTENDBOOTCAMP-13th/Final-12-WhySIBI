@@ -270,15 +270,16 @@ export async function getProductOrderList(
 }
 
 export async function patchDeliveryState(
-  token: string,
-  _id: string,
   state: ApiRes<ProductListProps> | null,
   formData: FormData,
 ): ApiResPromise<ProductListProps> {
   let res: Response;
   let data: ApiRes<ProductListProps>;
+  const _id = formData.get('_id');
+  const token = formData.get('token') as string;
   const body = {
     state: formData.get('DeliveryState'),
+    token: formData.get('token'),
   };
   try {
     res = await fetch(`${API_URL}/seller/orders/${_id}`, {

@@ -7,7 +7,7 @@ export default async function SellerOrder() {
   const token = (await cookies()).get('accessToken');
   const res = await getProductOrderList(token?.value as string);
   return res.ok === 1 ? (
-    <SellerOrderList res={res.item} />
+    <SellerOrderList res={res.item} token={token?.value as string} />
   ) : (
     <div className="font-logo text-3xl">
       {' '}

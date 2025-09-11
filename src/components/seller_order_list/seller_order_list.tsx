@@ -8,14 +8,17 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 interface SellerOrderListProp {
   res: ProductList[];
+  token: string;
 }
 
-export default function SellerOrderList({ res }: SellerOrderListProp) {
+export default function SellerOrderList({ res, token }: SellerOrderListProp) {
   const [sellerOrderList, setSellerOrderList] = useState<ProductList[] | null>(
     null,
   );
   const [modalState, setModalState] = useState(false);
-  const handleDeliveryState = () => {
+  const [selectedOrderId, setSelectedOrderId] = useState<number | null>(null);
+  const handleDeliveryState = (orderId: number) => {
+    setSelectedOrderId(orderId);
     setModalState(true);
   };
   //페이지 네이션
@@ -111,7 +114,7 @@ export default function SellerOrderList({ res }: SellerOrderListProp) {
           </section>
         </div>
       )}
-      <OrderModal />
+      <OrderModal token={token} _id={selectedOrderId} />
     </>
   );
 }

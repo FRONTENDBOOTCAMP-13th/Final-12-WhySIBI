@@ -1,4 +1,25 @@
-export default function OrderModal() {
+'use client';
+import { patchDeliveryState } from '@/data/actions/seller';
+import { useRouter } from 'next/navigation';
+import { useActionState, useEffect } from 'react';
+
+export default function OrderModal(token: string) {
+  const [state, formAction] = useActionState(patchDeliveryState, null);
+  const router = useRouter();
+  useEffect(() => {
+    if (state?.ok) {
+      const navigateAndRefresh = async () => {
+        alert('상품 등록이 완료되었습니다. 등록 리스트 페이지로 이동합니다.');
+        await router.push('/my_page/seller_orderList'); // 이동 완료 기다림
+        router.refresh(); // 새로고침
+      };
+      navigateAndRefresh();
+    } else {
+      console.log(state?.message);
+      console.log(state?.errors);
+    }
+  }, [state, router]);
+
   return (
     <>
       <div className="w-2/4 mx-auto border-2 rounded-2xl p-6">
@@ -6,7 +27,9 @@ export default function OrderModal() {
           <p className="font-basic text-xl font-bold">배송 상태 수정</p>
           <button type="button">X</button>
         </div>
-        <form action="">
+        <form action={formAction}>
+          <input type="hidden" name="_id" id="productID" value={''} />
+          <input type="hidden" name="token" id="token" value={token} />
           <div className="flex gap-4">
             <div>
               <label htmlFor="OS010">상품 준비중</label>
