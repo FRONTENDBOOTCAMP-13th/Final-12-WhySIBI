@@ -14,7 +14,7 @@ export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
       enableSystem
       disableTransitionOnChange
       storageKey="theme"
-      themes={['light', 'dark']}
+      themes={['light', 'dark', 'system']}
       {...props}
     >
       {children}
