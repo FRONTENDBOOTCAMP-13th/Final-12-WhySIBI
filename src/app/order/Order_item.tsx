@@ -85,7 +85,7 @@ export default function OrderItem() {
             총 상품금액 |{' '}
             <strong>
               {(
-                productDetail?.item?.extra.originalPrice * productData?.quantity
+                productDetail?.item?.price * productData?.quantity
               ).toLocaleString()}
             </strong>
           </p>

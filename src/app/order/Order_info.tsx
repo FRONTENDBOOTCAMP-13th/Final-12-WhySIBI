@@ -1,115 +1,160 @@
 'use client';
 
 import useUserStore from '@/zustand/useUserStore';
-import { useEffect, useRef, useState } from 'react';
+import OrderAddressChangeButton from './Order_address_change_button';
+import { useCallback, useEffect, useState } from 'react';
+
+// 배송지 정보의 타입
+export interface AddressItem {
+  id: number;
+  name: string;
+  value: string;
+  phone: string;
+}
 
 export default function OrderInfo() {
   //변경하기 버튼을 눌렀을때 주소input에 포커스 주기
   const { user } = useUserStore();
-  const [address, setAddress] = useState('');
-  const addressInput = useRef<HTMLInputElement | null>(null);
+  const token = user?.token?.accessToken;
 
-  const [name, setName] = useState('');
-  const nameInput = useRef<HTMLInputElement | null>(null);
+  const [userAddressBook, setUserAddressBook] = useState<AddressItem[]>([]);
+  console.log('이거우째', userAddressBook);
 
-  const [phoneNumber, setPhoneNumber] = useState({
-    first: '',
-    second: '',
-    third: '',
-  });
+  function addAddressBook(newAddress) {
+    setUserAddressBook(prev => [...prev, newAddress]);
+  }
 
-  const firstInputRef = useRef<HTMLInputElement | null>(null);
-  const secondInputRef = useRef<HTMLInputElement | null>(null);
-  const thirdInputRef = useRef<HTMLInputElement | null>(null);
-
-  const handleChange = (
-    field: 'first' | 'second' | 'third',
-    value: string,
-    nextRef: React.RefObject<HTMLInputElement | null> | null,
-    maxLength: number,
-  ) => {
-    //숫자만 허용
-    const numberValue = value.replace(/\D/g, '');
-
-    //최대 길이 제한
-    if (numberValue.length <= maxLength) {
-      setPhoneNumber(prev => ({
-        ...prev,
-        [field]: numberValue,
-      }));
-
-      if (numberValue.length === maxLength && nextRef) {
-        nextRef.current?.focus();
+  // 주소 정보들을 불러오기 위해 유저 정보 불러오기
+  const fetchUser = useCallback(
+    async function fetchProduct() {
+      if (user?._id) {
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/users/${user?._id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'application/json',
+              'Client-Id': 'febc13-final12-emjf',
+            },
+          },
+        );
+        const data = await response.json();
+        setUserAddressBook(data.item.extra.addressBook);
       }
+    },
+    [token, user?._id],
+  );
+
+  console.log('두근두근 어떻게 나올까', userAddressBook);
+  useEffect(() => {
+    fetchUser();
+  }, [fetchUser]);
+
+  const [delivery, setDelivery] = useState<AddressItem>();
+
+  // 배송정보 바꾸는 함수
+  function handleDelivery(number: number) {
+    setDelivery(userAddressBook[number - 1]);
+  }
+
+  // delivery초기화
+  useEffect(() => {
+    if (userAddressBook.length > 0 && !delivery) {
+      setDelivery(userAddressBook[0]);
     }
-  };
+  }, [delivery, userAddressBook]);
+
+  console.log('이게 딜리버리 라니까', delivery);
+
+  // const [phoneNumber, setPhoneNumber] = useState({
+  //   first: '',
+  //   second: '',
+  //   third: '',
+  // });
+
+  // const firstInputRef = useRef<HTMLInputElement | null>(null);
+  // const secondInputRef = useRef<HTMLInputElement | null>(null);
+  // const thirdInputRef = useRef<HTMLInputElement | null>(null);
+
+  // const handleChange = (
+  //   field: 'first' | 'second' | 'third',
+  //   value: string,
+  //   nextRef: React.RefObject<HTMLInputElement | null> | null,
+  //   maxLength: number,
+  // ) => {
+  //   //숫자만 허용
+  //   const numberValue = value.replace(/\D/g, '');
+
+  //   //최대 길이 제한
+  //   if (numberValue.length <= maxLength) {
+  //     setPhoneNumber(prev => ({
+  //       ...prev,
+  //       [field]: numberValue,
+  //     }));
+
+  //     if (numberValue.length === maxLength && nextRef) {
+  //       nextRef.current?.focus();
+  //     }
+  //   }
+  // };
 
   // 백스페이스 시 이전 필드로 포커스 이동
-  const handleKeyDown = (
-    e: React.KeyboardEvent<HTMLInputElement>,
-    field: 'first' | 'second' | 'third',
-    prevRef: React.RefObject<HTMLInputElement | null> | null,
-  ) => {
-    if (e.key === 'Backspace' && phoneNumber[field] === '' && prevRef) {
-      prevRef.current?.focus();
-    }
+  // const handleKeyDown = (
+  //   e: React.KeyboardEvent<HTMLInputElement>,
+  //   field: 'first' | 'second' | 'third',
+  //   prevRef: React.RefObject<HTMLInputElement | null> | null,
+  // ) => {
+  //   if (e.key === 'Backspace' && phoneNumber[field] === '' && prevRef) {
+  //     prevRef.current?.focus();
+  //   }
+  // };
+
+  // 전화번호 포맷팅 함수
+  const formatPhone = (phone: string | undefined) => {
+    return phone?.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
   };
 
   //랜더링 되고 난 후에 setAddress를 해줘야 input에 기본값이 설정되더라.. user데이터가 먼저 load되어야함
-  useEffect(() => {
-    if (user?.extra.addressBook[0].value) {
-      setAddress(user?.extra.addressBook[0].value);
-    }
+  // useEffect(() => {
+  //   if (user?.extra.addressBook[0].value) {
+  //     setAddress(user?.extra.addressBook[0].value);
+  //   }
 
-    if (user?.name) {
-      setName(user.name);
-    }
-  }, [user]);
+  //   if (user?.name) {
+  //     setName(user.name);
+  //   }
+  // }, [user]);
   console.log(user);
   return (
     <section className="border-1 px-5 py-6 rounded-2xl">
-      <h3 className="text-xl font-extrabold border-b-1 pb-3 border-gray-150">
-        배송정보
-      </h3>
-      <div className="flex items-center gap-4 mb-2 mt-3">
-        <label className="text-lg font-basic">수령인</label>
-        <input
-          ref={nameInput}
-          value={name}
-          onChange={e => setName(e.target.value)}
-          className="text-gray-550  border-gray-150 grow-1"
+      <div className=" border-b-1 pb-3 border-gray-150 flex items-center justify-between">
+        <h3 className="text-xl font-extrabold">배송정보</h3>
+        <OrderAddressChangeButton
+          userAddressBook={userAddressBook}
+          delivery={delivery}
+          handleDelivery={handleDelivery}
+          formatPhone={formatPhone}
+          addAddressBook={addAddressBook}
         />
-        <button
-          className="border-2 rounded-3xl text-button-color w-24 h-9 font-bold hover:bg-black hover:text-white cursor-pointer"
-          onClick={() => {
-            nameInput.current?.focus();
-          }}
-        >
-          변경하기
-        </button>
       </div>
-      <div className="flex items-center gap-4 mb-2">
-        <label className="text-lg font-basic">배송지</label>
-        <input
-          ref={addressInput}
-          value={address}
-          onChange={e => setAddress(e.target.value)}
-          className="text-gray-550  border-gray-150  grow-1"
-        />
-        <button
-          className="border-2 rounded-3xl text-button-color w-24 h-9 font-bold hover:bg-black hover:text-white cursor-pointer"
-          onClick={() => {
-            addressInput.current?.focus();
-          }}
-        >
-          변경하기
-        </button>
-      </div>
-      <div className="flex items-center gap-4 mb-4">
-        <label className="text-lg font-basic">
+      <tr className="flex items-center gap-4 mb-2 mt-3">
+        <th className="text-lg font-basic">
+          수령인<span className="text-red-500">*</span>
+        </th>
+        <td>{delivery?.name}</td>
+      </tr>
+      <tr className="flex items-center gap-4 mb-2">
+        <th className="text-lg font-basic">
+          배송지<span className="text-red-500">*</span>
+        </th>
+        <td>{delivery?.value}</td>
+      </tr>
+      <tr className="flex items-center gap-4 mb-4">
+        <th className="text-lg font-basic">
           연락처<span className="text-red-500">*</span>
-        </label>
-        <input
+        </th>
+        <td>{formatPhone(delivery?.phone)}</td>
+        {/* <input
           ref={firstInputRef}
           value={phoneNumber.first}
           onChange={e =>
@@ -145,8 +190,8 @@ export default function OrderInfo() {
           maxLength={4}
           aria-label="전화번호 세 번째 자리"
           required
-        />
-      </div>
+        /> */}
+      </tr>
       <div className="bg-white font-variable w-[350px] h-[31px] rounded-sm text-size-sm border-1 border-[#c7c7c7] focus-within:outline-1 relative flex items-center">
         <label htmlFor="memo" className="sr-only">
           배송요청사항
