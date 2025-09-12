@@ -5,13 +5,9 @@ import { useTheme } from 'next-themes';
 import styled, { css } from 'styled-components';
 
 export default function ThemeToggle() {
-  const { setTheme, resolvedTheme } = useTheme();
-
+  const { theme, resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
-
-  const mode: 'dark' | 'light' = resolvedTheme === 'dark' ? 'dark' : 'light';
-  const toggle = () => setTheme(mode === 'dark' ? 'light' : 'dark');
 
   if (!mounted) {
     return (
@@ -25,18 +21,38 @@ export default function ThemeToggle() {
     );
   }
 
+  const mode = resolvedTheme as 'light' | 'dark';
+  const toggle = () => {
+    if (theme === 'system') {
+      setTheme('light');
+    } else if (theme === 'light') {
+      setTheme('dark');
+    } else {
+      setTheme('system');
+    }
+  };
+
+  let icon = '🌓';
+  let title = 'OS 모드';
+  if (theme === 'light') {
+    icon = '🌝';
+    title = '라이트 모드';
+  } else if (theme === 'dark') {
+    icon = '🌚';
+    title = '다크 모드';
+  }
+
   return (
     <ToggleWrapper
       onClick={toggle}
-      aria-pressed={mode === 'dark'}
       aria-label="다크모드 토글"
-      title={mode === 'dark' ? '다크 모드' : '라이트 모드'}
+      title={title}
       $mode={mode}
       data-no-invert
     >
       <Track $mode={mode}>
         <Thumb $mode={mode}>
-          <span className="no-invert">{mode === 'dark' ? '🌚' : '🌝'}</span>
+          <span className="no-invert">{icon}</span>
         </Thumb>
       </Track>
     </ToggleWrapper>
