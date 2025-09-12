@@ -5,6 +5,7 @@ import { Toaster } from 'react-hot-toast';
 import { Metadata } from 'next';
 import PageScrollButtons from '@/components/_common/button_pagescroll';
 import { ThemeProvider } from '@/components/theme-provider';
+import Chatbot from '@/components/Chatbot/Chatbot';
 
 export const metadata: Metadata = {
   title: '나혼자산다',
@@ -67,6 +68,7 @@ export default function RootLayout({
           </div>
         </ThemeProvider>
         <PageScrollButtons />
+        <Chatbot />
       </body>
     </html>
   );
