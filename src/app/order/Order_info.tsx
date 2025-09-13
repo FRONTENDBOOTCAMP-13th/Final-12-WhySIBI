@@ -137,23 +137,23 @@ export default function OrderInfo() {
           addAddressBook={addAddressBook}
         />
       </div>
-      <tr className="flex items-center gap-4 mb-2 mt-3">
-        <th className="text-lg font-basic">
+      <dl className="flex items-center gap-4 mb-2 mt-3">
+        <dt className="text-lg font-basic">
           수령인<span className="text-red-500">*</span>
-        </th>
-        <td>{delivery?.name}</td>
-      </tr>
-      <tr className="flex items-center gap-4 mb-2">
-        <th className="text-lg font-basic">
+        </dt>
+        <dd>{delivery?.name}</dd>
+      </dl>
+      <dl className="flex items-center gap-4 mb-2">
+        <dt className="text-lg font-basic">
           배송지<span className="text-red-500">*</span>
-        </th>
-        <td>{delivery?.value}</td>
-      </tr>
-      <tr className="flex items-center gap-4 mb-4">
-        <th className="text-lg font-basic">
+        </dt>
+        <dd>{delivery?.value}</dd>
+      </dl>
+      <dl className="flex items-center gap-4 mb-4">
+        <dt className="text-lg font-basic">
           연락처<span className="text-red-500">*</span>
-        </th>
-        <td>{formatPhone(delivery?.phone)}</td>
+        </dt>
+        <dd>{formatPhone(delivery?.phone)}</dd>
         {/* <input
           ref={firstInputRef}
           value={phoneNumber.first}
@@ -191,7 +191,7 @@ export default function OrderInfo() {
           aria-label="전화번호 세 번째 자리"
           required
         /> */}
-      </tr>
+      </dl>
       <div className="bg-white font-variable w-[350px] h-[31px] rounded-sm text-size-sm border-1 border-[#c7c7c7] focus-within:outline-1 relative flex items-center">
         <label htmlFor="memo" className="sr-only">
           배송요청사항

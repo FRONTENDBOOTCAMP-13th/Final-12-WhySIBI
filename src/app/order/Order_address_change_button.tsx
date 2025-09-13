@@ -152,6 +152,13 @@ export default function OrderAddressChangeButton({
         phone: phone,
       });
       setAddAddress(false);
+      setName('');
+      setPhone('');
+      setAddressForm({
+        zonecode: '',
+        address: '',
+        detailAddress: '',
+      });
     }
   }, [state, addAddressBook, address, name, phone, userAddressBook]);
 
@@ -172,9 +179,31 @@ export default function OrderAddressChangeButton({
         {addAddress ? (
           // 배송지 추가 페이지
           <div className="bg-white w-120 h-165 p-10 rounded-md relative flex flex-col gap-4">
-            <h3 className="font-bold mb-2 text-lg border-b-1 border-gray-350 pb-2">
-              배송지 추가
-            </h3>
+            <section className="border-b-1 border-gray-350 pb-2 mb-2 flex items-center justify-between">
+              <h3 className="font-bold  text-lg ">배송지 추가</h3>
+              <button
+                className="cursor-pointer"
+                onClick={() => {
+                  setAddAddress(false);
+                }}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M6 6L18 18M6 18L18 6"
+                    stroke="#BDBDBD"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </button>
+            </section>
             <section className="flex flex-col gap-4">
               <div className="flex flex-col gap-2">
                 <label htmlFor="">이름</label>
@@ -196,7 +225,7 @@ export default function OrderAddressChangeButton({
                     setPhone(e.target.value);
                   }}
                   placeholder="휴대폰번호를 입력해주세요."
-                  type="text"
+                  type="tel"
                   className="border-1 rounded-sm py-1 px-2 border-gray-150 placeholder:text-gray-350"
                 />
               </div>
