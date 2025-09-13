@@ -6,7 +6,6 @@ import { AddressItem } from './Order_info';
 import Script from 'next/script';
 import { addAddressAction } from '@/data/actions/add_address_action';
 import useUserStore from '@/zustand/useUserStore';
-import useCartRefreshStore from '@/zustand/useCartRefreshStore';
 
 export default function OrderAddressChangeButton({
   userAddressBook,
@@ -22,9 +21,11 @@ export default function OrderAddressChangeButton({
 }) {
   const { user } = useUserStore();
   const token = user?.token?.accessToken;
-  const { triggerRefresh } = useCartRefreshStore();
   const [modal, setModal] = useState(false);
   const dialogRef = useRef<HTMLDialogElement>(null);
+
+  // 배송지 추가 한번만 실행되게
+  const handledOnceRef = useRef(false);
 
   //배송지 추가 화면보여주기 상태관리
   const [addAddress, setAddAddress] = useState(false);
@@ -116,18 +117,23 @@ export default function OrderAddressChangeButton({
   );
 
   useEffect(() => {
+    if (isPending) handledOnceRef.current = false;
+  }, [isPending]);
+
+  useEffect(() => {
     if (state && state.status === false) {
       alert(state.error);
-    } else if (state && state.status === true) {
+    } else if (state && state.status === true && !handledOnceRef.current) {
+      handledOnceRef.current = true;
       addAddressBook({
-        id: userAddressBook.length + 1,
+        id: (userAddressBook?.at(-1)?.id ?? 0) + 1,
         name: name,
         value: address,
         phone: phone,
       });
       setAddAddress(false);
     }
-  }, [state, addAddressBook, address, name, phone, userAddressBook.length]);
+  }, [state, addAddressBook, address, name, phone, userAddressBook]);
 
   return (
     <>
