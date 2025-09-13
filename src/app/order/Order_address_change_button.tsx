@@ -7,6 +7,25 @@ import Script from 'next/script';
 import { addAddressAction } from '@/data/actions/add_address_action';
 import useUserStore from '@/zustand/useUserStore';
 
+declare global {
+  interface Window {
+    daum?: DaumGlobal;
+  }
+}
+
+interface DaumGlobal {
+  Postcode: new (options: { oncomplete: (data: DaumPostcodeData) => void }) => {
+    open: () => void;
+  };
+}
+
+interface DaumPostcodeData {
+  userSelectedType: 'R' | 'J';
+  roadAddress: string;
+  jibunAddress: string;
+  zonecode: string;
+}
+
 export default function OrderAddressChangeButton({
   userAddressBook,
   delivery,
@@ -18,6 +37,7 @@ export default function OrderAddressChangeButton({
   delivery: AddressItem | undefined;
   handleDelivery: (number: number) => void;
   formatPhone: (string: string | undefined) => string | undefined;
+  addAddressBook: (newAddress: AddressItem) => void;
 }) {
   const { user } = useUserStore();
   const token = user?.token?.accessToken;

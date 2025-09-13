@@ -20,7 +20,7 @@ export default function OrderInfo() {
   const [userAddressBook, setUserAddressBook] = useState<AddressItem[]>([]);
   console.log('이거우째', userAddressBook);
 
-  function addAddressBook(newAddress) {
+  function addAddressBook(newAddress: AddressItem) {
     setUserAddressBook(prev => [...prev, newAddress]);
   }
 
