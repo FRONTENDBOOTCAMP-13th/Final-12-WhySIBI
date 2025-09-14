@@ -55,8 +55,13 @@ export default function OrderAddressChangeButton({
 
   //전화번호 상태관리
   const [phone, setPhone] = useState('');
-  console.log('어드레스북', userAddressBook);
 
+  //유효성검증을 위한 상태관리
+  const [hiddenInput, setHiddenInput] = useState({
+    name: false,
+    phone: false,
+    address: false,
+  });
   // 주소정보 상태관리
   const [addressForm, setAddressForm] = useState({
     zonecode: '',
@@ -164,9 +169,11 @@ export default function OrderAddressChangeButton({
 
   const validateForm = () => {
     if (!name) {
+      setHiddenInput({ ...hiddenInput, name: true });
       return false;
     }
     if (!phone) {
+      setHiddenInput({ ...hiddenInput, name: false, phone: true });
       return false;
     }
     // 세 값 중 하나라도 비어있으면 실패
@@ -175,17 +182,16 @@ export default function OrderAddressChangeButton({
       !addressForm.address ||
       !addressForm.detailAddress
     ) {
+      setHiddenInput({
+        ...hiddenInput,
+        name: false,
+        phone: false,
+        address: true,
+      });
       return false;
     }
+
     return true;
-  };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!validateForm()) return;
-
-    const formData = new FormData(e.currentTarget);
-    await formAction(formData);
   };
 
   return (
@@ -224,8 +230,8 @@ export default function OrderAddressChangeButton({
                   <path
                     d="M6 6L18 18M6 18L18 6"
                     stroke="#BDBDBD"
-                    stroke-width="3"
-                    stroke-linecap="round"
+                    strokeWidth="3"
+                    strokeLinecap="round"
                   />
                 </svg>
               </button>
@@ -242,18 +248,32 @@ export default function OrderAddressChangeButton({
                   type="text"
                   className="border-1 rounded-sm py-1 px-2 border-gray-150 placeholder:text-gray-350"
                 />
+                {hiddenInput.name ? (
+                  <div className="text-red-500 text-sm">
+                    이름을 입력해주세요.
+                  </div>
+                ) : (
+                  ''
+                )}
               </div>
               <div className="flex flex-col gap-2">
-                <label htmlFor="">휴대폰번호</label>
+                <label htmlFor="">전화번호</label>
                 <input
                   value={phone}
                   onChange={e => {
                     setPhone(e.target.value);
                   }}
-                  placeholder="휴대폰번호를 입력해주세요."
+                  placeholder="전화번호를 입력해주세요."
                   type="tel"
                   className="border-1 rounded-sm py-1 px-2 border-gray-150 placeholder:text-gray-350"
                 />
+                {hiddenInput.phone ? (
+                  <div className="text-red-500 text-sm">
+                    전화번호를 입력해주세요.
+                  </div>
+                ) : (
+                  ''
+                )}
               </div>
               <div className="flex flex-col gap-2">
                 <label htmlFor="">주소</label>
@@ -293,9 +313,22 @@ export default function OrderAddressChangeButton({
                   }
                   className="border-1 rounded-sm py-1 px-2 border-gray-150 placeholder:text-gray-350"
                 />
+                {hiddenInput.address ? (
+                  <div className="text-red-500 text-sm">
+                    주소를 입력해주세요.
+                  </div>
+                ) : (
+                  ''
+                )}
               </div>
 
-              <form onSubmit={handleSubmit}>
+              <form
+                action={async (fd: FormData) => {
+                  if (!validateForm()) return;
+                  await formAction(fd);
+                  setAddAddress(false);
+                }}
+              >
                 <input name="token" value={token || ''} hidden readOnly />
                 <input name="id" value={user?._id || ''} hidden readOnly />
                 <input name="name" value={name || ''} hidden readOnly />
