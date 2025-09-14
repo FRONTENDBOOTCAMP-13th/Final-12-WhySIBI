@@ -151,7 +151,7 @@ export default function OrderAddressChangeButton({
         value: address,
         phone: phone,
       });
-      setAddAddress(false);
+
       setName('');
       setPhone('');
       setAddressForm({
@@ -161,6 +161,32 @@ export default function OrderAddressChangeButton({
       });
     }
   }, [state, addAddressBook, address, name, phone, userAddressBook]);
+
+  const validateForm = () => {
+    if (!name) {
+      return false;
+    }
+    if (!phone) {
+      return false;
+    }
+    // 세 값 중 하나라도 비어있으면 실패
+    if (
+      !addressForm.zonecode ||
+      !addressForm.address ||
+      !addressForm.detailAddress
+    ) {
+      return false;
+    }
+    return true;
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!validateForm()) return;
+
+    const formData = new FormData(e.currentTarget);
+    await formAction(formData);
+  };
 
   return (
     <>
@@ -269,7 +295,7 @@ export default function OrderAddressChangeButton({
                 />
               </div>
 
-              <form action={formAction}>
+              <form onSubmit={handleSubmit}>
                 <input name="token" value={token || ''} hidden readOnly />
                 <input name="id" value={user?._id || ''} hidden readOnly />
                 <input name="name" value={name || ''} hidden readOnly />
@@ -284,7 +310,7 @@ export default function OrderAddressChangeButton({
                 <button
                   disabled={isPending}
                   className="h-10 rounded-sm font-medium cursor-pointer bg-flame-250 text-white absolute bottom-4 left-8 right-8 hover:bg-flame-400"
-                  // onClick={closeModal}
+                  type="submit"
                 >
                   저장하기
                 </button>
