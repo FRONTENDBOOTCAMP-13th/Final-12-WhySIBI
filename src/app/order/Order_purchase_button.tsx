@@ -169,7 +169,7 @@ export default function OrderPurchaseButton({
         orderName: `[나혼산] - ${productName}`,
         totalAmount: finalPayment,
         currency: 'CURRENCY_KRW',
-        payMethod: 'EASY_PAY',
+        payMethod: 'CARD',
       });
 
       if (response?.code !== undefined) {
