@@ -15,7 +15,6 @@ export default function NotificationItem({ n, sessionUserId }: { n: any; session
   const [isRead, setIsRead] = useState<boolean>(!!n.isRead);
 
   const handleRead = async () => {
-    // Optimistic
     if (!isRead) {
       setIsRead(true);
       decreaseUnread();
@@ -42,7 +41,7 @@ export default function NotificationItem({ n, sessionUserId }: { n: any; session
     <li className="flex items-center gap-2">
       <Link
         href={`${n.extra.url}#reply-${n.extra.replyId}`}
-        className="flex-1 flex sm:p-5 md:p-6 lg:p-7 rounded-lg items-center space-x-5 bg-gray-50 hover:bg-columbia-blue-100"
+        className="flex-1 flex sm:p-5 md:p-6 lg:p-7 rounded-lg items-center space-x-5 bg-gray-50 hover:bg-columbia-blue-100 visited:text-gray-400"
       >
         {/* 프로필 */}
         <div className="flex-shrink-0">
