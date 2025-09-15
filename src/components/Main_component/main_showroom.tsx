@@ -12,26 +12,37 @@ export default async function MainShowRoom() {
       <div className="md:p-4 community-wrapper w-full md:w-2xl">
         <div className="px-4 py-6 md:px-10 md:pt-10 md:pb-7 hidden md:contents">
           <div className="title-wrapper flex flex-row justify-between">
-            <Title title={'집들이🏠'} subTitle={'우리집에 왜 왔니'}></Title>
+            <Title
+              title={
+                <>
+                  집들이
+                  <span className="no-invert">🏠</span>
+                </>
+              }
+              subTitle={'우리집에 왜 왔니'}
+            ></Title>
+
             <ButtonBlue value="더보기 +" to="/community/showRoom"></ButtonBlue>
           </div>
-          <div className="grid grid-cols-3 gap-5 mt-5">
+          <div className="grid grid-cols-3 gap-5 mt-5x no-invert">
             {res.ok ? (
               res.item.slice(0, 6).map(post => (
                 <Link
                   key={post._id}
                   href={`/community/showRoom/${post._id}`}
-                  className="bg-white rounded-lg shadow-md p-3 flex flex-col items-center cursor-pointer hover:scale-105 hover:duration-150"
+                  className="bg-white rounded-lg  shadow-md p-3 flex flex-col items-center cursor-pointer hover:scale-105 hover:duration-150"
                 >
-                  <Image
-                    src={
-                      post.image?.[0] || '/image/room_photo/postThumbnail.svg'
-                    }
-                    alt="썸네일"
-                    className="w-full h-30 object-cover mb-3 bg-livealone-columbia-blue"
-                    width={300}
-                    height={300}
-                  />
+                  <div className="no-invert">
+                    <Image
+                      src={
+                        post.image?.[0] || '/image/room_photo/postThumbnail.svg'
+                      }
+                      alt="썸네일"
+                      className="w-full h-30 object-cover mb-3 bg-livealone-columbia-blue"
+                      width={300}
+                      height={300}
+                    />
+                  </div>
                   <p className="text-xs font-variable font-bold text-gray-800">
                     {post.title}
                   </p>

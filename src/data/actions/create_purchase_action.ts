@@ -21,8 +21,7 @@ export async function createPurchaseAction(
   }
 
   const purchaseList: PurchaseItem[] = JSON.parse(purchaseListString);
-  console.log('니가 문제냐', purchaseList);
-  console.log('토큰이 안넘어오나?', token);
+
   try {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/orders/`, {
       method: 'POST',

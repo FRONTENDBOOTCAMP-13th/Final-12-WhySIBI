@@ -71,23 +71,6 @@
   --color-menu-text: #eb692f;
 
   /* ==============================
-          🎨 배경 색
-          ============================== */
-
-  --bg-vertical-stripes: linear-gradient(
-    to right,
-    #e5f2fc 0%,
-    #e5f2fc 40px,
-    white 40px,
-    white 44px,
-    #e5f2fc 44px,
-    #e5f2fc 84px,
-    white 84px,
-    white 88px
-  );
-  --bg-size-stripes: 88px 100%;
-
-  /* ==============================
           🎨 투명도 단계
           ============================== */
   --color-columbia-blue-opaque-90: rgba(210, 232, 255, 0.9);
@@ -169,32 +152,42 @@
 
   --animate-wobble-hor-bottom: wobble-hor-bottom 0.8s both;
 }
+@layer base {
+  html.dark {
+    filter: invert(1) hue-rotate(180deg);
+    color-scheme: dark;
+    background: #000;
+  }
+  /* 재반전(원본 유지) */
+  html.dark img,
+  html.dark video,
+  html.dark canvas,
+  html.dark svg,
+  html.dark [data-no-invert],
+  html.dark .no-invert {
+    filter: invert(1) hue-rotate(180deg);
+  }
+}
 
-@keyframes wobble-hor-bottom {
-  0%,
-  100% {
-    transform: translateX(0%) rotate(0deg);
-    transform-origin: 50% 50%;
-  }
-  15% {
-    transform: translateX(-15px) rotate(-4deg);
-  }
-  30% {
-    transform: translateX(7.5px) rotate(4deg);
-  }
-  45% {
-    transform: translateX(-7.5px) rotate(-1.6deg);
-  }
-  60% {
-    transform: translateX(4px) rotate(1.6deg);
-  }
-  75% {
-    transform: translateX(-2px) rotate(-0.2deg);
+@layer base {
+  :root {
+    --bg-vertical-stripes: linear-gradient(
+      to right,
+      #e5f2fc 0%,
+      #e5f2fc 40px,
+      #ffffff 40px,
+      #ffffff 44px,
+      #e5f2fc 44px,
+      #e5f2fc 84px,
+      #ffffff 84px,
+      #ffffff 88px
+    );
+    --bg-size-stripes: 88px 100%;
   }
 }
 @utility vertical-stripes {
-  background: theme(--bg-vertical-stripes);
-  background-size: theme(--bg-size-stripes);
+  background: var(--bg-vertical-stripes);
+  background-size: var(--bg-size-stripes);
 }
 
 /* custom style */

@@ -32,7 +32,7 @@ function MainBottomSlider() {
           loop={true} // 슬라이드 루프
           autoplay={{
             //자동재생(딜레이 없이)
-            delay: 0,
+            delay: 1,
             disableOnInteraction: false,
           }} //자동 재생
           slidesPerView={'auto'} // 보여질 슬라이스 수

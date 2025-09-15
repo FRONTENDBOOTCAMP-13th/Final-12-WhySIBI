@@ -7,8 +7,15 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useCallback } from 'react';
 import toast from 'react-hot-toast';
+import dynamic from 'next/dynamic';
 
 export default function Header() {
+  const ThemeToggle = dynamic(
+    () => import('@/components/_common/Darkmode_button'),
+    {
+      ssr: false,
+    },
+  );
   const { user, resetUser } = useUserStore();
   const router = useRouter();
   const showSuccessToast = useCallback(() => {
@@ -66,16 +73,28 @@ export default function Header() {
   return (
     <header className="pt-16 w-full vertical-stripes">
       <div className="max-w-[1280px] mx-auto">
-        <section className="header_top xl:min-w-[1280px] lg:w-[95%] md:w-[95%] sm:w-[92%] w-[90%] grid grid-cols-3 items-center mx-auto my-0 px-2 sm:px-0">
+        <div className="absolute right-10 top-10 z-50 pointer-events-auto  scale-70 sm:scale-60 md:scale-80 lg:scale-90">
+          <ThemeToggle />
+        </div>
+        <section className="relative header_top xl:min-w-[1280px] lg:w-[95%] md:w-[95%] sm:w-[92%] w-[90%] grid grid-cols-3 items-center mx-auto my-0 px-2 sm:px-0">
           <h1 className="col-start-2 flex justify-center">
             <Link href={'/'}>
-              <Image
-                src={'/image/logo/whysibi_logo.svg'}
-                alt="나혼산 로고"
-                width="270"
-                height="234"
-                className="xl:w-[270px] xl:h-[234px] lg:w-[220px] lg:h-auto md:w-[180px] md:h-auto sm:w-[150px] w-[120px] h-auto"
-              />
+              <div className="no-invert">
+                <Image
+                  src={'/image/logo/whysibi_logo.svg'}
+                  alt="나혼산 로고"
+                  width="270"
+                  height="234"
+                  className="xl:w-[270px] xl:h-[234px] lg:w-[220px] lg:h-auto md:w-[180px] md:h-auto sm:w-[150px] w-[120px] h-auto "
+                />
+                {/* <Image
+                  src={'/image/logo/whysibi_logo(dark).svg'}
+                  alt="나혼산 로고"
+                  width="270"
+                  height="234"
+                  className="xl:w-[270px] xl:h-[234px] lg:w-[220px] lg:h-auto md:w-[180px] md:h-auto sm:w-[150px] w-[120px] h-auto hidden dark:block"
+                /> */}
+              </div>
             </Link>
           </h1>
           {user ? (
