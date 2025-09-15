@@ -61,7 +61,7 @@ function MenuNavigation() {
   useEffect(() => {
     async function fetchNotifications() {
       if (!token) return;
-      const res = await getNotifications(token, 1, 5);
+      const res = await getNotifications(1, 5);
       if (res.ok && res.item) {
         const unread = res.item.filter((n: any) => !n.isRead).length;
         setUnreadCount(unread);
