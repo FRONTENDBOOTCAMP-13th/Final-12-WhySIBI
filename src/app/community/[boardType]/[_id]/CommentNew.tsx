@@ -133,12 +133,12 @@ export default function CommentNew({
             {mentionNames.map((name, idx) => (
               <span
                 key={`${name}-${mentionIds[idx]}`}
-                className="inline-flex items-center rounded-full bg-indigo-50 text-indigo-700 text-xs px-2 py-1"
+                className="inline-flex items-center rounded-full bg-livealone-vanilla/50 text-livealone-flame text-xs font-semibold px-2 py-1"
               >
                 @{name}
                 <button
                   type="button"
-                  className="ml-1 text-indigo-500 hover:text-indigo-700"
+                  className="ml-1 text-flame-200 hover:text-flame-300"
                   onClick={() => removeMentionAt(idx)}
                   aria-label="remove mention"
                 >
@@ -152,7 +152,6 @@ export default function CommentNew({
               id="comment-input"
               ref={inputRef}
               type="text"
-              // name="content" ← ❌ 입력칸엔 name을 주지 않습니다(전송은 hidden으로)
               value={inputValue}
               onChange={handleChange}
               onKeyDown={handleKeyDown}

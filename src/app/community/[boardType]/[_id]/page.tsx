@@ -13,6 +13,7 @@ import { ButtonBack } from '@/components/Button_back';
 import { ButtonNostyle } from '@/components/Buttons/Button_nostyle';
 import { cookies } from 'next/headers';
 import { getProductList } from '@/data/actions/products.fetch';
+import { getMyPostLike } from '@/data/actions/likes';
 
 function isError<T>(res: ApiRes<T>): res is { ok: 0; message: string } {
   return res.ok === 0;
@@ -28,6 +29,7 @@ interface InfoPageProps {
 export default async function DetailPage({ params }: InfoPageProps) {
   const token = (await cookies()).get('accessToken');
   const { boardType, _id } = await params;
+  const isLoggedIn = Boolean(token?.value);
 
   const post = await getPost(Number(_id), token?.value as string);
   const posts = await getPosts(boardType, String(_id));
@@ -38,6 +40,8 @@ export default async function DetailPage({ params }: InfoPageProps) {
   if (isError(post)) {
     return <div>{post.message || '게시글을 불러올 수 없습니다.'}</div>;
   }
+
+  const my = isLoggedIn ? await getMyPostLike(post.item._id) : { liked: false };
 
   const productIds = Array.isArray(post.item.extra?.products)
     ? post.item.extra.products.map(String)
@@ -74,7 +78,7 @@ export default async function DetailPage({ params }: InfoPageProps) {
                 ></DeleteForm>
               </div>
             </div>
-            <PostDetail post={post.item} token={token?.value as string} />
+            <PostDetail post={post.item} token={token?.value as string} initialLiked={my.liked} isLoggedIn={isLoggedIn} />
             <DetailSimilar products={filteredProducts}></DetailSimilar>
             <DetailOther _id={_id}></DetailOther>
             <CommentSection
