@@ -80,7 +80,8 @@ function ShoppingBestSection({ token }: { token: string | undefined }) {
           title="나혼산 BEST"
           subTitle={
             <>
-              현재시각 <TimeStamp /> 실시간 인기상품 🔥🔥🔥
+              현재시각 <TimeStamp /> 실시간 인기상품{' '}
+              <span className="no-invert">🔥🔥🔥</span>
             </>
           }
         />

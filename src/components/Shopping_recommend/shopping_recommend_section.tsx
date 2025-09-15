@@ -6,7 +6,11 @@ function ShoppingRecommendSection({ token }: { token?: string | undefined }) {
     <>
       <RecommendTitle
         title="FOR YOU"
-        subTitle="님의 취향저격 상품을 찾았어요 🥳"
+        subTitle={
+          <>
+            님의 취향저격 상품을 찾았어요 <span className="no-invert">🥳</span>
+          </>
+        }
       />
       <RecommendBox token={token} />
     </>

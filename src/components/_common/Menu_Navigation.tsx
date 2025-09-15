@@ -25,7 +25,8 @@ function MenuNavigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Zustand store에서 필요한 상태와 함수들 가져오기
-  const { activeMenu, subMenuData, handleMenuClick, mainCategoryId } = useMenuStore();
+  const { activeMenu, subMenuData, handleMenuClick, mainCategoryId } =
+    useMenuStore();
   const [expandedMenu, setExpandedMenu] = useState<string | null>(null);
 
   const currentSubMenuItems: SubMenuItem[] =
@@ -72,7 +73,10 @@ function MenuNavigation() {
 
 
   useEffect(() => {
-    if (pathname === '/' || (!pathname.startsWith('/community') && !pathname.startsWith('/shopping'))) {
+    if (
+      pathname === '/' ||
+      (!pathname.startsWith('/community') && !pathname.startsWith('/shopping'))
+    ) {
       handleMenuClick('');
     }
   }, [pathname, handleMenuClick]);
@@ -80,7 +84,7 @@ function MenuNavigation() {
   return (
     <>
       {/* 데스크톱/태블릿 네비게이션 (768px 이상) */}
-      <div className="w-full bg-[#D4E8F8]">
+      <div className="w-full bg-[var(--color-livealone-columbia-blue)]">
         <div className="max-w-[1280px] mx-auto">
           <nav className="header_bottom xl:min-w-[1280px] lg:w-[95%] md:w-[95%] w-[90%] mx-auto md:flex hidden flex-wrap justify-between items-center text-center">
             <ul className="font-logo font-bold xl:text-size-2xl lg:text-xl md:text-lg flex flex-wrap items-center xl:ml-16 lg:ml-12 md:ml-8 xl:gap-4 lg:gap-3 md:gap-2">
@@ -159,13 +163,15 @@ function MenuNavigation() {
               </Link>) : ('')}
               <ProductSearchButton />
               <Link href={'/cart'}>
-                <Image
-                  src={'/image/header_icon/shopping_cart_icon.svg'}
-                  alt="장바구니아이콘"
-                  width={'40'}
-                  height={'40'}
-                  className="xl:w-[40px] xl:h-[40px] lg:w-[35px] lg:h-[35px] md:w-[32px] md:h-[32px]"
-                />
+                <div className="no-invert">
+                  <Image
+                    src={'/image/header_icon/shopping_cart_icon.svg'}
+                    alt="장바구니아이콘"
+                    width={'40'}
+                    height={'40'}
+                    className="xl:w-[40px] xl:h-[40px] lg:w-[35px] lg:h-[35px] md:w-[32px] md:h-[32px]"
+                  />
+                </div>
               </Link>
             </div>
           </nav>
@@ -207,12 +213,14 @@ function MenuNavigation() {
             </Link>) : ('') }
             <ProductSearchButton />
             <Link href={'/cart'}>
-              <Image
-                src={'/image/header_icon/shopping_cart_icon.svg'}
-                alt="장바구니아이콘"
-                width={'32'}
-                height={'32'}
-              />
+              <div className="no-invert">
+                <Image
+                  src={'/image/header_icon/shopping_cart_icon.svg'}
+                  alt="장바구니아이콘"
+                  width={'32'}
+                  height={'32'}
+                />
+              </div>
             </Link>
           </div>
         </nav>
