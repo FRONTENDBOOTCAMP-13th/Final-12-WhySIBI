@@ -24,7 +24,7 @@ export default function OrderAddressItem({
         name="selectedAddress"
         id={id.toString()}
         checked={id === delivery?.id}
-        onClick={() => handleDelivery(id)}
+        onChange={() => handleDelivery(id)}
       />
       <label htmlFor={id.toString()}>
         <div className="font-bold">{name}</div>

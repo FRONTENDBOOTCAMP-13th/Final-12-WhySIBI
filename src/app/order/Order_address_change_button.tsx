@@ -6,7 +6,25 @@ import { AddressItem } from './Order_info';
 import Script from 'next/script';
 import { addAddressAction } from '@/data/actions/add_address_action';
 import useUserStore from '@/zustand/useUserStore';
-import useCartRefreshStore from '@/zustand/useCartRefreshStore';
+
+declare global {
+  interface Window {
+    daum?: DaumGlobal;
+  }
+}
+
+interface DaumGlobal {
+  Postcode: new (options: { oncomplete: (data: DaumPostcodeData) => void }) => {
+    open: () => void;
+  };
+}
+
+interface DaumPostcodeData {
+  userSelectedType: 'R' | 'J';
+  roadAddress: string;
+  jibunAddress: string;
+  zonecode: string;
+}
 
 export default function OrderAddressChangeButton({
   userAddressBook,
@@ -19,12 +37,15 @@ export default function OrderAddressChangeButton({
   delivery: AddressItem | undefined;
   handleDelivery: (number: number) => void;
   formatPhone: (string: string | undefined) => string | undefined;
+  addAddressBook: (newAddress: AddressItem) => void;
 }) {
   const { user } = useUserStore();
   const token = user?.token?.accessToken;
-  const { triggerRefresh } = useCartRefreshStore();
   const [modal, setModal] = useState(false);
   const dialogRef = useRef<HTMLDialogElement>(null);
+
+  // 배송지 추가 한번만 실행되게
+  const handledOnceRef = useRef(false);
 
   //배송지 추가 화면보여주기 상태관리
   const [addAddress, setAddAddress] = useState(false);
@@ -34,8 +55,13 @@ export default function OrderAddressChangeButton({
 
   //전화번호 상태관리
   const [phone, setPhone] = useState('');
-  console.log('어드레스북', userAddressBook);
 
+  //유효성검증을 위한 상태관리
+  const [hiddenInput, setHiddenInput] = useState({
+    name: false,
+    phone: false,
+    address: false,
+  });
   // 주소정보 상태관리
   const [addressForm, setAddressForm] = useState({
     zonecode: '',
@@ -116,18 +142,57 @@ export default function OrderAddressChangeButton({
   );
 
   useEffect(() => {
+    if (isPending) handledOnceRef.current = false;
+  }, [isPending]);
+
+  useEffect(() => {
     if (state && state.status === false) {
       alert(state.error);
-    } else if (state && state.status === true) {
+    } else if (state && state.status === true && !handledOnceRef.current) {
+      handledOnceRef.current = true;
       addAddressBook({
-        id: userAddressBook.length + 1,
+        id: (userAddressBook?.at(-1)?.id ?? 0) + 1,
         name: name,
         value: address,
         phone: phone,
       });
-      setAddAddress(false);
+
+      setName('');
+      setPhone('');
+      setAddressForm({
+        zonecode: '',
+        address: '',
+        detailAddress: '',
+      });
     }
-  }, [state, addAddressBook, address, name, phone, userAddressBook.length]);
+  }, [state, addAddressBook, address, name, phone, userAddressBook]);
+
+  const validateForm = () => {
+    if (!name) {
+      setHiddenInput({ ...hiddenInput, name: true });
+      return false;
+    }
+    if (!phone) {
+      setHiddenInput({ ...hiddenInput, name: false, phone: true });
+      return false;
+    }
+    // 세 값 중 하나라도 비어있으면 실패
+    if (
+      !addressForm.zonecode ||
+      !addressForm.address ||
+      !addressForm.detailAddress
+    ) {
+      setHiddenInput({
+        ...hiddenInput,
+        name: false,
+        phone: false,
+        address: true,
+      });
+      return false;
+    }
+
+    return true;
+  };
 
   return (
     <>
@@ -146,9 +211,31 @@ export default function OrderAddressChangeButton({
         {addAddress ? (
           // 배송지 추가 페이지
           <div className="bg-white w-120 h-165 p-10 rounded-md relative flex flex-col gap-4">
-            <h3 className="font-bold mb-2 text-lg border-b-1 border-gray-350 pb-2">
-              배송지 추가
-            </h3>
+            <section className="border-b-1 border-gray-350 pb-2 mb-2 flex items-center justify-between">
+              <h3 className="font-bold  text-lg ">배송지 추가</h3>
+              <button
+                className="cursor-pointer"
+                onClick={() => {
+                  setAddAddress(false);
+                }}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M6 6L18 18M6 18L18 6"
+                    stroke="#BDBDBD"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </button>
+            </section>
             <section className="flex flex-col gap-4">
               <div className="flex flex-col gap-2">
                 <label htmlFor="">이름</label>
@@ -161,18 +248,32 @@ export default function OrderAddressChangeButton({
                   type="text"
                   className="border-1 rounded-sm py-1 px-2 border-gray-150 placeholder:text-gray-350"
                 />
+                {hiddenInput.name ? (
+                  <div className="text-red-500 text-sm">
+                    이름을 입력해주세요.
+                  </div>
+                ) : (
+                  ''
+                )}
               </div>
               <div className="flex flex-col gap-2">
-                <label htmlFor="">휴대폰번호</label>
+                <label htmlFor="">전화번호</label>
                 <input
                   value={phone}
                   onChange={e => {
                     setPhone(e.target.value);
                   }}
-                  placeholder="휴대폰번호를 입력해주세요."
-                  type="text"
+                  placeholder="전화번호를 입력해주세요."
+                  type="tel"
                   className="border-1 rounded-sm py-1 px-2 border-gray-150 placeholder:text-gray-350"
                 />
+                {hiddenInput.phone ? (
+                  <div className="text-red-500 text-sm">
+                    전화번호를 입력해주세요.
+                  </div>
+                ) : (
+                  ''
+                )}
               </div>
               <div className="flex flex-col gap-2">
                 <label htmlFor="">주소</label>
@@ -212,9 +313,22 @@ export default function OrderAddressChangeButton({
                   }
                   className="border-1 rounded-sm py-1 px-2 border-gray-150 placeholder:text-gray-350"
                 />
+                {hiddenInput.address ? (
+                  <div className="text-red-500 text-sm">
+                    주소를 입력해주세요.
+                  </div>
+                ) : (
+                  ''
+                )}
               </div>
 
-              <form action={formAction}>
+              <form
+                action={async (fd: FormData) => {
+                  if (!validateForm()) return;
+                  await formAction(fd);
+                  setAddAddress(false);
+                }}
+              >
                 <input name="token" value={token || ''} hidden readOnly />
                 <input name="id" value={user?._id || ''} hidden readOnly />
                 <input name="name" value={name || ''} hidden readOnly />
@@ -229,7 +343,7 @@ export default function OrderAddressChangeButton({
                 <button
                   disabled={isPending}
                   className="h-10 rounded-sm font-medium cursor-pointer bg-flame-250 text-white absolute bottom-4 left-8 right-8 hover:bg-flame-400"
-                  // onClick={closeModal}
+                  type="submit"
                 >
                   저장하기
                 </button>
