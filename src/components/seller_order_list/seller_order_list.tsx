@@ -8,19 +8,13 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 interface SellerOrderListProp {
   res: ProductList[];
-  token: string;
+  token?: string;
 }
 
-export default function SellerOrderList({ res, token }: SellerOrderListProp) {
+export default function SellerOrderList({ res }: SellerOrderListProp) {
   const [sellerOrderList, setSellerOrderList] = useState<ProductList[] | null>(
     null,
   );
-  // const [modalState, setModalState] = useState(false);
-  // const [selectedOrderId, setSelectedOrderId] = useState<number | null>(null);
-  // const handleDeliveryState = (orderId: number) => {
-  //   setSelectedOrderId(orderId);
-  //   setModalState(true);
-  // };
   //페이지 네이션
   const [page, setPage] = useState(1);
   const [isLoading, setLoading] = useState(true);
