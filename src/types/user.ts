@@ -27,6 +27,7 @@ export interface User {
     preference?: string[];
     birthday?: string;
     membershipClass?: string;
+    lastToastAt?: string;
   };
 }
 export interface UserState {
@@ -34,3 +35,4 @@ export interface UserState {
   setUser: (user: User) => void;
   resetUser: () => void;
 }
+

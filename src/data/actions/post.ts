@@ -4,6 +4,7 @@ import { ApiRes, ApiResPromise, Post, PostReply } from '@/types';
 import { revalidatePath } from 'next/cache';
 import { revalidateTag } from 'next/cache';
 import { redirect } from 'next/navigation';
+import { createNotification } from './notification';
 // import { cookies } from 'next/headers';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -198,7 +199,7 @@ export async function createReply(
   formData: FormData,
 ): ApiResPromise<PostReply> {
   const body = Object.fromEntries(formData.entries());
-  const accessToken = formData.get('accessToken');
+  const accessToken = (formData.get('accessToken') as string) ?? '';
 
   let res: Response;
   let data: ApiRes<PostReply>;
@@ -221,9 +222,36 @@ export async function createReply(
     return { ok: 0, message: '일시적인 네트워크 문제로 등록에 실패했습니다.' };
   }
 
-  if (data.ok) {
+ if (data.ok && data.item) {
+    // ✅ mentionIds 처리
+    const mentionIdsRaw = formData.get('mentionIds') as string | null;
+    const mentionIds: number[] = mentionIdsRaw ? JSON.parse(mentionIdsRaw) : [];
+
+    const mentionNamesRaw = formData.get('mentionNames') as string | null;
+    const mentionNames: string[] = mentionNamesRaw ? JSON.parse(mentionNamesRaw) : [];
+
+    for (let i = 0; i < mentionIds.length; i++) {
+      const targetUserId = mentionIds[i];
+      const targetName = mentionNames[i] ?? '';
+
+      await createNotification({
+        type: 'mention',
+        target_id: targetUserId,
+        content: `${body.content}`,
+        channel: 'toast',
+        extra: {
+          postId: body._id,
+          replyId: data.item._id,
+          url: `/community/${body.type}/${body._id}`,
+          mentionName: targetName,
+        },
+        accessToken,
+      });
+    }
+
     revalidatePath(`/${body.type}/${body._id}/replies`);
   }
+
 
   return data;
 }

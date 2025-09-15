@@ -6,15 +6,20 @@ import { Post } from '@/types';
 import getTimeAgo from '@/components/talk_list/time';
 import { AddBookMark, DeleteBookMark } from '@/data/actions/bookmark';
 import { redirect } from 'next/navigation';
+import LikeButton from './LikeButton';
+
 interface PostDetailProps {
   post: Post;
   token?: string;
+  initialLiked?: boolean;
+  isLoggedIn?: boolean;
 }
-export default function PostDetail({ post, token }: PostDetailProps) {
+export default function PostDetail({ post, token, initialLiked = false, isLoggedIn = false }: PostDetailProps) {
   // const toggleBookmark = useBookmarkStore(state => state.toggleBookmark);
   // const isBookmarked = useBookmarkStore(state => state.isBookmarked(post._id));
   const _id = Number(post._id);
   const type = post.type;
+  const likeInit = Number(post?.likes) ?? 0;
 
   const getBookmarkType = (postType: string) => {
     switch (postType) {
@@ -85,6 +90,7 @@ export default function PostDetail({ post, token }: PostDetailProps) {
             </time>
           </div>
           {/* 북마크 */}
+          <LikeButton id={post._id} boardType={post.type} initialCount={likeInit} initialLiked={initialLiked} isLoggedIn={isLoggedIn} />
           <button
             onClick={handleBookmark}
             className="text-livealone-cal-poly-green flex-shrink-0 p-1 cursor-pointer"

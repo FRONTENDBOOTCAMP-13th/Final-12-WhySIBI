@@ -102,7 +102,7 @@ export default function TalkDetail({ post, posts, token }: TalkCardItemProps) {
                   ? '/image/community_icon/heartIcon_active.svg'
                   : '/image/community_icon/heartIcon.svg'
               }
-              alt="좋아요 아이콘"
+              alt="북마크 아이콘"
               width={30}
               height={30}
             />

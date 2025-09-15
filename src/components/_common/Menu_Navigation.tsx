@@ -3,11 +3,13 @@ import Categroy from '@/components/_common/category';
 import ProductSearchButton from '@/components/product_search/product_search_button';
 import useMenuStore from '@/zustand/menuStore';
 import useUserStore from '@/zustand/useUserStore';
+import useNoticeStore from '@/zustand/useNoticeStore';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
+import { getNotifications } from '@/data/actions/notification';
 
 type SubMenuItem = {
   label: string;
@@ -17,7 +19,11 @@ type SubMenuItem = {
 function MenuNavigation() {
   const router = useRouter();
   const pathname = usePathname();
+  const unreadCount = useNoticeStore((state) => state.unreadCount);
+  const setUnreadCount = useNoticeStore((state) => state.setUnreadCount);
+
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   // Zustand store에서 필요한 상태와 함수들 가져오기
   const { activeMenu, subMenuData, handleMenuClick, mainCategoryId } =
     useMenuStore();
@@ -51,6 +57,20 @@ function MenuNavigation() {
 
   const { user } = useUserStore();
   const token = user?.token?.accessToken;
+
+  
+  useEffect(() => {
+    async function fetchNotifications() {
+      if (!token) return;
+      const res = await getNotifications(1, 5);
+      if (res.ok && res.item) {
+        const unread = res.item.filter((n: any) => !n.isRead).length;
+        setUnreadCount(unread);
+      }
+    }
+    fetchNotifications();
+  }, [token, setUnreadCount]);
+
 
   useEffect(() => {
     if (
@@ -127,6 +147,20 @@ function MenuNavigation() {
             </ul>
 
             <div className="header_bottom_icons flex flex-wrap items-center xl:gap-11 lg:gap-8 md:gap-6 xl:mr-7 lg:mr-5 md:mr-4">
+              {user? (<Link href={'/notification'}>
+                <div className="no-invert relative">
+                  <Image
+                    src={'/image/header_icon/notification_icon.svg'}
+                    alt="알림아이콘"
+                    width={'35'}
+                    height={'35'}
+                    className="xl:w-[35px] xl:h-[35px] lg:w-[34px] lg:h-[34px] md:w-[32px] md:h-[32px]"
+                  />
+                {unreadCount > 0 && (
+                  <span className="absolute -top-0 -right-0 w-1.5 h-1.5 bg-livealone-flame rounded-full"></span>
+                )}
+                </div>
+              </Link>) : ('')}
               <ProductSearchButton />
               <Link href={'/cart'}>
                 <div className="no-invert">
@@ -164,6 +198,19 @@ function MenuNavigation() {
 
           {/* 모바일 아이콘들 */}
           <div className="flex items-center gap-4">
+            {user? (<Link href={'/notification'}>
+              <div className="no-invert px-1 relative">
+                <Image
+                  src={'/image/header_icon/notification_icon.svg'}
+                  alt="알림아이콘"
+                  width={'25'}
+                  height={'25'}
+                />
+                {unreadCount > 0 && (
+                  <span className="absolute -top-0 -right-0 w-1 h-1 bg-livealone-flame rounded-full"></span>
+                )}
+              </div>
+            </Link>) : ('') }
             <ProductSearchButton />
             <Link href={'/cart'}>
               <div className="no-invert">

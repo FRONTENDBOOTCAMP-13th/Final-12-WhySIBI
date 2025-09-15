@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useCallback } from 'react';
+import ToastAlarm from '../Toast_alarm/ToatAlarm';
 import toast from 'react-hot-toast';
 import dynamic from 'next/dynamic';
 
@@ -72,6 +73,7 @@ export default function Header() {
 
   return (
     <header className="pt-16 w-full vertical-stripes">
+      <ToastAlarm></ToastAlarm>
       <div className="max-w-[1280px] mx-auto">
         <div className="absolute right-10 top-10 z-50 pointer-events-auto  scale-70 sm:scale-60 md:scale-80 lg:scale-90">
           <ThemeToggle />

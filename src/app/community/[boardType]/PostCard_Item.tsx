@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
 import Image from 'next/image';
+import LikeCountBadge from './[_id]/LikeCountBadge';
 import { Post } from '@/types';
 // import { useBookmarkStore } from '@/zustand/bookMarkStore';
 import { AddBookMark, DeleteBookMark } from '@/data/actions/bookmark';
@@ -133,6 +134,7 @@ export default function PostCardItem({
       handleAddBookmark();
     }
   };
+  
   return (
     <div className="flex flex-col relative items-center cursor-pointer hover:scale-101 hover:duration-200 group">
       {/* 게시글 링크 */}
@@ -226,6 +228,13 @@ export default function PostCardItem({
           height={15}
         />
         <span>{post.repliesCount}</span>
+        <Image
+          src="/image/community_icon/heartIcon.svg"
+          alt="좋아요수"
+          width={15}
+          height={15}
+        />
+        <LikeCountBadge id={post._id} boardType={boardType} initialCount={Number(post.likes) || 0} />
       </div>
     </div>
   );

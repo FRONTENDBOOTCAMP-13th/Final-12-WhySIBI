@@ -18,6 +18,10 @@ interface ListPageProps {
 export default async function PostCardPage({ params }: ListPageProps) {
   const { boardType } = await params;
   const token = (await cookies()).get('accessToken');
+  
+    // 서버에서 게시글 목록 받아오기
+  const res = await getPosts(boardType, token?.value as string);
+
   let boardTitle = '';
   let boardSub = '';
   switch (boardType) {
@@ -33,9 +37,6 @@ export default async function PostCardPage({ params }: ListPageProps) {
       boardTitle = '커뮤니티';
       boardSub = '커뮤니티입니다.';
   }
-
-  // 서버에서 게시글 목록 받아오기
-  const res = await getPosts(boardType, token?.value as string);
 
   if (boardType === 'showRoom') {
     return (

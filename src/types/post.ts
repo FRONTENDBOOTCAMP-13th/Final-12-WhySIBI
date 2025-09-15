@@ -43,7 +43,7 @@ export interface Post {
   // 게시글 조회수
   views: number;
   // 게시글 좋아요 수
-  isLiked: number;
+  likes: number;
   // 댓글 개수
   repliesCount: number;
   // 댓글 목록
