@@ -220,6 +220,12 @@ export async function login(
         sameSite: 'strict',
         path: '/',
       });
+      (await cookies()).set('type', String(data.item.type), {
+        maxAge: 60 * 60 * 24 * 1, // 1일
+        httpOnly: true,
+        sameSite: 'strict',
+        path: '/',
+      });
     }
   } catch (error) {
     // 네트워크 오류 처리

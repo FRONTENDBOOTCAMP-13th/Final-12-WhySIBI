@@ -5,9 +5,10 @@ import { useState } from 'react';
 interface IsClickProps {
   state: boolean;
   onClose: () => void;
+  userType?: string;
 }
 
-export default function MyTheme({ state, onClose }: IsClickProps) {
+export default function MyTheme({ state, onClose, userType }: IsClickProps) {
   const [checkTag, setCheckTag] = useState<string[]>([]);
   const handleTag = () => {
     const checkedInputs = document.querySelectorAll(
@@ -22,7 +23,7 @@ export default function MyTheme({ state, onClose }: IsClickProps) {
     <>
       <div className={`mt-9 ${state ? 'block' : 'hidden'} relative`}>
         <h3 className="text-center font-basic font-bold py-2 text-size-md border-2 rounded-full bg-linear-[90deg,rgba(255,238,188,0.50)_0%,rgba(212,232,248,0.50)_100%] mb-16">
-          요즘 자취의 관심사를 알려주세요
+          {userType === 'user' ? '요즘 자취의 관심사를 알려주세요' : '상품의 취향을 선택해주세요'}
         </h3>
         <div className="grid grid-cols-3 grid-rows-[repeat(5,auto)_40px_auto] items-center gap-5">
           <InputCheckBox
