@@ -70,7 +70,7 @@ export default function ProductRegistrationForm() {
   }, [state, router]);
 
   const formRef = useRef<HTMLFormElement>(null);
-  const [productData, setProductData] = useState<any>(null);
+  const [productData, setProductData] = useState(null);
   const handlePreview = async () => {
     if (!formRef.current) return;
 

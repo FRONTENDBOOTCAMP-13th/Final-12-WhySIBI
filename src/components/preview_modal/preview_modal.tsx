@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import LikeButton from '../Shopping_detail/Like_button';
 import ShoppingFormTag from '../Shopping_detail/Shopping_form_tag';
 import Link from 'next/link';
 

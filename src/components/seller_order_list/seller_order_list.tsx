@@ -1,7 +1,7 @@
 'use client';
 import Pagenation from '@/components/basic_component/Pagenation';
 import SkeletonUI from '@/components/product_component/skeleton_ui';
-import OrderModal from '@/components/seller_order_list/order_state_modal/order_state_modal';
+// import OrderModal from '@/components/seller_order_list/order_state_modal/order_state_modal';
 import SellerOrderInfo from '@/components/seller_order_list/seller_order_info/seller_order_info';
 import { ProductList } from '@/types';
 import Image from 'next/image';
@@ -15,12 +15,12 @@ export default function SellerOrderList({ res, token }: SellerOrderListProp) {
   const [sellerOrderList, setSellerOrderList] = useState<ProductList[] | null>(
     null,
   );
-  const [modalState, setModalState] = useState(false);
-  const [selectedOrderId, setSelectedOrderId] = useState<number | null>(null);
-  const handleDeliveryState = (orderId: number) => {
-    setSelectedOrderId(orderId);
-    setModalState(true);
-  };
+  // const [modalState, setModalState] = useState(false);
+  // const [selectedOrderId, setSelectedOrderId] = useState<number | null>(null);
+  // const handleDeliveryState = (orderId: number) => {
+  //   setSelectedOrderId(orderId);
+  //   setModalState(true);
+  // };
   //페이지 네이션
   const [page, setPage] = useState(1);
   const [isLoading, setLoading] = useState(true);
@@ -114,7 +114,7 @@ export default function SellerOrderList({ res, token }: SellerOrderListProp) {
           </section>
         </div>
       )}
-      <OrderModal token={token} _id={selectedOrderId} />
+      {/* <OrderModal token={token} _id={selectedOrderId} /> */}
     </>
   );
 }
