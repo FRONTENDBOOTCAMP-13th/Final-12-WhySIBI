@@ -44,6 +44,10 @@ export default function RootLayout({
               borderRadius: '8px',
               padding: '16px',
             },
+            iconTheme: {
+              primary: '#10b981',
+              secondary: '#fff',
+            },
             success: {
               iconTheme: {
                 primary: '#10b981', // 초록색

@@ -65,7 +65,7 @@ export default function NotificationItem({ n, sessionUserId }: { n: any; session
         <time className="text-xs text-gray-400">{getTimeAgo(n.createdAt)}</time>
       </Link>
 
-      {!isRead && (
+      {/* {!isRead && (
         <button
           type="button"
           onClick={handleRead}
@@ -73,7 +73,7 @@ export default function NotificationItem({ n, sessionUserId }: { n: any; session
         >
           읽음
         </button>
-      )}
+      )} */}
     </li>
   );
 }
