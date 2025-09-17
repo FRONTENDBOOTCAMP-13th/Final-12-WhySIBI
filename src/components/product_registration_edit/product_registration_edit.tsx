@@ -12,14 +12,36 @@ import { ProductListProps } from '@/types';
 interface ProductRegistrationProps {
   res: ProductListProps;
 }
+export interface ProductPreviewData {
+  name: string;
+  sale: number;
+  price: number;
+  shippingFees: string;
+  content: string;
+  quantity: string;
+  keyword: string[];
+  extra: {
+    category: string[];
+    color: string[];
+    size: string[];
+    tag: string;
+    originalPrice: number;
+    contentImage: Array<{
+      path: string;
+      name: string;
+    }>;
+  };
+  mainImages: Array<{
+    path: string;
+    name: string;
+  }>;
+}
 
 export default function ProductRegistrationEditForm({
   res,
 }: ProductRegistrationProps) {
   //이미지 미리보기
   const [imageSrc, setImageSrc] = useState('');
-  // 상세이미지 미리보기
-  const [detailImageSrc, setDetailImageSrc] = useState('');
   const imageSrchandleFilePath = (e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement;
     const file = target.files?.[0];
@@ -27,6 +49,8 @@ export default function ProductRegistrationEditForm({
       setImageSrc(URL.createObjectURL(file));
     }
   };
+  // 상세이미지 미리보기
+  const [detailImageSrc, setDetailImageSrc] = useState('');
   const detailImageSrchandleFilePath = (
     e: React.ChangeEvent<HTMLInputElement>,
   ) => {
@@ -37,8 +61,12 @@ export default function ProductRegistrationEditForm({
     }
   };
   // 옵션 갯수 선택
-  const [sizeOptionQuantity, setSizeOptionQuantity] = useState(0);
-  const [colorOptionQuantity, setColorOptionQuantity] = useState(0);
+  const [sizeOptionQuantity, setSizeOptionQuantity] = useState(
+    res.extra?.size?.length || 0,
+  );
+  const [colorOptionQuantity, setColorOptionQuantity] = useState(
+    res.extra?.color?.length || 0,
+  );
   const [keywordCount, setKeywordCount] = useState(res.keyword?.length || 0);
   //가격과 할인율 상태 변화
   const [price, setPrice] = useState((res.price || 0).toString());
@@ -79,7 +107,9 @@ export default function ProductRegistrationEditForm({
   }, [state, router]);
 
   const formRef = useRef<HTMLFormElement>(null);
-  const [productData, setProductData] = useState(null);
+  const [productData, setProductData] = useState<ProductPreviewData | null>(
+    null,
+  );
   const handlePreview = async () => {
     if (!formRef.current) return;
 
@@ -109,18 +139,18 @@ export default function ProductRegistrationEditForm({
     }
     const currentData = {
       name: (formData.get('name') as string) || '',
-      sale: saleValue,
+      sale: Number(saleValue),
       price: discountedPrice,
       shippingFees: (formData.get('shippingFees') as string) || '0',
       content: (formData.get('content') as string) || '',
       quantity: (formData.get('quantity') as string) || '',
-      keyword: formData.getAll('keyword').filter(k => k.toString().trim()),
+      keyword: formData.getAll('keyword').map(k => k.toString()) as string[],
       extra: {
-        category: formData.getAll('category'),
-        color: formData.getAll('color').filter(c => c.toString().trim()),
-        size: formData.getAll('size').filter(s => s.toString().trim()),
+        category: formData.getAll('category').map(c => c.toString()),
+        color: formData.getAll('color').map(c => c.toString()) as string[],
+        size: formData.getAll('size').map(s => s.toString()) as string[],
         tag: (formData.get('tag') as string) || '',
-        originalPrice: price,
+        originalPrice: Number(price),
         contentImage: contentImagePath
           ? [
               {
@@ -184,7 +214,7 @@ export default function ProductRegistrationEditForm({
             placeholder="상품제목"
             name="name"
             id="name"
-            value={res.name}
+            defaultValue={res.name}
             className="font-basic block w-full pl-4 border-2 outline-0  border-button-color-opaque-25 rounded-full h-16 py-4  focus:border-button-color transition-all duration-200 ease-in"
             required
           />
@@ -198,7 +228,7 @@ export default function ProductRegistrationEditForm({
             placeholder="상품가격"
             name="originalPrice"
             id="originalPrice"
-            value={Number(price)}
+            defaultValue={Number(price)}
             onChange={e => setPrice(e.target.value)}
             className="font-basic block w-full pl-4 border-2 outline-0  border-button-color-opaque-25 rounded-full h-16 py-4  focus:border-button-color transition-all duration-200 ease-in"
             required
@@ -213,7 +243,7 @@ export default function ProductRegistrationEditForm({
             placeholder="할인율"
             name="sale"
             id="sale"
-            value={Number(saleValue)}
+            defaultValue={Number(saleValue)}
             onChange={e => setSaleValue(e.target.value)}
             className="font-basic block w-full pl-4 border-2 outline-0  border-button-color-opaque-25 rounded-full h-16 py-4  focus:border-button-color transition-all duration-200 ease-in"
             required
@@ -227,7 +257,7 @@ export default function ProductRegistrationEditForm({
           <input
             type="text"
             placeholder="할인 가격"
-            value={discountedPrice.toLocaleString()}
+            defaultValue={discountedPrice.toLocaleString()}
             className="font-basic block w-full pl-4 border-2 outline-0  border-button-color-opaque-25 rounded-full h-16 py-4  focus:border-button-color transition-all duration-200 ease-in"
             readOnly
           />
@@ -254,7 +284,7 @@ export default function ProductRegistrationEditForm({
             placeholder="수량"
             name="quantity"
             id="quantity"
-            value={res.quantity}
+            defaultValue={res.quantity}
             className="font-basic block w-full pl-4 border-2 outline-0  border-button-color-opaque-25 rounded-full h-16 py-4  focus:border-button-color transition-all duration-200 ease-in"
             required
           />
@@ -279,7 +309,7 @@ export default function ProductRegistrationEditForm({
                 id="keyword"
                 className="font-basic block w-full pl-4 border-2 outline-0  border-button-color-opaque-25 rounded-full h-16 py-4  focus:border-button-color transition-all duration-200 ease-in"
                 placeholder="제품에 어울리는 키워드를 작성해주세요 (검색시 제품을 노출하려는 용도입니다.)"
-                value={res.keyword}
+                defaultValue={res.keyword}
                 required
               />
             ))}
@@ -299,6 +329,9 @@ export default function ProductRegistrationEditForm({
                   id={`category-${category.code}`}
                   name="category"
                   value={category.code}
+                  defaultChecked={
+                    res.extra?.category?.includes(category.code) || false
+                  }
                   aria-label={`${category.value} 카테고리 선택`}
                   className="w-4 h-4 text-blue-600 rounded focus:ring-blue-500 text-size-sm"
                 />
@@ -310,7 +343,12 @@ export default function ProductRegistrationEditForm({
 
         <div>
           <label htmlFor="tag">제품의 취향을 선택해주세요</label>
-          <select name="tag" id="tag" aria-label="취향 선택">
+          <select
+            name="tag"
+            id="tag"
+            aria-label="취향 선택"
+            defaultValue={res.extra?.tag || ''}
+          >
             {ThemeOptions.map((tag, i) => (
               <option key={i} value={tag.value}>
                 {tag.text}
@@ -326,8 +364,9 @@ export default function ProductRegistrationEditForm({
             onChange={e => {
               setSizeOptionQuantity(parseInt(e.target.value));
             }}
+            defaultValue={res.extra?.size?.length}
           >
-            <option value="1">0</option>
+            <option value="0">0</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -342,8 +381,9 @@ export default function ProductRegistrationEditForm({
             onChange={e => {
               setColorOptionQuantity(parseInt(e.target.value));
             }}
+            defaultValue={res.extra?.color?.length}
           >
-            <option value="1">0</option>
+            <option value="0">0</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -366,6 +406,7 @@ export default function ProductRegistrationEditForm({
                       type="text"
                       placeholder={`사이즈 ${i + 1} (예: S, M, L, XL)`}
                       name="size"
+                      defaultValue={res.extra?.size || ''}
                       className="font-basic block w-4/5 pl-4 border-2 outline-0  border-button-color-opaque-25 rounded-full h-16 py-4  focus:border-button-color transition-all duration-200 ease-in"
                     />
                   </div>
@@ -391,6 +432,7 @@ export default function ProductRegistrationEditForm({
                       type="text"
                       name="color"
                       placeholder={`컬러 ${i + 1} (예: 빨강, 파랑, 검정)`}
+                      defaultValue={res.extra?.color || ''}
                       className="font-basic block w-4/5 pl-4 border-2 outline-0  border-button-color-opaque-25 rounded-full h-16 py-4  focus:border-button-color transition-all duration-200 ease-in"
                     ></input>
                   </div>

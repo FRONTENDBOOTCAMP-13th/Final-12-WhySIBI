@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 import { useActionState, useEffect, useRef, useState } from 'react';
 import RegistrationPreview from '../preview_modal/preview_modal';
 import { upLoadFile } from '@/data/actions/file';
+import { ProductPreviewData } from '@/components/product_registration_edit/product_registration_edit';
 
 export default function ProductRegistrationForm() {
   //이미지 미리보기
@@ -70,7 +71,9 @@ export default function ProductRegistrationForm() {
   }, [state, router]);
 
   const formRef = useRef<HTMLFormElement>(null);
-  const [productData, setProductData] = useState(null);
+  const [productData, setProductData] = useState<ProductPreviewData | null>(
+    null,
+  );
   const handlePreview = async () => {
     if (!formRef.current) return;
 
@@ -100,18 +103,18 @@ export default function ProductRegistrationForm() {
     }
     const currentData = {
       name: (formData.get('name') as string) || '',
-      sale: saleValue,
+      sale: Number(saleValue),
       price: discountedPrice,
       shippingFees: (formData.get('shippingFees') as string) || '0',
       content: (formData.get('content') as string) || '',
       quantity: (formData.get('quantity') as string) || '',
-      keyword: formData.getAll('keyword').filter(k => k.toString().trim()),
+      keyword: formData.getAll('keyword').map(k => k.toString()) as string[],
       extra: {
-        category: formData.getAll('category'),
-        color: formData.getAll('color').filter(c => c.toString().trim()),
-        size: formData.getAll('size').filter(s => s.toString().trim()),
+        category: formData.getAll('category').map(c => c.toString()),
+        color: formData.getAll('color').map(c => c.toString()) as string[],
+        size: formData.getAll('size').map(s => s.toString()) as string[],
         tag: (formData.get('tag') as string) || '',
-        originalPrice: price,
+        originalPrice: Number(price),
         contentImage: contentImagePath
           ? [
               {
@@ -314,7 +317,7 @@ export default function ProductRegistrationForm() {
               setSizeOptionQuantity(parseInt(e.target.value));
             }}
           >
-            <option value="1">0</option>
+            <option value="0">0</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -330,7 +333,7 @@ export default function ProductRegistrationForm() {
               setColorOptionQuantity(parseInt(e.target.value));
             }}
           >
-            <option value="1">0</option>
+            <option value="0">0</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
