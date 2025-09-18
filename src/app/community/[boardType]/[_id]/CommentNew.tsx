@@ -10,6 +10,8 @@ interface CommentNewProps {
   repliesCount: number;
   onAdd: (reply: PostReply) => void;
   boardType: string;
+  postOwnerId: number;
+  postOwnerName: string;
 }
 
 export default function CommentNew({
@@ -17,6 +19,8 @@ export default function CommentNew({
   repliesCount,
   onAdd,
   boardType,
+  postOwnerId,
+  postOwnerName,
 }: CommentNewProps) {
   const { user } = useUserStore();
 
@@ -122,10 +126,20 @@ export default function CommentNew({
           <input type="hidden" name="_id" value={_id} />
           <input type="hidden" name="accessToken" value={user?.token?.accessToken ?? ''} />
           <input type="hidden" name="type" value={boardType} />
+
+          {/* 댓글 멘션 알림 */}
           <input type="hidden" name="mentionIds" value={JSON.stringify(mentionIds)} />
           <input type="hidden" name="mentionNames" value={JSON.stringify(mentionNames)} />
-          {/* ✅ 실제 전송될 댓글 내용 */}
           <input type="hidden" name="content" value={composedContent} />
+
+          {/* 게시글 작성자 (알림 대상) */}
+          <input type="hidden" name="postOwnerId" value={postOwnerId} />
+          <input type="hidden" name="postOwnerName" value={postOwnerName} />
+
+          {/* 게시글 - 댓글 작성자 */}
+          <input type="hidden" name="commenterId" value={user?._id ?? ''} />
+          <input type="hidden" name="commenterName" value={user?.name ?? ''} />
+          <input type="hidden" name="commenterImage" value={user?.image ?? ''} />
 
           {/* 칩 + 입력 영역 */}
           <div className="flex-1 flex items-center flex-wrap gap-1">
@@ -147,7 +161,7 @@ export default function CommentNew({
               </span>
             ))}
 
-            {/* 사용자가 실제로 타이핑하는 입력칸(전송은 hidden content로 함) */}
+            {/* 사용자 입력 칸 */}
             <input
               id="comment-input"
               ref={inputRef}

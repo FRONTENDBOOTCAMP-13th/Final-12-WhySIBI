@@ -200,6 +200,7 @@ export async function createReply(
 ): ApiResPromise<PostReply> {
   const body = Object.fromEntries(formData.entries());
   const accessToken = (formData.get('accessToken') as string) ?? '';
+  const boardType  = String(formData.get('type') ?? '');
 
   let res: Response;
   let data: ApiRes<PostReply>;
@@ -214,10 +215,8 @@ export async function createReply(
       },
       body: JSON.stringify(body),
     });
-
     data = await res.json();
   } catch (error) {
-    // 네트워크 오류 처리
     console.error(error);
     return { ok: 0, message: '일시적인 네트워크 문제로 등록에 실패했습니다.' };
   }
@@ -226,7 +225,6 @@ export async function createReply(
     const postId = Number(formData.get('_id'));
     const content = formData.get('content') as string;
   
-    // mentionIds 처리
     const mentionIdsRaw = formData.get('mentionIds') as string | null;
     const mentionIds: number[] = mentionIdsRaw ? JSON.parse(mentionIdsRaw) : [];
 
@@ -247,6 +245,34 @@ export async function createReply(
           replyId: data.item._id,
           url: `/community/${body.type}/${body._id}`,
           mentionName: targetName,
+        },
+        accessToken,
+      });
+    }
+
+    // 글 작성자에게 'reply' 알림 
+    const postOwnerId   = Number(formData.get('postOwnerId') ?? 0);
+    const postOwnerName = String(formData.get('postOwnerName') ?? '');
+
+    const commenter = {
+      _id:   Number(formData.get('commenterId') ?? 0),
+      name:  String(formData.get('commenterName') ?? ''),
+      image: (formData.get('commenterImage') as string) || null,
+    };
+
+    // 본인 글에 본인이 단 댓글이면 스킵
+    if (postOwnerId && postOwnerId !== commenter._id) {
+      await createNotification({
+        type: 'reply',                 // 구분 위해 reply로 지정
+        target_id: postOwnerId,        // 게시글 작성자에게
+        content,                       // 댓글 내용
+        channel: 'toast',
+        extra: {
+          postId,
+          replyId: data.item._id,
+          url: `/community/${boardType}/${postId}`,
+          postOwnerName,               // 보여줄 수 있으면 사용
+          commenter,                   // 누가 달았는지
         },
         accessToken,
       });
