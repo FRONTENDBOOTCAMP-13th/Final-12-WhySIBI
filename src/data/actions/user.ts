@@ -253,7 +253,7 @@ function parseAPITime(str?: string | null) {
   if (!str) return new Date(NaN);
   const m = str.match(/^(\d{4})\.(\d{2})\.(\d{2}) (\d{2}):(\d{2}):(\d{2})$/);
   if (!m) return new Date(NaN);
-  const [_, y, mo, d, h, mi, s] = m.map(Number);
+  const [, y, mo, d, h, mi, s] = m.map(Number);
   return new Date(y, mo - 1, d, h, mi, s);
 }
 
@@ -287,11 +287,13 @@ export async function getMeByCookie(): ApiResPromise<User> {
   }
 }
 
+type ExtraPatch = Partial<User['extra']> & { lastToastAt?: string };
+
 /**
  * users/{_id} extra 병합 업데이트
  * (GET으로 extra를 읽어와 partial과 병합 후 PATCH)
  */
-export async function updateMyExtra(partialExtra: Record<string, any>): ApiResPromise<User> {
+export async function updateMyExtra(partialExtra: ExtraPatch): ApiResPromise<User> {
   try {
     const { token, userId } = await getAuthFromCookies();
     if (!userId || !token) return { ok: 0, message: '로그인 필요' };
@@ -299,8 +301,8 @@ export async function updateMyExtra(partialExtra: Record<string, any>): ApiResPr
     // 현재 extra 읽기
     const cur = await getMeByCookie();
     if (!cur.ok || !cur.item) return { ok: 0, message: '내 정보 조회 실패' };
-    const curExtra = (cur.item.extra ?? {}) as Record<string, any>;
-    const nextExtra = { ...curExtra, ...partialExtra };
+    const curExtra = ((cur.item.extra ?? {}) as ExtraPatch);
+    const nextExtra: ExtraPatch = { ...curExtra, ...partialExtra };
 
     // PATCH /users/{_id}
     const res = await fetch(`${API_URL}/users/${userId}`, {
@@ -321,6 +323,8 @@ export async function updateMyExtra(partialExtra: Record<string, any>): ApiResPr
   }
 }
 
+type MinimalNotification = { createdAt: string };
+
 /**
  * 로그인 직후: 최신 알림 목록을 받아 ‘lastToastAt’ 이후 것만 골라서 반환하고,
  * 새 알림이 있었다면 lastToastAt을 그 중 최댓값으로 올립니다.
@@ -328,12 +332,15 @@ export async function updateMyExtra(partialExtra: Record<string, any>): ApiResPr
  * - return: toasts 배열(클라이언트에서 토스트로 노출)
  */
 export async function pickNewNotificationsAndBumpToastMark(
-  notifications: any[] | undefined,
-): Promise<{ toasts: any[] }> {
+  notifications: ReadonlyArray<MinimalNotification> | undefined,
+): Promise<{ toasts: MinimalNotification[] }> {
   if (!Array.isArray(notifications) || notifications.length === 0) return { toasts: [] };
 
   const me = await getMeByCookie();
-  const lastToastAtStr: string | null = me?.ok && me.item?.extra?.lastToastAt ? me.item.extra.lastToastAt : null;
+  const lastToastAtStr =
+    me.ok && me.item?.extra && 'lastToastAt' in me.item.extra
+      ? (me.item.extra as Partial<User['extra']> & { lastToastAt?: string }).lastToastAt
+      : undefined;  
   const lastToastAt = lastToastAtStr ? parseAPITime(lastToastAtStr) : null;
 
   const toasts = notifications.filter(n => {
@@ -344,8 +351,10 @@ export async function pickNewNotificationsAndBumpToastMark(
 
   if (toasts.length > 0) {
     // 문자열 정렬 == 시간 정렬(이 포맷에서는 안전)
-    const maxCreatedAtStr = toasts.map(n => n.createdAt).sort().at(-1) as string;
-    await updateMyExtra({ lastToastAt: maxCreatedAtStr });
+    const maxCreatedAtStr = toasts.map(n => n.createdAt).sort().at(-1);
+    if (maxCreatedAtStr) {
+      await updateMyExtra({ lastToastAt: maxCreatedAtStr });
+    }
   }
 
   return { toasts };

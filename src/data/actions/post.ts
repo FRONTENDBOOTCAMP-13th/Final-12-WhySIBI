@@ -223,7 +223,10 @@ export async function createReply(
   }
 
  if (data.ok && data.item) {
-    // ✅ mentionIds 처리
+    const postId = Number(formData.get('_id'));
+    const content = formData.get('content') as string;
+  
+    // mentionIds 처리
     const mentionIdsRaw = formData.get('mentionIds') as string | null;
     const mentionIds: number[] = mentionIdsRaw ? JSON.parse(mentionIdsRaw) : [];
 
@@ -237,10 +240,10 @@ export async function createReply(
       await createNotification({
         type: 'mention',
         target_id: targetUserId,
-        content: `${body.content}`,
+        content,
         channel: 'toast',
         extra: {
-          postId: body._id,
+          postId,
           replyId: data.item._id,
           url: `/community/${body.type}/${body._id}`,
           mentionName: targetName,
