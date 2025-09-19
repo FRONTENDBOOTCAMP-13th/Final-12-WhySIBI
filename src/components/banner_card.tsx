@@ -15,8 +15,8 @@ function BannerCard({ title, imageUrl, contentUrl }: BannerCardProps) {
       <div className="relative w-full h-[420px]">
         <Link href={contentUrl}>
           <Image src={imageUrl} alt={title} fill className="object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-          <div className="absolute  text-white bottom-10 text-xl md:text-3xl lg:text-4xl text-left font-bold left-15 whitespace-pre-line">
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent  no-invert"></div>
+          <div className="absolute  no-invert  text-white bottom-10 text-xl md:text-3xl lg:text-4xl text-left font-bold left-15 whitespace-pre-line">
             {title}
           </div>
         </Link>

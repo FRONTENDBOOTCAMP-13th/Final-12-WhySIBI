@@ -9,9 +9,12 @@ import { PostReply } from '@/types';
 interface CommentSectionProps {
   _id: number;
   initialReplies: PostReply[];
+  boardType: string;
+  postOwnerId: number;
+  postOwnerName: string;
 }
 
-export default function CommentSection({ _id, initialReplies }: CommentSectionProps) {
+export default function CommentSection({ _id, initialReplies, boardType, postOwnerId, postOwnerName }: CommentSectionProps) {
   const [replies, setReplies] = useState<PostReply[]>(initialReplies);
 
   // 댓글 추가
@@ -35,7 +38,7 @@ export default function CommentSection({ _id, initialReplies }: CommentSectionPr
 
   return (
     <>
-      <CommentNew _id={_id} repliesCount={replies.length} onAdd={addReply} />
+      <CommentNew _id={_id} repliesCount={replies.length} onAdd={addReply} boardType={boardType} postOwnerId={postOwnerId} postOwnerName={postOwnerName} />
       <CommentList replies={replies} onDeleteSuccess={fetchReplies} onDelete={removeReply} />
     </>
   );

@@ -11,7 +11,8 @@ function MainBestProductSection() {
         title="나혼산 BEST 상품"
         subTitle={
           <>
-            현재시각 <TimeStamp /> 기준 인기상품 🔥🔥🔥
+            현재시각 <TimeStamp /> 기준 인기상품{' '}
+            <span className="no-invert">🔥🔥🔥</span>
           </>
         }
       />

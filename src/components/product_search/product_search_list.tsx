@@ -38,20 +38,20 @@ function ProductSearchList() {
         ); // 비슷한 상품 찾기 (키워드 병렬로 받음)
         const filter = res.item.filter((product: ProductListProps) => {
           const name = product.name.toLowerCase().replace(/\s+/g, '');
-          const productKeywords = product.keyword.map(k =>
+          const productKeywords = product?.keyword?.map(k =>
             k.toLowerCase().replace(/\s+/g, ''),
           ); // 비슷한 상품 찾기
 
           const nameMatch = text && name.includes(text);
           const keywordMatch =
-            text && productKeywords.some(keyword => keyword.includes(text));
+            text && productKeywords?.some(keyword => keyword.includes(text));
 
           const multiKeywordMatch =
             keywords.length > 0 &&
             keywords.some(search => {
               return (
                 name.includes(search) ||
-                productKeywords.some(k => k.includes(search))
+                productKeywords?.some(k => k.includes(search))
               );
             });
 
@@ -136,13 +136,15 @@ function ProductSearchList() {
       ) : (
         // 검색된 상품이 없을 시
         <div className="flex items-center justify-center flex-col mt-10">
-          <Image
-            src="/image/category_icon/furniture.svg"
-            alt="검색된 상품이 없습니다."
-            width="150"
-            height="150"
-            className="opacity-20 mt-5 mb-2.5"
-          />
+          <div className="no-invert">
+            <Image
+              src="/image/category_icon/furniture.svg"
+              alt="검색된 상품이 없습니다."
+              width="150"
+              height="150"
+              className="opacity-20 mt-5 mb-2.5"
+            />
+          </div>
           <p className="text-center mt-3 font-bold text-gray-500 text-xl">
             앗! 검색된 상품이 없어요
           </p>

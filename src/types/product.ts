@@ -1,3 +1,5 @@
+import { User } from '@/types/user';
+
 export interface ProductExtra {
   isNew?: boolean;
   isBest?: boolean;
@@ -11,6 +13,7 @@ export interface ProductExtra {
   originalPrice?: number;
   detailimg?: { path: string }[];
   star?: number;
+  contentImage?: ProductImage[];
 }
 
 export interface ProductImage {
@@ -38,23 +41,28 @@ export interface ProductListProps {
   replies: number;
   //상품 판매갯수
   buyQuantity: number;
+  //전체수량
+  quantity: number;
   //상품 메인 이미지
   mainImages: ProductImage[];
+  image?: ProductImage;
   //상품 엑스트라 정보
   extra?: ProductExtra;
   //상품 등록일
   createdAt: string;
-
+  sale?: number;
+  content?: string;
   //북마크 ID
   myBookmarkId?: number;
 
   //상품 검색 키워드
-  keyword: string[];
-
+  keyword?: string[];
 }
 export interface ProductList {
   // 상품 고유 ID
-  list: ProductListProps[];
+  products: ProductListProps[];
+  user: User;
+  state?: string;
 }
 
 export interface Pagination {
