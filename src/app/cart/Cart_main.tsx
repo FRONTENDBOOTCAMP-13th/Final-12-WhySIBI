@@ -6,10 +6,11 @@ import { CartData } from '@/types/cart';
 import CartAllDeleteButton from './Cart_all_delete_button';
 import CartPurchaseButton from './Cart_purchase_button';
 import useCartRefreshStore from '@/zustand/useCartRefreshStore';
-import CartAddressInput from './Cart_address_input';
+// import CartAddressInput from './Cart_address_input';
 import CartListSkeleton from './skeleton/Cart_list_skeleton';
 import Link from 'next/link';
 import Image from 'next/image';
+import OrderInfo from '../order/Order_info';
 
 export default function CartMain() {
   const { user } = useUserStore();
@@ -184,7 +185,7 @@ export default function CartMain() {
         )}
       </div>
       <aside className="w-[480px] md:w-[630px] flex flex-col gap-6">
-        <CartAddressInput />
+        <OrderInfo />
         <section className="border-1 px-5 py-6 rounded-2xl">
           <h3 className="text-xl font-extrabold border-b-1 pb-3 border-gray-150">
             결제금액
