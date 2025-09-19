@@ -72,7 +72,7 @@ function SellerOrderInfo({
           <button
             type="button"
             className="nahonsan-btn-3d-red border-button-color mx-auto rounded-radius-full py-3 px-5 text-white"
-            onClick={() => handleDeliveryState()}
+            // onClick={() => handleDeliveryState()}
           >
             배송 상태 수정
           </button>
