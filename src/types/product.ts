@@ -13,6 +13,7 @@ export interface ProductExtra {
   originalPrice?: number;
   detailimg?: { path: string }[];
   star?: number;
+  contentImage?: ProductImage[];
 }
 
 export interface ProductImage {

@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import LikeButton from '../Shopping_detail/Like_button';
 import ShoppingFormTag from '../Shopping_detail/Shopping_form_tag';
 import Link from 'next/link';
 
@@ -57,13 +56,18 @@ export default function RegistrationPreview({
           <section className="bg-white w-full my-5 sm:my-10 flex flex-col md:flex-row lg:gap-8 xl:gap-24 justify-center py-4">
             <figure className="bg-white w-full  sm:max-w-[600px] sm:max-h-[600px] overflow-hidden flex justify-center items-center rounded-sm shadow-md">
               <Image
-                src={productData?.mainImages[0]?.path || ''}
+                src={
+                  productData?.mainImages[0]?.path ||
+                  `/image/product_detail/product_mainImage_empty.png`
+                }
                 width={590}
                 height={590}
                 className="object-cover "
                 alt={`${productData?.mainImages[0]?.name} 상품이미지`}
               />
-              <figcaption className="sr-only">{productData?.name}</figcaption>
+              <figcaption className="sr-only">
+                {productData?.name || ''}
+              </figcaption>
             </figure>
 
             <section className="w-full mt-6 sm:mt-0 sm:w-[85%] md:min-w-[300px] lg:min-w-[450px] xl:min-w-[500px] flex flex-col items-start md:items-center relative px-2 sm:px-4 md:px-3">
@@ -140,7 +144,9 @@ export default function RegistrationPreview({
                           className="text-[#a7a7a7] text-lg sm:text-xl ml-2 sm:ml-3"
                           aria-label="정가"
                         >
-                          {productData?.extra.originalPrice.toLocaleString()}원
+                          {productData?.extra.originalPrice.toLocaleString() ||
+                            ''}
+                          원
                         </s>
                       </>
                     )}
@@ -149,7 +155,7 @@ export default function RegistrationPreview({
                     className="text-2xl sm:text-3xl font-black pt-2"
                     aria-label="할인가"
                   >
-                    {productData?.price.toLocaleString()}
+                    {productData?.price.toLocaleString() || ''}
                     <span className="text-lg sm:text-xl font-bold ml-2">
                       원
                     </span>
@@ -193,14 +199,14 @@ export default function RegistrationPreview({
             <Image
               className="my-0 mx-auto"
               src={
-                productData?.extra.contentImage[0].path ||
+                productData?.extra?.contentImage?.[0]?.path ||
                 `/image/product_detail/detail_img.png`
               }
               width={800}
               height={600}
               alt="상품 상세 이미지 준비중 입니다."
             ></Image>
-            <p>{productData?.content}</p>
+            <p>{productData?.content || ''}</p>
           </section>
         </div>
       </div>
