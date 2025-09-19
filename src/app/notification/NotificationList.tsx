@@ -3,8 +3,9 @@
 import { useEffect } from 'react';
 import NotificationItem from './NotificationItem';
 import useNoticeStore from '@/zustand/useNoticeStore';
+import type { NotificationItem as NotificationItemType } from '@/data/actions/toast_alarm';
 
-export default function NotificationList({ items, sessionUserId }: { items: any[]; sessionUserId?: number;}) {
+export default function NotificationList({ items }: { items: NotificationItemType[] }) {
   const setUnreadCount = useNoticeStore((state) => state.setUnreadCount);
 
   // 페이지 들어올 때 unreadCount 최신화
@@ -21,7 +22,6 @@ export default function NotificationList({ items, sessionUserId }: { items: any[
         <NotificationItem
           key={n._id}
           n={n}
-          sessionUserId={sessionUserId}
         />
       ))}
     </ul>

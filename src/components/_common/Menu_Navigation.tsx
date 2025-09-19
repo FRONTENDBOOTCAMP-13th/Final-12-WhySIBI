@@ -16,6 +16,8 @@ type SubMenuItem = {
   path: string;
 };
 
+type NotificationListItem = { _id: number; isRead: boolean };
+
 function MenuNavigation() {
   const router = useRouter();
   const pathname = usePathname();
@@ -63,8 +65,9 @@ function MenuNavigation() {
     async function fetchNotifications() {
       if (!token) return;
       const res = await getNotifications(1, 5);
-      if (res.ok && res.item) {
-        const unread = res.item.filter((n: any) => !n.isRead).length;
+      if (res.ok && Array.isArray(res.item)) {
+        const items = res.item as NotificationListItem[];
+        const unread = items.filter((n) => !n.isRead).length;
         setUnreadCount(unread);
       }
     }

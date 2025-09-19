@@ -2,8 +2,9 @@
 
 import { useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
-import toast from 'react-hot-toast';
 import { getToastablesOnce } from '@/data/actions/toast_alarm';
+import toast from 'react-hot-toast';
+
 
 function BellIcon({ size = 18, color = '#f59e0b' }) {
   return (

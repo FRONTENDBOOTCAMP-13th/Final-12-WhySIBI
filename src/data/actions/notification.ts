@@ -1,8 +1,9 @@
 'use server';
 
-import { ApiRes, ApiResPromise } from '@/types';
+import { ApiResPromise } from '@/types';
 import { revalidatePath } from 'next/cache';
 import { cookies } from 'next/headers';
+import type { NotificationItem } from './toast_alarm';
 
 function decodeJwt(token?: string) {
   try {
@@ -17,24 +18,35 @@ function decodeJwt(token?: string) {
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID || '';
 
+type NotificationExtra = {
+  postId?: string | number;
+  replyId?: number;
+  url?: string;
+  mentionName?: string;
+  mentioner?: { _id: number; name: string | null; image: string | null };
+  [k: string]: unknown;
+};
+
 /** 알림 등록 */
 export async function createNotification(body: {
   type?: string;
   target_id: number;
   content: string;
   channel?: string;
-  extra?: Record<string, any>;
+  extra?: NotificationExtra;
   accessToken?: string;
-}): ApiResPromise<any> {
+}): ApiResPromise<NotificationItem> {
   try {
     const { accessToken, ...safeBody } = body;
+    const cookieToken = (await cookies()).get('accessToken')?.value || '';
+    const token = accessToken || cookieToken;
 
     const res = await fetch(`${API_URL}/notifications`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Client-Id': CLIENT_ID,
-        Authorization: `Bearer ${body.accessToken}`,
+        Authorization: `Bearer ${token}`,
       },
       cache: 'no-cache',
       body: JSON.stringify(safeBody),
@@ -61,7 +73,7 @@ export async function getNotifications(page = 1, limit = 10) {
       method: 'GET',
       headers: {
         'Client-Id': CLIENT_ID,
-        Authorization: `Bearer ${token}`,        // ✅ 수신자(현재 세션)의 토큰
+        Authorization: `Bearer ${token}`, 
       },
       cache: 'no-store',
       next: { revalidate: 0, tags: ['notifications'] },

@@ -85,6 +85,8 @@ export default async function DetailPage({ params }: InfoPageProps) {
               _id={_id}
               initialReplies={initialReplies}
               boardType={boardType}
+              postOwnerId={post.item.user._id}
+              postOwnerName={post.item.user.name}
             ></CommentSection>
           </div>
         </div>
@@ -124,6 +126,8 @@ export default async function DetailPage({ params }: InfoPageProps) {
               _id={_id}
               initialReplies={initialReplies}
               boardType={boardType}
+              postOwnerId={post.item.user._id}
+              postOwnerName={post.item.user.name}
             ></CommentSection>
           </section>
         </div>
