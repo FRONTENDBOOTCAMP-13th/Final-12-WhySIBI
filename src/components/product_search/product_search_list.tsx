@@ -38,20 +38,20 @@ function ProductSearchList() {
         ); // 비슷한 상품 찾기 (키워드 병렬로 받음)
         const filter = res.item.filter((product: ProductListProps) => {
           const name = product.name.toLowerCase().replace(/\s+/g, '');
-          const productKeywords = product.keyword.map(k =>
+          const productKeywords = product?.keyword?.map(k =>
             k.toLowerCase().replace(/\s+/g, ''),
           ); // 비슷한 상품 찾기
 
           const nameMatch = text && name.includes(text);
           const keywordMatch =
-            text && productKeywords.some(keyword => keyword.includes(text));
+            text && productKeywords?.some(keyword => keyword.includes(text));
 
           const multiKeywordMatch =
             keywords.length > 0 &&
             keywords.some(search => {
               return (
                 name.includes(search) ||
-                productKeywords.some(k => k.includes(search))
+                productKeywords?.some(k => k.includes(search))
               );
             });
 
