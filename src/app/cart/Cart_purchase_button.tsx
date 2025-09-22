@@ -108,7 +108,26 @@ export default function CartPurchaseButton({
     }
   }, [state, triggerRefresh, showSuccessToast]);
   return (
-    <form action={formAction}>
+    // <form action={formAction}>
+    //   <input name="token" value={token || ''} hidden readOnly />
+    //   <input
+    //     name="purchaseList"
+    //     value={JSON.stringify(products)}
+    //     hidden
+    //     readOnly
+    //   />
+    //   <button
+    //     disabled={isPending}
+    //     className={`box-border cursor-pointer bg-flame-250 w-full h-[48px] text-white border-2 border-flame-250 rounded-sm font-bold`}
+    //   >
+    //     총 {price?.toLocaleString()} 구매하기
+    //   </button>
+    // </form>
+    <div
+      onClick={() => {
+        router.push('cart/order');
+      }}
+    >
       <input name="token" value={token || ''} hidden readOnly />
       <input
         name="purchaseList"
@@ -122,6 +141,6 @@ export default function CartPurchaseButton({
       >
         총 {price?.toLocaleString()} 구매하기
       </button>
-    </form>
+    </div>
   );
 }

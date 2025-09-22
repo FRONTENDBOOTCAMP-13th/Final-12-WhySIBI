@@ -44,6 +44,8 @@ export default function OrderAddressChangeButton({
   const [modal, setModal] = useState(false);
   const dialogRef = useRef<HTMLDialogElement>(null);
 
+  console.log('유저 어드레드북', userAddressBook);
+
   // 배송지 추가 한번만 실행되게
   const handledOnceRef = useRef(false);
 
