@@ -1,17 +1,17 @@
 'use client';
 import Pagenation from '@/components/basic_component/Pagenation';
 import SkeletonUI from '@/components/product_component/skeleton_ui';
-// import OrderModal from '@/components/seller_order_list/order_state_modal/order_state_modal';
 import SellerOrderInfo from '@/components/seller_order_list/seller_order_info/seller_order_info';
 import { ProductList } from '@/types';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+
 interface SellerOrderListProp {
   res: ProductList[];
   token?: string;
 }
 
-export default function SellerOrderList({ res }: SellerOrderListProp) {
+export default function SellerOrderList({ res, token }: SellerOrderListProp) {
   const [sellerOrderList, setSellerOrderList] = useState<ProductList[] | null>(
     null,
   );
@@ -19,6 +19,7 @@ export default function SellerOrderList({ res }: SellerOrderListProp) {
   const [page, setPage] = useState(1);
   const [isLoading, setLoading] = useState(true);
 
+  console.log(sellerOrderList);
   useEffect(() => {
     setLoading(true);
     const orderListData = async () => {
@@ -48,6 +49,7 @@ export default function SellerOrderList({ res }: SellerOrderListProp) {
   const handlePagenation = (page: number) => {
     setPage(page);
   };
+
   return (
     <>
       {res && res?.length > 0 ? (
@@ -56,39 +58,45 @@ export default function SellerOrderList({ res }: SellerOrderListProp) {
             <SkeletonUI count={10} />
           </div>
         ) : (
-          <nav className="xl:mt-20 lg:mt-16 md:mt-12 mt-8">
-            <ul className="flex flex-col flex-wrap xl:gap-16 lg:gap-12 md:gap-10 gap-8">
-              {sliceData?.map((productList, i) =>
-                productList.products?.map((product, j) => (
-                  <SellerOrderInfo
-                    key={`${i}-${product._id}-${j}`}
-                    _id={product._id}
-                    price={product.price}
-                    name={product.name}
-                    mainImages={
-                      product.image ? [product.image] : product.mainImages || []
-                    }
-                    state={productList.state || ''}
-                    content={product.content || product.name}
-                    replies={product.replies}
-                    buyQuantity={product.buyQuantity}
-                    quantity={product.quantity}
-                    extra={product.extra}
-                    createdAt={product.createdAt}
-                    keyword={product.keyword || []}
-                    user={productList.user}
-                  />
-                )),
-              )}
-            </ul>
-            <div className="w-full xl:mt-5 lg:mt-4 md:mt-3 mt-2">
-              <Pagenation
-                page={page}
-                totalPage={totalPage}
-                onPageTurner={handlePagenation}
-              />
-            </div>
-          </nav>
+          <>
+            <nav className="xl:mt-20 lg:mt-16 md:mt-12 mt-8">
+              <ul className="flex flex-col flex-wrap xl:gap-16 lg:gap-12 md:gap-10 gap-8">
+                {sliceData?.map((productList, i) =>
+                  productList.products?.map((product, j) => (
+                    <SellerOrderInfo
+                      key={`${i}-${product._id}-${j}`}
+                      _id={product._id}
+                      price={product.price}
+                      name={product.name}
+                      mainImages={
+                        product.image
+                          ? [product.image]
+                          : product.mainImages || []
+                      }
+                      state={productList.state || ''}
+                      content={product.content || product.name}
+                      replies={product.replies}
+                      buyQuantity={product.buyQuantity}
+                      quantity={product.quantity}
+                      extra={product.extra}
+                      createdAt={product.createdAt}
+                      keyword={product.keyword || []}
+                      user={productList.user}
+                      token={token}
+                      orderId={productList._id}
+                    />
+                  )),
+                )}
+              </ul>
+              <div className="w-full xl:mt-5 lg:mt-4 md:mt-3 mt-2">
+                <Pagenation
+                  page={page}
+                  totalPage={totalPage}
+                  onPageTurner={handlePagenation}
+                />
+              </div>
+            </nav>
+          </>
         )
       ) : (
         <div>
@@ -108,7 +116,6 @@ export default function SellerOrderList({ res }: SellerOrderListProp) {
           </section>
         </div>
       )}
-      {/* <OrderModal token={token} _id={selectedOrderId} /> */}
     </>
   );
 }
