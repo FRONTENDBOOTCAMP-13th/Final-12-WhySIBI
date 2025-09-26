@@ -56,6 +56,8 @@ export default function ProductRegistrationForm() {
   const [state, formAction] = useActionState(ProductRegistration, null);
   const router = useRouter();
 
+  const [productOriginalName, setOriginalName] = useState('');
+
   useEffect(() => {
     if (state?.ok) {
       const navigateAndRefresh = async () => {
@@ -177,8 +179,16 @@ export default function ProductRegistrationForm() {
             placeholder="상품제목"
             name="name"
             id="name"
+            value={productOriginalName}
+            onChange={e => setOriginalName(e.target.value)}
             className="font-basic block w-full pl-4 border-2 outline-0  border-button-color-opaque-25 rounded-full h-16 py-4  focus:border-button-color transition-all duration-200 ease-in"
             required
+          />
+          <input
+            type="hidden"
+            name="originalname"
+            id="originalname"
+            value={productOriginalName}
           />
         </div>
         <div>

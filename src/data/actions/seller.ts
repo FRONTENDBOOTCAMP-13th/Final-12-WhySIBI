@@ -99,6 +99,7 @@ export async function ProductRegistration(
             {
               path: mainImagePath,
               name: attach.name,
+              originalname: formData.get('originalname'),
             },
           ]
         : [],
