@@ -1,9 +1,9 @@
 'use client';
 
-import OrderPurchaseButton from '@/app/order/Order_purchase_button';
 import { useState } from 'react';
+import CorderPurchaseButton from './Corder_purchase_button';
 
-export default function CorderCheck({ cartList }) {
+export default function CorderCheck({ cartList, cost }) {
   // 체크박스 상태관리
   const [checkboxStates, setCheckboxStates] = useState({
     agreement: false,
@@ -91,14 +91,11 @@ export default function CorderCheck({ cartList }) {
         </div>
       </fieldset>
 
-      {
-        // <OrderPurchaseButton
-        //   checkboxStates={checkboxStates}
-        //   productData={cartList}
-        //   finalPayment={finalPayment}
-        //   productName={productDetail?.item.name}
-        // />
-      }
+      <CorderPurchaseButton
+        checkboxStates={checkboxStates}
+        cartList={cartList}
+        cost={cost}
+      />
     </>
   );
 }

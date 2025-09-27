@@ -46,7 +46,7 @@ export default async function CorderReceipt() {
           </tr>
         </tbody>
       </table>
-      <CorderCheck cartList={cartList.item} />
+      <CorderCheck cartList={cartList.item} cost={cartList.cost} />
     </section>
   );
 }
