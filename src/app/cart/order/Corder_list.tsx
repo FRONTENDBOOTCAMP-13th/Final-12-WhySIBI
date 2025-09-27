@@ -1,5 +1,6 @@
 import { cookies } from 'next/headers';
 import CorderItem from './Corder_item';
+import { CartItem } from '@/types/cart';
 
 export default async function CorderList() {
   const token = (await cookies()).get('accessToken');
@@ -18,7 +19,7 @@ export default async function CorderList() {
   console.log('데이터 확인', cartList);
   return (
     <ul className="border-1 px-5 pt-3 rounded-2xl">
-      {cartList.item.map(item => {
+      {cartList.item.map((item: CartItem) => {
         return <CorderItem key={item._id} {...item} />;
       })}
     </ul>

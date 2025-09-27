@@ -1,5 +1,6 @@
 'use client';
 
+import { CartItem } from '@/types/cart';
 import useUserStore from '@/zustand/useUserStore';
 import PortOne from '@portone/browser-sdk/v2';
 import { useRouter } from 'next/navigation';
@@ -10,10 +11,18 @@ export default function CorderPurchaseButton({
   checkboxStates,
   cartList,
   cost,
+}: {
+  checkboxStates: {
+    agreement: boolean;
+    payment: boolean;
+    learn: boolean;
+  };
+  cartList: CartItem[];
+  cost: {
+    total: number;
+    products: number;
+  };
 }) {
-  console.log('flfllflfl', cartList);
-  console.log('ㅅ,ㅌ,트스ㅡ', cost);
-
   const products = cartList.map(item => ({
     key: item._id,
     _id: item.product_id,
@@ -21,7 +30,7 @@ export default function CorderPurchaseButton({
     color: item.color,
     size: item.size,
   }));
-
+  console.log('카트 리스트다', cost);
   const allChecked =
     checkboxStates.agreement && checkboxStates.payment && checkboxStates.learn;
 

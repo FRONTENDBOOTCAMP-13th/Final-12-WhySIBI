@@ -2,8 +2,18 @@
 
 import { useState } from 'react';
 import CorderPurchaseButton from './Corder_purchase_button';
+import { CartItem } from '@/types/cart';
 
-export default function CorderCheck({ cartList, cost }) {
+export default function CorderCheck({
+  cartList,
+  cost,
+}: {
+  cartList: CartItem[];
+  cost: {
+    total: number;
+    products: number;
+  };
+}) {
   // 체크박스 상태관리
   const [checkboxStates, setCheckboxStates] = useState({
     agreement: false,

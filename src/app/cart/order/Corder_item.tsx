@@ -1,6 +1,17 @@
+import { ProductType } from '@/types/cart';
 import Image from 'next/image';
 
-export default function CorderItem({ quantity, color, size, product }) {
+export default function CorderItem({
+  quantity,
+  color,
+  size,
+  product,
+}: {
+  quantity: number;
+  color: string;
+  size: string;
+  product: ProductType;
+}) {
   console.log('프덕', product);
   return (
     <li className="px-1 py-6 flex gap-6 border-b-1 border-gray-150">
