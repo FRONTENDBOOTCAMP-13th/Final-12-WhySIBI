@@ -4,12 +4,12 @@ import CorderReceipt from './Corder_receipt';
 
 export default async function CorderMain() {
   return (
-    <section className="max-w-[1280px] mx-auto w-full flex justify-center gap-5">
+    <section className="max-w-[1280px] mx-auto w-full flex justify-center gap-5 items-start">
       <div className="w-3/5 flex flex-col gap-4">
         <OrderInfo />
         <CorderList />
       </div>
-      <aside className="w-2/5">
+      <aside className="w-2/5 sticky top-29">
         <CorderReceipt />
       </aside>
     </section>
