@@ -1,12 +1,14 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { Post } from '@/types';
+import Image from 'next/image';
 import PostCardItem from '@/app/community/[boardType]/PostCard_Item';
 import Title from '@/components/Title';
 import ButtonNew from '@/components/Button_new';
 import DropdownRoom from '@/components/Dropdown/Dropdown_room';
 import RoomPostSearch from '@/components/Detail_posts/room_post_search';
 import useSearchStore from '@/zustand/searchStore';
+import useUserStore from '@/zustand/useUserStore';
 
 interface PostCardPageProps {
   boardType: string;
@@ -22,6 +24,8 @@ export default function PostCardList({
   const [posts, setPosts] = useState<Post[]>([]);
   const [sortType, setSortType] = useState('high-view');
   const { searchText } = useSearchStore();
+  const { user } = useUserStore(); 
+  const [isMyPosts, setIsMyPosts] = useState(false);
 
   // 필터링
   useEffect(() => {
@@ -36,6 +40,10 @@ export default function PostCardList({
       );
     }
 
+    if (isMyPosts && user?._id) {
+      sorted = sorted.filter((post) => post.user._id === user._id);
+    }
+
     if (sortType === 'high-view') {
       sorted.sort((a, b) => (b.views ?? 0) - (a.views ?? 0));
     } else {
@@ -45,7 +53,7 @@ export default function PostCardList({
       );
     }
     setPosts(sorted);
-  }, [sortType, initialPosts, searchText]);
+  }, [sortType, initialPosts, searchText, isMyPosts, user]);
 
   const boardTitle = boardType === 'showRoom' ? '집들이🏠' : '자취 상담소💬';
   const boardSub =
@@ -64,6 +72,21 @@ export default function PostCardList({
           </div>
         </div>
         <div className="button-wrapper flex items-center ml-auto mb-5 md:ml-0">
+          {user && (
+            <button
+              onClick={() => setIsMyPosts((prev) => !prev)}
+              className={`cursor-pointer hover:scale-110 hover:duration-200 ${isMyPosts ? 'opacity-100' : 'opacity-80'}`}
+              title="내 글만 보기"
+              >        
+              <Image
+                src="/image/community_icon/myIcon.svg"
+                width={10}
+                height={10}
+                className="w-7 h-7"
+                alt="내 글만 보기"
+              />
+            </button>
+          )}
           <DropdownRoom value={sortType} onDropChange={setSortType} />
           <ButtonNew boardType={boardType} />
         </div>
