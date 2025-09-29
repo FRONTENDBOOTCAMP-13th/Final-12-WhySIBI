@@ -5,17 +5,19 @@ import MainCategorySection from '@/components/Main_component/main_category_secti
 import MainRecommendProductSection from '@/components/Main_component/main_recommend_section';
 import MainShowRoom from '@/components/Main_component/main_showroom';
 import MainTalk from '@/components/Main_component/main_talk';
+import ViewedInitPage from '@/components/recent_viewed/ViewedInit';
 
 export default function Home() {
   return (
     <>
+      <ViewedInitPage />
       <div className="max-w-[1280px]  mx-auto my-0 ">
         <MainBannerSlider />
-        <div className="bg-white p-5 sm:p-20">
+        <div className="p-5 bg-white sm:p-20">
           <MainCategorySection />
           <MainBestProductSection />
           <MainRecommendProductSection />
-          <div className="community-wrapper flex lg:flex-row flex-col gap-15 my-20 justify-center items-center">
+          <div className="flex flex-col items-center justify-center my-20 community-wrapper lg:flex-row gap-15">
             <MainShowRoom></MainShowRoom>
             <MainTalk></MainTalk>
           </div>
