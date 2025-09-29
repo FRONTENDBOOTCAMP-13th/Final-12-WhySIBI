@@ -6,6 +6,7 @@ import ProductInquiry from '@/components/Shopping_detail/Product_inquiry';
 import { Product_Detail } from '@/components/Shopping_detail/fetch/Product_detail';
 import { cookies } from 'next/headers';
 import { notFound } from 'next/navigation';
+import ViewedSave from '@/components/recent_viewed/ViewedSave';
 export default async function ProductDetail({
   searchParams,
   params,
@@ -72,6 +73,13 @@ export default async function ProductDetail({
 
   return (
     <>
+      <ViewedSave
+        id={item._id}
+        name={item.name}
+        price={item.price}
+        image={item.mainImages[0]?.path}
+      />
+
       <div className="max-w-[1280px]  mx-auto my-0 ">
         <div className="bg-white xl:min-w-[1280px]">
           <ShoppingDetail
