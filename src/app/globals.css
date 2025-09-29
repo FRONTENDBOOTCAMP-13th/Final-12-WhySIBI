@@ -695,6 +695,26 @@
     padding-bottom: 0;
     border-bottom: none;
   }
+
+  /* 스케일 바운스 */
+  @keyframes bounceIn {
+    0% {
+      transform: scale(0.9);
+      opacity: 0;
+    }
+    60% {
+      transform: scale(1.05);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  .modal-bounce {
+    animation: bounceIn 0.3s ease-out;
+  }
 }
 @layer components {
   .bg-custom-gradient {
