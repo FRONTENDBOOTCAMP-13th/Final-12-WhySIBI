@@ -10,6 +10,8 @@ import { usePathname } from 'next/navigation';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { getNotifications } from '@/data/actions/notification';
+import { CartData } from '@/types/cart';
+import useCartRefreshStore from '@/zustand/useCartRefreshStore';
 
 type SubMenuItem = {
   label: string;
@@ -21,10 +23,11 @@ type NotificationListItem = { _id: number; isRead: boolean };
 function MenuNavigation() {
   const router = useRouter();
   const pathname = usePathname();
-  const unreadCount = useNoticeStore((state) => state.unreadCount);
-  const setUnreadCount = useNoticeStore((state) => state.setUnreadCount);
+  const unreadCount = useNoticeStore(state => state.unreadCount);
+  const setUnreadCount = useNoticeStore(state => state.setUnreadCount);
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [cartData, setCartData] = useState<CartData | null>(null);
 
   // Zustand store에서 필요한 상태와 함수들 가져오기
   const { activeMenu, subMenuData, handleMenuClick, mainCategoryId } =
@@ -60,20 +63,39 @@ function MenuNavigation() {
   const { user } = useUserStore();
   const token = user?.token?.accessToken;
 
-  
+  const { refreshTrigger } = useCartRefreshStore();
+
+  //로그인한 유저의 장바구니를 불러옴
+  useEffect(() => {
+    if (!token) return;
+    async function fetchCart() {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/carts`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+          'Client-Id': 'febc13-final12-emjf',
+        },
+      });
+      const data = await response.json();
+      setCartData(data);
+    }
+    fetchCart();
+  }, [token, refreshTrigger]);
+
+  console.log('여기서카트가?', cartData);
+
   useEffect(() => {
     async function fetchNotifications() {
       if (!token) return;
       const res = await getNotifications(1, 5);
       if (res.ok && Array.isArray(res.item)) {
         const items = res.item as NotificationListItem[];
-        const unread = items.filter((n) => !n.isRead).length;
+        const unread = items.filter(n => !n.isRead).length;
         setUnreadCount(unread);
       }
     }
     fetchNotifications();
   }, [token, setUnreadCount]);
-
 
   useEffect(() => {
     if (
@@ -150,30 +172,41 @@ function MenuNavigation() {
             </ul>
 
             <div className="header_bottom_icons flex flex-wrap items-center xl:gap-11 lg:gap-8 md:gap-6 xl:mr-7 lg:mr-5 md:mr-4">
-              {user? (<Link href={'/notification'}>
-                <div className="no-invert relative">
-                  <Image
-                    src={'/image/header_icon/notification_icon.svg'}
-                    alt="알림아이콘"
-                    width={'35'}
-                    height={'35'}
-                    className="xl:w-[35px] xl:h-[35px] lg:w-[34px] lg:h-[34px] md:w-[32px] md:h-[32px]"
-                  />
-                {unreadCount > 0 && (
-                  <span className="absolute -top-0 -right-0 w-1.5 h-1.5 bg-livealone-flame rounded-full"></span>
-                )}
-                </div>
-              </Link>) : ('')}
+              {user ? (
+                <Link href={'/notification'}>
+                  <div className="no-invert relative">
+                    <Image
+                      src={'/image/header_icon/notification_icon.svg'}
+                      alt="알림아이콘"
+                      width={'35'}
+                      height={'35'}
+                      className="xl:w-[35px] xl:h-[35px] lg:w-[34px] lg:h-[34px] md:w-[32px] md:h-[32px]"
+                    />
+                    {unreadCount > 0 && (
+                      <span className="absolute -top-0 -right-0 w-1.5 h-1.5 bg-livealone-flame rounded-full"></span>
+                    )}
+                  </div>
+                </Link>
+              ) : (
+                ''
+              )}
               <ProductSearchButton />
               <Link href={'/cart'}>
-                <div className="no-invert">
-                  <Image
-                    src={'/image/header_icon/shopping_cart_icon.svg'}
-                    alt="장바구니아이콘"
-                    width={'40'}
-                    height={'40'}
-                    className="xl:w-[40px] xl:h-[40px] lg:w-[35px] lg:h-[35px] md:w-[32px] md:h-[32px]"
-                  />
+                <div className="relative p-1">
+                  <div className="no-invert ">
+                    <Image
+                      src={'/image/header_icon/shopping_cart_icon.svg'}
+                      alt="장바구니아이콘"
+                      width={'40'}
+                      height={'40'}
+                      className="xl:w-[40px] xl:h-[40px] lg:w-[35px] lg:h-[35px] md:w-[32px] md:h-[32px]"
+                    />
+                  </div>
+                  {cartData?.item.length > 0 ? (
+                    <span className="w-3 h-3 bg-livealone-flame rounded-full absolute top-0 right-0"></span>
+                  ) : (
+                    ''
+                  )}
                 </div>
               </Link>
             </div>
@@ -201,19 +234,23 @@ function MenuNavigation() {
 
           {/* 모바일 아이콘들 */}
           <div className="flex items-center gap-4">
-            {user? (<Link href={'/notification'}>
-              <div className="no-invert px-1 relative">
-                <Image
-                  src={'/image/header_icon/notification_icon.svg'}
-                  alt="알림아이콘"
-                  width={'25'}
-                  height={'25'}
-                />
-                {unreadCount > 0 && (
-                  <span className="absolute -top-0 -right-0 w-1 h-1 bg-livealone-flame rounded-full"></span>
-                )}
-              </div>
-            </Link>) : ('') }
+            {user ? (
+              <Link href={'/notification'}>
+                <div className="no-invert px-1 relative">
+                  <Image
+                    src={'/image/header_icon/notification_icon.svg'}
+                    alt="알림아이콘"
+                    width={'25'}
+                    height={'25'}
+                  />
+                  {unreadCount > 0 && (
+                    <span className="absolute -top-0 -right-0 w-1 h-1 bg-livealone-flame rounded-full"></span>
+                  )}
+                </div>
+              </Link>
+            ) : (
+              ''
+            )}
             <ProductSearchButton />
             <Link href={'/cart'}>
               <div className="no-invert">

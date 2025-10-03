@@ -2,6 +2,7 @@
 
 import { createCartAction } from '@/data/actions/create_cart_action';
 import { ProductButtonProps } from '@/types/shopping_detail';
+import useCartRefreshStore from '@/zustand/useCartRefreshStore';
 import useUserStore from '@/zustand/useUserStore';
 import { useRouter } from 'next/navigation';
 import { useActionState, useCallback, useEffect } from 'react';
@@ -132,7 +133,7 @@ export default function ProductCartButton({ option, id }: ProductButtonProps) {
       },
     );
   }, []);
-
+  const { triggerRefresh } = useCartRefreshStore();
   useEffect(() => {
     if (state && typeof state.status === 'boolean') {
       if (state.status === false && token) {
@@ -141,9 +142,10 @@ export default function ProductCartButton({ option, id }: ProductButtonProps) {
         showErrorToast(); // 서버 액션 실행 후 토큰이 없을 때만
       } else if (state.status === true) {
         showSuccessToast();
+        triggerRefresh();
       }
     }
-  }, [state, showSuccessToast, showErrorToast, token]);
+  }, [state, showSuccessToast, showErrorToast, token, triggerRefresh]);
 
   return (
     <>
