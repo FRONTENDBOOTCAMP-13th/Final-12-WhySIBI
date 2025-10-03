@@ -82,8 +82,6 @@ function MenuNavigation() {
     fetchCart();
   }, [token, refreshTrigger]);
 
-  console.log('여기서카트가?', cartData);
-
   useEffect(() => {
     async function fetchNotifications() {
       if (!token) return;
@@ -202,8 +200,14 @@ function MenuNavigation() {
                       className="xl:w-[40px] xl:h-[40px] lg:w-[35px] lg:h-[35px] md:w-[32px] md:h-[32px]"
                     />
                   </div>
-                  {cartData?.item.length > 0 ? (
-                    <span className="w-3 h-3 bg-livealone-flame rounded-full absolute top-0 right-0"></span>
+                  {cartData && cartData?.item.length > 0 ? (
+                    <div className="w-5 h-5 bg-livealone-flame rounded-full absolute top-0 right-0 text-cal-poly-green-300 font-bold text-sm flex items-center justify-center ">
+                      {cartData?.item.length > 9 ? (
+                        <span>9+</span>
+                      ) : (
+                        <span>{cartData.item.length}</span>
+                      )}
+                    </div>
                   ) : (
                     ''
                   )}
