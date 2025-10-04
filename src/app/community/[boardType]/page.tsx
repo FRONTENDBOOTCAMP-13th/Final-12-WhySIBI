@@ -6,6 +6,7 @@ import BestTalkList from '@/components/best_talk_list/best_talk_list';
 import TalkList from '@/components/talk_list/talk_list';
 import TalkPostSearch from '@/components/talk_list/talk_post_search';
 import PostCardList from '@/app/community/[boardType]/PostCardList';
+import TalkSection from './TalkSection';
 import ToastDisplay from './ToastDisplay';
 import { cookies } from 'next/headers';
 
@@ -76,7 +77,10 @@ export default async function PostCardPage({ params }: ListPageProps) {
             </div>
           </div>
 
-          <div className="mt-2 sm:mt-3 md:mt-0 mb-4 sm:mb-6 md:mb-10">
+          {/* TalkCategory + TalkList 합침 */}
+          <TalkSection res={res} boardType={boardType}></TalkSection>
+
+          {/* <div className="mt-2 sm:mt-3 md:mt-0 mb-4 sm:mb-6 md:mb-10">
             <TalkCategory />
           </div>
 
@@ -105,7 +109,7 @@ export default async function PostCardPage({ params }: ListPageProps) {
                 {res.message}
               </p>
             )}
-          </section>
+          </section> */}
         </div>
       </div>
     );
