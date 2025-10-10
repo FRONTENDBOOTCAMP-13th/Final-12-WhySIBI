@@ -89,8 +89,9 @@ export default function PostDetail({ post, token, initialLiked = false, isLogged
               {getTimeAgo(post.createdAt)}
             </time>
           </div>
+          {/* 좋아요 */}
+          <LikeButton id={post._id} boardType={post.type} initialCount={likeInit} initialLiked={initialLiked} />
           {/* 북마크 */}
-          <LikeButton id={post._id} boardType={post.type} initialCount={likeInit} initialLiked={initialLiked} isLoggedIn={isLoggedIn} />
           <button
             onClick={handleBookmark}
             className="text-livealone-cal-poly-green flex-shrink-0 p-1 cursor-pointer"

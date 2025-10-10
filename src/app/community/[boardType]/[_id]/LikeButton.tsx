@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import { usePostLikeStore } from '@/zustand/postLikeStore';
-import { setPostLikeServer } from '@/data/actions/likes';
+import { setPostLikeClient } from '@/data/actions/likes_client';
+import useUserStore from '@/zustand/useUserStore';
 
 const safeNum = (v: unknown, fallback = 0) =>
   typeof v === 'number' && Number.isFinite(v) ? v : fallback;
@@ -12,16 +13,17 @@ export default function LikeButton({
   boardType,
   initialCount = 0,   // 기본값 0
   initialLiked = false,
-  isLoggedIn = false, 
   className = '',
 }: {
   id: number | string;
   boardType: string;
   initialCount?: number;
   initialLiked?: boolean;
-  isLoggedIn?: boolean;
   className?: string;
 }) {
+  const { user } = useUserStore();
+  const token = user?.token?.accessToken || '';
+  const isLoggedIn = !!user; 
   const key = `${boardType}:${id}`;
   const { likes, liked, toggleLike } = usePostLikeStore();
   const [pending, setPending] = useState(false);
@@ -40,7 +42,7 @@ export default function LikeButton({
     setPending(true);
 
     const want = !isLiked; // 목표 상태
-    const res = await setPostLikeServer(id, want);
+    const res = await setPostLikeClient(id, want, token);
 
     if (res?.ok) {
       // 스토어 상태가 목표와 다르면 한 번만 토글해서 맞춤

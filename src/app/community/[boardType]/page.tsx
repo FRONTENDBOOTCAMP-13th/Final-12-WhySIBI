@@ -1,12 +1,9 @@
 import { getPosts } from '@/data/functions/post';
 import Title from '@/components/Title';
 import ButtonNew from '@/components/Button_new';
-import TalkCategory from '@/components/talk_category/talk_category';
-import BestTalkList from '@/components/best_talk_list/best_talk_list';
-import TalkList from '@/components/talk_list/talk_list';
 import TalkPostSearch from '@/components/talk_list/talk_post_search';
 import PostCardList from '@/app/community/[boardType]/PostCardList';
-import TalkSection from './TalkSection';
+import TalkSection from '../../../components/talk_list/TalkSection';
 import ToastDisplay from './ToastDisplay';
 import { cookies } from 'next/headers';
 

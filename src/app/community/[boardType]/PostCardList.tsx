@@ -65,13 +65,11 @@ export default function PostCardList({
       <div className="search-wrapper flex justify-end mb-3">
         <RoomPostSearch></RoomPostSearch>
       </div>
-      <div className="post-header flex md:flex-row justify-between gap-4 lg:gap-0 pl-1 sm:pl-2 md:pl-5 ">
-        <div>
-          <div className="w-fit">
-            <Title title={boardTitle} subTitle={boardSub} />
-          </div>
+      <div className="post-header flex md:flex-row justify-between gap-4 lg:gap-0 pl-1 sm:pl-2 md:pl-5 pr-1 sm:pr-2 md:pr-5 ">
+        <div className="w-fit">
+          <Title title={boardTitle} subTitle={boardSub} />
         </div>
-        <div className="button-wrapper flex items-center ml-auto mb-5 md:ml-0">
+        <div className="button-wrapper flex items-center ml-auto md:ml-0">
           {user && (
             <button
               onClick={() => setIsMyPosts((prev) => !prev)}
@@ -91,7 +89,7 @@ export default function PostCardList({
           <ButtonNew boardType={boardType} />
         </div>
       </div>
-      <div className="grid grid-flow-row grid-cols-[repeat(auto-fill,_300px)] gap-x-10 lg:gap-x-20 gap-y-8 font-variable justify-center items-center">
+      <div className="grid grid-flow-row grid-cols-[repeat(auto-fill,_minmax(300px,1fr))] mt-10 gap-x-10 lg:gap-x-20 gap-y-10 font-variable justify-center items-center w-full">
         {posts.length > 0 ? (
             posts.map((post, index) => (
               <PostCardItem

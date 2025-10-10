@@ -136,7 +136,7 @@ export default function PostCardItem({
   };
   
   return (
-    <div className="flex flex-col relative items-center cursor-pointer hover:scale-101 hover:duration-200 group">
+    <div className="flex flex-col w-full relative items-center cursor-pointer hover:scale-101 hover:duration-200 group">
       {/* 게시글 링크 */}
       <Link
         href={`/community/${boardType}/${post._id}`}
@@ -166,7 +166,7 @@ export default function PostCardItem({
             ></Image>
           </>
         )}
-        <div className="relative w-[300px] h-[190px] mb-3">
+        <div className="relative w-full h-[220px] mb-3">
           <Image
             src={post.image?.[0] || '/image/room_photo/postThumbnail.svg'}
             alt="썸네일"
@@ -183,7 +183,7 @@ export default function PostCardItem({
       <button
         // onClick={() => toggleBookmark(post._id)}
         onClick={handleBookmark}
-        className="absolute right-[15px] top-[150px] z-10 cursor-pointer"
+        className="absolute right-[15px] top-[175px] z-10 cursor-pointer"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
