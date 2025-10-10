@@ -15,20 +15,20 @@ export default function TalkSection({ res, boardType }: TalkSectionProps) {
   const { activeSubject } = useSubjectStore();
 
   return (
-    <>
-      <div className="mt-2 sm:mt-3 md:mt-0 mb-4 sm:mb-6 md:mb-10">
+    <div className="ml-2">
+      <div className="mt-4 sm:mt-5 md:mt-0 mb-10 sm:mb-10 md:mb-12">
         <TalkCategory />
       </div>
 
       {activeSubject === 'all' && (
-        <>
-          <div className="text-base xs:text-lg sm:text-xl md:text-2xl lg:text-3xl mb-4 sm:mb-6 md:mb-8 font-basic font-bold px-1 sm:px-2 md:px-0">
+        <div className="bg-columbia-blue-100 rounded-4xl">
+          <div className="flex font-extrabold ml-6 xs:text-lg sm:text-xl md:text-xl lg:text-2xl mb-4 sm:mb-6 md:mb-8 font-basic px-1 sm:px-2 md:px-4 lg:px-7 pt-5 sm:pt-7 md:pt-10 lg:pt-12">
             <span className="block xs:inline">베스트 고민 Awards</span>
             <span className="ml-1">🏆</span>
           </div>
 
           {res.ok ? (
-            <div className="bookmark-swiper text-left pb-4 sm:pb-6 md:pb-10 px-1 sm:px-2 md:px-0">
+            <div className="bookmark-swiper text-left pb-4 sm:pb-6 md:pb-10 px-0 sm:px-0 md:px-0">
               <BestTalkList item={res.item} boardType={boardType} />
             </div>
           ) : (
@@ -36,7 +36,7 @@ export default function TalkSection({ res, boardType }: TalkSectionProps) {
               {res.message}
             </p>
           )}
-        </>
+        </div>
       )}
 
       <section className="mt-6 sm:mt-8 md:mt-14 px-1 sm:px-2 md:px-0">
@@ -50,6 +50,6 @@ export default function TalkSection({ res, boardType }: TalkSectionProps) {
           </p>
         )}
       </section>
-    </>
+    </div>
   );
 }

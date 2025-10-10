@@ -9,7 +9,7 @@ export default function TalkPostDropdownTime({
 }: DropdownShoppingProps) {
   return (
     <>
-      <div className="font-variable text-livealone-cal-poly-green bg-columbia-blue-300 flex h-[30px] w-[90px] rounded-sm text-size-xs focus-within:outline-1 cursor-pointer relative items-center m-5 active:translate-y-0.5">
+      <div className="font-variable text-livealone-cal-poly-green bg-columbia-blue-300 flex h-[30px] w-[80px] sm:w-[90px] rounded-sm text-size-xs focus-within:outline-1 cursor-pointer relative items-center mt-6 sm:mt-8 md:mt-8 lg:mt-10 active:translate-y-0.5">
         <select
           name="sort"
           id="sort"

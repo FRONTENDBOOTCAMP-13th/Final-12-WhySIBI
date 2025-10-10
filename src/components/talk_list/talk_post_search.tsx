@@ -15,7 +15,7 @@ export default function TalkPostSearch() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   return (
-    <div className="flex items-center mb-8">
+    <div className="flex items-center text-sm font-variable">
       <input
         type="search"
         name="search_post"
@@ -64,7 +64,7 @@ export default function TalkPostSearch() {
             resetSubject();
           }
         }}
-        className="flex items-center justify-center"
+        className="flex items-center justify-center pr-1"
       >
         <Image
           src={'/image/community_icon/search_icon.svg'}

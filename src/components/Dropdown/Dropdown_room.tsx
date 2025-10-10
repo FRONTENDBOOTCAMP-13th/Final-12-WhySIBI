@@ -9,7 +9,7 @@ export default function DropdownRoom({
 }: DropdownShoppingProps) {
   return (
     <>
-      <div className="font-variable text-livealone-cal-poly-green bg-columbia-blue-300 flex h-[30px] w-[70px] md:w-[90px] rounded-sm text-size-xxs md:text-size-xs focus-within:outline-1 cursor-pointer relative items-center m-5 active:translate-y-0.5">
+      <div className="font-variable text-livealone-cal-poly-green bg-columbia-blue-300 flex h-[30px] w-[70px] md:w-[90px] rounded-sm text-size-xxs md:text-size-xs focus-within:outline-1 cursor-pointer relative items-center max-[320px]:m-3 m-5 active:translate-y-0.5">
         <select
           name="sort"
           id="sort"

@@ -33,13 +33,17 @@ export default function BestTalkList({ item, boardType }: TalkListProps) {
           slidesPerView: 1,
           spaceBetween: 16,
         },
+        640: {
+          slidesPerView: 2,
+          spaceBetween: 20,
+        },
         768: {
           slidesPerView: 2,
           spaceBetween: 20,
         },
         1024: {
           slidesPerView: 2,
-          spaceBetween: 24,
+          spaceBetween: 30,
         },
         1280: {
           slidesPerView: 3,

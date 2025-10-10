@@ -61,7 +61,7 @@ export default function PostCardList({
 
   return (
     <>
-    <div className="post-list-wrapper bg-white p-9 md:p-20">
+    <div className="post-list-wrapper bg-white p-3 xs:p-4 sm:p-6 md:p-12 lg:p-16 xl:p-20">
       <div className="search-wrapper flex justify-end mb-3">
         <RoomPostSearch></RoomPostSearch>
       </div>
@@ -69,13 +69,38 @@ export default function PostCardList({
         <div className="w-fit">
           <Title title={boardTitle} subTitle={boardSub} />
         </div>
-        <div className="button-wrapper flex items-center ml-auto md:ml-0">
+        <div className="button-wrapper flex items-center ml-auto md:ml-0 mt-1 lg:mt-0">
+          {/* 320 이상일 때 My버튼&드롭다운 - 가로정렬로 보이도록 */}
+          <div className="flex max-[320px]:hidden">
+            {user && (
+              <button
+                onClick={() => setIsMyPosts((prev) => !prev)}
+                className={`cursor-pointer hover:scale-110 hover:duration-200 ${isMyPosts ? 'opacity-100' : 'opacity-80'}`}
+                title="내 글만 보기"
+                >
+                <Image
+                  src="/image/community_icon/myIcon.svg"
+                  width={10}
+                  height={10}
+                  className="w-7 h-7"
+                  alt="내 글만 보기"
+                />
+              </button>
+            )}
+            <DropdownRoom value={sortType} onDropChange={setSortType} />
+          </div>
+            <ButtonNew boardType={boardType} />
+        </div>
+      </div>
+      {/* 320 미만일 때 My버튼&드롭다운 - 세로정렬로 보이도록 */}
+      <div className="hidden max-[320px]:block">
+        <div className="flex justify-end">
           {user && (
             <button
               onClick={() => setIsMyPosts((prev) => !prev)}
               className={`cursor-pointer hover:scale-110 hover:duration-200 ${isMyPosts ? 'opacity-100' : 'opacity-80'}`}
               title="내 글만 보기"
-              >        
+              >
               <Image
                 src="/image/community_icon/myIcon.svg"
                 width={10}
@@ -86,10 +111,9 @@ export default function PostCardList({
             </button>
           )}
           <DropdownRoom value={sortType} onDropChange={setSortType} />
-          <ButtonNew boardType={boardType} />
         </div>
       </div>
-      <div className="grid grid-flow-row grid-cols-[repeat(auto-fill,_minmax(300px,1fr))] mt-10 gap-x-10 lg:gap-x-20 gap-y-10 font-variable justify-center items-center w-full">
+      <div className="grid grid-flow-row grid-cols-[repeat(auto-fill,_minmax(300px,1fr))] mt-10 max-[320px]:mt-3 gap-x-10 lg:gap-x-20 gap-y-10 font-variable justify-center items-center w-full">
         {posts.length > 0 ? (
             posts.map((post, index) => (
               <PostCardItem
