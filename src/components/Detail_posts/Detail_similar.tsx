@@ -51,11 +51,11 @@ export default function DetailSimilar({ products }: ProductProps) {
   };
 
   return (
-     <div className="min-w-[15.625rem] max-w-[18.75rem] md:max-w-[600px] md:min-w-2xl mt-20 text-center">
-      <h2 className="font-bold w-full text-xl">같은 상품으로 집을 꾸며봐요</h2>
-      <div className="mt-8 flex font-variable justify-center">
+     <div className="w-[245.71px] sm:w-[400px] md:max-w-[600px] md:min-w-[500px] pt-16 sm:pt-20 md:pt-25 text-center">
+      <h2 className="font-bold w-full text-lg sm:text-xl">같은 상품으로 집을 꾸며봐요</h2>
+      <div className="mt-8 relative flex w-full font-variable justify-center">
         {/* 슬라이드가 1~2개일 때 */}
-        {products.length <= 2 ? (
+        {/* {products.length <= 2 ? (
           <div className="flex gap-4">
             {products.map(product => (
               <div
@@ -92,10 +92,10 @@ export default function DetailSimilar({ products }: ProductProps) {
             </button>
             </div>
           </div>
-        ) : (
+        ) : ( */}
         <>
         {/* 슬라이드가 3개 이상일 때 => Swiper 사용 */}
-        <button ref={prevRef} className="px-4 py-2 cursor-pointer z-10 group">
+        <button ref={prevRef} className="px-2 sm:px-3 lg:px-4 cursor-pointer z-10 group -translate-x-4 sm:-translate-x-6 lg:-translate-x-8">
           <Image
             src="/image/community_icon/backIcon.svg"
             alt="왼쪽 화살표"
@@ -113,7 +113,7 @@ export default function DetailSimilar({ products }: ProductProps) {
         }}
           modules={[Navigation]}
           onSwiper={setSwiperInstance}
-          className="min-w-[15.625rem] max-w-[18.75rem] md:max-w-[504px] md:min-w-[504px] overflow-hidden h-40 gap-4 mb-6 bg-gray-300 rounded-xl">
+          className="max-w-[160px] sm:min-w-[15.625rem] sm:max-w-[336px] md:max-w-[504px] md:min-w-[504px] overflow-visible h-40 gap-4 mb-6 rounded-xl">
           {products.map(product => (
             <SwiperSlide
               key={product._id}
@@ -149,7 +149,7 @@ export default function DetailSimilar({ products }: ProductProps) {
             </button>
           </SwiperSlide>
         </Swiper>
-        <button ref={nextRef} className="px-4 py-2 cursor-pointer z-10 group">
+        <button ref={nextRef} className="px-2 sm:px-3 lg:px-4 cursor-pointer z-10 group translate-x-4 sm:translate-x-6 lg:translate-x-8">
           <Image
             src="/image/community_icon/backIcon.svg"
             alt="오른쪽 화살표"
@@ -159,7 +159,7 @@ export default function DetailSimilar({ products }: ProductProps) {
           ></Image>
         </button>
         </>
-         )}
+         {/* )} */}
       </div>
     </div>
   );

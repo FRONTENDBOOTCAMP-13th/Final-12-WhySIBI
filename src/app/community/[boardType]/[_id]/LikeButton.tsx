@@ -61,8 +61,8 @@ export default function LikeButton({
         type="submit"
         aria-pressed={isLiked}
         disabled={pending}
-        className={`cursor-pointer relative items-center justify-center h-9 px-3 mt-0.5 ${className}`} >
-        <svg className="w-9 h-9" viewBox="0 0 24 24" fill={isLiked ? '#26422a' : 'none'}>
+        className={`cursor-pointer relative items-center w-full justify-center px-3 mt-1 sm:mt-0.5 ${className}`} >
+        <svg className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9" viewBox="0 0 24 24" fill={isLiked ? '#26422a' : 'none'}>
           <path
             d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-.96-1.06a5.5 5.5 0 1 0-7.78 7.78L12 21.23l8.74-8.84a5.5 5.5 0 0 0 0-7.78Z"
             stroke="#26422a"

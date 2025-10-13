@@ -136,7 +136,7 @@ export default function PostCardItem({
   };
   
   return (
-    <div className="flex flex-col w-full relative items-center cursor-pointer hover:scale-101 hover:duration-200 group">
+    <div className="flex flex-col w-full min-w-[300px] relative items-center cursor-pointer hover:scale-101 hover:duration-200 group">
       {/* 게시글 링크 */}
       <Link
         href={`/community/${boardType}/${post._id}`}

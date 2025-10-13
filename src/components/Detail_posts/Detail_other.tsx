@@ -13,14 +13,14 @@ export default async function DetailOther({ _id }: { _id: number }) {
   const sliced = filtered.slice(0, 2);
 
   return (
-    <div className="min-w-[15.625rem] max-w-[18.75rem] md:max-w-[600px] md:min-w-2xl mt-15 pb-15 text-center border-b">
-      <h2 className="font-bold text-xl">이런 인테리어는 어때요?</h2>
+    <div className="w-[80%] md:max-w-[600px] md:min-w-[500px] mt-15 pb-15 text-center">
+      <h2 className="font-bold text-lg sm:text-xl">이런 인테리어는 어때요?</h2>
       {res.ok ? (
-        <div className="flex flex-row font-variable justify-center items-center mt-7">
+        <div className="flex flex-row font-variable justify-center items-center sm:mt-2 md:mt-5">
           {sliced.map((post: Post, index: number) => (
             <div
               key={post._id}
-              className={`scale-90 ${index === 1 ? 'hidden md:block' : ''}`}
+              className={`scale-85 flex-shrink-0 ${index === 1 ? 'hidden md:block' : ''}`}
             >
               <PostCardItem post={post} index={index} boardType="showRoom" />
             </div>

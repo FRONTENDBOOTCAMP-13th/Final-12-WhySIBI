@@ -60,25 +60,27 @@ export default async function DetailPage({ params }: InfoPageProps) {
   if (boardType === 'showRoom') {
     return (
       <>
-        <div className="max-w-[1280px]  mx-auto my-0 ">
+        <div className="max-w-[1280px] mx-auto my-0 ">
           <ToastDisplay></ToastDisplay>
-          <div className="wrapper flex flex-col justify-center items-center bg-white p-10 md:p-20 font-variable">
-            <div className="button-wrapper w-full min-w-2xs flex justify-between items-center text-gray-icon text-md mb-6">
-              <ButtonBack />
-              <div className="button-list flex flex-row space-x-3 mr-2">
-                <Link href={`/community/showRoom/${_id}/edit`}>
-                  <ButtonNostyle ownerId={post.item?.user._id} needLogin>
-                    수정
-                  </ButtonNostyle>
-                </Link>
-                <DeleteForm
-                  boardType={boardType}
-                  _id={_id}
-                  ownerId={post.item?.user._id}
-                ></DeleteForm>
+          <div className="wrapper flex flex-col justify-center items-center bg-white font-variable">
+            <div className="w-full lg:w-[80%] xl:w-[60%] justify-center items-center">
+              <div className="button-wrapper w-full flex justify-between items-center text-gray-icon text-md p-5 sm:p-7 md:p-8 lg:p-10">
+                <ButtonBack />
+                <div className="button-list flex flex-row space-x-3 md:space-x-5 mr-2 text-sm sm:text-size-md md:text-xl">
+                  <Link href={`/community/showRoom/${_id}/edit`}>
+                    <ButtonNostyle ownerId={post.item?.user._id} needLogin>
+                      수정
+                    </ButtonNostyle>
+                  </Link>
+                  <DeleteForm
+                    boardType={boardType}
+                    _id={_id}
+                    ownerId={post.item?.user._id}
+                  ></DeleteForm>
+                </div>
               </div>
+              <PostDetail post={post.item} token={token?.value as string} initialLiked={my.liked} isLoggedIn={isLoggedIn} />
             </div>
-            <PostDetail post={post.item} token={token?.value as string} initialLiked={my.liked} isLoggedIn={isLoggedIn} />
             <DetailSimilar products={filteredProducts}></DetailSimilar>
             <DetailOther _id={_id}></DetailOther>
             <CommentSection

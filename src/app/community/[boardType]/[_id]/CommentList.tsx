@@ -26,7 +26,7 @@ export default function CommentList({ replies, onDeleteSuccess, onDelete }: Comm
   }, []);
 
   return (
-    <ul className="mt-5">
+    <ul className="w-[80%] md:max-w-[600px] md:min-w-[500px] mt-5 sm:mt-7 md:mt-8 mb-10">
       {replies.map((reply) => (
         <li id={`reply-${reply._id}`} key={reply._id} className='list-none rounded-2xl pb-2'>
           <CommentItem
