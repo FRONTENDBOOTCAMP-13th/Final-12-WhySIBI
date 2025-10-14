@@ -36,6 +36,7 @@ export default function RegistForm({ boardType, productList }: RegistFormProps) 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProducts, setSelectedProducts] = useState<Product[]>([]);
   const [isConfirmOpen, setIsConfirmOpen] = useState(false); // 게시글 등록 확인 모달
+  const [isUploading, setIsUploading] = useState(false);
 
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -142,7 +143,7 @@ export default function RegistForm({ boardType, productList }: RegistFormProps) 
                 {state.errors.content.msg}
               </p>
             )}
-            <ImageUploader image={image} setImage={setImage} title={'집을 자랑할 사진을 넣어주세요.'}/>
+            <ImageUploader image={image} setImage={setImage} setIsUploading={setIsUploading} title={'집을 자랑할 사진을 넣어주세요.'}/>
             {/* 서버에 넘길 hidden input들 */}
             <input type="hidden" name="title" value={title} />
             <input type="hidden" name="content" value={content} />
@@ -166,10 +167,15 @@ export default function RegistForm({ boardType, productList }: RegistFormProps) 
                 event={() => setIsModalOpen(true)}
               ></ButtonRounded>
               <ButtonRounded
-                text={isLoading ? '등록 중...' : '발행신청'}
-                background="bg-livealone-columbia-blue"
-                animate="btn-gradient"
+                text={isUploading ? '업로드 중...' : isLoading ? '등록 중...' : '발행신청'}
+                background={
+                  isUploading
+                 ? 'bg-gray-300 cursor-not-allowed'
+                 : 'bg-livealone-columbia-blue'
+                }
+                animate={!isUploading ? 'btn-gradient' : undefined}
                 event={postPublish}
+                disabled={isUploading}
               ></ButtonRounded>
               {/* 상품 태그 모달창 */}
               {isModalOpen && (

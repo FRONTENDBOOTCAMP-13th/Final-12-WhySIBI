@@ -75,7 +75,7 @@ export default function PostDetail({ post, token, initialLiked = false, isLogged
           width={300}
           height={190}
           priority
-          className="w-full h-60 sm:h-90 md:h-110 object-cover bg-livealone-columbia-blue pointer-events-none"
+          className="w-full h-60 sm:h-90 lg:h-110 object-cover bg-livealone-columbia-blue pointer-events-none"
         />
         <section className="h-auto md:h-25 [box-shadow:0px_2px_20px_0px_rgba(0,0,0,0.1)] bg-white p-4 sm:p-6 md:p-7 mb-12 sm:mb-16 md:mb-20 flex items-center justify-between">
           <div className="title-wrapper flex flex-col items-start text-left space-y-1 flex-1 min-w-0">
