@@ -157,20 +157,20 @@ export default function DetailSwiper({ images }: RoomSwiperProps) {
           className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center"
           onClick={closeModal}
         >
-            <div className="flex flex-col items-center justify-center gap-3 mb-8 sm:gap-6 sm:mb-16 md:mb-20 lg:mb-15 xl:mb-5">
+            <div className="flex flex-col items-center justify-center gap-3 mb-8 sm:gap-6 sm:mb-10 lg:mb-15 xl:mb-5">
               <button
                 onClick={closeModal}
                 className=" text-white bg-black/40 rounded-full w-8 h-8 sm:w-10 sm:h-10 sm:text-lg lg:w-10 lg:h-10 lg:text-xl xl:w-8 xl:h-8 xl:text-size-md flex items-center justify-center hover:bg-black/70 transition"
               >
                 ✕
               </button>
-              <div className="relative w-full h-auto sm:w-[90vw] md:w-[70vw] lg:w-[55vw] xl:w-[40vw]">
+              <div className="relative flex w-full sm:w-[90vw] md:w-[70vw] lg:w-[55vw] xl:w-[40vw] items-center justify-center">
                 <Image
                   src={modalImage}
                   alt="확대된 이미지"
                   width={900}
                   height={700}
-                  className="object-contain"
+                  className="object-contain h-auto max-h-[70vh]"
                 />
             </div>
           </div>
