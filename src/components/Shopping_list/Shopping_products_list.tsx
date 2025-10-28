@@ -6,6 +6,7 @@ import SkeletonUI from '@/components/product_component/skeleton_ui';
 import { getProductList } from '@/data/actions/products.fetch';
 import { ProductListProps } from '@/types';
 import useMenuStore from '@/zustand/menuStore';
+import { useProductStore } from '@/zustand/productStore';
 import { useParams } from 'next/navigation';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
@@ -32,6 +33,8 @@ function ShoppingProductsList({ token }: { token?: string | undefined }) {
     mainId: 'PC0301', //기본값
     subId: null,
   });
+
+  const setProducts = useProductStore(state => state.setProducts);
 
   //주소에서 카테고리 값 가져오기
   useEffect(() => {
@@ -64,6 +67,7 @@ function ShoppingProductsList({ token }: { token?: string | undefined }) {
       );
       if (res.ok === 1) {
         setProductData(res.item);
+        setProducts(res.item);
         setTotalPage(res.pagination.totalPages);
         setTotalItems(res.pagination.total);
       } else {
@@ -74,7 +78,7 @@ function ShoppingProductsList({ token }: { token?: string | undefined }) {
     } finally {
       setLoading(false);
     }
-  }, [sort, page, mainCategoryId, subCategoryId, token]);
+  }, [sort, page, mainCategoryId, subCategoryId, token, setProducts]);
 
   //딜레이 - 주스탄드 상태랑 충돌하는거 임시 해결
   useEffect(() => {
@@ -91,11 +95,11 @@ function ShoppingProductsList({ token }: { token?: string | undefined }) {
 
   return (
     <>
-      <div className="flex justify-between items-center">
+      <div className="flex items-center justify-between">
         <span className="text-sm text-gray-500">전체 {totalItems}개</span>
         <DropdownShoppingList value={sort} onDropChange={setSort} />
       </div>
-      <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 items-center">
+      <div className="grid items-center gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {loading ? (
           <SkeletonUI count={12} />
         ) : (

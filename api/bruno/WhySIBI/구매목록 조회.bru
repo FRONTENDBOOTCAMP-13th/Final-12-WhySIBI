@@ -4,10 +4,23 @@ meta {
   seq: 10
 }
 
-get {
+post {
   url: {{url}}/orders/
-  body: none
+  body: json
   auth: inherit
+}
+
+body:json {
+  {
+    "products": [
+      {
+        "_id": 101,
+        "quantity": 1,
+        "size": "30cm",
+        "color": "검정"
+      }
+    ]
+  }
 }
 
 settings {

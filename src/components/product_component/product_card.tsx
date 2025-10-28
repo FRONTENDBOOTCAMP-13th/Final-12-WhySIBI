@@ -3,6 +3,7 @@
 import LikeBadge from '@/components/product_component/Like_badge';
 import RankBadge from '@/components/product_component/rank_badge';
 import { AddBookMark, DeleteBookMark } from '@/data/actions/bookmark';
+import { useViewedStore } from '@/zustand/viewedStore';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useCallback } from 'react';
@@ -41,8 +42,7 @@ function ProductCard({
   onClick,
   UpdateProductState,
 }: ProductCardProps) {
-  // const pathName = usePathname();
-  // const router = useRouter();
+  const addViewed = useViewedStore(state => state.addViewed);
 
   const showErrorToast = useCallback(() => {
     toast.custom(
@@ -59,9 +59,9 @@ function ProductCard({
           <div className="flex items-center">
             {/* 에러 아이콘 */}
             <div className="flex-shrink-0">
-              <div className="flex items-center justify-center h-8 w-8 rounded-full bg-red-100">
+              <div className="flex items-center justify-center w-8 h-8 bg-red-100 rounded-full">
                 <svg
-                  className="h-5 w-5 text-red-500"
+                  className="w-5 h-5 text-red-500"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -77,8 +77,8 @@ function ProductCard({
               </div>
             </div>
 
-            <div className="ml-3 flex-1">
-              <p className="text-sm font-medium text-red-800 mb-1">
+            <div className="flex-1 ml-3">
+              <p className="mb-1 text-sm font-medium text-red-800">
                 로그인이 필요합니다.
               </p>
             </div>
@@ -129,9 +129,20 @@ function ProductCard({
     }
   };
 
+  //최근 본 상품 추가
+  const handleCardClick = () => {
+    addViewed({
+      id: String(id),
+      name,
+      price: Number(price.replace(/[^0-9]/g, '')), // "12,000원" → 12000
+      image: imageUrl,
+    });
+    onClick();
+  };
+
   return (
-    <article className="p-4" onClick={onClick}>
-      <Link href={`/products/${id}`}>
+    <article className="p-4">
+      <Link href={`/products/${id}`} onClick={handleCardClick}>
         <div className="mx-auto w-fit">
           <div className="relative">
             {/* 상품순위 */}
@@ -154,7 +165,7 @@ function ProductCard({
             />
           </div>
           {/* 상품명 */}
-          <p className="mt-2 flex items-center">{name}</p>
+          <p className="flex items-center mt-2">{name}</p>
 
           {/* 할인율, 판매가 */}
           <div className="font-bold text-(length:--font-size-lg) flex items-center">
@@ -172,7 +183,7 @@ function ProductCard({
               width={16}
               height={16}
             />
-            <span className="font-bold ml-1">{rating}</span>
+            <span className="ml-1 font-bold">{rating}</span>
             <span className="text-gray-500 ml-2.5">리뷰 {reviewCount}</span>
           </div>
         </div>

@@ -6,7 +6,7 @@ import { CartData } from '@/types/cart';
 import CartAllDeleteButton from './Cart_all_delete_button';
 import CartPurchaseButton from './Cart_purchase_button';
 import useCartRefreshStore from '@/zustand/useCartRefreshStore';
-import CartAddressInput from './Cart_address_input';
+// import CartAddressInput from './Cart_address_input';
 import CartListSkeleton from './skeleton/Cart_list_skeleton';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -137,7 +137,7 @@ export default function CartMain() {
   }
 
   return (
-    <section className="flex justify-center gap-5 flex-col md:flex-row">
+    <section className="flex justify-center gap-5 flex-col md:flex-row min-h-screen items-start">
       <div className="w-[480px] md:w-[630px] flex flex-col gap-6 ">
         <div className="border-1 px-5 py-3 rounded-2xl flex justify-between items-center border-gray-550">
           <div className="flex items-center gap-3">
@@ -183,27 +183,26 @@ export default function CartMain() {
           <CartListSkeleton count={3} />
         )}
       </div>
-      <aside className="w-[480px] md:w-[630px] flex flex-col gap-6">
-        <CartAddressInput />
+      <aside className="w-[480px] md:w-[630px] flex flex-col gap-6 sticky top-29">
         <section className="border-1 px-5 py-6 rounded-2xl">
           <h3 className="text-xl font-extrabold border-b-1 pb-3 border-gray-150">
-            결제금액
+            구매금액
           </h3>
           <dl className="flex flex-col gap-5 pt-4 pb-6 border-b-1 border-gray-150">
             <div className="flex justify-between text-xl">
-              <dt className="text-gray-550 ">총 상품금액</dt>
+              <dt className="text-gray-550 ">상품금액</dt>
               <dd className="font-extrabold">
                 {cartData?.cost.products.toLocaleString()} 원
               </dd>
             </div>
             <div className="flex justify-between text-xl ">
-              <dt className="text-gray-550">총 배송비</dt>
+              <dt className="text-gray-550">배송비</dt>
               <dd className="text-flame-250 font-extrabold">무료배송</dd>
             </div>
           </dl>
 
           <dl className="flex justify-between text-xl pt-6">
-            <dt className="text-gray-550">결제예정금액</dt>
+            <dt className="text-gray-550">총 구매금액</dt>
             <dd className="font-extrabold">
               {cartData?.cost.products.toLocaleString()} 원
             </dd>

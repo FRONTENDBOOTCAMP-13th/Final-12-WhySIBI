@@ -6,6 +6,7 @@ import { Metadata } from 'next';
 import PageScrollButtons from '@/components/_common/button_pagescroll';
 import { ThemeProvider } from '@/components/theme-provider';
 import Chatbot from '@/components/Chatbot/Chatbot';
+import ViewedButton from '@/components/recent_viewed/ViewedButton';
 
 export const metadata: Metadata = {
   title: '나혼자산다',
@@ -34,7 +35,7 @@ export default function RootLayout({
   return (
     // 다크모드 테마 초기 셋팅 시 깜빡임 방지
     <html lang="ko" suppressHydrationWarning>
-      <body className="bg-white text-gray-900">
+      <body className="text-gray-900 bg-white">
         <ThemeProvider>
           <Header></Header>
           <main className="w-full bg-white">{children}</main>
@@ -68,6 +69,7 @@ export default function RootLayout({
           </div>
         </ThemeProvider>
         <PageScrollButtons />
+        <ViewedButton />
         <Chatbot />
       </body>
     </html>

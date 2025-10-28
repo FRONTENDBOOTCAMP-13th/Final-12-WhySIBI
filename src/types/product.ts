@@ -59,10 +59,12 @@ export interface ProductListProps {
   keyword?: string[];
 }
 export interface ProductList {
-  // 상품 고유 ID
   products: ProductListProps[];
   user: User;
   state?: string;
+
+  // 주문 번호 ID
+  _id?: string;
 }
 
 export interface Pagination {
