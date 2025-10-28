@@ -13,8 +13,10 @@ export default function Home() {
       <ViewedInitPage />
       <div className="max-w-[1280px]  mx-auto my-0 ">
         <MainBannerSlider />
-        <div className="p-5 bg-white sm:p-20">
+        <div className="bg-white pt-5 px-5 sm:pt-10 md:pt-15 xl:pt-25 sm:px-15 md:px-20 xl:px-25 [box-shadow:0px_20px_20px_-20px_rgba(0,0,0,0.1)]">
           <MainCategorySection />
+        </div>
+        <div className="bg-white p-5 sm:p-15 md:p-20 xl:p-25">
           <MainBestProductSection />
           <MainRecommendProductSection />
           <div className="flex flex-col items-center justify-center my-20 community-wrapper lg:flex-row gap-15">

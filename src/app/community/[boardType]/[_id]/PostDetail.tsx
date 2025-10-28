@@ -67,15 +67,15 @@ export default function PostDetail({ post, token, initialLiked = false, isLogged
   };
 
   return (
-    <div className="text-center w-full px-4 sm:px-0">
-      <div className="title-wrapper w-[80%]  min-w-[250px] md:max-w-[700px] md:min-w-2xl text-center overflow-hidden mx-auto">
+    <div className="text-center w-full">
+      <div className="title-wrapper text-center overflow-hidden mx-auto">
         <Image
           src={post.image?.[0] || '/image/room_photo/postThumbnail.svg'}
           alt="썸네일"
           width={300}
           height={190}
           priority
-          className="w-full h-60 sm:h-72 md:h-90 object-cover bg-livealone-columbia-blue pointer-events-none"
+          className="w-full h-60 sm:h-90 lg:h-110 object-cover bg-livealone-columbia-blue pointer-events-none"
         />
         <section className="h-auto md:h-25 [box-shadow:0px_2px_20px_0px_rgba(0,0,0,0.1)] bg-white p-4 sm:p-6 md:p-7 mb-12 sm:mb-16 md:mb-20 flex items-center justify-between">
           <div className="title-wrapper flex flex-col items-start text-left space-y-1 flex-1 min-w-0">
@@ -89,8 +89,9 @@ export default function PostDetail({ post, token, initialLiked = false, isLogged
               {getTimeAgo(post.createdAt)}
             </time>
           </div>
+          {/* 좋아요 */}
+          <LikeButton id={post._id} boardType={post.type} initialCount={likeInit} initialLiked={initialLiked} />
           {/* 북마크 */}
-          <LikeButton id={post._id} boardType={post.type} initialCount={likeInit} initialLiked={initialLiked} isLoggedIn={isLoggedIn} />
           <button
             onClick={handleBookmark}
             className="text-livealone-cal-poly-green flex-shrink-0 p-1 cursor-pointer"
@@ -127,7 +128,7 @@ export default function PostDetail({ post, token, initialLiked = false, isLogged
         <DetailSwiper images={post.image?.slice(1) ?? []}></DetailSwiper>
       </div>
 
-      <section className="content-wrapper min-w-[15.625rem] max-w-[18.75rem] md:max-w-[600px] md:min-w-2xl text-gray-icon text-center pt-12 sm:pt-16 md:pt-20 pb-16 sm:pb-20 md:pb-25 border-b px-6 sm:px-8 md:px-10 space-y-8 sm:space-y-12 md:space-y-15 mx-auto">
+      <section className="content-wrapper w-[80%] md:max-w-[600px] md:min-w-[500px] text-gray-icon text-center py-12 sm:py-20 md:py-30 px-6 sm:px-8 md:px-10 space-y-8 sm:space-y-12 md:space-y-15 mx-auto border-b">
         {Array.isArray(post.tag) && post.tag.length > 0 && (
           <div className="space-y-3 sm:space-y-4">
             <h2 className="font-bold text-lg sm:text-xl">집정보</h2>
@@ -139,7 +140,7 @@ export default function PostDetail({ post, token, initialLiked = false, isLogged
 
         <div className="space-y-3 sm:space-y-4">
           <h2 className="font-bold text-lg sm:text-xl">집을 소개합니다</h2>
-          <p className="font-light text-sm sm:text-base leading-relaxed text-left sm:text-center">
+          <p className="font-light text-sm sm:text-base leading-relaxed text-center">
             {post.content}
           </p>
         </div>

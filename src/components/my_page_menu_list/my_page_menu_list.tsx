@@ -16,16 +16,16 @@ export default function MyPageMenuList({ userType }: MyPageMenuListProps) {
         <ul className=" flex flex-col xl:pt-10 xl:pb-10 lg:pt-8 lg:pb-8 md:pt-6 md:pb-6 pt-4 pb-4 xl:gap-10 lg:gap-8 md:gap-6 gap-6 justify-center items-center text-center font-logo font-[600] xl:text-size-2xl lg:text-xl md:text-lg text-base text-button-color">
           <li>
             <Link
-              href="/my_page/edit_info"
-              className={`active:text-menu-text ${isAnchorMenuActive('/my_page/edit_info')}`}
+              href="/my_page/"
+              className={`active:text-menu-text ${isAnchorMenuActive('/my_page')}`}
             >
-              내정보 수정
+              내정보
             </Link>
           </li>
           <li>
             <Link
-              href="/my_page"
-              className={`active:text-menu-text ${isAnchorMenuActive('/my_page')}`}
+              href="/my_page/order_list"
+              className={`active:text-menu-text ${isAnchorMenuActive('/my_page/order_list')}`}
             >
               주문조회
             </Link>

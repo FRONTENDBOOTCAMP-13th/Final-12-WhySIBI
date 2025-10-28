@@ -6,7 +6,9 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useActionState, useEffect, useState } from 'react';
 import { User } from '@/types';
+import { ButtonBack } from '../Button_back';
 import useUserStore from '@/zustand/useUserStore';
+
 interface EditInfoFormProp {
   user_id: string;
   MyInfo: User;
@@ -100,8 +102,11 @@ export default function EditInfoForm({ user_id, MyInfo }: EditInfoFormProp) {
   return (
     <form
       action={formAction}
-      className="col-start-2 col-end-4 mt-20 max-w-[46.25rem]"
+      className="col-start-2 col-end-4 mt-0 sm:mt-5 md:mt-7 max-w-[46.25rem]"
     >
+      <div className="pb-5">
+        <ButtonBack />
+      </div>
       <input
         type="hidden"
         name="token"

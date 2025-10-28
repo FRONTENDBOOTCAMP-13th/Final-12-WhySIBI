@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import { usePostLikeStore } from '@/zustand/postLikeStore';
-import { setPostLikeServer } from '@/data/actions/likes';
+import { setPostLikeClient } from '@/data/actions/likes_client';
+import useUserStore from '@/zustand/useUserStore';
 
 const safeNum = (v: unknown, fallback = 0) =>
   typeof v === 'number' && Number.isFinite(v) ? v : fallback;
@@ -12,16 +13,17 @@ export default function LikeButton({
   boardType,
   initialCount = 0,   // 기본값 0
   initialLiked = false,
-  isLoggedIn = false, 
   className = '',
 }: {
   id: number | string;
   boardType: string;
   initialCount?: number;
   initialLiked?: boolean;
-  isLoggedIn?: boolean;
   className?: string;
 }) {
+  const { user } = useUserStore();
+  const token = user?.token?.accessToken || '';
+  const isLoggedIn = !!user; 
   const key = `${boardType}:${id}`;
   const { likes, liked, toggleLike } = usePostLikeStore();
   const [pending, setPending] = useState(false);
@@ -40,7 +42,7 @@ export default function LikeButton({
     setPending(true);
 
     const want = !isLiked; // 목표 상태
-    const res = await setPostLikeServer(id, want);
+    const res = await setPostLikeClient(id, want, token);
 
     if (res?.ok) {
       // 스토어 상태가 목표와 다르면 한 번만 토글해서 맞춤
@@ -59,8 +61,8 @@ export default function LikeButton({
         type="submit"
         aria-pressed={isLiked}
         disabled={pending}
-        className={`cursor-pointer relative items-center justify-center h-9 px-3 mt-0.5 ${className}`} >
-        <svg className="w-9 h-9" viewBox="0 0 24 24" fill={isLiked ? '#26422a' : 'none'}>
+        className={`cursor-pointer relative items-center w-full justify-center px-3 mt-1 sm:mt-0.5 ${className}`} >
+        <svg className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9" viewBox="0 0 24 24" fill={isLiked ? '#26422a' : 'none'}>
           <path
             d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-.96-1.06a5.5 5.5 0 1 0-7.78 7.78L12 21.23l8.74-8.84a5.5 5.5 0 0 0 0-7.78Z"
             stroke="#26422a"

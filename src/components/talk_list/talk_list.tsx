@@ -67,7 +67,7 @@ export default function TalkList({ item, boardType }: TalkListProps) {
   // console.log(sortedData);
   return (
     <>
-      <section className="w-full block pr-14">
+      <section className="w-full block sm:pr-5 lg:pr-10">
         <div className="float-right">
           <TalkPostDropdownTime
             value={sortValue}
@@ -84,7 +84,8 @@ export default function TalkList({ item, boardType }: TalkListProps) {
           boardType={boardType}
         />
       ))}
-      <div className="w-4/5  mt-5">
+      
+      <div className=" flex justify-center">
         <Pagenation
           page={page}
           totalPage={totalPage}

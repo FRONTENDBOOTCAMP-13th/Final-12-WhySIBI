@@ -13,7 +13,7 @@ export function ButtonBack() {
           alt="이전페이지"
           width={16}
           height={16}
-          className="opacity-50 w-4 group-hover:opacity-80"
+          className="opacity-50 w-3 md:w-4 group-hover:opacity-80"
         ></Image>
       </button>
     </>

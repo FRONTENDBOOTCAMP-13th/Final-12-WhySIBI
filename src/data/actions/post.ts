@@ -66,11 +66,14 @@ export async function createPost(
 
     // redirect는 예외를 throw 하는 방식이라서 try 문에서 사용하면 catch로 처리되므로 제대로 동작하지 않음
     if (data.ok) {
-      revalidatePath(`/${body.type}`);
-      return redirect(`/${body.type}`);
-    } else {
-      return data;
-    }
+      revalidatePath(`/community/${body.type}`);
+        return {
+          ok: 1,
+          item: data.item, // 새로 생성된 게시글 반환
+        };
+      } else {
+        return data;
+      }
   } catch (error) {
     console.error('게시글 등록 에러:', error);
     return { ok: 0, message: '일시적인 네트워크 문제로 등록에 실패했습니다.' };
@@ -133,7 +136,7 @@ export async function updatePost(
   if (data.ok) {
     revalidateTag(`posts/${_id}`);
     revalidateTag(`posts?type=${type}`);
-    redirect(`/community/${type}/${_id}`); // ✅ 경로 수정
+    redirect(`/community/${type}/${_id}`); // 경로 수정
   } else {
     return data;
   }
@@ -180,9 +183,9 @@ export async function deletePost(
   if (data.ok) {
     revalidateTag(`posts/${_id}`);
     revalidateTag(`posts?type=${type}`);
-    redirect(`/community/${type}`);
+    redirect(`/community/${type}?`);
   } else {
-    return data;
+    return data as ApiRes<Post>;
   }
 }
 

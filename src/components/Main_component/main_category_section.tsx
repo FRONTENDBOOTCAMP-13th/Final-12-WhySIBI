@@ -11,19 +11,20 @@ function MainCategorySection() {
   const { handleMenuClick } = useMenuStore();
 
   return (
-    <>
+    <div className="mt-3">
       <Title title="카테고리별 상품 찾기" subTitle="" />
       <section className="categroy block w-full bg-white pt-5">
         {/* 모바일: 스와이퍼 */}
-        <div className="md:hidden">
+        <div className="xl:hidden">
           <Swiper
             modules={[Scrollbar]}
             spaceBetween={16}
             slidesPerView={4}
             centeredSlides={false}
             breakpoints={{
-              480: { slidesPerView: 4 },
-              640: { slidesPerView: 4 },
+              480: { slidesPerView: 5 },
+              640: { slidesPerView: 5 },
+              768: { slidesPerView: 6 },
             }}
             grabCursor={true} //마우스 선택
             scrollbar={{
@@ -44,7 +45,7 @@ function MainCategorySection() {
                       alt=""
                       width={80}
                       height={80}
-                      className="w-16 sm:w-20 h-auto mx-auto hover:animate-wobble-hor-bottom "
+                      className="w-16 sm:w-20 lg:w-25 h-auto mx-auto hover:animate-wobble-hor-bottom "
                     />
                     {/* <Image
                       src={'/image/category_icon/dark/summer(dark).svg'}
@@ -73,7 +74,7 @@ function MainCategorySection() {
                       alt=""
                       width={80}
                       height={80}
-                      className="w-16 sm:w-20 h-auto mx-auto hover:animate-wobble-hor-bottom "
+                      className="w-16 sm:w-20 lg:w-25 h-auto mx-auto hover:animate-wobble-hor-bottom "
                     />
                     {/* <Image
                       src={'/image/category_icon/dark/furniture(dark).svg'}
@@ -102,7 +103,7 @@ function MainCategorySection() {
                       alt=""
                       width={80}
                       height={80}
-                      className="w-16 sm:w-20 h-auto mx-auto hover:animate-wobble-hor-bottom"
+                      className="w-16 sm:w-20 lg:w-25 h-auto mx-auto hover:animate-wobble-hor-bottom"
                     />
                     {/* <Image
                       src={'/image/category_icon/dark/household(dark).svg'}
@@ -131,7 +132,7 @@ function MainCategorySection() {
                       alt=""
                       width={80}
                       height={80}
-                      className="w-16 sm:w-20 h-auto mx-auto hover:animate-wobble-hor-bottom"
+                      className="w-16 sm:w-20 lg:w-25 h-auto mx-auto hover:animate-wobble-hor-bottom"
                     />
                     {/* <Image
                       src={'/image/category_icon/dark/decoration(dark).svg'}
@@ -160,7 +161,7 @@ function MainCategorySection() {
                       alt=""
                       width={80}
                       height={80}
-                      className="w-16 sm:w-20 h-auto mx-auto hover:animate-wobble-hor-bottom"
+                      className="w-16 sm:w-20 lg:w-25 h-auto mx-auto hover:animate-wobble-hor-bottom"
                     />
                     {/* <Image
                       src={'/image/category_icon/dark/digital(dark).svg'}
@@ -189,7 +190,7 @@ function MainCategorySection() {
                       alt=""
                       width={80}
                       height={80}
-                      className="w-16 sm:w-20 h-auto mx-auto hover:animate-wobble-hor-bottom"
+                      className="w-16 sm:w-20 lg:w-25 h-auto mx-auto hover:animate-wobble-hor-bottom"
                     />
                     {/* <Image
                       src={'/image/category_icon/dark/diy(dark).svg'}
@@ -218,7 +219,7 @@ function MainCategorySection() {
                       alt=""
                       width={80}
                       height={80}
-                      className="w-16 sm:w-20 h-auto mx-auto hover:animate-wobble-hor-bottom"
+                      className="w-16 sm:w-20 lg:w-25 h-auto mx-auto hover:animate-wobble-hor-bottom"
                     />
                     {/* <Image
                       src={'/image/category_icon/dark/acceptance(dark).svg'}
@@ -237,7 +238,8 @@ function MainCategorySection() {
           </Swiper>
         </div>
 
-        <ul className="hidden md:flex xl:text-2xl lg:text-lg md:text-md justify-center xl:gap-16 lg:gap-14 md:gap-6 gap-4 text-size-md font-logo font-bold text-button-color text-center">
+        {/* 태블릿/노트북: 스와이퍼 */}
+        <ul className="hidden xl:flex xl:text-2xl lg:text-lg md:text-md justify-center xl:gap-16 lg:gap-14 md:gap-6 gap-4 text-size-md font-logo font-bold text-button-color text-center">
           <li>
             <CategoryItem
               href="/shopping/category/PC0301"
@@ -310,8 +312,8 @@ function MainCategorySection() {
           </li>
         </ul>
       </section>
-      <hr className="h-0.25 border-0 bg-gray-300 my-20" />
-    </>
+      <hr className="border-0 mt-8 sm:mt-10 md:mt-15 xl:mt-25 mb-10 sm:mb-5 xl:mb-10" />
+    </div>
   );
 }
 export default MainCategorySection;

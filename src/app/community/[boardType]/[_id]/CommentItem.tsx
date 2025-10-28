@@ -22,17 +22,17 @@ export default function CommentItem({
     : '/image/community_icon/profile_sample.png';
 
   return (
-    <div className="min-w-[15.625rem] max-w-[18.75rem] md:max-w-[37.5rem] md:min-w-2xl flex py-4 text-[14px] text-black gap-3 px-3 rounded-2xl">
-      <div>
+    <div className="flex p-2 sm:p-4 text-[13px] sm:text-sm text-black gap-3 rounded-2xl">
+      <div className="flex-shrink-0">
         <Image
           src={profileImage}
           alt={`${reply.user.name} 프로필 이미지`}
           width={34}
           height={34}
-          className="h-[34px] object-cover rounded-full outline-1 outline-black"
+          className="h-[34px] w-[34px] object-cover rounded-full outline-1 outline-black"
         />
       </div>
-      <div>
+      <div className="flex-1">
         <span
           className="font-bold leading-xl cursor-pointer hover:underline"
           onClick={() => mentionUser(reply.user._id, reply.user.name)}

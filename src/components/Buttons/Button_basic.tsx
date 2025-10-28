@@ -5,6 +5,7 @@ export interface Buttontype {
   hover?: string;
   animate?: string;
   event?: () => void;
+  disabled?: boolean;
 }
 
 export default function ButtonBasic({ text, background, color }: Buttontype) {

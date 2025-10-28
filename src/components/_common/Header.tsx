@@ -72,13 +72,16 @@ export default function Header() {
   };
 
   return (
-    <header className="pt-16 w-full vertical-stripes">
+    <header className="pt-10 md:pt-16 w-full vertical-stripes">
       <ToastAlarm></ToastAlarm>
       <div className="max-w-[1280px] mx-auto">
-        <div className="absolute right-10 top-10 z-50 pointer-events-auto  scale-70 sm:scale-60 md:scale-80 lg:scale-90">
+        <div className="hidden sm:block absolute right-10 top-10 z-50 pointer-events-auto ">
           <ThemeToggle />
         </div>
-        <section className="relative header_top xl:min-w-[1280px] lg:w-[95%] md:w-[95%] sm:w-[92%] w-[90%] grid grid-cols-3 items-center mx-auto my-0 px-2 sm:px-0">
+        <section className="relative header_top xl:min-w-[1280px] lg:w-[95%] md:w-[95%] sm:w-[92%] w-[90%] grid grid-cols-3 items-center mx-auto my-0 sm:px-0">
+          <div className="scale-70 sm:hidden">
+            <ThemeToggle />
+          </div>
           <h1 className="col-start-2 flex justify-center">
             <Link href={'/'}>
               <div className="no-invert">
@@ -87,7 +90,9 @@ export default function Header() {
                   alt="나혼산 로고"
                   width="270"
                   height="234"
-                  className="xl:w-[270px] xl:h-[234px] lg:w-[220px] lg:h-auto md:w-[180px] md:h-auto sm:w-[150px] w-[120px] h-auto "
+                  priority
+                  className="h-auto w-full object-contain"
+                  sizes="(max-width: 320px) 60vw, (max-width: 768px) 40vw, 270px"
                 />
                 {/* <Image
                   src={'/image/logo/whysibi_logo(dark).svg'}

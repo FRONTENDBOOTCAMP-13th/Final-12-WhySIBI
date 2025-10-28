@@ -6,6 +6,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useActionState } from 'react';
 import { useRouter } from 'next/navigation';
 import { CATEGORY_OPTIONS } from '@/utils/categoryOptions';
+import toast from 'react-hot-toast';
 import useUserStore from '@/zustand/useUserStore';
 
 import TitleInput from '@/components/Write_posts/Title_input';
@@ -24,7 +25,9 @@ export default function EditForm({ post }: { post: Post }) {
   const [content, setContent] = useState('');
   const [tag, setTag] = useState<{ [key: string]: string }>({});
   const [subjectTag, setSubjectTag] = useState<{ [key: string]: string }>({});
-  const [image, setImage] = useState<string[]>([]);;
+  const [image, setImage] = useState<string[]>([]);
+  const [isConfirmOpen, setIsConfirmOpen] = useState(false); // 게시글 등록 확인 모달
+
 
   // 로그인 여부
   useEffect(() => {
@@ -59,6 +62,55 @@ export default function EditForm({ post }: { post: Post }) {
     }
   }, [post]);
 
+  useEffect(() => {
+      if (state?.ok === 1 && state?.item?._id) {
+        toast.custom(
+          (t) => (
+            <div
+              className={`${
+                t.visible
+                  ? 'animate-in slide-in-from-bottom-full'
+                  : 'animate-out slide-out-to-bottom-full'
+              } max-w-md w-full flex justify-between items-center bg-white shadow-lg rounded-lg ring-1 ring-gray-200 p-4`}
+            >
+              <p className="text-sm font-medium text-gray-900">
+                게시글이 수정되었습니다.
+              </p>
+              <button
+                onClick={() => {
+                  toast.dismiss(t.id);
+                  router.push(`/community/${post.type}/${state.item._id}`);
+                }}
+                className="px-3 py-1 rounded bg-livealone-flame text-white text-sm"
+              >
+                이동
+              </button>
+            </div>
+          ), 
+          { duration: 5000, position: 'top-center' } 
+        );
+        router.replace(`/community/${post.type}`);
+        router.refresh();
+      }   if (state?.ok === 0) {
+        toast.custom(
+          (t) => (
+            <div
+              className={`${
+                t.visible
+                  ? 'animate-in slide-in-from-bottom-full'
+                  : 'animate-out slide-out-to-bottom-full'
+              } max-w-md w-full bg-white shadow-lg rounded-lg ring-1 ring-red-200 p-4`}
+            >
+              <p className="text-sm font-medium text-red-600">
+                '제목과 내용을 2글자 이상 입력해주세요.'
+              </p>
+            </div>
+          ),
+          { duration: 5000, position: 'top-center' }  
+        );
+      }
+    }, [state, router, post.type]);
+
   const postPublish = () => {
     if (!title || !content) {
       alert('제목과 내용을 입력하세요!');
@@ -74,12 +126,8 @@ export default function EditForm({ post }: { post: Post }) {
       return;
     }
 
-    const isConfirmed = confirm('게시글을 수정하시겠습니까?');
-    if (isConfirmed && formRef.current) {
-      sessionStorage.setItem('post_success_toast', '게시글이 수정되었어요!');
-      formRef.current.requestSubmit();
-    }
-  };
+    setIsConfirmOpen(true);
+  }
 
   const guideText =
   post.type === 'showRoom'
@@ -145,7 +193,32 @@ export default function EditForm({ post }: { post: Post }) {
           event={postPublish}
         />
       </div>
-
+      {isConfirmOpen && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50" onClick={() => setIsConfirmOpen(false)}>
+          <div className="bg-white rounded-3xl shadow-lg p-8 w-[400px] modal-bounce" onClick={(e) => e.stopPropagation()}>
+            <p className="flex justify-center text-lg font-semibold text-gray-800 mb-6">
+              게시글을 수정하시겠습니까?
+            </p>
+            <div className="flex justify-center gap-3">
+              <button
+                onClick={() => {
+                  setIsConfirmOpen(false);
+                  if (formRef.current) formRef.current.requestSubmit();
+                }}
+                className="px-5 py-3 bg-livealone-flame text-white rounded-full hover:shadow-lg hover:duration-300"
+              >
+                확인
+              </button>
+              <button
+                onClick={() => setIsConfirmOpen(false)}
+                className="px-5 py-3 bg-livealone-vanilla text-livealone-flame rounded-full hover:shadow-lg hover:duration-300"
+              >
+                취소
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       {state?.ok === 0 && <p className="text-red-500 mt-3">{state.message}</p>}
     </form>
   );

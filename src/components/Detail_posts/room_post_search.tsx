@@ -22,7 +22,7 @@ export default function RoomPostSearch() {
         id="search_post"
         ref={searchText}
         placeholder="제목이나 내용을 입력해주세요"
-        className="max-w-[280px] w-64 hidden md:block px-2 py-1 border-b"
+        className="max-w-[280px] font-basic w-64 hidden md:block border-b-[1px] border-button-color-opaque-25 focus:border-red-500 focus:outline-none transition-all duration-500 ease-in-out transform focus:scale-[1.02]"
         onKeyDown={e => {
           if (e.key === 'Enter') {
             handleClick();
@@ -69,8 +69,8 @@ export default function RoomPostSearch() {
         <Image
           src={'/image/community_icon/search_icon.svg'}
           alt="검색 아이콘"
-          width={15}
-          height={15}
+          width={20}
+          height={20}
         />
       </button>
     </div>

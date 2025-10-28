@@ -115,12 +115,12 @@ export default function CommentNew({
   }, [mentionNames, inputValue]);
 
   return (
-    <div className="min-w-[15.625rem] max-w-[18.75rem] md:max-w-[600px] md:min-w-2xl">
-      <h2 className="font-extrabold text-2xl mx-5 mt-10 mb-5">
+    <div className="w-[80%] md:max-w-[600px] md:min-w-[500px] border-t">
+      <h2 className="font-extrabold text-lg sm:text-xl md:text-2xl mx-5 mt-10 sm:mt-13 mb-3 sm:mb-5">
         댓글 <span className="text-livealone-cal-poly-green">{repliesCount}</span>
       </h2>
 
-      <div className="border-1 rounded-full min-h-14 px-4 py-2 flex items-center justify-between focus-within:outline-1">
+      <div className="border-1 rounded-full min-h-10 sm:min-h-14 px-2 py-1 sm:px-4 sm:py-2 flex items-center justify-between focus-within:outline-1">
         <form action={formAction} className="flex w-full items-center justify-between">
           {/* 히든 필드들 */}
           <input type="hidden" name="_id" value={_id} />
@@ -171,14 +171,14 @@ export default function CommentNew({
               onKeyDown={handleKeyDown}
               onFocus={handleFocus}
               placeholder={mentionNames.length ? '메시지 입력...' : '댓글 달기...'}
-              className="flex-1 min-w-[120px] outline-0 text-sm ml-2 bg-transparent"
+              className="flex-1 outline-0 text-xs sm:text-sm ml-2 bg-transparent"
             />
           </div>
 
           <button
             disabled={isLoading}
             type="submit"
-            className="bg-columbia-blue-200 w-15 h-7 font-semibold border-1 rounded-full text-[12px] cursor-pointer ml-3 hover:bg-livealone-columbia-blue disabled:opacity-50"
+            className="bg-columbia-blue-200 w-12 sm:w-15 h-7 font-semibold border-1 rounded-full text-[10px] sm:text-xs cursor-pointer ml-3 hover:bg-livealone-columbia-blue disabled:opacity-50"
           >
             {isLoading ? '저장중..' : '저장'}
           </button>

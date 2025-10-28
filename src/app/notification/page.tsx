@@ -22,7 +22,6 @@ export default async function NotificationPage() {
     const cookieStore = await cookies();
     const token = cookieStore.get('accessToken')?.value || '';
 
-    // (참고) 계정 전환/읽음 직후 최신 유지 → no-store 권장 (서버액션이 이미 정상이라면 유지해도 되고요)
     const res = await getNotifications(1, 20);
 
     if (!res.ok) {

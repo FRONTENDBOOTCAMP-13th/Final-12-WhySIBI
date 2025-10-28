@@ -10,13 +10,14 @@ import Image from 'next/image';
 interface ImageUploaderProps {
   image: string[];
   setImage: (image: string[]) => void;
+  setIsUploading?: (val: boolean) => void;
   title: string;
 }
 
-export default function ImageUploader({ image, setImage, title }: ImageUploaderProps) {
+export default function ImageUploader({ image, setImage, setIsUploading, title }: ImageUploaderProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [preview, setPreview] = useState<string[]>([]);
-  const [isUploading, setIsUploading] = useState(false);
+  const [isUploading, setLocalUploading] = useState(false);
 
   const MAX_IMAGES = 10;
 
@@ -30,7 +31,8 @@ export default function ImageUploader({ image, setImage, title }: ImageUploaderP
       return;
     }
 
-    setIsUploading(true);
+    setLocalUploading(true);
+    setIsUploading?.(true);
 
     const uploadedUrls: string[] = [];
     const previewUrls: string[] = [];
@@ -38,7 +40,6 @@ export default function ImageUploader({ image, setImage, title }: ImageUploaderP
     for (const file of Array.from(files).slice(0, remain)) {
       const formData = new FormData();
       formData.append('attach', file);
-
       previewUrls.push(URL.createObjectURL(file)); // 로컬 미리보기
 
       try {
@@ -56,7 +57,8 @@ export default function ImageUploader({ image, setImage, title }: ImageUploaderP
 
     setPreview([...preview, ...previewUrls]);
     setImage([...image, ...uploadedUrls]);
-    setIsUploading(false);
+    setLocalUploading(false);
+    setIsUploading?.(false);
   };
 
   const handleClickUpload = () => {

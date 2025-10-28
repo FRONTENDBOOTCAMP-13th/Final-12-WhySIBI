@@ -19,7 +19,7 @@ const slideData = [
   },
   {
     id: 2,
-    title: '컬러와 패턴으로 완성한 1.5룸 🌿',
+    title: '컬러와 패턴으로\n완성한 1.5룸 🌿',
     imageUrl: '/image/main_banner_image_2.png',
     contentUrl: '/community/showRoom/9',
   },
@@ -31,13 +31,13 @@ const slideData = [
   },
   {
     id: 4,
-    title: '채광 좋은 창가에 책상 꾸미는 방법',
+    title: '채광 좋은 창가에\n책상 꾸미는 방법',
     imageUrl: '/image/main_banner_image_4.png',
     contentUrl: '/community/showRoom/7',
   },
   {
     id: 5,
-    title: '2층 침대 아래, 나만의 작은 아지트',
+    title: '2층 침대 아래,\n나만의 작은 아지트',
     imageUrl: '/image/main_banner_image_5.png',
     contentUrl: '/community/showRoom/6',
   },

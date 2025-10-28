@@ -5,8 +5,9 @@ import useSubjectStore from '@/zustand/subjectStore';
 export default function TalkCategory() {
   const { activeSubject, handleMenuClick } = useSubjectStore();
   const { resetSearch } = useSearchStore();
+  
   return (
-    <div className="flex flex-wrap sm:flex-nowrap gap-2 sm:gap-3 md:gap-4 lg:gap-5 mt-3 sm:mt-4 md:mt-5">
+    <div className="flex flex-wrap font-variable sm:flex-nowrap gap-2 sm:gap-3 md:gap-4 lg:gap-5 mt-3 sm:mt-4 md:mt-5">
       <button
         type="button"
         className={
